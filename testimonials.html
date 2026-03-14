@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testimonials — Feel the Room</title>
+  <meta name="description" content="What people say about working with Joakim Møller Jensen." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #FDFAF6;
+      --bg2: #F5EDE0;
+      --bg3: #EDE0CC;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #8B6F47;
+      --accent-light: #F5EDE0;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+      --radius-sm: 8px;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1A1714;
+        --bg2: #211E1A;
+        --bg3: #2A2621;
+        --text: #F0EBE3;
+        --text2: #9B9189;
+        --accent: #C49A6A;
+        --accent-light: #2A2218;
+        --border: rgba(240,235,227,0.1);
+      }
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; color: var(--text); }
+    .nav-back { font-size: 14px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-back:hover { color: var(--accent); }
+
+    .hero { padding: 72px 48px 56px; }
+    .eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
+    h1 { font-size: 42px; font-weight: 600; line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em; }
+    .hero-sub { font-size: 17px; color: var(--text2); max-width: 520px; line-height: 1.7; }
+
+    .divider { height: 0.5px; background: var(--border); margin: 0 48px; }
+
+    /* FEATURED */
+    .featured { padding: 64px 48px; }
+    .featured-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-top: 40px; }
+    .featured-card {
+      background: var(--bg2);
+      border-radius: var(--radius);
+      padding: 32px;
+      border: 0.5px solid var(--border);
+      position: relative;
+    }
+    .featured-card::before {
+      content: '"';
+      font-size: 64px;
+      color: var(--accent);
+      opacity: 0.2;
+      position: absolute;
+      top: 16px;
+      left: 28px;
+      line-height: 1;
+      font-family: Georgia, serif;
+    }
+    .featured-quote { font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 20px; padding-top: 24px; font-style: italic; }
+    .featured-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .featured-role { font-size: 13px; color: var(--text2); }
+
+    /* ALL TESTIMONIALS */
+    .all { padding: 64px 48px; background: var(--bg2); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 40px; }
+    .testi-card {
+      background: var(--bg);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 0.5px solid var(--border);
+    }
+    .testi-quote { font-size: 14px; line-height: 1.75; color: var(--text2); margin-bottom: 18px; font-style: italic; }
+    .testi-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .testi-role { font-size: 13px; color: var(--text2); }
+    .testi-divider { height: 2px; width: 24px; background: var(--accent); margin-bottom: 16px; opacity: 0.4; }
+
+    /* CTA */
+    .cta { padding: 80px 48px; text-align: center; }
+    .cta h2 { font-size: 34px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.01em; }
+    .cta p { font-size: 16px; color: var(--text2); max-width: 400px; margin: 0 auto 36px; }
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      padding: 13px 30px;
+      border-radius: var(--radius-sm);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    footer {
+      padding: 28px 48px;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--text2);
+    }
+    footer a { color: var(--text2); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero, .featured, .all, .cta { padding-left: 24px; padding-right: 24px; }
+      h1 { font-size: 30px; }
+      .divider { margin: 0 24px; }
+      footer { padding: 24px; flex-direction: column; gap: 12px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html" class="nav-logo">Feel the Room</a>
+    <a href="index.html" class="nav-back">← Back to home</a>
+  </nav>
+
+  <section class="hero">
+    <div class="eyebrow">Testimonials</div>
+    <h1>What people say.</h1>
+    <p class="hero-sub">From colleagues, leaders and clients across 13 years of sales and leadership.</p>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FEATURED THREE -->
+  <section class="featured">
+    <div class="eyebrow">Featured</div>
+    <div class="featured-grid">
+      <div class="featured-card">
+        <div class="featured-quote">"What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people. My only advice has always been: keep doing exactly what you're doing. Because it works. And because it inspires."</div>
+        <div class="featured-name">Indira Comakci</div>
+        <div class="featured-role">Chief of Staff</div>
+      </div>
+      <div class="featured-card">
+        <div class="featured-quote">"Joakim led a team of 15 agents with strong sales acumen and positive energy — delivering excellent results while taking great care of his people. He managed to ensure his team consistently performed above average, reflecting his skill in motivating and guiding agents towards excellence."</div>
+        <div class="featured-name">Jimmy Vejlebo Andersen</div>
+        <div class="featured-role">Head of Sales</div>
+      </div>
+      <div class="featured-card">
+        <div class="featured-quote">"Det har givet gode vendinger til at åbne kunderne mere op — og konkrete idéer vi nu implementerer i salgsprocessen. Alt i alt, en klasse sparring."</div>
+        <div class="featured-name">Mads Lyngø</div>
+        <div class="featured-role">CCO, ScandiMate</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ALL TESTIMONIALS -->
+  <section class="all">
+    <div class="eyebrow">All testimonials</div>
+    <div class="testi-grid">
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim is a highly social extrovert, spreading positive energy wherever he goes. He's the type of person that is great for any team culture. There is no doubt that he is on a mission of making sure that everyone is feeling good, or understanding why they don't. Joakim is a great innovative first mover on initiatives, which makes him a great self-running leader."</div>
+        <div class="testi-name">Aaron Marchmann</div>
+        <div class="testi-role">Head of Business Development</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim not only consistently demonstrated exceptional skills in client and sales process management but was instrumental in raising the bar for the entire team. He really stood out in leading by example, showing a new performance reality for the team excelling in both closing new customers and generating his own opportunities."</div>
+        <div class="testi-name">Dimitri Devillers</div>
+        <div class="testi-role">Head of Sales</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim has the unique combination of winning attitude, winning personality and a willingness to constantly improve. He has an eye for his colleagues, always willing to spend time with them to share his knowledge. He has helped improve existing processes on the Sales Team while also implementing new ones with Sales Management."</div>
+        <div class="testi-name">Thor Thomsen</div>
+        <div class="testi-role">Head of Partnerships</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim's expertise in leveraging personal video and webinars in his outreach processes set him apart, allowing him to forge meaningful connections with clients and drive impressive results. His strategic approach to account management, coupled with his exceptional sales skills, consistently led to revenue growth and strengthened client relationships."</div>
+        <div class="testi-name">Peter Dahl Inseleth</div>
+        <div class="testi-role">Head of Global Sales</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim is exceptionally skilled at reading the people he talks to and competently sells solutions that match the customers' needs. As a colleague, he has always been a go-to person when we needed to develop new concepts — his feedback always elevates it to the next level."</div>
+        <div class="testi-name">Sidsel Forchammer</div>
+        <div class="testi-role">Head of Marketing</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim possesses very unique people skills that are a game changer to any conversation and process. He is one of the quickest people I have ever seen to build a professional relationship with prospects, clients, co-workers and partners. Joakim is on to great things and would be a great asset to anyone who wants to push limits with him."</div>
+        <div class="testi-name">Christian Thorsø Pedersen</div>
+        <div class="testi-role">Senior Account Executive, Salesforce</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"A strong mindset and character, which bleeds into his determination, drive, grit and hard work on a daily basis. An innate ability to understand customers' needs, pains and problems across industries and personas. Joakim is one of the best sales people I have ever worked alongside with and managed."</div>
+        <div class="testi-name">Johan Christopher Mortensen</div>
+        <div class="testi-role">Sales Manager</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"In the short span of 10 months, he transitioned from Account Executive to Senior Account Executive. What truly sets Joakim apart is his innate talent for sales combined with humility paired with relentless confidence — a scarce combination. With Joakim's mindset and dedication, I have no doubt he's on a trajectory to become a star. Keep an eye on him."</div>
+        <div class="testi-name">Brian Strøh Strange</div>
+        <div class="testi-role">CCO</div>
+      </div>
+
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Vi kommer til at tage kulturskabelse meget seriøst. Jeg hæfter mig rigtig meget ved: Du skal være glad for at performe, og for at være glad skal du performe. Det giver sindsyg god mening. Jeg har en masse forberedelsesarbejde foran mig — takket være dig."</div>
+        <div class="testi-name">Co-Founder</div>
+        <div class="testi-role">Adtool</div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta">
+    <h2>Ready to feel the difference?</h2>
+    <p>Book a call to talk about what you need.</p>
+    <a href="index.html#waitlist" class="btn-primary">Get in touch →</a>
+  </section>
+
+  <footer>
+    <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+    <div style="display:flex;gap:24px;">
+      <a href="https://linkedin.com">LinkedIn</a>
+      <a href="index.html">Back to home</a>
+    </div>
+  </footer>
+
+</body>
+</html>
