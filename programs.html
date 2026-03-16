@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programs — Feel the Room. Lead with Intention.</title>
+  <meta name="description" content="F.E.E.L. for Leaders and F.E.E.L. for Sales — two programs built on the same framework. One for the leader, one for the team.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0c0c0b;
+      --surface: #141413;
+      --surface2: #1a1a18;
+      --border: rgba(255,255,255,0.08);
+      --border-strong: rgba(255,255,255,0.14);
+      --text: #f0ede6;
+      --text2: #9c9a92;
+      --text3: #5c5a54;
+      --gold: #c8a96e;
+      --gold2: #e8c98a;
+      --gold-dim: rgba(200,169,110,0.12);
+      --green: #4ade80;
+      --blue: #60a5fa;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --serif: 'DM Serif Display', serif;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 0 40px;
+      height: 64px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(12,12,11,0.92);
+      backdrop-filter: blur(12px);
+    }
+    .nav-logo {
+      font-family: var(--serif); font-size: 18px; color: var(--text);
+      text-decoration: none; letter-spacing: -0.02em;
+    }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a {
+      font-size: 14px; color: var(--text2); text-decoration: none;
+      transition: color .2s;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .btn-nav {
+      background: var(--gold); color: var(--bg) !important;
+      padding: 8px 18px; border-radius: 6px; font-weight: 500;
+      font-size: 14px !important; text-decoration: none;
+      transition: opacity .2s;
+    }
+    .btn-nav:hover { opacity: .88; }
+
+    /* ── LAYOUT ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 96px 0; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 160px 0 96px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    .eyebrow {
+      font-size: 12px; font-weight: 500; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--text);
+      max-width: 760px; margin: 0 auto 24px;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold2); }
+    .hero-sub {
+      font-size: 18px; color: var(--text2); max-width: 520px;
+      margin: 0 auto 40px; line-height: 1.7;
+    }
+    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold); color: var(--bg);
+      padding: 14px 28px; border-radius: 8px;
+      font-family: var(--sans); font-size: 15px; font-weight: 500;
+      text-decoration: none; transition: opacity .2s; display: inline-block;
+    }
+    .btn-primary:hover { opacity: .88; }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      padding: 13px 28px; border-radius: 8px;
+      font-family: var(--sans); font-size: 15px;
+      text-decoration: none; border: 1px solid var(--border-strong);
+      transition: border-color .2s, color .2s; display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SECTION TITLES ── */
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      color: var(--text); margin-bottom: 16px;
+    }
+    .section-body {
+      font-size: 17px; color: var(--text2); line-height: 1.75;
+      max-width: 600px;
+    }
+
+    /* ── FRAMEWORK STRIP ── */
+    .feel-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      margin: 48px 0;
+    }
+    .feel-item {
+      background: var(--surface);
+      padding: 28px 24px;
+      transition: background .2s;
+    }
+    .feel-item:hover { background: var(--surface2); }
+    .feel-letter {
+      font-family: var(--serif); font-size: 36px;
+      color: var(--gold); margin-bottom: 8px;
+    }
+    .feel-word { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
+    .feel-desc { font-size: 13px; color: var(--text3); line-height: 1.5; }
+
+    /* ── PROGRAM CARDS ── */
+    .programs-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 56px;
+    }
+    .program-card {
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+      display: flex; flex-direction: column;
+      transition: border-color .25s;
+    }
+    .program-card:hover { border-color: var(--gold); }
+    .program-card.featured {
+      border-color: var(--gold);
+    }
+
+    .card-header {
+      padding: 36px 36px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; padding: 4px 10px;
+      border-radius: 20px; margin-bottom: 20px;
+    }
+    .tag-leaders { background: rgba(96,165,250,.12); color: var(--blue); border: 1px solid rgba(96,165,250,.2); }
+    .tag-sales { background: rgba(74,222,128,.1); color: var(--green); border: 1px solid rgba(74,222,128,.2); }
+    .tag-popular {
+      background: var(--gold-dim); color: var(--gold2);
+      border: 1px solid rgba(200,169,110,.25);
+    }
+
+    .card-title {
+      font-family: var(--serif); font-size: 28px;
+      color: var(--text); line-height: 1.15;
+      letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+    .card-subtitle { font-size: 14px; color: var(--text2); line-height: 1.55; }
+
+    .card-stats {
+      display: flex; gap: 20px;
+      padding: 20px 36px;
+      border-bottom: 1px solid var(--border);
+    }
+    .stat-item { flex: 1; }
+    .stat-val {
+      font-family: var(--serif); font-size: 22px;
+      color: var(--gold2); display: block; margin-bottom: 2px;
+    }
+    .stat-label { font-size: 12px; color: var(--text3); }
+
+    .card-body { padding: 28px 36px; flex: 1; }
+
+    .card-section-label {
+      font-size: 11px; font-weight: 500; letter-spacing: .1em;
+      text-transform: uppercase; color: var(--text3); margin-bottom: 14px;
+    }
+
+    /* AB box */
+    .ab-row {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 10px; align-items: start; margin-bottom: 28px;
+    }
+    .ab-box {
+      background: var(--surface2); border-radius: var(--radius);
+      padding: 14px 16px;
+    }
+    .ab-label {
+      font-size: 10px; font-weight: 500; letter-spacing: .08em;
+      text-transform: uppercase; margin-bottom: 6px;
+    }
+    .ab-label.a { color: #f87171; }
+    .ab-label.b-blue { color: var(--blue); }
+    .ab-label.b-green { color: var(--green); }
+    .ab-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+    .ab-arrow { font-size: 16px; color: var(--text3); padding-top: 28px; text-align: center; }
+
+    /* Module list */
+    .module-list { list-style: none; margin-bottom: 28px; }
+    .module-list li {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+    .module-list li:last-child { border-bottom: none; }
+    .mod-badge {
+      width: 26px; height: 26px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 600; flex-shrink: 0; margin-top: 1px;
+    }
+    .mod-0 { background: var(--surface2); color: var(--text3); }
+    .mod-f-l { background: rgba(96,165,250,.12); color: var(--blue); }
+    .mod-e1-l { background: rgba(96,165,250,.08); color: #7dd3fc; }
+    .mod-e2-l { background: rgba(251,146,60,.1); color: #fb923c; }
+    .mod-l-l { background: rgba(167,139,250,.1); color: #a78bfa; }
+    .mod-f-s { background: rgba(74,222,128,.1); color: var(--green); }
+    .mod-e1-s { background: rgba(74,222,128,.08); color: #86efac; }
+    .mod-e2-s { background: rgba(251,146,60,.1); color: #fb923c; }
+    .mod-l-s { background: rgba(167,139,250,.1); color: #a78bfa; }
+    .mod-bonus { background: rgba(248,113,113,.1); color: #f87171; }
+    .mod-content { flex: 1; }
+    .mod-name { font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .mod-desc { font-size: 12px; color: var(--text3); line-height: 1.4; }
+
+    /* Flow bar */
+    .flow-bar {
+      display: flex; flex-wrap: wrap; gap: 6px;
+      margin-bottom: 24px; align-items: center;
+    }
+    .flow-step {
+      font-size: 11px; font-weight: 500; padding: 4px 10px;
+      border-radius: 20px;
+    }
+    .fs-d { background: rgba(74,222,128,.1); color: var(--green); }
+    .fs-cs { background: rgba(96,165,250,.1); color: var(--blue); }
+    .fs-p { background: rgba(251,146,60,.1); color: #fb923c; }
+    .fs-pr { background: rgba(251,146,60,.12); color: #fdba74; }
+    .fs-s { background: rgba(167,139,250,.1); color: #a78bfa; }
+    .fs-cl { background: rgba(200,169,110,.1); color: var(--gold2); }
+    .flow-arrow { color: var(--text3); font-size: 12px; }
+
+    /* Extras */
+    .extras-row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 28px; }
+    .extra-tag {
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px; border-radius: 20px;
+      background: rgba(251,146,60,.08);
+      color: #fb923c; border: 1px solid rgba(251,146,60,.15);
+    }
+
+    .card-footer {
+      padding: 24px 36px;
+      border-top: 1px solid var(--border);
+    }
+    .card-footer a { display: block; text-align: center; }
+
+    /* ── COMPARISON ── */
+    .comparison { border-top: 1px solid var(--border); padding: 96px 0; }
+    .comp-table {
+      width: 100%; border-collapse: collapse;
+      margin-top: 48px;
+    }
+    .comp-table th {
+      padding: 16px 20px; text-align: left;
+      font-size: 13px; font-weight: 500; color: var(--text2);
+      border-bottom: 1px solid var(--border);
+    }
+    .comp-table th:not(:first-child) { text-align: center; }
+    .comp-table td {
+      padding: 14px 20px; font-size: 14px; color: var(--text2);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .comp-table td:not(:first-child) { text-align: center; }
+    .comp-table tr:last-child td { border-bottom: none; }
+    .check { color: var(--green); font-size: 16px; }
+    .dash { color: var(--text3); }
+    .col-header-l { color: var(--blue); }
+    .col-header-s { color: var(--green); }
+
+    /* ── CTA ── */
+    .cta-section {
+      border-top: 1px solid var(--border);
+      padding: 96px 0;
+      text-align: center;
+    }
+    .cta-section .section-title { max-width: 520px; margin: 0 auto 16px; }
+    .cta-section .section-body { margin: 0 auto 40px; text-align: center; }
+    .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .footer-copy { font-size: 13px; color: var(--text3); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-size: 13px; color: var(--text3); text-decoration: none;
+      transition: color .2s;
+    }
+    .footer-links a:hover { color: var(--text); }
+
+    /* ── DIVIDER ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      nav { padding: 0 20px; }
+      .nav-links { gap: 16px; }
+      .nav-links a:not(.btn-nav) { display: none; }
+      .container { padding: 0 20px; }
+      section { padding: 64px 0; }
+      .hero { padding: 120px 0 64px; }
+      .programs-grid { grid-template-columns: 1fr; }
+      .feel-strip { grid-template-columns: 1fr 1fr; }
+      .ab-row { grid-template-columns: 1fr; }
+      .ab-arrow { display: none; }
+      footer { flex-direction: column; gap: 16px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Feel the Room</a>
+  <div class="nav-links">
+    <a href="index.html#framework">Framework</a>
+    <a href="programs.html" class="active">Programs</a>
+    <a href="index.html#about">About</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="index.html#waitlist" class="btn-nav">Book a call →</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow">F.E.E.L. Programs</p>
+    <h1>Two programs. <em>One framework.</em> Built for the room you're in.</h1>
+    <p class="hero-sub">One for the leader. One for the team. Both built on the same method — because great sales culture starts at the top and runs all the way through.</p>
+    <div class="hero-cta">
+      <a href="#leaders" class="btn-primary">F.E.E.L. for Leaders</a>
+      <a href="#sales" class="btn-ghost">F.E.E.L. for Sales</a>
+    </div>
+  </div>
+</section>
+
+<!-- FRAMEWORK STRIP -->
+<section style="padding: 64px 0; border-bottom: 1px solid var(--border);">
+  <div class="container">
+    <p class="eyebrow" style="text-align:center; margin-bottom:16px;">The framework behind both programs</p>
+    <div class="feel-strip">
+      <div class="feel-item">
+        <div class="feel-letter">F</div>
+        <div class="feel-word">Feel</div>
+        <div class="feel-desc">Mærk rummet. Energi, kropssprog, det der ikke siges.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Explore</div>
+        <div class="feel-desc">Stil de rigtige spørgsmål. Forstå drøm og problem.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Elevate</div>
+        <div class="feel-desc">Forstør kløften. Skab momentum og emotionel sikkerhed.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">L</div>
+        <div class="feel-word">Lead</div>
+        <div class="feel-desc">Tag styringen med intention. Byg kultur. Luk salget.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMS -->
+<section style="padding: 80px 0;">
+  <div class="container">
+    <p class="eyebrow">Choose your program</p>
+    <h2 class="section-title">Built for where you are.</h2>
+    <p class="section-body">Marcus leads the team. His team closes the deals. Both need the same foundation — awareness, intention, and the ability to feel the room. These two programs deliver exactly that.</p>
+
+    <div class="programs-grid">
+
+      <!-- LEADERS -->
+      <div class="program-card" id="leaders">
+        <div class="card-header">
+          <div style="display:flex; gap:8px; margin-bottom:20px;">
+            <span class="card-tag tag-leaders">For Leaders</span>
+          </div>
+          <h3 class="card-title">F.E.E.L. for Leaders</h3>
+          <p class="card-subtitle">Fra reaktiv til intentionel. Lær at mærke rummet, coache dit team og bygge en kultur der performer — fordi de vil, ikke fordi du presser dem.</p>
+        </div>
+
+        <div class="card-stats">
+          <div class="stat-item"><span class="stat-val">5</span><span class="stat-label">Moduler</span></div>
+          <div class="stat-item"><span class="stat-val">22</span><span class="stat-label">Lektioner</span></div>
+          <div class="stat-item"><span class="stat-val">8</span><span class="stat-label">Extras</span></div>
+        </div>
+
+        <div class="card-body">
+          <!-- AB -->
+          <p class="card-section-label">Transformation</p>
+          <div class="ab-row">
+            <div class="ab-box">
+              <p class="ab-label a">Point A</p>
+              <p class="ab-text">Han reagerer på tal, ikke på mennesker. Han overtager i stedet for at coache. Han trækker holdet.</p>
+            </div>
+            <div class="ab-arrow">→</div>
+            <div class="ab-box">
+              <p class="ab-label b-blue">Point B</p>
+              <p class="ab-text">Han mærker rummet i ethvert møde. Han coacher. Hans team performer af overbevisning.</p>
+            </div>
+          </div>
+
+          <!-- Modules -->
+          <p class="card-section-label">Kursusstruktur</p>
+          <ul class="module-list">
+            <li>
+              <div class="mod-badge mod-f-l">F</div>
+              <div class="mod-content">
+                <div class="mod-name">Feel — Awareness som fundament</div>
+                <div class="mod-desc">Mærk rummet · Fokus · Hele mennesket · Kost, søvn, motion</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-e1-l">E</div>
+              <div class="mod-content">
+                <div class="mod-name">Explore — Spørg, lyt, forstå · Targets</div>
+                <div class="mod-desc">Drøm → Problem → Løsning · Target Setting: Expected / Good / GOAT</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-e2-l">E</div>
+              <div class="mod-content">
+                <div class="mod-name">Elevate — Coaching-øjeblikke i praksis</div>
+                <div class="mod-desc">Coaching vs instruktion · Reframe · Pre-close · Roleplay</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-l-l">L</div>
+              <div class="mod-content">
+                <div class="mod-name">Lead — Byg kulturen og holdet</div>
+                <div class="mod-desc">Værdier · Rekruttering · Onboarding · 6 møder/uge · Team Orchestration</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Weekly cadence highlight -->
+          <p class="card-section-label">Ugentlig rytme — 6 møder</p>
+          <div style="background:var(--surface2); border-radius:var(--radius); padding:14px 16px; margin-bottom:24px; font-size:13px; color:var(--text2); line-height:1.6;">
+            <span style="color:var(--blue); font-weight:500;">3 × Team-møder</span> — Mandag morgen, Onsdag, Fredag sidst på dagen<br>
+            <span style="color:#fb923c; font-weight:500;">3 × Sales Training</span> — Roleplay i grupper, strategisk placeret i lavaktivitetstidspunkter
+          </div>
+
+          <!-- Extras -->
+          <p class="card-section-label">Extras inkluderet</p>
+          <div class="extras-row">
+            <span class="extra-tag">Energilog</span>
+            <span class="extra-tag">Selvvurdering: Dit fundament</span>
+            <span class="extra-tag">Spørgsmålsbank</span>
+            <span class="extra-tag">Target-skabelon</span>
+            <span class="extra-tag">1:1 tjekliste</span>
+            <span class="extra-tag">Core values workshop</span>
+            <span class="extra-tag">Rekrutteringsscript</span>
+            <span class="extra-tag">30-60-90 onboarding</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <a href="index.html#waitlist" class="btn-ghost" style="width:100%; text-align:center;">Join waitlist →</a>
+        </div>
+      </div>
+
+      <!-- SALES -->
+      <div class="program-card featured" id="sales">
+        <div class="card-header">
+          <div style="display:flex; gap:8px; margin-bottom:20px;">
+            <span class="card-tag tag-sales">For Sales</span>
+            <span class="card-tag tag-popular">Most popular</span>
+          </div>
+          <h3 class="card-title">F.E.E.L. for Sales</h3>
+          <p class="card-subtitle">Forstå kunden dybere end de forstår sig selv — og lad dem sælge til sig selv. Ingen scripts. Ingen pres. Bare den rigtige samtale.</p>
+        </div>
+
+        <div class="card-stats">
+          <div class="stat-item"><span class="stat-val">6</span><span class="stat-label">Moduler</span></div>
+          <div class="stat-item"><span class="stat-val">27</span><span class="stat-label">Lektioner</span></div>
+          <div class="stat-item"><span class="stat-val">7</span><span class="stat-label">Extras</span></div>
+        </div>
+
+        <div class="card-body">
+          <!-- AB -->
+          <p class="card-section-label">Transformation</p>
+          <div class="ab-row">
+            <div class="ab-box">
+              <p class="ab-label a">Point A</p>
+              <p class="ab-text">Pitcher produktet. Taler mere end lytter. Lukker med pres — og mærker at det ikke virker.</p>
+            </div>
+            <div class="ab-arrow">→</div>
+            <div class="ab-box">
+              <p class="ab-label b-green">Point B</p>
+              <p class="ab-text">Guider kunden fra problem til beslutning — med logik og følelse — så de lukker sig selv.</p>
+            </div>
+          </div>
+
+          <!-- Sales Flow -->
+          <p class="card-section-label">Salgsflowet</p>
+          <div class="flow-bar">
+            <span class="flow-step fs-d">Intro</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-d">Drøm</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-cs">Current State</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-p">Problem</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-pr">Probe</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-s">3-Pillar Pitch</span>
+            <span class="flow-arrow">→</span>
+            <span class="flow-step fs-cl">Close</span>
+          </div>
+
+          <!-- Modules -->
+          <p class="card-section-label">Kursusstruktur</p>
+          <ul class="module-list">
+            <li>
+              <div class="mod-badge mod-f-s">F</div>
+              <div class="mod-content">
+                <div class="mod-name">Feel — Mærk rummet og kunden</div>
+                <div class="mod-desc">Fokus · Hele mennesket · Kost, søvn, motion som salgsfundament</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-e1-s">E</div>
+              <div class="mod-content">
+                <div class="mod-name">Explore — Disqualify Fast · Drøm → Current State → Problem</div>
+                <div class="mod-desc">Første opkald · Agenda Setting · Fortæl mig lidt mere</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-e2-s">E</div>
+              <div class="mod-content">
+                <div class="mod-name">Elevate — Logical + Emotional Certainty</div>
+                <div class="mod-desc">Probe · Forstør kløften · Tab-aversion · Identity shift</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-l-s">L</div>
+              <div class="mod-content">
+                <div class="mod-name">Lead — Negative Reverse Selling · 3-Pillar Pitch · Close</div>
+                <div class="mod-desc">Power of No · Fuck Yes or Fuck No · Pre-close · Champion building</div>
+              </div>
+            </li>
+            <li>
+              <div class="mod-badge mod-bonus">!</div>
+              <div class="mod-content">
+                <div class="mod-name">Bonus — Objection Mapping</div>
+                <div class="mod-desc">De 5 mønstre der dækker 74% af alle indvendinger · LAER</div>
+              </div>
+            </li>
+          </ul>
+
+          <!-- Extras -->
+          <p class="card-section-label">Extras inkluderet</p>
+          <div class="extras-row">
+            <span class="extra-tag">Pre-møde tjekliste</span>
+            <span class="extra-tag">Selvvurdering: Dit fundament</span>
+            <span class="extra-tag">Spørgsmålsbank — swipe file</span>
+            <span class="extra-tag">Negative Reverse swipe file</span>
+            <span class="extra-tag">3-Pillar Pitch-skabelon</span>
+            <span class="extra-tag">Opfølgningsscript</span>
+            <span class="extra-tag">Objection swipe file</span>
+          </div>
+        </div>
+
+        <div class="card-footer">
+          <a href="index.html#waitlist" class="btn-primary" style="width:100%;">Join waitlist →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <div class="container">
+    <p class="eyebrow">Compare</p>
+    <h2 class="section-title">Which program is right for you?</h2>
+    <p class="section-body">Both programs are built on the F.E.E.L. framework. The difference is who they're designed for — and what you need to walk away with.</p>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th style="width:40%;">Feature</th>
+          <th class="col-header-l">F.E.E.L. for Leaders</th>
+          <th class="col-header-s">F.E.E.L. for Sales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Awareness & presence as foundation</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Hele mennesket — kost, søvn, motion</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Drøm → Problem → Løsning som ramme</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Coaching-teknikker og spørgeteknik</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Target Setting: Expected / Good / GOAT</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="dash">—</span></td>
+        </tr>
+        <tr>
+          <td>Team Orchestration — 6 møder/uge</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="dash">—</span></td>
+        </tr>
+        <tr>
+          <td>Rekruttering & onboarding</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="dash">—</span></td>
+        </tr>
+        <tr>
+          <td>Kulturbygning & core values</td>
+          <td><span class="check">✓</span></td>
+          <td><span class="dash">—</span></td>
+        </tr>
+        <tr>
+          <td>Disqualify Fast & Agenda Setting</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Current State & Probe (Elevate)</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Negative Reverse Selling</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>3-Pillar Pitching & Champion building</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+        <tr>
+          <td>Objection Mapping (74% of all objections)</td>
+          <td><span class="dash">—</span></td>
+          <td><span class="check">✓</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <p class="eyebrow">Get started</p>
+    <h2 class="section-title">Ready to feel the difference?</h2>
+    <p class="section-body">Both programs are launching soon. Join the waitlist — or book a call to talk about what fits your situation.</p>
+    <div class="cta-btns">
+      <a href="index.html#waitlist" class="btn-primary">Join waitlist</a>
+      <a href="index.html#waitlist" class="btn-ghost">Book a discovery call →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p class="footer-copy">© 2026 Feel the Room · Joakim Møller Jensen</p>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/joakimmjensen">LinkedIn</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+</body>
+</html>
