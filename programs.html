@@ -60,6 +60,9 @@
     .btn-primary:hover { opacity: .88; }
     .btn-ghost { background: transparent; color: var(--text); padding: 13px 28px; border-radius: 8px; font-size: 15px; text-decoration: none; border: 0.5px solid var(--border-strong); transition: border-color .2s, color .2s; display: inline-block; }
     .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-primary, .btn-ghost { cursor: pointer; font-family: var(--sans); }
+    .hero-btn-active { background: var(--gold) !important; color: #fff !important; border-color: var(--gold) !important; }
+    .hero-btn-inactive { background: transparent !important; color: var(--text) !important; border: 0.5px solid var(--border-strong) !important; }
 
     /* PROGRAM SWITCHER */
     .program-switcher { padding: 56px 0 0; }
@@ -296,8 +299,8 @@
     <h1>Two programs. <em>One framework.</em> Built for the room you're in.</h1>
     <p class="hero-sub">One for the leader. One for the team. Both built on the same method — because great sales culture starts at the top and runs all the way through.</p>
     <div class="hero-cta">
-      <a href="#leaders" class="btn-primary">F.E.E.L. for Leaders</a>
-      <a href="#sales" class="btn-ghost">F.E.E.L. for Sales</a>
+      <button id="hero-btn-l" class="btn-primary hero-btn-active" onclick="switchProgram('l')">F.E.E.L. for Leaders</button>
+      <button id="hero-btn-s" class="btn-ghost hero-btn-inactive" onclick="switchProgram('s')">F.E.E.L. for Sales</button>
     </div>
   </div>
 </section>
@@ -806,7 +809,13 @@ function switchProgram(p) {
   document.getElementById('panel-s').classList.toggle('active', p === 's');
   document.getElementById('btn-l').className = 'switcher-tab' + (p === 'l' ? ' active-l' : '');
   document.getElementById('btn-s').className = 'switcher-tab' + (p === 's' ? ' active-s' : '');
-  if (p === 's') document.getElementById('sales').scrollIntoView({behavior:'smooth'});
+  var btnL = document.getElementById('hero-btn-l');
+  var btnS = document.getElementById('hero-btn-s');
+  if (btnL && btnS) {
+    btnL.className = p === 'l' ? 'btn-primary hero-btn-active' : 'btn-ghost hero-btn-inactive';
+    btnS.className = p === 's' ? 'btn-primary hero-btn-active' : 'btn-ghost hero-btn-inactive';
+  }
+  document.getElementById('leaders').scrollIntoView({behavior:'smooth'});
 }
 
 function toggleModule(id) {
