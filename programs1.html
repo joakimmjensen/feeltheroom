@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programs — Feel the Room. Lead with Intention.</title>
+  <meta name="description" content="Two programs. One framework. F.E.E.L. for Leaders and F.E.E.L. for Sales — built on the same method by Joakim Møller Jensen." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#1A1714; --bg2:#211E1A; --bg3:#2A2621; --text:#F0EBE3; --text2:#9B9189; --accent:#C49A6A; --accent-light:#2A2218; --border:rgba(240,235,227,0.1); } }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+
+    nav { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; border-bottom:0.5px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:100; }
+    .nav-logo { font-size:15px; font-weight:600; letter-spacing:0.03em; color:var(--text); }
+    .nav-links { display:flex; gap:28px; font-size:14px; }
+    .nav-links a { color:var(--text2); transition:color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--text); }
+    .nav-cta { font-size:13px; background:var(--text); color:var(--bg); padding:9px 22px; border-radius:var(--radius-sm); font-weight:600; border:none; cursor:pointer; text-decoration:none; display:inline-block; }
+
+    section { padding:80px 48px; }
+    .divider { height:0.5px; background:var(--border); margin:0 48px; }
+
+    .eyebrow { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; }
+    h2.section-title { font-size:34px; font-weight:600; line-height:1.2; max-width:600px; margin-bottom:16px; letter-spacing:-0.01em; }
+    h2.section-title em { font-style:normal; color:var(--accent); }
+    .section-body { font-size:16px; color:var(--text2); max-width:560px; line-height:1.75; }
+
+    /* HERO */
+    .hero { padding:80px 48px 64px; }
+    .hero-tabs { display:flex; gap:10px; margin-top:36px; flex-wrap:wrap; }
+    .hero-tab { padding:10px 22px; border-radius:var(--radius-sm); font-size:14px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); background:transparent; color:var(--text2); transition:all 0.15s; text-decoration:none; display:inline-block; }
+    .hero-tab:hover { background:var(--bg2); color:var(--text); }
+    .hero-tab.primary { background:var(--accent); color:#fff; border-color:var(--accent); }
+
+    /* FRAMEWORK STRIP */
+    .framework-strip { background:var(--bg2); padding:40px 48px; }
+    .framework-strip-label { font-size:11px; color:var(--text2); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:20px; }
+    .feel-row { display:grid; grid-template-columns:repeat(4,1fr); gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    .feel-cell { background:var(--bg); padding:20px 22px; }
+    .feel-letter { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:4px; }
+    .feel-word { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--text2); margin-bottom:8px; }
+    .feel-desc { font-size:12px; color:var(--text2); line-height:1.5; }
+
+    /* PROGRAM CARDS */
+    .programs-section { padding:80px 48px; }
+    .programs-intro { font-size:16px; color:var(--text2); max-width:600px; line-height:1.75; margin-bottom:56px; }
+    .program-card { background:var(--bg2); border-radius:var(--radius); border:0.5px solid var(--border); padding:48px; margin-bottom:24px; }
+    .program-card.featured { border:1.5px solid var(--accent); }
+    .program-header { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:8px; flex-wrap:wrap; gap:12px; }
+    .program-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); }
+    .program-badge { font-size:11px; font-weight:600; background:var(--accent); color:#fff; padding:4px 12px; border-radius:20px; }
+    .program-title { font-size:26px; font-weight:600; margin-bottom:12px; letter-spacing:-0.01em; }
+    .program-desc { font-size:15px; color:var(--text2); line-height:1.75; max-width:600px; margin-bottom:32px; }
+
+    .program-stats { display:flex; gap:32px; margin-bottom:32px; padding-bottom:32px; border-bottom:0.5px solid var(--border); flex-wrap:wrap; }
+    .prog-stat-num { font-size:28px; font-weight:700; color:var(--accent); display:block; line-height:1; }
+    .prog-stat-label { font-size:12px; color:var(--text2); }
+
+    /* TRANSFORMATION */
+    .transformation { display:grid; grid-template-columns:1fr auto 1fr; gap:16px; align-items:center; margin-bottom:32px; }
+    .trans-box { background:var(--bg); border-radius:var(--radius-sm); padding:18px 20px; border:0.5px solid var(--border); }
+    .trans-label { font-size:10px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; margin-bottom:8px; }
+    .trans-label.a { color:var(--text2); }
+    .trans-label.b { color:var(--accent); }
+    .trans-text { font-size:13px; color:var(--text2); line-height:1.5; }
+    .trans-arrow { font-size:20px; color:var(--text2); text-align:center; }
+
+    /* FLOW */
+    .flow-section { margin-bottom:32px; }
+    .flow-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text2); margin-bottom:12px; }
+    .flow-steps { display:flex; gap:6px; align-items:center; flex-wrap:wrap; }
+    .flow-step { font-size:12px; font-weight:600; padding:5px 12px; border-radius:20px; background:var(--bg3); color:var(--accent); }
+    .flow-arrow { font-size:11px; color:var(--text2); }
+
+    /* MODULES */
+    .modules { margin-bottom:32px; }
+    .modules-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text2); margin-bottom:14px; }
+    .module-item { display:flex; gap:14px; align-items:flex-start; padding:12px 0; border-bottom:0.5px solid var(--border); }
+    .module-item:last-child { border-bottom:none; }
+    .module-badge { width:28px; height:28px; border-radius:6px; background:var(--accent-light); display:flex; align-items:center; justify-content:center; font-size:12px; font-weight:700; color:var(--accent); flex-shrink:0; margin-top:2px; }
+    .module-badge.red { background:#FEF0F0; color:#C0392B; }
+    .module-content { flex:1; }
+    .module-title { font-size:14px; font-weight:600; margin-bottom:3px; }
+    .module-desc { font-size:13px; color:var(--text2); line-height:1.5; }
+
+    /* EXTRAS */
+    .extras { margin-bottom:32px; }
+    .extras-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text2); margin-bottom:12px; }
+    .extras-grid { display:flex; flex-wrap:wrap; gap:8px; }
+    .extra-tag { font-size:12px; font-weight:500; padding:5px 12px; border-radius:20px; background:var(--bg3); color:var(--text2); border:0.5px solid var(--border); }
+
+    /* RHYTHM */
+    .rhythm { background:var(--bg); border-radius:var(--radius-sm); padding:18px 20px; border:0.5px solid var(--border); margin-bottom:32px; }
+    .rhythm-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text2); margin-bottom:10px; }
+    .rhythm-text { font-size:13px; color:var(--text2); line-height:1.6; }
+
+    .program-cta { margin-top:8px; }
+    .btn-primary { background:var(--accent); color:#fff; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
+    .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; margin-left:10px; }
+
+    /* COMPARISON TABLE */
+    .compare-section { background:var(--bg2); }
+    .compare-table { width:100%; border-collapse:collapse; margin-top:40px; }
+    .compare-table th { font-size:13px; font-weight:600; padding:14px 16px; text-align:left; border-bottom:1px solid var(--border); color:var(--text2); }
+    .compare-table th:not(:first-child) { text-align:center; color:var(--accent); }
+    .compare-table td { padding:12px 16px; font-size:14px; color:var(--text2); border-bottom:0.5px solid var(--border); }
+    .compare-table td:not(:first-child) { text-align:center; font-size:16px; }
+    .compare-table tr:last-child td { border-bottom:none; }
+    .compare-table tr:hover td { background:var(--bg); }
+    .check { color:var(--accent); font-weight:700; }
+    .dash { color:var(--border); }
+
+    /* CTA */
+    .cta-section { text-align:center; padding:96px 48px; }
+    .cta-section h2 { font-size:34px; font-weight:600; margin-bottom:16px; letter-spacing:-0.01em; }
+    .cta-section p { font-size:16px; color:var(--text2); max-width:440px; margin:0 auto 36px; line-height:1.75; }
+    .cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+    footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
+    footer a { color:var(--text2); }
+    footer a:hover { color:var(--accent); }
+
+    @media (max-width:640px) {
+      nav { padding:16px 24px; } .nav-links { display:none; }
+      section, .hero, .programs-section, .framework-strip, .compare-section, .cta-section { padding-left:24px; padding-right:24px; }
+      .feel-row { grid-template-columns:1fr 1fr; }
+      .transformation { grid-template-columns:1fr; }
+      .trans-arrow { transform:rotate(90deg); }
+      .program-card { padding:28px 24px; }
+      .divider { margin:0 24px; }
+      footer { padding:24px; }
+      .compare-table { font-size:12px; }
+      .compare-table th, .compare-table td { padding:10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Feel the Room</a>
+  <div class="nav-links">
+    <a href="index.html#framework">Framework</a>
+    <a href="programs.html" class="active">Programs</a>
+    <a href="index.html#about">About</a>
+    <a href="testimonials.html">Testimonials</a>
+  </div>
+  <a href="index.html#waitlist" class="nav-cta">Book a call →</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="eyebrow">F.E.E.L. Programs</div>
+  <h2 class="section-title">Two programs. <em>One framework.</em> Built for the room you're in.</h2>
+  <p class="section-body">One for the leader. One for the team. Both built on the same method — because great sales culture starts at the top and runs all the way through.</p>
+  <div class="hero-tabs">
+    <a href="#leaders" class="hero-tab primary">F.E.E.L. for Leaders</a>
+    <a href="#sales" class="hero-tab">F.E.E.L. for Sales</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FRAMEWORK STRIP -->
+<div class="framework-strip">
+  <div class="framework-strip-label">The framework behind both programs</div>
+  <div class="feel-row">
+    <div class="feel-cell"><div class="feel-letter">F</div><div class="feel-word">Feel</div><div class="feel-desc">Feel the room. Energy, body language, what isn't being said.</div></div>
+    <div class="feel-cell"><div class="feel-letter">E</div><div class="feel-word">Explore</div><div class="feel-desc">Ask the right questions. Understand the dream and the problem.</div></div>
+    <div class="feel-cell"><div class="feel-letter">E</div><div class="feel-word">Elevate</div><div class="feel-desc">Widen the gap. Create momentum and emotional certainty.</div></div>
+    <div class="feel-cell"><div class="feel-letter">L</div><div class="feel-word">Lead</div><div class="feel-desc">Take control with intention. Build culture. Close the sale.</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROGRAMS -->
+<section class="programs-section">
+  <div class="eyebrow">Choose your program</div>
+  <h2 class="section-title">Built for where you are.</h2>
+  <p class="programs-intro">Marcus leads the team. His team closes the deals. Both need the same foundation — awareness, intention, and the ability to feel the room. These two programs deliver exactly that.</p>
+
+  <!-- LEADERS -->
+  <div class="program-card" id="leaders">
+    <div class="program-header">
+      <div class="program-tag">For Leaders</div>
+    </div>
+    <div class="program-title">F.E.E.L. for Leaders</div>
+    <div class="program-desc">From reactive to intentional. Learn to feel the room, coach your team, and build a culture that performs — because they want to, not because you push them.</div>
+
+    <div class="program-stats">
+      <div><span class="prog-stat-num">5</span><span class="prog-stat-label">Modules</span></div>
+      <div><span class="prog-stat-num">22</span><span class="prog-stat-label">Lessons</span></div>
+      <div><span class="prog-stat-num">8</span><span class="prog-stat-label">Extras</span></div>
+    </div>
+
+    <div class="transformation">
+      <div class="trans-box">
+        <div class="trans-label a">Point A</div>
+        <div class="trans-text">Reacting to numbers, not people. Taking over instead of coaching. Pulling the team instead of leading it.</div>
+      </div>
+      <div class="trans-arrow">→</div>
+      <div class="trans-box">
+        <div class="trans-label b">Point B</div>
+        <div class="trans-text">Feeling the room in every meeting. Coaching instead of answering. A team that performs out of conviction.</div>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="modules-label">Course structure</div>
+      <div class="module-item">
+        <div class="module-badge">F</div>
+        <div class="module-content">
+          <div class="module-title">Feel — Awareness as foundation</div>
+          <div class="module-desc">Feel the room · Presence · The whole person · Energy, sleep, movement</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">E</div>
+        <div class="module-content">
+          <div class="module-title">Explore — Ask, listen, understand · Target setting</div>
+          <div class="module-desc">Dream → Problem → Solution · Target Setting: Expected / Good / GOAT</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">E</div>
+        <div class="module-content">
+          <div class="module-title">Elevate — Coaching moments in practice</div>
+          <div class="module-desc">Coaching vs instruction · Reframe · Pre-close · Roleplay</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">L</div>
+        <div class="module-content">
+          <div class="module-title">Lead — Build the culture and the team</div>
+          <div class="module-desc">Values · Recruitment · Onboarding · 6 meetings/week · Team Orchestration</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rhythm">
+      <div class="rhythm-label">Weekly rhythm — 6 meetings</div>
+      <div class="rhythm-text">3 × Team meetings — Monday morning, Wednesday, Friday end of day<br>3 × Sales Training — Roleplay in groups, strategically placed in low-activity windows</div>
+    </div>
+
+    <div class="extras">
+      <div class="extras-label">Extras included</div>
+      <div class="extras-grid">
+        <span class="extra-tag">Energy log</span>
+        <span class="extra-tag">Self-assessment: Your foundation</span>
+        <span class="extra-tag">Question bank</span>
+        <span class="extra-tag">Target template</span>
+        <span class="extra-tag">1:1 checklist</span>
+        <span class="extra-tag">Core values workshop</span>
+        <span class="extra-tag">Recruitment script</span>
+        <span class="extra-tag">30-60-90 onboarding plan</span>
+      </div>
+    </div>
+
+    <div class="program-cta">
+      <a href="index.html#waitlist" class="btn-primary">Join waitlist →</a>
+    </div>
+  </div>
+
+  <!-- SALES -->
+  <div class="program-card featured" id="sales">
+    <div class="program-header">
+      <div class="program-tag">For Sales</div>
+      <div class="program-badge">Most popular</div>
+    </div>
+    <div class="program-title">F.E.E.L. for Sales</div>
+    <div class="program-desc">Understand the customer deeper than they understand themselves — and let them sell to themselves. No scripts. No pressure. Just the right conversation.</div>
+
+    <div class="program-stats">
+      <div><span class="prog-stat-num">6</span><span class="prog-stat-label">Modules</span></div>
+      <div><span class="prog-stat-num">27</span><span class="prog-stat-label">Lessons</span></div>
+      <div><span class="prog-stat-num">7</span><span class="prog-stat-label">Extras</span></div>
+    </div>
+
+    <div class="transformation">
+      <div class="trans-box">
+        <div class="trans-label a">Point A</div>
+        <div class="trans-text">Pitching the product. Talking more than listening. Closing with pressure — and feeling it isn't working.</div>
+      </div>
+      <div class="trans-arrow">→</div>
+      <div class="trans-box">
+        <div class="trans-label b">Point B</div>
+        <div class="trans-text">Guiding the customer from problem to decision — with logic and emotion — so they close themselves.</div>
+      </div>
+    </div>
+
+    <div class="flow-section">
+      <div class="flow-label">The sales flow</div>
+      <div class="flow-steps">
+        <span class="flow-step">Intro</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Dream</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Current State</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Problem</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Probe</span><span class="flow-arrow">→</span>
+        <span class="flow-step">3-Pillar Pitch</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Close</span>
+      </div>
+    </div>
+
+    <div class="modules">
+      <div class="modules-label">Course structure</div>
+      <div class="module-item">
+        <div class="module-badge">F</div>
+        <div class="module-content">
+          <div class="module-title">Feel — Feel the room and the customer</div>
+          <div class="module-desc">Presence · The whole person · Energy, sleep, movement as the sales foundation</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">E</div>
+        <div class="module-content">
+          <div class="module-title">Explore — Disqualify Fast · Dream → Current State → Problem</div>
+          <div class="module-desc">First call · Agenda setting · "Tell me a little more"</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">E</div>
+        <div class="module-content">
+          <div class="module-title">Elevate — Logical + Emotional Certainty</div>
+          <div class="module-desc">Probe · Widen the gap · Loss aversion · Identity shift</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge">L</div>
+        <div class="module-content">
+          <div class="module-title">Lead — Negative Reverse Selling · 3-Pillar Pitch · Close</div>
+          <div class="module-desc">Power of No · Pre-close · Champion building</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-badge red">!</div>
+        <div class="module-content">
+          <div class="module-title">Bonus — Objection Mapping</div>
+          <div class="module-desc">The 5 patterns covering 74% of all objections · LAER framework</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="extras">
+      <div class="extras-label">Extras included</div>
+      <div class="extras-grid">
+        <span class="extra-tag">Pre-meeting checklist</span>
+        <span class="extra-tag">Self-assessment: Your foundation</span>
+        <span class="extra-tag">Question bank — swipe file</span>
+        <span class="extra-tag">Negative Reverse swipe file</span>
+        <span class="extra-tag">3-Pillar Pitch template</span>
+        <span class="extra-tag">Follow-up script</span>
+        <span class="extra-tag">Objection swipe file</span>
+      </div>
+    </div>
+
+    <div class="program-cta">
+      <a href="index.html#waitlist" class="btn-primary">Join waitlist →</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- COMPARISON -->
+<section class="compare-section">
+  <div class="eyebrow">Compare</div>
+  <h2 class="section-title">Which program is right for you?</h2>
+  <p class="section-body">Both programs are built on the F.E.E.L. framework. The difference is who they're designed for — and what you need to walk away with.</p>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>F.E.E.L. for Leaders</th>
+        <th>F.E.E.L. for Sales</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Awareness & presence as foundation</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>The whole person — energy, sleep, movement</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Dream → Problem → Solution framework</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Coaching techniques & questioning skills</td><td class="check">✓</td><td class="check">✓</td></tr>
+      <tr><td>Target Setting: Expected / Good / GOAT</td><td class="check">✓</td><td class="dash">—</td></tr>
+      <tr><td>Team Orchestration — 6 meetings/week</td><td class="check">✓</td><td class="dash">—</td></tr>
+      <tr><td>Recruitment & onboarding</td><td class="check">✓</td><td class="dash">—</td></tr>
+      <tr><td>Culture building & core values</td><td class="check">✓</td><td class="dash">—</td></tr>
+      <tr><td>Disqualify Fast & Agenda Setting</td><td class="dash">—</td><td class="check">✓</td></tr>
+      <tr><td>Current State & Probe (Elevate)</td><td class="dash">—</td><td class="check">✓</td></tr>
+      <tr><td>Negative Reverse Selling</td><td class="dash">—</td><td class="check">✓</td></tr>
+      <tr><td>3-Pillar Pitching & Champion building</td><td class="dash">—</td><td class="check">✓</td></tr>
+      <tr><td>Objection Mapping (74% of all objections)</td><td class="dash">—</td><td class="check">✓</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="eyebrow">Get started</div>
+  <h2 class="section-title" style="max-width:100%;text-align:center;">Ready to feel the difference?</h2>
+  <p>Both programs are launching soon. Join the waitlist — or book a call to talk about what fits your situation.</p>
+  <div class="cta-btns">
+    <a href="index.html#waitlist" class="btn-primary">Join waitlist</a>
+    <a href="index.html#waitlist" class="btn-secondary">Book a discovery call →</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+  <div style="display:flex;gap:24px;">
+    <a href="https://linkedin.com/in/joakimmjensen">LinkedIn</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feel the Room — Lead with Intention.</title>
+  <meta name="description" content="Feel the Room. Lead with Intention. For sales leaders who want to perform at their best — and build teams that do the same. The F.E.E.L. Framework by Joakim Møller Jensen." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#1A1714; --bg2:#211E1A; --bg3:#2A2621; --text:#F0EBE3; --text2:#9B9189; --accent:#C49A6A; --accent-light:#2A2218; --border:rgba(240,235,227,0.1); } }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+    nav { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; border-bottom:0.5px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:100; }
+    .nav-logo { font-size:15px; font-weight:600; letter-spacing:0.03em; }
+    .nav-links { display:flex; gap:28px; font-size:14px; }
+    .nav-links a { color:var(--text2); transition:color 0.15s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-cta { font-size:13px; background:var(--text); color:var(--bg); padding:9px 22px; border-radius:var(--radius-sm); font-weight:600; cursor:pointer; border:none; }
+    section { padding:80px 48px; }
+    .divider { height:0.5px; background:var(--border); margin:0 48px; }
+    .hero { padding:96px 48px 80px; }
+    .hero-eyebrow { font-size:12px; color:var(--text2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px; }
+    .hero-title { font-size:56px; font-weight:600; line-height:1.08; max-width:680px; margin-bottom:28px; letter-spacing:-0.02em; }
+    .hero-title em { font-style:normal; color:var(--accent); }
+    .hero-sub { font-size:18px; color:var(--text2); max-width:500px; line-height:1.7; margin-bottom:44px; }
+    .btn-row { display:flex; gap:12px; flex-wrap:wrap; }
+    .btn-primary { background:var(--accent); color:#fff; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
+    .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; }
+    .hero-stats { margin-top:56px; display:flex; gap:40px; flex-wrap:wrap; padding-top:40px; border-top:0.5px solid var(--border); }
+    .stat-num { font-size:24px; font-weight:600; display:block; }
+    .stat-label { font-size:13px; color:var(--text2); }
+    .eyebrow { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; }
+    h2.section-title { font-size:34px; font-weight:600; line-height:1.2; max-width:580px; margin-bottom:16px; letter-spacing:-0.01em; }
+    .section-body { font-size:16px; color:var(--text2); max-width:560px; line-height:1.75; }
+    .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:44px; }
+    .card { background:var(--bg2); border-radius:var(--radius); padding:24px; border:0.5px solid var(--border); }
+    .card-icon { width:36px; height:36px; border-radius:var(--radius-sm); background:var(--bg3); display:flex; align-items:center; justify-content:center; margin-bottom:14px; font-size:17px; }
+    .card h4 { font-size:15px; font-weight:600; margin-bottom:7px; }
+    .card p { font-size:13px; color:var(--text2); line-height:1.55; }
+    .feel-section { background:var(--bg2); }
+    .feel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; margin-top:44px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    .feel-item { background:var(--bg); padding:32px 28px; }
+    .feel-letter { font-size:40px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:8px; }
+    .feel-word { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--text2); margin-bottom:14px; }
+    .feel-desc { font-size:14px; color:var(--text2); line-height:1.65; }
+    .forwho-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:44px; }
+    .forwho-col h3 { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--text2); margin-bottom:22px; }
+    .check-item { display:flex; gap:13px; margin-bottom:16px; align-items:flex-start; }
+    .check-dot { width:20px; height:20px; border-radius:50%; background:var(--accent-light); display:flex; align-items:center; justify-content:center; flex-shrink:0; margin-top:3px; }
+    .check-dot svg { width:10px; height:10px; }
+    .check-text { font-size:14px; color:var(--text2); line-height:1.55; }
+    .case-card { background:var(--bg2); border-radius:var(--radius); border:0.5px solid var(--border); padding:44px; margin-top:44px; }
+    .case-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:10px; }
+    .case-title { font-size:22px; font-weight:600; margin-bottom:14px; }
+    .case-body { font-size:15px; color:var(--text2); line-height:1.75; max-width:620px; margin-bottom:36px; }
+    .metrics-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:2px; background:var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+    .metric { background:var(--bg); padding:22px 26px; }
+    .metric-num { font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:7px; }
+    .metric-label { font-size:12px; color:var(--text2); line-height:1.4; }
+    .case-disclaimer { font-size:12px; color:var(--text2); margin-top:18px; font-style:italic; opacity:0.75; }
+    .offerings-section { background:var(--bg2); }
+    .offering-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:44px; }
+    .offering-card { background:var(--bg); border-radius:var(--radius); padding:32px 28px; border:0.5px solid var(--border); }
+    .offering-card.featured { border:1.5px solid var(--accent); }
+    .offering-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:12px; }
+    .offering-name { font-size:20px; font-weight:600; margin-bottom:10px; }
+    .offering-desc { font-size:14px; color:var(--text2); line-height:1.65; margin-bottom:22px; }
+    .offering-link { font-size:14px; color:var(--accent); font-weight:600; text-decoration:none; display:inline-block; }
+    .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    .about-stat { background:var(--bg2); padding:22px 20px; }
+    .about-stat-num { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; }
+    .about-stat-label { font-size:12px; color:var(--text2); line-height:1.4; }
+    .testi-section { background:var(--bg2); }
+    .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; margin-top:44px; }
+    .testi-card { background:var(--bg); border-radius:var(--radius); padding:28px; border:0.5px solid var(--border); }
+    .testi-divider { height:2px; width:24px; background:var(--accent); margin-bottom:16px; opacity:0.4; }
+    .testi-quote { font-size:15px; line-height:1.75; color:var(--text2); margin-bottom:18px; font-style:italic; }
+    .testi-name { font-size:14px; font-weight:600; color:var(--text); }
+    .testi-role { font-size:13px; color:var(--text2); }
+    .testi-footer { margin-top:36px; text-align:center; }
+    .testi-footer a { font-size:14px; color:var(--accent); font-weight:600; }
+    .cta-section { text-align:center; padding:96px 48px; }
+    .cta-section h2 { font-size:38px; font-weight:700; margin-bottom:16px; letter-spacing:-0.02em; }
+    .cta-section p { font-size:17px; color:var(--text2); max-width:440px; margin:0 auto 40px; }
+    .email-form { display:flex; gap:10px; max-width:420px; margin:0 auto; }
+    .email-form input { flex:1; padding:12px 18px; border-radius:var(--radius-sm); border:0.5px solid var(--border); background:var(--bg); color:var(--text); font-size:15px; }
+    footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
+    footer a { color:var(--text2); }
+    footer a:hover { color:var(--accent); }
+    @media (max-width:640px) { nav { padding:16px 24px; } .nav-links { display:none; } section { padding:60px 24px; } .hero { padding:64px 24px 56px; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Feel the Room</div>
+    <div class="nav-links">
+      <a href="#framework">Framework</a>
+      <a href="programs.html">Programs</a>
+      <a href="#about">About</a>
+      <a href="testimonials.html">Testimonials</a>
+    </div>
+    <button class="nav-cta" onclick="document.getElementById('waitlist-email').focus()">Book a call →</button>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">Sales Leadership · F.E.E.L. Framework</div>
+    <h1 class="hero-title">Feel the Room.<br><em>Lead with Intention.</em></h1>
+    <p class="hero-sub">For sales leaders who want to perform at their best — and build teams that do the same. Without burning out or losing who you are in the process.</p>
+    <div class="btn-row">
+      <button class="btn-primary" onclick="document.getElementById('framework').scrollIntoView({behavior:'smooth'})">Explore the framework</button>
+      <button class="btn-secondary" onclick="document.getElementById('waitlist-email').focus()">Book a discovery call</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-num">100,000+</span><span class="stat-label">Sales conversations</span></div>
+      <div class="stat"><span class="stat-num">3,000+</span><span class="stat-label">Client meetings</span></div>
+      <div class="stat"><span class="stat-num">€45M+</span><span class="stat-label">Career sales</span></div>
+      <div class="stat"><span class="stat-num">13 yrs</span><span class="stat-label">Sales & leadership</span></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="eyebrow">The challenge</div>
+    <h2 class="section-title">You're a great salesperson. But leading a team is a different game.</h2>
+    <p class="section-body">Most sales leaders were promoted because they could sell. Not because they were ready to lead. The skills that got you here aren't always the ones that get your team there.</p>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">↑</div><h4>Individual performance</h4><p>You're still performing — but you're doing too much yourself. The team doesn't run without you.</p></div>
+      <div class="card"><div class="card-icon">⊕</div><h4>Team dynamics</h4><p>Talented people, but the energy is off. Something in the room isn't clicking.</p></div>
+      <div class="card"><div class="card-icon">◎</div><h4>Values & balance</h4><p>Results come, but at a cost. You want to perform — and still be yourself doing it.</p></div>
+      <div class="card"><div class="card-icon">→</div><h4>The next level</h4><p>You know there's more. You just need the right framework to get there systematically.</p></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="feel-section" id="framework">
+    <div class="eyebrow">The method</div>
+    <h2 class="section-title">The F.E.E.L. Framework</h2>
+    <p class="section-body">Four principles that work together — for how you show up as a leader, and how you develop your team.</p>
+    <div class="feel-grid">
+      <div class="feel-item"><div class="feel-letter">F</div><div class="feel-word">Feel</div><div class="feel-desc">Feel the room. Before you speak, before you sell, before you lead. Emotional intelligence as a leadership superpower — for yourself and the people around you.</div></div>
+      <div class="feel-item"><div class="feel-letter">E</div><div class="feel-word">Explore</div><div class="feel-desc">Ask better questions. Challenge assumptions. Create the conditions where your team thinks for themselves and grows beyond what you expect.</div></div>
+      <div class="feel-item"><div class="feel-letter">E</div><div class="feel-word">Elevate</div><div class="feel-desc">Raise the standard — individually and collectively. The tools, habits and conversations that move people from good to genuinely great.</div></div>
+      <div class="feel-item"><div class="feel-letter">L</div><div class="feel-word">Lead</div><div class="feel-desc">Lead with presence. Not pressure. Build a team that performs because they want to — not because they have to.</div></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="eyebrow">Who this is for</div>
+    <h2 class="section-title">Built for sales leaders who are done with generic advice.</h2>
+    <div class="forwho-grid">
+      <div class="forwho-col">
+        <h3>This is for you if</h3>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want to develop yourself as a leader — not just hit your numbers</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want practical tools — things you can use in Monday's pipeline meeting</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want to build a team that performs with energy, not exhaustion</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You care about doing it with your values intact</div></div>
+      </div>
+      <div class="forwho-col">
+        <h3>You might relate to</h3>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Feeling like you're always the one carrying it — and not sure how to change that</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Knowing your team has more in them — but not having the tools to unlock it</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Wanting results without sacrificing the relationships that make the work worth it</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Ready to invest in yourself — not just your pipeline</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section>
+    <div class="eyebrow">Results in practice</div>
+    <h2 class="section-title">What the F.E.E.L. framework looks like when it works.</h2>
+    <div class="case-card">
+      <div class="case-tag">Case study · Nordic Sales Team · Financial services</div>
+      <div class="case-title">Same team. Same product. Completely different results.</div>
+      <div class="case-body">A Nordic sales team in a competitive financial services market. No new hires. No product changes. No bigger budget. Just a shift in how the leader showed up — and a systematic approach to developing the people already in the room. Within 12 months, the numbers told a different story.</div>
+      <div class="metrics-grid">
+        <div class="metric"><div class="metric-num">+90%</div><div class="metric-label">Year-on-year growth in new business sign-ups</div></div>
+        <div class="metric"><div class="metric-num">+87%</div><div class="metric-label">Year-on-year growth in approved businesses</div></div>
+        <div class="metric"><div class="metric-num">80+</div><div class="metric-label">Employee Net Promoter Score — measured, not estimated</div></div>
+        <div class="metric"><div class="metric-num">Same</div><div class="metric-label">Team size. Same product. Same market.</div></div>
+      </div>
+      <div class="case-disclaimer">Results achieved in a Nordic financial services context. Individual outcomes vary.</div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="offerings-section" id="advisory">
+    <div class="eyebrow">Work together</div>
+    <h2 class="section-title">How we can work together</h2>
+    <div class="offering-cards">
+      <div class="offering-card"><div class="offering-tag">1:1 Advisory</div><div class="offering-name">Personal coaching</div><div class="offering-desc">Direct, no-nonsense work on your leadership, your team and your next level. For sales leaders who are serious about growth.</div><a href="index.html#waitlist" class="offering-link">Book a call →</a></div>
+      <div class="offering-card featured"><div class="offering-tag">Most popular</div><div class="offering-name">Small group cohort</div><div class="offering-desc">6–8 sales leaders. Real conversations, shared frameworks, peer accountability. The room where things actually change.</div><a href="programs.html" class="offering-link">See programs →</a></div>
+      <div class="offering-card"><div class="offering-tag">Digital</div><div class="offering-name">Resources & guides</div><div class="offering-desc">Frameworks, tools and playbooks from the F.E.E.L. method. Start applying it today — at your own pace.</div><a href="programs.html" class="offering-link">Browse programs →</a></div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section id="about">
+    <div class="about-inner">
+      <div>
+        <div class="eyebrow">About Joakim</div>
+        <h2 class="section-title">13 years in sales. Still learning what it means to lead.</h2>
+        <img src="joakim.jpg" alt="Joakim Møller Jensen" style="width:100%; max-width:400px; border-radius:var(--radius); margin-top:24px; margin-bottom:24px; display:block; filter:grayscale(20%);" />
+        <p class="section-body">I'm Joakim Møller Jensen. I started in telemarketing at 18, moved through media, insurance, SaaS and into leadership. Along the way I had over 100,000 sales conversations — and slowly figured out that the best ones weren't about selling at all.</p>
+        <p class="section-body" style="margin-top:14px;">Feel the Room is built on what I've learned by doing it — not by studying it. A framework that takes both performance and humanity seriously.</p>
+        <div style="margin-top:28px;"><a href="https://linkedin.com/in/joakimmjensen" class="btn-primary">Connect on LinkedIn →</a></div>
+      </div>
+      <div>
+        <div class="about-stats">
+          <div class="about-stat"><div class="about-stat-num">100k+</div><div class="about-stat-label">Sales conversations across 13 years</div></div>
+          <div class="about-stat"><div class="about-stat-num">3,000+</div><div class="about-stat-label">Client & leadership meetings</div></div>
+          <div class="about-stat"><div class="about-stat-num">€45M+</div><div class="about-stat-label">Career sales track record</div></div>
+          <div class="about-stat"><div class="about-stat-num">80+</div><div class="about-stat-label">eNPS score as a people leader</div></div>
+          <div class="about-stat"><div class="about-stat-num">+90%</div><div class="about-stat-label">Improvement in team performance</div></div>
+          <div class="about-stat"><div class="about-stat-num">13 yrs</div><div class="about-stat-label">Sales & leadership experience</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="testi-section">
+    <div class="eyebrow">What people say</div>
+    <h2 class="section-title">Trusted by sales leaders and colleagues.</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people. My only advice has always been: keep doing exactly what you're doing. Because it works. And because it inspires."</div>
+        <div class="testi-name">Indira Comakci</div>
+        <div class="testi-role">Chief of Staff</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Joakim led a team of 15 agents with strong sales acumen and positive energy — delivering excellent results while taking great care of his people. He ensured his team consistently performed above average, reflecting his skill in motivating and guiding agents towards excellence."</div>
+        <div class="testi-name">Jimmy Vejlebo Andersen</div>
+        <div class="testi-role">Head of Sales</div>
+      </div>
+      <div class="testi-card">
+        <div class="testi-divider"></div>
+        <div class="testi-quote">"Det har givet gode vendinger til at åbne kunderne mere op — og konkrete idéer vi nu implementerer i salgsprocessen. Alt i alt, en klasse sparring."</div>
+        <div class="testi-name">Mads Lyngø</div>
+        <div class="testi-role">CCO, ScandiMate</div>
+      </div>
+    </div>
+    <div class="testi-footer">
+      <a href="testimonials.html">See all testimonials →</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <section class="cta-section" id="waitlist">
+    <h2>Ready to feel the difference?</h2>
+    <p>Join the waitlist — or book a call to talk about what you need.</p>
+    <div class="email-form">
+      <input type="email" id="waitlist-email" placeholder="Your email address" />
+      <button class="btn-primary">Join waitlist</button>
+    </div>
+  </section>
+
+  <footer>
+    <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+    <div style="display:flex;gap:24px;">
+      <a href="https://linkedin.com/in/joakimmjensen">LinkedIn</a>
+      <a href="testimonials.html">Testimonials</a>
+    </div>
+  </footer>
+
+</body>
+</html>
