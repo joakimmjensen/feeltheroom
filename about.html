@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Joakim — Feel the Room. Lead with Intention.</title>
+  <meta name="description" content="The beliefs, principles and foundations behind Feel the Room. Joakim Møller Jensen on sales, leadership, culture and life." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#1A1714; --bg2:#211E1A; --bg3:#2A2621; --text:#F0EBE3; --text2:#9B9189; --accent:#C49A6A; --accent-light:#2A2218; --border:rgba(240,235,227,0.1); } }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+
+    nav { display:flex; justify-content:space-between; align-items:center; padding:20px 48px; border-bottom:0.5px solid var(--border); position:sticky; top:0; background:var(--bg); z-index:100; }
+    .nav-logo { font-size:15px; font-weight:600; letter-spacing:0.03em; color:var(--text); }
+    .nav-links { display:flex; gap:28px; font-size:14px; }
+    .nav-links a { color:var(--text2); transition:color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color:var(--text); }
+    .nav-cta { font-size:13px; background:var(--text); color:var(--bg); padding:9px 22px; border-radius:var(--radius-sm); font-weight:600; border:none; cursor:pointer; }
+
+    .divider { height:0.5px; background:var(--border); margin:0 48px; }
+    .eyebrow { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; }
+
+    .btn-primary { background:var(--accent); color:#fff; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
+    .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; }
+
+    /* HERO */
+    .hero { padding:80px 48px 72px; display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:stretch; }
+    .hero-left { display:flex; flex-direction:column; justify-content:space-between; }
+    .hero-left { display:flex; flex-direction:column; }
+    .hero-left img { width:100%; border-radius:var(--radius); display:block; filter:grayscale(15%); flex:1; object-fit:cover; margin-bottom:24px; }
+    .hero-right { display:flex; flex-direction:column; justify-content:space-between; }
+    .hero-title { font-size:42px; font-weight:600; line-height:1.1; letter-spacing:-0.02em; margin-bottom:20px; }
+    .hero-title em { font-style:normal; color:var(--accent); }
+    .hero-body { font-size:16px; color:var(--text2); line-height:1.75; margin-bottom:14px; }
+    .career-list { display:flex; flex-direction:column; gap:8px; margin:20px 0 28px; }
+    .career-item { display:flex; gap:14px; align-items:flex-start; }
+    .career-dot { width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7; }
+    .career-text { font-size:15px; color:var(--text2); line-height:1.6; }
+
+    /* BELIEFS */
+    .beliefs { padding:80px 48px; background:var(--bg2); }
+    .beliefs-grid { display:grid; grid-template-columns:repeat(2, 1fr); gap:16px; margin-top:44px; }
+    .belief-card { background:var(--bg); border-radius:var(--radius); padding:32px 28px; border:0.5px solid var(--border); }
+    .belief-quote { font-size:20px; font-weight:600; line-height:1.3; color:var(--text); margin-bottom:14px; letter-spacing:-0.01em; }
+    .belief-quote em { font-style:normal; color:var(--accent); }
+    .belief-body { font-size:14px; color:var(--text2); line-height:1.7; }
+
+    /* PHILOSOPHY SECTIONS */
+    .philosophy { padding:80px 48px; }
+    .philosophy-grid { display:grid; grid-template-columns:1fr 1fr; gap:56px; margin-top:0; }
+    .phil-section { margin-bottom:56px; }
+    .phil-section:last-child { margin-bottom:0; }
+    .phil-label { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:12px; }
+    .phil-title { font-size:24px; font-weight:600; line-height:1.25; margin-bottom:14px; letter-spacing:-0.01em; }
+    .phil-body { font-size:15px; color:var(--text2); line-height:1.75; }
+
+    /* FOUNDATIONS */
+    .foundations { padding:80px 48px; background:var(--bg2); }
+    .found-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(160px, 1fr)); gap:2px; margin-top:44px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
+    .found-item { background:var(--bg); padding:28px 24px; text-align:center; }
+    .found-icon { font-size:24px; margin-bottom:10px; }
+    .found-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:6px; }
+    .found-body { font-size:12px; color:var(--text2); line-height:1.5; }
+
+    /* CTA */
+    .cta-section { text-align:center; padding:80px 48px; }
+    .cta-section h2 { font-size:34px; font-weight:600; margin-bottom:16px; letter-spacing:-0.01em; }
+    .cta-section p { font-size:16px; color:var(--text2); max-width:420px; margin:0 auto 36px; line-height:1.75; }
+    .cta-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+
+    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin-top:24px; }
+    .about-stat { background:var(--bg2); padding:22px 20px; }
+    .about-stat-num { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; }
+    .about-stat-label { font-size:12px; color:var(--text2); line-height:1.4; }
+    footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
+    footer a { color:var(--text2); }
+    footer a:hover { color:var(--accent); }
+
+    @media (max-width:640px) {
+      nav { padding:16px 24px; } .nav-links { display:none; }
+      .hero { padding:48px 24px; grid-template-columns:1fr; }
+      .hero-left img { max-height:400px; }
+      .philosophy-grid { grid-template-columns:1fr; }
+      .divider { margin:0 24px; }
+      .beliefs, .philosophy, .foundations, .cta-section { padding-left:24px; padding-right:24px; }
+      footer { padding:24px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Feel the Room</a>
+  <div class="nav-links">
+    <a href="index.html#framework">Framework</a>
+    <a href="programs.html">Programs</a>
+    <a href="about.html" class="active">About</a>
+    <a href="testimonials.html">Testimonials</a>
+  </div>
+  <button class="nav-cta" onclick="window.location='index.html#waitlist'">Book a call →</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <img src="https://raw.githubusercontent.com/joakimmjensen/feeltheroom/main/joakim.jpg" alt="Joakim Møller Jensen" style="width:100%; flex:1; object-fit:cover; border-radius:var(--radius); display:block; filter:grayscale(15%); margin-bottom:24px;" />
+    <div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:0;">
+      <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank" class="btn-primary">Connect on LinkedIn →</a>
+      <a href="index.html#waitlist" class="btn-secondary">Let's talk</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div>
+      <div class="eyebrow">About Joakim</div>
+      <h1 class="hero-title">13 years in Sales.<br><em>A whole life of leading with energy.</em></h1>
+      <p class="hero-body">I'm Joakim Møller Jensen. My career has taken me through more rooms than I can count — as a frontline seller, a leader, and everything in between.</p>
+      <div class="career-list">
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Own clothing brand & retail store</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Telemarketing Sales & later on Manager</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">International Wholesale</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Store Management</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">High-Ticket Digital Marketing Sales</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Insurance Sales Consultant & later on Manager</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Enterprise SaaS Sales and later on Team Lead</span></div>
+        <div class="career-item"><span class="career-dot"></span><span class="career-text">Head of Sales in big Fintech</span></div>
+      </div>
+      <p class="hero-body">I've led teams that have sold in the three-digit millions in DKK ARR. I've closed deals across industries, markets, and cultures. And through all of it, one thing has stayed constant: I've always felt the energy in the room — in the people in front of me, in the team around me, in the conversation happening beneath the conversation.</p>
+      <p class="hero-body" style="margin-top:14px; font-weight:500; color:var(--text);">That's the key to everything I've done. And it's what I want to teach you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FULL WIDTH STATS -->
+<div style="padding:0 48px 48px;">
+  <div style="display:grid; grid-template-columns:repeat(6,1fr); gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden;">
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">100k+</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">Sales conversations across 13 years</div></div>
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">3,000+</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">Client & leadership meetings</div></div>
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">€45M+</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">Career sales track record</div></div>
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">80+</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">eNPS score as a people leader</div></div>
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">+90%</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">Improvement in team performance</div></div>
+    <div style="background:var(--bg2); padding:24px 20px;"><div style="font-size:26px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px;">13 yrs</div><div style="font-size:12px; color:var(--text2); line-height:1.4;">Sales & leadership experience</div></div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- BELIEFS -->
+<section class="beliefs">
+  <div class="eyebrow">What I believe</div>
+  <h2 style="font-size:34px; font-weight:600; line-height:1.2; max-width:560px; margin-bottom:16px; letter-spacing:-0.01em;">The principles I've built everything on.</h2>
+  <p style="font-size:16px; color:var(--text2); max-width:560px; line-height:1.75;">Not theories. Not things I read in a book. Things I've lived, tested, and come back to again and again.</p>
+
+  <!-- TOP 6 CARDS -->
+  <div class="beliefs-grid" style="margin-top:44px;">
+
+    <div class="belief-card" style="grid-column: 1 / -1; border:1.5px solid var(--accent);">
+      <div class="belief-quote">"Energy is the <em>true compass.</em>"</div>
+      <div class="belief-body">It's the most important ability I have — and the factor I trust most when making any decision. Before logic. Before data. Before strategy. I feel the energy of a room, a person, a conversation — and I let that guide me. It's not mystical. It's the accumulated signal of everything your subconscious has already processed. Learning to listen to it, trust it, and act on it is the single biggest edge I've developed in 13 years. And it's the foundation of everything F.E.E.L. is built on.</div>
+    </div>
+
+    <div class="belief-card">
+      <div class="belief-quote">"Your daily <em>battery.</em>"</div>
+      <div class="belief-body">Too many people show up to work running on 70–80% battery — and come home with 10–20% left. Work is not your whole life. Some of the most important things in life are waiting for you when you get home. Family. Friends. Yourself. They deserve more than the scraps left over at the end of the day. And so do you. Taking care of your foundation isn't selfish. It's the most responsible thing you can do for the people who matter most.</div>
+    </div>
+
+    <div class="belief-card">
+      <div class="belief-quote">"Authenticity is the <em>foundation of culture.</em>"</div>
+      <div class="belief-body">Don't put on a mask just because you walk through the office door. Be the same person at work as you are outside of it. When people show up as themselves — not a professional version of themselves — the culture becomes real. You can actually feel each other. Trust builds naturally. And that's when performance follows.</div>
+    </div>
+
+    <div class="belief-card">
+      <div class="belief-quote">"The whole person — <em>Sales & Leadership is a reflection of your own life.</em>"</div>
+      <div class="belief-body">How you show up at work is a direct reflection of how you live outside of it. You can't give energy you don't have. You can't lead with presence if you're running on empty. Sleep, nutrition, movement, hydration, emotional regulation — these aren't wellness topics. They're performance topics. The foundation of great leadership and great sales starts with how you take care of yourself.</div>
+    </div>
+
+    <div class="belief-card">
+      <div class="belief-quote">"Performative <em>balance.</em>"</div>
+      <div class="belief-body">You can't perform without having fun. And you can't have fun without performing. These aren't opposites — they're the same thing. A team that performs without joy burns out. A team that has fun without performing stalls. The goal is a culture where both are non-negotiable. Where the work is serious and the people aren't afraid to laugh.</div>
+    </div>
+
+  </div>
+
+  <!-- PRINCIPLES -->
+  <div style="margin-top:64px;">
+    <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--accent); margin-bottom:32px;">Principles</div>
+    <div style="display:flex; flex-direction:column; gap:0;">
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"People buy from people — especially if I can make you laugh."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">No matter the product, the price point, or the industry — the deciding factor is almost always the human connection. When people laugh, they relax. When they relax, they open up. Humour isn't a trick — it's a sign of genuine connection. And genuine connection is where sales actually happen.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"Sales is helping a person make the right decision for them."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">Not for your quota. Not for your commission. For them. The moment you stop selling and start helping, everything changes — the conversation, the close rate, and how you feel at the end of the day.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"There is no work-life balance. There is just life."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">If you need to draw a line between work and life, it means work is taking something from you rather than giving something to you. Everything you do should feel like a part of life — not an escape from it.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"Slow down to speed up."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">Be aware of what you do and why you do it. We move too quickly and slowly lose the ability to pause and think. The ability to stop, reflect, and learn from the moments life gives you is one of the most important skills a leader can have.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"Great leadership is helping people lead themselves."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">Leadership isn't about having the answers. It's about asking the right questions — the ones that help people find the answers themselves. Most people already know what to do. They just need someone who creates the space for them to hear themselves say it out loud.</div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:1fr 2fr; gap:40px; padding:24px 0; border-top:0.5px solid var(--border); border-bottom:0.5px solid var(--border);">
+        <div style="font-size:16px; font-weight:600; color:var(--text); line-height:1.4;">"Hire very slow. Fire fast."</div>
+        <div style="font-size:15px; color:var(--text2); line-height:1.7;">The best teams are built with intention. Take the time to truly understand who someone is before bringing them in — their values, their energy, their whole person. The right hire elevates everyone around them. They bring energy, raise the standard, and make the culture stronger just by being in the room. That's worth waiting for. But once you know it's not the right fit, don't wait. Waiting costs everyone.</div>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<div class="divider"></div>
+
+<!-- FOUNDATIONS -->
+<section class="foundations">
+  <div class="eyebrow">The foundations</div>
+  <h2 style="font-size:34px; font-weight:600; line-height:1.2; max-width:560px; margin-bottom:16px; letter-spacing:-0.01em;">What performance is actually built on.</h2>
+  <p style="font-size:16px; color:var(--text2); max-width:560px; line-height:1.75;">Before tactics. Before frameworks. Before targets. These are the building blocks.</p>
+  <div class="found-grid">
+    <div class="found-item">
+      <div class="found-icon">🥗</div>
+      <div class="found-title">Nutrition</div>
+      <div class="found-body">What you put in your body directly affects your presence, energy and decision-making.</div>
+    </div>
+    <div class="found-item">
+      <div class="found-icon">💧</div>
+      <div class="found-title">Hydration</div>
+      <div class="found-body">Simple. Overlooked. Critical for cognitive function and emotional regulation.</div>
+    </div>
+    <div class="found-item">
+      <div class="found-icon">💪</div>
+      <div class="found-title">Movement</div>
+      <div class="found-body">Physical training builds discipline, resilience and the ability to perform under pressure.</div>
+    </div>
+    <div class="found-item">
+      <div class="found-icon">😴</div>
+      <div class="found-title">Sleep</div>
+      <div class="found-body">Everything deteriorates without it. No amount of mindset work fixes a chronically tired leader.</div>
+    </div>
+    <div class="found-item">
+      <div class="found-icon">🧠</div>
+      <div class="found-title">Emotional regulation</div>
+      <div class="found-body">The ability to reset between calls, between meetings, between setbacks. The most underrated sales skill.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Want to work together?</h2>
+  <p>Book a call — or explore the programs to see where F.E.E.L. can take you.</p>
+  <div class="cta-btns">
+    <a href="programs.html" class="btn-primary">Explore the Programs</a>
+    <a href="index.html#waitlist" class="btn-secondary">Book a discovery call</a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+  <div style="display:flex;gap:24px;">
+    <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a>
+    <a href="testimonials.html">Testimonials</a>
+    <a href="index.html">Home</a>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -65,7 +65,7 @@
     .offering-name { font-size:20px; font-weight:600; margin-bottom:10px; }
     .offering-desc { font-size:14px; color:var(--text2); line-height:1.65; margin-bottom:22px; }
     .offering-link { font-size:14px; color:var(--accent); font-weight:600; text-decoration:none; display:inline-block; }
-    .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+    .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:stretch; }
     .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
     .about-stat { background:var(--bg2); padding:22px 20px; }
     .about-stat-num { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; }
@@ -97,7 +97,7 @@
     <div class="nav-links">
       <a href="#framework">Framework</a>
       <a href="programs.html">Programs</a>
-      <a href="#about">About</a>
+      <a href="about.html">About</a>
       <a href="testimonials.html">Testimonials</a>
     </div>
     <button class="nav-cta" onclick="document.getElementById('waitlist-email').focus()">Book a call →</button>
@@ -324,20 +324,31 @@
   <!-- ABOUT -->
   <section id="about">
     <div class="about-inner">
-      <div>
-        <img src="https://raw.githubusercontent.com/joakimmjensen/feeltheroom/main/joakim.jpg" alt="Joakim Møller Jensen" style="width:100%; border-radius:var(--radius); display:block; filter:grayscale(15%); margin-bottom:24px;" />
+      <div style="display:flex; flex-direction:column;">
+        <img src="https://raw.githubusercontent.com/joakimmjensen/feeltheroom/main/joakim.jpg" alt="Joakim Møller Jensen" style="width:100%; border-radius:var(--radius); display:block; filter:grayscale(15%); margin-bottom:24px; flex:1; object-fit:cover;" />
         <div style="display:flex; gap:12px; flex-wrap:wrap;">
           <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank" class="btn-primary">Connect on LinkedIn →</a>
           <a href="#waitlist" class="btn-secondary">Let's talk</a>
         </div>
       </div>
-      <div>
+      <div style="display:flex; flex-direction:column;">
         <div class="eyebrow">About Joakim</div>
         <h2 class="section-title">13 years in Sales. A whole life of leading with energy.</h2>
-        <p class="section-body" style="margin-top:18px;">I'm Joakim Møller Jensen. My career has taken me through more rooms than I can count — from running my own clothing brand and retail store, to telemarketing, wholesale sales in Germany, store management, digital marketing, insurance, and SaaS. Along the way I've been a frontline seller, a leader, and everything in between.</p>
-        <p class="section-body" style="margin-top:14px;">I've led teams that have sold in the three-digit millions in DKK ARR. I've closed deals across industries, markets, and cultures. And through all of it, one thing has stayed constant: I've always felt the energy in the room — in the people in front of me, in the team around me, in the conversation happening beneath the conversation.</p>
-        <p class="section-body" style="margin-top:14px;">That's the key to everything I've done. And it's what I want to teach you.</p>
-        <div class="about-stats" style="margin-top:28px;">
+        <p class="section-body" style="margin-top:18px;">I'm Joakim Møller Jensen. My career has taken me through more rooms than I can count:</p>
+        <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px; margin-bottom:20px;">
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Own clothing brand & retail store</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Telemarketing Sales & later on Manager</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">International Wholesale</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Store Management</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">High-Ticket Digital Marketing Sales</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Insurance Sales Consultant & later on Manager</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Enterprise SaaS Sales and later on Team Lead</span></div>
+          <div style="display:flex; gap:14px; align-items:flex-start;"><span style="width:5px; height:5px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:9px; opacity:0.7;"></span><span style="font-size:15px; color:var(--text2); line-height:1.6;">Head of Sales in big Fintech</span></div>
+        </div>
+        <p class="section-body">I've led teams that have sold in the three-digit millions in DKK ARR. I've closed deals across industries, markets, and cultures.</p>
+        <p class="section-body" style="margin-top:14px;">And through all of it, one thing has stayed constant: I've always felt the energy in the room — in the people in front of me, in the team around me, in the conversation happening beneath the conversation.</p>
+        <p class="section-body" style="margin-top:14px; font-weight:500; color:var(--text);">That's the key to everything I've done. And it's what I want to teach you.</p>
+        <div class="about-stats" style="margin-top:auto; padding-top:28px;">
           <div class="about-stat"><div class="about-stat-num">100k+</div><div class="about-stat-label">Sales conversations across 13 years</div></div>
           <div class="about-stat"><div class="about-stat-num">3,000+</div><div class="about-stat-label">Client & leadership meetings</div></div>
           <div class="about-stat"><div class="about-stat-num">€45M+</div><div class="about-stat-label">Career sales track record</div></div>
