@@ -54,8 +54,10 @@
       z-index: 100;
     }
     .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; color: var(--text); }
-    .nav-back { font-size: 14px; color: var(--text2); text-decoration: none; display: flex; align-items: center; gap: 6px; }
-    .nav-back:hover { color: var(--accent); }
+    .nav-links { display: flex; gap: 28px; font-size: 14px; }
+    .nav-links a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    @media (max-width: 640px) { .nav-links { display: none; } nav { padding: 16px 24px; } }
 
     .hero { padding: 72px 48px 56px; }
     .eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
@@ -145,7 +147,12 @@
 
   <nav>
     <a href="index.html" class="nav-logo">Feel the Room</a>
-    <a href="index.html" class="nav-back">← Back to home</a>
+    <div class="nav-links">
+      <a href="index.html#framework">Framework</a>
+      <a href="programs.html">Programs</a>
+      <a href="about.html">About</a>
+      <a href="testimonials.html" class="active">Testimonials</a>
+    </div>
   </nav>
 
   <section class="hero">
