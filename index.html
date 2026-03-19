@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Feel the Room — Lead with Intention.</title>
   <meta name="description" content="Feel the Room. Lead with Intention. Two programs built on one framework — for sales leaders who want to perform at their best and build teams that do the same." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
@@ -87,7 +88,9 @@
     footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
     footer a { color:var(--text2); }
     footer a:hover { color:var(--accent); }
-    @media (max-width:640px) { nav { padding:16px 24px; } .nav-links { display:none; } section { padding:60px 24px; } .hero { padding:64px 24px 56px !important; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } .hero > div { grid-template-columns:1fr !important; } .hero > div > div:last-child { display:none; } }
+    .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; }
+    @media (max-width:640px) { nav { padding:16px 24px; position:relative; } .nav-cta { display:none; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; } section { padding:60px 24px; } .hero { padding:64px 24px 56px !important; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } .hero > div { grid-template-columns:1fr !important; } .hero > div > div:last-child { display:none; } }
   </style>
 </head>
 <body>
@@ -101,6 +104,9 @@
       <a href="testimonials.html">Testimonials</a>
     </div>
     <button class="nav-cta" onclick="document.getElementById('waitlist-email').focus()">Book a call →</button>
+    <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
   </nav>
 
   <!-- HERO -->

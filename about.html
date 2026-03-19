@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>About Joakim — Feel the Room. Lead with Intention.</title>
   <meta name="description" content="The beliefs, principles and foundations behind Feel the Room. Joakim Møller Jensen on sales, leadership, culture and life." />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
@@ -78,9 +79,11 @@
     footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
     footer a { color:var(--text2); }
     footer a:hover { color:var(--accent); }
+    .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; }
 
     @media (max-width:640px) {
-      nav { padding:16px 24px; } .nav-links { display:none; }
+      nav { padding:16px 24px; position:relative; } .nav-cta { display:none; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; }
       .hero { padding:48px 24px; grid-template-columns:1fr; }
       .hero-left img { max-height:400px; }
       .philosophy-grid { grid-template-columns:1fr; }
@@ -101,6 +104,9 @@
     <a href="testimonials.html">Testimonials</a>
   </div>
   <button class="nav-cta" onclick="window.location='index.html#waitlist'">Book a call →</button>
+  <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->

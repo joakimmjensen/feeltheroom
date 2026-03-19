@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programs — Feel the Room. Lead with Intention.</title>
   <meta name="description" content="F.E.E.L. for Leaders and F.E.E.L. for Sales — two programs built on the same framework. One for the leader, one for the team.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     :root {
       --bg: #FDFAF6; --surface: #F5EDE0; --surface2: #EDE0CC; --surface3: #E5D4B8;
@@ -266,9 +267,15 @@
     .footer-links a { font-size: 13px; color: var(--text3); text-decoration: none; transition: color .2s; }
     .footer-links a:hover { color: var(--text); }
 
+    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
     @media (max-width: 860px) {
-      nav { padding: 0 20px; }
+      nav { padding: 0 20px; position: relative; }
       .nav-links a:not(.btn-nav) { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-links { display: none !important; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); flex-direction: column; padding: 20px 24px; gap: 16px; z-index: 99; height: auto; }
+      .nav-links.open { display: flex !important; }
+      .nav-links a { display: block !important; }
       .container { padding: 0 20px; }
       .hero { padding: 120px 0 60px; }
       .panel-header { grid-template-columns: 1fr; }
@@ -290,6 +297,9 @@
     <a href="testimonials.html">Testimonials</a>
     <a href="index.html#waitlist" class="btn-nav">Book a call →</a>
   </div>
+  <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -801,7 +811,7 @@
 <footer>
   <p class="footer-copy">© 2026 Feel the Room · Joakim Møller Jensen</p>
   <div class="footer-links">
-    <a href="https://linkedin.com/in/joakimmjensen">LinkedIn</a>
+    <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a>
     <a href="testimonials.html">Testimonials</a>
     <a href="index.html">Home</a>
   </div>
