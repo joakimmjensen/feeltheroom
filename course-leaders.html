@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.E.E.L. for Leaders — Course Map</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #141210;
+      --bg2: #1C1916;
+      --bg3: #252018;
+      --bg4: #2E2820;
+      --text: #F0EBE3;
+      --text2: #9B9189;
+      --text3: #6B6457;
+      --accent: #C8A96E;
+      --accent2: #E8C98A;
+      --accent-dim: rgba(200,169,110,0.12);
+      --accent-dim2: rgba(200,169,110,0.06);
+      --border: rgba(240,235,227,0.08);
+      --border2: rgba(240,235,227,0.04);
+      --green: #4CAF7D;
+      --green-dim: rgba(76,175,125,0.12);
+      --yellow: #E8C84A;
+      --yellow-dim: rgba(232,200,74,0.12);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 0.5px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 100;
+    }
+    .nav-logo { font-size: 14px; font-weight: 600; letter-spacing: 0.03em; color: var(--text2); text-decoration: none; }
+    .nav-title { font-size: 14px; color: var(--text); font-weight: 600; }
+    .nav-back { font-size: 13px; color: var(--text3); text-decoration: none; }
+    .nav-back:hover { color: var(--accent); }
+
+    /* HERO */
+    .hero {
+      padding: 64px 48px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .hero-title {
+      font-size: 42px;
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text2);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+
+    /* STATS ROW */
+    .stats-row {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .stat { }
+    .stat-num { font-size: 28px; font-weight: 700; color: var(--accent); line-height: 1; }
+    .stat-label { font-size: 12px; color: var(--text3); margin-top: 4px; }
+
+    /* TRANSFORMATION */
+    .transformation {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      align-items: center;
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin: 48px 48px 0;
+    }
+    .transform-box { }
+    .transform-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 10px; }
+    .transform-text { font-size: 14px; color: var(--text2); line-height: 1.6; }
+    .transform-arrow { font-size: 28px; color: var(--accent); text-align: center; }
+    .transform-b .transform-text { color: var(--text); }
+
+    /* PROGRESS */
+    .progress-bar-wrap {
+      padding: 32px 48px;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .progress-label {
+      font-size: 12px;
+      color: var(--text3);
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .progress-bar {
+      height: 4px;
+      background: var(--bg3);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      width: 20%;
+      transition: width 0.6s ease;
+    }
+
+    /* MODULES */
+    .modules { padding: 48px; }
+    .modules-title {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      margin-bottom: 24px;
+    }
+    .module-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    /* MODULE CARD */
+    .module-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color 0.2s;
+    }
+    .module-card:hover { border-color: rgba(200,169,110,0.2); }
+    .module-card.status-done { border-color: rgba(76,175,125,0.2); }
+    .module-card.status-active { border-color: rgba(200,169,110,0.3); }
+
+    .module-header {
+      display: grid;
+      grid-template-columns: 64px 1fr auto;
+      gap: 0;
+      cursor: pointer;
+      user-select: none;
+    }
+    .module-letter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--accent);
+      background: var(--accent-dim2);
+      border-right: 0.5px solid var(--border);
+      padding: 24px 0;
+    }
+    .module-letter.done { color: var(--green); background: var(--green-dim); }
+    .module-meta {
+      padding: 20px 24px;
+    }
+    .module-num {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      margin-bottom: 4px;
+    }
+    .module-name {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .module-sub { font-size: 13px; color: var(--text2); }
+    .module-status-wrap {
+      display: flex;
+      align-items: center;
+      padding: 20px 24px;
+      gap: 12px;
+    }
+    .status-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+    .badge-done { background: var(--green-dim); color: var(--green); }
+    .badge-active { background: var(--accent-dim); color: var(--accent); }
+    .badge-todo { background: var(--bg3); color: var(--text3); }
+    .module-toggle { color: var(--text3); font-size: 12px; transition: transform 0.2s; }
+    .module-toggle.open { transform: rotate(180deg); }
+
+    .module-body {
+      display: none;
+      border-top: 0.5px solid var(--border);
+    }
+    .module-body.open { display: block; }
+
+    /* PAINS SECTION (Modul 0) */
+    .pains-section {
+      padding: 28px 28px 0;
+    }
+    .section-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text3);
+      margin-bottom: 14px;
+    }
+    .pains-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .pain-item {
+      background: var(--bg3);
+      border: 0.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+    .pain-item::before {
+      content: '"';
+      color: var(--accent);
+      font-size: 16px;
+      line-height: 1;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* INSIGHT BLOCK */
+    .insight-block {
+      margin: 0 28px 28px;
+      background: var(--accent-dim);
+      border: 0.5px solid rgba(200,169,110,0.2);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+    }
+    .insight-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+    .insight-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    /* VIDEO STRUCTURE */
+    .video-structure {
+      margin: 0 28px 28px;
+    }
+    .video-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .video-step {
+      display: grid;
+      grid-template-columns: 32px 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 14px 0;
+      border-bottom: 0.5px solid var(--border2);
+    }
+    .video-step:last-child { border-bottom: none; }
+    .step-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text3);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .step-content { }
+    .step-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .step-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+    .step-time {
+      font-size: 11px;
+      color: var(--text3);
+      white-space: nowrap;
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    /* LESSONS */
+    .lessons-section {
+      padding: 28px;
+      border-top: 0.5px solid var(--border);
+    }
+    .lessons-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .lesson-item {
+      display: grid;
+      grid-template-columns: 40px 1fr auto;
+      gap: 14px;
+      align-items: center;
+      background: var(--bg3);
+      border: 0.5px solid var(--border2);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+    }
+    .lesson-num {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+    .lesson-title { font-size: 14px; color: var(--text); }
+    .lesson-status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .lesson-status.done { background: var(--green); border-color: var(--green); }
+    .lesson-status.active { background: var(--accent); border-color: var(--accent); }
+
+    /* EXTRAS */
+    .extras-section {
+      padding: 0 28px 28px;
+      border-top: 0.5px solid var(--border2);
+      margin-top: 0;
+    }
+    .extras-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .extra-tag {
+      background: var(--bg3);
+      border: 0.5px solid var(--border);
+      border-radius: 20px;
+      padding: 6px 14px;
+      font-size: 12px;
+      color: var(--text2);
+    }
+
+    /* NOTES BLOCK */
+    .notes-block {
+      margin: 0 28px 28px;
+      background: var(--bg3);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 16px 20px;
+    }
+    .notes-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); margin-bottom: 8px; }
+    .notes-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 24px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--text3);
+    }
+
+    @media (max-width: 640px) {
+      nav { padding: 16px 20px; }
+      .hero { padding: 40px 20px 32px; }
+      .hero-title { font-size: 28px; }
+      .transformation { grid-template-columns: 1fr; margin: 24px 20px 0; }
+      .transform-arrow { transform: rotate(90deg); }
+      .progress-bar-wrap { padding: 24px 20px; }
+      .modules { padding: 32px 20px; }
+      .pains-grid { grid-template-columns: 1fr; }
+      footer { padding: 20px; flex-direction: column; gap: 8px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Feel the Room</a>
+  <span class="nav-title">Course Map — Leaders</span>
+  <a href="index.html" class="nav-back">← Home</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">F.E.E.L. for Leaders · Course Map</div>
+  <h1 class="hero-title">From reactive<br>to <em>intentional.</em></h1>
+  <p class="hero-sub">A complete map of the F.E.E.L. for Leaders program — modules, lessons, structure and content. Updated as we build it.</p>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-num">5</div>
+      <div class="stat-label">Modules</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20</div>
+      <div class="stat-label">Lessons</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">7</div>
+      <div class="stat-label">Extras</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">1</div>
+      <div class="stat-label">Framework</div>
+    </div>
+  </div>
+</div>
+
+<!-- TRANSFORMATION -->
+<div class="transformation">
+  <div class="transform-box">
+    <div class="transform-label">Point A — Where Marcus is</div>
+    <div class="transform-text">Reacts to numbers, not people. Gives answers instead of asking questions. Lone wolf mentality. Can't read the room. Culture is either too loose or too dead. No system for coaching, hiring or meetings.</div>
+  </div>
+  <div class="transform-arrow">→</div>
+  <div class="transform-box transform-b">
+    <div class="transform-label">Point B — Where Marcus is going</div>
+    <div class="transform-text">Walks into any room and feels it within seconds. Emotionally regulated under pressure. Coaches instead of directs. Builds a culture that performs because people want to — not because they're pushed.</div>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-bar-wrap">
+  <div class="progress-label">
+    <span>Course build progress</span>
+    <span style="color: var(--accent); font-weight: 600;">1 / 5 modules mapped</span>
+  </div>
+  <div class="progress-bar">
+    <div class="progress-fill"></div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<div class="modules">
+  <div class="modules-title">All modules</div>
+  <div class="module-grid">
+
+    <!-- MODULE 0 -->
+    <div class="module-card status-done">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-letter done">0</div>
+        <div class="module-meta">
+          <div class="module-num">Module 0</div>
+          <div class="module-name">Intro — Welcome to Feel the Room</div>
+          <div class="module-sub">Set the frame · The pains · The promise</div>
+        </div>
+        <div class="module-status-wrap">
+          <span class="status-badge badge-done">Mapped ✓</span>
+          <span class="module-toggle">▼</span>
+        </div>
+      </div>
+      <div class="module-body open">
+
+        <!-- PAINS -->
+        <div class="pains-section">
+          <div class="section-label">The 10 pains — Marcus recognises 7 of these</div>
+          <div class="pains-grid">
+            <div class="pain-item">Forfremmet på baggrund af performance — ingen har lært mig at lede</div>
+            <div class="pain-item">Jeg giver svar i stedet for spørgsmål</div>
+            <div class="pain-item">Jeg mærker noget er galt med energien — men har ikke et sprog for det</div>
+            <div class="pain-item">Mine ansatte kommer og går — jeg kan ikke bygge en kultur</div>
+            <div class="pain-item">Træt af salgsteorier der ikke holder ved</div>
+            <div class="pain-item">Kan ikke skalere performance og bevare kultur samtidig</div>
+            <div class="pain-item">For meget sjov = ingen performance</div>
+            <div class="pain-item">For meget performance = kulturen er død</div>
+            <div class="pain-item">Ugentlige møder er kedelige — folk får intet ud af dem</div>
+            <div class="pain-item">Jeg ved ikke hvordan jeg coacher — personligt og professionelt</div>
+          </div>
+        </div>
+
+        <!-- CORE INSIGHT -->
+        <div class="insight-block">
+          <div class="insight-label">The central insight — what flips everything</div>
+          <div class="insight-text">"Det der gjorde dig til den bedste sælger er præcis det der gør dig til en dårlig leder. Du er ikke en lone wolf længere. Du er et forbillede — og dit team mærker dig altid. Din tilstand sætter tonen for alle andre, hele dagen, hvert møde, hver samtale."</div>
+        </div>
+
+        <!-- VIDEO STRUCTURE -->
+        <div class="video-structure">
+          <div class="section-label">Video structure — 8–12 min, no exercise</div>
+          <div class="video-steps">
+            <div class="video-step">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <div class="step-title">Hook</div>
+                <div class="step-desc">"Du er forfremmet. Tillykke. Ingen har fortalt dig hvad det faktisk kræver."</div>
+              </div>
+              <div class="step-time">30 sek</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <div class="step-title">Spejlet — de 10 pains</div>
+                <div class="step-desc">Korte, præcise sætninger. Ingen forklaring. Marcus skal nikke til 7 af dem.</div>
+              </div>
+              <div class="step-time">2 min</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <div class="step-title">Joakims historie</div>
+                <div class="step-desc">Et konkret øjeblik — jobsamtalerne, en 1:1 der gik galt, eller kultur-øjeblikket. Ikke for at imponere. For at vise at Joa har stået der.</div>
+              </div>
+              <div class="step-time">2 min</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <div class="step-title">Den centrale indsigt</div>
+                <div class="step-desc">Lone wolf → forbillede. Sælger → leder. Dit team mærker dig, altid.</div>
+              </div>
+              <div class="step-time">2 min</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">5</div>
+              <div class="step-content">
+                <div class="step-title">F.E.E.L. intro</div>
+                <div class="step-desc">Hvad frameworket er. Hvad det ikke er (ikke scripts, ikke teknikker). Hvorfor det starter med Feel.</div>
+              </div>
+              <div class="step-time">2 min</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">6</div>
+              <div class="step-content">
+                <div class="step-title">Rygdækning</div>
+                <div class="step-desc">2–3 tal + én udtalelse. Kort. Ikke et CV — bare troværdighed.</div>
+              </div>
+              <div class="step-time">1 min</div>
+            </div>
+            <div class="video-step">
+              <div class="step-num">7</div>
+              <div class="step-content">
+                <div class="step-title">Løftet</div>
+                <div class="step-desc">Hvad Marcus kan forvente — og hvad kurset kræver af ham.</div>
+              </div>
+              <div class="step-time">30 sek</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="module-card status-active">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-letter">F</div>
+        <div class="module-meta">
+          <div class="module-num">Module 1</div>
+          <div class="module-name">Feel — Awareness as a foundation</div>
+          <div class="module-sub">Read the room · Your energy · The whole person</div>
+        </div>
+        <div class="module-status-wrap">
+          <span class="status-badge badge-active">Next up</span>
+          <span class="module-toggle">▼</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="lessons-section">
+          <div class="section-label">Lessons</div>
+          <div class="lessons-list">
+            <div class="lesson-item">
+              <div class="lesson-num">1.1</div>
+              <div class="lesson-title">Reaktion vs intention</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">1.2</div>
+              <div class="lesson-title">Energien i rummet</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">1.3</div>
+              <div class="lesson-title">Din energi smitter — altid</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">1.4</div>
+              <div class="lesson-title">Emotionel regulering under pres</div>
+              <div class="lesson-status"></div>
+            </div>
+          </div>
+        </div>
+        <div class="notes-block">
+          <div class="notes-label">To be mapped</div>
+          <div class="notes-text">Indhold, format, øvelser og key takeaways kortlægges i næste interview-session.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-letter">E</div>
+        <div class="module-meta">
+          <div class="module-num">Module 2</div>
+          <div class="module-name">Explore — Ask, listen, understand</div>
+          <div class="module-sub">Stop pitching · Dream → Problem → Solution · Target setting</div>
+        </div>
+        <div class="module-status-wrap">
+          <span class="status-badge badge-todo">Not mapped</span>
+          <span class="module-toggle">▼</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="lessons-section">
+          <div class="section-label">Lessons</div>
+          <div class="lessons-list">
+            <div class="lesson-item">
+              <div class="lesson-num">2.1</div>
+              <div class="lesson-title">Lederen der pitcher løsninger</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">2.2</div>
+              <div class="lesson-title">Drøm → Problem → Løsning i ledelse</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">2.3</div>
+              <div class="lesson-title">Den der stiller spørgsmålene har magten</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">2.4</div>
+              <div class="lesson-title">Lytte efter det usagte</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">2.5</div>
+              <div class="lesson-title">Hvornår præsenterer du løsningen?</div>
+              <div class="lesson-status"></div>
+            </div>
+          </div>
+        </div>
+        <div class="notes-block">
+          <div class="notes-label">To be mapped</div>
+          <div class="notes-text">Indhold, format, øvelser og key takeaways kortlægges i næste interview-session.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-letter">E</div>
+        <div class="module-meta">
+          <div class="module-num">Module 3</div>
+          <div class="module-name">Elevate — Coaching moments in practice</div>
+          <div class="module-sub">Coach, don't instruct · Reframe · Pre-close · Roleplay</div>
+        </div>
+        <div class="module-status-wrap">
+          <span class="status-badge badge-todo">Not mapped</span>
+          <span class="module-toggle">▼</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="lessons-section">
+          <div class="section-label">Lessons</div>
+          <div class="lessons-list">
+            <div class="lesson-item">
+              <div class="lesson-num">3.1</div>
+              <div class="lesson-title">Coaching vs instruktion</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">3.2</div>
+              <div class="lesson-title">"Hvad afholder jer fra bare at gøre det?"</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">3.3</div>
+              <div class="lesson-title">Reframe og momentum</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">3.4</div>
+              <div class="lesson-title">Pre-close teknikken</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">3.5</div>
+              <div class="lesson-title">Roleplay — lær dine sælgere F.E.E.L.</div>
+              <div class="lesson-status"></div>
+            </div>
+          </div>
+        </div>
+        <div class="notes-block">
+          <div class="notes-label">To be mapped</div>
+          <div class="notes-text">Indhold, format, øvelser og key takeaways kortlægges i næste interview-session.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="module-card">
+      <div class="module-header" onclick="toggleModule(this)">
+        <div class="module-letter">L</div>
+        <div class="module-meta">
+          <div class="module-num">Module 4</div>
+          <div class="module-name">Lead — Build the culture and the team</div>
+          <div class="module-sub">Values · Recruiting · Onboarding · Team Orchestration · Targets</div>
+        </div>
+        <div class="module-status-wrap">
+          <span class="status-badge badge-todo">Not mapped</span>
+          <span class="module-toggle">▼</span>
+        </div>
+      </div>
+      <div class="module-body">
+        <div class="lessons-section">
+          <div class="section-label">Lessons</div>
+          <div class="lessons-list">
+            <div class="lesson-item">
+              <div class="lesson-num">4.1</div>
+              <div class="lesson-title">Definér jeres værdier som team</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">4.2</div>
+              <div class="lesson-title">Performativ balance</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">4.3</div>
+              <div class="lesson-title">Rekruttering: se hele mennesket</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">4.4</div>
+              <div class="lesson-title">Onboarding for success</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">4.5</div>
+              <div class="lesson-title">Team Orchestration</div>
+              <div class="lesson-status"></div>
+            </div>
+            <div class="lesson-item">
+              <div class="lesson-num">4.6</div>
+              <div class="lesson-title">Fælles mål og fejre undervejs</div>
+              <div class="lesson-status"></div>
+            </div>
+          </div>
+        </div>
+        <div class="notes-block">
+          <div class="notes-label">To be mapped</div>
+          <div class="notes-text">Indhold, format, øvelser og key takeaways kortlægges i næste interview-session.</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- EXTRAS -->
+<div style="padding: 0 48px 64px;">
+  <div class="module-card">
+    <div class="module-header" onclick="toggleModule(this)">
+      <div class="module-letter" style="font-size:18px; color: var(--text2);">+</div>
+      <div class="module-meta">
+        <div class="module-num">Extras — 7 tools included</div>
+        <div class="module-name">Workbooks, templates & resources</div>
+        <div class="module-sub">Ready-to-use tools Marcus can implement from day one</div>
+      </div>
+      <div class="module-status-wrap">
+        <span class="status-badge badge-todo">In progress</span>
+        <span class="module-toggle">▼</span>
+      </div>
+    </div>
+    <div class="module-body">
+      <div class="extras-section">
+        <div class="section-label" style="margin-top: 24px;">Included extras</div>
+        <div class="extras-grid">
+          <span class="extra-tag">Energilog</span>
+          <span class="extra-tag">Spørgsmålsbank</span>
+          <span class="extra-tag">1:1 tjekliste</span>
+          <span class="extra-tag">Core values workshop-skabelon</span>
+          <span class="extra-tag">Rekrutteringsscript</span>
+          <span class="extra-tag">30-60-90 onboarding-plan</span>
+          <span class="extra-tag">Weekly meeting-skabelon</span>
+          <span class="extra-tag">Monthly 1:1 skabelon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>F.E.E.L. for Leaders · Internal course map</span>
+  <span>Last updated: March 2026</span>
+</footer>
+
+<script>
+  function toggleModule(header) {
+    const body = header.nextElementSibling;
+    const toggle = header.querySelector('.module-toggle');
+    body.classList.toggle('open');
+    toggle.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
