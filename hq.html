@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTR HQ — Feel the Room</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --bg2: #171511;
+      --bg3: #1F1C18;
+      --bg4: #27231E;
+      --text: #F0EBE3;
+      --text2: #9B9189;
+      --text3: #5C5650;
+      --accent: #C8A96E;
+      --accent2: #E8C98A;
+      --accent-dim: rgba(200,169,110,0.1);
+      --accent-border: rgba(200,169,110,0.2);
+      --green: #5DBB8A;
+      --green-dim: rgba(93,187,138,0.1);
+      --green-border: rgba(93,187,138,0.2);
+      --blue: #6B9FD4;
+      --blue-dim: rgba(107,159,212,0.1);
+      --blue-border: rgba(107,159,212,0.2);
+      --red: #D47B6B;
+      --red-dim: rgba(212,123,107,0.1);
+      --border: rgba(240,235,227,0.07);
+      --border2: rgba(240,235,227,0.04);
+      --radius: 14px;
+      --radius-sm: 8px;
+      --radius-xs: 6px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* LAYOUT */
+    .layout { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+
+    /* SIDEBAR */
+    .sidebar {
+      background: var(--bg2);
+      border-right: 0.5px solid var(--border);
+      padding: 28px 0;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-logo {
+      padding: 0 20px 24px;
+      border-bottom: 0.5px solid var(--border);
+      margin-bottom: 20px;
+    }
+    .sidebar-logo-text { font-size: 13px; font-weight: 700; color: var(--accent); letter-spacing: 0.05em; }
+    .sidebar-logo-sub { font-size: 11px; color: var(--text3); margin-top: 2px; }
+    .sidebar-section { padding: 0 12px; margin-bottom: 24px; }
+    .sidebar-section-label {
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text3);
+      padding: 0 8px;
+      margin-bottom: 6px;
+    }
+    .sidebar-link {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 10px;
+      border-radius: var(--radius-xs);
+      color: var(--text2);
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.15s;
+      cursor: pointer;
+    }
+    .sidebar-link:hover { background: var(--bg3); color: var(--text); }
+    .sidebar-link.active { background: var(--accent-dim); color: var(--accent); }
+    .sidebar-icon { font-size: 14px; width: 18px; text-align: center; }
+    .sidebar-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-left: auto; }
+    .dot-green { background: var(--green); }
+    .dot-yellow { background: var(--accent); }
+    .dot-grey { background: var(--text3); }
+    .sidebar-bottom { margin-top: auto; padding: 20px 12px 0; border-top: 0.5px solid var(--border); }
+    .sidebar-back { display: flex; align-items: center; gap: 8px; color: var(--text3); text-decoration: none; font-size: 12px; padding: 8px 10px; border-radius: var(--radius-xs); transition: color 0.15s; }
+    .sidebar-back:hover { color: var(--text2); }
+
+    /* MAIN */
+    .main { padding: 40px 48px; overflow-x: hidden; }
+
+    /* TOP BAR */
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+    .topbar-title { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+    .topbar-date { font-size: 12px; color: var(--text3); }
+
+    /* STAT CARDS */
+    .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+    .stat-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+    }
+    .stat-card-num { font-size: 32px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 6px; }
+    .stat-card-label { font-size: 12px; color: var(--text3); }
+    .stat-card-sub { font-size: 11px; color: var(--text3); margin-top: 2px; opacity: 0.7; }
+
+    /* SECTION */
+    .section { margin-bottom: 40px; }
+    .section-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+    .section-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text3); }
+    .section-action { font-size: 12px; color: var(--accent); text-decoration: none; opacity: 0.8; }
+    .section-action:hover { opacity: 1; }
+
+    /* GRID */
+    .card-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .card-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    /* CARDS */
+    .card {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-decoration: none;
+      color: var(--text);
+      transition: border-color 0.2s, background 0.2s;
+      display: block;
+    }
+    .card:hover { border-color: var(--accent-border); background: var(--bg3); }
+    .card-top { display: flex; align-items: flex-start; justify-content: space-between; margin-bottom: 14px; }
+    .card-icon { font-size: 22px; }
+    .card-badge {
+      font-size: 10px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 20px;
+    }
+    .badge-live { background: var(--green-dim); color: var(--green); border: 0.5px solid var(--green-border); }
+    .badge-building { background: var(--accent-dim); color: var(--accent); border: 0.5px solid var(--accent-border); }
+    .badge-planned { background: var(--bg4); color: var(--text3); border: 0.5px solid var(--border); }
+    .badge-done { background: var(--green-dim); color: var(--green); border: 0.5px solid var(--green-border); }
+    .badge-urgent { background: var(--red-dim); color: var(--red); border: 0.5px solid rgba(212,123,107,0.2); }
+    .card-title { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+    .card-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
+    .card-meta { margin-top: 16px; padding-top: 14px; border-top: 0.5px solid var(--border2); display: flex; gap: 16px; }
+    .card-meta-item { font-size: 11px; color: var(--text3); }
+    .card-meta-item strong { color: var(--text2); font-weight: 600; }
+
+    /* PROGRESS BAR */
+    .progress { margin-top: 12px; }
+    .progress-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--text3); margin-bottom: 6px; }
+    .progress-track { height: 3px; background: var(--bg4); border-radius: 3px; overflow: hidden; }
+    .progress-fill { height: 100%; border-radius: 3px; background: var(--accent); }
+    .progress-fill.green { background: var(--green); }
+
+    /* ROADMAP */
+    .roadmap { display: flex; flex-direction: column; gap: 0; }
+    .roadmap-item {
+      display: grid;
+      grid-template-columns: 120px 16px 1fr;
+      gap: 16px;
+      align-items: start;
+      padding: 16px 0;
+      border-bottom: 0.5px solid var(--border2);
+    }
+    .roadmap-item:last-child { border-bottom: none; }
+    .roadmap-period { font-size: 12px; color: var(--text3); padding-top: 2px; }
+    .roadmap-line { display: flex; flex-direction: column; align-items: center; }
+    .roadmap-dot { width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border); flex-shrink: 0; margin-top: 3px; }
+    .roadmap-dot.active { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-dim); }
+    .roadmap-dot.done { background: var(--green); border-color: var(--green); }
+    .roadmap-connector { width: 1px; background: var(--border); flex: 1; margin-top: 4px; min-height: 20px; }
+    .roadmap-content { }
+    .roadmap-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .roadmap-desc { font-size: 12px; color: var(--text2); }
+
+    /* TODO LIST */
+    .todo-list { display: flex; flex-direction: column; gap: 6px; }
+    .todo-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .todo-item.done { opacity: 0.5; }
+    .todo-check {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+    }
+    .todo-check.checked { background: var(--green); border-color: var(--green); color: #fff; }
+    .todo-check.urgent { border-color: var(--red); }
+    .todo-text { font-size: 13px; flex: 1; }
+    .todo-item.done .todo-text { text-decoration: line-through; color: var(--text3); }
+    .todo-tag {
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .tag-urgent { background: var(--red-dim); color: var(--red); }
+    .tag-website { background: var(--blue-dim); color: var(--blue); }
+    .tag-course { background: var(--accent-dim); color: var(--accent); }
+    .tag-business { background: var(--green-dim); color: var(--green); }
+
+    /* PPA MODULES */
+    .ppa-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; }
+    .ppa-module {
+      background: var(--bg2);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 14px 10px;
+      text-align: center;
+    }
+    .ppa-module.done { border-color: var(--green-border); background: var(--green-dim); }
+    .ppa-module.active { border-color: var(--accent-border); background: var(--accent-dim); }
+    .ppa-num { font-size: 18px; font-weight: 700; color: var(--text3); margin-bottom: 4px; }
+    .ppa-module.done .ppa-num { color: var(--green); }
+    .ppa-module.active .ppa-num { color: var(--accent); }
+    .ppa-label { font-size: 10px; color: var(--text3); line-height: 1.3; }
+    .ppa-module.done .ppa-label { color: var(--green); opacity: 0.8; }
+    .ppa-check { font-size: 14px; margin-top: 6px; }
+
+    /* FREEDOM TRACKER */
+    .freedom-card {
+      background: var(--bg2);
+      border: 0.5px solid var(--accent-border);
+      border-radius: var(--radius);
+      padding: 28px;
+      background: linear-gradient(135deg, var(--bg2) 0%, rgba(200,169,110,0.04) 100%);
+    }
+    .freedom-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+    .freedom-goal { font-size: 36px; font-weight: 700; color: var(--text); line-height: 1; margin-bottom: 6px; }
+    .freedom-sub { font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .freedom-progress { }
+    .freedom-milestones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 16px; }
+    .freedom-milestone { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius-xs); padding: 12px; text-align: center; }
+    .freedom-milestone.done { border-color: var(--green-border); background: var(--green-dim); }
+    .milestone-phase { font-size: 10px; color: var(--text3); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; }
+    .milestone-period { font-size: 11px; color: var(--text2); margin-bottom: 2px; }
+    .milestone-focus { font-size: 11px; color: var(--text3); }
+    .freedom-milestone.active { border-color: var(--accent-border); background: var(--accent-dim); }
+    .freedom-milestone.active .milestone-period { color: var(--accent); font-weight: 600; }
+
+    @media (max-width: 900px) {
+      .layout { grid-template-columns: 1fr; }
+      .sidebar { display: none; }
+      .main { padding: 24px 20px; }
+      .stat-row { grid-template-columns: repeat(2, 1fr); }
+      .card-grid { grid-template-columns: 1fr; }
+      .card-grid-3 { grid-template-columns: 1fr; }
+      .ppa-grid { grid-template-columns: repeat(3, 1fr); }
+      .freedom-milestones { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-text">FTR HQ</div>
+      <div class="sidebar-logo-sub">Feel the Room · Internal</div>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Overview</div>
+      <a href="#overview" class="sidebar-link active">
+        <span class="sidebar-icon">⌂</span> Dashboard
+      </a>
+      <a href="#roadmap" class="sidebar-link">
+        <span class="sidebar-icon">→</span> Roadmap 2026
+      </a>
+      <a href="#actions" class="sidebar-link">
+        <span class="sidebar-icon">✓</span> Pending Actions
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Courses</div>
+      <a href="course-leaders.html" class="sidebar-link">
+        <span class="sidebar-icon">◈</span> F.E.E.L. for Leaders
+        <span class="sidebar-dot dot-yellow"></span>
+      </a>
+      <a href="#" class="sidebar-link">
+        <span class="sidebar-icon">◈</span> F.E.E.L. for Sales
+        <span class="sidebar-dot dot-grey"></span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Website</div>
+      <a href="index.html" class="sidebar-link" target="_blank">
+        <span class="sidebar-icon">↗</span> feeltheroom.dk
+        <span class="sidebar-dot dot-green"></span>
+      </a>
+      <a href="programs.html" class="sidebar-link" target="_blank">
+        <span class="sidebar-icon">↗</span> Programs page
+        <span class="sidebar-dot dot-green"></span>
+      </a>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-section-label">Build</div>
+      <a href="#ppa" class="sidebar-link">
+        <span class="sidebar-icon">▤</span> PPA Progress
+      </a>
+      <a href="#knowledge" class="sidebar-link">
+        <span class="sidebar-icon">◎</span> Knowledge Base
+      </a>
+      <a href="#content" class="sidebar-link">
+        <span class="sidebar-icon">✦</span> Content Engine
+      </a>
+    </div>
+
+    <div class="sidebar-bottom">
+      <a href="index.html" class="sidebar-back">← Back to website</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- TOP BAR -->
+    <div class="topbar" id="overview">
+      <div>
+        <div class="topbar-title">Good morning, Joa.</div>
+        <div class="topbar-date">FTR HQ · March 2026 · Fundament phase</div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-card-num">0</div>
+        <div class="stat-card-label">FTR Revenue / month</div>
+        <div class="stat-card-sub">Goal: 40–50k DKK</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">1/5</div>
+        <div class="stat-card-label">Modules mapped</div>
+        <div class="stat-card-sub">F.E.E.L. for Leaders</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">2/6</div>
+        <div class="stat-card-label">PPA modules done</div>
+        <div class="stat-card-sub">Modules 3–6 remaining</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">25</div>
+        <div class="stat-card-label">Days to April 14</div>
+        <div class="stat-card-sub">Outreach video deadline</div>
+      </div>
+    </div>
+
+    <!-- FREEDOM TRACKER -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Freedom tracker</div>
+      </div>
+      <div class="freedom-card">
+        <div class="freedom-label">The goal</div>
+        <div class="freedom-goal">40–50k DKK / month</div>
+        <div class="freedom-sub">Leave Lunar. Build the life. End of 2026.</div>
+        <div class="progress">
+          <div class="progress-label"><span>Progress</span><span>0%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>
+        </div>
+        <div class="freedom-milestones">
+          <div class="freedom-milestone active">
+            <div class="milestone-phase">Phase 1</div>
+            <div class="milestone-period">Mar–Apr</div>
+            <div class="milestone-focus">Foundation</div>
+          </div>
+          <div class="freedom-milestone">
+            <div class="milestone-phase">Phase 2</div>
+            <div class="milestone-period">May–Jun</div>
+            <div class="milestone-focus">First clients</div>
+          </div>
+          <div class="freedom-milestone">
+            <div class="milestone-phase">Phase 3</div>
+            <div class="milestone-period">Jul–Sep</div>
+            <div class="milestone-focus">Scale</div>
+          </div>
+          <div class="freedom-milestone">
+            <div class="milestone-phase">Phase 4</div>
+            <div class="milestone-period">Oct–Dec</div>
+            <div class="milestone-focus">Freedom</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COURSES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-title">Course builder</div>
+      </div>
+      <div class="card-grid">
+        <a href="course-leaders.html" class="card">
+          <div class="card-top">
+            <div class="card-icon">◈</div>
+            <span class="card-badge badge-building">In progress</span>
+          </div>
+          <div class="card-title">F.E.E.L. for Leaders</div>
+          <div class="card-desc">From reactive to intentional. For sales managers with 3–10 reps who want to build culture and performance simultaneously.</div>
+          <div class="progress" style="margin-top: 16px;">
+            <div class="progress-label"><span>Modules mapped</span><span>1 / 5</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width: 20%"></div></div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item"><strong>5</strong> modules</div>
+            <div class="card-meta-item"><strong>20</strong> lessons</div>
+            <div class="card-meta-item"><strong>7</strong> extras</div>
+          </div>
+        </a>
+        <a href="#" class="card" style="opacity: 0.5; cursor: default;">
+          <div class="card-top">
+            <div class="card-icon">◈</div>
+            <span class="card-badge badge-planned">Not started</span>
+          </div>
+          <div class="card-title">F.E.E.L. for Sales</div>
+          <div class="card-desc">From pitcher to guide. No scripts. Understand the customer deeper than they understand themselves — and let them close themselves.</div>
+          <div class="progress" style="margin-top: 16px;">
+            <div class="progress-label"><span>Modules mapped</span><span>0 / 6</span></div>
+            <div class="progress-track"><div class="progress-fill" style="width: 0%"></div></div>
+          </div>
+          <div class="card-meta">
+            <div class="card-meta-item"><strong>6</strong> modules</div>
+            <div class="card-meta-item"><strong>22</strong> lessons</div>
+            <div class="card-meta-item"><strong>6</strong> extras</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- PENDING ACTIONS -->
+    <div class="section" id="actions">
+      <div class="section-header">
+        <div class="section-title">Pending actions</div>
+      </div>
+      <div class="todo-list">
+        <div class="todo-item">
+          <div class="todo-check urgent">!</div>
+          <div class="todo-text">Video til outreach for interviews</div>
+          <span class="todo-tag tag-urgent">April 14</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Kortlæg Modul 1–4 i course-leaders.html (interview-session)</div>
+          <span class="todo-tag tag-course">Course</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Byg course-sales.html — F.E.E.L. for Sales</div>
+          <span class="todo-tag tag-course">Course</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Connect waitlist-formular til email-service (Kit)</div>
+          <span class="todo-tag tag-website">Website</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Fortsæt PPA moduler 3–6</div>
+          <span class="todo-tag tag-course">Course</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Sign 3–5 intro coaching-klienter (15k DKK/pakke)</div>
+          <span class="todo-tag tag-business">Business</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">3 interviews med rigtige salgsledere</div>
+          <span class="todo-tag tag-business">Research</span>
+        </div>
+        <div class="todo-item">
+          <div class="todo-check"></div>
+          <div class="todo-text">Reddit-research: r/sales og r/salesmanagement</div>
+          <span class="todo-tag tag-business">Research</span>
+        </div>
+        <div class="todo-item done">
+          <div class="todo-check checked">✓</div>
+          <div class="todo-text">Fix nav links + hamburger-menu på alle sider</div>
+          <span class="todo-tag tag-website">Website</span>
+        </div>
+        <div class="todo-item done">
+          <div class="todo-check checked">✓</div>
+          <div class="todo-text">Favicon + footer LinkedIn-links</div>
+          <span class="todo-tag tag-website">Website</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PPA -->
+    <div class="section" id="ppa">
+      <div class="section-header">
+        <div class="section-title">PPA — Passive Profit Accelerator</div>
+      </div>
+      <div class="ppa-grid">
+        <div class="ppa-module done">
+          <div class="ppa-num">1</div>
+          <div class="ppa-label">Course Strategy</div>
+          <div class="ppa-check">✓</div>
+        </div>
+        <div class="ppa-module done">
+          <div class="ppa-num">2</div>
+          <div class="ppa-label">Build Your Audience</div>
+          <div class="ppa-check">✓</div>
+        </div>
+        <div class="ppa-module active">
+          <div class="ppa-num">3</div>
+          <div class="ppa-label">Prep for Sale</div>
+          <div class="ppa-check">→</div>
+        </div>
+        <div class="ppa-module">
+          <div class="ppa-num">4</div>
+          <div class="ppa-label">Pre-Sale Launch</div>
+          <div class="ppa-check"> </div>
+        </div>
+        <div class="ppa-module">
+          <div class="ppa-num">5</div>
+          <div class="ppa-label">Deliver Your Course</div>
+          <div class="ppa-check"> </div>
+        </div>
+        <div class="ppa-module">
+          <div class="ppa-num">6</div>
+          <div class="ppa-label">Automate Sales</div>
+          <div class="ppa-check"> </div>
+        </div>
+      </div>
+      <div style="margin-top: 12px;">
+        <div class="progress">
+          <div class="progress-label"><span>PPA completion</span><span>2 / 6 modules</span></div>
+          <div class="progress-track"><div class="progress-fill green" style="width: 33%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROADMAP -->
+    <div class="section" id="roadmap">
+      <div class="section-header">
+        <div class="section-title">Roadmap 2026</div>
+      </div>
+      <div class="card" style="padding: 28px;">
+        <div class="roadmap">
+          <div class="roadmap-item">
+            <div class="roadmap-period">Mar – Apr</div>
+            <div class="roadmap-line">
+              <div class="roadmap-dot active"></div>
+              <div class="roadmap-connector"></div>
+            </div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Foundation <span style="font-size: 11px; color: var(--accent); font-weight: 400; margin-left: 8px;">← You are here</span></div>
+              <div class="roadmap-desc">Course outlines, content engine, email list, sales page. Map all modules. Build the system.</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-period">May – Jun</div>
+            <div class="roadmap-line">
+              <div class="roadmap-dot"></div>
+              <div class="roadmap-connector"></div>
+            </div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">First clients</div>
+              <div class="roadmap-desc">3–5 intro coaching clients at 15k DKK. First workshop. Collect testimonials and case studies.</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-period">Jul – Sep</div>
+            <div class="roadmap-line">
+              <div class="roadmap-dot"></div>
+              <div class="roadmap-connector"></div>
+            </div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Scale</div>
+              <div class="roadmap-desc">Cohort 1 launch. Systematise delivery. Build automation.</div>
+            </div>
+          </div>
+          <div class="roadmap-item">
+            <div class="roadmap-period">Oct – Dec</div>
+            <div class="roadmap-line">
+              <div class="roadmap-dot"></div>
+            </div>
+            <div class="roadmap-content">
+              <div class="roadmap-title">Freedom</div>
+              <div class="roadmap-desc">40–50k DKK/month FTR revenue. Leave Lunar. Build the life.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KNOWLEDGE + CONTENT -->
+    <div class="section" id="knowledge">
+      <div class="section-header">
+        <div class="section-title">Knowledge base & Content</div>
+      </div>
+      <div class="card-grid-3">
+        <div class="card">
+          <div class="card-top">
+            <div class="card-icon">◎</div>
+            <span class="card-badge badge-done">Ready</span>
+          </div>
+          <div class="card-title">Research backing</div>
+          <div class="card-desc">Goleman, McKinsey, RAIN Group, Harvard, Gong, Brandon Hall. All key stats for course modules.</div>
+          <div class="card-meta">
+            <div class="card-meta-item"><strong>6</strong> topic areas</div>
+            <div class="card-meta-item"><strong>15+</strong> studies</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-icon">✦</div>
+            <span class="card-badge badge-building">Active</span>
+          </div>
+          <div class="card-title">LinkedIn content</div>
+          <div class="card-desc">9 Seedster posts approved. 5-week plan ready. 3 posts/week. Danish only.</div>
+          <div class="card-meta">
+            <div class="card-meta-item"><strong>9</strong> posts ready</div>
+            <div class="card-meta-item"><strong>5</strong> week plan</div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-top">
+            <div class="card-icon">▶</div>
+            <span class="card-badge badge-planned">Planned</span>
+          </div>
+          <div class="card-title">YouTube (English)</div>
+          <div class="card-desc">English-language channel. Parallel to LinkedIn. Build after foundation phase.</div>
+          <div class="card-meta">
+            <div class="card-meta-item">Starts <strong>Q3 2026</strong></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="border-top: 0.5px solid var(--border); padding-top: 24px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+      <div style="font-size: 12px; color: var(--text3);">FTR HQ · Internal dashboard · Not indexed</div>
+      <a href="index.html" style="font-size: 12px; color: var(--text3); text-decoration: none;">← feeltheroom.dk</a>
+    </div>
+
+  </main>
+</div>
+
+</body>
+</html>
