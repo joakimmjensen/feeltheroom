@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="da">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -151,29 +151,29 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
   <div style="max-width:560px;width:100%;text-align:center;padding-top:60px">
     <div class="logo">Feel The Room</div>
     <h1>Behavioral<br>Profile Test</h1>
-    <p class="subtitle" style="margin-top:16px">Et dybt dyk ned i din adfærdsprofil — hvem du er under pres, hvad du driver andre med, og hvilken energi du bringer ind i rummet.</p>
+    <p class="subtitle" style="margin-top:16px">A deep dive into your behavioral profile — who you are under pressure, how you drive others, and what energy you bring into the room.</p>
     <div class="card" style="margin-top:32px;text-align:left">
       <div style="display:flex;flex-direction:column;gap:14px">
         <div style="display:flex;gap:14px;align-items:flex-start">
           <div style="color:var(--gold);font-size:20px;min-width:28px">01</div>
-          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">20 scenariespørgsmål</div><div style="font-size:12px;color:var(--muted)">Svar på situationer fra din hverdag</div></div>
+          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">20 scenario questions</div><div style="font-size:12px;color:var(--muted)">Real situations from your everyday work life</div></div>
         </div>
         <div style="display:flex;gap:14px;align-items:flex-start">
           <div style="color:var(--gold);font-size:20px;min-width:28px">02</div>
-          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">15 ord der beskriver dig</div><div style="font-size:12px;color:var(--muted)">Vælg præcis 15 adjektiver fra listen</div></div>
+          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">15 words that describe you</div><div style="font-size:12px;color:var(--muted)">Choose exactly 15 adjectives from the list</div></div>
         </div>
         <div style="display:flex;gap:14px;align-items:flex-start">
           <div style="color:var(--gold);font-size:20px;min-width:28px">03</div>
-          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">The Whole Person Foundation</div><div style="font-size:12px;color:var(--muted)">Søvn, kost, bevægelse, hydration & regulering</div></div>
+          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">The Whole Person Foundation</div><div style="font-size:12px;color:var(--muted)">Sleep, nutrition, movement, hydration & regulation</div></div>
         </div>
         <div style="display:flex;gap:14px;align-items:flex-start">
           <div style="color:var(--gold);font-size:20px;min-width:28px">04</div>
-          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">The Honest Mirror</div><div style="font-size:12px;color:var(--muted)">Hvordan andre ser dig vs. hvordan du ser dig selv</div></div>
+          <div><div style="font-size:14px;color:var(--text);margin-bottom:2px">The Honest Mirror</div><div style="font-size:12px;color:var(--muted)">How others see you vs. how you see yourself</div></div>
         </div>
       </div>
     </div>
-    <button class="btn" style="margin-top:32px" onclick="startTest()">Start testen</button>
-    <p style="font-size:12px;color:var(--muted);margin-top:16px">Ca. 15 minutter · Vær ærlig — ikke hvad du stræber mod</p>
+    <button class="btn" style="margin-top:32px" onclick="startTest()">Start the test</button>
+    <p style="font-size:12px;color:var(--muted);margin-top:16px">Approx. 15 minutes · Be honest — not who you aspire to be</p>
   </div>
 </div>
 
@@ -181,7 +181,7 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 <div id="screen-quiz" class="screen">
   <div class="progress-wrap">
     <div class="progress-label">
-      <span id="prog-label">Del 1 af 4</span>
+      <span id="prog-label">Part 1 of 4</span>
       <span id="prog-count">1 / 20</span>
     </div>
     <div class="progress-bar"><div class="progress-fill" id="prog-fill" style="width:0%"></div></div>
@@ -190,121 +190,121 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
     <div class="q-part" id="q-part"></div>
     <div class="q-text" id="q-text"></div>
     <div class="options" id="q-options"></div>
-    <textarea class="free-input" id="free-text" rows="2" placeholder="Eller skriv dit eget svar..." style="display:none"></textarea>
+    <textarea class="free-input" id="free-text" rows="2" placeholder="Or write your own answer..." style="display:none"></textarea>
   </div>
   <div class="nav-row">
-    <button class="btn btn-outline" id="btn-prev" onclick="prevQ()" style="visibility:hidden">← Tilbage</button>
-    <button class="btn" id="btn-next" onclick="nextQ()" disabled>Næste →</button>
+    <button class="btn btn-outline" id="btn-prev" onclick="prevQ()" style="visibility:hidden">← Back</button>
+    <button class="btn" id="btn-next" onclick="nextQ()" disabled>Next →</button>
   </div>
 </div>
 
 <!-- WORDS -->
 <div id="screen-words" class="screen">
   <div style="text-align:center;max-width:680px;width:100%">
-    <div class="logo">Del 2 af 4</div>
-    <h2>Vælg præcis 15 ord</h2>
-    <p class="words-instruction">Vælg de 15 ord der bedst beskriver dig — ikke hvem du ønsker at være, men hvem du faktisk er.</p>
+    <div class="logo">Part 2 of 4</div>
+    <h2>Choose exactly 15 words</h2>
+    <p class="words-instruction">Choose the 15 words that best describe you — not who you want to be, but who you actually are.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
       <span class="word-count" id="word-count">0</span>
-      <span style="color:var(--muted);font-size:16px">/ 15 valgt</span>
+      <span style="color:var(--muted);font-size:16px">/ 15 selected</span>
     </div>
     <div class="chip-grid" id="chip-grid"></div>
-    <button class="btn" style="margin-top:32px" id="btn-words-next" onclick="goToFoundation()" disabled>Næste →</button>
+    <button class="btn" style="margin-top:32px" id="btn-words-next" onclick="goToFoundation()" disabled>Next →</button>
   </div>
 </div>
 
 <!-- MIRROR SETUP -->
 <div id="screen-mirror-setup" class="screen">
   <div style="text-align:center;max-width:520px;width:100%;padding-top:40px">
-    <div class="logo">Del 4 af 4</div>
+    <div class="logo">Part 4 of 4</div>
     <h2>The Honest Mirror</h2>
-    <p class="mirror-intro">Øvelsen er enkel: Vi spørger til hvad dine kollegaer & venner ser i dig — og hvad du selv ser. Svar som du tror de ville svare, ikke som du håber.</p>
+    <p class="mirror-intro">The exercise is simple: we ask what your colleagues & friends see in you — and what you see yourself. Answer as you think they would answer, not as you hope.</p>
     <div class="card" style="text-align:left">
-      <div class="section-label" style="text-align:left">Navn 3 kollegaer / arbejdsrelationer</div>
+      <div class="section-label" style="text-align:left">Name 3 colleagues / work relations</div>
       <div class="name-inputs" id="colleague-names">
-        <input class="name-input" placeholder="Kollega 1">
-        <input class="name-input" placeholder="Kollega 2">
-        <input class="name-input" placeholder="Kollega 3">
+        <input class="name-input" placeholder="Colleague 1">
+        <input class="name-input" placeholder="Colleague 2">
+        <input class="name-input" placeholder="Colleague 3">
       </div>
-      <div class="section-label" style="text-align:left;margin-top:24px">Navn 3 venner / nære relationer</div>
+      <div class="section-label" style="text-align:left;margin-top:24px">Name 3 friends / close relations</div>
       <div class="name-inputs" id="friend-names">
-        <input class="name-input" placeholder="Ven 1">
-        <input class="name-input" placeholder="Ven 2">
-        <input class="name-input" placeholder="Ven 3">
+        <input class="name-input" placeholder="Friend 1">
+        <input class="name-input" placeholder="Friend 2">
+        <input class="name-input" placeholder="Friend 3">
       </div>
     </div>
-    <button class="btn" style="margin-top:24px" onclick="goToMirrorColleagues()">Fortsæt →</button>
-    <p style="font-size:12px;color:var(--muted);margin-top:12px">Navnene bruges kun til at hjælpe dig tænke konkret</p>
+    <button class="btn" style="margin-top:24px" onclick="goToMirrorColleagues()">Continue →</button>
+    <p style="font-size:12px;color:var(--muted);margin-top:12px">Names are only used to help you think concretely</p>
   </div>
 </div>
 
 <!-- MIRROR COLLEAGUES -->
 <div id="screen-mirror-colleagues" class="screen">
   <div style="text-align:center;max-width:560px;width:100%;padding-top:40px">
-    <div class="logo">The Honest Mirror · Professionelt</div>
-    <h2>Hvad ser dine kollegaer?</h2>
-    <p class="mirror-intro">Forestil dig at <span id="col-names-display" style="color:var(--gold)"></span> sad her. Hvad ville de sige du bør arbejde med?</p>
+    <div class="logo">The Honest Mirror · Professional</div>
+    <h2>What do your colleagues see?</h2>
+    <p class="mirror-intro">Imagine <span id="col-names-display" style="color:var(--gold)"></span> were sitting here. What would they say you should work on?</p>
     <div style="width:100%">
-      <div class="section-label">Vælg op til 6 udviklingsområder</div>
+      <div class="section-label">Choose up to 6 development areas</div>
       <div class="chip-grid" id="pro-word-grid" style="justify-content:flex-start"></div>
     </div>
     <div style="width:100%;margin-top:24px">
-      <div class="section-label">Hvilken følelse giver det dig at tænke på det?</div>
+      <div class="section-label">How does it feel to think about this?</div>
       <div class="feel-options" id="pro-feel-options">
-        <button class="feel-btn" data-val="motivated" onclick="selFeel('pro','motivated')">💡 Motiveret</button>
-        <button class="feel-btn" data-val="uncomfortable" onclick="selFeel('pro','uncomfortable')">😬 Ubehageligt</button>
-        <button class="feel-btn" data-val="relieved" onclick="selFeel('pro','relieved')">😮‍💨 Lettelse</button>
-        <button class="feel-btn" data-val="resistant" onclick="selFeel('pro','resistant')">🛡 Modstand</button>
-        <button class="feel-btn" data-val="curious" onclick="selFeel('pro','curious')">🔍 Nysgerrig</button>
+        <button class="feel-btn" data-val="motivated" onclick="selFeel('pro','motivated')">💡 Motivated</button>
+        <button class="feel-btn" data-val="uncomfortable" onclick="selFeel('pro','uncomfortable')">😬 Uncomfortable</button>
+        <button class="feel-btn" data-val="relieved" onclick="selFeel('pro','relieved')">😮‍💨 Relieved</button>
+        <button class="feel-btn" data-val="resistant" onclick="selFeel('pro','resistant')">🛡 Resistant</button>
+        <button class="feel-btn" data-val="curious" onclick="selFeel('pro','curious')">🔍 Curious</button>
       </div>
     </div>
-    <button class="btn" style="margin-top:28px" id="btn-col-next" onclick="goToMirrorFriends()" disabled>Næste →</button>
+    <button class="btn" style="margin-top:28px" id="btn-col-next" onclick="goToMirrorFriends()" disabled>Next →</button>
   </div>
 </div>
 
 <!-- MIRROR FRIENDS -->
 <div id="screen-mirror-friends" class="screen">
   <div style="text-align:center;max-width:560px;width:100%;padding-top:40px">
-    <div class="logo">The Honest Mirror · Personligt</div>
-    <h2>Hvad ser dine venner?</h2>
-    <p class="mirror-intro">Forestil dig at <span id="fri-names-display" style="color:var(--gold)"></span> sad her. Hvad ville de sige du bør arbejde med?</p>
+    <div class="logo">The Honest Mirror · Personal</div>
+    <h2>What do your friends see?</h2>
+    <p class="mirror-intro">Imagine <span id="fri-names-display" style="color:var(--gold)"></span> were sitting here. What would they say you should work on?</p>
     <div style="width:100%">
-      <div class="section-label">Vælg op til 6 udviklingsområder</div>
+      <div class="section-label">Choose up to 6 development areas</div>
       <div class="chip-grid" id="per-word-grid" style="justify-content:flex-start"></div>
     </div>
     <div style="width:100%;margin-top:24px">
-      <div class="section-label">Hvilken følelse giver det dig at tænke på det?</div>
+      <div class="section-label">How does it feel to think about this?</div>
       <div class="feel-options" id="per-feel-options">
-        <button class="feel-btn" data-val="motivated" onclick="selFeel('per','motivated')">💡 Motiveret</button>
-        <button class="feel-btn" data-val="uncomfortable" onclick="selFeel('per','uncomfortable')">😬 Ubehageligt</button>
-        <button class="feel-btn" data-val="relieved" onclick="selFeel('per','relieved')">😮‍💨 Lettelse</button>
-        <button class="feel-btn" data-val="resistant" onclick="selFeel('per','resistant')">🛡 Modstand</button>
-        <button class="feel-btn" data-val="curious" onclick="selFeel('per','curious')">🔍 Nysgerrig</button>
+        <button class="feel-btn" data-val="motivated" onclick="selFeel('per','motivated')">💡 Motivated</button>
+        <button class="feel-btn" data-val="uncomfortable" onclick="selFeel('per','uncomfortable')">😬 Uncomfortable</button>
+        <button class="feel-btn" data-val="relieved" onclick="selFeel('per','relieved')">😮‍💨 Relieved</button>
+        <button class="feel-btn" data-val="resistant" onclick="selFeel('per','resistant')">🛡 Resistant</button>
+        <button class="feel-btn" data-val="curious" onclick="selFeel('per','curious')">🔍 Curious</button>
       </div>
     </div>
-    <button class="btn" style="margin-top:28px" id="btn-fri-next" onclick="goToMirrorSelf()" disabled>Næste →</button>
+    <button class="btn" style="margin-top:28px" id="btn-fri-next" onclick="goToMirrorSelf()" disabled>Next →</button>
   </div>
 </div>
 
 <!-- MIRROR SELF -->
 <div id="screen-mirror-self" class="screen">
   <div style="text-align:center;max-width:520px;width:100%;padding-top:40px">
-    <div class="logo">The Honest Mirror · Selvbillede</div>
-    <h2>Hvad ser du selv?</h2>
-    <p class="mirror-intro">Sammenlign hvad dine relationer ville sige med hvad du allerede ved om dig selv.</p>
+    <div class="logo">The Honest Mirror · Self-image</div>
+    <h2>What do you see yourself?</h2>
+    <p class="mirror-intro">Compare what your relationships would say with what you already know about yourself.</p>
     <div style="width:100%;text-align:left">
-      <div class="section-label">Stemmer det overens med hvad du allerede ved?</div>
+      <div class="section-label">Does it match what you already know?</div>
       <div class="self-options" id="self-align-opts">
-        <div class="self-opt" onclick="selAlign('yes',this)">✅ Ja — det er ikke overraskende</div>
-        <div class="self-opt" onclick="selAlign('partly',this)">🔄 Delvist — noget er nyt</div>
-        <div class="self-opt" onclick="selAlign('no',this)">🆕 Nej — det er nye indsigter</div>
+        <div class="self-opt" onclick="selAlign('yes',this)">✅ Yes — this is not surprising</div>
+        <div class="self-opt" onclick="selAlign('partly',this)">🔄 Partly — some of this is new</div>
+        <div class="self-opt" onclick="selAlign('no',this)">🆕 No — these are new insights</div>
       </div>
     </div>
     <div style="width:100%;text-align:left;margin-top:24px">
-      <div class="section-label">Er der noget her du undgår at arbejde med?</div>
-      <textarea class="free-input" id="avoidance-text" rows="3" placeholder="Skriv frit — dette er kun for dig..."></textarea>
+      <div class="section-label">Is there something here you are avoiding working on?</div>
+      <textarea class="free-input" id="avoidance-text" rows="3" placeholder="Write freely — this is only for you..."></textarea>
     </div>
-    <button class="btn" style="margin-top:28px" onclick="showResult()">Se min profil →</button>
+    <button class="btn" style="margin-top:28px" onclick="showResult()">See my profile →</button>
   </div>
 </div>
 
@@ -321,21 +321,21 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
       <div class="profile-tagline" id="r-tagline"></div>
     </div>
     <div class="card">
-      <div class="section-title">Adfærdsfaktorer</div>
+      <div class="section-title">Behavioral Factors</div>
       <div class="factor-bars" id="r-bars"></div>
     </div>
     <div class="card" style="margin-top:16px">
-      <div class="section-title">Din sociale drivkraft</div>
+      <div class="section-title">Your Social Drive</div>
       <p id="r-social" style="font-size:15px;color:var(--muted);line-height:1.8"></p>
     </div>
     <div style="margin-top:16px;border:1px solid var(--border);border-radius:12px;overflow:hidden">
       <div class="two-col">
         <div class="info-card" style="border:none;border-right:1px solid var(--border)">
-          <h3>Beskrivelse</h3>
+          <h3>Description</h3>
           <p id="r-desc"></p>
         </div>
         <div class="info-card" style="border:none">
-          <h3>Styrker</h3>
+          <h3>Strengths</h3>
           <ul id="r-strengths"></ul>
         </div>
       </div>
@@ -351,11 +351,11 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
       </div>
     </div>
     <div class="card" style="margin-top:16px">
-      <div class="section-title">FEEL-profil kortlægning</div>
+      <div class="section-title">FEEL Profile Mapping</div>
       <div class="feel-map" id="r-feel-map"></div>
     </div>
     <div class="card" style="margin-top:16px">
-      <div class="section-title">Dine 15 ord</div>
+      <div class="section-title">Your 15 Words</div>
       <div class="words-cloud" id="r-words"></div>
     </div>
     <div class="card" style="margin-top:16px">
@@ -370,30 +370,30 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
       <div class="section-title">The Honest Mirror</div>
       <div class="mirror-result-grid">
         <div class="mirror-card">
-          <h3>Professionelt · Kollegaer</h3>
+          <h3>Professional · Colleagues</h3>
           <div class="mirror-word-list" id="r-pro-words"></div>
-          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Følelse: <span id="r-pro-feel" style="color:var(--gold)"></span></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-pro-feel" style="color:var(--gold)"></span></div>
         </div>
         <div class="mirror-card">
-          <h3>Personligt · Venner</h3>
+          <h3>Personal · Friends</h3>
           <div class="mirror-word-list" id="r-per-words"></div>
-          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Følelse: <span id="r-per-feel" style="color:var(--gold)"></span></div>
+          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-per-feel" style="color:var(--gold)"></span></div>
         </div>
         <div class="mirror-card align-card">
-          <h3>Selvbillede</h3>
+          <h3>Self-image</h3>
           <div class="align-icon" id="r-align-icon"></div>
           <div class="align-val" id="r-align-val"></div>
         </div>
         <div class="mirror-card">
-          <h3>Undgåelse / blinde vinkler</h3>
+          <h3>Avoidance / blind spots</h3>
           <p id="r-avoidance" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic"></p>
         </div>
       </div>
     </div>
     <div style="text-align:center;margin-top:32px">
-      <button class="print-btn" onclick="window.print()">⬇ Download som PDF</button>
+      <button class="print-btn" onclick="window.print()">⬇ Download as PDF</button>
       <br>
-      <button class="btn btn-outline" style="margin-top:12px" onclick="restartTest()">Tag testen igen</button>
+      <button class="btn btn-outline" style="margin-top:12px" onclick="restartTest()">Take the test again</button>
     </div>
   </div>
 </div>
@@ -402,296 +402,296 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 // ── DATA ─────────────────────────────────────────────────────────────────────
 
 const scenarioQs = [
-  // Factor A (Dominans) — 5 spørgsmål
-  {factor:'A', text:'Du sidder i et møde og er uenig med en beslutning der er ved at blive truffet. Hvad gør du?',
+  // Factor A (Dominance) — 5 questions
+  {factor:'A', text:'You\'re in a meeting and disagree with a decision that\'s about to be made. What do you do?',
    opts:[
-     {txt:'Siger det direkte, selvom det stopper mødet.',score:3},
-     {txt:'Venter til mødet slutter og tager en én-til-én snak.',score:2},
-     {txt:'Skriver det ned og sender en mail bagefter.',score:1},
-     {txt:'Accepterer det og bevæger dig videre.',score:0}
+     {txt:'Say it directly, even if it stops the meeting.',score:3},
+     {txt:'Wait until the meeting ends and have a one-on-one conversation.',score:2},
+     {txt:'Write it down and send an email afterwards.',score:1},
+     {txt:'Accept it and move on.',score:0}
    ]},
-  {factor:'A', text:'Du får en ny opgave med uklare rammer. Hvordan reagerer du?',
+  {factor:'A', text:'You receive a new task with unclear parameters. How do you respond?',
    opts:[
-     {txt:'Definerer selv rammerne og begynder at eksekvere.',score:3},
-     {txt:'Aftaler kort med din leder hvad succeskriteriet er.',score:2},
-     {txt:'Laver en plan og sender den til godkendelse.',score:1},
-     {txt:'Venter på klarere instruktioner.',score:0}
+     {txt:'Define the parameters yourself and start executing.',score:3},
+     {txt:'Quickly align with your manager on what success looks like.',score:2},
+     {txt:'Make a plan and send it for approval.',score:1},
+     {txt:'Wait for clearer instructions.',score:0}
    ]},
-  {factor:'A', text:'En kollega laver en fejl der påvirker dit arbejde. Hvad gør du?',
+  {factor:'A', text:'A colleague makes a mistake that affects your work. What do you do?',
    opts:[
-     {txt:'Konfronterer dem direkte og beder om at det rettes.',score:3},
-     {txt:'Nævner det diplomatisk i en fælles sammenhæng.',score:2},
-     {txt:'Løser det selv og fortæller dem det bagefter.',score:1},
-     {txt:'Arbejder rundt om det uden at tage det op.',score:0}
+     {txt:'Confront them directly and ask them to fix it.',score:3},
+     {txt:'Mention it diplomatically in a shared context.',score:2},
+     {txt:'Fix it yourself and tell them afterwards.',score:1},
+     {txt:'Work around it without bringing it up.',score:0}
    ]},
-  {factor:'A', text:'Du ser en mulighed for at tage lederskab i et projekt. Hvad er din reaktion?',
+  {factor:'A', text:'You see an opportunity to take leadership on a project. What\'s your reaction?',
    opts:[
-     {txt:'Melder dig straks — du er den rette til det.',score:3},
-     {txt:'Overvejer det, og siger ja hvis ingen andre gør det.',score:2},
-     {txt:'Foreslår en anden du mener er bedre kvalificeret.',score:1},
-     {txt:'Foretrækker at bidrage fra sidelinjen.',score:0}
+     {txt:'Step up immediately — you\'re the right person for it.',score:3},
+     {txt:'Consider it and say yes if no one else does.',score:2},
+     {txt:'Suggest someone you think is better qualified.',score:1},
+     {txt:'Prefer to contribute from the sidelines.',score:0}
    ]},
-  {factor:'A', text:'Hvilken sætning beskriver bedst din tilgang til resultater?',
+  {factor:'A', text:'Which statement best describes your approach to results?',
    opts:[
-     {txt:'Resultater er ikke til forhandling — jeg leverer.',score:3},
-     {txt:'Jeg stræber efter resultater, men processen er vigtig.',score:2},
-     {txt:'Jeg bidrager bedst i et team der hjælper hinanden.',score:1},
-     {txt:'Jeg fokuserer på at gøre mit arbejde ordentligt.',score:0}
+     {txt:'Results are non-negotiable — I deliver.',score:3},
+     {txt:'I strive for results, but the process matters.',score:2},
+     {txt:'I contribute best in a team that supports each other.',score:1},
+     {txt:'I focus on doing my work properly.',score:0}
    ]},
-  // Factor B (Ekstraversion) — 5 spørgsmål
-  {factor:'B', text:'Du ankommer til et netværksarrangement hvor du ikke kender nogen. Hvad sker der?',
+  // Factor B (Extraversion) — 5 questions
+  {factor:'B', text:'You arrive at a networking event where you don\'t know anyone. What happens?',
    opts:[
-     {txt:'Glæder mig — det er her magien sker. Jeg begynder at snakke.',score:3},
-     {txt:'Finder en person jeg kender og udvider derfra.',score:2},
-     {txt:'Holder mig lidt i baggrunden og observerer først.',score:1},
-     {txt:'Giver det en time og finder det lidt energidræbende.',score:0}
+     {txt:'I\'m excited — this is where the magic happens. I start talking.',score:3},
+     {txt:'I find someone I know and expand from there.',score:2},
+     {txt:'I stay in the background a bit and observe first.',score:1},
+     {txt:'I give it an hour and find it slightly draining.',score:0}
    ]},
-  {factor:'B', text:'Hvad giver dig mest energi i dit arbejde?',
+  {factor:'B', text:'What gives you the most energy at work?',
    opts:[
-     {txt:'Møder, præsentationer og dialog med mange.',score:3},
-     {txt:'En blanding — nogle møder, noget fordybet arbejde.',score:2},
-     {txt:'Dybe én-til-én samtaler frem for gruppemøder.',score:1},
-     {txt:'At arbejde selvstændigt med minimale forstyrrelser.',score:0}
+     {txt:'Meetings, presentations, and dialogue with many people.',score:3},
+     {txt:'A mix — some meetings, some deep focused work.',score:2},
+     {txt:'Deep one-on-one conversations rather than group meetings.',score:1},
+     {txt:'Working independently with minimal interruptions.',score:0}
    ]},
-  {factor:'B', text:'Du skal præsentere for 50 mennesker du ikke kender. Hvad sker der inde i dig?',
+  {factor:'B', text:'You have to present to 50 people you don\'t know. What happens inside you?',
    opts:[
-     {txt:'Glæde — dette er mit element.',score:3},
-     {txt:'Lidt nervøsitet, men det går hurtigt over.',score:2},
-     {txt:'En klar forberedelsesplan — strukturen giver tryghed.',score:1},
-     {txt:'Nervøsitet der ikke helt forsvinder.',score:0}
+     {txt:'Excitement — this is my element.',score:3},
+     {txt:'A little nerves, but they pass quickly.',score:2},
+     {txt:'A clear preparation plan — structure gives me confidence.',score:1},
+     {txt:'Nerves that don\'t fully go away.',score:0}
    ]},
-  {factor:'B', text:'Hvordan foretrækker du at løse et komplekst problem?',
+  {factor:'B', text:'How do you prefer to solve a complex problem?',
    opts:[
-     {txt:'Sparrer med andre — tanker bliver klarere i dialog.',score:3},
-     {txt:'Starter med at tænke selv, derefter indhenter input.',score:2},
-     {txt:'Taler med én betroet person for at afklare tankerne.',score:1},
-     {txt:'Arbejder det igennem alene, fuldt fokuseret.',score:0}
+     {txt:'Sparring with others — thoughts become clearer through dialogue.',score:3},
+     {txt:'Start by thinking alone, then gather input.',score:2},
+     {txt:'Talk to one trusted person to clarify my thinking.',score:1},
+     {txt:'Work through it alone, fully focused.',score:0}
    ]},
-  {factor:'B', text:'En ven beskriver dig til en ny bekendtskab. Hvad siger de sandsynligvis?',
+  {factor:'B', text:'A friend describes you to a new acquaintance. What do they probably say?',
    opts:[
-     {txt:'"Sætter gang i enhver fest og kender altid nogen."',score:3},
-     {txt:'"Varm og nærværende — altid god at snakke med."',score:2},
-     {txt:'"Rolig og eftertænksom — man kan stole på dem."',score:1},
-     {txt:'"Privat og nøje med hvem de slipper tæt på."',score:0}
+     {txt:'"Gets any party going and always knows someone."',score:3},
+     {txt:'"Warm and present — always great to talk to."',score:2},
+     {txt:'"Calm and thoughtful — you can always rely on them."',score:1},
+     {txt:'"Private and selective about who they let close."',score:0}
    ]},
-  // Factor C (Tålmodighed) — 5 spørgsmål
-  {factor:'C', text:'Projektet du er en del af skifter retning for tredje gang. Hvad er din reaktion?',
+  // Factor C (Patience) — 5 questions
+  {factor:'C', text:'The project you\'re part of changes direction for the third time. What\'s your reaction?',
    opts:[
-     {txt:'Tilpasser mig fleksibelt — forandring er bare virkelighed.',score:0},
-     {txt:'Udtrykker mild frustration, men tilpasser mig.',score:1},
-     {txt:'Insisterer på at vi stopper op og definerer en stabil plan.',score:2},
-     {txt:'Har svært ved det — usikkerhed dræner min energi.',score:3}
+     {txt:'I adapt flexibly — change is just reality.',score:0},
+     {txt:'I express mild frustration but adapt.',score:1},
+     {txt:'I insist we stop and define a stable plan.',score:2},
+     {txt:'I struggle with it — uncertainty drains my energy.',score:3}
    ]},
-  {factor:'C', text:'Hvilken arbejdsstil passer dig bedst?',
+  {factor:'C', text:'Which work style suits you best?',
    opts:[
-     {txt:'Høj fart, mange bolde i luften, hurtige beslutninger.',score:0},
-     {txt:'Dynamisk — jeg kan skifte tempo efter behov.',score:1},
-     {txt:'Overskuelig, forudsigelig struktur med klare rutiner.',score:2},
-     {txt:'Stabil, metodisk og med plads til fordybelse.',score:3}
+     {txt:'High pace, many balls in the air, fast decisions.',score:0},
+     {txt:'Dynamic — I can shift pace as needed.',score:1},
+     {txt:'Clear, predictable structure with consistent routines.',score:2},
+     {txt:'Stable, methodical and with space for deep work.',score:3}
    ]},
-  {factor:'C', text:'En kollega er frustreret og tager det ud på dig. Hvad gør du?',
+  {factor:'C', text:'A colleague is frustrated and takes it out on you. What do you do?',
    opts:[
-     {txt:'Siger det direkte og beder dem om at ændre tone.',score:0},
-     {txt:'Spørger nysgerrigt ind til hvad der egentlig sker.',score:1},
-     {txt:'Giver dem rum og vender tilbage til det bagefter.',score:2},
-     {txt:'Absorberer det og sørger for at de har det bedre.',score:3}
+     {txt:'Say it directly and ask them to change their tone.',score:0},
+     {txt:'Curiously ask what\'s really going on.',score:1},
+     {txt:'Give them space and return to it later.',score:2},
+     {txt:'Absorb it and make sure they feel better.',score:3}
    ]},
-  {factor:'C', text:'En opgave tager dobbelt så lang tid som planlagt. Hvad er din reaktion?',
+  {factor:'C', text:'A task takes twice as long as planned. What\'s your reaction?',
    opts:[
-     {txt:'Frustreret — tempo og resultater er vigtigere end perfektion.',score:0},
-     {txt:'Justerer forventningerne og kommunikerer forsinkelsen.',score:1},
-     {txt:'Accepterer det — grundighed er det vigtige.',score:2},
-     {txt:'Finder det naturligt — godt arbejde tager den tid det tager.',score:3}
+     {txt:'Frustrated — pace and results matter more than perfection.',score:0},
+     {txt:'Adjust expectations and communicate the delay.',score:1},
+     {txt:'Accept it — thoroughness is what matters.',score:2},
+     {txt:'Find it natural — good work takes the time it takes.',score:3}
    ]},
-  {factor:'C', text:'Hvad prioriterer du højest i et team?',
+  {factor:'C', text:'What do you prioritize most in a team?',
    opts:[
-     {txt:'Resultater og fart — vi er her for at levere.',score:0},
-     {txt:'Balance mellem resultater og trivsel.',score:1},
-     {txt:'At folk trives og har det godt med hinanden.',score:2},
-     {txt:'Stabilitet, forudsigelighed og loyalitet.',score:3}
+     {txt:'Results and pace — we\'re here to deliver.',score:0},
+     {txt:'Balance between results and wellbeing.',score:1},
+     {txt:'That people thrive and feel good with each other.',score:2},
+     {txt:'Stability, predictability, and loyalty.',score:3}
    ]},
-  // Factor D (Formalitet) — 5 spørgsmål
-  {factor:'D', text:'Du starter en ny opgave. Hvad er dit første skridt?',
+  // Factor D (Formality) — 5 questions
+  {factor:'D', text:'You start a new task. What\'s your first step?',
    opts:[
-     {txt:'Hopper ind og lærer undervejs.',score:0},
-     {txt:'Danner mig hurtigt et overblik og begynder.',score:1},
-     {txt:'Laver en struktureret plan med klare steps.',score:2},
-     {txt:'Researcher grundigt og dokumenterer processen.',score:3}
+     {txt:'Jump in and learn as I go.',score:0},
+     {txt:'Quickly get an overview and begin.',score:1},
+     {txt:'Make a structured plan with clear steps.',score:2},
+     {txt:'Research thoroughly and document the process.',score:3}
    ]},
-  {factor:'D', text:'Hvad irriterer dig mest i arbejdet?',
+  {factor:'D', text:'What irritates you most at work?',
    opts:[
-     {txt:'For mange regler og processer der bremser fremdrift.',score:0},
-     {txt:'Uklarhed og inkonsistente forventninger.',score:1},
-     {txt:'Sjusk og manglende opfølgning på aftaler.',score:2},
-     {txt:'Fejl der kunne undgås med bedre proces og data.',score:3}
+     {txt:'Too many rules and processes slowing down progress.',score:0},
+     {txt:'Ambiguity and inconsistent expectations.',score:1},
+     {txt:'Sloppiness and lack of follow-through on commitments.',score:2},
+     {txt:'Mistakes that could be avoided with better process and data.',score:3}
    ]},
-  {factor:'D', text:'Du skal sende en vigtig mail til en kunde. Hvad gør du?',
+  {factor:'D', text:'You need to send an important email to a client. What do you do?',
    opts:[
-     {txt:'Skriver hurtigt og sender — det vigtige er at komme ud.',score:0},
-     {txt:'Gennemlæser én gang og retter det åbenlyse.',score:1},
-     {txt:'Bruger tid på formuleringer og struktur.',score:2},
-     {txt:'Gennemlæser to-tre gange og sikrer at alt er præcist.',score:3}
+     {txt:'Write quickly and send — getting it out is what matters.',score:0},
+     {txt:'Read through once and fix the obvious.',score:1},
+     {txt:'Take time with the wording and structure.',score:2},
+     {txt:'Read through two or three times to ensure everything is precise.',score:3}
    ]},
-  {factor:'D', text:'Dine tanker om regler og procedurer i organisationer?',
+  {factor:'D', text:'Your thoughts on rules and procedures in organisations?',
    opts:[
-     {txt:'Bremsepedalen for folk der ikke vil tage ansvar.',score:0},
-     {txt:'Nødvendige men bør ikke overskygge sund fornuft.',score:1},
-     {txt:'Vigtige rammer — vi bør følge dem medmindre de er direkte forkerte.',score:2},
-     {txt:'Essentielle — de sikrer kvalitet og ansvar.',score:3}
+     {txt:'The brake pedal for people who don\'t want to take responsibility.',score:0},
+     {txt:'Necessary but shouldn\'t overshadow common sense.',score:1},
+     {txt:'Important frameworks — we should follow them unless clearly wrong.',score:2},
+     {txt:'Essential — they ensure quality and accountability.',score:3}
    ]},
-  {factor:'D', text:'Hvad er din tilgang til feedback og evaluering?',
+  {factor:'D', text:'What\'s your approach to feedback and evaluation?',
    opts:[
-     {txt:'Hurtig feedback er bedre end grundig feedback der tager tid.',score:0},
-     {txt:'Struktureret men kortfattet — nøglebudskaber er nok.',score:1},
-     {txt:'Detaljeret og dokumenteret så der er klart hvad der forventes.',score:2},
-     {txt:'Grundig analyse med data og specifikke eksempler.',score:3}
+     {txt:'Fast feedback beats thorough feedback that takes time.',score:0},
+     {txt:'Structured but brief — key messages are enough.',score:1},
+     {txt:'Detailed and documented so expectations are clear.',score:2},
+     {txt:'Thorough analysis with data and specific examples.',score:3}
    ]}
 ];
 
 const foundationQs = [
-  {pillar:'sleep', icon:'😴', title:'Søvn',
-   text:'Søvn er din biologiske reset-knap. Hvordan er din søvn typisk?',
+  {pillar:'sleep', icon:'😴', title:'Sleep',
+   text:'Sleep is your biological reset button. How is your sleep typically?',
    opts:[
-     {txt:'7-9 timer hver nat, vågner udhvilet.',score:3},
-     {txt:'Ca. 6-7 timer — nogenlunde ok.',score:2},
-     {txt:'Varierer meget, 5-6 timer i gennemsnit.',score:1},
-     {txt:'Under 5 timer eller meget fragmenteret.',score:0}
+     {txt:'7-9 hours every night, wake up rested.',score:3},
+     {txt:'About 6-7 hours — roughly ok.',score:2},
+     {txt:'Varies a lot, 5-6 hours on average.',score:1},
+     {txt:'Under 5 hours or very fragmented.',score:0}
    ]},
-  {pillar:'nutrition', icon:'🥗', title:'Ernæring',
-   text:'Du kan ikke give energi du ikke har. Hvad spiser du typisk?',
+  {pillar:'nutrition', icon:'🥗', title:'Nutrition',
+   text:'You can\'t give energy you don\'t have. What do you typically eat?',
    opts:[
-     {txt:'Bevidst og intentionelt — primært rigtig mad.',score:3},
-     {txt:'Okay — indimellem sjusket men generelt sundt.',score:2},
-     {txt:'Meget varierende — convenience vinder ofte.',score:1},
-     {txt:'Sjældent prioriteret — mad er primært brændstof.',score:0}
+     {txt:'Consciously and intentionally — primarily real food.',score:3},
+     {txt:'Okay — occasionally sloppy but generally healthy.',score:2},
+     {txt:'Very varied — convenience often wins.',score:1},
+     {txt:'Rarely prioritised — food is primarily fuel.',score:0}
    ]},
-  {pillar:'movement', icon:'💪', title:'Bevægelse',
-   text:'Bevægelse er ikke wellness — det er performance. Hvordan bevæger du dig?',
+  {pillar:'movement', icon:'💪', title:'Movement',
+   text:'Movement isn\'t wellness — it\'s performance. How do you move?',
    opts:[
-     {txt:'4+ gange om ugen, intentionel træning.',score:3},
-     {txt:'2-3 gange om ugen, blanding af træning og gang.',score:2},
-     {txt:'1-2 gange eller primært hverdagsbevægelse.',score:1},
-     {txt:'Sjældent — det er svært at prioritere.',score:0}
+     {txt:'4+ times a week, intentional training.',score:3},
+     {txt:'2-3 times a week, mix of training and walking.',score:2},
+     {txt:'1-2 times or primarily everyday movement.',score:1},
+     {txt:'Rarely — it\'s hard to prioritise.',score:0}
    ]},
   {pillar:'hydration', icon:'💧', title:'Hydration',
-   text:'Hjernen er 75% vand. Dehydrering koster dig kognitivt. Hvad drikker du?',
+   text:'The brain is 75% water. Dehydration costs you cognitively. What do you drink?',
    opts:[
-     {txt:'Bevidst og drikker primært vand hele dagen.',score:3},
-     {txt:'Nogenlunde — drikker vand men ikke aktivt.',score:2},
-     {txt:'Kaffe primært — tænker sjældent over vand.',score:1},
-     {txt:'Sjældent vand, primært kaffe og sodavand.',score:0}
+     {txt:'Consciously — primarily water throughout the day.',score:3},
+     {txt:'Roughly ok — drink water but not actively.',score:2},
+     {txt:'Primarily coffee — rarely think about water.',score:1},
+     {txt:'Rarely water — primarily coffee and soft drinks.',score:0}
    ]},
-  {pillar:'regulation', icon:'🧘', title:'Regulering',
-   text:'Emotionel regulering er din evne til at lede dit indre. Hvad gælder for dig?',
+  {pillar:'regulation', icon:'🧘', title:'Regulation',
+   text:'Emotional regulation is your ability to lead your inner world. What applies to you?',
    opts:[
-     {txt:'Har bevidste praksisser — meditation, refleksion eller anden regulering.',score:3},
-     {txt:'Indimellem — har noget der virker men er ikke konsistent.',score:2},
-     {txt:'Primært reaktiv — regulerer på demand.',score:1},
-     {txt:'Har ikke rigtig en praksis her.',score:0}
+     {txt:'I have conscious practices — meditation, reflection or other regulation.',score:3},
+     {txt:'Sometimes — I have something that works but I\'m not consistent.',score:2},
+     {txt:'Primarily reactive — I regulate on demand.',score:1},
+     {txt:'I don\'t really have a practice here.',score:0}
    ]}
 ];
 
-const allWords = ['assertiv','beslutsom','konkurrenceminded','modig','ambitiøs','direkte',
-  'resultatorienteret','uafhængig','samarbejdsorienteret','støttende','diplomatisk','imødekommende',
-  'udadvendt','entusiastisk','varm','ekspressiv','inspirerende','karismatisk','engagerende',
-  'reserveret','analytisk','eftertænksom','rolig','introspektiv','afmålt','stabil','konsistent',
-  'pålidelig','metodisk','grundig','omhyggelig','loyal','højt tempo','dynamisk','spontan',
+const allWords = ['assertive','decisive','competitive','courageous','ambitious','direct',
+  'results-driven','independent','collaborative','supportive','diplomatic','approachable',
+  'outgoing','enthusiastic','warm','expressive','inspiring','charismatic','engaging',
+  'reserved','analytical','reflective','calm','introspective','measured','stable','consistent',
+  'reliable','methodical','thorough','careful','loyal','fast-paced','dynamic','spontaneous',
   'tilpasningsdygtig','alsidig','målrettet','præcis','struktureret','principfast','nøjeregnende',
-  'nøjagtig','systematisk','intuitiv','kreativ','utraditionel','helhedsorienteret',
-  'fri spiritus','empatisk','resilient','åben'];
+  'precise','systematic','intuitive','creative','unconventional','big-picture thinker',
+  'free spirit','empathetic','resilient','open'];
 
-const proWords = ['Kommunikation','Delegering','Lytning','Tålmodighed','Struktur','Selvtillid',
-  'Direkthed','Strategisk tænkning','Tidsstyring','Empati','Ansvarlighed','Tilpasningsevne',
-  'Nærvær','Fokus','Konsistens','Risikovilje','Samarbejde','Detaljeorientering','Opfølgning','Sætte grænser'];
+const proWords = ['Communication','Delegation','Listening','Patience','Structure','Confidence',
+  'Directness','Strategic thinking','Time management','Empathy','Accountability','Adaptability',
+  'Presence','Focus','Consistency','Risk appetite','Collaboration','Attention to detail','Follow-through','Setting boundaries'];
 
-const perWords = ['Sårbarhed','Tålmodighed','Selvbevidsthed','Grænser','Nærvær','Konsistens',
-  'Følelsesregulering','Tillid','Åbenhed','Egenomsorg','Taknemmelighed','Balance',
-  'Ærlighed','Mod','Ydmyghed','Autenticitet','Forbindtlighed','Leg','Slip kontrollen','Formål'];
+const perWords = ['Vulnerability','Patience','Self-awareness','Boundaries','Presence','Consistency',
+  'Emotional regulation','Trust','Openness','Self-care','Gratitude','Balance',
+  'Honesty','Courage','Humility','Authenticity','Commitment','Play','Letting go','Purpose'];
 
 const profiles = {
   catalyst:{
-    name:'The Catalyst',tagline:'Du sætter gang i rummet og i menneskerne i det',
-    social:'Anerkendelse & Indflydelse — du trives når du mærker at andre reagerer på dig og din energi.',
-    desc:'Catalyst-profiler kombinerer høj dominans med stærk ekstraversion. Du er naturligt overbevisende, energifyldt og trives i centrum af handling. Du driver resultater og driver mennesker — ofte på samme tid.',
-    strengths:['Naturlig overtalelsesevne','Høj energi og smitsom entusiasme','Hurtig til at opbygge relationer','Klar til at tage lederskab'],
-    watchouts:['Kan miste tålmodighed med langsomme processer','Kan overkøre andre i entusiasme','Følger ikke altid op på detaljerne'],
-    edge:'Du er den der løfter energien i et rum — brug det med intention. Når du kombinerer dit naturlige drive med ægte nysgerrighed, er du uovertruffen.',
-    feel:{F:'Følelsesmæssig intensitet',E:'Energi & tilstedeværelse',E2:'Evne til overtalelse',L:'Loyalitet & relation'}
+    name:'The Catalyst',tagline:'You ignite the room — and the people in it',
+    social:'Recognition & Influence — you thrive when you feel others responding to your energy.',
+    desc:'Catalyst profiles combine high dominance with strong extraversion. You\'re naturally persuasive, high-energy, and thrive at the centre of the action. You drive results and drive people — often at the same time.',
+    strengths:['Natural persuasiveness','High energy and infectious enthusiasm','Quick to build relationships','Ready to step up and lead'],
+    watchouts:['Can lose patience with slow processes','Can run over others in your enthusiasm','Doesn\'t always follow up on the details'],
+    edge:'You\'re the one who lifts the energy in a room — use it with intention. When you combine your natural drive with genuine curiosity, you\'re unstoppable.',
+    feel:{F:'Emotional intensity',E:'Energy & presence',E2:'Power of persuasion',L:'Loyalty & connection'}
   },
   conductor:{
-    name:'The Conductor',tagline:'Du dirigerer og driver — med autoritet og åbenhed',
-    social:'Magt & Anerkendelse — du drives af at have indflydelse og at andre anerkender din kompetence.',
-    desc:'Conductor-profiler kombinerer høj dominans med stærk ekstraversion og struktur. Du er naturligt til at organisere, lede og mobilisere mennesker mod et klart mål.',
-    strengths:['Klar og autoritativ kommunikation','God til at mobilisere teams','Strategisk og relationsbevidst','Leverer under pres'],
-    watchouts:['Kan blive for direktiv','Risikerer at overkøre modstand frem for at forstå den','Har brug for at lære at delegere kontrol'],
-    edge:'Du besidder den sjældne kombination af karisma og struktur. Brug det til at sætte retning som andre frivilligt følger.',
-    feel:{F:'Følelsesmæssig intelligens',E:'Eksekvering & resultatfokus',E2:'Energi i mødet',L:'Langsigtet strategi'}
+    name:'The Conductor',tagline:'You direct and drive — with authority and openness',
+    social:'Power & Recognition — you\'re driven by influence and having others acknowledge your competence.',
+    desc:'Conductor profiles combine high dominance with strong extraversion and structure. You naturally organise, lead, and mobilise people toward a clear goal.',
+    strengths:['Clear and authoritative communication','Strong at mobilising teams','Strategic and relationship-aware','Delivers under pressure'],
+    watchouts:['Can become too directive','Risks overriding resistance rather than understanding it','Needs to learn to delegate control'],
+    edge:'You have the rare combination of charisma and structure. Use it to set direction that others follow willingly — not because they have to.',
+    feel:{F:'Emotional intelligence',E:'Execution & results focus',E2:'Energy in the room',L:'Long-term strategy'}
   },
   bridge:{
-    name:'The Bridge',tagline:'Du forbinder mennesker og skaber tillid',
-    social:'Tilhørsforhold & Accept — du drives af at være del af noget og at folk er trygge og inkluderede.',
-    desc:'Bridge-profiler kombinerer høj ekstraversion med lav dominans. Du er den naturlige netværker og relations-builder. Du åbner døre, skaber tryghed og sikrer at alle føler sig set og hørt.',
-    strengths:['Naturlig netværker med bred appel','Skaber psykologisk tryghed','God til at afspejle andres behov','Opbygger tillid hurtigt'],
-    watchouts:['Kan undgå konflikter for at bevare harmoni','Kan have svært ved at sige nej','Risikerer at miste sig selv i andres behov'],
-    edge:'Din evne til at skabe forbindelser er en strategisk ressource. Brug den med retning — byg relationer der driver resultater.',
-    feel:{F:'Følelsesmæssigt nærvær',E:'Energi & glæde',E2:'Empati & inkludering',L:'Loyalitet & vedholdenhed'}
+    name:'The Bridge',tagline:'You connect people and create trust',
+    social:'Belonging & Acceptance — you\'re driven by being part of something and ensuring people feel safe and included.',
+    desc:'Bridge profiles combine high extraversion with low dominance. You\'re the natural networker and relationship-builder. You open doors, create psychological safety, and make sure everyone feels seen and heard.',
+    strengths:['Natural networker with wide appeal','Creates psychological safety','Skilled at mirroring others\' needs','Builds trust quickly'],
+    watchouts:['Can avoid conflict to preserve harmony','Can struggle to say no','Risks losing yourself in others\' needs'],
+    edge:'Your ability to create connections is a strategic asset. Use it with direction — build relationships that drive results, not just wellbeing.',
+    feel:{F:'Emotional presence',E:'Energy & joy',E2:'Empathy & inclusion',L:'Loyalty & persistence'}
   },
   pioneer:{
-    name:'The Pioneer',tagline:'Du bryder grænser og skaber nyt terræn',
-    social:'Frihed & Autonomi — du drives af friheden til at tænke og handle på dine egne præmisser.',
-    desc:'Pioneer-profiler kombinerer høj dominans med lav ekstraversion og lav formalitet. Du er den visionære der ser hvad andre ikke ser og er villig til at gå derhen.',
-    strengths:['Mod til at tage ukonventionelle beslutninger','Stærk vision og fremtidsorientering','Uafhængig og selvdrevet','Hurtig og risikovillig'],
-    watchouts:['Kan have svært ved operationel opfølgning','Kan virke utilnærmelig eller isoleret','Kan undervurdere behovet for relationskapital'],
-    edge:'Din vilje til at gå alene når andre tøver er din superkraft. Kombiner den med evnen til at fortælle historien der gør andre villige til at følge dig.',
-    feel:{F:'Frihed & originalitet',E:'Eksekvering mod mål',E2:'Ekspertise & klarhed',L:'Langsigtet tænkning'}
+    name:'The Pioneer',tagline:'You break boundaries and create new territory',
+    social:'Freedom & Autonomy — you\'re driven by the freedom to think and act on your own terms.',
+    desc:'Pioneer profiles combine high dominance with low extraversion and low formality. You\'re the visionary who sees what others miss and is willing to go there.',
+    strengths:['Courage to make unconventional decisions','Strong vision and forward orientation','Independent and self-driven','Fast and risk-tolerant'],
+    watchouts:['Can struggle with operational follow-through','Can come across as inaccessible or isolated','Can underestimate the need for relational capital'],
+    edge:'Your willingness to go alone when others hesitate is your superpower. Combine it with the ability to tell the story that makes others want to follow.',
+    feel:{F:'Freedom & originality',E:'Execution toward goals',E2:'Expertise & clarity',L:'Long-term thinking'}
   },
   architect:{
-    name:'The Architect',tagline:'Du designer systemer og strategier der holder',
-    social:'Kompetence & Mestring — du drives af at mestre dit domæne og at blive anerkendt for din ekspertise.',
-    desc:'Architect-profiler kombinerer høj dominans med lav ekstraversion. Du er analytisk, struktureret og strategisk. Du designer løsninger, sætter rammer og tænker et par skridt foran.',
-    strengths:['Dyb analytisk evne','Struktureret og metodisk tilgang','God til at identificere risici','Leverer grundige og holdbare løsninger'],
-    watchouts:['Kan bruge for lang tid på analyse frem for aktion','Kan virke distanceret','Kan frustreres over kaotiske processer'],
-    edge:'Du er personen der ser mønstrene andre overser. Træn dig i at kommunikere din indsigt på en måde ikke-analytikere forstår.',
-    feel:{F:'Fremtidssyn & kompleksitet',E:'Eksekvering & disciplin',E2:'Ekspertise & troværdighed',L:'Langsigtet systemperspektiv'}
+    name:'The Architect',tagline:'You design systems and strategies that hold',
+    social:'Competence & Mastery — you\'re driven by mastering your domain and being recognised for your expertise.',
+    desc:'Architect profiles combine high dominance with low extraversion. You\'re analytical, structured, and strategic. You design solutions, set frameworks, and think several steps ahead.',
+    strengths:['Deep analytical ability','Structured and methodical approach','Skilled at identifying risks','Delivers thorough and durable solutions'],
+    watchouts:['Can spend too long analysing before acting','Can come across as distant','Can be frustrated by chaotic processes'],
+    edge:'You\'re the person in the room who sees patterns others miss. Train yourself to communicate your insights in a way non-analysts understand — that\'s where your influence scales.',
+    feel:{F:'Foresight & complexity',E:'Execution & discipline',E2:'Expertise & credibility',L:'Long-term systems perspective'}
   },
   foundation:{
-    name:'The Foundation',tagline:'Du er det ankerpunkt andre bygger på',
-    social:'Stabilitet & Sikkerhed — du drives af forudsigelighed, loyalitet og at ting sker som planlagt.',
-    desc:'Foundation-profiler kombinerer lav dominans, lav ekstraversion, høj tålmodighed og høj formalitet. Du er den stabile, pålidelige kraft i ethvert team.',
-    strengths:['Exceptionel pålidelighed og konsistens','God til at holde processer og aftaler','Dyb loyalitet','Stærk i detaljeret og metodisk arbejde'],
-    watchouts:['Kan modstå nødvendig forandring','Kan have svært ved at italesætte egne behov','Risikerer at blive overset i synlighed'],
-    edge:'Din konsistens er sjælden og undervurderet. Kombiner din pålidelighed med evnen til at kommunikere dit bidrag.',
-    feel:{F:'Følelsesmæssig stabilitet',E:'Eksekvering & opfølgning',E2:'Effektivitet & struktur',L:'Loyalitet & troværdighed'}
+    name:'The Foundation',tagline:'You are the anchor point others build on',
+    social:'Stability & Security — you\'re driven by predictability, loyalty, and things going as planned.',
+    desc:'Foundation profiles combine low dominance, low extraversion, high patience, and high formality. You are the stable, reliable force in any team.',
+    strengths:['Exceptional reliability and consistency','Strong at maintaining processes and commitments','Deep loyalty','Excels in detailed and methodical work'],
+    watchouts:['Can resist necessary change','Can struggle to articulate your own needs','Risks being overlooked in terms of visibility'],
+    edge:'Your consistency is rare and undervalued. Combine your reliability with the ability to communicate your contribution — the world needs to know you\'re there.',
+    feel:{F:'Emotional stability',E:'Execution & follow-through',E2:'Efficiency & structure',L:'Loyalty & trustworthiness'}
   },
   keeper:{
-    name:'The Keeper',tagline:'Du holder det menneskelige centrum varmt',
-    social:'Tilhørsforhold & Accept — du drives af dybe relationer og at de mennesker du holder af har det godt.',
-    desc:'Keeper-profiler kombinerer høj ekstraversion og høj tålmodighed. Du er den naturlige hjerte i teamet. Tålmodig, nærværende og dybt relationsbevidst.',
-    strengths:['Dyb empati og menneskelig forståelse','Stærk i at bevare teamets kohæsion','God til at navigere følsomme dynamikker','Loyal og vedholden'],
-    watchouts:['Kan prioritere harmoni over nødvendig sandhed','Kan have svært ved den svære samtale','Kan bære andres problemer som sine egne'],
-    edge:'Din evne til at føle rummet er din største styrke. Træn dig i at bruge den proaktivt — ikke bare reaktivt.',
-    feel:{F:'Følelsesmæssig dybde',E:'Energi i relationer',E2:'Empati & lytning',L:'Loyalitet & nærvær'}
+    name:'The Keeper',tagline:'You keep the human centre warm',
+    social:'Belonging & Acceptance — you\'re driven by deep relationships and the wellbeing of the people you care about.',
+    desc:'Keeper profiles combine high extraversion and high patience. You\'re the natural heart of the team. Patient, present, and deeply relationship-aware.',
+    strengths:['Deep empathy and human understanding','Strong at maintaining team cohesion','Skilled at navigating sensitive dynamics','Loyal and persistent'],
+    watchouts:['Can prioritise harmony over necessary truth','Can find the hard conversation difficult','Can carry others\' problems as your own'],
+    edge:'Your ability to feel the room is your greatest strength. Train yourself to use it proactively — not just reactively — and you become indispensable.',
+    feel:{F:'Emotional depth',E:'Energy in relationships',E2:'Empathy & listening',L:'Loyalty & presence'}
   },
   expert:{
-    name:'The Expert',tagline:'Du ved mere end de fleste og leverer det præcist',
-    social:'Kompetence & Sikkerhed — du drives af at være den bedste i dit felt og at have styr på dine domæner.',
-    desc:'Expert-profiler kombinerer lav ekstraversion, lav dominans og høj formalitet. Du er den dybdegående specialist der leverer med præcision og meget høje standarder.',
-    strengths:['Dyb faglig ekspertise','Høj præcision og kvalitetsbevidsthed','Struktureret og metodisk','Leverer hvad de lover'],
-    watchouts:['Kan blive fanget i detaljer på bekostning af det store billede','Kan have svært ved at skalere indflydelse','Kan virke tilbageholdende socialt'],
-    edge:'Din ekspertise er din brand. Byg evnen til at kommunikere kompleksitet enkelt og du går fra ressource til autoritet.',
-    feel:{F:'Fakta & præcision',E:'Eksekvering i eget domæne',E2:'Ekspertise & troværdighed',L:'Langsigtet kompetenceopbygning'}
+    name:'The Expert',tagline:'You know more than most and deliver it precisely',
+    social:'Competence & Security — you\'re driven by being the best in your field and having full command of your domains.',
+    desc:'Expert profiles combine low extraversion, low dominance, and high formality. You\'re the deep specialist who delivers with precision and very high standards for your own work.',
+    strengths:['Deep domain expertise','High precision and quality consciousness','Structured and methodical','Delivers what they promise'],
+    watchouts:['Can get caught in details at the expense of the big picture','Can struggle to scale influence beyond your own domain','Can come across as reserved socially'],
+    edge:'Your expertise is your brand. Build the ability to communicate complexity simply and you go from being a resource to a real authority.',
+    feel:{F:'Facts & precision',E:'Execution in your domain',E2:'Expertise & credibility',L:'Long-term capability building'}
   }
 };
 
-const feelDimNames = ['Føle rummet','Energien','Evnen','Loyaliteten'];
+const feelDimNames = ['Feel the Room','The Energy','The Ability','The Loyalty'];
 const feelLabels = {
-  motivated:'💡 Motiveret',uncomfortable:'😬 Ubehageligt',
-  relieved:'😮‍💨 Lettelse',resistant:'🛡 Modstand',curious:'🔍 Nysgerrig'
+  motivated:'💡 Motivated',uncomfortable:'😬 Uncomfortable',
+  relieved:'😮‍💨 Relieved',resistant:'🛡 Resistant',curious:'🔍 Curious'
 };
 const alignMap = {
-  yes:{icon:'✅',val:'Jeg kendte det allerede'},
-  partly:{icon:'🔄',val:'Delvist overraskende'},
-  no:{icon:'🆕',val:'Nye indsigter'}
+  yes:{icon:'✅',val:'I already knew this'},
+  partly:{icon:'🔄',val:'Partly surprising'},
+  no:{icon:'🆕',val:'New insights'}
 };
 
 // ── STATE ────────────────────────────────────────────────────────────────────
@@ -724,12 +724,12 @@ function renderQ(){
   const qs = isF ? foundationQs : scenarioQs;
   const q = qs[S.qIdx];
 
-  document.getElementById('prog-label').textContent = isF ? 'Del 3 af 4' : 'Del 1 af 4';
+  document.getElementById('prog-label').textContent = isF ? 'Part 3 of 4' : 'Part 1 of 4';
   document.getElementById('prog-count').textContent = `${S.qIdx+1} / ${qs.length}`;
   document.getElementById('prog-fill').style.width = `${((S.qIdx+1)/qs.length)*100}%`;
   document.getElementById('q-part').textContent = isF
     ? `The Whole Person · ${q.icon} ${q.title}`
-    : `Scenariespørgsmål · ${S.qIdx+1} af 20`;
+    : `Scenario Questions · ${S.qIdx+1} of 20`;
   document.getElementById('q-text').textContent = q.text;
 
   const storedIdx = isF ? S.foundationAnswers[S.qIdx] : S.answers[S.qIdx];
@@ -945,7 +945,7 @@ function showResult(){
 
   // Bars
   const bars=document.getElementById('r-bars');bars.innerHTML='';
-  const labels={A:'Dominans',B:'Ekstraversion',C:'Tålmodighed',D:'Formalitet'};
+  const labels={A:'Dominance',B:'Extraversion',C:'Patience',D:'Formality'};
   for(const f of ['A','B','C','D']){
     const pct=Math.round((S.scores[f]/15)*100);
     bars.innerHTML+=`<div class="fbar-row"><div class="fbar-label">${labels[f]}</div><div class="fbar-track"><div class="fbar-fill" style="width:${pct}%"></div></div><div class="fbar-val">${pct}%</div></div>`;
@@ -970,7 +970,7 @@ function showResult(){
     const cls=sc>=2?'strong':sc>=1?'building':'developing';
     pillarsEl.innerHTML+=`<div class="pillar-dot ${cls}"><div class="p-icon">${q.icon}</div><div class="p-label">${q.title}</div><div class="p-score">${sc}/3</div></div>`;
   });
-  const fs=total>=12?{lbl:'Strong Foundation'}:total>=7?{lbl:'Building'}:{lbl:'Developing'};
+  const fs=total>=12?{lbl:'Strong Foundation'}:total>=7?{lbl:'Building Foundation'}:{lbl:'Developing Foundation'};
   document.getElementById('r-ft-num').textContent=`${total}/15`;
   document.getElementById('r-ft-lbl').textContent=fs.lbl;
 
@@ -982,7 +982,7 @@ function showResult(){
   const al=alignMap[S.selfAlign]||{icon:'—',val:'—'};
   document.getElementById('r-align-icon').textContent=al.icon;
   document.getElementById('r-align-val').textContent=al.val;
-  document.getElementById('r-avoidance').textContent=S.avoidance||'Intet skrevet';
+  document.getElementById('r-avoidance').textContent=S.avoidance||'Nothing written';
 
   show('screen-result');
 }
