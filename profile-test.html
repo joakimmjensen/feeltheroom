@@ -215,7 +215,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
       <span style="color:var(--muted);font-size:16px">/ 15 rows</span>
     </div>
     <div class="spectrum-rows" id="spectrum-rows"></div>
-    <button class="btn" style="margin-top:32px" id="btn-words-next" onclick="goToFoundation()" disabled>Next →</button>
+    <div class="nav-row" style="max-width:720px;margin-top:32px">
+      <button class="btn btn-outline" onclick="backFromWords()">← Back</button>
+      <button class="btn" id="btn-words-next" onclick="goToFoundation()" disabled>Next →</button>
+    </div>
   </div>
 </div>
 
@@ -239,7 +242,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
         <input class="name-input" placeholder="Friend 3">
       </div>
     </div>
-    <button class="btn" style="margin-top:24px" onclick="goToMirrorColleagues()">Continue →</button>
+    <div class="nav-row" style="margin-top:24px;max-width:520px">
+      <button class="btn btn-outline" onclick="backFromMirrorSetup()">← Back</button>
+      <button class="btn" onclick="goToMirrorColleagues()">Continue →</button>
+    </div>
     <p style="font-size:12px;color:var(--muted);margin-top:12px">Names are only used to help you think concretely</p>
   </div>
 </div>
@@ -264,7 +270,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
         <button class="feel-btn" data-val="curious" onclick="selFeel('pro','curious')">🔍 Curious</button>
       </div>
     </div>
-    <button class="btn" style="margin-top:28px" id="btn-col-next" onclick="goToMirrorFriends()" disabled>Next →</button>
+    <div class="nav-row" style="margin-top:28px;max-width:560px">
+      <button class="btn btn-outline" onclick="backFromMirrorColleagues()">← Back</button>
+      <button class="btn" id="btn-col-next" onclick="goToMirrorFriends()" disabled>Next →</button>
+    </div>
   </div>
 </div>
 
@@ -288,7 +297,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
         <button class="feel-btn" data-val="curious" onclick="selFeel('per','curious')">🔍 Curious</button>
       </div>
     </div>
-    <button class="btn" style="margin-top:28px" id="btn-fri-next" onclick="goToMirrorSelf()" disabled>Next →</button>
+    <div class="nav-row" style="margin-top:28px;max-width:560px">
+      <button class="btn btn-outline" onclick="backFromMirrorFriends()">← Back</button>
+      <button class="btn" id="btn-fri-next" onclick="goToMirrorSelf()" disabled>Next →</button>
+    </div>
   </div>
 </div>
 
@@ -310,7 +322,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
       <div class="section-label">Is there something here you are avoiding working on?</div>
       <textarea class="free-input" id="avoidance-text" rows="3" placeholder="Write freely — this is only for you..."></textarea>
     </div>
-    <button class="btn" style="margin-top:28px" onclick="showResult()">See my profile →</button>
+    <div class="nav-row" style="margin-top:28px;max-width:520px">
+      <button class="btn btn-outline" onclick="backFromMirrorSelf()">← Back</button>
+      <button class="btn" onclick="showResult()">See my profile →</button>
+    </div>
   </div>
 </div>
 
@@ -792,10 +807,11 @@ function renderQ(){
       if(isF){S.foundationAnswers[S.qIdx]=null;S.foundationFreeTexts[S.qIdx]=free.value;}
       else{S.answers[S.qIdx]=null;S.freeTexts[S.qIdx]=free.value;}
       document.getElementById('btn-next').disabled=false;
+      saveState();
     }
   };
 
-  document.getElementById('btn-prev').style.visibility = S.qIdx>0?'visible':'hidden';
+  document.getElementById('btn-prev').style.visibility = (S.qIdx>0||S.mode==='foundation')?'visible':'hidden';
   document.getElementById('btn-next').disabled = (storedIdx===null && !storedFree);
 }
 
@@ -809,6 +825,7 @@ function selectOpt(idx, btnEl){
     S.answers[S.qIdx]=idx;S.freeTexts[S.qIdx]='';
   }
   document.getElementById('btn-next').disabled=false;
+  saveState();
 }
 
 function nextQ(){
@@ -824,7 +841,17 @@ function nextQ(){
   }
 }
 
-function prevQ(){if(S.qIdx>0){S.qIdx--;renderQ();}}
+function prevQ(){
+  if(S.qIdx>0){S.qIdx--;renderQ();}
+  else if(S.mode==='foundation'){show('screen-words');renderWords();}
+}
+
+// ── BACK NAVIGATION ──────────────────────────────────────────────────────────
+function backFromWords(){S.mode='scenario';S.qIdx=19;show('screen-quiz');renderQ();}
+function backFromMirrorSetup(){S.mode='foundation';S.qIdx=4;show('screen-quiz');renderQ();}
+function backFromMirrorColleagues(){show('screen-mirror-setup');}
+function backFromMirrorFriends(){renderMirrorGrid('pro-word-grid',proWords,'pro');checkMirrorNext('pro');show('screen-mirror-colleagues');}
+function backFromMirrorSelf(){renderMirrorGrid('per-word-grid',perWords,'per');checkMirrorNext('per');show('screen-mirror-friends');}
 
 function calcScenarioScores(){
   S.scores={A:0,B:0,C:0,D:0};
@@ -878,6 +905,7 @@ function selectSpectrum(rowIdx,w){
     c.classList.toggle('selected',c.textContent===w);
   });
   updateWordCount();
+  saveState();
 }
 
 function updateWordCount(){
@@ -893,15 +921,17 @@ function goToFoundation(){
 
 // ── MIRROR ───────────────────────────────────────────────────────────────────
 function goToMirrorColleagues(){
-  const names=Array.from(document.querySelectorAll('#colleague-names .name-input')).map(i=>i.value.trim()).filter(Boolean);
-  document.getElementById('col-names-display').textContent=names.length?names.join(', '):'dine kollegaer';
+  S.colleagueNames=Array.from(document.querySelectorAll('#colleague-names .name-input')).map(i=>i.value.trim());
+  const names=S.colleagueNames.filter(Boolean);
+  document.getElementById('col-names-display').textContent=names.length?names.join(', '):'your colleagues';
   renderMirrorGrid('pro-word-grid',proWords,'pro');
   show('screen-mirror-colleagues');
 }
 
 function goToMirrorFriends(){
-  const names=Array.from(document.querySelectorAll('#friend-names .name-input')).map(i=>i.value.trim()).filter(Boolean);
-  document.getElementById('fri-names-display').textContent=names.length?names.join(', '):'dine venner';
+  S.friendNames=Array.from(document.querySelectorAll('#friend-names .name-input')).map(i=>i.value.trim());
+  const names=S.friendNames.filter(Boolean);
+  document.getElementById('fri-names-display').textContent=names.length?names.join(', '):'your friends';
   renderMirrorGrid('per-word-grid',perWords,'per');
   show('screen-mirror-friends');
 }
@@ -929,6 +959,7 @@ function toggleMirrorWord(w,chip,prefix,containerId,arr){
     c.classList.toggle('locked',arr.length>=6&&!c.classList.contains('selected'));
   });
   checkMirrorNext(prefix);
+  saveState();
 }
 
 function checkMirrorNext(prefix){
@@ -944,12 +975,14 @@ function selFeel(prefix,val){
     b.classList.toggle('selected',b.dataset.val===val);
   });
   checkMirrorNext(prefix);
+  saveState();
 }
 
 function selAlign(val,el){
   S.selfAlign=val;
   document.querySelectorAll('#self-align-opts .self-opt').forEach(b=>b.classList.remove('selected'));
   el.classList.add('selected');
+  saveState();
 }
 
 // ── PROFILE CALC ─────────────────────────────────────────────────────────────
@@ -1031,12 +1064,52 @@ function showResult(){
 }
 
 function restartTest(){
-  S={mode:'scenario',qIdx:0,answers:Array(20).fill(null),freeTexts:Array(20).fill(''),
+  try{localStorage.removeItem('ftr_signal');}catch(e){}
+  S={curScreen:'screen-intro',mode:'scenario',qIdx:0,answers:Array(20).fill(null),freeTexts:Array(20).fill(''),
     foundationAnswers:Array(5).fill(null),foundationFreeTexts:Array(5).fill(''),
-    scores:{A:0,B:0,C:0,D:0},selWords:Array(15).fill(null),fScores:[],proWords:[],proFeel:'',
-    perWords:[],perFeel:'',selfAlign:'',avoidance:''};
+    scores:{A:0,B:0,C:0,D:0},selWords:Array(15).fill(null),fScores:[],
+    colleagueNames:['','',''],friendNames:['','',''],
+    proWords:[],proFeel:'',perWords:[],perFeel:'',selfAlign:'',avoidance:''};
   show('screen-intro');
 }
+
+// ── INIT (restore state on page load) ────────────────────────────────────────
+(function initApp(){
+  loadState();
+  const sc=S.curScreen||'screen-intro';
+  if(sc==='screen-intro') return; // default already active
+  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+  const el=document.getElementById(sc);
+  if(el) el.classList.add('active');
+  window.scrollTo(0,0);
+  if(sc==='screen-quiz') renderQ();
+  else if(sc==='screen-words') renderWords();
+  else if(sc==='screen-mirror-setup'){
+    // restore name inputs
+    if(S.colleagueNames){Array.from(document.querySelectorAll('#colleague-names .name-input')).forEach((inp,i)=>{if(S.colleagueNames[i])inp.value=S.colleagueNames[i];});}
+    if(S.friendNames){Array.from(document.querySelectorAll('#friend-names .name-input')).forEach((inp,i)=>{if(S.friendNames[i])inp.value=S.friendNames[i];});}
+  }
+  else if(sc==='screen-mirror-colleagues'){
+    renderMirrorGrid('pro-word-grid',proWords,'pro');
+    const names=S.colleagueNames?S.colleagueNames.filter(Boolean):[];
+    document.getElementById('col-names-display').textContent=names.length?names.join(', '):'your colleagues';
+    checkMirrorNext('pro');
+  }
+  else if(sc==='screen-mirror-friends'){
+    renderMirrorGrid('per-word-grid',perWords,'per');
+    const names=S.friendNames?S.friendNames.filter(Boolean):[];
+    document.getElementById('fri-names-display').textContent=names.length?names.join(', '):'your friends';
+    checkMirrorNext('per');
+  }
+  else if(sc==='screen-mirror-self'){
+    if(S.selfAlign){
+      const opts=document.querySelectorAll('#self-align-opts .self-opt');
+      const map={yes:0,partly:1,no:2};
+      if(map[S.selfAlign]!==undefined) opts[map[S.selfAlign]].classList.add('selected');
+    }
+    if(S.avoidance) document.getElementById('avoidance-text').value=S.avoidance;
+  }
+})();
 </script>
 <footer class="site-footer">
   <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
