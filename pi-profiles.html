@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PI Profiles — FTR Research</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0F0E0C;
+      color: #E8E0D4;
+      font-family: 'Georgia', serif;
+      min-height: 100vh;
+    }
+
+    /* ── TOP BAR ── */
+    .topbar {
+      background: #1A1915;
+      border-bottom: 1px solid #2A2820;
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .back-link {
+      color: #8B8070; text-decoration: none;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; letter-spacing: 0.03em;
+    }
+    .back-link:hover { color: #C8A96E; }
+    .separator { color: #3A3830; }
+    .page-title {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+      color: #C8A96E; letter-spacing: 0.08em; text-transform: uppercase;
+    }
+    .badge {
+      background: #1C2B1A; color: #6DBF67;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      padding: 3px 10px; border-radius: 20px; letter-spacing: 0.05em;
+    }
+
+    /* ── HERO ── */
+    .hero { padding: 56px 32px 40px; max-width: 1100px; margin: 0 auto; }
+    .hero-label {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.15em; text-transform: uppercase; color: #C8A96E; margin-bottom: 16px;
+    }
+    .hero h1 { font-size: 42px; font-weight: 400; color: #F0E8D8; line-height: 1.15; margin-bottom: 16px; }
+    .hero h1 span { color: #C8A96E; }
+    .hero-sub {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 15px;
+      color: #8B8070; line-height: 1.6; max-width: 640px;
+    }
+
+    /* ── 4 FACTORS ── */
+    .section { max-width: 1100px; margin: 0 auto 52px; padding: 0 32px; }
+    .section-header {
+      display: flex; align-items: center; gap: 16px;
+      margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #2A2820;
+    }
+    .section-header h2 { font-size: 22px; font-weight: 400; color: #F0E8D8; }
+    .section-tag {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #8B6F47;
+      background: #1C1A17; border: 1px solid #3A3020; padding: 3px 10px; border-radius: 20px;
+    }
+
+    .factors-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    }
+    .factor-card {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 10px; padding: 22px;
+      position: relative; overflow: hidden;
+    }
+    .factor-letter {
+      font-size: 48px; font-weight: 700; color: #C8A96E; opacity: 0.15;
+      position: absolute; top: 10px; right: 16px; line-height: 1;
+    }
+    .factor-name {
+      font-size: 16px; color: #F0E8D8; margin-bottom: 6px;
+    }
+    .factor-keyword {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      color: #C8A96E; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px;
+    }
+    .factor-desc {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+      color: #7A7060; line-height: 1.6;
+    }
+    .factor-scale {
+      margin-top: 14px; display: flex; justify-content: space-between;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 10px; color: #5A5040;
+    }
+
+    /* ── TOP 3: SALESPERSON ── */
+    .rank-cards { display: flex; flex-direction: column; gap: 20px; }
+    .rank-card {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 12px;
+      padding: 0; overflow: hidden;
+    }
+    .rank-header {
+      display: grid; grid-template-columns: 80px 1fr auto;
+      align-items: center; padding: 24px 28px; gap: 24px;
+      border-bottom: 1px solid #222018;
+    }
+    .rank-number {
+      font-size: 52px; font-weight: 700; line-height: 1;
+    }
+    .rank-1 .rank-number { color: #C8A96E; }
+    .rank-2 .rank-number { color: #8B8070; }
+    .rank-3 .rank-number { color: #5A5040; }
+
+    .rank-title-area h3 { font-size: 22px; color: #F0E8D8; margin-bottom: 4px; }
+    .rank-title-area .tagline {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8B6F47;
+    }
+    .rank-factors-mini {
+      display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end;
+    }
+    .factor-pill {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      padding: 4px 10px; border-radius: 20px; letter-spacing: 0.05em;
+    }
+    .pill-high { background: #1A2A10; color: #7DBF67; border: 1px solid #2A3A20; }
+    .pill-low  { background: #2A1A10; color: #BF8767; border: 1px solid #3A2A20; }
+    .pill-mid  { background: #1A1A2A; color: #6787BF; border: 1px solid #202030; }
+
+    .rank-body { padding: 24px 28px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+    .rank-col h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase; color: #5A5040; margin-bottom: 12px;
+    }
+    .rank-col ul { list-style: none; padding: 0; }
+    .rank-col ul li {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+      color: #8A8070; padding: 5px 0; border-bottom: 1px solid #1E1C18;
+      display: flex; align-items: flex-start; gap: 8px;
+    }
+    .rank-col ul li:last-child { border-bottom: none; }
+    .rank-col ul li::before { content: '→'; color: #C8A96E; font-size: 10px; margin-top: 2px; flex-shrink: 0; }
+    .rank-col .highlight-box {
+      background: #141210; border: 1px solid #2A2820; border-radius: 8px;
+      padding: 14px; font-family: 'Helvetica Neue', sans-serif;
+      font-size: 13px; color: #9A8A78; line-height: 1.6;
+    }
+    .rank-col .warning-box {
+      background: #1A1210; border: 1px solid #3A2018; border-radius: 8px;
+      padding: 14px; font-family: 'Helvetica Neue', sans-serif;
+      font-size: 12px; color: #8A6050; line-height: 1.6; margin-top: 10px;
+    }
+    .rank-col .warning-box strong {
+      color: #BF7050; font-family: 'Helvetica Neue', sans-serif; font-weight: 600;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-table { width: 100%; border-collapse: collapse; }
+    .compare-table th {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.08em; text-transform: uppercase; color: #6A6050;
+      padding: 12px 16px; text-align: left; border-bottom: 1px solid #2A2820;
+    }
+    .compare-table td {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8A8070;
+      padding: 14px 16px; border-bottom: 1px solid #1E1C18; vertical-align: top;
+    }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: #141210; }
+    .profile-name-cell { color: #E8E0D4 !important; font-size: 15px !important; }
+    .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+    .dot-high { background: #7DBF67; }
+    .dot-low  { background: #BF8767; }
+    .dot-mid  { background: #6787BF; }
+
+    /* ── MARCUS FIT NOTE ── */
+    .marcus-box {
+      background: #12100E; border: 1px solid #C8A96E33;
+      border-left: 3px solid #C8A96E; border-radius: 0 10px 10px 0; padding: 28px;
+    }
+    .marcus-box h3 { font-size: 18px; color: #F0E8D8; margin-bottom: 8px; }
+    .marcus-box .sub {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8B6F47; margin-bottom: 18px;
+    }
+    .marcus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .marcus-item {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 8px; padding: 18px;
+    }
+    .marcus-item h4 { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: #C8A96E; margin-bottom: 10px; }
+    .marcus-item p { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8A8070; line-height: 1.6; }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      max-width: 1100px; margin: 0 auto;
+      padding: 32px; border-top: 1px solid #1A1915;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .page-footer p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #4A4030; }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; text-decoration: none; }
+    .footer-links a:hover { color: #C8A96E; }
+
+    @media (max-width: 800px) {
+      .factors-grid { grid-template-columns: 1fr 1fr; }
+      .rank-body { grid-template-columns: 1fr; }
+      .rank-header { grid-template-columns: 60px 1fr; }
+      .rank-factors-mini { display: none; }
+      .marcus-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 500px) {
+      .factors-grid { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="hq.html" class="back-link">← HQ</a>
+    <span class="separator">|</span>
+    <span class="page-title">Research — PI Profiles</span>
+  </div>
+  <span class="badge">Internal · Research</span>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-label">Course Research · Predictive Index</div>
+  <h1>PI Reference Profiles<br><span>Who Wins in Sales. Who Leads the Room.</span></h1>
+  <p class="hero-sub">
+    The Predictive Index maps 17 behavioral profiles across 4 core drives. Here are the profiles that consistently top-perform in B2B sales and sales leadership — and why they matter for F.E.E.L.
+  </p>
+</div>
+
+<!-- THE 4 FACTORS -->
+<div class="section">
+  <div class="section-header">
+    <h2>The 4 Behavioral Drives</h2>
+    <span class="section-tag">The PI Foundation</span>
+  </div>
+  <div class="factors-grid">
+    <div class="factor-card">
+      <div class="factor-letter">A</div>
+      <div class="factor-name">Dominance</div>
+      <div class="factor-keyword">Control & Assertiveness</div>
+      <p class="factor-desc">Drive to influence the environment and people around you. High A = decisive, competitive, direct, pushes for results.</p>
+      <div class="factor-scale"><span>← Collaborative</span><span>Dominant →</span></div>
+    </div>
+    <div class="factor-card">
+      <div class="factor-letter">B</div>
+      <div class="factor-name">Extraversion</div>
+      <div class="factor-keyword">Social Energy & Connection</div>
+      <p class="factor-desc">Need for social interaction and communication. High B = outgoing, enthusiastic, builds rapport easily, thrives in groups.</p>
+      <div class="factor-scale"><span>← Reserved</span><span>Extroverted →</span></div>
+    </div>
+    <div class="factor-card">
+      <div class="factor-letter">C</div>
+      <div class="factor-name">Patience</div>
+      <div class="factor-keyword">Consistency & Pace</div>
+      <p class="factor-desc">Drive for stability and a steady pace. High C = deliberate, loyal, consistent. Low C = fast-paced, multitasker, thrives in urgency.</p>
+      <div class="factor-scale"><span>← Urgent</span><span>Patient →</span></div>
+    </div>
+    <div class="factor-card">
+      <div class="factor-letter">D</div>
+      <div class="factor-name">Formality</div>
+      <div class="factor-keyword">Structure & Precision</div>
+      <p class="factor-desc">Drive to follow rules and procedures. High D = detail-oriented, precise, risk-averse. Low D = flexible, informal, improvises well.</p>
+      <div class="factor-scale"><span>← Informal</span><span>Precise →</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOP 3: SALESPERSON -->
+<div class="section">
+  <div class="section-header">
+    <h2>Top 3 — B2B Salesperson</h2>
+    <span class="section-tag">For Marcus & His Reps</span>
+  </div>
+  <div class="rank-cards">
+
+    <!-- #1 PERSUADER -->
+    <div class="rank-card rank-1">
+      <div class="rank-header">
+        <div class="rank-number">1</div>
+        <div class="rank-title-area">
+          <h3>Persuader</h3>
+          <div class="tagline">The quintessential B2B sales hunter. This is the archetype.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-high">↑ Dominance</span>
+          <span class="factor-pill pill-high">↑ Extraversion</span>
+          <span class="factor-pill pill-low">↓ Patience</span>
+          <span class="factor-pill pill-low">↓ Formality</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>Confident and competitive</li>
+            <li>Proactive — doesn't wait for leads</li>
+            <li>Connects instantly with new people</li>
+            <li>Communicates enthusiastically</li>
+            <li>Does not easily take "no" for an answer</li>
+            <li>Works best with commission structure</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Win in Sales</h4>
+          <div class="highlight-box">
+            The Persuader is driven to win people over. They thrive in consultative, outside sales roles where relationships matter. Their urgency and initiative means they're always in motion — more conversations, more pipeline, more closes.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> Can over-promise. Dislikes admin, reporting, and process. Needs clear quota expectations or they'll pace themselves.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>Natural rapport-builder — already uses Chase Hughes instinctively</li>
+            <li>F.E.E.L. teaches them to slow down and listen, not just talk</li>
+            <li>Biggest growth: Explore — asking vs. telling</li>
+            <li>Module 0 resonates hard: they know the pain of not being heard</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- #2 PROMOTER -->
+    <div class="rank-card rank-2">
+      <div class="rank-header">
+        <div class="rank-number">2</div>
+        <div class="rank-title-area">
+          <h3>Promoter</h3>
+          <div class="tagline">Persistent closer. Creative, people-first, wired to find a way.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-mid">↑ Extraversion</span>
+          <span class="factor-pill pill-low">↓ Dominance</span>
+          <span class="factor-pill pill-low">↓ Formality</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>Persuasive and persistent</li>
+            <li>Deeply people-focused and flexible</li>
+            <li>Connects easily to clients</li>
+            <li>Creative in finding paths to close</li>
+            <li>Adapts quickly to client needs</li>
+            <li>Motivated by recognition</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Win in Sales</h4>
+          <div class="highlight-box">
+            The Promoter feels the room naturally. They are relationship-first — clients like them even when they say no. Their creativity means they find angles other reps miss. Less aggressive than a Persuader, but often closes bigger deals through trust.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> Can avoid hard conversations. May give too much ground on price to avoid tension. Needs coaching on standing firm.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>Their biggest strength is already the F.E.E.L. framework</li>
+            <li>Needs training on Lead — when to take control</li>
+            <li>Chase Hughes' 6 Needs framework directly maps to their instinct</li>
+            <li>Elevate module: stop giving discounts, start elevating value</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- #3 MAVERICK -->
+    <div class="rank-card rank-3">
+      <div class="rank-header">
+        <div class="rank-number">3</div>
+        <div class="rank-title-area">
+          <h3>Maverick</h3>
+          <div class="tagline">Hunter mentality. High ambition, high risk, high reward.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-high">↑ Dominance</span>
+          <span class="factor-pill pill-low">↓ Patience</span>
+          <span class="factor-pill pill-low">↓ Formality</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>High aspirations and risk tolerance</li>
+            <li>Visionary — sees the big picture</li>
+            <li>Aggressive new business hunter</li>
+            <li>Natural leadership instincts</li>
+            <li>Thrives in competitive environments</li>
+            <li>Often becomes an entrepreneur</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Win in Sales</h4>
+          <div class="highlight-box">
+            Mavericks go after deals others won't touch. They see potential everywhere and aren't deterred by early rejection. They are the top performers on leaderboards — but only when they have enough autonomy. Micromanage a Maverick and they leave.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> Impatient with process and admin. May skip CRM. Will leave if they feel boxed in. Best managed with freedom + performance accountability.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>Biggest gap: Feel — they move too fast to truly listen</li>
+            <li>Explore module is transformational for them</li>
+            <li>Chase Hughes: Maverick likely has Power as dominant social need</li>
+            <li>Frame F.E.E.L. as a competitive edge, not a soft skill</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TOP 3: SALES LEADER -->
+<div class="section">
+  <div class="section-header">
+    <h2>Top 3 — Sales Leader / Manager</h2>
+    <span class="section-tag">For Marcus — The FTR ICP</span>
+  </div>
+  <div class="rank-cards">
+
+    <!-- #1 CAPTAIN -->
+    <div class="rank-card rank-1">
+      <div class="rank-header">
+        <div class="rank-number">1</div>
+        <div class="rank-title-area">
+          <h3>Captain</h3>
+          <div class="tagline">The natural sales manager. Metric-driven, assertive, raises the bar daily.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-high">↑ Dominance</span>
+          <span class="factor-pill pill-high">↑ Extraversion</span>
+          <span class="factor-pill pill-low">↓ Patience</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>Competitive and goal-obsessed</li>
+            <li>Charming but demanding</li>
+            <li>Understands process and structure</li>
+            <li>Strong communicator with the team</li>
+            <li>Constantly pushes reps to improve</li>
+            <li>Natural authority — graduates easily into leadership</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Lead Well</h4>
+          <div class="highlight-box">
+            The Captain was often a great salesperson first. They understand the floor because they lived it. As a manager, they bring energy, urgency, and a results focus that keeps the team sharp. Numbers are their language — they turn KPIs into culture.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> Can be too results-focused and undervalue the human side. Reps may feel like a number. F.E.E.L. directly fills this gap: the Captain who learns to Feel becomes the best leader in the building.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>This is Marcus — the FTR ICP</li>
+            <li>Module 0 Pain: brilliant at numbers, struggling to connect</li>
+            <li>F.E.E.L. is the missing half of the Captain's toolkit</li>
+            <li>Chase Hughes' 6 Needs: Captain's own need is often Power — use that self-awareness</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- #2 PERSUADER (as leader) -->
+    <div class="rank-card rank-2">
+      <div class="rank-header">
+        <div class="rank-number">2</div>
+        <div class="rank-title-area">
+          <h3>Persuader</h3>
+          <div class="tagline">The pied piper of sales leadership. Reps follow them anywhere.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-high">↑ Dominance</span>
+          <span class="factor-pill pill-high">↑ Extraversion</span>
+          <span class="factor-pill pill-low">↓ Patience</span>
+          <span class="factor-pill pill-low">↓ Formality</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>Charismatic and inspiring</li>
+            <li>Genuine empathy for their team</li>
+            <li>Excellent coach and mentor</li>
+            <li>Creates loyalty and devotion</li>
+            <li>Teaches reps resilience</li>
+            <li>Always comes up swinging after a loss</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Lead Well</h4>
+          <div class="highlight-box">
+            The Persuader-as-leader is loved. Their team would run through walls for them. They understand rejection because they've felt it, and they know how to pull reps up after a rough week. Their natural warmth creates a culture where people perform because they want to — not because they have to.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> May avoid difficult performance conversations. Can be too easy on underperformers. Needs frameworks for holding standards without losing connection.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>Already strong in Feel and Explore</li>
+            <li>Biggest growth: Lead — holding standards with warmth</li>
+            <li>Elevate module: how to challenge without crushing</li>
+            <li>Chase Hughes: their own social need is often Approval — self-awareness is key</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- #3 STRATEGIST -->
+    <div class="rank-card rank-3">
+      <div class="rank-header">
+        <div class="rank-number">3</div>
+        <div class="rank-title-area">
+          <h3>Strategist</h3>
+          <div class="tagline">The silent killer. Analytical, precise, and laser-focused on the long game.</div>
+        </div>
+        <div class="rank-factors-mini">
+          <span class="factor-pill pill-high">↑ Dominance</span>
+          <span class="factor-pill pill-low">↓ Extraversion</span>
+          <span class="factor-pill pill-low">↓ Patience</span>
+          <span class="factor-pill pill-high">↑ Formality</span>
+        </div>
+      </div>
+      <div class="rank-body">
+        <div class="rank-col">
+          <h4>Core Traits</h4>
+          <ul>
+            <li>Results-oriented and analytical</li>
+            <li>Anticipates problems before they occur</li>
+            <li>Sees patterns others miss</li>
+            <li>Innovative under pressure</li>
+            <li>Individualistic in management style</li>
+            <li>Laser-focused on quota and pipeline</li>
+          </ul>
+        </div>
+        <div class="rank-col">
+          <h4>Why They Lead Well</h4>
+          <div class="highlight-box">
+            The Strategist builds systems that make the team consistently good — not just occasionally great. They see 3 moves ahead. Their reps always know exactly where they stand and what needs to happen. Less emotionally available than a Captain or Persuader, but drives the highest long-term performance.
+          </div>
+          <div class="warning-box">
+            <strong>Watch out:</strong> Can feel cold or distant to the team. May underinvest in culture and 1-on-1 connection. F.E.E.L. is their biggest gap and their biggest leverage point.
+          </div>
+        </div>
+        <div class="rank-col">
+          <h4>F.E.E.L. Angle</h4>
+          <ul>
+            <li>F.E.E.L. is highly appealing to the Strategist's analytical mind</li>
+            <li>Frame it as: behavior data = competitive advantage</li>
+            <li>Chase Hughes' behavioral profiling speaks their language</li>
+            <li>Module 1: Feel — the most transformational for this profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- QUICK COMPARISON TABLE -->
+<div class="section">
+  <div class="section-header">
+    <h2>Quick Comparison</h2>
+    <span class="section-tag">All 6 Profiles</span>
+  </div>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Profile</th>
+        <th>Role</th>
+        <th>Dominant Drive</th>
+        <th>Biggest Strength</th>
+        <th>Biggest Gap</th>
+        <th>F.E.E.L. Entry Point</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="profile-name-cell">Persuader</td>
+        <td>Sales + Leader</td>
+        <td><span class="dot dot-high"></span>Dominance + Extraversion</td>
+        <td>Rapport, urgency, closes fast</td>
+        <td>Listening, admin, slowing down</td>
+        <td>Explore — the art of asking</td>
+      </tr>
+      <tr>
+        <td class="profile-name-cell">Promoter</td>
+        <td>Sales</td>
+        <td><span class="dot dot-high"></span>Extraversion</td>
+        <td>Relationships, flexibility, trust</td>
+        <td>Holding firm on price/terms</td>
+        <td>Lead — taking control when needed</td>
+      </tr>
+      <tr>
+        <td class="profile-name-cell">Maverick</td>
+        <td>Sales</td>
+        <td><span class="dot dot-high"></span>Dominance</td>
+        <td>Hunter mindset, ambitious targets</td>
+        <td>Patience, listening, process</td>
+        <td>Feel — slowing down to read the room</td>
+      </tr>
+      <tr>
+        <td class="profile-name-cell">Captain</td>
+        <td>Leader</td>
+        <td><span class="dot dot-high"></span>Dominance + Extraversion</td>
+        <td>Goals, metrics, team energy</td>
+        <td>Human connection, empathy</td>
+        <td>Feel — the missing half of their toolkit</td>
+      </tr>
+      <tr>
+        <td class="profile-name-cell">Persuader (as leader)</td>
+        <td>Leader</td>
+        <td><span class="dot dot-high"></span>Dominance + Extraversion</td>
+        <td>Culture, coaching, loyalty</td>
+        <td>Hard conversations, standards</td>
+        <td>Lead — holding the line with warmth</td>
+      </tr>
+      <tr>
+        <td class="profile-name-cell">Strategist</td>
+        <td>Leader</td>
+        <td><span class="dot dot-high"></span>Dominance + Formality</td>
+        <td>Systems, patterns, long-term results</td>
+        <td>Team culture, emotional presence</td>
+        <td>Feel — behavior as analytical data</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- MARCUS FIT NOTE -->
+<div class="section">
+  <div class="section-header">
+    <h2>Why This Matters for Marcus</h2>
+    <span class="section-tag">ICP Connection</span>
+  </div>
+  <div class="marcus-box">
+    <h3>Marcus is most likely a Captain — and that's exactly why F.E.E.L. works</h3>
+    <div class="sub">ICP: Sales manager, 28–40, B2B, leads 3–10 reps, high on results, struggling with the human side</div>
+    <div class="marcus-grid">
+      <div class="marcus-item">
+        <h4>What Marcus already does well</h4>
+        <p>Sets the targets. Tracks the numbers. Runs the pipeline review. Knows who's performing and who isn't. Commands the room when he needs to.</p>
+      </div>
+      <div class="marcus-item">
+        <h4>What F.E.E.L. gives Marcus</h4>
+        <p>The ability to read WHY a rep is underperforming before the number drops. How to have the hard conversation. How to motivate differently per person's social need. How to lead — not just manage.</p>
+      </div>
+      <div class="marcus-item">
+        <h4>The PI angle in the course</h4>
+        <p>Teach Marcus that his team is probably a mix of Persuaders, Promoters, and Mavericks — each with different needs. The leader who profiles their team manages 3 different people, not 1 generic "rep."</p>
+      </div>
+      <div class="marcus-item">
+        <h4>The Chase Hughes connection</h4>
+        <p>PI tells you the profile. Chase Hughes teaches you what to do with it. SMX in 6 minutes + knowing your rep's dominant social need = management that actually works.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page-footer">
+  <p>FTR Internal · Research compiled March 2026</p>
+  <div class="footer-links">
+    <a href="hq.html">← HQ</a>
+    <a href="chase-hughes.html">Chase Hughes</a>
+    <a href="course-leaders.html">Leaders Course</a>
+    <a href="https://www.predictiveindex.com" target="_blank">predictiveindex.com ↗</a>
+  </div>
+</div>
+
+</body>
+</html>
