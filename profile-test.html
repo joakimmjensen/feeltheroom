@@ -45,6 +45,12 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 .chip:hover:not(.locked){border-color:var(--gold)}
 .chip.selected{background:rgba(200,169,110,0.2);border-color:var(--gold);color:var(--gold)}
 .chip.locked:not(.selected){opacity:.35;cursor:default}
+.spectrum-rows{display:flex;flex-direction:column;gap:8px;width:100%;max-width:720px;margin-top:16px}
+.spectrum-row{display:flex;gap:5px;align-items:stretch}
+.spectrum-row-num{font-size:10px;color:var(--muted);width:18px;text-align:right;flex-shrink:0;padding-top:10px}
+.spectrum-chip{flex:1;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 4px;font-size:11px;cursor:pointer;color:var(--text);transition:all .2s;user-select:none;text-align:center;line-height:1.3}
+.spectrum-chip:hover{border-color:var(--gold);background:#2A2825}
+.spectrum-chip.selected{background:rgba(200,169,110,0.2);border-color:var(--gold);color:var(--gold)}
 .mirror-intro{color:var(--muted);font-size:14px;line-height:1.7;margin-bottom:20px;text-align:center;max-width:560px}
 .name-inputs{display:flex;flex-direction:column;gap:10px;width:100%;max-width:480px}
 .name-input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;color:var(--text);font-size:15px;font-family:inherit;width:100%}
@@ -200,15 +206,15 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 
 <!-- WORDS -->
 <div id="screen-words" class="screen">
-  <div style="text-align:center;max-width:680px;width:100%">
+  <div style="text-align:center;max-width:720px;width:100%">
     <div class="logo">Part 2 of 4</div>
-    <h2>Choose exactly 15 words</h2>
-    <p class="words-instruction">Choose the 15 words that best describe you — not who you want to be, but who you actually are.</p>
+    <h2>Select one word per row</h2>
+    <p class="words-instruction">Each row is a spectrum. Pick the word that describes you best — not who you want to be, but who you actually are.</p>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:8px">
       <span class="word-count" id="word-count">0</span>
-      <span style="color:var(--muted);font-size:16px">/ 15 selected</span>
+      <span style="color:var(--muted);font-size:16px">/ 15 rows</span>
     </div>
-    <div class="chip-grid" id="chip-grid"></div>
+    <div class="spectrum-rows" id="spectrum-rows"></div>
     <button class="btn" style="margin-top:32px" id="btn-words-next" onclick="goToFoundation()" disabled>Next →</button>
   </div>
 </div>
@@ -591,14 +597,23 @@ const foundationQs = [
    ]}
 ];
 
-const allWords = ['assertive','decisive','competitive','courageous','ambitious','direct',
-  'results-driven','independent','collaborative','supportive','diplomatic','approachable',
-  'outgoing','enthusiastic','warm','expressive','inspiring','charismatic','engaging',
-  'reserved','analytical','reflective','calm','introspective','measured','stable','consistent',
-  'reliable','methodical','thorough','careful','loyal','fast-paced','dynamic','spontaneous',
-  'adaptable','versatile','goal-oriented','precise','structured','principled','meticulous',
-  'precise','systematic','intuitive','creative','unconventional','big-picture thinker',
-  'free spirit','empathetic','resilient','open'];
+const wordSpectrums = [
+  ['Forceful','Assertive','Persuasive','Diplomatic','Harmonising'],
+  ['Competitive','Ambitious','Goal-oriented','Collaborative','Selfless'],
+  ['Commanding','Direct','Adaptable','Tactful','Accommodating'],
+  ['Independent','Self-reliant','Versatile','Team-oriented','Consensus-driven'],
+  ['Charismatic','Outgoing','Engaging','Approachable','Reserved'],
+  ['Expressive','Enthusiastic','Warm','Measured','Introspective'],
+  ['Fearless','Courageous','Open','Careful','Cautious'],
+  ['Spontaneous','Dynamic','Flexible','Consistent','Methodical'],
+  ['Impulsive','Fast-paced','Energetic','Steady','Deliberate'],
+  ['Unconventional','Creative','Intuitive','Analytical','Systematic'],
+  ['Free spirit','Imaginative','Big-picture thinker','Structured','Principled'],
+  ['Instinctive','Thorough','Meticulous','Precise','Detail-focused'],
+  ['Visionary','Strategic','Balanced','Operational','Process-driven'],
+  ['Empathetic','Supportive','Loyal','Reliable','Self-sufficient'],
+  ['Inspiring','Motivating','Resilient','Stable','Grounded']
+];
 
 const proWords = ['Communication','Delegation','Listening','Patience','Structure','Confidence',
   'Directness','Strategic thinking','Time management','Empathy','Accountability','Adaptability',
@@ -711,7 +726,7 @@ let S = {
   foundationAnswers: Array(5).fill(null),
   foundationFreeTexts: Array(5).fill(''),
   scores:{A:0,B:0,C:0,D:0},
-  selWords:[],
+  selWords:Array(15).fill(null),
   fScores:[],
   proWords:[], proFeel:'',
   perWords:[], perFeel:'',
@@ -821,36 +836,40 @@ function calcFoundationScores(){
 
 // ── WORDS ────────────────────────────────────────────────────────────────────
 function renderWords(){
-  const grid=document.getElementById('chip-grid');
-  grid.innerHTML='';
-  [...allWords].sort(()=>Math.random()-0.5).forEach(w=>{
-    const chip=document.createElement('div');
-    chip.className='chip'+(S.selWords.includes(w)?' selected':'');
-    chip.textContent=w;
-    chip.onclick=()=>toggleWord(w,chip);
-    grid.appendChild(chip);
+  const container=document.getElementById('spectrum-rows');
+  container.innerHTML='';
+  wordSpectrums.forEach((row,i)=>{
+    const rowEl=document.createElement('div');
+    rowEl.className='spectrum-row';
+    const num=document.createElement('div');
+    num.className='spectrum-row-num';
+    num.textContent=i+1;
+    rowEl.appendChild(num);
+    row.forEach(w=>{
+      const chip=document.createElement('div');
+      chip.className='spectrum-chip'+(S.selWords[i]===w?' selected':'');
+      chip.textContent=w;
+      chip.onclick=()=>selectSpectrum(i,w);
+      rowEl.appendChild(chip);
+    });
+    container.appendChild(rowEl);
   });
   updateWordCount();
 }
 
-function toggleWord(w,chip){
-  if(S.selWords.includes(w)){
-    S.selWords=S.selWords.filter(x=>x!==w);
-    chip.classList.remove('selected');
-  } else {
-    if(S.selWords.length>=15) return;
-    S.selWords.push(w);
-    chip.classList.add('selected');
-  }
-  updateWordCount();
-  document.querySelectorAll('#chip-grid .chip').forEach(c=>{
-    c.classList.toggle('locked', S.selWords.length>=15 && !c.classList.contains('selected'));
+function selectSpectrum(rowIdx,w){
+  S.selWords[rowIdx]=w;
+  const rowEl=document.querySelectorAll('.spectrum-row')[rowIdx];
+  rowEl.querySelectorAll('.spectrum-chip').forEach(c=>{
+    c.classList.toggle('selected',c.textContent===w);
   });
+  updateWordCount();
 }
 
 function updateWordCount(){
-  document.getElementById('word-count').textContent=S.selWords.length;
-  document.getElementById('btn-words-next').disabled=S.selWords.length!==15;
+  const done=S.selWords.filter(x=>x!==null).length;
+  document.getElementById('word-count').textContent=done;
+  document.getElementById('btn-words-next').disabled=done!==15;
 }
 
 function goToFoundation(){
@@ -970,7 +989,7 @@ function showResult(){
   });
 
   // Words
-  document.getElementById('r-words').innerHTML=S.selWords.map(w=>`<div class="word-tag">${w}</div>`).join('');
+  document.getElementById('r-words').innerHTML=S.selWords.filter(Boolean).map(w=>`<div class="word-tag">${w}</div>`).join('');
 
   // Foundation
   const pillarsEl=document.getElementById('r-pillars');pillarsEl.innerHTML='';
@@ -1000,7 +1019,7 @@ function showResult(){
 function restartTest(){
   S={mode:'scenario',qIdx:0,answers:Array(20).fill(null),freeTexts:Array(20).fill(''),
     foundationAnswers:Array(5).fill(null),foundationFreeTexts:Array(5).fill(''),
-    scores:{A:0,B:0,C:0,D:0},selWords:[],fScores:[],proWords:[],proFeel:'',
+    scores:{A:0,B:0,C:0,D:0},selWords:Array(15).fill(null),fScores:[],proWords:[],proFeel:'',
     perWords:[],perFeel:'',selfAlign:'',avoidance:''};
   show('screen-intro');
 }
