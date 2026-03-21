@@ -346,6 +346,77 @@
     .prev-table td:first-child { color: var(--gold2); font-style: italic; }
     .prev-table td:last-child { color: var(--muted); font-size: 13px; }
 
+    /* INVENTORY TABLE */
+    .inventory-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .inventory-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: normal;
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    .inventory-table td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.6;
+      vertical-align: top;
+    }
+    .inventory-table tr:last-child td { border-bottom: none; }
+    .inventory-table .example-row td { background: rgba(200,169,110,0.04); }
+    .inventory-table .example-row td:first-child { color: var(--gold2); font-style: italic; }
+    .inventory-table .blank-row td {
+      color: var(--muted);
+      font-style: italic;
+    }
+    .inventory-table [contenteditable]:focus {
+      outline: none;
+      background: rgba(200,169,110,0.07);
+      border-radius: 4px;
+    }
+    .inventory-table [contenteditable]:empty:before {
+      content: attr(data-placeholder);
+      color: var(--border);
+      pointer-events: none;
+    }
+    .example-badge {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(200,169,110,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,0.25);
+      padding: 2px 7px;
+      border-radius: 3px;
+      margin-left: 8px;
+      vertical-align: middle;
+    }
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+      margin-top: 20px;
+    }
+    .btn-download:hover { border-color: var(--gold); }
+
     /* ONE RULE */
     .one-rule {
       background: var(--surface2);
@@ -404,6 +475,8 @@
       .objection-body { padding: 16px 20px; }
       .one-rule { padding: 22px 20px; }
       footer { padding: 28px 20px; }
+      .inventory-table { font-size: 12px; }
+      .inventory-table th, .inventory-table td { padding: 10px; }
     }
 
     /* PRINT */
@@ -430,6 +503,14 @@
       .one-rule-text { color: black; }
       .prevention-row { background: #faf7f0; border-color: #c9a86e; }
       .prevention-label { color: #7a5c28; }
+      .inventory-table th { color: #888; border-bottom-color: #ccc; }
+      .inventory-table td { color: black; border-bottom-color: #ddd; }
+      .inventory-table .example-row td { background: #faf7f0; }
+      .inventory-table .example-row td:first-child { color: #5a4010; }
+      .inventory-table .blank-row td { color: #aaa; background: white; min-height: 48px; }
+      .inventory-table [contenteditable]:empty:before { color: #ddd; }
+      .example-badge { background: #f0ece4; border-color: #ccc; color: #7a5c28; }
+      .btn-download { display: none; }
     }
   </style>
 </head>
@@ -785,6 +866,86 @@
     <div class="one-rule-label">The one rule</div>
     <div class="one-rule-text">"The best time to handle an objection is before it arrives. If your F, E, and E are done well — most objections disappear on their own."</div>
     <div style="margin-top:16px;padding-top:16px;border-top:1px solid var(--border);font-size:14px;color:var(--muted);font-style:italic;line-height:1.7;">And when they do arrive: get curious, not defensive. An objection is not an attack — it's the customer telling you what they still need to believe.</div>
+  </div>
+
+  <div class="section-card" id="inventory">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <span class="section-title">Your Personal Objection Inventory</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:20px;">Most salespeople face the same 5–7 objections over and over — and still improvise every time. This exercise changes that. Map your most recurring objections once, write your best response, and know exactly what you'll say before the call starts.<br><br>Fill in the blank rows below — or print the template and do it on paper.</p>
+
+      <div style="overflow-x:auto;">
+        <table class="inventory-table">
+          <thead>
+            <tr>
+              <th style="width:22%;">Objection I hear</th>
+              <th style="width:22%;">What it really means</th>
+              <th style="width:34%;">My LAER response</th>
+              <th style="width:22%;">Best prevented in</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="example-row">
+              <td>"We don't have the budget right now" <span class="example-badge">Example</span></td>
+              <td>I haven't seen enough value to justify the cost yet.</td>
+              <td><em>"I hear you. Help me understand — too expensive compared to what? And what does it cost you if this stays unsolved?"</em></td>
+              <td>Probe — build the cost of inaction before the pitch</td>
+            </tr>
+            <tr class="example-row">
+              <td>"Send me some information first" <span class="example-badge">Example</span></td>
+              <td>I'm not ready to commit to a real conversation. I want an exit.</td>
+              <td><em>"Of course — what specifically would be most useful for you to see? I want to make sure I send the right thing."</em> Then: book the follow-up before the call ends.</td>
+              <td>Intro — set the agenda and establish a clear next step upfront</td>
+            </tr>
+            <tr class="example-row">
+              <td>"We tried something similar before and it didn't work" <span class="example-badge">Example</span></td>
+              <td>I've been burned. I don't trust the promise.</td>
+              <td><em>"Tell me more about that — what happened? What would have made it work?"</em> Listen for what's different this time. Then name it.</td>
+              <td>Current State — surface past attempts early, not at Close</td>
+            </tr>
+            <tr class="blank-row">
+              <td contenteditable="true" data-placeholder="Objection…"></td>
+              <td contenteditable="true" data-placeholder="What they really mean…"></td>
+              <td contenteditable="true" data-placeholder="Your response…"></td>
+              <td contenteditable="true" data-placeholder="Step in the call…"></td>
+            </tr>
+            <tr class="blank-row">
+              <td contenteditable="true" data-placeholder="Objection…"></td>
+              <td contenteditable="true" data-placeholder="What they really mean…"></td>
+              <td contenteditable="true" data-placeholder="Your response…"></td>
+              <td contenteditable="true" data-placeholder="Step in the call…"></td>
+            </tr>
+            <tr class="blank-row">
+              <td contenteditable="true" data-placeholder="Objection…"></td>
+              <td contenteditable="true" data-placeholder="What they really mean…"></td>
+              <td contenteditable="true" data-placeholder="Your response…"></td>
+              <td contenteditable="true" data-placeholder="Step in the call…"></td>
+            </tr>
+            <tr class="blank-row">
+              <td contenteditable="true" data-placeholder="Objection…"></td>
+              <td contenteditable="true" data-placeholder="What they really mean…"></td>
+              <td contenteditable="true" data-placeholder="Your response…"></td>
+              <td contenteditable="true" data-placeholder="Step in the call…"></td>
+            </tr>
+            <tr class="blank-row">
+              <td contenteditable="true" data-placeholder="Objection…"></td>
+              <td contenteditable="true" data-placeholder="What they really mean…"></td>
+              <td contenteditable="true" data-placeholder="Your response…"></td>
+              <td contenteditable="true" data-placeholder="Step in the call…"></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:20px;">
+        <button class="btn-download" onclick="window.print()">
+          <span>↓</span> Print / Save as PDF
+        </button>
+        <span style="font-size:12px;color:var(--muted);font-style:italic;">Fill in the blank rows above, then print to save your personal inventory.</span>
+      </div>
+    </div>
   </div>
 
   <div class="footer-note">
