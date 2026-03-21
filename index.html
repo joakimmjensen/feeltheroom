@@ -94,23 +94,12 @@
     .nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; }
     @media (max-width:640px) { nav { padding:16px 24px; position:relative; } .nav-cta { display:none; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; } section { padding:60px 24px; } .hero { padding:64px 24px 56px !important; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } .hero > div { grid-template-columns:1fr !important; } .hero > div > div:last-child { display:none; } .profile-teaser-inner { grid-template-columns:1fr !important; gap:32px !important; } }
   </style>
+  <link rel="stylesheet" href="shared.css">
+  <script src="nav.js" defer></script>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="nav-logo">Feel the Room</a>
-    <div class="nav-links">
-      <a href="programs.html" style="color:var(--accent);font-weight:600;">Programs</a>
-      <a href="about.html">About</a>
-      <a href="testimonials.html">Testimonials</a>
-      <a href="profile-test.html" style="color:var(--accent);font-weight:600;">Aura Profile</a>
-      <a href="freebies/index.html">Free Tools</a>
-    </div>
-    <a href="#waitlist" class="btn-nav">Book a call →</a>
-    <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+  
 
   <!-- HERO -->
   <section class="hero" style="padding:80px 48px;">

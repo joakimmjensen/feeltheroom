@@ -1,0 +1,107 @@
+/* ============================================================
+   shared.css — Feel the Room
+   Navigation styles only.
+   Each page keeps its own :root colours and body styles.
+   ============================================================ */
+
+/* ── Navigation ── */
+nav {
+  position: sticky;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 0 48px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 0.5px solid var(--border);
+  background: var(--bg);
+}
+
+.nav-logo {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: var(--accent, var(--gold, #C49A6A));
+  text-decoration: none;
+  font-family: Georgia, serif;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 14px;
+  color: var(--text2, var(--muted, #6B6457));
+  text-decoration: none;
+  transition: color .2s;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+
+.nav-links a:hover  { color: var(--text, #F0EBE3); }
+.nav-links a.active { color: var(--accent, var(--gold, #C49A6A)); font-weight: 600; }
+
+.btn-nav {
+  background: var(--text, #1C1A17);
+  color: var(--bg, #FDFAF6) !important;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px !important;
+  transition: opacity .2s;
+  text-decoration: none;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+}
+.btn-nav:hover { opacity: .88; }
+
+/* Print button (freebie pages) */
+.btn-print {
+  background: var(--surface, var(--bg2, #211E1A));
+  border: 1px solid var(--border);
+  color: var(--accent, var(--gold, #C49A6A));
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: Georgia, serif;
+  cursor: pointer;
+  transition: border-color 0.15s;
+}
+.btn-print:hover { border-color: var(--accent, var(--gold, #C49A6A)); }
+
+/* ── Mobile nav ── */
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text, #1C1A17);
+  border-radius: 2px;
+}
+
+@media (max-width: 640px) {
+  nav { padding: 16px 24px; position: relative; }
+  .nav-hamburger { display: flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--bg);
+    border-bottom: 0.5px solid var(--border);
+    flex-direction: column;
+    padding: 20px 24px;
+    gap: 16px;
+    z-index: 99;
+  }
+  .nav-links.open { display: flex; }
+}
