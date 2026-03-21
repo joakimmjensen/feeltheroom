@@ -370,6 +370,34 @@
     }
     .cta-btn:hover { background: var(--gold2); color: var(--bg); }
 
+    /* FLOATING CTA */
+    .cta-float {
+      position: fixed;
+      right: 32px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 240px;
+      background: var(--surface2);
+      border: 1px solid rgba(200,169,110,0.28);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      z-index: 90;
+    }
+    .cta-float.visible {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    @media (max-width: 1200px) {
+      .cta-float { display: none; }
+    }
+    @media (min-width: 1201px) {
+      .cta-block { display: none; }
+    }
+
     /* FOOTER NOTE */
     .footer-note {
       background: var(--surface);
@@ -412,7 +440,7 @@
 
     /* PRINT */
     @media print {
-      nav, .btn-print, footer, .cta-block { display: none; }
+      nav, .btn-print, footer, .cta-block, .cta-float { display: none; }
       body { background: white; color: black; font-size: 13px; }
       .section-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
       .section-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
@@ -753,7 +781,7 @@
 </div>
 
 <footer>
-  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="../programs.html">Programs</a></p>
 </footer>
 
 <script>
@@ -765,6 +793,26 @@
       });
     });
   });
+</script>
+
+<div id="cta-float" class="cta-float">
+  <div class="cta-eyebrow">Ready to feel the difference?</div>
+  <h2 class="cta-heading">Talk to Joakim</h2>
+  <p class="cta-sub">These tools are built on the F.E.E.L. methodology. If you want to go deeper — let's talk.</p>
+  <a href="../index.html#waitlist" class="cta-btn">Book a conversation →</a>
+</div>
+<script>
+  (function() {
+    var el = document.getElementById('cta-float');
+    if (!el) return;
+    function update() {
+      var scrolled = window.scrollY > 300;
+      var nearBottom = (window.scrollY + window.innerHeight) >= document.body.scrollHeight - 120;
+      el.classList.toggle('visible', scrolled && !nearBottom);
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  })();
 </script>
 </body>
 </html>
