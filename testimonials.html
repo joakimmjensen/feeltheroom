@@ -43,25 +43,17 @@
       line-height: 1.7;
     }
 
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 48px;
-      border-bottom: 0.5px solid var(--border);
-      position: sticky;
-      top: 0;
-      background: var(--bg);
-      z-index: 100;
-    }
-    .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; color: var(--text); }
-    .nav-links { display: flex; gap: 28px; font-size: 14px; }
-    .nav-links a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a.active { color: var(--accent); font-weight: 600; }
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-    @media (max-width: 640px) { nav { padding: 16px 24px; position: relative; } .nav-hamburger { display: flex; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); flex-direction: column; padding: 20px 24px; gap: 16px; z-index: 99; } .nav-links.open { display: flex; } }
+    nav { position:sticky; top:0; left:0; right:0; z-index:100; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; border-bottom:0.5px solid var(--border); background:var(--bg); }
+    .nav-logo { font-size:15px; font-weight:600; letter-spacing:0.03em; color:var(--text); text-decoration:none; }
+    .nav-links { display:flex; align-items:center; gap:32px; }
+    .nav-links a { font-size:14px; color:var(--text2); text-decoration:none; transition:color .2s; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-links a.active { color:var(--accent); font-weight:600; }
+    .btn-nav { background:var(--text); color:var(--bg) !important; padding:8px 18px; border-radius:6px; font-weight:600; font-size:14px !important; transition:opacity .2s; text-decoration:none; }
+    .btn-nav:hover { opacity:.88; }
+    .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
+    .nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; }
+    @media (max-width:640px) { nav { padding:0 24px; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:64px; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; } }
 
     .hero { padding: 72px 48px 56px; }
     .eyebrow { font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; margin-bottom: 16px; }
@@ -158,6 +150,7 @@
       <a href="profile-test.html" style="color:var(--accent);font-weight:600;">Aura Profile</a>
       <a href="freebies/index.html">Free Tools</a>
     </div>
+    <a href="index.html#waitlist" class="btn-nav">Book a call →</a>
     <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
     </button>
