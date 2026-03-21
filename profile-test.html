@@ -19,294 +19,171 @@
       --text-dim: #6A6050;
     }
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-      font-family: 'Georgia', serif;
-      min-height: 100vh;
-    }
+    body { background: var(--bg); color: var(--text); font-family: 'Georgia', serif; min-height: 100vh; }
 
-    /* ── SCREENS ── */
     .screen { display: none; }
     .screen.active { display: flex; flex-direction: column; min-height: 100vh; }
 
-    /* ── INTRO SCREEN ── */
-    #screen-intro {
-      align-items: center;
-      justify-content: center;
-      padding: 40px 24px;
-      text-align: center;
-    }
-    .intro-logo {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 48px;
-    }
-    .intro-title {
-      font-size: 40px; font-weight: 400; line-height: 1.2;
-      color: var(--text); margin-bottom: 16px; max-width: 560px;
-    }
-    .intro-title span { color: var(--gold); }
-    .intro-sub {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 15px; color: var(--text-mid); line-height: 1.7;
-      max-width: 480px; margin: 0 auto 40px;
-    }
-    .intro-meta {
-      display: flex; gap: 32px; justify-content: center;
-      margin-bottom: 40px;
-    }
-    .meta-item {
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 13px; color: var(--text-dim); text-align: center;
-    }
-    .meta-item strong { display: block; font-size: 20px; color: var(--gold); margin-bottom: 4px; }
-    .btn-start {
-      background: var(--gold); color: #0F0E0C;
-      border: none; padding: 16px 48px; border-radius: 4px;
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; transition: background 0.2s;
-    }
-    .btn-start:hover { background: #D4B87A; }
-
-    /* ── QUIZ SCREEN ── */
-    #screen-quiz {
-      padding: 0;
-    }
-    .quiz-topbar {
+    /* ── TOPBAR ── */
+    .topbar {
       background: var(--surface); border-bottom: 1px solid var(--border);
       padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
       position: sticky; top: 0; z-index: 10;
     }
-    .quiz-brand {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 12px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
-    }
-    .quiz-progress-text {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim);
-    }
-    .progress-bar-wrap {
-      height: 3px; background: var(--border); width: 100%;
-    }
-    .progress-bar-fill {
-      height: 3px; background: var(--gold);
-      transition: width 0.4s ease; width: 0%;
-    }
+    .topbar-brand { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .topbar-right { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim); }
+    .progress-bar-wrap { height: 3px; background: var(--border); }
+    .progress-bar-fill { height: 3px; background: var(--gold); transition: width 0.4s ease; width: 0%; }
 
-    .quiz-body {
-      flex: 1; display: flex; align-items: center; justify-content: center;
-      padding: 48px 24px;
-    }
-    .question-card {
-      max-width: 680px; width: 100%;
-    }
-    .q-number {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 20px;
-    }
-    .q-instruction {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
-      color: var(--text-dim); margin-bottom: 12px;
-    }
-    .q-text {
-      font-size: 22px; font-weight: 400; line-height: 1.4;
-      color: var(--text); margin-bottom: 36px;
-    }
-    .q-options { display: flex; flex-direction: column; gap: 14px; }
+    /* ── INTRO ── */
+    #screen-intro { align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+    .intro-logo { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 48px; }
+    .intro-title { font-size: 40px; font-weight: 400; line-height: 1.2; color: var(--text); margin-bottom: 16px; max-width: 560px; }
+    .intro-title span { color: var(--gold); }
+    .intro-sub { font-family: 'Helvetica Neue', sans-serif; font-size: 15px; color: var(--text-mid); line-height: 1.7; max-width: 500px; margin: 0 auto 40px; }
+    .intro-steps { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; flex-wrap: wrap; }
+    .intro-step { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 24px; text-align: center; min-width: 130px; }
+    .intro-step .step-num { font-size: 22px; font-weight: 700; color: var(--gold); opacity: 0.6; display: block; }
+    .intro-step .step-label { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim); margin-top: 4px; }
+    .btn-primary { background: var(--gold); color: #0F0E0C; border: none; padding: 16px 48px; border-radius: 4px; font-family: 'Helvetica Neue', sans-serif; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .btn-primary:hover { background: #D4B87A; }
+
+    /* ── QUESTIONS ── */
+    .quiz-body { flex: 1; display: flex; align-items: center; justify-content: center; padding: 48px 24px; }
+    .question-card { max-width: 720px; width: 100%; opacity: 1; transition: opacity 0.2s ease; }
+    .question-card.fade-out { opacity: 0; }
+    .q-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+    .q-number { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); }
+    .q-part { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; color: var(--text-dim); }
+    .q-instruction { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: var(--text-dim); margin-bottom: 12px; }
+    .q-text { font-size: 22px; font-weight: 400; line-height: 1.4; color: var(--text); margin-bottom: 28px; }
+    .q-options { display: flex; flex-direction: column; gap: 10px; }
     .q-option {
-      background: var(--surface); border: 1px solid var(--border);
-      border-radius: 10px; padding: 20px 24px;
-      cursor: pointer; transition: all 0.15s ease;
-      display: flex; align-items: flex-start; gap: 16px;
-      font-family: 'Helvetica Neue', sans-serif; font-size: 15px;
-      color: var(--text-mid); line-height: 1.5;
-      text-align: left;
+      background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 22px; cursor: pointer; transition: all 0.15s ease;
+      display: flex; align-items: flex-start; gap: 14px;
+      font-family: 'Helvetica Neue', sans-serif; font-size: 14px; color: var(--text-mid);
+      line-height: 1.5; text-align: left; width: 100%;
     }
-    .q-option:hover {
-      border-color: var(--gold-dark); color: var(--text);
-      transform: translateY(-1px);
-    }
-    .q-option.selected {
-      border-color: var(--gold); color: var(--text);
-      background: #1E1C16;
-    }
+    .q-option:hover { border-color: var(--gold-dark); color: var(--text); transform: translateY(-1px); }
+    .q-option.selected { border-color: var(--gold); color: var(--text); background: #1E1C16; }
     .option-letter {
-      width: 28px; height: 28px; border-radius: 50%;
-      border: 1px solid var(--border); display: flex;
-      align-items: center; justify-content: center;
-      font-size: 12px; color: var(--text-dim); flex-shrink: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      transition: all 0.15s;
+      width: 26px; height: 26px; border-radius: 50%; border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; color: var(--text-dim); flex-shrink: 0;
+      transition: all 0.15s; font-family: 'Helvetica Neue', sans-serif;
     }
-    .q-option.selected .option-letter {
-      background: var(--gold); color: #0F0E0C; border-color: var(--gold);
+    .q-option.selected .option-letter { background: var(--gold); color: #0F0E0C; border-color: var(--gold); }
+    .q-option.write-own { flex-direction: column; }
+    .write-own-row { display: flex; align-items: center; gap: 14px; width: 100%; }
+    .write-own-input {
+      display: none; margin-top: 12px; width: 100%;
+      background: #141210; border: 1px solid var(--border); border-radius: 6px;
+      padding: 12px 14px; font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+      color: var(--text); resize: none; height: 70px;
     }
+    .write-own-input:focus { outline: none; border-color: var(--gold-dark); }
+    .q-option.write-own.selected .write-own-input { display: block; }
 
-    .quiz-footer {
-      padding: 24px 32px; display: flex; justify-content: flex-end;
-      border-top: 1px solid var(--border);
-    }
-    .btn-next {
-      background: var(--gold); color: #0F0E0C;
-      border: none; padding: 13px 36px; border-radius: 4px;
-      font-family: 'Helvetica Neue', sans-serif;
-      font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-      cursor: pointer; transition: all 0.2s;
-      opacity: 0.4; pointer-events: none;
-    }
+    .quiz-footer { padding: 20px 32px; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); }
+    .btn-next { background: var(--gold); color: #0F0E0C; border: none; padding: 13px 36px; border-radius: 4px; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; opacity: 0.4; pointer-events: none; }
     .btn-next.enabled { opacity: 1; pointer-events: all; }
     .btn-next.enabled:hover { background: #D4B87A; }
+    .btn-back-q { background: none; border: none; color: var(--text-dim); font-family: 'Helvetica Neue', sans-serif; font-size: 13px; cursor: pointer; }
+    .btn-back-q:hover { color: var(--gold); }
 
     /* ── TRANSITION ── */
-    .question-card { opacity: 1; transition: opacity 0.2s ease; }
-    .question-card.fade-out { opacity: 0; }
+    #screen-transition { align-items: center; justify-content: center; padding: 40px 24px; text-align: center; }
+    .transition-content { max-width: 540px; }
+    .transition-label { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+    .transition-title { font-size: 32px; font-weight: 400; color: var(--text); margin-bottom: 16px; }
+    .transition-sub { font-family: 'Helvetica Neue', sans-serif; font-size: 15px; color: var(--text-mid); line-height: 1.7; margin-bottom: 32px; }
+    .example-words { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px; margin-bottom: 36px; }
+    .example-word { background: #141210; border: 1px solid var(--border); border-radius: 20px; padding: 5px 14px; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim); }
 
-    /* ── RESULT SCREEN ── */
-    #screen-result { align-items: center; justify-content: flex-start; padding: 0; }
-    .result-topbar {
-      width: 100%; background: var(--surface); border-bottom: 1px solid var(--border);
-      padding: 16px 32px; display: flex; align-items: center; justify-content: space-between;
+    /* ── WORDS ── */
+    .words-body { flex: 1; padding: 40px 32px; max-width: 900px; margin: 0 auto; width: 100%; }
+    .words-title { font-size: 26px; font-weight: 400; color: var(--text); margin-bottom: 8px; }
+    .words-sub { font-family: 'Helvetica Neue', sans-serif; font-size: 14px; color: var(--text-mid); margin-bottom: 24px; }
+    .words-counter-bar { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; padding: 14px 20px; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
+    .counter-num { font-size: 28px; font-weight: 700; color: var(--gold); line-height: 1; font-family: 'Helvetica Neue', sans-serif; }
+    .counter-label { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: var(--text-dim); }
+    .counter-progress { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .counter-fill { height: 4px; background: var(--gold); border-radius: 2px; transition: width 0.3s ease; }
+    .counter-fill.complete { background: #6DBF67; }
+    .counter-status { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim); white-space: nowrap; }
+    .words-grid { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+    .word-chip {
+      background: var(--surface); border: 1px solid var(--border); border-radius: 25px;
+      padding: 10px 20px; cursor: pointer; font-family: 'Helvetica Neue', sans-serif;
+      font-size: 14px; color: var(--text-mid); transition: all 0.15s ease; user-select: none;
     }
-    .result-brand {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 12px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
-    }
-    .btn-retake {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 12px;
-      color: var(--text-dim); background: none; border: none; cursor: pointer;
-    }
+    .word-chip:hover { border-color: var(--gold-dark); color: var(--text); }
+    .word-chip.selected { background: #1E1C16; border-color: var(--gold); color: var(--text); }
+    .word-chip.disabled { opacity: 0.35; cursor: not-allowed; }
+    .words-footer { padding: 20px 32px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+    .words-hint { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: var(--text-dim); }
+
+    /* ── RESULT ── */
+    .result-topbar { width: 100%; background: var(--surface); border-bottom: 1px solid var(--border); padding: 16px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .result-brand { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); }
+    .btn-retake { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--text-dim); background: none; border: none; cursor: pointer; }
     .btn-retake:hover { color: var(--gold); }
-
-    .result-body { width: 100%; max-width: 900px; margin: 0 auto; padding: 48px 32px 64px; }
-
-    .result-label {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
-    }
-    .result-profile-name {
-      font-size: 52px; font-weight: 400; color: var(--text); line-height: 1.1;
-      margin-bottom: 8px;
-    }
-    .result-tagline {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 17px;
-      color: var(--gold-dark); margin-bottom: 40px; font-style: italic;
-    }
-
-    .result-scores {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px;
-    }
-    .score-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px;
-    }
-    .score-factor {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px;
-    }
-    .score-bar-wrap {
-      height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 8px;
-    }
-    .score-bar-fill {
-      height: 6px; border-radius: 3px; background: var(--gold); transition: width 1s ease;
-    }
-    .score-label {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--gold);
-      font-weight: 600;
-    }
-
-    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 32px; }
-    .result-card {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px;
-    }
-    .result-card h3 {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 16px;
-    }
-    .result-card p {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 14px;
-      color: var(--text-mid); line-height: 1.7;
-    }
+    .result-body { width: 100%; max-width: 920px; margin: 0 auto; padding: 48px 32px 64px; }
+    .result-label { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .result-profile-name { font-size: 52px; font-weight: 400; color: var(--text); line-height: 1.1; margin-bottom: 8px; }
+    .result-tagline { font-family: 'Helvetica Neue', sans-serif; font-size: 17px; color: var(--gold-dark); margin-bottom: 40px; font-style: italic; }
+    .result-scores { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 32px; }
+    .score-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+    .score-factor { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 8px; }
+    .score-bar-wrap { height: 6px; background: var(--border); border-radius: 3px; margin-bottom: 8px; }
+    .score-bar-fill { height: 6px; border-radius: 3px; background: var(--gold); transition: width 1s ease; }
+    .score-label { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: var(--gold); font-weight: 600; }
+    .your-words-section { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 28px; }
+    .your-words-section h3 { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .your-words-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .your-word-chip { background: #1E1C16; border: 1px solid var(--gold-dark); border-radius: 20px; padding: 5px 14px; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: var(--text-mid); }
+    .social-need-badge { display: flex; align-items: flex-start; gap: 20px; background: #12100E; border: 1px solid #C8A96E33; border-left: 3px solid var(--gold); border-radius: 0 10px 10px 0; padding: 20px 24px; margin-bottom: 28px; }
+    .need-left .need-label { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim); }
+    .need-left .need-value { font-family: 'Helvetica Neue', sans-serif; font-size: 18px; font-weight: 600; color: var(--gold); margin-top: 2px; }
+    .need-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 14px; color: var(--text-mid); line-height: 1.6; padding-top: 4px; }
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px; }
+    .result-card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; }
+    .result-card h3 { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; }
+    .result-card p { font-family: 'Helvetica Neue', sans-serif; font-size: 14px; color: var(--text-mid); line-height: 1.7; }
     .result-card ul { list-style: none; padding: 0; }
-    .result-card ul li {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8A8070;
-      padding: 7px 0; border-bottom: 1px solid #1E1C18;
-      display: flex; align-items: flex-start; gap: 10px;
-    }
+    .result-card ul li { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #8A8070; padding: 7px 0; border-bottom: 1px solid #1E1C18; display: flex; gap: 10px; }
     .result-card ul li:last-child { border-bottom: none; }
     .result-card ul li::before { content: '→'; color: var(--gold); font-size: 10px; margin-top: 2px; flex-shrink: 0; }
-
-    .feel-map {
-      background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
-      padding: 28px; margin-bottom: 32px;
-    }
-    .feel-map h3 {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 24px;
-    }
+    .feel-map { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 28px; margin-bottom: 28px; }
+    .feel-map h3 { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
     .feel-letters { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-    .feel-letter-card {
-      background: #141210; border: 1px solid var(--border); border-radius: 8px; padding: 18px;
-    }
-    .feel-letter { font-size: 32px; font-weight: 700; color: var(--gold); opacity: 0.3; margin-bottom: 6px; }
-    .feel-letter-name { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 8px; }
-    .feel-letter-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #7A7060; line-height: 1.5; }
+    .feel-letter-card { background: #141210; border: 1px solid var(--border); border-radius: 8px; padding: 18px; }
     .feel-letter-card.highlight { border-color: var(--gold-dark); }
-    .feel-letter-card.highlight .feel-letter { opacity: 1; }
-    .feel-letter-card.highlight .feel-letter-desc { color: var(--text-mid); }
+    .feel-big { font-size: 32px; font-weight: 700; color: var(--gold); opacity: 0.3; margin-bottom: 6px; line-height: 1; }
+    .feel-letter-card.highlight .feel-big { opacity: 1; }
+    .feel-name { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-dim); margin-bottom: 8px; }
+    .feel-desc { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #7A7060; line-height: 1.5; }
+    .feel-letter-card.highlight .feel-desc { color: var(--text-mid); }
+    .result-footer { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-secondary { background: var(--surface); border: 1px solid var(--border); color: var(--text-mid); padding: 12px 24px; border-radius: 4px; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; cursor: pointer; transition: all 0.2s; }
+    .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+    .btn-gold { background: var(--gold); color: #0F0E0C; border: none; padding: 12px 28px; border-radius: 4px; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s; }
+    .btn-gold:hover { background: #D4B87A; }
 
-    .social-need-badge {
-      display: inline-flex; align-items: center; gap: 10px;
-      background: #1C1A10; border: 1px solid #3A3020; border-radius: 8px;
-      padding: 16px 20px; margin-bottom: 32px;
-    }
-    .social-need-badge .need-label {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-dim);
-    }
-    .social-need-badge .need-value {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 16px; font-weight: 600; color: var(--gold);
-    }
-    .social-need-badge .need-desc {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: var(--text-mid);
-      border-left: 1px solid var(--border); padding-left: 16px; margin-left: 6px;
-    }
-
-    .result-footer { display: flex; gap: 12px; }
-    .btn-share {
-      background: var(--surface); border: 1px solid var(--border); color: var(--text-mid);
-      padding: 12px 24px; border-radius: 4px;
-      font-family: 'Helvetica Neue', sans-serif; font-size: 13px; cursor: pointer;
-      transition: all 0.2s; letter-spacing: 0.05em;
-    }
-    .btn-share:hover { border-color: var(--gold); color: var(--gold); }
-    .btn-course {
-      background: var(--gold); color: #0F0E0C; border: none;
-      padding: 12px 28px; border-radius: 4px;
-      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
-      letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: all 0.2s;
-    }
-    .btn-course:hover { background: #D4B87A; }
-
-    /* ── PRINT / PDF ── */
+    /* ── PRINT ── */
     @media print {
       body { background: #fff !important; color: #1A1A14 !important; }
-      .result-topbar, .btn-retake, .result-footer { display: none !important; }
+      .result-topbar, .result-footer { display: none !important; }
       #screen-result { display: block !important; }
-      #screen-intro, #screen-quiz { display: none !important; }
+      #screen-intro, #screen-quiz, #screen-transition, #screen-words { display: none !important; }
       .result-body { padding: 0 !important; max-width: 100% !important; }
-      .result-label { color: #8B6F47 !important; }
+      .result-label, .score-factor, .result-card h3, .feel-map h3, .your-words-section h3, .feel-name, .need-label { color: #8B6F47 !important; }
       .result-profile-name { color: #1A1A14 !important; font-size: 40px !important; }
       .result-tagline { color: #8B6F47 !important; }
-      .result-card, .score-card, .feel-letter-card, .feel-map, .social-need-badge {
-        background: #F8F5F0 !important; border: 1px solid #DDD5C5 !important;
-        -webkit-print-color-adjust: exact; print-color-adjust: exact;
-      }
-      .result-card h3, .feel-letter-name, .score-factor, .need-label { color: #8B6F47 !important; }
-      .result-card p, .result-card ul li, .feel-letter-desc, .score-label,
-      .need-desc, .need-value { color: #3A3528 !important; }
-      .feel-letter { color: #C8A96E !important; opacity: 1 !important; }
+      .result-card, .score-card, .feel-letter-card, .feel-map, .social-need-badge, .your-words-section { background: #F8F5F0 !important; border: 1px solid #DDD5C5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      .result-card p, .result-card ul li, .feel-desc, .score-label, .need-desc, .need-value, .your-word-chip { color: #3A3528 !important; }
+      .feel-big { color: #C8A96E !important; opacity: 1 !important; }
       .feel-letter-card.highlight { border-color: #C8A96E !important; background: #FDF8F0 !important; }
       .score-bar-fill { background: #C8A96E !important; -webkit-print-color-adjust: exact; }
       .score-bar-wrap { background: #E8E0D0 !important; }
@@ -315,622 +192,543 @@
       .result-scores { grid-template-columns: repeat(4,1fr) !important; }
       .print-header { display: block !important; }
     }
-    .print-header {
-      display: none;
-      text-align: center; padding: 24px 0 32px; border-bottom: 2px solid #C8A96E;
-      margin-bottom: 32px;
-    }
-    .print-header .print-logo {
-      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
-      letter-spacing: 0.2em; text-transform: uppercase; color: #8B6F47;
-    }
-    .print-header .print-title {
-      font-size: 14px; color: #3A3528; margin-top: 6px;
-    }
+    .print-header { display: none; text-align: center; padding: 0 0 32px; border-bottom: 2px solid #C8A96E; margin-bottom: 32px; }
+    .print-header .print-logo { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #8B6F47; }
+    .print-header .print-title { font-size: 13px; color: #3A3528; margin-top: 6px; }
 
     @media (max-width: 600px) {
       .result-scores { grid-template-columns: 1fr 1fr; }
-      .result-grid { grid-template-columns: 1fr; }
-      .feel-letters { grid-template-columns: 1fr 1fr; }
+      .result-grid, .feel-letters { grid-template-columns: 1fr; }
       .result-profile-name { font-size: 36px; }
-      .intro-meta { gap: 20px; }
-      .social-need-badge { flex-direction: column; align-items: flex-start; }
-      .social-need-badge .need-desc { border-left: none; padding-left: 0; margin-left: 0; }
+      .social-need-badge { flex-direction: column; }
+      .words-body { padding: 24px 16px; }
+      .quiz-body { padding: 32px 16px; }
     }
   </style>
 </head>
 <body>
 
-<!-- ══════════════════════════════════ INTRO SCREEN ══════════════════════════════════ -->
+<!-- ══ INTRO ══ -->
 <div id="screen-intro" class="screen active">
   <div class="intro-logo">Feel the Room · Behavioral Profile</div>
-  <h1 class="intro-title">Discover your<br><span>behavioral profile.</span></h1>
-  <p class="intro-sub">
-    20 questions. No right or wrong answers. This test maps how you naturally operate — your drives, your pace, your people style — and tells you exactly where F.E.E.L. will hit hardest for you.
-  </p>
-  <div class="intro-meta">
-    <div class="meta-item"><strong>20</strong>Questions</div>
-    <div class="meta-item"><strong>4</strong>Dimensions</div>
-    <div class="meta-item"><strong>~5 min</strong>To complete</div>
+  <h1 class="intro-title">Who are you<br><span>in the room?</span></h1>
+  <p class="intro-sub">Two parts. No right or wrong. This test maps how you naturally operate — and shows you exactly where F.E.E.L. will hit hardest for your profile.</p>
+  <div class="intro-steps">
+    <div class="intro-step"><span class="step-num">16</span><div class="step-label">Scenario questions<br>4 options + write your own</div></div>
+    <div class="intro-step"><span class="step-num">15</span><div class="step-label">Words that<br>describe you</div></div>
+    <div class="intro-step"><span class="step-num">~7 min</span><div class="step-label">Total time</div></div>
   </div>
-  <button class="btn-start" onclick="startQuiz()">Start the test →</button>
+  <button class="btn-primary" onclick="startQuiz()">Start Part 1 →</button>
 </div>
 
-<!-- ══════════════════════════════════ QUIZ SCREEN ══════════════════════════════════ -->
+<!-- ══ QUIZ ══ -->
 <div id="screen-quiz" class="screen">
-  <div class="quiz-topbar">
-    <div class="quiz-brand">Feel the Room · Profile Test</div>
-    <div class="quiz-progress-text" id="progress-text">Question 1 of 20</div>
+  <div class="topbar">
+    <div class="topbar-brand">Feel the Room · Part 1 of 2</div>
+    <div class="topbar-right" id="q-progress-text">Question 1 of 16</div>
   </div>
-  <div class="progress-bar-wrap">
-    <div class="progress-bar-fill" id="progress-fill"></div>
-  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="q-progress-fill"></div></div>
   <div class="quiz-body">
-    <div class="question-card" id="question-card">
-      <!-- injected by JS -->
-    </div>
+    <div class="question-card" id="question-card"></div>
   </div>
   <div class="quiz-footer">
+    <button class="btn-back-q" id="btn-back-q" onclick="prevQuestion()">← Back</button>
     <button class="btn-next" id="btn-next" onclick="nextQuestion()">Next →</button>
   </div>
 </div>
 
-<!-- ══════════════════════════════════ RESULT SCREEN ══════════════════════════════════ -->
-<div id="screen-result" class="screen">
-  <div class="result-topbar">
-    <div class="result-brand">Feel the Room · Your Profile</div>
-    <button class="btn-retake" onclick="retake()">↺ Retake test</button>
-  </div>
-  <div class="result-body" id="result-body">
-    <!-- injected by JS -->
+<!-- ══ TRANSITION ══ -->
+<div id="screen-transition" class="screen">
+  <div style="max-width:540px;text-align:center;padding:40px 24px;margin:auto;">
+    <div class="transition-label" style="font-family:'Helvetica Neue',sans-serif;font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Part 1 complete</div>
+    <h2 style="font-size:32px;font-weight:400;color:var(--text);margin-bottom:16px;">Now — select your words.</h2>
+    <p style="font-family:'Helvetica Neue',sans-serif;font-size:15px;color:var(--text-mid);line-height:1.7;margin-bottom:32px;">This is the method used in the world's leading behavioral assessments. From a list of words, select exactly 15 that describe how you naturally are. Go with your gut — first instinct wins.</p>
+    <div class="example-words">
+      <span class="example-word">Assertive</span><span class="example-word">Patient</span><span class="example-word">Creative</span><span class="example-word">Precise</span><span class="example-word">Warm</span><span class="example-word">Bold</span><span class="example-word">Analytical</span><span class="example-word">Driven</span><span class="example-word">Reliable</span><span class="example-word">Expressive</span>
+    </div>
+    <button class="btn-primary" onclick="show('screen-words');initWords()">Start Part 2 →</button>
   </div>
 </div>
 
+<!-- ══ WORDS ══ -->
+<div id="screen-words" class="screen">
+  <div class="topbar">
+    <div class="topbar-brand">Feel the Room · Part 2 of 2</div>
+    <div class="topbar-right">Select exactly 15 words</div>
+  </div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="w-progress-fill" style="width:0%"></div></div>
+  <div class="words-body">
+    <div class="words-title">Which words describe you?</div>
+    <div class="words-sub">Select the 15 words that most naturally describe how you operate. Don't overthink it — first instinct wins.</div>
+    <div class="words-counter-bar">
+      <div class="counter-num" id="word-count">0</div>
+      <div class="counter-label">selected</div>
+      <div class="counter-progress"><div class="counter-fill" id="counter-fill" style="width:0%"></div></div>
+      <div class="counter-status" id="counter-status">Select 15 more</div>
+    </div>
+    <div class="words-grid" id="words-grid"></div>
+  </div>
+  <div class="words-footer">
+    <div class="words-hint" id="words-hint">Select 15 words to continue</div>
+    <button class="btn-next" id="btn-words-next" onclick="showResult()">See my profile →</button>
+  </div>
+</div>
+
+<!-- ══ RESULT ══ -->
+<div id="screen-result" class="screen">
+  <div class="result-topbar">
+    <div class="result-brand">Feel the Room · Your Profile</div>
+    <button class="btn-retake" onclick="startQuiz()">↺ Retake test</button>
+  </div>
+  <div class="result-body" id="result-body"></div>
+</div>
+
 <script>
-// ══════════════════════════════════════════════════════════
-//  QUESTIONS
-//  Each question scores one factor: A (Dominance), B (Extraversion), C (Patience), D (Formality)
-//  answer: 0 = HIGH for that factor, 1 = LOW for that factor
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════
+//  QUESTIONS — 16 total, 4 per factor
+//  Scores 0-3: 3=very high for that factor, 0=very low
+//  Factor C is inverted: high score = patient, low score = urgent
+// ════════════════════════════════════════
 const questions = [
-  // ── FACTOR A: DOMINANCE ──
-  {
-    factor: 'A',
-    text: "In a meeting where no clear direction exists...",
-    options: [
-      { text: "I naturally step in and drive the agenda forward.", high: true },
-      { text: "I contribute where I can and let the group find its direction.", high: false }
-    ]
-  },
-  {
-    factor: 'A',
-    text: "When I disagree with how something is being done...",
-    options: [
-      { text: "I challenge it directly — even if it creates friction.", high: true },
-      { text: "I voice my concern, but ultimately adapt to the group's approach.", high: false }
-    ]
-  },
-  {
-    factor: 'A',
-    text: "The kind of work that energizes me most is...",
-    options: [
-      { text: "Work where I have real control over the outcome.", high: true },
-      { text: "Work where I contribute meaningfully to a shared goal.", high: false }
-    ]
-  },
-  {
-    factor: 'A',
-    text: "When I face a setback or obstacle...",
-    options: [
-      { text: "I immediately look for a way to push back or around it.", high: true },
-      { text: "I reflect first and think about how best to support the next attempt.", high: false }
-    ]
-  },
-  {
-    factor: 'A',
-    text: "In a new team or environment, I tend to...",
-    options: [
-      { text: "Establish my position and perspective fairly quickly.", high: true },
-      { text: "Observe and understand the dynamics before making my mark.", high: false }
-    ]
-  },
+  // FACTOR A — Dominance
+  { factor:'A', part:'Drive', text:"When no one has taken charge in a group situation...",
+    options:[
+      { score:3, text:"I step in immediately — I'm uncomfortable when there's no direction." },
+      { score:2, text:"I often end up leading, though I'm happy if someone else goes first." },
+      { score:1, text:"I contribute well from the background — I don't need to be out front." },
+      { score:0, text:"I actively avoid leading — I'd rather support whoever steps up." }
+    ]},
+  { factor:'A', part:'Drive', text:"When I disagree with a decision that's been made...",
+    options:[
+      { score:3, text:"I push back directly, even if it creates friction." },
+      { score:2, text:"I voice my view clearly, then adapt once a decision is locked." },
+      { score:1, text:"I mention my concern once, then go with the group." },
+      { score:0, text:"I rarely push back — harmony matters more to me than being right." }
+    ]},
+  { factor:'A', part:'Drive', text:"My drive to control the outcome of my work is...",
+    options:[
+      { score:3, text:"Very high — I need to own the result to feel fully engaged." },
+      { score:2, text:"High — I want real influence, but I can share it when needed." },
+      { score:1, text:"Moderate — I like clear accountability but don't need to be in charge." },
+      { score:0, text:"Low — I'm most comfortable when outcomes are a shared responsibility." }
+    ]},
+  { factor:'A', part:'Drive', text:"After a setback, my immediate instinct is to...",
+    options:[
+      { score:3, text:"Push back hard and find another path forward, immediately." },
+      { score:2, text:"Quickly assess what went wrong and take action." },
+      { score:1, text:"Reflect carefully before deciding what comes next." },
+      { score:0, text:"Support others through it before thinking about my own response." }
+    ]},
 
-  // ── FACTOR B: EXTRAVERSION ──
-  {
-    factor: 'B',
-    text: "At the end of a long week, I recharge by...",
-    options: [
-      { text: "Spending time with people — friends, colleagues, social situations.", high: true },
-      { text: "Having time to myself — quiet, solitude, my own thoughts.", high: false }
-    ]
-  },
-  {
-    factor: 'B',
-    text: "When I walk into a room full of people I don't know...",
-    options: [
-      { text: "I feel energized — I enjoy meeting new people and making connections.", high: true },
-      { text: "I tend to seek out a few meaningful conversations rather than working the room.", high: false }
-    ]
-  },
-  {
-    factor: 'B',
-    text: "When I'm trying to solve a difficult problem...",
-    options: [
-      { text: "I like to talk it through out loud — thinking with others helps me.", high: true },
-      { text: "I prefer to sit with it alone first before discussing it.", high: false }
-    ]
-  },
-  {
-    factor: 'B',
-    text: "My natural communication style tends to be...",
-    options: [
-      { text: "Warm, expressive, and enthusiastic — I bring energy to conversations.", high: true },
-      { text: "Measured, precise, and calm — I choose my words carefully.", high: false }
-    ]
-  },
-  {
-    factor: 'B',
-    text: "After a day of back-to-back meetings and conversations...",
-    options: [
-      { text: "I still have energy — I find human interaction fuels me.", high: true },
-      { text: "I need quiet time to reset and process the day.", high: false }
-    ]
-  },
+  // FACTOR B — Extraversion
+  { factor:'B', part:'Energy', text:"Social interaction and being around people...",
+    options:[
+      { score:3, text:"Completely energize me — I actively seek them out and rarely tire of it." },
+      { score:2, text:"Generally energize me, though I also value time alone to process." },
+      { score:1, text:"Can be enjoyable, but I prefer fewer, deeper conversations over many surface ones." },
+      { score:0, text:"Drain me — I need significant alone time to feel like myself again." }
+    ]},
+  { factor:'B', part:'Energy', text:"When working through a difficult problem, I prefer to...",
+    options:[
+      { score:3, text:"Talk it through with others immediately — thinking out loud gives me energy." },
+      { score:2, text:"Have a quick initial conversation, then work through the rest myself." },
+      { score:1, text:"Think it through alone first, then validate with one trusted person." },
+      { score:0, text:"Work through it fully on my own before sharing anything." }
+    ]},
+  { factor:'B', part:'Energy', text:"My natural communication style is best described as...",
+    options:[
+      { score:3, text:"Expressive and enthusiastic — I think out loud and bring visible energy." },
+      { score:2, text:"Warm and direct — I'm social but I choose my words with intention." },
+      { score:1, text:"Measured and calm — I say what matters, not everything that comes to mind." },
+      { score:0, text:"Private and precise — I share when I have something specific to contribute." }
+    ]},
+  { factor:'B', part:'Energy', text:"Walking into a room full of people I don't know feels...",
+    options:[
+      { score:3, text:"Genuinely exciting — meeting new people is one of the things I enjoy most." },
+      { score:2, text:"Comfortable — I engage naturally, though I don't feel compelled to meet everyone." },
+      { score:1, text:"Fine — I find a few interesting people and go deep rather than wide." },
+      { score:0, text:"Draining — I'd rather observe before engaging, if at all." }
+    ]},
 
-  // ── FACTOR C: PATIENCE ──
-  {
-    factor: 'C',
-    text: "My ideal work environment looks like...",
-    options: [
-      { text: "Fast-paced, varied, and constantly changing — I thrive in motion.", high: false },
-      { text: "Consistent, stable, and predictable — I do my best work in structure.", high: true }
-    ]
-  },
-  {
-    factor: 'C',
-    text: "I'm at my best when I'm...",
-    options: [
-      { text: "Handling multiple things at once, switching between priorities.", high: false },
-      { text: "Going deep on one thing — focused, thorough, and unhurried.", high: true }
-    ]
-  },
-  {
-    factor: 'C',
-    text: "When plans change unexpectedly, I typically...",
-    options: [
-      { text: "Adapt quickly and often see the change as an opportunity.", high: false },
-      { text: "Want to understand why before I adjust — change needs a reason.", high: true }
-    ]
-  },
-  {
-    factor: 'C',
-    text: "My natural pace tends toward...",
-    options: [
-      { text: "Moving fast and deciding quickly — I'd rather course-correct than wait.", high: false },
-      { text: "Being deliberate and thorough — getting it right matters more than getting it fast.", high: true }
-    ]
-  },
-  {
-    factor: 'C',
-    text: "Routine, repetitive work feels...",
-    options: [
-      { text: "Limiting — I need variety and new challenges to stay engaged.", high: false },
-      { text: "Comfortable — consistency helps me perform at a high level.", high: true }
-    ]
-  },
+  // FACTOR C — Patience (high=patient, low=urgent)
+  { factor:'C', part:'Pace', text:"My ideal work pace and environment is...",
+    options:[
+      { score:0, text:"Fast and constantly changing — variety and urgency are what keep me sharp." },
+      { score:1, text:"Generally fast with occasional focus time — I thrive on motion but can slow down." },
+      { score:2, text:"Balanced — some structure and consistency, with room to adapt." },
+      { score:3, text:"Consistent and deliberate — I do my best work when things are predictable." }
+    ]},
+  { factor:'C', part:'Pace', text:"When plans change unexpectedly, I typically...",
+    options:[
+      { score:0, text:"Adapt immediately — change keeps things interesting and I find it energizing." },
+      { score:1, text:"Adjust quickly, though I prefer to understand why before fully committing." },
+      { score:2, text:"Take a moment to recalibrate before moving forward." },
+      { score:3, text:"Find unexpected change genuinely disrupting — I need stability to perform." }
+    ]},
+  { factor:'C', part:'Pace', text:"Handling multiple things at once feels...",
+    options:[
+      { score:0, text:"Natural and energizing — I actually thrive when juggling many things at once." },
+      { score:1, text:"Fine — I can do it well even if focused work is sometimes preferable." },
+      { score:2, text:"Manageable but not ideal — I prefer to finish before starting something new." },
+      { score:3, text:"Counterproductive — I do my best work going deep on one thing at a time." }
+    ]},
+  { factor:'C', part:'Pace', text:"Routine, repetitive work tends to feel...",
+    options:[
+      { score:0, text:"Limiting and dull — I need variety and new challenges to stay engaged." },
+      { score:1, text:"Tolerable — I can work within routine if the goal is clear and worthwhile." },
+      { score:2, text:"Comfortable — consistency helps me build real momentum." },
+      { score:3, text:"Ideal — I find deep satisfaction in mastering a consistent process over time." }
+    ]},
 
-  // ── FACTOR D: FORMALITY ──
-  {
-    factor: 'D',
-    text: "When I approach rules, policies, or procedures...",
-    options: [
-      { text: "I see them as guidelines — context and outcomes matter more than process.", high: false },
-      { text: "I follow them carefully — structure exists for good reasons.", high: true }
-    ]
-  },
-  {
-    factor: 'D',
-    text: "When making an important decision, I rely more on...",
-    options: [
-      { text: "Instinct, pattern recognition, and big-picture thinking.", high: false },
-      { text: "Data, analysis, and careful consideration of all the variables.", high: true }
-    ]
-  },
-  {
-    factor: 'D',
-    text: "When I present work or share ideas...",
-    options: [
-      { text: "I focus on the big picture, the impact, and the story — not every detail.", high: false },
-      { text: "I make sure everything is accurate and well-supported before sharing.", high: true }
-    ]
-  },
-  {
-    factor: 'D',
-    text: "Making a mistake at work...",
-    options: [
-      { text: "Doesn't bother me much — it's part of moving fast and learning.", high: false },
-      { text: "Motivates me to be more precise and careful next time.", high: true }
-    ]
-  },
-  {
-    factor: 'D',
-    text: "My approach to quality looks like...",
-    options: [
-      { text: "Good enough, fast — I can always iterate. Done beats perfect.", high: false },
-      { text: "High standards before releasing — I want it to be right.", high: true }
-    ]
-  }
+  // FACTOR D — Formality (high=precise/formal, low=informal/creative)
+  { factor:'D', part:'Precision', text:"When it comes to rules, policies, and procedures...",
+    options:[
+      { score:0, text:"I treat them as guidelines — I'll work around them when the situation calls for it." },
+      { score:1, text:"I respect them but prioritize outcomes over process when it matters." },
+      { score:2, text:"I follow them carefully and only deviate when there's a clear, good reason." },
+      { score:3, text:"I follow them precisely — structure and accuracy are non-negotiable for me." }
+    ]},
+  { factor:'D', part:'Precision', text:"When making an important decision, I rely primarily on...",
+    options:[
+      { score:0, text:"Instinct and big-picture thinking — I trust my gut and move fast." },
+      { score:1, text:"Pattern recognition and past experience — informed intuition." },
+      { score:2, text:"A mix of analysis and instinct, with analysis usually winning close calls." },
+      { score:3, text:"Thorough data and careful analysis — I need real evidence before I commit." }
+    ]},
+  { factor:'D', part:'Precision', text:"My relationship with detail and accuracy is...",
+    options:[
+      { score:0, text:"Big-picture first — details come later, or someone else handles them." },
+      { score:1, text:"I see the big picture but know when details matter and step in." },
+      { score:2, text:"Detail-aware — I like to double-check anything important before moving." },
+      { score:3, text:"Detail-focused by nature — accuracy and completeness define my standard of quality." }
+    ]},
+  { factor:'D', part:'Precision', text:"Making a mistake at work feels...",
+    options:[
+      { score:0, text:"Like a natural part of moving fast — I note it and move on without carrying it." },
+      { score:1, text:"Uncomfortable but manageable — I adjust and do better next time." },
+      { score:2, text:"Motivating — mistakes make me more careful and rigorous next time." },
+      { score:3, text:"Deeply uncomfortable — I invest heavily in getting things right to avoid them." }
+    ]}
 ];
 
-// ══════════════════════════════════════════════════════════
-//  PROFILES
-// ══════════════════════════════════════════════════════════
+// 57 adjectives tagged with factor + direction
+const wordList = [
+  { word:'Assertive',      factor:'A', dir:'high' },
+  { word:'Competitive',    factor:'A', dir:'high' },
+  { word:'Decisive',       factor:'A', dir:'high' },
+  { word:'Ambitious',      factor:'A', dir:'high' },
+  { word:'Direct',         factor:'A', dir:'high' },
+  { word:'Bold',           factor:'A', dir:'high' },
+  { word:'Independent',    factor:'A', dir:'high' },
+  { word:'Commanding',     factor:'A', dir:'high' },
+  { word:'Supportive',     factor:'A', dir:'low'  },
+  { word:'Collaborative',  factor:'A', dir:'low'  },
+  { word:'Accommodating',  factor:'A', dir:'low'  },
+  { word:'Humble',         factor:'A', dir:'low'  },
+  { word:'Cooperative',    factor:'A', dir:'low'  },
+  { word:'Easygoing',      factor:'A', dir:'low'  },
+  { word:'Enthusiastic',   factor:'B', dir:'high' },
+  { word:'Sociable',       factor:'B', dir:'high' },
+  { word:'Outgoing',       factor:'B', dir:'high' },
+  { word:'Expressive',     factor:'B', dir:'high' },
+  { word:'Warm',           factor:'B', dir:'high' },
+  { word:'Persuasive',     factor:'B', dir:'high' },
+  { word:'Energetic',      factor:'B', dir:'high' },
+  { word:'Inspiring',      factor:'B', dir:'high' },
+  { word:'Reserved',       factor:'B', dir:'low'  },
+  { word:'Analytical',     factor:'B', dir:'low'  },
+  { word:'Private',        factor:'B', dir:'low'  },
+  { word:'Reflective',     factor:'B', dir:'low'  },
+  { word:'Composed',       factor:'B', dir:'low'  },
+  { word:'Focused',        factor:'B', dir:'low'  },
+  { word:'Thoughtful',     factor:'B', dir:'low'  },
+  { word:'Consistent',     factor:'C', dir:'high' },
+  { word:'Patient',        factor:'C', dir:'high' },
+  { word:'Loyal',          factor:'C', dir:'high' },
+  { word:'Methodical',     factor:'C', dir:'high' },
+  { word:'Reliable',       factor:'C', dir:'high' },
+  { word:'Steady',         factor:'C', dir:'high' },
+  { word:'Thorough',       factor:'C', dir:'high' },
+  { word:'Stable',         factor:'C', dir:'high' },
+  { word:'Urgent',         factor:'C', dir:'low'  },
+  { word:'Fast-paced',     factor:'C', dir:'low'  },
+  { word:'Adaptable',      factor:'C', dir:'low'  },
+  { word:'Dynamic',        factor:'C', dir:'low'  },
+  { word:'Versatile',      factor:'C', dir:'low'  },
+  { word:'Spontaneous',    factor:'C', dir:'low'  },
+  { word:'Precise',        factor:'D', dir:'high' },
+  { word:'Detail-oriented',factor:'D', dir:'high' },
+  { word:'Principled',     factor:'D', dir:'high' },
+  { word:'Systematic',     factor:'D', dir:'high' },
+  { word:'Rigorous',       factor:'D', dir:'high' },
+  { word:'Disciplined',    factor:'D', dir:'high' },
+  { word:'Structured',     factor:'D', dir:'high' },
+  { word:'Accurate',       factor:'D', dir:'high' },
+  { word:'Creative',       factor:'D', dir:'low'  },
+  { word:'Intuitive',      factor:'D', dir:'low'  },
+  { word:'Big-picture',    factor:'D', dir:'low'  },
+  { word:'Informal',       factor:'D', dir:'low'  },
+  { word:'Risk-taking',    factor:'D', dir:'low'  },
+  { word:'Unconventional', factor:'D', dir:'low'  },
+  { word:'Innovative',     factor:'D', dir:'low'  }
+];
+
+// Profiles
 const profiles = {
-  catalyst: {
-    name: "The Catalyst",
-    tagline: "You move people. You move deals. You move rooms.",
-    description: "You are naturally driven to influence outcomes AND to connect with people — a rare combination. You don't wait for permission to lead. You bring energy, initiative, and genuine warmth. You communicate with confidence and you read the room faster than most. In sales and leadership, people like you and respect you at the same time.",
-    strengths: [
-      "Builds rapport and trust almost instantly",
-      "Drives toward outcomes with energy and urgency",
-      "Inspires others — teams follow you because they want to",
-      "Handles rejection without carrying it",
-      "Naturally persuasive without feeling manipulative"
-    ],
-    watchouts: [
-      "Can over-promise to keep the energy high",
-      "May avoid admin, follow-up, and detail work",
-      "Pace can overwhelm others who move slower",
-      "Risk of talking more than listening"
-    ],
-    feelhighlight: "F",
-    feelangle: "Your biggest growth in F.E.E.L. is in 'Feel' — the paradox is that you're so good at influencing people that you sometimes skip the step of truly listening. Slowing down to feel what's actually happening in the room before you respond is where your next level lives.",
-    socialNeed: "Significance or Acceptance",
-    socialNeedDesc: "You need to feel that you matter and that you belong. Recognition fuels you — and understanding this in yourself helps you lead and sell with more self-awareness.",
-    role: "Sales + Leadership"
-  },
-
-  conductor: {
-    name: "The Conductor",
-    tagline: "You set the bar. You hold it. You raise it.",
-    description: "You are competitive, assertive, and wired for results. You bring energy and drive to everything you touch, and you naturally gravitate toward leadership roles. You're charming enough to rally people and hard-nosed enough to hold the standard. You think in numbers, goals, and outcomes — and you expect the same from your team.",
-    strengths: [
-      "Clear goal-setting and relentless follow-through",
-      "Commands respect naturally — people take you seriously",
-      "High energy that raises the performance level around you",
-      "Strong communicator — direct, clear, and confident",
-      "Thrives in competitive, high-stakes environments"
-    ],
-    watchouts: [
-      "Can prioritize numbers over the human behind them",
-      "Reps may feel like a metric rather than a person",
-      "Hard conversations come easy — but so does impatience",
-      "Culture can suffer if performance is the only language"
-    ],
-    feelhighlight: "F",
-    feelangle: "F.E.E.L. is the missing half of your toolkit. You have Lead. You have Elevate. What you're building now is Feel and Explore — the ability to sense what's really happening with a rep before the number tells you something's wrong.",
-    socialNeed: "Power",
-    socialNeedDesc: "You are driven by control and influence over outcomes. Understanding this means you manage best when you give your team autonomy — because you know what it feels like to need it.",
-    role: "Leadership"
-  },
-
-  bridge: {
-    name: "The Bridge",
-    tagline: "People trust you before they understand why.",
-    description: "You lead with warmth, not authority. People connect with you easily and naturally — clients buy from you because they like you, and colleagues follow you because being around you feels good. You are persistent without being pushy, and creative without being chaotic. You see a way through most situations because people tend to open doors for you.",
-    strengths: [
-      "Builds deep, lasting relationships with clients and teammates",
-      "Highly adaptable to what the other person needs",
-      "Creative in finding a path to yes",
-      "Creates a culture where people feel seen and valued",
-      "Natural storyteller and communicator"
-    ],
-    watchouts: [
-      "Can avoid difficult conversations to preserve the relationship",
-      "May give too much on price or terms to avoid tension",
-      "Needs structure to execute — vision without detail can stall",
-      "People-pleasing can undermine authority"
-    ],
-    feelhighlight: "L",
-    feelangle: "You're already strong in Feel and Explore — those come naturally. Your F.E.E.L. growth is in Lead: learning to take control of the close or the hard conversation without losing the warmth that makes you effective.",
-    socialNeed: "Acceptance",
-    socialNeedDesc: "You need to belong and be liked. That's also what makes you great with people. The awareness here is: don't sacrifice the truth to preserve the connection.",
-    role: "Sales"
-  },
-
-  pioneer: {
-    name: "The Pioneer",
-    tagline: "You see what others don't. Then you go get it.",
-    description: "You are ambitious, unconventional, and driven to build something. You see opportunities where others see risk, and you move fast when others hesitate. You are not wired for being managed — you're wired for being the one who sets the direction. You're often the top of the leaderboard and the first to leave if you feel constrained.",
-    strengths: [
-      "Hunter mentality — generates more new business than anyone",
-      "Visionary — sees the big picture before others",
-      "High ambition that sets the pace for the whole team",
-      "Adapts fast in chaotic or changing environments",
-      "Natural entrepreneur — sees possibilities everywhere"
-    ],
-    watchouts: [
-      "Impatient with process, admin, and anything that slows you down",
-      "Can move so fast that important details get missed",
-      "May skip CRM, follow-up, and documentation",
-      "Doesn't thrive under micromanagement — at all"
-    ],
-    feelhighlight: "F",
-    feelangle: "Your biggest F.E.E.L. unlock is Feel — slowing down enough to truly read the room. Your instinct is to move fast, but the deals and relationships you want most require presence, not pace. The Explore module will challenge you in the best way.",
-    socialNeed: "Power",
-    socialNeedDesc: "Control and autonomy drive you. You perform best when you set your own targets and own your own outcomes. The leader who understands this about you will get your best work.",
-    role: "Sales"
-  },
-
-  architect: {
-    name: "The Architect",
-    tagline: "You see three moves ahead. Then you build the system.",
-    description: "You are results-oriented, analytical, and highly independent. You move fast but you also think rigorously. You see patterns others miss and you anticipate problems before they arrive. In leadership, you build systems that consistently outperform. You are laser-focused on outcomes and you expect precision from yourself and others.",
-    strengths: [
-      "Builds systems that produce consistent, high-level results",
-      "Anticipates problems and solves them before they escalate",
-      "Highly independent — needs minimal direction",
-      "Sees the big picture and the detail simultaneously",
-      "Focused, efficient, and never scattered"
-    ],
-    watchouts: [
-      "Can come across as cold or distant to the team",
-      "May underinvest in culture, energy, and connection",
-      "Expects high standards from everyone — impatient with low performers",
-      "Team may feel they can't reach you"
-    ],
-    feelhighlight: "F",
-    feelangle: "F.E.E.L. appeals to your analytical mind when you see it as behavioral data — not 'soft skills.' Chase Hughes' Six-Minute X-Ray was literally built for people like you. Module 1: Feel is your most transformational module.",
-    socialNeed: "Intelligence",
-    socialNeedDesc: "Being seen as smart and capable drives you. You respect those who challenge your thinking, and you lose respect for those who can't back up what they say.",
-    role: "Leadership"
-  },
-
-  foundation: {
-    name: "The Foundation",
-    tagline: "You are the steady engine that makes everything run.",
-    description: "You are consistent, reliable, and deeply thorough. You don't need the spotlight — you need things to work. You bring precision, follow-through, and a level of stability that teams depend on. You're not the loudest voice in the room, but you're often the one who actually gets things done. People can count on you completely.",
-    strengths: [
-      "Exceptional follow-through and attention to detail",
-      "Creates stability and predictability that teams rely on",
-      "High quality — things done by you are done right",
-      "Deeply loyal and committed to the team",
-      "Patient — handles long, complex processes without losing focus"
-    ],
-    watchouts: [
-      "Change and ambiguity can be uncomfortable — prefers clear expectations",
-      "May resist moving fast without sufficient information",
-      "Conflict or confrontation can be draining",
-      "Can get lost in process and lose sight of the goal"
-    ],
-    feelhighlight: "L",
-    feelangle: "Your F.E.E.L. growth is in Lead — stepping into your authority with more confidence. You have the substance. The challenge is learning to project it, claim the room, and drive toward a close or decision without over-preparing.",
-    socialNeed: "Approval or Acceptance",
-    socialNeedDesc: "You thrive when you're recognized for your contribution and feel included in the team. Being taken for granted is one of the fastest ways to lose you.",
-    role: "Support / Operations"
-  },
-
-  keeper: {
-    name: "The Keeper",
-    tagline: "The team performs better because you're in it.",
-    description: "You bring people together. You are warm, consistent, and genuinely invested in the people around you. You build the kind of team culture where people stay, grow, and give their best. You care about how people feel as much as what gets done — and that's not a weakness, it's exactly what most teams are missing.",
-    strengths: [
-      "Creates genuine team cohesion and psychological safety",
-      "Highly empathetic — picks up on how people are doing",
-      "Patient and steady under pressure",
-      "Builds long-term relationships and loyalty",
-      "Natural culture-carrier in any team"
-    ],
-    watchouts: [
-      "May avoid difficult conversations to protect team harmony",
-      "Can struggle to assert direction under pressure",
-      "Hard to hold the performance line when you care about people",
-      "Energy can be drained by conflict or high-pressure environments"
-    ],
-    feelhighlight: "L",
-    feelangle: "You already live in Feel and Explore naturally. Your F.E.E.L. transformation is in Lead — the shift from being liked to being respected. Those two things can coexist, and Module 4 shows you how.",
-    socialNeed: "Acceptance",
-    socialNeedDesc: "Belonging and harmony are core to how you operate. Use this awareness to understand your team's needs — and to notice when you're avoiding necessary tension in service of keeping the peace.",
-    role: "Leadership / Team"
-  },
-
-  expert: {
-    name: "The Expert",
-    tagline: "You build on knowledge, not belief.",
-    description: "You are precise, rigorous, and deeply knowledgeable in your domain. You don't wing it — you prepare, analyze, and deliver with accuracy. In sales, you are the trusted expert who clients come back to because they know you'll never mislead them. In leadership, your team knows you've thought it through.",
-    strengths: [
-      "Deep subject matter expertise that builds trust",
-      "High precision and accuracy in everything you produce",
-      "Thorough preparation — rarely caught off guard",
-      "Principled — your word means something",
-      "Long-term thinker with a strong strategic foundation"
-    ],
-    watchouts: [
-      "Can over-analyse before acting — analysis paralysis is real",
-      "May come across as distant or overly formal in social situations",
-      "Closing and urgency can feel uncomfortable",
-      "Needs to learn to 'sell the vision' not just the facts"
-    ],
-    feelhighlight: "B",
-    feelangle: "Your F.E.E.L. growth starts in Explore — learning to use your depth of knowledge to ask better questions, not just give better answers. Then in Lead: trusting your expertise enough to guide the client to a decision with confidence.",
-    socialNeed: "Intelligence",
-    socialNeedDesc: "Being seen as competent and knowledgeable is core to your identity. You respond best to those who match your rigor — and you quietly dismiss those who don't do their homework.",
-    role: "Sales / Specialist"
-  }
+  catalyst:  { name:"The Catalyst",  tagline:"You move people. You move deals. You move rooms.", description:"You are naturally driven to influence outcomes AND to connect with people — a rare combination. You don't wait for permission to lead. You bring energy, initiative, and genuine warmth. In sales and leadership, people like you and respect you at the same time.", strengths:["Builds rapport and trust almost instantly","Drives toward outcomes with energy and urgency","Inspires others — teams follow you because they want to","Handles rejection without carrying it","Naturally persuasive without feeling manipulative"], watchouts:["Can over-promise to keep the energy high","May avoid admin, follow-up, and detail work","Pace can overwhelm others who move slower","Risk of talking more than listening"], feelhighlight:"F", feelangle:"Your biggest growth in F.E.E.L. is 'Feel' — the paradox is that you're so good at influencing people that you sometimes skip truly listening. Slowing down to feel what's actually happening in the room before you respond is where your next level lives.", socialNeed:"Significance or Acceptance", socialNeedDesc:"You need to feel that you matter and that you belong. Recognition fuels you — understanding this in yourself helps you lead and sell with more self-awareness.", role:"Sales + Leadership" },
+  conductor: { name:"The Conductor", tagline:"You set the bar. You hold it. You raise it.", description:"You are competitive, assertive, and wired for results. You bring energy and drive to everything you touch and naturally gravitate toward leadership. You think in numbers, goals, and outcomes — and expect the same from those around you.", strengths:["Clear goal-setting and relentless follow-through","Commands respect naturally — people take you seriously","High energy that raises performance around you","Strong communicator — direct, clear, and confident","Thrives in competitive, high-stakes environments"], watchouts:["Can prioritize numbers over the human behind them","Reps may feel like a metric rather than a person","Hard conversations come easy — but so does impatience","Culture can suffer if performance is the only language"], feelhighlight:"F", feelangle:"F.E.E.L. is the missing half of your toolkit. You have Lead. You have Elevate. What you're building now is Feel and Explore — the ability to sense what's really happening with a rep before the number tells you something's wrong.", socialNeed:"Power", socialNeedDesc:"You are driven by control and influence over outcomes. You manage best when you give your team autonomy — because you know exactly what it feels like to need it.", role:"Leadership" },
+  bridge:    { name:"The Bridge",    tagline:"People trust you before they understand why.", description:"You lead with warmth, not authority. Clients buy from you because they like you, and colleagues follow you because being around you feels good. You are persistent without being pushy, and creative without being chaotic.", strengths:["Builds deep, lasting relationships","Highly adaptable to what the other person needs","Creative in finding a path to yes","Creates a culture where people feel seen and valued","Natural storyteller and communicator"], watchouts:["Can avoid difficult conversations to preserve the relationship","May give too much on price or terms to avoid tension","Needs structure to execute — vision without detail can stall","People-pleasing can undermine authority"], feelhighlight:"L", feelangle:"You're already strong in Feel and Explore — those come naturally. Your F.E.E.L. growth is in Lead: taking control of the close or the hard conversation without losing the warmth that makes you effective.", socialNeed:"Acceptance", socialNeedDesc:"You need to belong and be liked. That's also what makes you great with people. The awareness: don't sacrifice the truth to preserve the connection.", role:"Sales" },
+  pioneer:   { name:"The Pioneer",   tagline:"You see what others don't. Then you go get it.", description:"You are ambitious, unconventional, and driven to build something. You see opportunities where others see risk, and you move fast when others hesitate. You are not wired for being managed — you're wired for setting the direction.", strengths:["Hunter mentality — generates more new business than anyone","Visionary — sees the big picture before others","High ambition that sets the pace for the whole team","Adapts fast in chaotic or changing environments","Natural entrepreneur — sees possibilities everywhere"], watchouts:["Impatient with process, admin, and anything that slows you down","Can move so fast that important details get missed","May skip CRM, follow-up, and documentation","Doesn't thrive under micromanagement — at all"], feelhighlight:"F", feelangle:"Your biggest F.E.E.L. unlock is Feel — slowing down enough to truly read the room. Your instinct is to move fast, but the deals and relationships you want most require presence, not pace.", socialNeed:"Power", socialNeedDesc:"Control and autonomy drive you. You perform best when you set your own targets and own your outcomes. The leader who understands this will get your best work.", role:"Sales" },
+  architect: { name:"The Architect", tagline:"You see three moves ahead. Then you build the system.", description:"You are results-oriented, analytical, and highly independent. You see patterns others miss and anticipate problems before they arrive. In leadership, you build systems that consistently outperform. Laser-focused on outcomes, you expect precision from yourself and others.", strengths:["Builds systems that produce consistent results","Anticipates problems before they escalate","Highly independent — needs minimal direction","Sees the big picture and the detail simultaneously","Focused, efficient, and never scattered"], watchouts:["Can come across as cold or distant","May underinvest in culture, energy, and connection","Impatient with low performers","Team may feel they can't reach you"], feelhighlight:"F", feelangle:"F.E.E.L. appeals to your analytical mind when you see it as behavioral data — not 'soft skills.' The Six-Minute X-Ray was built for people like you. Module 1: Feel is your most transformational module.", socialNeed:"Intelligence", socialNeedDesc:"Being seen as smart and capable drives you. You respect those who challenge your thinking and lose respect for those who can't back up what they say.", role:"Leadership" },
+  foundation:{ name:"The Foundation",tagline:"You are the steady engine that makes everything run.", description:"You are consistent, reliable, and deeply thorough. You don't need the spotlight — you need things to work. You bring precision, follow-through, and stability that teams depend on completely.", strengths:["Exceptional follow-through and attention to detail","Creates stability and predictability that teams rely on","High quality — things done by you are done right","Deeply loyal and committed to the team","Handles long, complex processes without losing focus"], watchouts:["Change and ambiguity can be uncomfortable","May resist moving fast without sufficient information","Conflict or confrontation can be draining","Can get lost in process and lose sight of the goal"], feelhighlight:"L", feelangle:"Your F.E.E.L. growth is in Lead — stepping into your authority with more confidence. You have the substance. The challenge is learning to project it, claim the room, and drive toward a decision without over-preparing.", socialNeed:"Approval or Acceptance", socialNeedDesc:"You thrive when recognized for your contribution and feel included in the team. Being taken for granted is one of the fastest ways to lose you.", role:"Operations / Support" },
+  keeper:    { name:"The Keeper",    tagline:"The team performs better because you're in it.", description:"You bring people together. You are warm, consistent, and genuinely invested in the people around you. You build the kind of team culture where people stay, grow, and give their best.", strengths:["Creates genuine team cohesion and psychological safety","Highly empathetic — picks up on how people are doing","Patient and steady under pressure","Builds long-term relationships and loyalty","Natural culture-carrier in any team"], watchouts:["May avoid difficult conversations to protect team harmony","Can struggle to assert direction under pressure","Hard to hold the performance line when you care about people","Energy can be drained by conflict or high-pressure environments"], feelhighlight:"L", feelangle:"You already live in Feel and Explore naturally. Your F.E.E.L. transformation is in Lead — the shift from being liked to being respected. Those two things can coexist, and Module 4 shows you how.", socialNeed:"Acceptance", socialNeedDesc:"Belonging and harmony are core to how you operate. Notice when you're avoiding necessary tension in service of keeping the peace.", role:"Leadership / Team" },
+  expert:    { name:"The Expert",    tagline:"You build on knowledge, not belief.", description:"You are precise, rigorous, and deeply knowledgeable. You don't wing it — you prepare, analyze, and deliver with accuracy. In sales, you are the trusted expert clients come back to because they know you'll never mislead them.", strengths:["Deep expertise that builds trust","High precision and accuracy in everything you produce","Thorough preparation — rarely caught off guard","Principled — your word means something","Long-term thinker with a strong strategic foundation"], watchouts:["Can over-analyse before acting — analysis paralysis is real","May come across as distant or overly formal","Closing and urgency can feel uncomfortable","Needs to learn to 'sell the vision' not just the facts"], feelhighlight:"E", feelangle:"Your F.E.E.L. growth starts in Explore — using your depth of knowledge to ask better questions, not just give better answers. Then in Lead: trusting your expertise enough to guide confidently toward a close.", socialNeed:"Intelligence", socialNeedDesc:"Being seen as competent and knowledgeable is core to your identity. You respond best to those who match your rigor.", role:"Sales / Specialist" }
 };
 
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════
 //  STATE
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════
 let currentQ = 0;
-let answers = {}; // { qIndex: 'high' | 'low' }
-let scores = { A: 0, B: 0, C: 0, D: 0 }; // count of HIGH answers per factor
+let qAnswers  = new Array(questions.length).fill(null);
+let ownTexts  = new Array(questions.length).fill('');
+let selectedWords = new Set();
 
-// ══════════════════════════════════════════════════════════
-//  SCREENS
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════
+//  UTILS
+// ════════════════════════════════════════
 function show(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
 }
 
+// ════════════════════════════════════════
+//  QUIZ
+// ════════════════════════════════════════
 function startQuiz() {
-  currentQ = 0;
-  answers = {};
-  scores = { A: 0, B: 0, C: 0, D: 0 };
+  currentQ  = 0;
+  qAnswers  = new Array(questions.length).fill(null);
+  ownTexts  = new Array(questions.length).fill('');
+  selectedWords = new Set();
   show('screen-quiz');
   renderQuestion();
 }
 
-function retake() {
-  startQuiz();
-}
-
-// ══════════════════════════════════════════════════════════
-//  RENDER QUESTION
-// ══════════════════════════════════════════════════════════
 function renderQuestion() {
-  const q = questions[currentQ];
-  const card = document.getElementById('question-card');
+  const q   = questions[currentQ];
   const pct = Math.round((currentQ / questions.length) * 100);
+  document.getElementById('q-progress-fill').style.width = pct + '%';
+  document.getElementById('q-progress-text').textContent = `Question ${currentQ + 1} of ${questions.length}`;
 
-  document.getElementById('progress-fill').style.width = pct + '%';
-  document.getElementById('progress-text').textContent = `Question ${currentQ + 1} of ${questions.length}`;
+  const card = document.getElementById('question-card');
+  card.classList.remove('fade-out');
 
-  // Shuffle options so "high" isn't always option A
-  const opts = Math.random() > 0.5 ? q.options : [...q.options].reverse();
+  const letters = ['A','B','C','D'];
+  const optionsHTML = q.options.map((opt, i) => `
+    <button class="q-option ${qAnswers[currentQ] === opt.score ? 'selected' : ''}"
+      onclick="selectOption(this, ${opt.score})">
+      <span class="option-letter">${letters[i]}</span>
+      ${opt.text}
+    </button>
+  `).join('');
+
+  const ownSel = qAnswers[currentQ] === 'own';
 
   card.innerHTML = `
-    <div class="q-number">Question ${currentQ + 1} · ${questions.length - currentQ - 1} remaining</div>
-    <div class="q-instruction">Choose the statement that describes you more naturally:</div>
+    <div class="q-meta">
+      <div class="q-number">Question ${currentQ + 1}</div>
+      <div class="q-part">· ${q.part}</div>
+    </div>
+    <div class="q-instruction">Choose the statement that describes you most naturally:</div>
     <div class="q-text">${q.text}</div>
     <div class="q-options">
-      <button class="q-option" onclick="selectOption(this, '${opts[0].high}')">
-        <span class="option-letter">A</span>
-        ${opts[0].text}
-      </button>
-      <button class="q-option" onclick="selectOption(this, '${opts[1].high}')">
-        <span class="option-letter">B</span>
-        ${opts[1].text}
+      ${optionsHTML}
+      <button class="q-option write-own ${ownSel ? 'selected' : ''}" onclick="selectOwn(this)">
+        <div class="write-own-row">
+          <span class="option-letter">E</span>
+          None of these fit perfectly — describe it in your own words:
+        </div>
+        <textarea class="write-own-input"
+          placeholder="How would you naturally respond to this?"
+          onclick="event.stopPropagation()"
+          oninput="ownTexts[currentQ]=this.value">${ownTexts[currentQ]}</textarea>
       </button>
     </div>
   `;
 
-  const btn = document.getElementById('btn-next');
-  btn.classList.remove('enabled');
-  btn.textContent = currentQ === questions.length - 1 ? 'See my profile →' : 'Next →';
+  document.getElementById('btn-back-q').style.visibility = currentQ === 0 ? 'hidden' : 'visible';
+  const nextBtn = document.getElementById('btn-next');
+  nextBtn.textContent = currentQ === questions.length - 1 ? 'Continue →' : 'Next →';
+  updateNextBtn();
 }
 
-function selectOption(el, isHigh) {
+function selectOption(el, score) {
   document.querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
   el.classList.add('selected');
-  answers[currentQ] = isHigh === 'true';
-  document.getElementById('btn-next').classList.add('enabled');
+  qAnswers[currentQ] = score;
+  updateNextBtn();
+}
+
+function selectOwn(el) {
+  document.querySelectorAll('.q-option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  qAnswers[currentQ] = 'own';
+  updateNextBtn();
+  setTimeout(() => el.querySelector('.write-own-input').focus(), 50);
+}
+
+function updateNextBtn() {
+  const btn = document.getElementById('btn-next');
+  qAnswers[currentQ] !== null ? btn.classList.add('enabled') : btn.classList.remove('enabled');
 }
 
 function nextQuestion() {
-  if (answers[currentQ] === undefined) return;
+  if (qAnswers[currentQ] === null) return;
+  const card = document.getElementById('question-card');
+  card.classList.add('fade-out');
+  setTimeout(() => {
+    if (currentQ < questions.length - 1) { currentQ++; renderQuestion(); }
+    else { show('screen-transition'); }
+  }, 200);
+}
 
-  // Score
-  const q = questions[currentQ];
-  if (answers[currentQ] === true) scores[q.factor]++;
+function prevQuestion() {
+  if (currentQ === 0) return;
+  const card = document.getElementById('question-card');
+  card.classList.add('fade-out');
+  setTimeout(() => { currentQ--; renderQuestion(); }, 200);
+}
 
-  if (currentQ < questions.length - 1) {
-    const card = document.getElementById('question-card');
-    card.classList.add('fade-out');
-    setTimeout(() => {
-      currentQ++;
-      renderQuestion();
-      card.classList.remove('fade-out');
-    }, 200);
+// ════════════════════════════════════════
+//  WORDS
+// ════════════════════════════════════════
+function initWords() {
+  selectedWords = new Set();
+  const shuffled = [...wordList].sort(() => Math.random() - 0.5);
+  const grid = document.getElementById('words-grid');
+  grid.innerHTML = shuffled.map(w =>
+    `<button class="word-chip" data-word="${w.word}" onclick="toggleWord(this,'${w.word}')">${w.word}</button>`
+  ).join('');
+  updateWordCounter();
+}
+
+function toggleWord(el, word) {
+  if (selectedWords.has(word)) {
+    selectedWords.delete(word);
+    el.classList.remove('selected');
   } else {
-    showResult();
+    if (selectedWords.size >= 15) return;
+    selectedWords.add(word);
+    el.classList.add('selected');
+  }
+  updateWordCounter();
+}
+
+function updateWordCounter() {
+  const n = selectedWords.size;
+  const rem = 15 - n;
+  document.getElementById('word-count').textContent = n;
+  const pct = (n / 15 * 100);
+  document.getElementById('counter-fill').style.width = pct + '%';
+  document.getElementById('w-progress-fill').style.width = pct + '%';
+  document.getElementById('counter-fill').className = 'counter-fill' + (n === 15 ? ' complete' : '');
+
+  if (n === 15) {
+    document.getElementById('counter-status').textContent = 'Perfect — ready to continue';
+    document.getElementById('words-hint').textContent = '✓ 15 words selected';
+    document.getElementById('btn-words-next').classList.add('enabled');
+    document.querySelectorAll('.word-chip:not(.selected)').forEach(c => c.classList.add('disabled'));
+  } else {
+    document.getElementById('counter-status').textContent = `Select ${rem} more`;
+    document.getElementById('words-hint').textContent = `Select ${rem} more word${rem !== 1 ? 's' : ''} to continue`;
+    document.getElementById('btn-words-next').classList.remove('enabled');
+    document.querySelectorAll('.word-chip.disabled').forEach(c => c.classList.remove('disabled'));
   }
 }
 
-// ══════════════════════════════════════════════════════════
-//  CALCULATE PROFILE
-// ══════════════════════════════════════════════════════════
-function getLevel(score) {
-  if (score >= 4) return 'high';
-  if (score >= 2) return 'mid';
-  return 'low';
+// ════════════════════════════════════════
+//  SCORING
+// ════════════════════════════════════════
+function calcScores() {
+  const qScore = { A:0, B:0, C:0, D:0 };
+  const qMax   = { A:0, B:0, C:0, D:0 };
+  questions.forEach((q, i) => {
+    const ans = qAnswers[i];
+    const val = (ans === 'own' || ans === null) ? 1.5 : ans;
+    qScore[q.factor] += val;
+    qMax[q.factor]   += 3;
+  });
+  const qNorm = {};
+  for (const f of ['A','B','C','D']) qNorm[f] = (qScore[f] / qMax[f]) * 100;
+
+  const wHigh = { A:0, B:0, C:0, D:0 };
+  const wLow  = { A:0, B:0, C:0, D:0 };
+  selectedWords.forEach(word => {
+    const entry = wordList.find(w => w.word === word);
+    if (!entry) return;
+    entry.dir === 'high' ? wHigh[entry.factor]++ : wLow[entry.factor]++;
+  });
+  const wNorm = {};
+  for (const f of ['A','B','C','D']) {
+    const net = wHigh[f] - wLow[f];
+    const total = wHigh[f] + wLow[f] || 1;
+    wNorm[f] = ((net / total) * 0.5 + 0.5) * 100;
+  }
+
+  const final = {};
+  for (const f of ['A','B','C','D']) final[f] = qNorm[f] * 0.65 + wNorm[f] * 0.35;
+  return final;
 }
 
-function getLevelLabel(score) {
-  if (score >= 4) return 'High';
-  if (score >= 2) return 'Medium';
-  return 'Low';
-}
+function getLevel(s) { return s >= 58 ? 'high' : s >= 38 ? 'mid' : 'low'; }
+function getLevelLabel(s) { return s >= 58 ? 'High' : s >= 38 ? 'Medium' : 'Low'; }
 
-function calculateProfile() {
-  const A = getLevel(scores.A);
-  const B = getLevel(scores.B);
-  const C = getLevel(scores.C);
-  const D = getLevel(scores.D);
-
-  // Catalyst: High A + High B + Low/Mid C
+function determineProfile(sc) {
+  const A = getLevel(sc.A), B = getLevel(sc.B), C = getLevel(sc.C), D = getLevel(sc.D);
   if (A === 'high' && B === 'high' && C !== 'high') return 'catalyst';
-  // Conductor: High A + High/Mid B + Low/Mid C
-  if (A === 'high' && (B === 'high' || B === 'mid') && C !== 'high') return 'conductor';
-  // Pioneer: High A + Low B + Low C
-  if (A === 'high' && B === 'low' && C === 'low' && D === 'low') return 'pioneer';
-  // Architect: High A + Low/Mid B
-  if (A === 'high' && B !== 'high') return 'architect';
-  // Bridge: Low A + High B + Low C
+  if (A === 'high' && B !== 'low'  && C !== 'high') return 'conductor';
+  if (A === 'high' && B === 'low'  && C === 'low' && D === 'low') return 'pioneer';
+  if (A === 'high' && B === 'low') return 'architect';
   if (A !== 'high' && B === 'high' && C !== 'high') return 'bridge';
-  // Keeper: Low A + High B + High C
   if (A !== 'high' && B === 'high' && C === 'high') return 'keeper';
-  // Foundation: Low A + Low B + High C + High D
-  if (A === 'low' && B === 'low' && C === 'high' && D === 'high') return 'foundation';
-  // Expert: Low/Mid A + Low B + High D
-  if (A !== 'high' && B === 'low' && D === 'high') return 'expert';
-  // Keeper as fallback for warm/steady
+  if (A === 'low'  && B === 'low'  && C === 'high' && D === 'high') return 'foundation';
+  if (A !== 'high' && B === 'low'  && D === 'high') return 'expert';
   if (B === 'high' || C === 'high') return 'keeper';
-  // Default
   return 'catalyst';
 }
 
-// ══════════════════════════════════════════════════════════
-//  SHOW RESULT
-// ══════════════════════════════════════════════════════════
+// ════════════════════════════════════════
+//  RESULT
+// ════════════════════════════════════════
 function showResult() {
-  const profileKey = calculateProfile();
-  const p = profiles[profileKey];
+  if (selectedWords.size < 15) return;
+  const scores     = calcScores();
+  const profileKey = determineProfile(scores);
+  const p          = profiles[profileKey];
 
-  const feelLetters = [
-    { letter: 'F', name: 'Feel', desc: 'Awareness — reading what\'s really happening in the room.' },
-    { letter: 'E', name: 'Explore', desc: 'Questions — understanding the dream before the problem.' },
-    { letter: 'E', name: 'Elevate', desc: 'Certainty — logical and emotional clarity before the close.' },
-    { letter: 'L', name: 'Lead', desc: 'Authority — guiding them to the decision they already want to make.' }
+  const fNames = { A:'Dominance', B:'Extraversion', C:'Patience', D:'Formality' };
+  const scoresHTML = ['A','B','C','D'].map(f => `
+    <div class="score-card">
+      <div class="score-factor">${fNames[f]}</div>
+      <div class="score-bar-wrap"><div class="score-bar-fill" style="width:0%" data-target="${Math.round(scores[f])}%"></div></div>
+      <div class="score-label">${getLevelLabel(scores[f])}</div>
+    </div>`).join('');
+
+  const feelData = [
+    { l:'F', name:'Feel',    desc:"Awareness — reading what's really happening in the room." },
+    { l:'E', name:'Explore', desc:"Questions — understanding the dream before the problem." },
+    { l:'E', name:'Elevate', desc:"Certainty — logical and emotional clarity before the close." },
+    { l:'L', name:'Lead',    desc:"Authority — guiding them to the decision they already want to make." }
   ];
+  const feelHTML = feelData.map(fl => `
+    <div class="feel-letter-card ${fl.l === p.feelhighlight ? 'highlight' : ''}">
+      <div class="feel-big">${fl.l}</div>
+      <div class="feel-name">${fl.name}</div>
+      <div class="feel-desc">${fl.l === p.feelhighlight ? '<strong style="color:#C8A96E">Your focus → </strong>' : ''}${fl.desc}</div>
+    </div>`).join('');
 
-  const factorNames = { A: 'Dominance', B: 'Extraversion', C: 'Patience', D: 'Formality' };
-  const factorOrder = ['A', 'B', 'C', 'D'];
-
-  const scoresHTML = factorOrder.map(f => {
-    const pct = Math.round((scores[f] / 5) * 100);
-    return `
-      <div class="score-card">
-        <div class="score-factor">${factorNames[f]}</div>
-        <div class="score-bar-wrap">
-          <div class="score-bar-fill" style="width:0%" data-target="${pct}%"></div>
-        </div>
-        <div class="score-label">${getLevelLabel(scores[f])}</div>
-      </div>
-    `;
-  }).join('');
-
-  const feelHTML = feelLetters.map(fl => `
-    <div class="feel-letter-card ${fl.letter === p.feelhighlight ? 'highlight' : ''}">
-      <div class="feel-letter">${fl.letter}</div>
-      <div class="feel-letter-name">${fl.name}</div>
-      <div class="feel-letter-desc">${fl.letter === p.feelhighlight ? `<strong style="color:#C8A96E">Your focus →</strong> ` : ''}${fl.desc}</div>
-    </div>
-  `).join('');
-
-  const strengthsHTML = p.strengths.map(s => `<li>${s}</li>`).join('');
-  const watchoutsHTML = p.watchouts.map(w => `<li>${w}</li>`).join('');
+  const wordsHTML   = [...selectedWords].map(w => `<span class="your-word-chip">${w}</span>`).join('');
+  const ownWritten  = ownTexts.filter(t => t && t.trim().length > 0);
 
   document.getElementById('result-body').innerHTML = `
     <div class="print-header">
@@ -940,70 +738,49 @@ function showResult() {
     <div class="result-label">Your Behavioral Profile</div>
     <div class="result-profile-name">${p.name}</div>
     <div class="result-tagline">${p.tagline}</div>
-
     <div class="result-scores">${scoresHTML}</div>
-
+    <div class="your-words-section">
+      <h3>Your words — how you describe yourself</h3>
+      <div class="your-words-chips">${wordsHTML}</div>
+      ${ownWritten.length > 0 ? `<p style="font-family:'Helvetica Neue',sans-serif;font-size:13px;color:var(--text-dim);margin-top:14px;font-style:italic;">"${ownWritten.join(' / ')}"</p>` : ''}
+    </div>
     <div class="social-need-badge">
-      <div>
+      <div class="need-left">
         <div class="need-label">Dominant Social Need</div>
         <div class="need-value">${p.socialNeed}</div>
       </div>
       <div class="need-desc">${p.socialNeedDesc}</div>
     </div>
-
     <div class="result-grid">
-      <div class="result-card">
-        <h3>What drives you</h3>
-        <p>${p.description}</p>
-      </div>
-      <div class="result-card">
-        <h3>Your natural strengths</h3>
-        <ul>${strengthsHTML}</ul>
-      </div>
-      <div class="result-card">
-        <h3>Where to watch out</h3>
-        <ul>${watchoutsHTML}</ul>
-      </div>
-      <div class="result-card">
-        <h3>Your F.E.E.L. growth edge</h3>
-        <p>${p.feelangle}</p>
-      </div>
+      <div class="result-card"><h3>What drives you</h3><p>${p.description}</p></div>
+      <div class="result-card"><h3>Your natural strengths</h3><ul>${p.strengths.map(s=>`<li>${s}</li>`).join('')}</ul></div>
+      <div class="result-card"><h3>Where to watch out</h3><ul>${p.watchouts.map(w=>`<li>${w}</li>`).join('')}</ul></div>
+      <div class="result-card"><h3>Your F.E.E.L. growth edge</h3><p>${p.feelangle}</p></div>
     </div>
-
     <div class="feel-map">
       <h3>Your F.E.E.L. Map — where the course hits hardest for you</h3>
       <div class="feel-letters">${feelHTML}</div>
     </div>
-
     <div class="result-footer">
-      <button class="btn-share" onclick="copyResult('${p.name}', '${p.tagline}')">Copy result</button>
-      <button class="btn-share" onclick="downloadProfile()">⬇ Download profile</button>
-      <button class="btn-course" onclick="window.location.href='programs.html'">Explore the course →</button>
-    </div>
-  `;
+      <button class="btn-secondary" onclick="copyResult('${p.name}','${p.tagline}')">Copy result</button>
+      <button class="btn-secondary" onclick="window.print()">⬇ Download profile</button>
+      <button class="btn-gold" onclick="window.location.href='programs.html'">Explore the course →</button>
+    </div>`;
 
   show('screen-result');
-
-  // Animate score bars
   setTimeout(() => {
-    document.querySelectorAll('.score-bar-fill').forEach(bar => {
-      bar.style.width = bar.dataset.target;
-    });
-  }, 100);
+    document.querySelectorAll('.score-bar-fill').forEach(bar => { bar.style.width = bar.dataset.target; });
+  }, 150);
 }
 
 function copyResult(name, tagline) {
   const text = `My FTR Behavioral Profile: ${name} — "${tagline}" | feeltheroom.dk/profile-test.html`;
   navigator.clipboard.writeText(text).then(() => {
-    const btn = document.querySelector('.btn-share');
+    const btn = document.querySelector('.btn-secondary');
     const orig = btn.textContent;
     btn.textContent = '✓ Copied';
     setTimeout(() => btn.textContent = orig, 2000);
   });
-}
-
-function downloadProfile() {
-  window.print();
 }
 </script>
 </body>
