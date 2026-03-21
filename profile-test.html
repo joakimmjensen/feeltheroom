@@ -113,6 +113,37 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 .align-val{font-size:16px;font-weight:700;color:var(--gold)}
 .print-btn{background:var(--surface2);border:1px solid var(--gold);color:var(--gold);padding:12px 28px;border-radius:8px;font-size:14px;cursor:pointer;letter-spacing:1px;margin-top:8px;transition:all .2s}
 .print-btn:hover{background:var(--gold);color:#0F0E0C}
+@media(max-width:600px){
+  .screen{padding:24px 16px}
+  h1{font-size:26px}
+  h2{font-size:19px}
+  .subtitle{font-size:14px}
+  .btn{padding:13px 20px;font-size:15px}
+  .btn-outline{margin-top:0}
+  .nav-row{gap:8px}
+  .nav-row .btn,.nav-row .btn-outline{flex:1;text-align:center;padding:13px 10px;font-size:14px}
+  .card{padding:20px 16px}
+  .q-text{font-size:17px;margin-bottom:20px}
+  .opt-btn{padding:13px 14px}
+  /* Spectrum */
+  .spectrum-chip{font-size:10px;padding:8px 2px}
+  /* Result */
+  #screen-result{padding:24px 16px 60px}
+  .profile-name{font-size:32px}
+  .profile-tagline{font-size:14px}
+  .profile-hero{margin-bottom:24px}
+  .two-col{grid-template-columns:1fr!important}
+  .two-col .info-card{border-right:none!important;border-bottom:1px solid var(--border)!important}
+  .two-col .info-card:last-child{border-bottom:none!important}
+  .feel-map{grid-template-columns:1fr 1fr}
+  .foundation-row{flex-wrap:wrap;gap:8px}
+  .pillar-dot{flex:0 0 calc(33.333% - 6px);min-width:0}
+  .mirror-result-grid{grid-template-columns:1fr}
+  .ft-num{font-size:32px}
+  .feel-btn{padding:9px 12px;font-size:13px}
+  .fbar-label{width:80px;font-size:11px}
+  .section-label{letter-spacing:2px}
+}
 @media print{
   body{background:#fff!important;color:#111!important}
   .screen{display:none!important}
