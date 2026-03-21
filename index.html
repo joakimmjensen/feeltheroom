@@ -145,65 +145,56 @@
           <button class="btn-secondary" onclick="document.getElementById('waitlist-email').focus()">Book a discovery call</button>
         </div>
       </div>
-      <!-- RIGHT: abstract graphic -->
+      <!-- RIGHT: compass graphic — Dobbelt Diamant -->
       <div style="display:flex; align-items:center; justify-content:center;">
-        <svg width="100%" viewBox="0 0 480 520" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;">
+        <svg width="100%" viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;">
           <defs>
             <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.15"/>
+              <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.1"/>
               <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
-            </radialGradient>
-            <radialGradient id="rg2" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
             </radialGradient>
           </defs>
 
           <!-- Background glow -->
-          <ellipse cx="240" cy="260" rx="200" ry="200" fill="url(#rg1)"/>
+          <circle cx="240" cy="240" r="220" fill="url(#rg1)"/>
 
-          <!-- Central figure — person silhouette abstracted as presence -->
-          <circle cx="240" cy="160" r="52" fill="none" stroke="#8B6F47" stroke-width="1.5" opacity="0.5"/>
-          <circle cx="240" cy="160" r="36" fill="#8B6F47" opacity="0.12"/>
-          <circle cx="240" cy="160" r="18" fill="#8B6F47" opacity="0.25"/>
+          <!-- Outer diamond -->
+          <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
 
-          <!-- Energy rings emanating outward -->
-          <circle cx="240" cy="160" r="72" fill="none" stroke="#8B6F47" stroke-width="0.8" stroke-dasharray="4 6" opacity="0.3"/>
-          <circle cx="240" cy="160" r="96" fill="none" stroke="#8B6F47" stroke-width="0.6" stroke-dasharray="3 8" opacity="0.2"/>
-          <circle cx="240" cy="160" r="124" fill="none" stroke="#8B6F47" stroke-width="0.5" stroke-dasharray="2 10" opacity="0.12"/>
+          <!-- Inner square (45° rotated diamond) -->
+          <rect x="143" y="143" width="194" height="194" fill="none" stroke="#C49A6A" stroke-width="0.6" opacity="0.22"/>
 
-          <!-- Team members — 5 people around -->
-          <!-- Person 1 top left -->
-          <circle cx="110" cy="100" r="22" fill="#8B6F47" opacity="0.10"/>
-          <circle cx="110" cy="100" r="13" fill="#8B6F47" opacity="0.20"/>
-          <line x1="128" y1="112" x2="210" y2="150" stroke="#8B6F47" stroke-width="0.8" opacity="0.25"/>
+          <!-- Inner circle -->
+          <circle cx="240" cy="240" r="112" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.38"/>
 
-          <!-- Person 2 top right -->
-          <circle cx="370" cy="100" r="22" fill="#8B6F47" opacity="0.10"/>
-          <circle cx="370" cy="100" r="13" fill="#8B6F47" opacity="0.20"/>
-          <line x1="352" y1="112" x2="270" y2="150" stroke="#8B6F47" stroke-width="0.8" opacity="0.25"/>
+          <!-- Cardinal connectors — diamond to circle -->
+          <line x1="240" y1="30"  x2="240" y2="128" stroke="#C49A6A" stroke-width="0.5" opacity="0.3"/>
+          <line x1="450" y1="240" x2="352" y2="240" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+          <line x1="240" y1="450" x2="240" y2="352" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+          <line x1="30"  y1="240" x2="128" y2="240" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
 
-          <!-- Person 3 left -->
-          <circle cx="68" cy="230" r="22" fill="#8B6F47" opacity="0.10"/>
-          <circle cx="68" cy="230" r="13" fill="#8B6F47" opacity="0.20"/>
-          <line x1="90" y1="228" x2="200" y2="180" stroke="#8B6F47" stroke-width="0.8" opacity="0.25"/>
+          <!-- Tick dots at diamond corners -->
+          <circle cx="240" cy="30"  r="3" fill="#C49A6A" opacity="0.6"/>
+          <circle cx="450" cy="240" r="3" fill="#C49A6A" opacity="0.35"/>
+          <circle cx="240" cy="450" r="3" fill="#C49A6A" opacity="0.35"/>
+          <circle cx="30"  cy="240" r="3" fill="#C49A6A" opacity="0.35"/>
 
-          <!-- Person 4 right -->
-          <circle cx="412" cy="230" r="22" fill="#8B6F47" opacity="0.10"/>
-          <circle cx="412" cy="230" r="13" fill="#8B6F47" opacity="0.20"/>
-          <line x1="390" y1="228" x2="280" y2="180" stroke="#8B6F47" stroke-width="0.8" opacity="0.25"/>
+          <!-- F — big and dominant at top -->
+          <text x="240" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#C49A6A" opacity="1">F</text>
+          <!-- E E L — smaller -->
+          <text x="468" y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">E</text>
+          <text x="240" y="474" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">E</text>
+          <text x="12"  y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">L</text>
 
-          <!-- Person 5 bottom -->
-          <circle cx="240" cy="330" r="22" fill="#8B6F47" opacity="0.10"/>
-          <circle cx="240" cy="330" r="13" fill="#8B6F47" opacity="0.20"/>
-          <line x1="240" y1="308" x2="240" y2="216" stroke="#8B6F47" stroke-width="0.8" opacity="0.25"/>
+          <!-- Tilted needle ~25° -->
+          <g transform="rotate(25, 240, 240)">
+            <polygon points="240,130 236.5,240 240,248 243.5,240" fill="#C49A6A" opacity="0.8"/>
+            <polygon points="240,350 236.5,240 240,248 243.5,240" fill="#8B6F47" opacity="0.28"/>
+          </g>
 
-          <!-- F.E.E.L. letters subtle -->
-          <text x="240" y="166" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="13" font-weight="600" fill="#8B6F47" opacity="0.6" letter-spacing="6">F.E.E.L.</text>
-
-          <!-- Bottom label -->
-          <text x="240" y="400" text-anchor="middle" font-family="-apple-system, sans-serif" font-size="11" fill="#8B6F47" opacity="0.4" letter-spacing="4">FEEL THE ROOM</text>
-          <line x1="140" y1="410" x2="340" y2="410" stroke="#8B6F47" stroke-width="0.5" opacity="0.2"/>
+          <!-- Center -->
+          <circle cx="240" cy="240" r="8" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.5"/>
+          <circle cx="240" cy="240" r="3.5" fill="#C49A6A" opacity="0.85"/>
         </svg>
       </div>
     </div>
