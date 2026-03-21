@@ -30,22 +30,12 @@
     a { color: var(--gold); text-decoration: none; }
 
     /* NAV */
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 20px 48px;
-      border-bottom: 1px solid var(--border);
-      background: var(--bg);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: var(--gold); text-decoration: none; font-family: Georgia, serif; }
-    .nav-right { display: flex; align-items: center; gap: 24px; }
-    .nav-links { display: flex; gap: 24px; font-size: 14px; }
-    .nav-links a { color: var(--muted); transition: color 0.15s; }
-    .nav-links a:hover { color: var(--text); }
+    nav { position:sticky; top:0; z-index:100; padding:0 48px; height:64px; display:flex; align-items:center; justify-content:space-between; border-bottom:0.5px solid var(--border); background:var(--bg); }
+    .nav-logo { font-size:15px; font-weight:700; letter-spacing:0.03em; color:var(--gold); text-decoration:none; font-family:Georgia,serif; }
+    .nav-links { display:flex; align-items:center; gap:32px; }
+    .nav-links a { font-size:14px; color:var(--muted); text-decoration:none; transition:color .2s; font-family:-apple-system,sans-serif; }
+    .nav-links a:hover { color:var(--text); }
+    .nav-links a.active { color:var(--gold); font-weight:600; }
     .btn-print {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -589,13 +579,14 @@
 
 <nav>
   <a href="../index.html" class="nav-logo">Feel the Room</a>
-  <div class="nav-right">
-    <div class="nav-links">
-      <a href="../programs.html">Programs</a>
-      <a href="index.html">Free Tools</a>
-    </div>
-    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  <div class="nav-links">
+    <a href="../programs.html">Programs</a>
+    <a href="../about.html">About</a>
+    <a href="../testimonials.html">Testimonials</a>
+    <a href="../profile-test.html" style="color:var(--gold);font-weight:600;">Aura Profile</a>
+    <a href="index.html" class="active">Free Tools</a>
   </div>
+  <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
 </nav>
 
 <div class="doc-header">
