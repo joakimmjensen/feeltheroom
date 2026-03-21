@@ -229,17 +229,15 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
     <h2>The Honest Mirror</h2>
     <p class="mirror-intro">The exercise is simple: we ask what your colleagues & friends see in you — and what you see yourself. Answer as you think they would answer, not as you hope.</p>
     <div class="card" style="text-align:left">
-      <div class="section-label" style="text-align:left">Name 3 colleagues / work relations</div>
+      <div class="section-label" style="text-align:left">Name 2 colleagues / work relations</div>
       <div class="name-inputs" id="colleague-names">
         <input class="name-input" placeholder="Colleague 1">
         <input class="name-input" placeholder="Colleague 2">
-        <input class="name-input" placeholder="Colleague 3">
       </div>
-      <div class="section-label" style="text-align:left;margin-top:24px">Name 3 friends / close relations</div>
+      <div class="section-label" style="text-align:left;margin-top:24px">Name 2 friends / close relations</div>
       <div class="name-inputs" id="friend-names">
         <input class="name-input" placeholder="Friend 1">
         <input class="name-input" placeholder="Friend 2">
-        <input class="name-input" placeholder="Friend 3">
       </div>
     </div>
     <div class="nav-row" style="margin-top:24px;max-width:520px">
@@ -259,6 +257,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
     <div style="width:100%">
       <div class="section-label">Choose up to 6 development areas</div>
       <div class="chip-grid" id="pro-word-grid" style="justify-content:flex-start"></div>
+    </div>
+    <div style="width:100%;margin-top:20px">
+      <div class="section-label">Or write it in your own words</div>
+      <textarea class="free-input" id="pro-free-text" rows="2" placeholder="What specific thing would they want you to work on?" oninput="onMirrorFreeText('pro')"></textarea>
     </div>
     <div style="width:100%;margin-top:24px">
       <div class="section-label">How does it feel to think about this?</div>
@@ -286,6 +288,10 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
     <div style="width:100%">
       <div class="section-label">Choose up to 6 development areas</div>
       <div class="chip-grid" id="per-word-grid" style="justify-content:flex-start"></div>
+    </div>
+    <div style="width:100%;margin-top:20px">
+      <div class="section-label">Or write it in your own words</div>
+      <textarea class="free-input" id="per-free-text" rows="2" placeholder="What specific thing would they want you to work on?" oninput="onMirrorFreeText('per')"></textarea>
     </div>
     <div style="width:100%;margin-top:24px">
       <div class="section-label">How does it feel to think about this?</div>
@@ -393,11 +399,13 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
         <div class="mirror-card">
           <h3>Professional · Colleagues</h3>
           <div class="mirror-word-list" id="r-pro-words"></div>
+          <p id="r-pro-free" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:8px"></p>
           <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-pro-feel" style="color:var(--gold)"></span></div>
         </div>
         <div class="mirror-card">
           <h3>Personal · Friends</h3>
           <div class="mirror-word-list" id="r-per-words"></div>
+          <p id="r-per-free" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:8px"></p>
           <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-per-feel" style="color:var(--gold)"></span></div>
         </div>
         <div class="mirror-card align-card">
@@ -411,7 +419,14 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
         </div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:32px">
+    <div class="card" style="margin-top:24px;border-color:rgba(200,169,110,0.5);text-align:center">
+      <div class="section-title">Your F.E.E.L Growth Path</div>
+      <p id="r-feel-headline" style="font-size:17px;color:var(--text);line-height:1.6;font-style:italic;margin-bottom:20px"></p>
+      <ul id="r-feel-points" style="text-align:left;list-style:none;padding:0;display:flex;flex-direction:column;gap:12px;margin-bottom:24px"></ul>
+      <p style="font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:24px">The F.E.E.L program is where you take this profile and turn it into real, visible behavioral change — in how you read situations, how you show up under pressure, and how you lead the people around you.</p>
+      <a href="programs.html" style="display:inline-block;background:var(--gold);color:#0F0E0C;padding:14px 36px;border-radius:8px;font-size:16px;font-weight:700;letter-spacing:1px;text-decoration:none;transition:all .2s" onmouseover="this.style.background='#E8C98E'" onmouseout="this.style.background='var(--gold)'">Explore the F.E.E.L program →</a>
+    </div>
+    <div style="text-align:center;margin-top:24px">
       <button class="print-btn" onclick="window.print()">⬇ Download as PDF</button>
       <br>
       <button class="btn btn-outline" style="margin-top:12px" onclick="restartTest()">Take the test again</button>
@@ -571,44 +586,44 @@ const scenarioQs = [
 
 const foundationQs = [
   {pillar:'sleep', icon:'😴', title:'Sleep',
-   text:'Sleep is your biological reset button. How is your sleep typically?',
+   text:'How would you describe your sleep most weeks?',
    opts:[
-     {txt:'7-9 hours every night, wake up rested.',score:3},
-     {txt:'About 6-7 hours — roughly ok.',score:2},
-     {txt:'Varies a lot, 5-6 hours on average.',score:1},
-     {txt:'Under 5 hours or very fragmented.',score:0}
+     {txt:'I wake up feeling genuinely rested — sleep works well for me.',score:3},
+     {txt:'It varies a bit, but most nights I get enough.',score:2},
+     {txt:'Inconsistent — some nights are fine, others less so.',score:1},
+     {txt:'Sleep has been a struggle — it rarely feels like enough right now.',score:0}
    ]},
   {pillar:'nutrition', icon:'🥗', title:'Nutrition',
-   text:'You can\'t give energy you don\'t have. What do you typically eat?',
+   text:'How do you relate to food and eating during a typical week?',
    opts:[
-     {txt:'Consciously and intentionally — primarily real food.',score:3},
-     {txt:'Okay — occasionally sloppy but generally healthy.',score:2},
-     {txt:'Very varied — convenience often wins.',score:1},
-     {txt:'Rarely prioritised — food is primarily fuel.',score:0}
+     {txt:'I eat intentionally and mostly nourishing food — it feels good.',score:3},
+     {txt:'Generally reasonable, though convenience wins sometimes.',score:2},
+     {txt:'Inconsistent — I know what works, but it doesn\'t always happen.',score:1},
+     {txt:'Food is mostly functional — I don\'t think about it much right now.',score:0}
    ]},
   {pillar:'movement', icon:'💪', title:'Movement',
-   text:'Movement isn\'t wellness — it\'s performance. How do you move?',
+   text:'How do you move your body in a typical week?',
    opts:[
-     {txt:'4+ times a week, intentional training.',score:3},
-     {txt:'2-3 times a week, mix of training and walking.',score:2},
-     {txt:'1-2 times or primarily everyday movement.',score:1},
-     {txt:'Rarely — it\'s hard to prioritise.',score:0}
+     {txt:'I train or move intentionally 4+ times a week — it\'s a consistent part of my life.',score:3},
+     {txt:'Regularly, 2-3 times a week — a mix of training and everyday activity.',score:2},
+     {txt:'Some movement — mostly in my day-to-day routines.',score:1},
+     {txt:'Movement hasn\'t been a priority lately — life has been full.',score:0}
    ]},
   {pillar:'hydration', icon:'💧', title:'Hydration',
-   text:'The brain is 75% water. Dehydration costs you cognitively. What do you drink?',
+   text:'How aware are you of your daily water intake?',
    opts:[
-     {txt:'Consciously — primarily water throughout the day.',score:3},
-     {txt:'Roughly ok — drink water but not actively.',score:2},
-     {txt:'Primarily coffee — rarely think about water.',score:1},
-     {txt:'Rarely water — primarily coffee and soft drinks.',score:0}
+     {txt:'Very — I drink water consistently throughout the day.',score:3},
+     {txt:'Reasonably — I drink water, just not actively.',score:2},
+     {txt:'Not very — coffee carries most of the load.',score:1},
+     {txt:'Not really — water is rarely on my radar right now.',score:0}
    ]},
   {pillar:'regulation', icon:'🧘', title:'Regulation',
-   text:'Emotional regulation is your ability to lead your inner world. What applies to you?',
+   text:'How do you typically manage stress and emotional pressure?',
    opts:[
-     {txt:'I have conscious practices — meditation, reflection or other regulation.',score:3},
-     {txt:'Sometimes — I have something that works but I\'m not consistent.',score:2},
-     {txt:'Primarily reactive — I regulate on demand.',score:1},
-     {txt:'I don\'t really have a practice here.',score:0}
+     {txt:'I have intentional practices that work — meditation, journaling, or similar.',score:3},
+     {txt:'I have things that help, though I\'m not always consistent with them.',score:2},
+     {txt:'I mostly handle it in the moment — I react and recover.',score:1},
+     {txt:'I tend to push through — this is an area I haven\'t built a practice around yet.',score:0}
    ]}
 ];
 
@@ -646,7 +661,8 @@ const profiles = {
     strengths:['Exceptional natural persuasiveness — people feel your conviction before you finish your sentence','Infectious energy that shifts the emotional state of a room','Builds trust and rapport quickly through high presence and genuine interest','Moves from insight to action faster than almost any other profile'],
     watchouts:['Enthusiasm can override others\' need to be heard — rapport must come before leading','Follows up on people but not always on commitments and details','Can use social momentum to bypass real resistance instead of addressing it','Needs stillness and silence to access depth — not just speed'],
     edge:'Your superpower is state transfer — you change how people feel simply by being in the room. Use it with intention. When you pair that with genuine curiosity and the discipline to slow down and listen, you become one of the most effective leaders a team can have. The Catalyst who learns to pause is the one people never forget.',
-    feel:{F:'You feel energy shifts before others notice them',E:'You move people through presence — not just words',E2:'You persuade through emotion, story, and social momentum',L:'You build loyalty fast — but must earn it over time through follow-through'}
+    feel:{F:'You feel energy shifts before others notice them',E:'You move people through presence — not just words',E2:'You persuade through emotion, story, and social momentum',L:'You build loyalty fast — but must earn it over time through follow-through'},
+    feelProgram:{headline:'You already move people. F.E.E.L teaches you to move them with intention.',points:['Read the emotional state of a room before you speak — not just while you\'re in it','Use silence and strategic pause as leadership tools, not gaps to fill','Build loyalty that survives the moments when your energy isn\'t in the room','Convert social momentum into lasting behavioral change in others']}
   },
   conductor:{
     name:'The Conductor',tagline:'You direct and drive — with authority and clarity',
@@ -655,7 +671,8 @@ const profiles = {
     strengths:['Clear, authoritative communication that creates certainty and direction in others','Strong at rapidly mobilising people around a shared goal','Strategic thinker who can hold both the big picture and the execution path','Delivers under pressure — and creates cultures of accountability around you'],
     watchouts:['Can confuse compliance with genuine alignment — people say yes before they feel it','Overrides resistance rather than sitting with what it is trying to tell you','Delegates tasks but struggles to truly delegate authority','The certainty that makes you effective can also close down creative input from your team'],
     edge:'You have one of the rarest combinations in leadership: charisma and structure. The leaders who change organisations don\'t just set direction — they create the conditions where people want to follow. Learn to distinguish between the room agreeing with you and the room being genuinely with you. That gap is where your next level lives.',
-    feel:{F:'You read power dynamics and room status instinctively',E:'You drive execution through clarity, structure, and accountability',E2:'You influence through authority, decisiveness, and confidence',L:'You build loyalty through results — and risk losing it through distance'}
+    feel:{F:'You read power dynamics and room status instinctively',E:'You drive execution through clarity, structure, and accountability',E2:'You influence through authority, decisiveness, and confidence',L:'You build loyalty through results — and risk losing it through distance'},
+    feelProgram:{headline:'You lead with authority. F.E.E.L teaches you to lead with genuine alignment.',points:['Tell the difference between a room that agrees and a room that\'s truly with you','Create conditions where people follow because they want to — not because you said so','Use emotional intelligence as a precision tool alongside your natural authority','Build trust that doesn\'t depend on your presence to hold']}
   },
   strategist:{
     name:'The Strategist',tagline:'You play the long game — and you win it',
@@ -664,7 +681,8 @@ const profiles = {
     strengths:['Exceptional capacity to hold long-term vision while actively managing short-term reality','Assertive without being reactive — creates both stability and direction simultaneously','Builds genuine authority through consistent follow-through over time — not just words','Resilient under sustained pressure — doesn\'t fracture when the plan gets tested'],
     watchouts:['Patience can tip into bottlenecking — others wait for your signal before feeling safe to move','Planning can become a buffer against the discomfort of starting with incomplete information','Can underestimate how much others need visible momentum to stay motivated during the build','Directness without emotional presence can land as coldness even when warmth is intended'],
     edge:'You are built for the work that actually matters — the kind that outlasts a single quarter and a single leader. The rarest thing in any organisation is someone who can both drive and wait. You have that. Now learn to show people what you\'re building while you\'re building it — because your vision lives only in your head until you put it in the room.',
-    feel:{F:'You read situations with depth and patience — sensing what others rush past',E:'You execute through planning, persistence, and structured precision',E2:'You influence through consistency, credibility, and long-term follow-through',L:'You build loyalty slowly — and when you do, it runs deeper than almost any other profile'}
+    feel:{F:'You read situations with depth and patience — sensing what others rush past',E:'You execute through planning, persistence, and structured precision',E2:'You influence through consistency, credibility, and long-term follow-through',L:'You build loyalty slowly — and when you do, it runs deeper than almost any other profile'},
+    feelProgram:{headline:'You build for the long game. F.E.E.L teaches you to bring people with you while you build.',points:['Show people your vision while you\'re building it — not only after it\'s done','Create visible momentum so others stay motivated during the build phase','Use emotional attunement as a strategic asset in your planning','Develop the language that translates your internal clarity into shared direction']}
   },
   bridge:{
     name:'The Bridge',tagline:'You connect people — and make the room feel safe',
@@ -673,7 +691,8 @@ const profiles = {
     strengths:['Builds trust and psychological safety faster than almost any other profile','Natural rapport — people feel genuinely met and understood when they talk to you','Reads emotional undercurrents with real-time accuracy and responds with appropriate care','Creates the relational conditions in which others consistently do their best work'],
     watchouts:['Avoids necessary conflict to protect the feeling in the room — harmony over honesty','Loses your own voice when others\' needs become loud enough','Can use warmth and connection as a way to deflect rather than engage with difficult truths','Needs to practise leading with a point of view — not just a listening ear'],
     edge:'Your ability to create connection is a strategic capability — not just a personality trait. The most effective leaders in human history were not the loudest or the most dominant. They were the ones people trusted. You have that. Now add direction. A Bridge that leads somewhere changes everything.',
-    feel:{F:'You feel what others feel — often before they have words for it',E:'You energise through warmth, inclusion, and genuine human presence',E2:'You influence through trust, rapport, and relational safety',L:'You are loyal to the end — and people feel it before you ever say it'}
+    feel:{F:'You feel what others feel — often before they have words for it',E:'You energise through warmth, inclusion, and genuine human presence',E2:'You influence through trust, rapport, and relational safety',L:'You are loyal to the end — and people feel it before you ever say it'},
+    feelProgram:{headline:'You connect everyone. F.E.E.L teaches you to lead from that connection.',points:['Hold your own perspective while genuinely holding space for others','Use your relational warmth for honest, direct conversation — not just harmony','Move a room forward without losing the safety that makes it possible','Transform your natural rapport into behavioral influence that goes beyond people liking you']}
   },
   pioneer:{
     name:'The Pioneer',tagline:'You see what isn\'t there yet — and go anyway',
@@ -682,7 +701,8 @@ const profiles = {
     strengths:['Sees possibilities and patterns that others genuinely cannot access from where they stand','Moves fast and takes calculated risks without needing consensus to begin','Brings creative disruption and original thinking to environments that have stopped questioning themselves','Self-directed and does not require external validation or permission to act'],
     watchouts:['Underestimates how much relational capital is required to actually move a vision forward','Can isolate when challenged — retreating into the idea rather than engaging with the person','Operational follow-through is often where the vision quietly breaks down','The gap between your internal clarity and your external communication can be vast and costly'],
     edge:'The world is built by people like you — but only if you learn the one skill that doesn\'t come naturally: bringing people with you. A vision that lives only in your head stays there. Find the people who can translate and operationalise your thinking, and protect those relationships like they are the most valuable asset you have. Because they are.',
-    feel:{F:'You sense where the world is going before others have caught up',E:'You execute through vision, autonomy, and sheer force of conviction',E2:'You influence through ideas, originality, and the courage to say what others won\'t',L:'Your loyalty is selective and runs very deep — earned, never assumed'}
+    feel:{F:'You sense where the world is going before others have caught up',E:'You execute through vision, autonomy, and sheer force of conviction',E2:'You influence through ideas, originality, and the courage to say what others won\'t',L:'Your loyalty is selective and runs very deep — earned, never assumed'},
+    feelProgram:{headline:'You see what others can\'t yet. F.E.E.L teaches you to bring them there.',points:['Build the relational infrastructure your vision needs to survive contact with reality','Translate your internal clarity into language that creates movement in others','Use social intelligence to protect and accelerate your ideas','Develop the patience to let people arrive at your insights — rather than being told them']}
   },
   architect:{
     name:'The Architect',tagline:'You design what others build on',
@@ -691,7 +711,8 @@ const profiles = {
     strengths:['Exceptional ability to design systems, processes, and strategies that hold under sustained pressure','Sees structural flaws and second-order consequences that others walk straight past','Applies consistently high standards that elevate the quality of everyone working around you','Delivers with rigour and can be held fully accountable for what you produce'],
     watchouts:['Analysis can become a sophisticated way of postponing the discomfort of imperfect action','Communicates insights in a register that loses people who don\'t share your mental model','Can come across as cold or dismissive when operating from pure logic under pressure','Struggles in environments where the rules change faster than your models can update'],
     edge:'You are the person who builds things that last. That is genuinely rare. The next level for you is not deeper analysis — it\'s translation. Learn to convert your internal model into a language that lands for people who think kinesthetically and emotionally. Your thinking has the power to change rooms. Your impact is limited only by your reach.',
-    feel:{F:'You read complexity and structure where others experience only chaos',E:'You execute through precision, rigorous planning, and intellectual discipline',E2:'You influence through expertise, logical credibility, and demonstrated competence',L:'You are loyal to the work first — and to the people who take it as seriously as you do'}
+    feel:{F:'You read complexity and structure where others experience only chaos',E:'You execute through precision, rigorous planning, and intellectual discipline',E2:'You influence through expertise, logical credibility, and demonstrated competence',L:'You are loyal to the work first — and to the people who take it as seriously as you do'},
+    feelProgram:{headline:'You build what lasts. F.E.E.L teaches you to make it land.',points:['Convert deep expertise into language that creates action — not just comprehension','Use emotional attunement to deliver hard truths with precision and care','Develop the interpersonal agility that makes your structural thinking usable by others','Build trust not through logic alone but through presence that makes people feel safe to act']}
   },
   foundation:{
     name:'The Foundation',tagline:'You are what holds everything else together',
@@ -700,7 +721,8 @@ const profiles = {
     strengths:['Exceptional reliability — when you say it will be done, it will be done, on time and to standard','Deep loyalty that creates genuine safety and continuity for everyone around you','Holds processes, commitments, and systems with a precision that others cannot sustain','Provides the human stability that high-performing teams require to sustain output through difficulty'],
     watchouts:['Resists necessary change not because the change is wrong — but because change itself is threatening','Absorbs others\' stress without naming or addressing your own needs','Your contributions are often invisible until they stop — you must learn to advocate for yourself','Loyalty can become conflict-avoidance in disguise — staying quiet to keep the peace'],
     edge:'Every high-performance team has a Foundation. Most leaders don\'t realise it until they lose one. You have a rare capacity for sustained, high-quality output under pressure without needing recognition for every step. Now add one thing: visibility. Not performance — presence. Let people see what you\'re building while you\'re building it. The Foundation that speaks changes what gets built.',
-    feel:{F:'You sense when the system is off — often long before it breaks',E:'You execute through consistency, care, and methodical follow-through over time',E2:'You influence through reliability, process mastery, and demonstrated trustworthiness',L:'Your loyalty is total and unconditional — the rarest and most valuable kind there is'}
+    feel:{F:'You sense when the system is off — often long before it breaks',E:'You execute through consistency, care, and methodical follow-through over time',E2:'You influence through reliability, process mastery, and demonstrated trustworthiness',L:'Your loyalty is total and unconditional — the rarest and most valuable kind there is'},
+    feelProgram:{headline:'You hold everything together. F.E.E.L teaches you to be seen while you do it.',points:['Make your contributions visible without it feeling like performance','Develop the language to advocate for yourself with the same care you give to others','Use your stability as a conscious leadership asset — not just a background force','Build the confidence to deliver difficult truths while keeping the safety intact']}
   },
   keeper:{
     name:'The Keeper',tagline:'You hold the human centre of every room you\'re in',
@@ -709,7 +731,8 @@ const profiles = {
     strengths:['Reads emotional states in real-time with extraordinary accuracy and without effort','Creates genuine psychological safety — not just surface harmony, but the real kind','Sustains team cohesion through disruption, pressure, and sustained periods of difficulty','Loyal, patient, and present in a way that is deeply humanising and consistently underestimated'],
     watchouts:['Prioritises how people feel over what they actually need to hear — care without candour','Carries others\' emotional weight as your own — leading to slow, invisible exhaustion','The hard conversation gets delayed until it has become a crisis','Needs to develop and practise a clear point of view — holding space is not the same as leading'],
     edge:'The rarest and most needed leadership skill right now is the ability to feel the room and respond to what\'s actually there — not what people are performing. You have that. Now combine it with the willingness to name what you feel and say what needs to be said. The Keeper who speaks becomes the leader people never forget.',
-    feel:{F:'You feel the room — its tension, its energy, its unspoken truth — before anyone else does',E:'You energise through care, presence, and genuine human connection',E2:'You influence through empathy, deep listening, and emotional attunement',L:'Your loyalty is unconditional — and people feel it before you ever say a word'}
+    feel:{F:'You feel the room — its tension, its energy, its unspoken truth — before anyone else does',E:'You energise through care, presence, and genuine human connection',E2:'You influence through empathy, deep listening, and emotional attunement',L:'Your loyalty is unconditional — and people feel it before you ever say a word'},
+    feelProgram:{headline:'You feel everything. F.E.E.L teaches you to speak what you feel.',points:['Name what you sense in the room without softening it until it disappears','Use your emotional intelligence to lead conversations — not just hold space in them','Develop the boundary between feeling others\' experience and losing your own','Build the courage to say the hard thing because you care — not despite the fact that you do']}
   },
   expert:{
     name:'The Expert',tagline:'You know the territory better than anyone — and you deliver',
@@ -718,7 +741,8 @@ const profiles = {
     strengths:['Depth of expertise that is genuinely rare and very difficult for others to replicate','Extraordinarily high standards that quietly elevate the quality of any team\'s output','Precision in communication when the stakes are high — people trust your assessments completely','Methodical and structured — doesn\'t cut corners under pressure, even when others do'],
     watchouts:['Expertise can become a sophisticated reason to stay within your lane and avoid the messiness of broader influence','Detail focus can obscure the strategic picture — or make others feel overwhelmed before they can act','Can come across as withholding or emotionally unavailable when you are actually just processing internally','Needs to practise translating complex knowledge into language that creates movement, not just comprehension'],
     edge:'Your expertise is not your ceiling — it is your foundation. The most influential experts in any field are not the ones who know the most. They are the ones who can make the complex feel clear to someone who needs to act on it. Build that skill and you stop being a resource people consult and start being a voice people follow.',
-    feel:{F:'You read situations through data, verified patterns, and precise domain knowledge',E:'You execute through thoroughness, precision, and complete mastery of your domain',E2:'You influence through credibility, accuracy, and the trust that comes from always being right',L:'Your loyalty is to quality first — and to the people who take it as seriously as you do'}
+    feel:{F:'You read situations through data, verified patterns, and precise domain knowledge',E:'You execute through thoroughness, precision, and complete mastery of your domain',E2:'You influence through credibility, accuracy, and the trust that comes from always being right',L:'Your loyalty is to quality first — and to the people who take it as seriously as you do'},
+    feelProgram:{headline:'You know the territory. F.E.E.L teaches you to be the voice people follow into it.',points:['Translate complex knowledge into language that creates movement in people who need to act','Develop the interpersonal presence that makes your expertise influence rather than just inform','Use your precision and rigour as assets in relationship — not barriers to connection','Build the kind of credibility that goes beyond what you know into who you are as a communicator']}
   }
 };
 
@@ -744,10 +768,10 @@ let S = {
   scores:{A:0,B:0,C:0,D:0},
   selWords:Array(15).fill(null),
   fScores:[],
-  colleagueNames:['','',''],
-  friendNames:['','',''],
-  proWords:[], proFeel:'',
-  perWords:[], perFeel:'',
+  colleagueNames:['',''],
+  friendNames:['',''],
+  proWords:[], proFeel:'', proFreeText:'',
+  perWords:[], perFeel:'', perFreeText:'',
   selfAlign:'', avoidance:''
 };
 
@@ -850,8 +874,15 @@ function prevQ(){
 function backFromWords(){S.mode='scenario';S.qIdx=19;show('screen-quiz');renderQ();}
 function backFromMirrorSetup(){S.mode='foundation';S.qIdx=4;show('screen-quiz');renderQ();}
 function backFromMirrorColleagues(){show('screen-mirror-setup');}
-function backFromMirrorFriends(){renderMirrorGrid('pro-word-grid',proWords,'pro');checkMirrorNext('pro');show('screen-mirror-colleagues');}
-function backFromMirrorSelf(){renderMirrorGrid('per-word-grid',perWords,'per');checkMirrorNext('per');show('screen-mirror-friends');}
+function backFromMirrorFriends(){
+  S.perFreeText=document.getElementById('per-free-text')?document.getElementById('per-free-text').value:S.perFreeText;
+  renderMirrorGrid('pro-word-grid',proWords,'pro');checkMirrorNext('pro');show('screen-mirror-colleagues');
+  setTimeout(()=>{const el=document.getElementById('pro-free-text');if(el)el.value=S.proFreeText;},0);
+}
+function backFromMirrorSelf(){
+  renderMirrorGrid('per-word-grid',perWords,'per');checkMirrorNext('per');show('screen-mirror-friends');
+  setTimeout(()=>{const el=document.getElementById('per-free-text');if(el)el.value=S.perFreeText;},0);
+}
 
 function calcScenarioScores(){
   S.scores={A:0,B:0,C:0,D:0};
@@ -936,7 +967,10 @@ function goToMirrorFriends(){
   show('screen-mirror-friends');
 }
 
-function goToMirrorSelf(){show('screen-mirror-self');}
+function goToMirrorSelf(){
+  S.proFreeText=document.getElementById('pro-free-text')?document.getElementById('pro-free-text').value:S.proFreeText;
+  show('screen-mirror-self');
+}
 
 function renderMirrorGrid(containerId,words,prefix){
   const grid=document.getElementById(containerId);
@@ -964,8 +998,16 @@ function toggleMirrorWord(w,chip,prefix,containerId,arr){
 
 function checkMirrorNext(prefix){
   const arr=prefix==='pro'?S.proWords:S.perWords;
+  const free=prefix==='pro'?S.proFreeText:S.perFreeText;
   const feel=prefix==='pro'?S.proFeel:S.perFeel;
-  document.getElementById(prefix==='pro'?'btn-col-next':'btn-fri-next').disabled=!(arr.length>0&&feel);
+  document.getElementById(prefix==='pro'?'btn-col-next':'btn-fri-next').disabled=!((arr.length>0||free.trim())&&feel);
+}
+
+function onMirrorFreeText(prefix){
+  if(prefix==='pro'){S.proFreeText=document.getElementById('pro-free-text').value;}
+  else{S.perFreeText=document.getElementById('per-free-text').value;}
+  checkMirrorNext(prefix);
+  saveState();
 }
 
 function selFeel(prefix,val){
@@ -1052,13 +1094,20 @@ function showResult(){
 
   // Mirror
   document.getElementById('r-pro-words').innerHTML=S.proWords.map(w=>`<div class="mirror-word">${w}</div>`).join('');
+  document.getElementById('r-pro-free').textContent=S.proFreeText||'';
   document.getElementById('r-pro-feel').textContent=feelLabels[S.proFeel]||'—';
   document.getElementById('r-per-words').innerHTML=S.perWords.map(w=>`<div class="mirror-word">${w}</div>`).join('');
+  document.getElementById('r-per-free').textContent=S.perFreeText||'';
   document.getElementById('r-per-feel').textContent=feelLabels[S.perFeel]||'—';
   const al=alignMap[S.selfAlign]||{icon:'—',val:'—'};
   document.getElementById('r-align-icon').textContent=al.icon;
   document.getElementById('r-align-val').textContent=al.val;
   document.getElementById('r-avoidance').textContent=S.avoidance||'Nothing written';
+
+  // F.E.E.L growth path
+  const fp=p.feelProgram;
+  document.getElementById('r-feel-headline').textContent=fp.headline;
+  document.getElementById('r-feel-points').innerHTML=fp.points.map(pt=>`<li style="display:flex;gap:12px;align-items:flex-start"><span style="color:var(--gold);font-size:18px;line-height:1.4">→</span><span style="font-size:14px;color:var(--muted);line-height:1.7">${pt}</span></li>`).join('');
 
   show('screen-result');
 }
@@ -1068,8 +1117,8 @@ function restartTest(){
   S={curScreen:'screen-intro',mode:'scenario',qIdx:0,answers:Array(20).fill(null),freeTexts:Array(20).fill(''),
     foundationAnswers:Array(5).fill(null),foundationFreeTexts:Array(5).fill(''),
     scores:{A:0,B:0,C:0,D:0},selWords:Array(15).fill(null),fScores:[],
-    colleagueNames:['','',''],friendNames:['','',''],
-    proWords:[],proFeel:'',perWords:[],perFeel:'',selfAlign:'',avoidance:''};
+    colleagueNames:['',''],friendNames:['',''],
+    proWords:[],proFeel:'',proFreeText:'',perWords:[],perFeel:'',perFreeText:'',selfAlign:'',avoidance:''};
   show('screen-intro');
 }
 
@@ -1093,12 +1142,14 @@ function restartTest(){
     renderMirrorGrid('pro-word-grid',proWords,'pro');
     const names=S.colleagueNames?S.colleagueNames.filter(Boolean):[];
     document.getElementById('col-names-display').textContent=names.length?names.join(', '):'your colleagues';
+    if(S.proFreeText){const el=document.getElementById('pro-free-text');if(el)el.value=S.proFreeText;}
     checkMirrorNext('pro');
   }
   else if(sc==='screen-mirror-friends'){
     renderMirrorGrid('per-word-grid',perWords,'per');
     const names=S.friendNames?S.friendNames.filter(Boolean):[];
     document.getElementById('fri-names-display').textContent=names.length?names.join(', '):'your friends';
+    if(S.perFreeText){const el=document.getElementById('per-free-text');if(el)el.value=S.perFreeText;}
     checkMirrorNext('per');
   }
   else if(sc==='screen-mirror-self'){
