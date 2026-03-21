@@ -680,6 +680,15 @@ const profiles = {
     watchouts:['Can get caught in details at the expense of the big picture','Can struggle to scale influence beyond your own domain','Can come across as reserved socially'],
     edge:'Your expertise is your brand. Build the ability to communicate complexity simply and you go from being a resource to a real authority.',
     feel:{F:'Facts & precision',E:'Execution in your domain',E2:'Expertise & credibility',L:'Long-term capability building'}
+  },
+  strategist:{
+    name:'The Strategist',tagline:'You drive results — with patience as your sharpest weapon',
+    social:'Mastery & Impact — you\'re driven by achieving ambitious goals through deliberate, sustained effort. You don\'t need to be fast. You need to be right.',
+    desc:'Strategist profiles combine high dominance with high patience — a rare and powerful combination. You pursue results with the same relentlessness as a driver, but with the composure and long-term thinking of someone who plays the long game. You don\'t rush. You build. And when you move, people notice.',
+    strengths:['Combines urgency and composure under pressure','Long-term thinker who still executes decisively','Builds trust through consistency and follow-through','Highly resilient — setbacks don\'t rattle you'],
+    watchouts:['Can be perceived as slow when the situation requires speed','May hold back others who work faster or more impulsively','Can be so focused on the long game that short-term wins go uncelebrated'],
+    edge:'Most leaders are either fast or patient. You\'re both — and that\'s rare. Use your composure to be the calm in the storm. Use your drive to make sure the storm still moves forward.',
+    feel:{F:'Steadiness under pressure',E:'Endurance & sustained execution',E2:'Strategic clarity',L:'Long-term loyalty & commitment'}
   }
 };
 
@@ -915,6 +924,7 @@ function lvl(s,mx){const p=s/mx;return p>=0.67?'high':p>=0.33?'mid':'low';}
 
 function getProfile(){
   const A=lvl(S.scores.A,15),B=lvl(S.scores.B,15),C=lvl(S.scores.C,15),D=lvl(S.scores.D,15);
+  if(A==='high'&&C==='high') return 'strategist';
   if(A==='high'&&B==='high') return 'catalyst';
   if(A==='high'&&B==='mid') return 'conductor';
   if(A==='high'&&B==='low'&&D==='low') return 'pioneer';
