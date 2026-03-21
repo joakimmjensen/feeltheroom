@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Integration Map — FTR</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0F0E0C; color: #E8E0D4; font-family: 'Georgia', serif; min-height: 100vh; }
+
+    .topbar {
+      background: #1A1915; border-bottom: 1px solid #2A2820;
+      padding: 14px 32px; display: flex; align-items: center; justify-content: space-between;
+    }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .back-link { color: #8B8070; text-decoration: none; font-family: 'Helvetica Neue', sans-serif; font-size: 13px; }
+    .back-link:hover { color: #C8A96E; }
+    .separator { color: #3A3830; }
+    .page-title { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #C8A96E; letter-spacing: 0.08em; text-transform: uppercase; }
+    .badge { background: #1C2B1A; color: #6DBF67; font-family: 'Helvetica Neue', sans-serif; font-size: 11px; padding: 3px 10px; border-radius: 20px; }
+
+    .hero { padding: 56px 32px 32px; max-width: 1100px; margin: 0 auto; }
+    .hero-label { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #C8A96E; margin-bottom: 16px; }
+    .hero h1 { font-size: 38px; font-weight: 400; color: #F0E8D8; line-height: 1.15; margin-bottom: 14px; }
+    .hero h1 span { color: #C8A96E; }
+    .hero-sub { font-family: 'Helvetica Neue', sans-serif; font-size: 15px; color: #8B8070; line-height: 1.6; max-width: 680px; }
+
+    /* ── THE PRINCIPLE ── */
+    .principle { max-width: 1100px; margin: 0 auto 48px; padding: 0 32px; }
+    .principle-row {
+      display: grid; grid-template-columns: 1fr 40px 1fr 40px 1fr;
+      align-items: center; gap: 0;
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 12px; overflow: hidden;
+    }
+    .principle-col {
+      padding: 28px 24px; text-align: center;
+    }
+    .principle-col:nth-child(1) { border-right: 1px solid #2A2820; }
+    .principle-col:nth-child(5) { border-left: 1px solid #2A2820; }
+    .principle-arrow {
+      text-align: center; font-size: 20px; color: #C8A96E; opacity: 0.5;
+    }
+    .principle-tool {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.12em; text-transform: uppercase; color: #C8A96E; margin-bottom: 10px;
+    }
+    .principle-col h3 { font-size: 20px; color: #F0E8D8; margin-bottom: 8px; }
+    .principle-col p { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #7A7060; line-height: 1.6; }
+    .principle-col .example { margin-top: 12px; font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #5A5040; font-style: italic; }
+
+    /* ── SECTION ── */
+    .section { max-width: 1100px; margin: 0 auto 48px; padding: 0 32px; }
+    .section-header { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid #2A2820; }
+    .section-header h2 { font-size: 22px; font-weight: 400; color: #F0E8D8; }
+    .section-tag { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: #8B6F47; background: #1C1A17; border: 1px solid #3A3020; padding: 3px 10px; border-radius: 20px; }
+
+    /* ── MODULE INTEGRATION CARDS ── */
+    .module-stack { display: flex; flex-direction: column; gap: 16px; }
+    .module-card {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 12px; overflow: hidden;
+    }
+    .module-header {
+      display: grid; grid-template-columns: 120px 1fr;
+      border-bottom: 1px solid #222018;
+    }
+    .module-label {
+      background: #141210; padding: 20px 20px;
+      display: flex; flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; border-right: 1px solid #222018;
+    }
+    .module-num { font-size: 32px; font-weight: 700; color: #C8A96E; opacity: 0.3; line-height: 1; }
+    .module-name { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #C8A96E; letter-spacing: 0.08em; text-transform: uppercase; margin-top: 4px; }
+    .module-feel { font-family: 'Helvetica Neue', sans-serif; font-size: 10px; color: #5A5040; margin-top: 4px; }
+    .module-title-area { padding: 20px 24px; }
+    .module-title-area h3 { font-size: 18px; color: #F0E8D8; margin-bottom: 6px; }
+    .module-title-area p { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #7A7060; line-height: 1.5; }
+
+    .module-integrations {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    }
+    .integration-block {
+      padding: 20px 24px;
+    }
+    .integration-block:first-child { border-right: 1px solid #222018; }
+    .integration-block h4 {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+    }
+    .tag-ch { color: #C8A96E; }
+    .tag-pi { color: #4A90D9; }
+    .tag-none { color: #5A5040; }
+
+    .integration-item {
+      display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start;
+    }
+    .integration-item:last-child { margin-bottom: 0; }
+    .int-icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; flex-shrink: 0;
+    }
+    .int-ch { background: #1C1A10; }
+    .int-pi { background: #10141C; }
+    .int-content h5 { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #D0C8B8; margin-bottom: 3px; }
+    .int-content p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; line-height: 1.5; }
+    .int-content .lesson-ref { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; color: #4A8040; font-style: italic; margin-top: 3px; }
+
+    .no-integration {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 13px;
+      color: #3A3830; font-style: italic; padding: 8px 0;
+    }
+
+    /* ── PEOPLE INTELLIGENCE STACK ── */
+    .stack-visual {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 12px; overflow: hidden;
+    }
+    .stack-header { padding: 24px 28px; border-bottom: 1px solid #222018; }
+    .stack-header h3 { font-size: 20px; color: #F0E8D8; margin-bottom: 6px; }
+    .stack-header p { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #7A7060; }
+    .stack-body { padding: 28px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0; align-items: stretch; }
+
+    .stack-step { text-align: center; padding: 0 12px; position: relative; }
+    .stack-step:not(:last-child)::after {
+      content: '→'; position: absolute; right: -8px; top: 50%; transform: translateY(-50%);
+      color: #C8A96E; font-size: 18px; opacity: 0.4;
+    }
+    .stack-step-num { font-size: 11px; font-family: 'Helvetica Neue', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; color: #5A5040; margin-bottom: 10px; }
+    .stack-step-icon { font-size: 28px; margin-bottom: 10px; }
+    .stack-step-name { font-size: 15px; color: #F0E8D8; margin-bottom: 6px; }
+    .stack-step-tool { font-family: 'Helvetica Neue', sans-serif; font-size: 11px; padding: 3px 8px; border-radius: 20px; display: inline-block; margin-bottom: 10px; }
+    .tool-pi { background: #10141C; color: #4A90D9; border: 1px solid #1A2030; }
+    .tool-ch { background: #1C1A10; color: #C8A96E; border: 1px solid #2A2010; }
+    .tool-feel { background: #101C10; color: #6DBF67; border: 1px solid #1A2A1A; }
+    .stack-step p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; line-height: 1.5; }
+
+    /* ── EXAMPLE IN PRACTICE ── */
+    .example-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .example-card {
+      background: #1A1915; border: 1px solid #2A2820; border-radius: 10px; overflow: hidden;
+    }
+    .example-card-header { padding: 18px 20px; border-bottom: 1px solid #222018; background: #141210; }
+    .example-card-header h4 { font-size: 15px; color: #F0E8D8; margin-bottom: 4px; }
+    .example-card-header p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; }
+    .example-card-body { padding: 20px; }
+    .example-step { display: flex; gap: 12px; margin-bottom: 14px; align-items: flex-start; }
+    .example-step:last-child { margin-bottom: 0; }
+    .ex-num { width: 22px; height: 22px; background: #C8A96E22; border: 1px solid #C8A96E44; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Helvetica Neue', sans-serif; font-size: 11px; color: #C8A96E; flex-shrink: 0; font-weight: 600; }
+    .ex-text h5 { font-family: 'Helvetica Neue', sans-serif; font-size: 13px; color: #D0C8B8; margin-bottom: 2px; }
+    .ex-text p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; line-height: 1.5; }
+
+    /* ── RULE BOX ── */
+    .rule-box {
+      background: #12100E; border: 1px solid #C8A96E33;
+      border-left: 3px solid #C8A96E; border-radius: 0 10px 10px 0; padding: 28px;
+    }
+    .rule-box h3 { font-size: 18px; color: #F0E8D8; margin-bottom: 16px; }
+    .rule-list { list-style: none; }
+    .rule-list li {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 14px; color: #9A8878;
+      padding: 10px 0; border-bottom: 1px solid #1A1815;
+      display: flex; gap: 12px; align-items: flex-start; line-height: 1.55;
+    }
+    .rule-list li:last-child { border-bottom: none; }
+    .rule-list li::before { content: '→'; color: #C8A96E; flex-shrink: 0; font-size: 12px; margin-top: 1px; }
+
+    .page-footer { max-width: 1100px; margin: 0 auto; padding: 32px; border-top: 1px solid #1A1915; display: flex; justify-content: space-between; align-items: center; }
+    .page-footer p { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #4A4030; }
+    .footer-links { display: flex; gap: 16px; }
+    .footer-links a { font-family: 'Helvetica Neue', sans-serif; font-size: 12px; color: #6A6050; text-decoration: none; }
+    .footer-links a:hover { color: #C8A96E; }
+
+    @media (max-width: 800px) {
+      .principle-row { grid-template-columns: 1fr; }
+      .principle-arrow { display: none; }
+      .module-header { grid-template-columns: 1fr; }
+      .module-integrations { grid-template-columns: 1fr; }
+      .integration-block:first-child { border-right: none; border-bottom: 1px solid #222018; }
+      .stack-body { grid-template-columns: 1fr 1fr; gap: 20px; }
+      .stack-step::after { display: none; }
+      .example-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="hq.html" class="back-link">← HQ</a>
+    <span class="separator">|</span>
+    <span class="page-title">Course Integration Map</span>
+  </div>
+  <span class="badge">Internal · Strategy</span>
+</div>
+
+<div class="hero">
+  <div class="hero-label">F.E.E.L. for Leaders · Research Integration</div>
+  <h1>How PI + Chase Hughes<br><span>fit into the course</span></h1>
+  <p class="hero-sub">
+    Neither PI nor Chase Hughes gets its own module. They are woven in as tools — frameworks that make the existing F.E.E.L. content sharper, more specific, and more credible.
+  </p>
+</div>
+
+<!-- THE CORE PRINCIPLE -->
+<div class="principle">
+  <div class="principle-row">
+    <div class="principle-col">
+      <div class="principle-tool">Predictive Index</div>
+      <h3>Who they are</h3>
+      <p>PI gives you the behavioral profile. Captain, Persuader, Maverick, Promoter. You know how they're wired before you open your mouth.</p>
+      <div class="example">Marcus hires a Maverick. He manages him like a Promoter. The Maverick leaves within 6 months.</div>
+    </div>
+    <div class="principle-arrow">→</div>
+    <div class="principle-col">
+      <div class="principle-tool">Chase Hughes</div>
+      <h3>What drives them</h3>
+      <p>The 6 Social Needs maps onto the PI profile and tells you the emotional engine running underneath the behavior. Now you know what to say.</p>
+      <div class="example">The Maverick's dominant need is Power. Stop giving commands. Start giving autonomy + accountability.</div>
+    </div>
+    <div class="principle-arrow">→</div>
+    <div class="principle-col">
+      <div class="principle-tool">F.E.E.L. Framework</div>
+      <h3>What you do</h3>
+      <p>F.E.E.L. gives you the conversation structure. Feel the room. Explore their reality. Elevate the gap. Lead them to the decision.</p>
+      <div class="example">Marcus runs a 1-on-1 with the Maverick using the Explore module. First time the Maverick opens up. Pipeline doubles.</div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULE BY MODULE -->
+<div class="section">
+  <div class="section-header">
+    <h2>Module by Module Integration</h2>
+    <span class="section-tag">F.E.E.L. for Leaders</span>
+  </div>
+  <div class="module-stack">
+
+    <!-- MODULE 0 -->
+    <div class="module-card">
+      <div class="module-header">
+        <div class="module-label">
+          <div class="module-num">0</div>
+          <div class="module-name">Intro</div>
+          <div class="module-feel">—</div>
+        </div>
+        <div class="module-title-area">
+          <h3>Welcome to Feel the Room</h3>
+          <p>The hook. Marcus recognises himself in the 10 pains. The central insight lands. F.E.E.L. is introduced as the missing half.</p>
+        </div>
+      </div>
+      <div class="module-integrations">
+        <div class="integration-block">
+          <h4 class="tag-ch">Chase Hughes</h4>
+          <div class="no-integration">No direct integration here. Module 0 is purely emotional — keep it clean.</div>
+        </div>
+        <div class="integration-block">
+          <h4 class="tag-pi">PI Profile</h4>
+          <div class="no-integration">No direct integration. But Marcus is almost certainly a Captain — that framing informs how the pains are written.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 1 -->
+    <div class="module-card">
+      <div class="module-header">
+        <div class="module-label">
+          <div class="module-num">1</div>
+          <div class="module-name">Feel</div>
+          <div class="module-feel">F</div>
+        </div>
+        <div class="module-title-area">
+          <h3>Awareness as the Foundation</h3>
+          <p>Reaction vs intention. Reading energy. Your energy is contagious. Emotional regulation under pressure.</p>
+        </div>
+      </div>
+      <div class="module-integrations">
+        <div class="integration-block">
+          <h4 class="tag-ch">Chase Hughes</h4>
+          <div class="integration-item">
+            <div class="int-icon int-ch">🧠</div>
+            <div class="int-content">
+              <h5>The 6 Social Needs</h5>
+              <p>Introduced here as the core tool for reading what drives each person on your team. The framework that turns gut feeling into behavioral data.</p>
+              <div class="lesson-ref">→ Lesson 1.2: The energy in the room</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-ch">👁️</div>
+            <div class="int-content">
+              <h5>Six-Minute X-Ray (SMX)</h5>
+              <p>Read anyone in 6 minutes using behavior, speech, and posture. Introduced as a skill, not a trick. Deception detection: blink rate, micro-pauses, posture shifts.</p>
+              <div class="lesson-ref">→ Lesson 1.2 + 1.1: Reaction vs intention</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-ch">🎤</div>
+            <div class="int-content">
+              <h5>Voice & Tonality</h5>
+              <p>Your voice signals confidence or weakness before you've said anything meaningful. Connects directly to "your energy is contagious."</p>
+              <div class="lesson-ref">→ Lesson 1.3: Your energy spreads — always</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-block">
+          <h4 class="tag-pi">PI Profile</h4>
+          <div class="integration-item">
+            <div class="int-icon int-pi">📊</div>
+            <div class="int-content">
+              <h5>Know your team's profiles</h5>
+              <p>You can't feel the room if you don't know who's in it. Introduce the 4 PI drives (Dominance, Extraversion, Patience, Formality) as a team-reading tool.</p>
+              <div class="lesson-ref">→ Lesson 1.2: The energy in the room</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-pi">🔗</div>
+            <div class="int-content">
+              <h5>PI → Social Need mapping</h5>
+              <p>Captain = Power need. Persuader/Promoter = Acceptance/Approval. Maverick = Power/Significance. Strategist = Intelligence. The bridge between the two frameworks.</p>
+              <div class="lesson-ref">→ Lesson 1.2 (key content block)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 2 -->
+    <div class="module-card">
+      <div class="module-header">
+        <div class="module-label">
+          <div class="module-num">2</div>
+          <div class="module-name">Explore</div>
+          <div class="module-feel">E</div>
+        </div>
+        <div class="module-title-area">
+          <h3>Ask, Listen, Understand</h3>
+          <p>The leader who pitches solutions. Dream → Problem → Solution in leadership. Questions = power. Listening for the unsaid. When do you present the solution?</p>
+        </div>
+      </div>
+      <div class="module-integrations">
+        <div class="integration-block">
+          <h4 class="tag-ch">Chase Hughes</h4>
+          <div class="integration-item">
+            <div class="int-icon int-ch">🪞</div>
+            <div class="int-content">
+              <h5>Linguistic Harvesting</h5>
+              <p>Analyze your rep's pronoun use, sensory words, and adjectives. "I feel overwhelmed" vs "I think this is wrong" vs "I see the problem." Mirror their language — instant trust.</p>
+              <div class="lesson-ref">→ Lesson 2.4: Listening for the unsaid</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-ch">💬</div>
+            <div class="int-content">
+              <h5>Information extraction</h5>
+              <p>The more a rep shares, the more connected they feel — and the more they keep sharing. Hughes' compounding information principle maps perfectly to the 1-on-1 structure.</p>
+              <div class="lesson-ref">→ Lesson 2.3: Questions = power</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-block">
+          <h4 class="tag-pi">PI Profile</h4>
+          <div class="integration-item">
+            <div class="int-icon int-pi">🗣️</div>
+            <div class="int-content">
+              <h5>Ask differently per profile</h5>
+              <p>A Maverick needs direct questions with clear stakes. A Promoter needs warmth and time. A Strategist needs data before emotion. The question is the same — the delivery is not.</p>
+              <div class="lesson-ref">→ Lesson 2.3 + 2.4</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 3 -->
+    <div class="module-card">
+      <div class="module-header">
+        <div class="module-label">
+          <div class="module-num">3</div>
+          <div class="module-name">Elevate</div>
+          <div class="module-feel">E</div>
+        </div>
+        <div class="module-title-area">
+          <h3>Coaching Moments in Practice</h3>
+          <p>Coaching vs instruction. "What's stopping you from just doing it?" Reframe and momentum. Pre-close technique. Roleplay.</p>
+        </div>
+      </div>
+      <div class="module-integrations">
+        <div class="integration-block">
+          <h4 class="tag-ch">Chase Hughes</h4>
+          <div class="integration-item">
+            <div class="int-icon int-ch">⚡</div>
+            <div class="int-content">
+              <h5>Ellipsis Framework (light)</h5>
+              <p>In coaching, the goal is to guide the rep to their own conclusion — not give them the answer. This is the Ellipsis principle applied to leadership: invisible influence, genuine compliance.</p>
+              <div class="lesson-ref">→ Lesson 3.1: Coaching vs instruction</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-ch">🔍</div>
+            <div class="int-content">
+              <h5>Deception detection in coaching</h5>
+              <p>"I'm fine" with increased blink rate and closed posture = not fine. Know when to push deeper and when the rep has genuinely hit their limit.</p>
+              <div class="lesson-ref">→ Lesson 3.2: "What's stopping you from just doing it?"</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-block">
+          <h4 class="tag-pi">PI Profile</h4>
+          <div class="integration-item">
+            <div class="int-icon int-pi">🎯</div>
+            <div class="int-content">
+              <h5>Coach to the profile — not the role</h5>
+              <p>The biggest coaching mistake: treating all reps the same. A Maverick needs challenge + freedom. A Promoter needs recognition + support. A Persuader needs momentum + competition. Same conversation, three different outcomes.</p>
+              <div class="lesson-ref">→ Lesson 3.1 (core content block)</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODULE 4 -->
+    <div class="module-card">
+      <div class="module-header">
+        <div class="module-label">
+          <div class="module-num">4</div>
+          <div class="module-name">Lead</div>
+          <div class="module-feel">L</div>
+        </div>
+        <div class="module-title-area">
+          <h3>Build the Culture and the Team</h3>
+          <p>Define values. Performative balance. Recruitment. Onboarding. Team Orchestration. Shared goals.</p>
+        </div>
+      </div>
+      <div class="module-integrations">
+        <div class="integration-block">
+          <h4 class="tag-ch">Chase Hughes</h4>
+          <div class="integration-item">
+            <div class="int-icon int-ch">⚡</div>
+            <div class="int-content">
+              <h5>Ellipsis Framework (full)</h5>
+              <p>Creating genuine compliance — not forced. The leader who uses invisible influence builds a team that wants to perform. Introduced as the mature version of authority: you don't need to show it.</p>
+              <div class="lesson-ref">→ Lesson 4.1: Define your values as a team</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-ch">🧩</div>
+            <div class="int-content">
+              <h5>Linguistic harvesting in hiring</h5>
+              <p>A candidate's pronoun use, sensory words, and adjective choices reveal their real personality — before you make the offer. Hire the behavior, not the CV.</p>
+              <div class="lesson-ref">→ Lesson 4.3: Recruitment — see the whole person</div>
+            </div>
+          </div>
+        </div>
+        <div class="integration-block">
+          <h4 class="tag-pi">PI Profile</h4>
+          <div class="integration-item">
+            <div class="int-icon int-pi">🧩</div>
+            <div class="int-content">
+              <h5>Build a team of complementary profiles</h5>
+              <p>The best sales teams are not all Persuaders. They are Persuaders who hunt, Promoters who retain, Strategists who close complex deals. PI teaches Marcus to hire for what's missing — not who he likes.</p>
+              <div class="lesson-ref">→ Lesson 4.3: Recruitment + 4.5: Team Orchestration</div>
+            </div>
+          </div>
+          <div class="integration-item">
+            <div class="int-icon int-pi">📋</div>
+            <div class="int-content">
+              <h5>Onboard to the profile</h5>
+              <p>A Maverick needs freedom from day one. A Promoter needs connection first. A Persuader needs wins. The first 30 days are different for each profile.</p>
+              <div class="lesson-ref">→ Lesson 4.4: Onboarding for success</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- THE PEOPLE INTELLIGENCE STACK -->
+<div class="section">
+  <div class="section-header">
+    <h2>The People Intelligence Stack</h2>
+    <span class="section-tag">What to call it in the course</span>
+  </div>
+  <div class="stack-visual">
+    <div class="stack-header">
+      <h3>One thread. Five steps. Used throughout the entire course.</h3>
+      <p>This is the meta-framework Marcus learns to use on every single person he leads. It runs underneath all four modules.</p>
+    </div>
+    <div class="stack-body">
+      <div class="stack-step">
+        <div class="stack-step-num">Step 1</div>
+        <div class="stack-step-icon">📊</div>
+        <div class="stack-step-name">Profile</div>
+        <span class="stack-step-tool tool-pi">PI Profile</span>
+        <p>Know their behavioral wiring. Captain, Persuader, Maverick, Promoter, Strategist.</p>
+      </div>
+      <div class="stack-step">
+        <div class="stack-step-num">Step 2</div>
+        <div class="stack-step-icon">🎯</div>
+        <div class="stack-step-name">Find the Need</div>
+        <span class="stack-step-tool tool-ch">Chase Hughes</span>
+        <p>Identify their dominant social need. Power, Significance, Approval, Acceptance, Intelligence.</p>
+      </div>
+      <div class="stack-step">
+        <div class="stack-step-num">Step 3</div>
+        <div class="stack-step-icon">👁️</div>
+        <div class="stack-step-name">Read the Room</div>
+        <span class="stack-step-tool tool-ch">SMX + 6 Needs</span>
+        <p>Use Six-Minute X-Ray in real time. Read body, voice, language — not just words.</p>
+      </div>
+      <div class="stack-step">
+        <div class="stack-step-num">Step 4</div>
+        <div class="stack-step-icon">💬</div>
+        <div class="stack-step-name">Explore + Elevate</div>
+        <span class="stack-step-tool tool-feel">F.E.E.L.</span>
+        <p>Ask the questions that open the person up. Guide them to their own conclusion.</p>
+      </div>
+      <div class="stack-step">
+        <div class="stack-step-num">Step 5</div>
+        <div class="stack-step-icon">⚡</div>
+        <div class="stack-step-name">Lead</div>
+        <span class="stack-step-tool tool-feel">F.E.E.L.</span>
+        <p>Create genuine compliance. Build the culture. The authority that doesn't need to show itself.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXAMPLES IN PRACTICE -->
+<div class="section">
+  <div class="section-header">
+    <h2>In Practice — Two Scenarios</h2>
+    <span class="section-tag">What this looks like for Marcus</span>
+  </div>
+  <div class="example-grid">
+    <div class="example-card">
+      <div class="example-card-header">
+        <h4>Scenario A: The underperforming Maverick</h4>
+        <p>Numbers are down. The rep is disengaged. Marcus used to just talk KPIs.</p>
+      </div>
+      <div class="example-card-body">
+        <div class="example-step">
+          <div class="ex-num">1</div>
+          <div class="ex-text">
+            <h5>PI: Maverick profile</h5>
+            <p>High Dominance, Low Patience. Needs autonomy. Hates being micromanaged.</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">2</div>
+          <div class="ex-text">
+            <h5>CH: Dominant need is Power</h5>
+            <p>Don't tell him what to do. Give him the outcome and let him design the path.</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">3</div>
+          <div class="ex-text">
+            <h5>SMX in the 1-on-1</h5>
+            <p>Marcus reads closed posture + low eye contact. He doesn't ask "what's wrong" — he asks "what would need to be different for you to go all in this quarter?"</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">4</div>
+          <div class="ex-text">
+            <h5>F.E.E.L. closes it</h5>
+            <p>The Maverick describes his own solution. Marcus uses Ellipsis: "So what would you do?" The Maverick commits. Marcus never told him anything.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="example-card">
+      <div class="example-card-header">
+        <h4>Scenario B: Hiring the next rep</h4>
+        <p>Marcus has a gap on the team. He used to hire whoever felt right in the interview.</p>
+      </div>
+      <div class="example-card-body">
+        <div class="example-step">
+          <div class="ex-num">1</div>
+          <div class="ex-text">
+            <h5>PI: What profile does the team need?</h5>
+            <p>Team already has 2 Persuaders and 1 Maverick. The gap is a relationship manager — he needs a Promoter.</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">2</div>
+          <div class="ex-text">
+            <h5>CH: Linguistic harvesting in the interview</h5>
+            <p>The candidate uses "we" language and sensory words. Talks about client relationships before commission. Classic Promoter signals.</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">3</div>
+          <div class="ex-text">
+            <h5>SMX: Reading their body</h5>
+            <p>Relaxed, open posture. Lean-in when talking about customers. Nervous only when asked about individual targets. Confirms: team-motivated, not self-motivated.</p>
+          </div>
+        </div>
+        <div class="example-step">
+          <div class="ex-num">4</div>
+          <div class="ex-text">
+            <h5>F.E.E.L. closes the interview</h5>
+            <p>Marcus uses Explore: "Tell me about a customer relationship you're proud of." The Promoter lights up. Marcus knows — this is the hire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THE RULE -->
+<div class="section">
+  <div class="section-header">
+    <h2>The Integration Rules</h2>
+    <span class="section-tag">How to use this in the course</span>
+  </div>
+  <div class="rule-box">
+    <h3>5 rules for keeping this clean</h3>
+    <ul class="rule-list">
+      <li>PI and Chase Hughes are <strong>tools</strong>, not modules. They are introduced inside F.E.E.L. lessons — not as standalone content. Marcus learns F.E.E.L. and picks up the tools along the way.</li>
+      <li>PI gets introduced in <strong>Module 1 only</strong>. After that it's assumed knowledge — referred to but not re-explained. "If your rep is a Maverick..." is enough.</li>
+      <li>Chase Hughes' <strong>6 Social Needs</strong> is the most important concept to integrate. It runs through every module. Everything else from Hughes is supporting content.</li>
+      <li>Never cite Hughes or PI by name in the course videos unless it adds credibility. The concepts are what matter. Marcus doesn't need to know where they come from — just that they work.</li>
+      <li>The <strong>People Intelligence Stack</strong> is the internal framework name. Use it to build the content. Don't necessarily surface it as a term in the course — let it be invisible architecture.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="page-footer">
+  <p>FTR Internal · Strategy compiled March 2026</p>
+  <div class="footer-links">
+    <a href="hq.html">← HQ</a>
+    <a href="chase-hughes.html">Chase Hughes</a>
+    <a href="pi-profiles.html">PI Profiles</a>
+    <a href="course-leaders.html">Leaders Course</a>
+  </div>
+</div>
+
+</body>
+</html>
