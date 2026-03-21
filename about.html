@@ -18,7 +18,8 @@
     .nav-logo { font-size:15px; font-weight:600; letter-spacing:0.03em; color:var(--text); }
     .nav-links { display:flex; gap:28px; font-size:14px; }
     .nav-links a { color:var(--text2); transition:color 0.15s; }
-    .nav-links a:hover, .nav-links a.active { color:var(--text); }
+    .nav-links a:hover { color:var(--text); }
+    .nav-links a.active { color:var(--accent); font-weight:600; }
     .nav-cta { font-size:13px; background:var(--text); color:var(--bg); padding:9px 22px; border-radius:var(--radius-sm); font-weight:600; border:none; cursor:pointer; }
 
     .divider { height:0.5px; background:var(--border); margin:0 48px; }
@@ -98,11 +99,11 @@
 <nav>
   <a href="index.html" class="nav-logo">Feel the Room</a>
   <div class="nav-links">
-    <a href="index.html#framework">Framework</a>
     <a href="programs.html">Programs</a>
     <a href="about.html" class="active">About</a>
     <a href="testimonials.html">Testimonials</a>
     <a href="profile-test.html" style="color:var(--accent);font-weight:600;">Aura Profile</a>
+    <a href="freebies/index.html">Free Tools</a>
   </div>
   <button class="nav-cta" onclick="window.location='index.html#waitlist'">Book a call →</button>
   <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">

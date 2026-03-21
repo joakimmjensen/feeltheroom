@@ -43,7 +43,8 @@
     .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; color: var(--text); text-decoration: none; }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a { font-size: 14px; color: var(--text2); text-decoration: none; transition: color .2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
     .btn-nav { background: var(--text); color: var(--bg) !important; padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 14px !important; transition: opacity .2s; text-decoration: none; }
     .btn-nav:hover { opacity: .88; }
 
@@ -295,11 +296,11 @@
 <nav>
   <a href="index.html" class="nav-logo">Feel the Room</a>
   <div class="nav-links">
-    <a href="index.html#framework">Framework</a>
     <a href="programs.html" class="active">Programs</a>
     <a href="about.html">About</a>
     <a href="testimonials.html">Testimonials</a>
     <a href="profile-test.html" style="color:var(--accent);font-weight:600;">Aura Profile</a>
+    <a href="freebies/index.html">Free Tools</a>
     <a href="index.html#waitlist" class="btn-nav">Book a call →</a>
   </div>
   <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">

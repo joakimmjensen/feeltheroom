@@ -57,7 +57,8 @@
     .nav-logo { font-size: 15px; font-weight: 600; letter-spacing: 0.03em; text-decoration: none; color: var(--text); }
     .nav-links { display: flex; gap: 28px; font-size: 14px; }
     .nav-links a { color: var(--text2); text-decoration: none; transition: color 0.15s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--accent); font-weight: 600; }
     .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
     .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
     @media (max-width: 640px) { nav { padding: 16px 24px; position: relative; } .nav-hamburger { display: flex; } .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); flex-direction: column; padding: 20px 24px; gap: 16px; z-index: 99; } .nav-links.open { display: flex; } }
@@ -151,11 +152,11 @@
   <nav>
     <a href="index.html" class="nav-logo">Feel the Room</a>
     <div class="nav-links">
-      <a href="index.html#framework">Framework</a>
       <a href="programs.html">Programs</a>
       <a href="about.html">About</a>
       <a href="testimonials.html" class="active">Testimonials</a>
       <a href="profile-test.html" style="color:var(--accent);font-weight:600;">Aura Profile</a>
+      <a href="freebies/index.html">Free Tools</a>
     </div>
     <button class="nav-hamburger" aria-label="Menu" onclick="this.closest('nav').querySelector('.nav-links').classList.toggle('open')">
       <span></span><span></span><span></span>
