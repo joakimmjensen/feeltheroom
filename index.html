@@ -90,7 +90,7 @@
     footer a:hover { color:var(--accent); }
     .nav-hamburger { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:4px; }
     .nav-hamburger span { display:block; width:22px; height:2px; background:var(--text); border-radius:2px; }
-    @media (max-width:640px) { nav { padding:16px 24px; position:relative; } .nav-cta { display:none; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; } section { padding:60px 24px; } .hero { padding:64px 24px 56px !important; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } .hero > div { grid-template-columns:1fr !important; } .hero > div > div:last-child { display:none; } }
+    @media (max-width:640px) { nav { padding:16px 24px; position:relative; } .nav-cta { display:none; } .nav-hamburger { display:flex; } .nav-links { display:none; position:absolute; top:100%; left:0; right:0; background:var(--bg); border-bottom:0.5px solid var(--border); flex-direction:column; padding:20px 24px; gap:16px; z-index:99; } .nav-links.open { display:flex; } section { padding:60px 24px; } .hero { padding:64px 24px 56px !important; } .hero-title { font-size:36px; } .forwho-grid { grid-template-columns:1fr; } .about-inner { grid-template-columns:1fr; } .case-card { padding:28px 24px; } .divider { margin:0 24px; } footer { padding:24px; } .hero > div { grid-template-columns:1fr !important; } .hero > div > div:last-child { display:none; } .profile-teaser-inner { grid-template-columns:1fr !important; gap:32px !important; } }
   </style>
 </head>
 <body>
@@ -331,7 +331,7 @@
 
   <!-- PROFILE TEST TEASER -->
   <section style="padding:80px 48px;background:var(--bg2);">
-    <div style="max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
+    <div class="profile-teaser-inner" style="max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;">
       <div>
         <div class="eyebrow">FTR Aura Profile</div>
         <h2 class="section-title">Find out who you are — under pressure, in the room, with others.</h2>
