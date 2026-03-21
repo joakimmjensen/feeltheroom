@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Pre-Meeting State Checklist — Feel the Room</title>
+  <meta name="description" content="Prepare your state — not just your pitch. What you bring into the room matters more than what you've rehearsed." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-print {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--gold); }
+
+    /* HEADER */
+    .doc-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .doc-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(200, 169, 110, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .doc-header h1 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .doc-divider {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* INTRO QUOTE */
+    .intro-quote {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+    }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 24px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* CONTENT */
+    .doc-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--gold);
+      line-height: 1.3;
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* CHECKLIST */
+    .checklist {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .checklist-item {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.1s;
+    }
+    .checklist-item:last-child { border-bottom: none; }
+    .checklist-item:hover { background: rgba(200, 169, 110, 0.04); }
+    .checkbox {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border: 1.5px solid var(--gold);
+      border-radius: 4px;
+      background: transparent;
+      margin-top: 3px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .checkbox:hover { background: rgba(200, 169, 110, 0.1); }
+    .check-content { flex: 1; }
+    .check-title {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .check-title strong {
+      color: var(--gold2);
+      font-weight: normal;
+    }
+    .check-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* INTENTION PROMPTS */
+    .intention-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .intention-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .intention-arrow {
+      font-size: 13px;
+      color: var(--gold);
+      margin-right: 8px;
+    }
+    .intention-text {
+      font-size: 15px;
+      color: var(--gold2);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .intention-not {
+      margin-top: 10px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* ENTRY MOMENT */
+    .entry-highlight {
+      background: rgba(200, 169, 110, 0.06);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 8px;
+      padding: 14px 20px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      font-style: italic;
+      text-align: center;
+    }
+
+    /* BIG QUOTE */
+    .big-quote {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      text-align: center;
+    }
+    .big-quote-text {
+      font-size: 18px;
+      color: var(--text);
+      line-height: 1.75;
+      font-style: italic;
+    }
+    .big-quote-text strong {
+      color: var(--gold2);
+      font-style: normal;
+      font-weight: normal;
+    }
+
+    /* FOOTER NOTE */
+    .footer-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .footer-note a { color: var(--gold); }
+
+    /* PAGE FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .doc-header { padding: 44px 20px 32px; }
+      .intro-quote { padding: 24px 20px 0; }
+      .doc-content { padding: 24px 20px 56px; }
+      .section-header { padding: 16px 20px 14px; flex-wrap: wrap; }
+      .section-body { padding: 20px; }
+      .big-quote { padding: 24px 20px; }
+      .big-quote-text { font-size: 16px; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, .btn-print, footer { display: none; }
+      body { background: white; color: black; font-size: 13px; }
+      .section-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
+      .section-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
+      .section-title { color: #7a5c28; }
+      .section-num { color: #888; }
+      .quote-card { background: #f5f0e8; border-left-color: #7a5c28; color: black; }
+      .footer-note { background: #f5f0e8; border-left-color: #7a5c28; }
+      .checklist { border-color: #ccc; }
+      .checklist-item { border-bottom-color: #ddd; }
+      .checkbox { border-color: #7a5c28; }
+      .check-title { color: black; }
+      .check-title strong { color: #5a4010; }
+      .check-note { color: #666; }
+      .intention-item { background: #f5f5f5; border-color: #ddd; }
+      .intention-text { color: #5a4010; }
+      .intention-arrow { color: #7a5c28; }
+      .entry-highlight { background: #faf7f0; border-color: #c9a86e; color: black; }
+      .big-quote { background: #f5f0e8; border-color: #ccc; }
+      .big-quote-text { color: black; }
+      .big-quote-text strong { color: #5a4010; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Feel the Room</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../programs.html">Programs</a>
+      <a href="index.html">Free Resources</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+
+<div class="doc-header">
+  <div class="breadcrumb"><a href="index.html">Free Resources</a> &nbsp;/&nbsp; Pre-Meeting Checklist</div>
+  <div class="doc-tag">For Sales</div>
+  <h1>The Pre-Meeting State Checklist</h1>
+  <div class="subtitle">Prepare your state — not just your pitch. What you bring into the room matters more than what you've rehearsed.</div>
+</div>
+<div class="doc-divider"></div>
+
+<div class="intro-quote">
+  <div class="quote-card">
+    Every salesperson prepares their pitch. Almost no one prepares their state. Your presence, your energy, your focus — these are what the customer actually experiences. The checklist below takes 5 minutes. It changes everything.
+  </div>
+</div>
+
+<div class="doc-content">
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <span class="section-title">The Foundation Check — Physical</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <ul class="checklist">
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title"><strong>Sleep</strong></div>
+            <div class="check-note">Did I get enough last night? If not — what do I need to do to compensate right now? (coffee, fresh air, movement)</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title"><strong>Food</strong></div>
+            <div class="check-note">Have I eaten in the last 3 hours? Low blood sugar = low presence.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title"><strong>Water</strong></div>
+            <div class="check-note">Am I hydrated? Even mild dehydration affects focus and tone of voice.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title"><strong>Movement</strong></div>
+            <div class="check-note">Have I moved my body today? Even 5 minutes changes your state.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title"><strong>Breath</strong></div>
+            <div class="check-note">Take 3 slow, deep breaths right now. Feel your feet on the floor.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <span class="section-title">The Mental Reset</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <ul class="checklist">
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Leave the last call behind</div>
+            <div class="check-note">Whatever happened in the previous conversation — it belongs there, not here.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">This customer has never let you down</div>
+            <div class="check-note">Come in neutral. Come in curious.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Check your assumptions</div>
+            <div class="check-note">What do you think you know about this customer? Set it aside.</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <span class="section-title">Intention Setting</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;font-style:italic;">Answer these before every meeting.</p>
+      <ul class="intention-list">
+        <li class="intention-item">
+          <span class="intention-arrow">→</span><span class="intention-text">"What do I want to understand about this customer today?"</span>
+        </li>
+        <li class="intention-item">
+          <span class="intention-arrow">→</span><span class="intention-text">"What do I want them to feel during this conversation?"</span>
+        </li>
+        <li class="intention-item">
+          <span class="intention-arrow">→</span><span class="intention-text">"What's the one thing I want to find out that I don't know yet?"</span>
+        </li>
+      </ul>
+      <div class="intention-not">Not: "What am I going to pitch?" — that comes after.</div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <span class="section-title">Customer Research <span style="color:var(--muted);font-size:14px;font-style:italic;">2–3 min</span></span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <ul class="checklist">
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">What do I know about their situation right now?</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">What's likely on their mind today — beyond our conversation?</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Who are they as a person — not just as a buyer?</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">What would genuinely help them — even if it means not selling today?</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 5</span>
+      <span class="section-title">The Entry Moment</span>
+    </div>
+    <div class="section-body">
+      <div class="entry-highlight">The first 30 seconds set the tone for the entire conversation.</div>
+      <ul class="checklist" style="border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Smile before you enter</div>
+            <div class="check-note">Physically or on a call — they hear it.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Open with genuine interest — not with your agenda</div>
+          </div>
+        </li>
+        <li class="checklist-item" style="border-bottom:none;">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Your first question should be about them, not about what you're selling</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 6</span>
+      <span class="section-title">Post-Meeting Reset — Between Calls</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <ul class="checklist">
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Write down one thing that went well</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Write down one thing to sharpen</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">Let it go</div>
+            <div class="check-note">The next conversation deserves your full presence.</div>
+          </div>
+        </li>
+        <li class="checklist-item">
+          <div class="checkbox" role="checkbox" aria-checked="false" tabindex="0"></div>
+          <div class="check-content">
+            <div class="check-title">If you got a no</div>
+            <div class="check-note">"That customer said no — which means statistically, the next one is more likely to say yes."</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="big-quote">
+    <div class="big-quote-text">"You can't give full presence to the customer if <strong>your own foundation is shaky.</strong> Prepare your state. Everything else follows."</div>
+  </div>
+
+  <div class="footer-note">
+    This guide is part of the <a href="../programs.html">F.E.E.L. for Sales program</a> — Module F: Feel.
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+<script>
+  // Interactive checkboxes
+  document.querySelectorAll('.checkbox').forEach(box => {
+    box.addEventListener('click', () => {
+      const checked = box.getAttribute('aria-checked') === 'true';
+      box.setAttribute('aria-checked', String(!checked));
+      if (!checked) {
+        box.innerHTML = '<svg width="12" height="10" viewBox="0 0 12 10" fill="none"><polyline points="1.5,5 4.5,8 10.5,2" stroke="#C8A96E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+        box.style.background = 'rgba(200,169,110,0.15)';
+      } else {
+        box.innerHTML = '';
+        box.style.background = 'transparent';
+      }
+    });
+    box.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); box.click(); }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Resources — Feel the Room</title>
+  <meta name="description" content="Tools, templates and frameworks from the F.E.E.L. methodology. Practical. Ready to use. No fluff." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-family: Georgia, serif;
+    }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+
+    /* HERO */
+    .hero {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 72px 24px 52px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      font-family: Georgia, serif;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: normal;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 20px;
+      letter-spacing: -0.01em;
+    }
+    .hero h1 em { font-style: italic; color: var(--gold2); }
+    .hero p {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      line-height: 1.75;
+    }
+
+    /* GRID */
+    .grid-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .card-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: Georgia, serif;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-weight: normal;
+    }
+    .tag-leader { background: rgba(200, 169, 110, 0.15); color: var(--gold); border: 1px solid rgba(200, 169, 110, 0.25); }
+    .tag-sales { background: rgba(200, 169, 110, 0.08); color: var(--gold2); border: 1px solid rgba(232, 201, 142, 0.2); }
+    .tag-sub { background: var(--surface2); color: var(--muted); border: 1px solid var(--border); }
+    .card h3 {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.3;
+    }
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+    .card-link {
+      font-size: 13px;
+      color: var(--gold);
+      letter-spacing: 0.04em;
+      margin-top: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.15s;
+    }
+    .card:hover .card-link { gap: 8px; }
+
+    /* CTA BOX */
+    .cta-box {
+      background: var(--surface);
+      border: 1px solid var(--gold);
+      border-radius: var(--radius);
+      padding: 40px;
+      text-align: center;
+    }
+    .cta-box .eyebrow {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .cta-box h2 {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--text);
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+    .cta-box p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+    .btn-gold {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--bg);
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 14px;
+      letter-spacing: 0.03em;
+      font-family: Georgia, serif;
+      transition: background 0.15s;
+    }
+    .btn-gold:hover { background: var(--gold2); color: var(--bg); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; font-size: 13px; }
+      .hero { padding: 48px 20px 36px; }
+      .grid-section { padding: 0 20px 60px; }
+      .card-grid { grid-template-columns: 1fr; }
+      .cta-box { padding: 28px 20px; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, footer { display: none; }
+      body { background: white; color: black; }
+      .card { border-color: #ccc; background: #f9f9f9; }
+      .cta-box { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Feel the Room</div>
+  <div class="nav-links">
+    <a href="../index.html">Home</a>
+    <a href="../programs.html">Programs</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Free Resources</div>
+  <h1>Tools from the <em>F.E.E.L.</em> methodology</h1>
+  <p>Tools, templates and frameworks from the F.E.E.L. methodology. Practical. Ready to use. No fluff.</p>
+</section>
+
+<section class="grid-section">
+  <div class="card-grid">
+
+    <a href="hire-interview-guide.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-leader">For Leaders</span>
+        <span class="tag tag-sub">Hiring</span>
+      </div>
+      <h3>Hire Interview Guide</h3>
+      <p>The whole-person interview framework for hiring salespeople who perform and stay.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="1-1-coaching-guide.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-leader">For Leaders</span>
+        <span class="tag tag-sub">Coaching</span>
+      </div>
+      <h3>1:1 Coaching Guide</h3>
+      <p>A monthly 1:1 structure that goes beyond numbers — into what actually drives performance.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="sales-call-structure.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-sales">For Sales</span>
+        <span class="tag tag-sub">Execution</span>
+      </div>
+      <h3>How to Structure a Sales Call</h3>
+      <p>The 7-step F.E.E.L. sales flow with key questions and time guides for each phase.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="team-values-workshop.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-leader">For Leaders</span>
+        <span class="tag tag-sub">Culture</span>
+      </div>
+      <h3>Team Values Workshop</h3>
+      <p>A step-by-step facilitation guide for building team values that actually drive behaviour.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="objection-mapping.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-sales">For Sales</span>
+        <span class="tag tag-sub">Objections</span>
+      </div>
+      <h3>Objection Mapping Framework</h3>
+      <p>The 5 objection patterns covering 74% of all objections — with LAER responses and prevention strategies.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="weekly-sales-rhythm.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-leader">For Leaders</span>
+        <span class="tag tag-sub">Structure</span>
+      </div>
+      <h3>Weekly Sales Rhythm</h3>
+      <p>Three meeting templates (Monday / Wednesday / Friday) that keep the culture alive and the team sharp.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+    <a href="pre-meeting-checklist.html" class="card">
+      <div class="card-meta">
+        <span class="tag tag-sales">For Sales</span>
+        <span class="tag tag-sub">Mindset</span>
+      </div>
+      <h3>Pre-Meeting State Checklist</h3>
+      <p>Prepare your state — not just your pitch. A mental and physical checklist before any important conversation.</p>
+      <span class="card-link">Download &rarr;</span>
+    </a>
+
+  </div>
+
+  <div class="cta-box">
+    <div class="eyebrow">Go Deeper</div>
+    <h2>These freebies are extracts from the F.E.E.L. programs.<br>Ready to go deeper?</h2>
+    <p>The full programs go further — with live coaching, practice, and real-world application.</p>
+    <a href="../programs.html" class="btn-gold">View Programs &rarr;</a>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+</body>
+</html>

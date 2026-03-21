@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Team Values Workshop — Feel the Room</title>
+  <meta name="description" content="A facilitation guide for building team values that actually drive behaviour — not just hang on the wall." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-print {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--gold); }
+
+    /* HEADER */
+    .doc-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .doc-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(200, 169, 110, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .doc-header h1 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .doc-divider {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* INTRO QUOTE */
+    .intro-quote {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+    }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 24px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .quote-card strong { color: var(--gold2); font-weight: normal; }
+
+    /* META BAR */
+    .meta-bar {
+      max-width: 700px;
+      margin: 20px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .meta-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+    }
+
+    /* CONTENT */
+    .doc-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--gold);
+      line-height: 1.3;
+    }
+    .time-hint {
+      color: var(--muted);
+      font-size: 14px;
+      font-style: italic;
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* LIST ITEMS */
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .item-list li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .item-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 13px;
+      top: 2px;
+    }
+    .item-list li em { color: var(--muted); font-style: italic; }
+
+    /* QUESTION BLOCKS */
+    .question-block {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .question-block:last-child { margin-bottom: 0; }
+    .question-text {
+      font-size: 15px;
+      color: var(--gold2);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .question-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 7px;
+    }
+
+    /* SCRIPT BLOCK */
+    .script-block {
+      background: rgba(200, 169, 110, 0.06);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 8px;
+      padding: 18px 20px;
+      font-size: 15px;
+      color: var(--text);
+      font-style: italic;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .script-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-style: normal;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    /* REFLECTION GRID */
+    .reflection-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .reflection-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .r-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(200, 169, 110, 0.12);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+
+    /* TEST QUESTIONS */
+    .test-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .test-box {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.55;
+      font-style: italic;
+    }
+    .test-result {
+      background: rgba(200, 169, 110, 0.08);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 13px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+    .test-result strong { color: var(--gold2); font-weight: normal; }
+
+    /* KEEP ALIVE */
+    .keep-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .keep-item {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .keep-item strong { color: var(--text); display: block; font-size: 13px; letter-spacing: 0.04em; margin-bottom: 5px; font-weight: normal; color: var(--gold); }
+
+    /* FOOTER NOTE */
+    .footer-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .footer-note a { color: var(--gold); }
+
+    /* PAGE FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .doc-header { padding: 44px 20px 32px; }
+      .intro-quote { padding: 24px 20px 0; }
+      .meta-bar { padding: 0 20px; }
+      .doc-content { padding: 24px 20px 56px; }
+      .section-header { padding: 16px 20px 14px; flex-wrap: wrap; }
+      .section-body { padding: 20px; }
+      .test-pair { grid-template-columns: 1fr; }
+      .keep-grid { grid-template-columns: 1fr; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, .btn-print, footer { display: none; }
+      body { background: white; color: black; font-size: 13px; }
+      .section-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
+      .section-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
+      .section-title { color: #7a5c28; }
+      .section-num { color: #888; }
+      .question-block, .test-box { background: #f5f5f5; border-color: #ddd; }
+      .question-text { color: #5a4010; }
+      .script-block { background: #faf7f0; border-color: #c9a86e; }
+      .script-label { color: #7a5c28; }
+      .quote-card { background: #f5f0e8; border-left-color: #7a5c28; }
+      .footer-note { background: #f5f0e8; border-left-color: #7a5c28; }
+      .r-num { background: #f0e8d0; border-color: #c9a86e; color: #7a5c28; }
+      .item-list li::before { color: #7a5c28; }
+      .test-result { background: #faf7f0; border-color: #c9a86e; }
+      .keep-item { background: #f5f5f5; border-color: #ddd; }
+      .keep-item strong { color: #7a5c28; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Feel the Room</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../programs.html">Programs</a>
+      <a href="index.html">Free Resources</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+
+<div class="doc-header">
+  <div class="breadcrumb"><a href="index.html">Free Resources</a> &nbsp;/&nbsp; Team Values Workshop</div>
+  <div class="doc-tag">For Leaders &middot; Culture</div>
+  <h1>Team Values Workshop</h1>
+  <div class="subtitle">A facilitation guide for building team values that actually drive behaviour — not just hang on the wall.</div>
+</div>
+<div class="doc-divider"></div>
+
+<div class="intro-quote">
+  <div class="quote-card">
+    Most company values are written by management and handed down. Team values are built together. The difference: <strong>one creates compliance, the other creates ownership.</strong>
+  </div>
+</div>
+
+<div class="meta-bar">
+  <div class="meta-item"><div class="meta-dot"></div> 90–120 minutes</div>
+  <div class="meta-item"><div class="meta-dot"></div> Whole team</div>
+  <div class="meta-item"><div class="meta-dot"></div> Sticky notes or digital equivalent</div>
+  <div class="meta-item"><div class="meta-dot"></div> Whiteboard or shared doc</div>
+</div>
+
+<div class="doc-content">
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Before</span>
+      <span class="section-title">Before the Workshop</span>
+    </div>
+    <div class="section-body">
+      <ul class="item-list">
+        <li>Block 90–120 minutes. No phones.</li>
+        <li>Prepare sticky notes or digital equivalent, a whiteboard or shared doc</li>
+        <li>Your role: <em>facilitator, not decision-maker. Your opinion comes last.</em></li>
+        <li>Tell the team in advance: "We're building our values together. Come thinking about what matters to you."</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <span class="section-title">Opening <span class="time-hint">10 min</span></span>
+    </div>
+    <div class="section-body">
+      <div class="script-block">
+        <span class="script-label">Say this (or something similar)</span>
+        "We're here to define how WE work. Not rules — but what we stand for when it gets hard. These values will shape how we hire, how we coach each other, and how we celebrate. Let's make them real."
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Think of the best team you've ever been part of — sports, work, anything. What made it great?"</div>
+        <div class="question-note">Warm-up question. Everyone answers. No wrong answers. Don't rush.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <span class="section-title">Individual Reflection <span class="time-hint">10 min</span></span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Each person writes silently. No sharing yet.</p>
+      <ul class="reflection-list">
+        <li>
+          <span class="r-num">1</span>
+          <span>"What behaviour makes you proud to be on this team?"</span>
+        </li>
+        <li>
+          <span class="r-num">2</span>
+          <span>"What behaviour would make you ashamed to be on this team?"</span>
+        </li>
+        <li>
+          <span class="r-num">3</span>
+          <span>"What's the one thing you never want to compromise on?"</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <span class="section-title">Share &amp; Cluster <span class="time-hint">20 min</span></span>
+    </div>
+    <div class="section-body">
+      <ul class="item-list">
+        <li>Each person shares their answers. Leader writes them all on the board.</li>
+        <li>Cluster similar answers together — don't force it.</li>
+        <li>Let patterns emerge naturally. <em>Your job is to write, not to interpret.</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <span class="section-title">Name the Values <span class="time-hint">20 min</span></span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:15px;color:var(--text);margin-bottom:16px;">Look at the clusters. For each cluster, ask:</p>
+      <div class="question-block" style="margin-bottom:16px;">
+        <div class="question-text">"What's the one word or short phrase that captures this?"</div>
+        <div class="question-note">Aim for 3–5 values. More than 5 is hard to remember.</div>
+      </div>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">For each value, ask the team:</p>
+      <div class="question-block" style="margin-bottom:10px;">
+        <div class="question-text">"What does this look like in practice?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What does violating this look like?"</div>
+        <div class="question-note">Write both answers under each value. This is what makes them real.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 5</span>
+      <span class="section-title">Test the Values <span class="time-hint">10 min</span></span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;">For each proposed value, ask the team:</p>
+      <div class="test-pair">
+        <div class="test-box">"Would we hire someone who didn't have this?"</div>
+        <div class="test-box">"Would we let someone go if they consistently violated this?"</div>
+        <div class="test-result">
+          <strong>If yes to both</strong> — it's a real value. <strong>If unsure</strong> — it might just be a preference. Keep exploring.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 6</span>
+      <span class="section-title">Lock It In <span class="time-hint">10 min</span></span>
+    </div>
+    <div class="section-body">
+      <ul class="item-list">
+        <li>Final vote: everyone gives a thumbs up / thumbs down on the final list</li>
+        <li>If anyone is not fully behind a value — explore why. Don't override. Adjust.</li>
+        <li><em>Full commitment matters more than the perfect wording.</em></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">After</span>
+      <span class="section-title">Keep It Alive</span>
+    </div>
+    <div class="section-body">
+      <div class="keep-grid">
+        <div class="keep-item">
+          <strong>In meetings</strong>
+          Reference values in weekly team meetings. Name them when you see them.
+        </div>
+        <div class="keep-item">
+          <strong>In hiring</strong>
+          Use values in interview questions. Would this person uphold them?
+        </div>
+        <div class="keep-item">
+          <strong>In celebration</strong>
+          Celebrate specific examples of values in action — not just results.
+        </div>
+        <div class="keep-item">
+          <strong>Revisit</strong>
+          Every 6–12 months: are these still true? Do they still describe how we work?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    This guide is part of the <a href="../programs.html">F.E.E.L. for Leaders program</a> — Module L: Lead.
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+</body>
+</html>

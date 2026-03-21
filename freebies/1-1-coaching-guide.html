@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1:1 Coaching Guide — Feel the Room</title>
+  <meta name="description" content="A monthly deep-dive that goes beyond numbers — into what actually drives performance." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-print {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--gold); }
+
+    /* HEADER */
+    .doc-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .doc-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(200, 169, 110, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .doc-header h1 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .doc-divider {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* INTRO QUOTE */
+    .intro-quote {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+    }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 24px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+    .quote-card strong { color: var(--gold2); font-style: italic; font-weight: normal; }
+
+    /* CONTENT */
+    .doc-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--gold);
+      line-height: 1.3;
+    }
+    .time-hint {
+      color: var(--muted);
+      font-size: 14px;
+      font-style: italic;
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* LIST ITEMS */
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .item-list li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .item-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 13px;
+      top: 2px;
+    }
+    .item-list li.muted { color: var(--muted); }
+
+    /* QUESTION BLOCKS */
+    .question-block {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 12px;
+    }
+    .question-block:last-child { margin-bottom: 0; }
+    .question-text {
+      font-size: 15px;
+      color: var(--gold2);
+      font-style: italic;
+      line-height: 1.55;
+    }
+    .question-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-top: 7px;
+    }
+    .question-note strong { color: var(--text); font-weight: normal; }
+
+    /* PICK NOTE */
+    .pick-note {
+      font-size: 12px;
+      color: var(--muted);
+      font-style: italic;
+      margin-bottom: 16px;
+      letter-spacing: 0.03em;
+    }
+
+    /* D-P-S BLOCK */
+    .dps-grid {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 0;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .dps-label {
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 18px 12px;
+    }
+    .dps-letter {
+      font-size: 22px;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+    }
+    .dps-content {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .dps-row:last-child .dps-content { border-bottom: none; }
+    .dps-row:last-child .dps-label { border-bottom: none; }
+    .dps-row {
+      display: contents;
+    }
+    .dps-label { border-bottom: 1px solid var(--border); }
+    .dps-word {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    /* COMMITMENT BOX */
+    .commitment-box {
+      background: rgba(200, 169, 110, 0.06);
+      border: 1px solid rgba(200, 169, 110, 0.2);
+      border-radius: 8px;
+      padding: 16px 20px;
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 16px;
+      font-style: italic;
+    }
+    .commitment-box strong { color: var(--gold); font-style: normal; }
+
+    /* AFTER SECTION */
+    .after-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .after-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .after-num {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: rgba(200, 169, 110, 0.15);
+      border: 1px solid rgba(200, 169, 110, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .after-list li.reflect {
+      font-style: italic;
+      color: var(--muted);
+    }
+    .after-list li.reflect .after-num {
+      background: var(--surface2);
+      border-color: var(--border);
+      color: var(--muted);
+    }
+
+    /* FOOTER NOTE */
+    .footer-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .footer-note a { color: var(--gold); }
+
+    /* PAGE FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .doc-header { padding: 44px 20px 32px; }
+      .intro-quote { padding: 24px 20px 0; }
+      .doc-content { padding: 24px 20px 56px; }
+      .section-header { padding: 16px 20px 14px; flex-wrap: wrap; }
+      .section-body { padding: 20px; }
+      .dps-grid { grid-template-columns: 60px 1fr; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, .btn-print, footer { display: none; }
+      body { background: white; color: black; font-size: 13px; }
+      .section-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
+      .section-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
+      .section-title { color: #7a5c28; }
+      .section-num { color: #888; }
+      .question-block, .dps-content { background: #f5f5f5; }
+      .question-text { color: #5a4010; }
+      .quote-card { background: #f5f0e8; border-left-color: #7a5c28; }
+      .dps-letter { color: #7a5c28; }
+      .dps-label { background: #f0ece4; }
+      .footer-note { background: #f5f0e8; border-left-color: #7a5c28; }
+      .commitment-box { background: #faf7f0; border-color: #c9a86e; }
+      .after-num { background: #f0e8d0; border-color: #c9a86e; color: #7a5c28; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Feel the Room</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../programs.html">Programs</a>
+      <a href="index.html">Free Resources</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+
+<div class="doc-header">
+  <div class="breadcrumb"><a href="index.html">Free Resources</a> &nbsp;/&nbsp; 1:1 Coaching Guide</div>
+  <div class="doc-tag">For Leaders &middot; Coaching</div>
+  <h1>1:1 Coaching Guide</h1>
+  <div class="subtitle">A monthly deep-dive that goes beyond numbers — into what actually drives performance.</div>
+</div>
+<div class="doc-divider"></div>
+
+<div class="intro-quote">
+  <div class="quote-card">
+    A 1:1 is not a status update. It's a coaching conversation. The difference: a status update asks <strong>"what happened?"</strong> A coaching conversation asks <strong>"what's going on with you — and where do we go from here?"</strong>
+  </div>
+</div>
+
+<div class="doc-content">
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Before</span>
+      <span class="section-title">Leader Preparation</span>
+    </div>
+    <div class="section-body">
+      <ul class="item-list">
+        <li>Review their numbers — but don't lead with them</li>
+        <li>Think of one thing you genuinely appreciate about this person this month</li>
+        <li>Prepare one coaching question based on what you've observed</li>
+        <li class="muted" style="font-style:italic;">Set your state: this is their hour, not yours</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <span class="section-title">Opening — The Whole Person <span class="time-hint">5–10 min</span></span>
+    </div>
+    <div class="section-body">
+      <p class="pick-note">Pick 1–2 questions. Don't rush through all of them.</p>
+      <div class="question-block">
+        <div class="question-text">"How are you actually doing? Not the work — you."</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What's been the best part of this month for you?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Is there anything outside of work that's affecting your energy right now?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What have you been proud of this month — and what's felt hard?"</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <span class="section-title">Performance <span class="time-hint">10–15 min</span></span>
+    </div>
+    <div class="section-body">
+      <div class="question-block">
+        <div class="question-text">"What are you most satisfied with this month?"</div>
+        <div class="question-note">Start with what went well. Don't skip this.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Where do you feel you left something on the table?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Your numbers show X. How do you read that?"</div>
+        <div class="question-note">Numbers last. Let them analyze before you do. They usually already know.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <span class="section-title">The Coaching Conversation <span class="time-hint">15–20 min</span></span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;font-style:italic;">Dream &rarr; Problem &rarr; Solution</p>
+      <div class="dps-grid">
+        <div class="dps-row">
+          <div class="dps-label">
+            <div>
+              <span class="dps-word" style="writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);letter-spacing:0.08em;font-size:10px;color:var(--muted);">Dream</span>
+            </div>
+          </div>
+          <div class="dps-content">
+            <div class="question-block" style="margin-bottom:0;">
+              <div class="question-text">"If the next month went exactly as you'd want — what would that look like?"</div>
+            </div>
+          </div>
+        </div>
+        <div class="dps-row">
+          <div class="dps-label">
+            <div>
+              <span class="dps-word" style="writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);letter-spacing:0.08em;font-size:10px;color:var(--muted);">Problem</span>
+            </div>
+          </div>
+          <div class="dps-content">
+            <div class="question-block" style="margin-bottom:10px;">
+              <div class="question-text">"What's the biggest thing standing between where you are and that?"</div>
+            </div>
+            <div class="question-block" style="margin-bottom:0;">
+              <div class="question-text">"Tell me more about that..."</div>
+              <div class="question-note">Not 'why' — 'tell me more'. It opens rather than interrogates.</div>
+            </div>
+          </div>
+        </div>
+        <div class="dps-row">
+          <div class="dps-label">
+            <div>
+              <span class="dps-word" style="writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);letter-spacing:0.08em;font-size:10px;color:var(--muted);">Solution</span>
+            </div>
+          </div>
+          <div class="dps-content" style="border-bottom:none;">
+            <div class="question-block" style="margin-bottom:10px;">
+              <div class="question-text">"What do you think would move the needle most?"</div>
+            </div>
+            <div class="question-block" style="margin-bottom:0;">
+              <div class="question-text">"What's one thing you could do differently?"</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="commitment-box">
+        <strong>Only offer your own perspective AFTER they've answered.</strong> Ask first: "Can I share what I see?"
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <span class="section-title">Forward Planning <span class="time-hint">5 min</span></span>
+    </div>
+    <div class="section-body">
+      <div class="question-block">
+        <div class="question-text">"What's your focus for next month?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What do you need from me to make that happen?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Is there anything you want me to hold you accountable to?"</div>
+      </div>
+      <div class="commitment-box" style="margin-top:16px;">
+        Write down 1–3 specific commitments. Return to these next month.
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 5</span>
+      <span class="section-title">Closing</span>
+    </div>
+    <div class="section-body">
+      <div class="question-block">
+        <div class="question-text">"What I want you to know is..."</div>
+        <div class="question-note">Share your genuine appreciation. Make it specific to this person, this month.</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What are you most looking forward to this month?"</div>
+        <div class="question-note">End on energy — not a to-do list.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">After</span>
+      <span class="section-title">Leader Actions</span>
+    </div>
+    <div class="section-body">
+      <ul class="after-list">
+        <li>
+          <span class="after-num">1</span>
+          <span>Write down their commitments and yours</span>
+        </li>
+        <li>
+          <span class="after-num">2</span>
+          <span>Note anything from "the whole person" section that you want to follow up on</span>
+        </li>
+        <li class="reflect">
+          <span class="after-num">?</span>
+          <span>Ask yourself: did I coach — or did I instruct?</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    This guide is part of the <a href="../programs.html">F.E.E.L. for Leaders program</a> — Module E: Explore &amp; Elevate.
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+</body>
+</html>

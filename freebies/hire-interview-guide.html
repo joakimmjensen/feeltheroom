@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hire Interview Guide — Feel the Room</title>
+  <meta name="description" content="The whole-person interview framework for hiring salespeople who perform and stay." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-print {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--gold); }
+
+    /* HEADER */
+    .doc-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .doc-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(200, 169, 110, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .doc-header h1 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 560px;
+      font-style: italic;
+    }
+    .doc-divider {
+      max-width: 700px;
+      margin: 0 auto 0;
+      padding: 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* CONTENT */
+    .doc-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--gold);
+      line-height: 1.3;
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+    .section-body p {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      line-height: 1.75;
+    }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* LIST ITEMS */
+    .item-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .item-list li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+    .item-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 13px;
+      top: 2px;
+    }
+
+    /* QUESTION BLOCKS */
+    .question-block {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+      margin-bottom: 14px;
+    }
+    .question-block:last-child { margin-bottom: 0; }
+    .question-text {
+      font-size: 15px;
+      color: var(--gold2);
+      font-style: italic;
+      margin-bottom: 8px;
+      line-height: 1.55;
+    }
+    .question-note {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .question-note strong {
+      color: var(--text);
+      font-style: normal;
+    }
+
+    /* GOAL TAG */
+    .goal-bar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      color: var(--gold);
+      letter-spacing: 0.06em;
+      margin-bottom: 18px;
+    }
+    .goal-bar::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* RED FLAGS */
+    .red-flag-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .red-flag-list li {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+      padding-left: 22px;
+      position: relative;
+    }
+    .red-flag-list li::before {
+      content: '✕';
+      position: absolute;
+      left: 0;
+      color: #C86E6E;
+      font-size: 12px;
+      top: 4px;
+    }
+
+    /* SCORING TABLE */
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .score-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+      font-weight: normal;
+    }
+    .score-table td {
+      padding: 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      vertical-align: top;
+    }
+    .score-table tr:last-child td { border-bottom: none; }
+    .score-table td:first-child { color: var(--gold2); }
+    .score-dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--surface2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      color: var(--muted);
+    }
+    .notes-field {
+      width: 100%;
+      min-height: 40px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 8px 10px;
+      font-size: 13px;
+      color: var(--muted);
+      font-family: Georgia, serif;
+      font-style: italic;
+    }
+
+    /* FOOTER NOTE */
+    .footer-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .footer-note a { color: var(--gold); }
+
+    /* PAGE FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .doc-header { padding: 44px 20px 32px; }
+      .doc-content { padding: 32px 20px 56px; }
+      .section-header { padding: 16px 20px 14px; }
+      .section-body { padding: 20px; }
+      .question-block { padding: 14px 16px; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, .btn-print, footer { display: none; }
+      body { background: white; color: black; font-size: 13px; }
+      .section-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
+      .section-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
+      .section-title { color: #7a5c28; }
+      .section-num { color: #888; }
+      .question-block { background: #f5f5f5; border: 1px solid #ddd; }
+      .question-text { color: #5a4010; }
+      .question-note { color: #555; }
+      .item-list li, .red-flag-list li { color: #222; }
+      .item-list li::before { color: #7a5c28; }
+      .footer-note { border-left: 3px solid #7a5c28; background: #f5f0e8; color: #555; }
+      .doc-tag { background: #f0e8d0; color: #7a5c28; border-color: #c9a86e; }
+      .doc-header h1 { color: #1a1917; }
+      .doc-header .subtitle { color: #555; }
+      .breadcrumb { color: #888; }
+      .goal-bar { color: #7a5c28; }
+      .score-table td { color: #222; }
+      .score-table td:first-child { color: #7a5c28; }
+      .score-table th { color: #888; }
+      .dot { background: #eee; border-color: #ccc; color: #888; }
+      .notes-field { background: white; border-color: #ccc; }
+      .red-flag-list li::before { color: #c06060; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Feel the Room</div>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../index.html">Home</a>
+      <a href="../programs.html">Programs</a>
+      <a href="index.html">Free Resources</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+
+<div class="doc-header">
+  <div class="breadcrumb"><a href="index.html">Free Resources</a> &nbsp;/&nbsp; Hire Interview Guide</div>
+  <div class="doc-tag">For Leaders &middot; Hiring</div>
+  <h1>Hire Interview Guide</h1>
+  <div class="subtitle">The whole-person interview framework for hiring salespeople who perform — and stay.</div>
+</div>
+<div class="doc-divider"></div>
+
+<div class="doc-content">
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Before</span>
+      <span class="section-title">Before the Interview</span>
+    </div>
+    <div class="section-body">
+      <ul class="item-list">
+        <li>Review their written application for energy and specificity — not just credentials</li>
+        <li>Prepare 3 things you want to understand about them as a person, not just as a candidate</li>
+        <li>Set your own state: you are also being evaluated</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <span class="section-title">Opening <span style="color:var(--muted);font-size:14px;font-style:italic;">First 5 minutes</span></span>
+    </div>
+    <div class="section-body">
+      <div class="goal-bar">Goal: make them feel safe enough to be honest</div>
+      <div class="question-block">
+        <div class="question-text">"Tell me a bit about where you are right now — not your CV, just where you're at."</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What made you say yes to this conversation?"</div>
+      </div>
+      <p style="font-size:13px; margin-top:8px;">Watch: Do they relax? Are they present? Or are they performing?</p>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <span class="section-title">Behavioural Questions <span style="color:var(--muted);font-size:14px;font-style:italic;">20 minutes</span></span>
+    </div>
+    <div class="section-body">
+      <div class="question-block">
+        <div class="question-text">"Tell me about the best sale you ever made. Walk me through exactly what happened."</div>
+        <div class="question-note"><strong>Listen for:</strong> awareness of the customer's state, not just the technique</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Tell me about a time you lost a deal you thought you had. What happened — and what did you take from it?"</div>
+        <div class="question-note"><strong>Listen for:</strong> self-awareness, ownership, not blame</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Describe your best manager. What did they do that others didn't?"</div>
+        <div class="question-note"><strong>Listen for:</strong> what kind of leadership they respond to</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"When you're having a bad week, what do you do?"</div>
+        <div class="question-note"><strong>Listen for:</strong> emotional regulation, self-management</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What do you do outside of work that you're genuinely proud of?"</div>
+        <div class="question-note"><strong>Listen for:</strong> identity beyond the job — the whole person</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <span class="section-title">Culture &amp; Energy Questions <span style="color:var(--muted);font-size:14px;font-style:italic;">10 minutes</span></span>
+    </div>
+    <div class="section-body">
+      <div class="question-block">
+        <div class="question-text">"What kind of team brings out the best in you?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"What do you need from a leader to perform at your best?"</div>
+      </div>
+      <div class="question-block">
+        <div class="question-text">"Is there anything about this role or company that you're unsure about?"</div>
+        <div class="question-note">A good candidate has real questions. No questions = no curiosity.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 4</span>
+      <span class="section-title">Red Flags</span>
+    </div>
+    <div class="section-body">
+      <ul class="red-flag-list">
+        <li>Blames previous employers or customers for failures</li>
+        <li>Can't describe a loss with any self-reflection</li>
+        <li>Has no answer to "what brings out the best in you"</li>
+        <li>Only talks about themselves — never about the customer or the team</li>
+        <li>No genuine curiosity about the role or company</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 5</span>
+      <span class="section-title">Scoring</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13px; color:var(--muted); margin-bottom:20px;">Score 1–3 on each dimension. Add notes while they're still fresh.</p>
+      <table class="score-table">
+        <thead>
+          <tr>
+            <th>Dimension</th>
+            <th>Score (1–3)</th>
+            <th>Notes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Self-awareness</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+          <tr>
+            <td>Emotional regulation</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+          <tr>
+            <td>Curiosity</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+          <tr>
+            <td>Customer focus</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+          <tr>
+            <td>Culture fit</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+          <tr>
+            <td>Energy &amp; presence</td>
+            <td>
+              <div class="score-dots">
+                <div class="dot">1</div>
+                <div class="dot">2</div>
+                <div class="dot">3</div>
+              </div>
+            </td>
+            <td><input class="notes-field" type="text" placeholder="Notes..." /></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer-note">
+    This guide is part of the <a href="../programs.html">F.E.E.L. for Leaders program</a> — Module L: Lead.
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+</body>
+</html>

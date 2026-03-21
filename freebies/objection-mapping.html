@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objection Mapping Framework — Feel the Room</title>
+  <meta name="description" content="The 5 patterns covering 74% of all objections. What they really mean — and how to respond." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --gold: #C8A96E;
+      --gold2: #E8C98E;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+    a { color: var(--gold); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo { font-size: 15px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 24px; }
+    .nav-links { display: flex; gap: 24px; font-size: 14px; }
+    .nav-links a { color: var(--muted); transition: color 0.15s; }
+    .nav-links a:hover { color: var(--text); }
+    .btn-print {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-size: 13px;
+      font-family: Georgia, serif;
+      cursor: pointer;
+      transition: border-color 0.15s;
+    }
+    .btn-print:hover { border-color: var(--gold); }
+
+    /* HEADER */
+    .doc-header {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 64px 24px 40px;
+    }
+    .breadcrumb {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 20px;
+      letter-spacing: 0.04em;
+    }
+    .breadcrumb a { color: var(--muted); }
+    .breadcrumb a:hover { color: var(--gold); }
+    .doc-tag {
+      display: inline-block;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      background: rgba(200, 169, 110, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(200, 169, 110, 0.25);
+      padding: 5px 12px;
+      border-radius: 4px;
+      margin-bottom: 18px;
+    }
+    .doc-header h1 {
+      font-size: clamp(28px, 4.5vw, 42px);
+      font-weight: normal;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+    .doc-header .subtitle {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-style: italic;
+    }
+    .doc-divider {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* INTRO QUOTE */
+    .intro-quote {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 0;
+    }
+    .quote-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 22px 24px;
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.75;
+    }
+
+    /* CONTENT */
+    .doc-content {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 32px 24px 72px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* SECTION CARD */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .section-header {
+      padding: 20px 28px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .section-num {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .section-title {
+      font-size: 18px;
+      font-weight: normal;
+      color: var(--gold);
+      line-height: 1.3;
+    }
+    .section-body {
+      padding: 24px 28px;
+    }
+
+    /* LAER GRID */
+    .laer-grid {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .laer-row { display: contents; }
+    .laer-letter-cell {
+      background: var(--surface2);
+      border-right: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 8px;
+      gap: 4px;
+    }
+    .laer-row:last-child .laer-letter-cell { border-bottom: none; }
+    .laer-row:last-child .laer-content-cell { border-bottom: none; }
+    .laer-letter {
+      font-size: 22px;
+      color: var(--gold);
+      font-style: italic;
+      line-height: 1;
+    }
+    .laer-word {
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .laer-content-cell {
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    .laer-text {
+      font-size: 15px;
+      color: var(--text);
+      line-height: 1.65;
+    }
+    .laer-quote {
+      color: var(--gold2);
+      font-style: italic;
+    }
+
+    /* OBJECTION CARD */
+    .objection-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .objection-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 12px;
+    }
+    .objection-num {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .objection-title {
+      font-size: 16px;
+      font-weight: normal;
+      color: var(--gold2);
+      font-style: italic;
+    }
+    .objection-body {
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .meaning-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      font-size: 14px;
+    }
+    .meaning-label {
+      flex-shrink: 0;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 3px;
+      min-width: 80px;
+    }
+    .meaning-text { color: var(--text); line-height: 1.6; }
+    .meaning-text.bad { color: #c07070; }
+    .laer-mini {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    .laer-mini-header {
+      padding: 8px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .laer-mini-body {
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .laer-mini-row {
+      display: flex;
+      gap: 10px;
+      font-size: 14px;
+      align-items: flex-start;
+      line-height: 1.6;
+    }
+    .laer-mini-l {
+      flex-shrink: 0;
+      font-size: 13px;
+      color: var(--gold);
+      font-style: italic;
+      width: 14px;
+      margin-top: 1px;
+    }
+    .laer-mini-text { color: var(--text); }
+    .laer-mini-text em { color: var(--gold2); font-style: italic; }
+    .prevention-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: rgba(200, 169, 110, 0.06);
+      border: 1px solid rgba(200, 169, 110, 0.18);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 13px;
+    }
+    .prevention-label {
+      flex-shrink: 0;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 2px;
+    }
+    .prevention-text { color: var(--muted); line-height: 1.6; }
+
+    /* PREVENTION TABLE */
+    .prev-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    .prev-table th {
+      text-align: left;
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      font-weight: normal;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .prev-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+      line-height: 1.55;
+      vertical-align: top;
+    }
+    .prev-table tr:last-child td { border-bottom: none; }
+    .prev-table td:first-child { color: var(--gold2); font-style: italic; }
+    .prev-table td:last-child { color: var(--muted); font-size: 13px; }
+
+    /* ONE RULE */
+    .one-rule {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      text-align: center;
+    }
+    .one-rule-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 14px;
+    }
+    .one-rule-text {
+      font-size: 17px;
+      color: var(--text);
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* FOOTER NOTE */
+    .footer-note {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 20px;
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .footer-note a { color: var(--gold); }
+
+    /* PAGE FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    footer a { color: var(--gold); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { display: none; }
+      .doc-header { padding: 44px 20px 32px; }
+      .intro-quote { padding: 24px 20px 0; }
+      .doc-content { padding: 24px 20px 56px; }
+      .section-header { padding: 16px 20px 14px; flex-wrap: wrap; }
+      .section-body { padding: 20px; }
+      .objection-header { padding: 16px 20px; flex-wrap: wrap; }
+      .objection-body { padding: 16px 20px; }
+      .one-rule { padding: 22px 20px; }
+      footer { padding: 28px 20px; }
+    }
+
+    /* PRINT */
+    @media print {
+      nav, .btn-print, footer { display: none; }
+      body { background: white; color: black; font-size: 13px; }
+      .section-card, .objection-card { border: 1px solid #ccc; background: #f9f9f9; page-break-inside: avoid; }
+      .section-header, .objection-header { border-bottom: 1px solid #ccc; background: #f0f0f0; }
+      .section-title, .laer-letter { color: #7a5c28; }
+      .section-num, .objection-num { color: #888; }
+      .objection-title { color: #5a4010; }
+      .quote-card { background: #f5f0e8; border-left-color: #7a5c28; color: black; }
+      .footer-note { background: #f5f0e8; border-left-color: #7a5c28; }
+      .laer-letter-cell, .laer-mini, .laer-grid { background: #f5f5f5; border-color: #ddd; }
+      .laer-content-cell { border-bottom-color: #ddd; }
+      .laer-text, .laer-mini-text { color: black; }
+      .laer-quote, .laer-mini-text em { color: #5a4010; }
+      .laer-word, .laer-mini-l { color: #888; }
+      .prev-table th { color: #888; border-bottom-color: #ccc; }
+      .prev-table td { color: black; border-bottom-color: #ddd; }
+      .prev-table td:first-child { color: #5a4010; }
+      .one-rule { background: #faf7f0; border-color: #c9a86e; }
+      .one-rule-label { color: #7a5c28; }
+      .one-rule-text { color: black; }
+      .prevention-row { background: #faf7f0; border-color: #c9a86e; }
+      .prevention-label { color: #7a5c28; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="nav-logo">Feel the Room</a>
+  <div class="nav-right">
+    <div class="nav-links">
+      <a href="../programs.html">Programs</a>
+      <a href="index.html">Free Resources</a>
+    </div>
+    <button class="btn-print" onclick="window.print()">Print / Save PDF</button>
+  </div>
+</nav>
+
+<div class="doc-header">
+  <div class="breadcrumb"><a href="index.html">Free Resources</a> &nbsp;/&nbsp; Objection Mapping</div>
+  <div class="doc-tag">For Sales</div>
+  <h1>Objection Mapping Framework</h1>
+  <div class="subtitle">The 5 patterns covering 74% of all objections. What they really mean — and how to respond.</div>
+</div>
+<div class="doc-divider"></div>
+
+<div class="intro-quote">
+  <div class="quote-card">
+    An objection is not a no. It's a question wrapped in caution. Most objections aren't about the price, the timing, or the decision-maker — they're about one thing: the customer doesn't feel certain enough yet.
+  </div>
+</div>
+
+<div class="doc-content">
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 1</span>
+      <span class="section-title">The LAER Technique</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:18px;font-style:italic;">Your standard move for any objection.</p>
+      <div class="laer-grid">
+        <div class="laer-row">
+          <div class="laer-letter-cell">
+            <span class="laer-letter">L</span>
+            <span class="laer-word">Listen</span>
+          </div>
+          <div class="laer-content-cell">
+            <span class="laer-text">Let them finish. Don't interrupt. Don't prepare your answer while they talk.</span>
+          </div>
+        </div>
+        <div class="laer-row">
+          <div class="laer-letter-cell">
+            <span class="laer-letter">A</span>
+            <span class="laer-word">Acknowledge</span>
+          </div>
+          <div class="laer-content-cell">
+            <span class="laer-text laer-quote">"That makes complete sense." / "I hear you."</span>
+            <span class="laer-text" style="display:block;margin-top:6px;font-size:13px;color:var(--muted);">Never argue.</span>
+          </div>
+        </div>
+        <div class="laer-row">
+          <div class="laer-letter-cell">
+            <span class="laer-letter">E</span>
+            <span class="laer-word">Explore</span>
+          </div>
+          <div class="laer-content-cell">
+            <span class="laer-text laer-quote">"Tell me a little more about that." / "What specifically is making you hesitant?"</span>
+          </div>
+        </div>
+        <div class="laer-row">
+          <div class="laer-letter-cell">
+            <span class="laer-letter">R</span>
+            <span class="laer-word">Respond</span>
+          </div>
+          <div class="laer-content-cell">
+            <span class="laer-text">Only after you understand. Then respond — with their words, not yours.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 2</span>
+      <span class="section-title">The 5 Patterns</span>
+    </div>
+    <div class="section-body" style="padding:0;display:flex;flex-direction:column;gap:0;">
+
+      <div class="objection-card" style="border-radius:0;border:none;border-bottom:1px solid var(--border);">
+        <div class="objection-header">
+          <span class="objection-num">Pattern 1</span>
+          <span class="objection-title">"It's too expensive" / "The price is too high"</span>
+        </div>
+        <div class="objection-body">
+          <div class="meaning-row">
+            <span class="meaning-label">Real meaning</span>
+            <span class="meaning-text">I don't see enough value yet.</span>
+          </div>
+          <div class="meaning-row">
+            <span class="meaning-label">The mistake</span>
+            <span class="meaning-text bad">Defending the price or offering a discount immediately.</span>
+          </div>
+          <div class="laer-mini">
+            <div class="laer-mini-header">LAER Response</div>
+            <div class="laer-mini-body">
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">A</span>
+                <span class="laer-mini-text"><em>"I hear you — price is always a real consideration."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">E</span>
+                <span class="laer-mini-text"><em>"Help me understand — too expensive compared to what?"</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">R</span>
+                <span class="laer-mini-text"><em>"What would it cost you if this problem stays unsolved?"</em> → back to Elevate</span>
+              </div>
+            </div>
+          </div>
+          <div class="prevention-row">
+            <span class="prevention-label">Prevention</span>
+            <span class="prevention-text">If the Probe phase was done well, they already see the cost of inaction. Price feels small against that.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card" style="border-radius:0;border:none;border-bottom:1px solid var(--border);">
+        <div class="objection-header">
+          <span class="objection-num">Pattern 2</span>
+          <span class="objection-title">"I need to think about it"</span>
+        </div>
+        <div class="objection-body">
+          <div class="meaning-row">
+            <span class="meaning-label">Real meaning</span>
+            <span class="meaning-text">I'm not emotionally convinced yet. Something is unresolved.</span>
+          </div>
+          <div class="meaning-row">
+            <span class="meaning-label">The mistake</span>
+            <span class="meaning-text bad">Saying "of course, take your time" and following up in a week.</span>
+          </div>
+          <div class="laer-mini">
+            <div class="laer-mini-header">LAER Response</div>
+            <div class="laer-mini-body">
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">A</span>
+                <span class="laer-mini-text"><em>"Absolutely — this is a real decision."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">E</span>
+                <span class="laer-mini-text"><em>"What specifically will you be thinking about? I want to make sure you have everything you need."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">R</span>
+                <span class="laer-mini-text">Address whatever they name. If they can't name it — the real objection is elsewhere.</span>
+              </div>
+            </div>
+          </div>
+          <div class="prevention-row">
+            <span class="prevention-label">Prevention</span>
+            <span class="prevention-text">The pre-close (Step 7) surfaces this before it becomes a stall.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card" style="border-radius:0;border:none;border-bottom:1px solid var(--border);">
+        <div class="objection-header">
+          <span class="objection-num">Pattern 3</span>
+          <span class="objection-title">"I need to talk to my manager / partner / board"</span>
+        </div>
+        <div class="objection-body">
+          <div class="meaning-row">
+            <span class="meaning-label">Real meaning</span>
+            <span class="meaning-text">I'm not confident enough to champion this internally.</span>
+          </div>
+          <div class="meaning-row">
+            <span class="meaning-label">The mistake</span>
+            <span class="meaning-text bad">Saying "okay, let me know what they say."</span>
+          </div>
+          <div class="laer-mini">
+            <div class="laer-mini-header">LAER Response</div>
+            <div class="laer-mini-body">
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">A</span>
+                <span class="laer-mini-text"><em>"That makes sense — this involves more than just you."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">E</span>
+                <span class="laer-mini-text"><em>"What do you think they'll want to understand? What's their main concern likely to be?"</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">R</span>
+                <span class="laer-mini-text">Help them sell it internally. <em>"Would it be useful if I put something together for that conversation?"</em></span>
+              </div>
+            </div>
+          </div>
+          <div class="prevention-row">
+            <span class="prevention-label">Prevention</span>
+            <span class="prevention-text">Champion building — identify early who else is involved and bring them in.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card" style="border-radius:0;border:none;border-bottom:1px solid var(--border);">
+        <div class="objection-header">
+          <span class="objection-num">Pattern 4</span>
+          <span class="objection-title">"We already use [competitor]"</span>
+        </div>
+        <div class="objection-body">
+          <div class="meaning-row">
+            <span class="meaning-label">Real meaning</span>
+            <span class="meaning-text">Switching feels risky and effortful. Is it worth it?</span>
+          </div>
+          <div class="meaning-row">
+            <span class="meaning-label">The mistake</span>
+            <span class="meaning-text bad">Criticizing the competitor or listing your features.</span>
+          </div>
+          <div class="laer-mini">
+            <div class="laer-mini-header">LAER Response</div>
+            <div class="laer-mini-body">
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">A</span>
+                <span class="laer-mini-text"><em>"That's good to know — you've clearly already invested in this."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">E</span>
+                <span class="laer-mini-text"><em>"What do you like about how it's working? And what would you change if you could?"</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">R</span>
+                <span class="laer-mini-text">Find the gap. You're not selling against the competitor — you're selling against the gap.</span>
+              </div>
+            </div>
+          </div>
+          <div class="prevention-row">
+            <span class="prevention-label">Prevention</span>
+            <span class="prevention-text">Good Current State mapping surfaces what's not working before the pitch.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="objection-card" style="border-radius:0;border:none;">
+        <div class="objection-header">
+          <span class="objection-num">Pattern 5</span>
+          <span class="objection-title">"The timing isn't right" / "Maybe next quarter"</span>
+        </div>
+        <div class="objection-body">
+          <div class="meaning-row">
+            <span class="meaning-label">Real meaning</span>
+            <span class="meaning-text">This isn't a high enough priority yet.</span>
+          </div>
+          <div class="meaning-row">
+            <span class="meaning-label">The mistake</span>
+            <span class="meaning-text bad">Agreeing and scheduling a follow-up 3 months out.</span>
+          </div>
+          <div class="laer-mini">
+            <div class="laer-mini-header">LAER Response</div>
+            <div class="laer-mini-body">
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">A</span>
+                <span class="laer-mini-text"><em>"Timing matters — I get it."</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">E</span>
+                <span class="laer-mini-text"><em>"Help me understand — what's driving that? What's taking priority right now?"</em></span>
+              </div>
+              <div class="laer-mini-row">
+                <span class="laer-mini-l">R</span>
+                <span class="laer-mini-text"><em>"What happens if you wait 6 months? In time, money, team energy?"</em> → loss aversion</span>
+              </div>
+            </div>
+          </div>
+          <div class="prevention-row">
+            <span class="prevention-label">Prevention</span>
+            <span class="prevention-text">Urgency must be built in Probe — not created at Close.</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section-card">
+    <div class="section-header">
+      <span class="section-num">Section 3</span>
+      <span class="section-title">Prevention Map</span>
+    </div>
+    <div class="section-body" style="padding:0;">
+      <table class="prev-table">
+        <thead>
+          <tr>
+            <th>Objection</th>
+            <th>Most often prevented in</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Price</td><td>Probe — build value before the pitch</td></tr>
+          <tr><td>Think about it</td><td>Pre-close — surface uncertainty before it stalls</td></tr>
+          <tr><td>Need approval</td><td>Explore — map the decision-making structure early</td></tr>
+          <tr><td>Competitor</td><td>Current State — find the gaps before you pitch</td></tr>
+          <tr><td>Timing</td><td>Probe — make inaction feel costly</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="one-rule">
+    <div class="one-rule-label">The one rule</div>
+    <div class="one-rule-text">"The best time to handle an objection is before it arrives. If your F, E, and E are done well — most objections disappear on their own."</div>
+  </div>
+
+  <div class="footer-note">
+    This guide is part of the <a href="../programs.html">F.E.E.L. for Sales program</a> — Modules E (Explore &amp; Elevate), L (Lead), and Module 5: Objection Mapping.
+  </div>
+
+</div>
+
+<footer>
+  <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
+</footer>
+
+</body>
+</html>
