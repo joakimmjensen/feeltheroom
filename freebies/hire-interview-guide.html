@@ -284,6 +284,14 @@
       justify-content: center;
       font-size: 10px;
       color: var(--muted);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .dot.selected {
+      background: var(--gold);
+      border-color: var(--gold);
+      color: var(--bg);
     }
     .notes-field {
       width: 100%;
@@ -451,6 +459,7 @@
       <span class="section-title">Culture &amp; Energy Questions <span style="color:var(--muted);font-size:14px;font-style:italic;">10 minutes</span></span>
     </div>
     <div class="section-body">
+      <div class="goal-bar">Goal: understand their natural environment — where they thrive vs. struggle</div>
       <div class="question-block">
         <div class="question-text">"What kind of team brings out the best in you?"</div>
       </div>
@@ -577,5 +586,15 @@
   <p>&copy; 2026 Feel the Room &middot; Joakim M&oslash;ller Jensen &middot; <a href="../programs.html">Programs</a></p>
 </footer>
 
+<script>
+  document.querySelectorAll('.score-dots').forEach(group => {
+    group.querySelectorAll('.dot').forEach(dot => {
+      dot.addEventListener('click', () => {
+        group.querySelectorAll('.dot').forEach(d => d.classList.remove('selected'));
+        dot.classList.add('selected');
+      });
+    });
+  });
+</script>
 </body>
 </html>
