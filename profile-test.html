@@ -585,13 +585,8 @@ const scenarioQs = [
      {txt:'Suggest someone you think is better qualified.',score:1},
      {txt:'Prefer to contribute from the sidelines.',score:0}
    ]},
-  {factor:'A', text:'What\'s the last important thing that didn\'t go as planned or as you wanted? And what do you most honestly believe was the reason?',
-   opts:[
-     {txt:'Me. My own patterns, blind spots, or decisions.',score:3},
-     {txt:'A mix — some of it was on me, some wasn\'t.',score:2},
-     {txt:'Mostly circumstances — the team, timing, or environment.',score:1},
-     {txt:'I accept what I can\'t control and move forward.',score:0}
-   ]},
+  {factor:'A', type:'open', text:'What\'s the last important thing that didn\'t go as planned or as you wanted? And what do you most honestly believe was the reason?',
+   opts:[]},
   // Factor B (Extraversion) — 5 questions
   {factor:'B', text:'You arrive at a networking event where you don\'t know anyone. What happens?',
    opts:[
@@ -657,13 +652,8 @@ const scenarioQs = [
      {txt:'Accept it — thoroughness is what matters.',score:2},
      {txt:'Find it natural — good work takes the time it takes.',score:3}
    ]},
-  {factor:'C', text:'How would you describe your inner circle?',
-   opts:[
-     {txt:'People who challenge and push me — I need that friction to grow.',score:0},
-     {txt:'A mix — some who push me, some who ground me.',score:1},
-     {txt:'Loyal, warm, and stable — people I can always count on.',score:2},
-     {txt:'A small, close group I\'ve known for a long time. Trust over ambition.',score:3}
-   ]},
+  {factor:'C', type:'open', text:'How would you describe your inner circle?',
+   opts:[]},
   // Factor D (Formality) — 5 questions
   {factor:'D', text:'You start a new task. What\'s your first step?',
    opts:[
@@ -1012,18 +1002,22 @@ function renderQ(){
   const storedIdx = isF ? S.foundationAnswers[S.qIdx] : S.answers[S.qIdx];
   const storedFree = isF ? S.foundationFreeTexts[S.qIdx] : S.freeTexts[S.qIdx];
 
+  const isOpen = !isF && q.type === 'open';
   const optWrap = document.getElementById('q-options');
   optWrap.innerHTML='';
-  q.opts.forEach((opt,i)=>{
-    const btn = document.createElement('button');
-    btn.className = 'opt-btn' + (storedIdx===i?' selected':'');
-    btn.textContent = opt.txt;
-    btn.onclick = ()=>selectOpt(i, btn);
-    optWrap.appendChild(btn);
-  });
+  if(!isOpen){
+    q.opts.forEach((opt,i)=>{
+      const btn = document.createElement('button');
+      btn.className = 'opt-btn' + (storedIdx===i?' selected':'');
+      btn.textContent = opt.txt;
+      btn.onclick = ()=>selectOpt(i, btn);
+      optWrap.appendChild(btn);
+    });
+  }
 
   const free = document.getElementById('free-text');
-  free.style.display='block';
+  free.style.display = 'block';
+  free.placeholder = isOpen ? 'Write your honest answer here...' : 'Or write your own answer...';
   free.value = storedFree||'';
   free.oninput = ()=>{
     if(free.value.trim()){
@@ -1034,6 +1028,7 @@ function renderQ(){
       saveState();
     }
   };
+  if(isOpen) document.getElementById('btn-next').disabled = !storedFree;
 
   document.getElementById('btn-prev').style.visibility = (S.qIdx>0||S.mode==='foundation')?'visible':'hidden';
   document.getElementById('btn-next').disabled = (storedIdx===null && !storedFree);
@@ -1090,6 +1085,7 @@ function calcScenarioScores(){
   scenarioQs.forEach((q,i)=>map[q.factor].push(i));
   for(const f of ['A','B','C','D']){
     map[f].forEach(i=>{
+      if(scenarioQs[i].type==='open') return;
       const a=S.answers[i];
       if(a!==null) S.scores[f]+=scenarioQs[i].opts[a].score;
       else if(S.freeTexts[i]) S.scores[f]+=1;
