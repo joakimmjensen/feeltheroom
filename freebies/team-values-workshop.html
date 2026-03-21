@@ -414,6 +414,77 @@
     }
     .test-result strong { color: var(--gold2); font-weight: normal; }
 
+    /* VALUE CARDS */
+    .value-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .value-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .value-card-header {
+      padding: 16px 22px 14px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+    }
+    .value-name {
+      font-size: 17px;
+      font-weight: normal;
+      color: var(--gold2);
+      line-height: 1.3;
+    }
+    .value-card-body {
+      padding: 18px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .value-belief {
+      font-size: 13px;
+      color: var(--gold);
+      font-style: italic;
+      letter-spacing: 0.02em;
+    }
+    .value-desc {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+    }
+    .value-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .value-bullets li {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 16px;
+      position: relative;
+    }
+    .value-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: 16px;
+      top: -1px;
+    }
+    .value-section-label {
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
     /* KEEP ALIVE */
     .keep-grid {
       display: grid;
@@ -466,6 +537,7 @@
       .section-body { padding: 20px; }
       .test-pair { grid-template-columns: 1fr; }
       .keep-grid { grid-template-columns: 1fr; }
+      .value-card-body > div[style*="grid"] { grid-template-columns: 1fr; }
       footer { padding: 28px 20px; }
     }
 
@@ -488,6 +560,13 @@
       .test-result { background: #faf7f0; border-color: #c9a86e; }
       .keep-item { background: #f5f5f5; border-color: #ddd; }
       .keep-item strong { color: #7a5c28; }
+      .value-card { background: #f5f5f5; border-color: #ddd; }
+      .value-card-header { border-bottom-color: #ddd; background: #f0ece4; }
+      .value-name { color: #5a4010; }
+      .value-belief { color: #7a5c28; }
+      .value-desc { color: black; }
+      .value-bullets li { color: #555; }
+      .value-section-label { color: #888; }
       .q-list li { background: #f5f5f5; border-color: #ddd; color: black; }
       .q-list li.q-new { border-color: #c9a86e; }
       .q-num { color: #7a5c28; }
@@ -775,6 +854,97 @@ Find the patterns. Use the team's own words where possible. Make it feel like th
           <strong>Revisit</strong>
           Every 6–12 months: are these still true? Do they still describe how we work?
         </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-card" style="border-color:rgba(200,169,110,0.3);">
+    <div class="section-header" style="border-bottom-color:rgba(200,169,110,0.18);background:rgba(200,169,110,0.04);">
+      <span class="section-num" style="color:var(--gold);">Example Output</span>
+      <span class="section-title">Lunar Sales Team — Core Values</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:13px;color:var(--muted);font-style:italic;margin-bottom:20px;line-height:1.7;">This is what the output looked like after a real workshop. The team answered the questions. Claude found the patterns. They adjusted the language until it felt true.</p>
+      <div class="value-cards">
+
+        <div class="value-card">
+          <div class="value-card-header">
+            <span class="value-name">Authenticity</span>
+          </div>
+          <div class="value-card-body">
+            <div class="value-belief">Core belief: We show up as we are. No masks. No pretending.</div>
+            <div class="value-desc">We don't want facades, stiffness, ego, or fake professionalism. We believe chemistry and realness create trust — and trust creates performance. Authenticity is the foundation of our energy, our humour, our collaboration, and our resilience.</div>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-header">
+            <span class="value-name">Collective Ownership</span>
+          </div>
+          <div class="value-card-body">
+            <div class="value-belief">Core belief: We win together. We take responsibility together.</div>
+            <div class="value-desc">We are at our best when we move toward a shared goal. This is not a blame culture — it's a "we handle it" culture.</div>
+            <div>
+              <div class="value-section-label">Under pressure, we:</div>
+              <ul class="value-bullets">
+                <li>Focus on our circle of control</li>
+                <li>Take responsibility — individually and as a team</li>
+                <li>Handle things head-on</li>
+                <li>Are never afraid to ask for help</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-header">
+            <span class="value-name">Energetic Positivity</span>
+          </div>
+          <div class="value-card-body">
+            <div class="value-belief">Core belief: We protect the energy because it drives performance.</div>
+            <div class="value-desc">Energy in our team is intentional — not accidental. We understand that energy is contagious, and that negativity is costly.</div>
+            <div>
+              <div class="value-section-label">What it looks like:</div>
+              <ul class="value-bullets">
+                <li>Banter and playfulness</li>
+                <li>Active breaks</li>
+                <li>Non-NPC behaviour — we bring ourselves, not a script</li>
+                <li>Celebrating small wins</li>
+                <li>Gamifying the simple stuff</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="value-card">
+          <div class="value-card-header">
+            <span class="value-name">Performative Balance</span>
+          </div>
+          <div class="value-card-body">
+            <div class="value-belief">Core belief: We perform at a high level — without becoming rigid or ego-driven.</div>
+            <div class="value-desc">We don't choose between high performance and fun. We insist on both.</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;">
+              <div>
+                <div class="value-section-label">We work hard:</div>
+                <ul class="value-bullets">
+                  <li>Strong work ethic</li>
+                  <li>Ambition</li>
+                  <li>Performance standards</li>
+                </ul>
+              </div>
+              <div>
+                <div class="value-section-label">But never without:</div>
+                <ul class="value-bullets">
+                  <li>Humour</li>
+                  <li>Genuineness</li>
+                  <li>Relationships</li>
+                  <li>Enjoyment</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
