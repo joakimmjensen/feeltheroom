@@ -1132,8 +1132,8 @@ function getProfile(){
 }
 
 // ── RESULT ───────────────────────────────────────────────────────────────────
-function showResult(){
-  S.avoidance=document.getElementById('avoidance-text').value;
+function showResult(fromRestore){
+  if(!fromRestore) S.avoidance=document.getElementById('avoidance-text').value;
   const key=getProfile();
   const p=profiles[key];
 
@@ -1248,6 +1248,9 @@ function restartTest(){
     renderSelfGrid('self-per-word-grid',perWords,'selfPer');
     checkSelfNext();
     if(S.avoidance) document.getElementById('avoidance-text').value=S.avoidance;
+  }
+  else if(sc==='screen-result'){
+    showResult(true);
   }
 })();
 </script>
