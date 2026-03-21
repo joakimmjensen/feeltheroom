@@ -312,25 +312,25 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
 
 <!-- MIRROR SELF -->
 <div id="screen-mirror-self" class="screen">
-  <div style="text-align:center;max-width:520px;width:100%;padding-top:40px">
+  <div style="text-align:center;max-width:560px;width:100%;padding-top:40px">
     <div class="logo">The Honest Mirror · Self-image</div>
-    <h2>What do you see yourself?</h2>
-    <p class="mirror-intro">Compare what your relationships would say with what you already know about yourself.</p>
-    <div style="width:100%;text-align:left">
-      <div class="section-label">Does it match what you already know?</div>
-      <div class="self-options" id="self-align-opts">
-        <div class="self-opt" onclick="selAlign('yes',this)">✅ Yes — this is not surprising</div>
-        <div class="self-opt" onclick="selAlign('partly',this)">🔄 Partly — some of this is new</div>
-        <div class="self-opt" onclick="selAlign('no',this)">🆕 No — these are new insights</div>
-      </div>
+    <h2>Now — what do YOU see?</h2>
+    <p class="mirror-intro">You've seen what others would say. Now answer for yourself. Pick what you recognise — not what you wish were true.</p>
+    <div style="width:100%;margin-bottom:24px">
+      <div class="section-label">Professionally — what do you think you need to work on?</div>
+      <div class="chip-grid" id="self-pro-word-grid" style="justify-content:flex-start"></div>
     </div>
-    <div style="width:100%;text-align:left;margin-top:24px">
-      <div class="section-label">Is there something here you are avoiding working on?</div>
+    <div style="width:100%;margin-bottom:24px">
+      <div class="section-label">Personally — what do you think you need to work on?</div>
+      <div class="chip-grid" id="self-per-word-grid" style="justify-content:flex-start"></div>
+    </div>
+    <div style="width:100%;text-align:left">
+      <div class="section-label">Is there something you are avoiding working on?</div>
       <textarea class="free-input" id="avoidance-text" rows="3" placeholder="Write freely — this is only for you..."></textarea>
     </div>
-    <div class="nav-row" style="margin-top:28px;max-width:520px">
+    <div class="nav-row" style="margin-top:28px;max-width:560px">
       <button class="btn btn-outline" onclick="backFromMirrorSelf()">← Back</button>
-      <button class="btn" onclick="showResult()">See my profile →</button>
+      <button class="btn" id="btn-self-next" onclick="showResult()" disabled>See my profile →</button>
     </div>
   </div>
 </div>
@@ -395,28 +395,48 @@ h2{font-size:22px;color:var(--gold);margin-bottom:16px}
     </div>
     <div class="card" style="margin-top:16px">
       <div class="section-title">The Honest Mirror</div>
-      <div class="mirror-result-grid">
-        <div class="mirror-card">
-          <h3>Professional · Colleagues</h3>
-          <div class="mirror-word-list" id="r-pro-words"></div>
-          <p id="r-pro-free" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:8px"></p>
-          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-pro-feel" style="color:var(--gold)"></span></div>
+      <!-- Professional comparison -->
+      <div style="margin-bottom:24px">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Professional</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;letter-spacing:1px">COLLEAGUES SEE</div>
+            <div class="mirror-word-list" id="r-pro-words"></div>
+            <p id="r-pro-free" style="font-size:12px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:6px"></p>
+            <div style="margin-top:8px;font-size:12px;color:var(--muted)">Feeling: <span id="r-pro-feel" style="color:var(--gold)"></span></div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;letter-spacing:1px">YOU SEE</div>
+            <div class="mirror-word-list" id="r-self-pro-words"></div>
+          </div>
         </div>
-        <div class="mirror-card">
-          <h3>Personal · Friends</h3>
-          <div class="mirror-word-list" id="r-per-words"></div>
-          <p id="r-per-free" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:8px"></p>
-          <div style="margin-top:12px;font-size:13px;color:var(--muted)">Feeling: <span id="r-per-feel" style="color:var(--gold)"></span></div>
+        <div id="r-pro-match-wrap" style="display:none">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">IN COMMON</div>
+          <div class="mirror-word-list" id="r-pro-match"></div>
         </div>
-        <div class="mirror-card align-card">
-          <h3>Self-image</h3>
-          <div class="align-icon" id="r-align-icon"></div>
-          <div class="align-val" id="r-align-val"></div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:20px;margin-bottom:24px">
+        <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px">Personal</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:10px">
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;letter-spacing:1px">FRIENDS SEE</div>
+            <div class="mirror-word-list" id="r-per-words"></div>
+            <p id="r-per-free" style="font-size:12px;color:var(--muted);line-height:1.6;font-style:italic;margin-top:6px"></p>
+            <div style="margin-top:8px;font-size:12px;color:var(--muted)">Feeling: <span id="r-per-feel" style="color:var(--gold)"></span></div>
+          </div>
+          <div>
+            <div style="font-size:11px;color:var(--muted);margin-bottom:8px;letter-spacing:1px">YOU SEE</div>
+            <div class="mirror-word-list" id="r-self-per-words"></div>
+          </div>
         </div>
-        <div class="mirror-card">
-          <h3>Avoidance / blind spots</h3>
-          <p id="r-avoidance" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic"></p>
+        <div id="r-per-match-wrap" style="display:none">
+          <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">IN COMMON</div>
+          <div class="mirror-word-list" id="r-per-match"></div>
         </div>
+      </div>
+      <div style="border-top:1px solid var(--border);padding-top:20px">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:1px">BLIND SPOTS / AVOIDANCE</div>
+        <p id="r-avoidance" style="font-size:13px;color:var(--muted);line-height:1.6;font-style:italic"></p>
       </div>
     </div>
     <div class="card" style="margin-top:24px;border-color:rgba(200,169,110,0.5);text-align:center">
@@ -772,6 +792,7 @@ let S = {
   friendNames:['',''],
   proWords:[], proFeel:'', proFreeText:'',
   perWords:[], perFeel:'', perFreeText:'',
+  selfProWords:[], selfPerWords:[],
   selfAlign:'', avoidance:''
 };
 
@@ -881,7 +902,7 @@ function backFromMirrorFriends(){
 }
 function backFromMirrorSelf(){
   renderMirrorGrid('per-word-grid',perWords,'per');checkMirrorNext('per');show('screen-mirror-friends');
-  setTimeout(()=>{const el=document.getElementById('per-free-text');if(el)el.value=S.perFreeText;},0);
+  setTimeout(()=>{const el=document.getElementById('per-free-text');if(el){el.value=S.perFreeText;}},0);
 }
 
 function calcScenarioScores(){
@@ -968,8 +989,38 @@ function goToMirrorFriends(){
 }
 
 function goToMirrorSelf(){
-  S.proFreeText=document.getElementById('pro-free-text')?document.getElementById('pro-free-text').value:S.proFreeText;
+  S.perFreeText=document.getElementById('per-free-text')?document.getElementById('per-free-text').value:S.perFreeText;
+  renderSelfGrid('self-pro-word-grid',proWords,'selfPro');
+  renderSelfGrid('self-per-word-grid',perWords,'selfPer');
   show('screen-mirror-self');
+}
+
+function renderSelfGrid(containerId,words,prefix){
+  const grid=document.getElementById(containerId);
+  grid.innerHTML='';
+  const arr=prefix==='selfPro'?S.selfProWords:S.selfPerWords;
+  words.forEach(w=>{
+    const chip=document.createElement('div');
+    chip.className='chip'+(arr.includes(w)?' selected':'');
+    chip.textContent=w;
+    chip.onclick=()=>toggleSelfWord(w,chip,prefix,containerId,arr);
+    grid.appendChild(chip);
+  });
+}
+
+function toggleSelfWord(w,chip,prefix,containerId,arr){
+  const idx=arr.indexOf(w);
+  if(idx>-1){arr.splice(idx,1);chip.classList.remove('selected');}
+  else{if(arr.length>=6)return;arr.push(w);chip.classList.add('selected');}
+  document.querySelectorAll('#'+containerId+' .chip').forEach(c=>{
+    c.classList.toggle('locked',arr.length>=6&&!c.classList.contains('selected'));
+  });
+  checkSelfNext();
+  saveState();
+}
+
+function checkSelfNext(){
+  document.getElementById('btn-self-next').disabled=!(S.selfProWords.length>0||S.selfPerWords.length>0);
 }
 
 function renderMirrorGrid(containerId,words,prefix){
@@ -1093,15 +1144,19 @@ function showResult(){
   document.getElementById('r-ft-lbl').textContent=fs.lbl;
 
   // Mirror
-  document.getElementById('r-pro-words').innerHTML=S.proWords.map(w=>`<div class="mirror-word">${w}</div>`).join('');
+  const wordTag=(w,highlight)=>`<div class="mirror-word" style="${highlight?'border-color:var(--gold);color:var(--gold);background:rgba(200,169,110,0.15)':''}">${w}</div>`;
+  document.getElementById('r-pro-words').innerHTML=S.proWords.map(w=>wordTag(w,false)).join('');
   document.getElementById('r-pro-free').textContent=S.proFreeText||'';
   document.getElementById('r-pro-feel').textContent=feelLabels[S.proFeel]||'—';
-  document.getElementById('r-per-words').innerHTML=S.perWords.map(w=>`<div class="mirror-word">${w}</div>`).join('');
+  document.getElementById('r-per-words').innerHTML=S.perWords.map(w=>wordTag(w,false)).join('');
   document.getElementById('r-per-free').textContent=S.perFreeText||'';
   document.getElementById('r-per-feel').textContent=feelLabels[S.perFeel]||'—';
-  const al=alignMap[S.selfAlign]||{icon:'—',val:'—'};
-  document.getElementById('r-align-icon').textContent=al.icon;
-  document.getElementById('r-align-val').textContent=al.val;
+  document.getElementById('r-self-pro-words').innerHTML=S.selfProWords.map(w=>wordTag(w,false)).join('');
+  document.getElementById('r-self-per-words').innerHTML=S.selfPerWords.map(w=>wordTag(w,false)).join('');
+  const proMatch=S.proWords.filter(w=>S.selfProWords.includes(w));
+  const perMatch=S.perWords.filter(w=>S.selfPerWords.includes(w));
+  if(proMatch.length){document.getElementById('r-pro-match-wrap').style.display='block';document.getElementById('r-pro-match').innerHTML=proMatch.map(w=>wordTag(w,true)).join('');}
+  if(perMatch.length){document.getElementById('r-per-match-wrap').style.display='block';document.getElementById('r-per-match').innerHTML=perMatch.map(w=>wordTag(w,true)).join('');}
   document.getElementById('r-avoidance').textContent=S.avoidance||'Nothing written';
 
   // F.E.E.L growth path
@@ -1118,7 +1173,7 @@ function restartTest(){
     foundationAnswers:Array(5).fill(null),foundationFreeTexts:Array(5).fill(''),
     scores:{A:0,B:0,C:0,D:0},selWords:Array(15).fill(null),fScores:[],
     colleagueNames:['',''],friendNames:['',''],
-    proWords:[],proFeel:'',proFreeText:'',perWords:[],perFeel:'',perFreeText:'',selfAlign:'',avoidance:''};
+    proWords:[],proFeel:'',proFreeText:'',perWords:[],perFeel:'',perFreeText:'',selfProWords:[],selfPerWords:[],selfAlign:'',avoidance:''};
   show('screen-intro');
 }
 
@@ -1153,11 +1208,9 @@ function restartTest(){
     checkMirrorNext('per');
   }
   else if(sc==='screen-mirror-self'){
-    if(S.selfAlign){
-      const opts=document.querySelectorAll('#self-align-opts .self-opt');
-      const map={yes:0,partly:1,no:2};
-      if(map[S.selfAlign]!==undefined) opts[map[S.selfAlign]].classList.add('selected');
-    }
+    renderSelfGrid('self-pro-word-grid',proWords,'selfPro');
+    renderSelfGrid('self-per-word-grid',perWords,'selfPer');
+    checkSelfNext();
     if(S.avoidance) document.getElementById('avoidance-text').value=S.avoidance;
   }
 })();
