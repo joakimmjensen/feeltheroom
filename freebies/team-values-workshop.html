@@ -262,6 +262,100 @@
       margin-bottom: 8px;
     }
 
+    /* QUESTION BLOCKS BY CATEGORY */
+    .q-category {
+      margin-bottom: 20px;
+    }
+    .q-category:last-child { margin-bottom: 0; }
+    .q-category-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .q-block-label {
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      flex-shrink: 0;
+    }
+    .q-category-title {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+    }
+    .q-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .q-list li {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      padding: 12px 16px;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+    }
+    .q-list li.q-new {
+      border-color: rgba(200,169,110,0.25);
+    }
+    .q-num {
+      flex-shrink: 0;
+      font-size: 11px;
+      color: var(--gold);
+      margin-top: 2px;
+      min-width: 18px;
+      font-style: italic;
+    }
+    .q-new-badge {
+      flex-shrink: 0;
+      font-size: 9px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: rgba(200,169,110,0.12);
+      color: var(--gold);
+      border: 1px solid rgba(200,169,110,0.25);
+      padding: 2px 6px;
+      border-radius: 3px;
+      margin-top: 3px;
+    }
+
+    /* PROMPT BLOCK */
+    .prompt-block {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+    .prompt-block-header {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--border);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .prompt-body {
+      padding: 16px;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.75;
+      font-style: italic;
+      white-space: pre-wrap;
+    }
+    .prompt-body strong { color: var(--text); font-style: normal; font-weight: normal; }
+
     /* REFLECTION GRID */
     .reflection-list {
       list-style: none;
@@ -394,6 +488,14 @@
       .test-result { background: #faf7f0; border-color: #c9a86e; }
       .keep-item { background: #f5f5f5; border-color: #ddd; }
       .keep-item strong { color: #7a5c28; }
+      .q-list li { background: #f5f5f5; border-color: #ddd; color: black; }
+      .q-list li.q-new { border-color: #c9a86e; }
+      .q-num { color: #7a5c28; }
+      .q-block-label { color: #7a5c28; }
+      .q-new-badge { background: #f0e8d0; border-color: #c9a86e; color: #7a5c28; }
+      .prompt-block { border-color: #ddd; }
+      .prompt-block-header { border-bottom-color: #ddd; color: #7a5c28; }
+      .prompt-body { color: #555; }
     }
   </style>
 </head>
@@ -435,8 +537,8 @@
 <div class="meta-bar">
   <div class="meta-item"><div class="meta-dot"></div> 90–120 minutes</div>
   <div class="meta-item"><div class="meta-dot"></div> Whole team</div>
-  <div class="meta-item"><div class="meta-dot"></div> Sticky notes or digital equivalent</div>
-  <div class="meta-item"><div class="meta-dot"></div> Whiteboard or shared doc</div>
+  <div class="meta-item"><div class="meta-dot"></div> Shared doc for collecting answers</div>
+  <div class="meta-item"><div class="meta-dot"></div> Claude for synthesis</div>
 </div>
 
 <div class="doc-content">
@@ -476,63 +578,131 @@
   <div class="section-card">
     <div class="section-header">
       <span class="section-num">Section 2</span>
-      <span class="section-title">Individual Reflection <span class="time-hint">10 min</span></span>
+      <span class="section-title">The Question Round <span class="time-hint">40–50 min</span></span>
     </div>
     <div class="section-body">
-      <p style="font-size:13px;color:var(--muted);margin-bottom:16px;font-style:italic;">Each person writes silently. No sharing yet.</p>
-      <ul class="reflection-list">
-        <li>
-          <span class="r-num">1</span>
-          <span>"What behaviour makes you proud to be on this team?"</span>
-        </li>
-        <li>
-          <span class="r-num">2</span>
-          <span>"What behaviour would make you ashamed to be on this team?"</span>
-        </li>
-        <li>
-          <span class="r-num">3</span>
-          <span>"What's the one thing you never want to compromise on?"</span>
-        </li>
-        <li>
-          <span class="r-num">4</span>
-          <span>"When were you most proud of <em>how you showed up</em> — not what you achieved, but who you were in that moment?"</span>
-        </li>
-      </ul>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;font-style:italic;">Go through each block together. Everyone answers out loud — or writes in a shared doc. Leader collects all answers. Don't edit or interpret yet. Just collect.</p>
+
+      <div class="q-category">
+        <div class="q-category-header">
+          <span class="q-block-label">A — Identity</span>
+          <span class="q-category-title">Who are we?</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">1</span><span>Who are we as a team? Describe us in 3 words.</span></li>
+          <li><span class="q-num">2</span><span>Who are we when things are going well?</span></li>
+          <li><span class="q-num">3</span><span>Who are we when things are going badly — under pressure, when a deal falls through, when the week gets hard?</span></li>
+          <li class="q-new"><span class="q-num">4</span><span>Who are we when no one is watching?</span><span class="q-new-badge">↑</span></li>
+          <li class="q-new"><span class="q-num">5</span><span>What would a new colleague notice about us in their first week?</span><span class="q-new-badge">↑</span></li>
+        </ul>
+      </div>
+
+      <div class="q-category">
+        <div class="q-category-header">
+          <span class="q-block-label">B — Behaviour</span>
+          <span class="q-category-title">What do we do?</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">6</span><span>How do we help each other?</span></li>
+          <li class="q-new"><span class="q-num">7</span><span>What do we never do to each other? What behaviour would be a betrayal of who we are?</span><span class="q-new-badge">↑</span></li>
+          <li class="q-new"><span class="q-num">8</span><span>When were you most proud of this team? What specifically happened?</span><span class="q-new-badge">↑</span></li>
+          <li><span class="q-num">9</span><span>How do we handle it when things go wrong — do we blame, or do we fix?</span></li>
+        </ul>
+      </div>
+
+      <div class="q-category">
+        <div class="q-category-header">
+          <span class="q-block-label">C — Energy</span>
+          <span class="q-category-title">What does it feel like?</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">10</span><span>What energy should there be in this team?</span></li>
+          <li class="q-new"><span class="q-num">11</span><span>What should it feel like to come to work here?</span><span class="q-new-badge">↑</span></li>
+          <li class="q-new"><span class="q-num">12</span><span>What do we never want to become? What's our version of a bad team?</span><span class="q-new-badge">↑</span></li>
+        </ul>
+      </div>
+
+      <div class="q-category">
+        <div class="q-category-header">
+          <span class="q-block-label">D — Together</span>
+          <span class="q-category-title">How do we spend time?</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">13</span><span>How often should we do something together as a team?</span></li>
+          <li><span class="q-num">14</span><span>What kinds of activities should we do together?</span></li>
+        </ul>
+      </div>
+
+      <div class="q-category">
+        <div class="q-category-header">
+          <span class="q-block-label">E — The Individual</span>
+          <span class="q-category-title">Build the avatar</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">15</span><span>What are the most important qualities a person on this team has as an individual?</span></li>
+          <li class="q-new"><span class="q-num">16</span><span>What is the one quality you personally would never compromise on?</span><span class="q-new-badge">↑</span></li>
+        </ul>
+      </div>
+
+      <div class="q-category" style="margin-bottom:0;">
+        <div class="q-category-header">
+          <span class="q-block-label">F — Protection</span>
+          <span class="q-category-title">What do we guard?</span>
+        </div>
+        <ul class="q-list">
+          <li><span class="q-num">17</span><span>What are the most important qualities to preserve as a team?</span></li>
+          <li class="q-new"><span class="q-num">18</span><span>If you could only keep one thing about how we work together — what would it be?</span><span class="q-new-badge">↑</span></li>
+        </ul>
+      </div>
     </div>
   </div>
 
   <div class="section-card">
     <div class="section-header">
       <span class="section-num">Section 3</span>
-      <span class="section-title">Share &amp; Cluster <span class="time-hint">20 min</span></span>
+      <span class="section-title">Synthesise with AI <span class="time-hint">10 min</span></span>
     </div>
     <div class="section-body">
-      <ul class="item-list">
-        <li>Each person shares their answers. Leader writes them all on the board.</li>
-        <li>Cluster similar answers together — don't force it.</li>
-        <li>Let patterns emerge naturally. <em>Your job is to write, not to interpret.</em></li>
-      </ul>
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px;line-height:1.75;">Collect all the answers into a document. Then paste them into Claude with the prompt below. Claude will find the patterns, name the values, and describe them — in your team's own language. You then bring the output back to the room.</p>
+      <div class="prompt-block">
+        <div class="prompt-block-header">
+          <span>Claude prompt — copy and adapt</span>
+        </div>
+        <div class="prompt-body"><strong>Here are the answers from our team to a set of questions about who we are, how we work, and what we value:</strong>
+
+[Paste all answers here]
+
+<strong>Based on these answers:</strong>
+Identify 3–5 core team values. For each value:
+— Give it a name (1–3 words)
+— Write one sentence that captures the core belief
+— Describe what it looks like in practice (bullet points)
+— Describe what violating it looks like
+— Write a short 2–3 sentence description in the team's own language
+
+Find the patterns. Use the team's own words where possible. Make it feel like them — not like a corporate handbook.</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:14px;font-style:italic;">→ Bring the Claude output back to the room. Read it together. Does it feel true? Adjust the language until everyone nods.</p>
     </div>
   </div>
 
   <div class="section-card">
     <div class="section-header">
       <span class="section-num">Section 4</span>
-      <span class="section-title">Name the Values <span class="time-hint">20 min</span></span>
+      <span class="section-title">Adjust &amp; Own It <span class="time-hint">20 min</span></span>
     </div>
     <div class="section-body">
-      <p style="font-size:15px;color:var(--text);margin-bottom:16px;">Look at the clusters. For each cluster, ask:</p>
-      <div class="question-block" style="margin-bottom:16px;">
-        <div class="question-text">"What's the one word or short phrase that captures this?"</div>
-        <div class="question-note">Aim for 3–5 values. More than 5 is hard to remember.</div>
-      </div>
-      <p style="font-size:14px;color:var(--muted);margin-bottom:12px;">For each value, ask the team:</p>
+      <p style="font-size:15px;color:var(--text);margin-bottom:16px;">For each value the AI proposed, ask the team:</p>
       <div class="question-block" style="margin-bottom:10px;">
-        <div class="question-text">"What does this look like in practice?"</div>
+        <div class="question-text">"Does this feel true — or does it feel like someone else's words?"</div>
+        <div class="question-note">Adjust the name or wording until it sounds like you. Aim for 3–5 values. More than 5 is hard to live by.</div>
+      </div>
+      <div class="question-block" style="margin-bottom:10px;">
+        <div class="question-text">"What does this look like on a hard day — not just a good one?"</div>
       </div>
       <div class="question-block">
-        <div class="question-text">"What does violating this look like?"</div>
-        <div class="question-note">Write both answers under each value. This is what makes them real.</div>
+        <div class="question-text">"What would we call out if someone violated this?"</div>
+        <div class="question-note">Write both sides under each value. That's what makes them real.</div>
       </div>
     </div>
   </div>
