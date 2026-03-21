@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Behavioral Profile Test — Feel the Room</title>
+  <title>FTR Behavioral Profile Test — Feel the Room</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -289,6 +289,45 @@
     }
     .btn-course:hover { background: #D4B87A; }
 
+    /* ── PRINT / PDF ── */
+    @media print {
+      body { background: #fff !important; color: #1A1A14 !important; }
+      .result-topbar, .btn-retake, .result-footer { display: none !important; }
+      #screen-result { display: block !important; }
+      #screen-intro, #screen-quiz { display: none !important; }
+      .result-body { padding: 0 !important; max-width: 100% !important; }
+      .result-label { color: #8B6F47 !important; }
+      .result-profile-name { color: #1A1A14 !important; font-size: 40px !important; }
+      .result-tagline { color: #8B6F47 !important; }
+      .result-card, .score-card, .feel-letter-card, .feel-map, .social-need-badge {
+        background: #F8F5F0 !important; border: 1px solid #DDD5C5 !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }
+      .result-card h3, .feel-letter-name, .score-factor, .need-label { color: #8B6F47 !important; }
+      .result-card p, .result-card ul li, .feel-letter-desc, .score-label,
+      .need-desc, .need-value { color: #3A3528 !important; }
+      .feel-letter { color: #C8A96E !important; opacity: 1 !important; }
+      .feel-letter-card.highlight { border-color: #C8A96E !important; background: #FDF8F0 !important; }
+      .score-bar-fill { background: #C8A96E !important; -webkit-print-color-adjust: exact; }
+      .score-bar-wrap { background: #E8E0D0 !important; }
+      .result-grid { grid-template-columns: 1fr 1fr !important; }
+      .feel-letters { grid-template-columns: repeat(4,1fr) !important; }
+      .result-scores { grid-template-columns: repeat(4,1fr) !important; }
+      .print-header { display: block !important; }
+    }
+    .print-header {
+      display: none;
+      text-align: center; padding: 24px 0 32px; border-bottom: 2px solid #C8A96E;
+      margin-bottom: 32px;
+    }
+    .print-header .print-logo {
+      font-family: 'Helvetica Neue', sans-serif; font-size: 11px;
+      letter-spacing: 0.2em; text-transform: uppercase; color: #8B6F47;
+    }
+    .print-header .print-title {
+      font-size: 14px; color: #3A3528; margin-top: 6px;
+    }
+
     @media (max-width: 600px) {
       .result-scores { grid-template-columns: 1fr 1fr; }
       .result-grid { grid-template-columns: 1fr; }
@@ -527,8 +566,8 @@ const questions = [
 //  PROFILES
 // ══════════════════════════════════════════════════════════
 const profiles = {
-  persuader: {
-    name: "Persuader",
+  catalyst: {
+    name: "The Catalyst",
     tagline: "You move people. You move deals. You move rooms.",
     description: "You are naturally driven to influence outcomes AND to connect with people — a rare combination. You don't wait for permission to lead. You bring energy, initiative, and genuine warmth. You communicate with confidence and you read the room faster than most. In sales and leadership, people like you and respect you at the same time.",
     strengths: [
@@ -551,8 +590,8 @@ const profiles = {
     role: "Sales + Leadership"
   },
 
-  captain: {
-    name: "Captain",
+  conductor: {
+    name: "The Conductor",
     tagline: "You set the bar. You hold it. You raise it.",
     description: "You are competitive, assertive, and wired for results. You bring energy and drive to everything you touch, and you naturally gravitate toward leadership roles. You're charming enough to rally people and hard-nosed enough to hold the standard. You think in numbers, goals, and outcomes — and you expect the same from your team.",
     strengths: [
@@ -575,8 +614,8 @@ const profiles = {
     role: "Leadership"
   },
 
-  promoter: {
-    name: "Promoter",
+  bridge: {
+    name: "The Bridge",
     tagline: "People trust you before they understand why.",
     description: "You lead with warmth, not authority. People connect with you easily and naturally — clients buy from you because they like you, and colleagues follow you because being around you feels good. You are persistent without being pushy, and creative without being chaotic. You see a way through most situations because people tend to open doors for you.",
     strengths: [
@@ -599,8 +638,8 @@ const profiles = {
     role: "Sales"
   },
 
-  maverick: {
-    name: "Maverick",
+  pioneer: {
+    name: "The Pioneer",
     tagline: "You see what others don't. Then you go get it.",
     description: "You are ambitious, unconventional, and driven to build something. You see opportunities where others see risk, and you move fast when others hesitate. You are not wired for being managed — you're wired for being the one who sets the direction. You're often the top of the leaderboard and the first to leave if you feel constrained.",
     strengths: [
@@ -623,8 +662,8 @@ const profiles = {
     role: "Sales"
   },
 
-  strategist: {
-    name: "Strategist",
+  architect: {
+    name: "The Architect",
     tagline: "You see three moves ahead. Then you build the system.",
     description: "You are results-oriented, analytical, and highly independent. You move fast but you also think rigorously. You see patterns others miss and you anticipate problems before they arrive. In leadership, you build systems that consistently outperform. You are laser-focused on outcomes and you expect precision from yourself and others.",
     strengths: [
@@ -647,8 +686,8 @@ const profiles = {
     role: "Leadership"
   },
 
-  operator: {
-    name: "Operator",
+  foundation: {
+    name: "The Foundation",
     tagline: "You are the steady engine that makes everything run.",
     description: "You are consistent, reliable, and deeply thorough. You don't need the spotlight — you need things to work. You bring precision, follow-through, and a level of stability that teams depend on. You're not the loudest voice in the room, but you're often the one who actually gets things done. People can count on you completely.",
     strengths: [
@@ -671,8 +710,8 @@ const profiles = {
     role: "Support / Operations"
   },
 
-  collaborator: {
-    name: "Collaborator",
+  keeper: {
+    name: "The Keeper",
     tagline: "The team performs better because you're in it.",
     description: "You bring people together. You are warm, consistent, and genuinely invested in the people around you. You build the kind of team culture where people stay, grow, and give their best. You care about how people feel as much as what gets done — and that's not a weakness, it's exactly what most teams are missing.",
     strengths: [
@@ -695,8 +734,8 @@ const profiles = {
     role: "Leadership / Team"
   },
 
-  scholar: {
-    name: "Scholar",
+  expert: {
+    name: "The Expert",
     tagline: "You build on knowledge, not belief.",
     description: "You are precise, rigorous, and deeply knowledgeable in your domain. You don't wing it — you prepare, analyze, and deliver with accuracy. In sales, you are the trusted expert who clients come back to because they know you'll never mislead them. In leadership, your team knows you've thought it through.",
     strengths: [
@@ -830,26 +869,26 @@ function calculateProfile() {
   const C = getLevel(scores.C);
   const D = getLevel(scores.D);
 
-  // Persuader: High A + High B + Low/Mid C
-  if (A === 'high' && B === 'high' && C !== 'high') return 'persuader';
-  // Captain: High A + High/Mid B + Low/Mid C
-  if (A === 'high' && (B === 'high' || B === 'mid') && C !== 'high') return 'captain';
-  // Maverick: High A + Low B + Low C
-  if (A === 'high' && B === 'low' && C === 'low' && D === 'low') return 'maverick';
-  // Strategist: High A + Low/Mid B
-  if (A === 'high' && B !== 'high') return 'strategist';
-  // Promoter: Low A + High B + Low C
-  if (A !== 'high' && B === 'high' && C !== 'high') return 'promoter';
-  // Collaborator: Low A + High B + High C
-  if (A !== 'high' && B === 'high' && C === 'high') return 'collaborator';
-  // Operator: Low A + Low B + High C + High D
-  if (A === 'low' && B === 'low' && C === 'high' && D === 'high') return 'operator';
-  // Scholar: Low/Mid A + Low B + Low/Mid C + High D
-  if (A !== 'high' && B === 'low' && D === 'high') return 'scholar';
-  // Collaborator as fallback for warm/steady
-  if (B === 'high' || C === 'high') return 'collaborator';
+  // Catalyst: High A + High B + Low/Mid C
+  if (A === 'high' && B === 'high' && C !== 'high') return 'catalyst';
+  // Conductor: High A + High/Mid B + Low/Mid C
+  if (A === 'high' && (B === 'high' || B === 'mid') && C !== 'high') return 'conductor';
+  // Pioneer: High A + Low B + Low C
+  if (A === 'high' && B === 'low' && C === 'low' && D === 'low') return 'pioneer';
+  // Architect: High A + Low/Mid B
+  if (A === 'high' && B !== 'high') return 'architect';
+  // Bridge: Low A + High B + Low C
+  if (A !== 'high' && B === 'high' && C !== 'high') return 'bridge';
+  // Keeper: Low A + High B + High C
+  if (A !== 'high' && B === 'high' && C === 'high') return 'keeper';
+  // Foundation: Low A + Low B + High C + High D
+  if (A === 'low' && B === 'low' && C === 'high' && D === 'high') return 'foundation';
+  // Expert: Low/Mid A + Low B + High D
+  if (A !== 'high' && B === 'low' && D === 'high') return 'expert';
+  // Keeper as fallback for warm/steady
+  if (B === 'high' || C === 'high') return 'keeper';
   // Default
-  return 'persuader';
+  return 'catalyst';
 }
 
 // ══════════════════════════════════════════════════════════
@@ -894,6 +933,10 @@ function showResult() {
   const watchoutsHTML = p.watchouts.map(w => `<li>${w}</li>`).join('');
 
   document.getElementById('result-body').innerHTML = `
+    <div class="print-header">
+      <div class="print-logo">Feel the Room · FTR Behavioral Profile</div>
+      <div class="print-title">Your personal profile report · feeltheroom.dk</div>
+    </div>
     <div class="result-label">Your Behavioral Profile</div>
     <div class="result-profile-name">${p.name}</div>
     <div class="result-tagline">${p.tagline}</div>
@@ -934,6 +977,7 @@ function showResult() {
 
     <div class="result-footer">
       <button class="btn-share" onclick="copyResult('${p.name}', '${p.tagline}')">Copy result</button>
+      <button class="btn-share" onclick="downloadProfile()">⬇ Download profile</button>
       <button class="btn-course" onclick="window.location.href='programs.html'">Explore the course →</button>
     </div>
   `;
@@ -949,12 +993,17 @@ function showResult() {
 }
 
 function copyResult(name, tagline) {
-  const text = `My behavioral profile: ${name} — "${tagline}" | Feel the Room`;
+  const text = `My FTR Behavioral Profile: ${name} — "${tagline}" | feeltheroom.dk/profile-test.html`;
   navigator.clipboard.writeText(text).then(() => {
     const btn = document.querySelector('.btn-share');
+    const orig = btn.textContent;
     btn.textContent = '✓ Copied';
-    setTimeout(() => btn.textContent = 'Copy result', 2000);
+    setTimeout(() => btn.textContent = orig, 2000);
   });
+}
+
+function downloadProfile() {
+  window.print();
 }
 </script>
 </body>
