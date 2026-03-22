@@ -60,16 +60,16 @@
       cursor: pointer;
     }
     .nav-links span:hover { color: var(--cream); }
-    /* NAV BUTTON — blå med orange tekst */
+    /* NAV BUTTON — orange med blå tekst */
     .btn-nav {
-      background: var(--blue);
-      color: var(--orange) !important;
+      background: var(--orange);
+      color: var(--blue) !important;
       padding: 9px 20px;
       border-radius: 7px;
       font-weight: 700;
       font-size: 13px;
       letter-spacing: 0.01em;
-      border: 1px solid var(--blue-light);
+      border: 1px solid rgba(224,104,32,0.6);
     }
 
     /* ─── HERO ─── */
@@ -104,18 +104,18 @@
     .bullet span { font-size: 15px; color: var(--cream2); line-height: 1.65; }
     .bullet span.strong { color: var(--cream); font-weight: 500; }
 
-    /* KNAPPER — blå med orange tekst */
+    /* KNAPPER — orange med blå tekst */
     .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
     .btn-primary {
-      background: var(--blue);
-      color: var(--orange);
+      background: var(--orange);
+      color: var(--blue);
       padding: 14px 30px;
       border-radius: 9px;
       font-size: 15px;
       font-weight: 700;
       display: inline-block;
-      border: 1px solid var(--blue-light);
-      box-shadow: 0 4px 24px var(--blue-glow);
+      border: 1px solid rgba(224,104,32,0.6);
+      box-shadow: 0 4px 24px rgba(224,104,32,0.3);
     }
     .btn-secondary {
       background: transparent;
@@ -295,30 +295,31 @@
       <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="max-width:440px;">
         <defs>
           <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="#1A4DC4" stop-opacity="0.22"/>
-            <stop offset="60%" stop-color="#E06820" stop-opacity="0.06"/>
+            <stop offset="0%" stop-color="#E06820" stop-opacity="0.18"/>
             <stop offset="100%" stop-color="#E06820" stop-opacity="0"/>
           </radialGradient>
         </defs>
         <circle cx="240" cy="240" r="220" fill="url(#rg1)"/>
-        <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#1A4DC4" stroke-width="1" opacity="0.5"/>
+        <!-- Alt er orange -->
+        <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#E06820" stroke-width="1" opacity="0.5"/>
         <rect x="143" y="143" width="194" height="194" fill="none" stroke="#E06820" stroke-width="0.7" opacity="0.25"/>
-        <circle cx="240" cy="240" r="112" fill="none" stroke="#1A4DC4" stroke-width="0.9" opacity="0.45"/>
+        <circle cx="240" cy="240" r="112" fill="none" stroke="#E06820" stroke-width="0.9" opacity="0.45"/>
         <line x1="240" y1="30" x2="240" y2="128" stroke="#E06820" stroke-width="0.6" opacity="0.5"/>
-        <line x1="450" y1="240" x2="352" y2="240" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
-        <line x1="240" y1="450" x2="240" y2="352" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
-        <line x1="30" y1="240" x2="128" y2="240" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
+        <line x1="450" y1="240" x2="352" y2="240" stroke="#E06820" stroke-width="0.5" opacity="0.3"/>
+        <line x1="240" y1="450" x2="240" y2="352" stroke="#E06820" stroke-width="0.5" opacity="0.3"/>
+        <line x1="30" y1="240" x2="128" y2="240" stroke="#E06820" stroke-width="0.5" opacity="0.3"/>
         <circle cx="240" cy="30"  r="4" fill="#E06820" opacity="0.9"/>
-        <circle cx="450" cy="240" r="3" fill="#1A4DC4" opacity="0.7"/>
-        <circle cx="240" cy="450" r="3" fill="#1A4DC4" opacity="0.7"/>
-        <circle cx="30"  cy="240" r="3" fill="#1A4DC4" opacity="0.7"/>
+        <circle cx="450" cy="240" r="3" fill="#E06820" opacity="0.5"/>
+        <circle cx="240" cy="450" r="3" fill="#E06820" opacity="0.5"/>
+        <circle cx="30"  cy="240" r="3" fill="#E06820" opacity="0.5"/>
         <text x="240" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#E06820" opacity="1">F</text>
-        <text x="472" y="247" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#1A4DC4" opacity="0.9">E</text>
-        <text x="240" y="477" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#1A4DC4" opacity="0.9">E</text>
+        <text x="472" y="247" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#E06820" opacity="0.7">E</text>
+        <text x="240" y="477" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#E06820" opacity="0.7">E</text>
         <text x="10"  y="247" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#E06820" opacity="0.7">L</text>
+        <!-- Pil: spids orange, hale blå -->
         <g transform="rotate(25,240,240)">
-          <polygon points="240,128 236,240 240,250 244,240" fill="#E06820" opacity="0.9"/>
-          <polygon points="240,352 236,240 240,250 244,240" fill="#1A4DC4" opacity="0.4"/>
+          <polygon points="240,128 236,240 240,250 244,240" fill="#E06820" opacity="0.95"/>
+          <polygon points="240,352 236,240 240,250 244,240" fill="#1A4DC4" opacity="0.85"/>
         </g>
         <circle cx="240" cy="240" r="9" fill="none" stroke="#E06820" stroke-width="1.2" opacity="0.6"/>
         <circle cx="240" cy="240" r="4" fill="#E06820" opacity="0.95"/>
