@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Seedster Marbella — Analyse</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f0e8; color: #2a1a08; }
+  .header { background: #2a1a08; color: #f5f0e8; padding: 40px; }
+  .header h1 { font-size: 28px; margin-bottom: 8px; }
+  .header p { opacity: 0.7; font-size: 15px; }
+  .status-bar { background: #e07020; color: white; padding: 12px 40px; font-size: 14px; display: flex; gap: 30px; }
+  .status-bar span strong { font-size: 18px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+  
+  /* Sessions grid */
+  .sessions { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; margin-bottom: 50px; }
+  .session { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .session-header { padding: 18px 20px; display: flex; align-items: flex-start; gap: 14px; }
+  .session-num { width: 40px; height: 40px; background: #e07020; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .session-num.pending { background: #ccc; }
+  .session-title { flex: 1; }
+  .session-title h3 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+  .session-title p { font-size: 12px; color: #888; }
+  .session-body { padding: 0 20px 18px; }
+  .challenge { background: #fdf6ee; border-left: 3px solid #e07020; padding: 10px 12px; border-radius: 0 6px 6px 0; margin-bottom: 12px; font-size: 13px; color: #5a3a10; }
+  .challenge strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #e07020; margin-bottom: 4px; }
+  .moves { margin-bottom: 12px; }
+  .moves h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #888; margin-bottom: 8px; }
+  .move { display: flex; gap: 8px; margin-bottom: 6px; font-size: 13px; }
+  .move::before { content: "→"; color: #e07020; flex-shrink: 0; }
+  .quote { font-style: italic; background: #2a1a08; color: #f5f0e8; padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; }
+  .linkedin-angle { border: 1px dashed #e07020; border-radius: 6px; padding: 10px 12px; font-size: 13px; color: #2a1a08; }
+  .linkedin-angle strong { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: #e07020; margin-bottom: 4px; }
+  .tag { display: inline-block; background: #e07020; color: white; font-size: 10px; padding: 2px 8px; border-radius: 20px; margin-right: 4px; margin-bottom: 4px; }
+  .tag.blue { background: #2a5080; }
+  
+  /* Patterns section */
+  .section-title { font-size: 20px; font-weight: 700; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #e07020; }
+  .patterns { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 50px; }
+  .pattern { background: white; border-radius: 10px; padding: 18px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+  .pattern-icon { font-size: 24px; margin-bottom: 10px; }
+  .pattern h3 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  .pattern p { font-size: 13px; color: #666; line-height: 1.5; }
+  
+  /* LinkedIn posts */
+  .posts { display: flex; flex-direction: column; gap: 24px; margin-bottom: 50px; }
+  .post { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+  .post-header { background: #2a1a08; color: #f5f0e8; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; }
+  .post-header span { font-size: 12px; opacity: 0.7; }
+  .post-body { padding: 20px; font-size: 14px; line-height: 1.7; white-space: pre-wrap; }
+  .post-footer { padding: 14px 20px; background: #f9f5ef; border-top: 1px solid #ede5d8; font-size: 12px; color: #888; display: flex; gap: 16px; }
+  .badge { padding: 3px 10px; background: #e8f4e8; color: #2a6a2a; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  
+  /* Pending */
+  .pending-box { background: white; border-radius: 12px; padding: 24px; text-align: center; border: 2px dashed #ddd; }
+  .pending-box h3 { font-size: 16px; margin-bottom: 8px; color: #888; }
+  .pending-box p { font-size: 13px; color: #aaa; }
+  .progress { margin-top: 12px; background: #f0f0f0; border-radius: 10px; height: 6px; overflow: hidden; }
+  .progress-bar { background: #e07020; height: 100%; width: 67%; border-radius: 10px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Seedster Marbella — Analyse</h1>
+  <p>Hard Rock Hotel · 9 coaching-sessioner · Joakims mønstre &amp; LinkedIn-posts</p>
+</div>
+
+<div class="status-bar">
+  <span><strong>6</strong> transskriberet</span>
+  <span><strong>3</strong> afventer (session 7-9)</span>
+  <span><strong>5</strong> LinkedIn-posts klar</span>
+  <span><strong>1</strong> Tobias Just (Just Media)</span>
+</div>
+
+<div class="container">
+
+  <h2 class="section-title">Sessioner — hvem er de?</h2>
+  <div class="sessions">
+
+    <!-- Session 1 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">1</div>
+        <div class="session-title">
+          <h3>4power</h3>
+          <p>Energioptimering · pool &amp; spa</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>Transition fra produktsalg → abonnementsmodel. Hvem betaler i en 4-trins værdikæde? (producent → installatør → udlejningsbureau → sommerhuslejer)</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">"Hvad er der galt med det der er nu?" → grav dybere</div>
+          <div class="move">"Lad os lege med tanken at alt var nemt" → scenariespørgsmål</div>
+          <div class="move">"Hvem vinder / hvem taber på det her?" → stakeholder-mapping</div>
+          <div class="move">Har I snakket med slutbrugerne? → afdæk research-gap</div>
+          <div class="move">Reframe: I sælger ikke software, I sælger sikkerhed og kundetilfredshed</div>
+        </div>
+        <div class="quote">"Bygge produktet på viden og ikke på tro"</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>"I sælger ikke software. I sælger en forsikring." — om at aktivere følelser i stedet for features</div>
+        <div style="margin-top:10px"><span class="tag">Subscription</span><span class="tag">B2B</span><span class="tag blue">Klar til post</span></div>
+      </div>
+    </div>
+
+    <!-- Session 2 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">2</div>
+        <div class="session-title">
+          <h3>AppTool</h3>
+          <p>Ad-setup SaaS · 150k MRR</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>International ekspansion (SE/NO/DE) + ansætte første sælger. Skal de bruge ekstern mødebooker eller hyre lokalt?</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">Interview konkurrenter + end-users inden man går ind på nyt marked</div>
+          <div class="move">"Vil I betale 10.000 kr. for den indsigt?" → sæt pris på research</div>
+          <div class="move">Intern ansættelse &gt; eksterne bureauer for kultur</div>
+          <div class="move">Team-avatar øvelse med Claude/ChatGPT til at kristallisere værdier</div>
+          <div class="move">"Performativ balance" — kan ikke performe uden at have det sjovt</div>
+        </div>
+        <div class="quote">"Hvis du fortæller nogen at kigge efter røde biler, ser de røde biler"</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>Team-avatar øvelsen: brugte 30 min + Claude til at definere hvad en perfekt ny sælger ser ud — og hvad han søger efter nu</div>
+        <div style="margin-top:10px"><span class="tag">Kultur</span><span class="tag">Hiring</span><span class="tag blue">Klar til post</span></div>
+      </div>
+    </div>
+
+    <!-- Session 3 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">3</div>
+        <div class="session-title">
+          <h3>Webshop-iværksætter</h3>
+          <p>Har solgt webshops · overvejer software-job</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>Har fået et software-job tilbudt trods ingen erfaring. Usikker på om det er det rigtige valg.</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">Video-outreach til at booke møder (record yourself + screen share)</div>
+          <div class="move">Disqualificere leads tidligt sparer tid</div>
+          <div class="move">Statistik på sig selv: 100 opkald → 20 møder → lær fra data</div>
+        </div>
+        <div class="quote">"Et nej er fedt — nu er jeg tættere på et ja"</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>Om at optage sig selv og se sig selv uden lyd — hvad siger dit mimik? Kroppens sprog sælger mere end ordene</div>
+        <div style="margin-top:10px"><span class="tag">Salg</span><span class="tag">Teknik</span><span class="tag blue">Klar til post</span></div>
+      </div>
+    </div>
+
+    <!-- Session 4 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">4</div>
+        <div class="session-title">
+          <h3>Christina</h3>
+          <p>Sygeplejerske 8 år · paddel · vil ind i salg</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>Har ikke fundet sin plads i erhvervslivet. Netværket siger "du skal være sælger" — men hun kan ikke se sig selv som den klassiske sælger-type.</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">Joakim deler sin egen rejse fra callcenter → forsikring → software</div>
+          <div class="move">Redefiner salg: "Hjælpe mennesker med at træffe den rigtige beslutning"</div>
+          <div class="move">Stol på dine egne statistikker — lav data på dig selv</div>
+          <div class="move">Optagelse + kropsanalyse: se dig selv uden lyd</div>
+          <div class="move">Direkte validation: "Det kan du 100 procent, det er jeg ikke i tvivl om"</div>
+        </div>
+        <div class="quote">"Salg handler ikke om at overtale. Det handler om at hjælpe."</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>Hvornår gik det op for dig at salg handler om at hjælpe, ikke overtale? Joakims svar + en sygeplejerske der aldrig troede hun ville sælge</div>
+        <div style="margin-top:10px"><span class="tag">Mindset</span><span class="tag">Salgsdefinition</span><span class="tag blue">Stærk post</span></div>
+      </div>
+    </div>
+
+    <!-- Session 5 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">5</div>
+        <div class="session-title">
+          <h3>Forsyningssoftware</h3>
+          <p>El/varme digitalisering · 2 kunder, halvt Danmark</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>Utrolig hurtig vækst på 1 år. Har brug for 10M kr. til at ansætte 3-4 sælgere og tage markedet. Aner ikke noget om funding eller lead generation.</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">"Hvad vil der ske hvis I havde 10 millioner i morgen?" → visualisér behovet</div>
+          <div class="move">Lifecycle events som lead-trigger (hundefoder-historien!)</div>
+          <div class="move">"E-mails er guld — mere værd end penge"</div>
+          <div class="move">Viden som moat: longform YouTube → short clips → leads</div>
+          <div class="move">Viser sin notesblok: 19 content-idéer fra flyveren</div>
+        </div>
+        <div class="quote">"Konceptuér jeres viden. Den lever kun hvis andre ved noget om den."</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>Hundefoder-historien: den sælger der sender blomster når hunden dør — og hvad det betyder for din pipeline (lifecycle timing)</div>
+        <div style="margin-top:10px"><span class="tag">Leads</span><span class="tag">Content</span><span class="tag blue">Bedste post</span></div>
+      </div>
+    </div>
+
+    <!-- Session 6 -->
+    <div class="session">
+      <div class="session-header">
+        <div class="session-num">6</div>
+        <div class="session-title">
+          <h3>Mick Hytter</h3>
+          <p>Danskundervisning til ukrainere · B2B-ekspansion</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="challenge"><strong>Udfordring</strong>Stærk social tilstedeværelse (50+ videos, webinars, TikTok/YouTube/Facebook) men mangler B2B-leads til virksomheder der ansætter ukrainere.</div>
+        <div class="moves">
+          <h4>Joakims nøgletræk</h4>
+          <div class="move">"Sæt dig i din kundes sted — hvad gør du?" → empati-øvelse</div>
+          <div class="move">"Oplever du også XYZ?" → content der taler ind i smerten</div>
+          <div class="move">CTA på ALT — alle videoer, bio, opslag → leder til sign-up</div>
+          <div class="move">B2B = B2C: "Vi er alle mennesker. Vi ser content som private."</div>
+          <div class="move">LinkedIn til virksomhedscontent — samme format, dansk sprog</div>
+        </div>
+        <div class="quote">"E-mails er guld. Det er mere værd end penge, vil jeg bare sige."</div>
+        <div class="linkedin-angle"><strong>LinkedIn-vinkel</strong>B2B er bare B2C med et CVR-nummer. Vi er alle mennesker der træffer beslutninger med følelser</div>
+        <div style="margin-top:10px"><span class="tag">B2B</span><span class="tag">Leads</span><span class="tag blue">Klar til post</span></div>
+      </div>
+    </div>
+
+    <!-- Sessions 7-9 pending -->
+    <div class="session" style="opacity:0.6">
+      <div class="session-header">
+        <div class="session-num pending">7</div>
+        <div class="session-title">
+          <h3>Session 7</h3>
+          <p>Whisper kører... (~30 min tilbage)</p>
+        </div>
+      </div>
+      <div class="session-body">
+        <div class="pending-box">
+          <h3>Transskribering i gang</h3>
+          <p>Opdateres automatisk når whisper er færdig</p>
+          <div class="progress"><div class="progress-bar"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="session" style="opacity:0.4">
+      <div class="session-header">
+        <div class="session-num pending">8</div>
+        <div class="session-title"><h3>Session 8</h3><p>Afventer...</p></div>
+      </div>
+      <div class="session-body"><div class="pending-box"><h3>Afventer session 7</h3></div></div>
+    </div>
+
+    <div class="session" style="opacity:0.4">
+      <div class="session-header">
+        <div class="session-num pending">★</div>
+        <div class="session-title"><h3>Tobias Just</h3><p>Just Media · 8.7 MB</p></div>
+      </div>
+      <div class="session-body"><div class="pending-box"><h3>Afventer transskribering</h3></div></div>
+    </div>
+
+  </div><!-- /sessions -->
+
+  <!-- Patterns -->
+  <h2 class="section-title">Joakims mønstre — på tværs af alle sessioner</h2>
+  <div class="patterns">
+    <div class="pattern">
+      <div class="pattern-icon">🎲</div>
+      <h3>"Lad os lege med tanken..."</h3>
+      <p>Scenariespørgsmål der fjerner friktionen. Bruges til at komme forbi "men det er svært" og ind i "hvad vil vi egentlig".</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">🧠</div>
+      <h3>"Bygge på viden, ikke på tro"</h3>
+      <p>Gentages i session 1 og 5. Opfordrer til brugerinterviews og data frem for mavefornemmelse. Hans vigtigste research-princip.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">🎯</div>
+      <h3>Lifecycle event-timing</h3>
+      <p>Find det begivenhed der altid sker i din kundes liv — og ring præcis der. Hundefoder-eksemplet. Konkursdata-eksemplet.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">📧</div>
+      <h3>"E-mails er guld"</h3>
+      <p>Sagt i mindst 3 sessioner. Alt content skal lede til email-signup. En email = en potentiel kunde du ejer.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">🪟</div>
+      <h3>"Hvem vinder / hvem taber?"</h3>
+      <p>Kortlæg hele stakeholder-kæden. Hvem er der ikke noget for i dit produkt? Dem skal du enten vinde eller holde skadesfri.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">💡</div>
+      <h3>"Sælg følelsen, ikke featuren"</h3>
+      <p>"I sælger ikke software, I sælger sikkerhed." — aktivér den underliggende følelse. Session 1 + 4.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">🎥</div>
+      <h3>Konceptuér din viden</h3>
+      <p>Longform YouTube → korte klips → leads. Din dybe brancheviden er en voldgrav ingen kan kopiere. Gør den synlig.</p>
+    </div>
+    <div class="pattern">
+      <div class="pattern-icon">🤝</div>
+      <h3">"Hjælpe, ikke overtale"</h3>
+      <p>Joakims kerndefinition af salg. Gentages i session 4 og 5. "Jeg kan ikke få dig til at gøre noget du ikke vil."</p>
+    </div>
+  </div>
+
+  <!-- LinkedIn posts -->
+  <h2 class="section-title">LinkedIn-posts — klar til publicering</h2>
+  <div class="posts">
+
+    <div class="post">
+      <div class="post-header">
+        <strong>Post 1 — Hundefoder-historien (Session 5)</strong>
+        <span class="badge">Bedste post</span>
+      </div>
+      <div class="post-body">Der er en hundemadfirma i USA.
+
+Når en hund dør, ringer kunden ind og siger: "Lille Wufi er død."
+
+De fleste virksomheder siger "Så ked af det — vi lukker din subscription."
+
+Det her firma gør noget andet.
+
+De trækker den sidste måneds betaling.
+Og sender en buket blomster til kunden.
+
+Hvad sker der så?
+
+Mennesker med hunde... får som regel en ny hund.
+
+Og de vender ALTID tilbage.
+
+---
+
+Jeg fortalte den her historie i Marbella til en softwarevirksomhed der ikke vidste, hvordan de skulle finde leads.
+
+Svaret: lær din kundes livscyklus at kende.
+
+Hvad er den begivenhed der altid sker i din kundes liv?
+— Et CVR-nummer der oprettes
+— En kontakt der skal fornyes om et år
+— Et reguleringskrav der rammer inden for 3 måneder
+
+Ring PRÆCIS der.
+
+Ikke for at sælge. For at minde dem om at du ved det, de måske ikke selv har tænkt på endnu.
+
+Så er det ikke dig der sælger til dem.
+Det er dem der vil have noget af dig.
+
+Hvornår ringer du til dine kunder?</div>
+      <div class="post-footer">
+        <span>Fra session 5 · Forsyningssoftware</span>
+        <span>Vinkel: Lifecycle timing → inbound salg</span>
+        <span class="badge">Klar ✓</span>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <strong>Post 2 — I sælger ikke software (Session 1)</strong>
+        <span class="badge">Klar</span>
+      </div>
+      <div class="post-body">Jeg sælger forsikringer.
+
+Men faktisk... sælger jeg aldrig forsikringer.
+
+Jeg sælger ro i maven.
+Jeg sælger "du slipper for at tænke på det her."
+Jeg sælger trygheden i at vide, at hvis noget sker — er du dækket.
+
+Jeg sad til en session i Marbella med to ingeniører der har bygget en fed energiløsning til pooludlejning.
+
+De forklarede features i 10 minutter.
+Sensorer. ML-modeller. Realtidsdata. Fjernbetjening.
+
+Så spurgte jeg: "Hvad er det i egentlig sælger?"
+
+Lang pause.
+
+"Kundetilfredshed," sagde den ene.
+"Sikkerhed," sagde den anden.
+
+Der var det.
+
+---
+
+Find den følelse der sidder under dit produkt.
+
+Det er ikke features der sælger.
+Det er det, din kunde slipper for at bekymre sig om.
+
+Hvad sælger du egentlig?</div>
+      <div class="post-footer">
+        <span>Fra session 1 · 4power</span>
+        <span>Vinkel: Sælg følelsen, ikke featuren</span>
+        <span class="badge">Klar ✓</span>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <strong>Post 3 — Salg handler om at hjælpe (Session 4)</strong>
+        <span class="badge">Klar</span>
+      </div>
+      <div class="post-body">Hun var sygeplejerske i 8 år.
+
+Behandlede patienter. Reddede liv. Hørte på folk.
+
+Og nu sad hun over for mig i Marbella og sagde:
+"Alle siger jeg skal ind i salg. Men jeg vil ikke overtale folk til noget."
+
+Jeg forstod hende godt.
+
+Fordi DEN type salg... hader jeg også.
+
+Jeg sagde til hende: "Salg er ikke at overtale. Det er at hjælpe mennesker med at træffe den rigtige beslutning."
+
+Og hvis du overtaler nogen til at sige ja til noget de ikke er klar til — det er ikke salg. Det er manipulation. Og det giver hverken jer eller kunden noget.
+
+---
+
+Hendes reaktion: "Det er jo bare mig. Det er præcis det jeg gør som sygeplejerske."
+
+Præcis.
+
+De bedste sælgere er ikke dem med de skarpeste argumenter.
+Det er dem der stiller de rigtige spørgsmål — og lytter.
+
+Hvad er din definition af salg?</div>
+      <div class="post-footer">
+        <span>Fra session 4 · Christina</span>
+        <span>Vinkel: Redefinér salg som hjælp</span>
+        <span class="badge">Klar ✓</span>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <strong>Post 4 — Bygge på viden, ikke på tro (Session 1 + 5)</strong>
+        <span class="badge">Klar</span>
+      </div>
+      <div class="post-body">Den sætning kom op to gange i Marbella.
+
+"Bygge på viden, ikke på tro."
+
+Første gang: En hardwarevirksomhed der var ved at lancere en ny prismodel — men aldrig havde talt med slutbrugerne.
+
+Anden gang: En softwarevirksomhed der vidste præcis hvad kunderne havde brug for. Fordi de aldrig spurgte.
+
+---
+
+De fleste founder bygger produkter de selv vil have.
+Eller produkter de tror andre vil have.
+
+Men der er en forskel på at tro og at vide.
+
+Og den forskel kan koste dig et år.
+
+Øvelsen er simpel: 
+Find 10 mennesker der passer på din ICP.
+Kald dem ikke kunder. Kald dem interviewpersoner.
+Stil dem spørgsmål. Lyt.
+
+Du vil lære mere på 5 samtaler end 3 måneder i maskinrummet.
+
+Og du bygger relationer på vejen.
+
+Hvornår talte du sidst med en der IKKE er din kunde endnu?</div>
+      <div class="post-footer">
+        <span>Fra session 1 + 5</span>
+        <span>Vinkel: Brugerresearch som konkurrencefordel</span>
+        <span class="badge">Klar ✓</span>
+      </div>
+    </div>
+
+    <div class="post">
+      <div class="post-header">
+        <strong>Post 5 — E-mails er guld (Session 5 + 6)</strong>
+        <span class="badge">Klar</span>
+      </div>
+      <div class="post-body">Jeg sagde det i Marbella og jeg mener det stadig:
+
+"E-mails er guld. Mere værd end penge."
+
+Alle laver content.
+Reels. Shorts. Stories. LinkedIn-opslag.
+
+Men hvad sker der bagefter?
+
+Folk scroller videre.
+
+En e-mail er anderledes.
+Det er din kundes tilladelse til at komme direkte ind i hans liv.
+Ingen algoritme. Ingen feed.
+Bare dig og ham.
+
+---
+
+Det eneste formål med alt dit content er at gøre én ting:
+Få folk til at give dig deres e-mail.
+
+Alt linker til en sign-up.
+Alt indeholder et CTA.
+Alt leder ét sted hen.
+
+Mick kørte 50 videoer og månedlige webinars i et år.
+Fedt indhold. Stærk præsens.
+
+Men ingen systematisk e-mail-opsamling.
+
+Det er som at bygge en butik uden kasse.
+
+Hvor mange e-mails fanger du om måneden fra dit content?</div>
+      <div class="post-footer">
+        <span>Fra session 5 + 6</span>
+        <span>Vinkel: Email capture som sales-fundament</span>
+        <span class="badge">Klar ✓</span>
+      </div>
+    </div>
+
+  </div><!-- /posts -->
+
+</div><!-- /container -->
+
+</body>
+</html>
