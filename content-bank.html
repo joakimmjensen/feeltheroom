@@ -310,43 +310,335 @@
 
   <hr>
 
-  <!-- RESTERENDE SEEDSTER POSTS -->
+  <!-- SEEDSTER POSTS OVERSIGT -->
   <div class="section">
-    <div class="section-title">Resterende Seedster Posts · Uge 6+</div>
+    <div class="section-title">Seedster Posts · 6 skrevet &amp; klar</div>
     <table class="bank-table" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
       <thead>
         <tr>
           <th style="width:5%;">#</th>
-          <th style="width:30%;">Titel / Tema</th>
-          <th style="width:35%;">Nøgle-indsigt</th>
-          <th style="width:15%;">Hjul</th>
+          <th style="width:32%;">Titel / Person</th>
+          <th style="width:38%;">Kerneindsigt</th>
+          <th style="width:10%;">Hjul</th>
           <th style="width:15%;">Status</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td style="color:var(--muted);">2</td>
-          <td class="bank-title">Ukrainsk underviser — B2B vs B2C er det samme</td>
-          <td class="bank-notes">"Hvis du var din egen kunde — hvad ville du gøre?"</td>
+          <td class="bank-title">Mick — Ukrainsk underviser</td>
+          <td class="bank-notes">"Kan de finde mig?" — synlighed vs lead-problem</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">3</td>
+          <td class="bank-title">Kasper+Jesper — Elmålere</td>
+          <td class="bank-notes">Livscyklusbegivenheder som salgskalender</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">5</td>
+          <td class="bank-title">Bia — Pane gardiner</td>
+          <td class="bank-notes">"Din erfaring lever kun, hvis nogen ved den."</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">6</td>
+          <td class="bank-title">Christina — Sygeplejerske → sælger</td>
+          <td class="bank-notes">"Salg er ikke en personlighedstype."</td>
           <td><span class="wheel-tag wheel-coaching">C</span></td>
           <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
         </tr>
         <tr>
           <td style="color:var(--muted);">7</td>
-          <td class="bank-title">CEO-rolle — "Opfør dig som en svamp"</td>
-          <td class="bank-notes">"De fleste ved godt, hvad de skal gøre."</td>
+          <td class="bank-title">CEO dag 1 — "Opfør dig som en svamp"</td>
+          <td class="bank-notes">Forstå før du handler. Tillid > titel.</td>
           <td><span class="wheel-tag wheel-coaching">C</span></td>
           <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
         </tr>
         <tr>
           <td style="color:var(--muted);">8</td>
-          <td class="bank-title">Adtool — skalering internationalt</td>
-          <td class="bank-notes">Market research = salg i forklædning. Expected/Good/GOAT-system.</td>
+          <td class="bank-title">Adtool — international skalering</td>
+          <td class="bank-notes">Markedsundersøgelse = dit bedste salgsmøde.</td>
           <td><span class="wheel-tag wheel-coaching">C</span></td>
           <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <hr>
+
+  <!-- SKREVNE POSTS FULDE TEKSTER -->
+  <div class="section">
+    <div class="section-title">Posts · Fulde tekster · Copy-paste til LinkedIn</div>
+    <p class="cycle-hint" style="margin-bottom:24px;">Klik på en titel for at åbne den fulde post.</p>
+
+    <style>
+      .post-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 12px; overflow: hidden; }
+      .post-card-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 20px; cursor: pointer; gap: 12px; transition: background 0.15s; }
+      .post-card-header:hover { background: var(--surface2); }
+      .post-card-meta { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+      .post-card-title-text { font-size: 14px; color: var(--text); }
+      .post-toggle-hint { font-size: 12px; color: var(--muted); font-family: -apple-system, sans-serif; white-space: nowrap; }
+      .post-card-body { display: none; padding: 0 20px 20px; border-top: 1px solid var(--border); }
+      .post-card-body.open { display: block; }
+      .post-text { font-size: 14px; color: var(--text); line-height: 1.85; white-space: pre-wrap; font-family: Georgia, serif; margin-top: 16px; background: var(--surface2); padding: 20px 22px; border-radius: 8px; cursor: text; border: 1px solid var(--border); }
+      .copy-btn { margin-top: 12px; display: inline-block; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 6px 14px; border-radius: 4px; background: rgba(196,154,106,0.15); color: var(--gold); border: 1px solid rgba(196,154,106,0.3); cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.15s; }
+      .copy-btn:hover { background: rgba(196,154,106,0.25); }
+    </style>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#2</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Mick — Han havde 7.000 følgere og ingen B2B-kunder</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">Han havde 7.000 følgere på YouTube.
+Og ingen B2B-kunder.
+
+Mick underviser ukrainere i dansk.
+Stærk platform. Stor troværdighed.
+
+Men pengene kom ikke.
+
+Han spurgte: "Hvordan finder jeg B2B-kunder?"
+
+Jeg spurgte: "Hvad ville du gøre, hvis du var din egen kunde?"
+
+Det tog ham et øjeblik.
+
+"Jeg ville... søge på YouTube. Finde ham der underviser i dansk. Kontakte ham."
+
+Ja.
+
+Du er ikke kun underviseren.
+Du er produktet.
+Du er beviset.
+
+Dem, der skal betale for dine ydelser, ser præcis det samme som dine 7.000 følgere.
+
+Det er ikke et lead-problem.
+Det er et synlighedsproblem.
+
+Spørgsmålet er ikke: "Hvordan finder jeg kunder?"
+Spørgsmålet er: "Kan de finde mig?"</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#3</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Kasper+Jesper — Det værste jeg ved er at ringe uden en grund</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">Det værste, jeg ved som sælger, er at ringe uden en grund.
+
+Kasper og Jesper har tilsammen 40 års erfaring.
+De dækker halvdelen af Danmarks elmålere.
+
+Spørgsmålet var: Hvordan skalerer man salg, når løsningen er kompleks og kunderne er konservative?
+
+Jeg spurgte: "Hvad sker der altid med jeres kunder?"
+
+Regulatoriske opdateringer. Fornyelsescyklusser. Rapporter fra Tilsynet.
+
+Det er jeres salgskalender.
+
+Ikke marketing-leads.
+Ikke cold calls.
+
+Find de begivenheder, der altid sker.
+Brug dem som undskyldning for at ringe.
+
+"Hej Lars. Jeg ved, du snart skal forny. Har du tænkt over det endnu?"
+
+Det er ikke salg.
+Det er service.
+
+Og den samtale vil de altid tage.
+
+De fleste sælgere ringer uden grund.
+De bedste ringer på det rigtige tidspunkt.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#5</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Bia — Din erfaring lever kun, hvis nogen ved den</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">Bia producerer gardiner i Danmark.
+141 år gammel virksomhed. 24 medarbejdere. Håndværk i verdensklasse.
+
+Hun spurgte: "Kan vi finde en ung person til at stå for vores videoer?"
+
+Jeg sagde: Nej.
+
+En 25-årig kan sige de exakte ord.
+
+Men de kan ikke fortælle historien på samme måde.
+
+Du har x antal år i branchen.
+Du ved, hvad det koster at sy rigtigt.
+Du ved, hvad der sker, hvis man ikke gør det.
+
+Det er ikke viden, de kan lære på to måneder.
+Det er viden, de endnu ikke har levet.
+
+Din erfaring er dit brand.
+Men det gælder kun, hvis nogen ved det.
+
+Du kan ikke skalere produktionen.
+Men du kan skalere din viden.
+
+Og det er det, der tiltrækker de kunder, du gerne vil have.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#6</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Christina — "Jeg er ikke en sælgertype"</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">Hun var sygeplejerske i 10 år.
+Nu skulle hun sælge.
+
+Det første, hun sagde, var: "Jeg er ikke en sælgertype."
+
+Jeg spurgte: Hvad er en sælgertype?
+
+Hun beskrev en der presser. Overtaler. Ikke lytter.
+
+"Det er ikke salg," sagde jeg.
+"Det er bare pres med et mål."
+
+Salg er at hjælpe nogen med at træffe den rigtige beslutning.
+
+I 10 år som sygeplejerske spurgte hun ind.
+Fandt problemet.
+Foreslog løsningen.
+
+Patienten besluttede.
+
+Det er præcis det, der sker i et godt salgsmøde.
+
+Hun var bare ikke klar over, at hun allerede kunne det.
+
+Salg er ikke en personlighedstype.
+Det er en tilgang.
+
+Og den har du måske allerede.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#7</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">CEO dag 1 — "Hvad gør jeg de første 90 dage?"</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">Det var hans første dag som CEO.
+200 kunder. 30 ansatte. Store forventninger.
+
+Han spurgte: "Hvad gør jeg de første 90 dage?"
+
+Jeg sagde: Ingenting.
+
+"...Ingenting?"
+
+Opfør dig som en svamp.
+
+Sug alt til dig.
+Hvad vil kunderne? Hvad driver medarbejderne? Hvad er det egentlig, der virker?
+
+De fleste nye ledere starter med at bevise sig selv.
+De bedste starter med at forstå.
+
+Autoritet opbygges ikke ved at tale.
+Det opbygges ved at vide.
+
+Og det ved du ikke på dag 1.
+
+Der er forskel på at lede og på at have en titel.
+Titlen fik du på dag 1.
+Tilliden skal du gøre dig fortjent til.
+
+Det tager tid.
+Og det starter med at lytte.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span style="font-size:11px;color:var(--muted);font-family:-apple-system,sans-serif;">#8</span>
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Adtool — De ville ind på tre markeder. Jeg sagde: Sælg ingenting.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Kopiér</button>
+        <div class="post-text">De ville ind på tre nye markeder.
+God løsning. Stærk dansk track record.
+
+Men de vidste ikke: Hvad virker i Sverige? I Norge? I Nordtyskland?
+
+Mange starter med at pitche.
+Vi snakkede om at spørge.
+
+Markedsundersøgelse er ikke bare research.
+Det er dit bedste salgsmøde.
+
+Ring til en potentiel kunde og sig:
+"Vi overvejer at komme til jeres marked. Hvad er jeres største udfordring?"
+
+Så sker der to ting.
+
+1. Du får viden, ingen konkurrent har.
+2. De husker dig.
+
+Når du ringer igen, er du ikke en sælger.
+Du er ham, der lyttede.
+
+Det er en anden samtale.
+
+De fleste bruger markedsundersøgelse til at validere en beslutning.
+De bedste bruger den til at starte en relation.</div>
+      </div>
+    </div>
+
   </div>
 
   <hr>
@@ -505,6 +797,23 @@
   }
 
   updateStats();
+
+  function togglePost(header) {
+    const body = header.nextElementSibling;
+    const hint = header.querySelector('.post-toggle-hint');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    hint.textContent = isOpen ? 'Vis ↓' : 'Luk ↑';
+  }
+
+  function copyPost(btn) {
+    const text = btn.nextElementSibling.textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = btn.textContent;
+      btn.textContent = 'Kopieret!';
+      setTimeout(() => btn.textContent = orig, 2000);
+    });
+  }
 </script>
 
 </body>
