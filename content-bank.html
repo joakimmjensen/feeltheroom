@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Bank — FTR</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C;
+      --surface: #1A1917;
+      --surface2: #242220;
+      --surface3: #2E2C29;
+      --gold: #C49A6A;
+      --gold2: #D4AA7A;
+      --text: #F5F0E8;
+      --muted: #8A8070;
+      --border: #2A2825;
+      --radius: 10px;
+      --green: #4A9268;
+      --green-bg: rgba(74,146,104,0.12);
+      --orange: #C47A3A;
+      --orange-bg: rgba(196,122,58,0.12);
+      --blue: #4A7A9B;
+      --blue-bg: rgba(74,122,155,0.12);
+      --red: #9B4A4A;
+      --red-bg: rgba(155,74,74,0.12);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+
+    /* NAV */
+    nav { padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
+    .nav-logo { font-size: 14px; font-weight: 700; color: var(--gold); font-family: Georgia, serif; }
+    .nav-right { display: flex; align-items: center; gap: 20px; }
+    .nav-badge { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(155,74,74,0.2); color: #C47A7A; border: 1px solid rgba(155,74,74,0.3); padding: 3px 10px; border-radius: 4px; }
+    .nav-hint { font-size: 12px; color: var(--muted); font-family: -apple-system, sans-serif; }
+
+    /* LAYOUT */
+    .page { max-width: 1100px; margin: 0 auto; padding: 40px 32px 80px; }
+
+    /* HEADER */
+    .page-header { margin-bottom: 36px; }
+    .page-title { font-size: clamp(22px, 3vw, 30px); font-weight: normal; color: var(--text); margin-bottom: 6px; }
+    .page-sub { font-size: 14px; color: var(--muted); font-style: italic; }
+
+    /* STATS ROW */
+    .stats-row { display: flex; gap: 12px; margin-bottom: 40px; flex-wrap: wrap; }
+    .stat-box { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 20px; min-width: 120px; }
+    .stat-num { font-size: 24px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+    .stat-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+    /* SECTION */
+    .section { margin-bottom: 48px; }
+    .section-title { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+
+    /* CALENDAR GRID */
+    .cal-grid { display: grid; grid-template-columns: 80px repeat(5, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .cal-header { background: var(--surface2); padding: 10px 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .cal-day-label { background: var(--surface2); padding: 12px 14px; font-size: 12px; color: var(--muted); display: flex; align-items: center; font-style: italic; }
+    .cal-cell { background: var(--surface); padding: 12px 14px; min-height: 80px; cursor: pointer; transition: background 0.15s; }
+    .cal-cell:hover { background: var(--surface2); }
+    .cal-cell.empty { background: var(--surface); cursor: default; }
+    .cal-cell-title { font-size: 13px; color: var(--text); line-height: 1.4; margin-bottom: 8px; }
+    .cal-cell-title.muted { color: var(--muted); font-style: italic; }
+
+    /* STATUS BADGES */
+    .badge { display: inline-block; font-size: 9px; letter-spacing: 0.1em; text-transform: uppercase; padding: 2px 8px; border-radius: 3px; font-family: -apple-system, sans-serif; cursor: pointer; user-select: none; transition: all 0.15s; }
+    .badge.idea { background: rgba(138,128,112,0.15); color: var(--muted); border: 1px solid rgba(138,128,112,0.25); }
+    .badge.draft { background: var(--blue-bg); color: #6A9FBB; border: 1px solid rgba(74,122,155,0.3); }
+    .badge.ready { background: var(--orange-bg); color: #D4924A; border: 1px solid rgba(196,122,58,0.35); }
+    .badge.posted { background: var(--green-bg); color: #6AB888; border: 1px solid rgba(74,146,104,0.35); }
+
+    /* WHEEL TAGS */
+    .wheel-tag { display: inline-block; font-size: 9px; letter-spacing: 0.09em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; font-family: -apple-system, sans-serif; margin-right: 4px; }
+    .wheel-coaching { background: rgba(196,154,106,0.12); color: var(--gold); border: 1px solid rgba(196,154,106,0.25); }
+    .wheel-lederskab { background: rgba(74,122,155,0.12); color: #6A9FBB; border: 1px solid rgba(74,122,155,0.25); }
+    .wheel-personligt { background: rgba(74,146,104,0.12); color: #6AB888; border: 1px solid rgba(74,146,104,0.25); }
+
+    /* CONTENT BANK TABLE */
+    .bank-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .bank-table th { text-align: left; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: normal; padding: 10px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    .bank-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
+    .bank-table tr:last-child td { border-bottom: none; }
+    .bank-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .bank-title { color: var(--text); }
+    .bank-notes { color: var(--muted); font-size: 12px; font-style: italic; }
+
+    /* IDEA BANK */
+    .idea-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
+    .idea-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: border-color 0.15s; }
+    .idea-card:hover { border-color: var(--gold); }
+    .idea-card-title { font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.45; }
+    .idea-card-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+
+    /* LEGEND */
+    .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
+    .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-family: -apple-system, sans-serif; }
+
+    /* TOOLTIP on click-to-cycle */
+    .cycle-hint { font-size: 11px; color: var(--muted); font-style: italic; font-family: -apple-system, sans-serif; margin-bottom: 16px; }
+
+    /* DIVIDER */
+    hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
+
+    /* MOBILE */
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .page { padding: 28px 20px 60px; }
+      .cal-grid { grid-template-columns: 60px repeat(5, 1fr); font-size: 12px; }
+      .cal-cell { padding: 8px 10px; min-height: 60px; }
+      .cal-cell-title { font-size: 11px; }
+      .stats-row { gap: 8px; }
+      .stat-box { min-width: 90px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">Feel the Room</span>
+  <div class="nav-right">
+    <span class="nav-badge">Ikke offentlig</span>
+    <span class="nav-hint">Kun til Joa</span>
+  </div>
+</nav>
+
+<div class="page">
+
+  <div class="page-header">
+    <h1 class="page-title">Content Bank & Kalender</h1>
+    <p class="page-sub">LinkedIn · 3x/uge · Dansk · Klik på en status-badge for at skifte den</p>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num" id="stat-posted">0</div>
+      <div class="stat-label">Postet</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="stat-ready">0</div>
+      <div class="stat-label">Klar</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="stat-draft">0</div>
+      <div class="stat-label">Kladde</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="stat-idea">0</div>
+      <div class="stat-label">Idé</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">27</div>
+      <div class="stat-label">Idéer i bank</div>
+    </div>
+  </div>
+
+  <!-- CALENDAR -->
+  <div class="section">
+    <div class="section-title">5-Ugers Plan · Uge 1–5 · Marts–April 2026</div>
+    <p class="cycle-hint">Klik på en badge for at skifte status: Idé → Kladde → Klar → Postet</p>
+    <div class="legend">
+      <div class="legend-item"><span class="wheel-tag wheel-coaching">C</span> Coaching-øjeblik</div>
+      <div class="legend-item"><span class="wheel-tag wheel-lederskab">L</span> Lederskab i praksis</div>
+      <div class="legend-item"><span class="wheel-tag wheel-personligt">P</span> Det personlige fundament</div>
+    </div>
+
+    <div class="cal-grid">
+      <!-- Headers -->
+      <div class="cal-header"></div>
+      <div class="cal-header">Uge 1<br><span style="font-weight:normal;font-size:10px;">9–13 mar</span></div>
+      <div class="cal-header">Uge 2<br><span style="font-weight:normal;font-size:10px;">16–20 mar</span></div>
+      <div class="cal-header">Uge 3<br><span style="font-weight:normal;font-size:10px;">23–27 mar</span></div>
+      <div class="cal-header">Uge 4<br><span style="font-weight:normal;font-size:10px;">30 mar–3 apr</span></div>
+      <div class="cal-header">Uge 5<br><span style="font-weight:normal;font-size:10px;">6–10 apr</span></div>
+
+      <!-- MANDAG -->
+      <div class="cal-day-label">Man</div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #4 — Drøm → Problem → Løsning</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Strategisk spørgeteknik</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Lukketeknikken — pre-close</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Tænk udefra og ind</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Du har allerede svaret</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+
+      <!-- ONSDAG -->
+      <div class="cal-day-label">Ons</div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Team Core Values Workshop</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Performativ balance</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Hele mennesket — rekruttering</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Fejr de små ting</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Energi som kompas</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+
+      <!-- FREDAG -->
+      <div class="cal-day-label">Fre</div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #9 — Håndværkere til Australien</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #1 — Byg på viden, ikke på tro</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #5 — Pia og autenticitet</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #6 — Christina, sygeplejerske til sælger</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-cell-title">Seedster #3 — Konceptuér din viden</div>
+        <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="badge idea" onclick="cycleBadge(this)">Idé</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- READY TO POST — SEEDSTER EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">Klar til post nu</div>
+    <div style="background:var(--surface);border:1px solid rgba(196,122,58,0.35);border-radius:10px;padding:20px 24px;">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
+        <div>
+          <div style="font-size:15px;color:var(--text);margin-bottom:6px;">Seedster Experience Post — Marbella</div>
+          <div style="font-size:13px;color:var(--muted);">9 samtaler. 9 virksomheder. 4 timer. Med Adtool-testimonial. Tag: Seedster, Lunar, individer.</div>
+        </div>
+        <span class="badge ready" onclick="cycleBadge(this)">Klar</span>
+      </div>
+      <div style="font-size:12px;color:var(--muted);font-style:italic;">Husk: post med billeder fra Marbella · tag @Seedster @Lunar og navnene der nævnes</div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- RESTERENDE SEEDSTER POSTS -->
+  <div class="section">
+    <div class="section-title">Resterende Seedster Posts · Uge 6+</div>
+    <table class="bank-table" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
+      <thead>
+        <tr>
+          <th style="width:5%;">#</th>
+          <th style="width:30%;">Titel / Tema</th>
+          <th style="width:35%;">Nøgle-indsigt</th>
+          <th style="width:15%;">Hjul</th>
+          <th style="width:15%;">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="color:var(--muted);">2</td>
+          <td class="bank-title">Ukrainsk underviser — B2B vs B2C er det samme</td>
+          <td class="bank-notes">"Hvis du var din egen kunde — hvad ville du gøre?"</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">7</td>
+          <td class="bank-title">CEO-rolle — "Opfør dig som en svamp"</td>
+          <td class="bank-notes">"De fleste ved godt, hvad de skal gøre."</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+        <tr>
+          <td style="color:var(--muted);">8</td>
+          <td class="bank-title">Adtool — skalering internationalt</td>
+          <td class="bank-notes">Market research = salg i forklædning. Expected/Good/GOAT-system.</td>
+          <td><span class="wheel-tag wheel-coaching">C</span></td>
+          <td><span class="badge ready" onclick="cycleBadge(this)">Klar</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr>
+
+  <!-- IDÉBANK -->
+  <div class="section">
+    <div class="section-title">Idébank · 27 emner</div>
+    <p class="cycle-hint" style="margin-bottom:20px;">Fra Joa's notesbog og content plan. Klik på en badge for at ændre status.</p>
+
+    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Fra notesbogen</div>
+    <div class="idea-grid" style="margin-bottom:28px;">
+
+      <div class="idea-card">
+        <div class="idea-card-title">Sig nej til en kunde</div>
+        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">50 mål</div>
+        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Spørgsmål til dig selv — Why, Why Not, Why Not Me?</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">The Power of Lists</div>
+        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Salg er et spejl af dit liv — The Whole Human</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Emotionally Regulated</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Salg = Disciplin + Evnen til at holde ud</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Selvudvikling er det bedste bidrag</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Sæt ikke en maske på — Autenticitet</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">The Importance of Qualification</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Frame Setting = Kontrol</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Den der stiller spørgsmålene har magten</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Fuck Yes eller Fuck No — eliminer "måske"</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">De tre søjler</div>
+        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">The Power of Silence</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">How to Close</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Gør signaturen til en "non-event"</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Demo like Ice Cream</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Know the Court!</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+    </div>
+
+    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Fra content plan — emnebank</div>
+    <div class="idea-grid">
+      <div class="idea-card">
+        <div class="idea-card-title">Jeg hader scripts — rewrite med konkret scenario</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">At omsætte sin viden til et produkt</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Hire slow, fire fast — avatar-øvelsen og røde biler</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Expected / Good / GOAT-targets</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Bevidsthed i salgsdialoger — intentionalitet vs scripts</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Balancen mellem Lunar og Feel the Room</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Champion Building i enterprise salg</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+      <div class="idea-card">
+        <div class="idea-card-title">Fælles mål — hvorfor sælgere skal se det store billede</div>
+        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idé</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const states = ['idea', 'draft', 'ready', 'posted'];
+  const labels = { idea: 'Idé', draft: 'Kladde', ready: 'Klar', posted: 'Postet' };
+
+  function cycleBadge(el) {
+    const curr = states.indexOf(el.className.split(' ').find(c => states.includes(c)));
+    const next = states[(curr + 1) % states.length];
+    states.forEach(s => el.classList.remove(s));
+    el.classList.add(next);
+    el.textContent = labels[next];
+    updateStats();
+  }
+
+  function updateStats() {
+    const all = document.querySelectorAll('.badge');
+    let posted = 0, ready = 0, draft = 0, idea = 0;
+    all.forEach(b => {
+      if (b.classList.contains('posted')) posted++;
+      else if (b.classList.contains('ready')) ready++;
+      else if (b.classList.contains('draft')) draft++;
+      else if (b.classList.contains('idea')) idea++;
+    });
+    document.getElementById('stat-posted').textContent = posted;
+    document.getElementById('stat-ready').textContent = ready;
+    document.getElementById('stat-draft').textContent = draft;
+    document.getElementById('stat-idea').textContent = idea;
+  }
+
+  updateStats();
+</script>
+
+</body>
+</html>
