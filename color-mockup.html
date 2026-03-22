@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FTR — Farvepalette Mockup</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown-dark:  #2C1405;
+      --brown-mid:   #3D1C08;
+      --brown-light: #5A2C12;
+      --brown-warm:  #7B4020;
+      --cream:       #F5E8D4;
+      --cream2:      #E0C9AA;
+      --orange:      #E06820;
+      --orange-soft: #F08040;
+      --blue:        #1A4DC4;
+      --blue-light:  #2560D8;
+      --blue-glow:   rgba(26,77,196,0.25);
+      --border-brown: rgba(245,232,212,0.10);
+      --border-blue:  rgba(26,77,196,0.4);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--brown-dark);
+      color: var(--cream);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      padding: 0 56px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid var(--border-brown);
+      background: var(--brown-dark);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--orange);
+      font-family: Georgia, serif;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-links span {
+      font-size: 14px;
+      color: var(--cream2);
+      cursor: pointer;
+    }
+    .nav-links span:hover { color: var(--cream); }
+    /* NAV BUTTON — blå med orange tekst */
+    .btn-nav {
+      background: var(--blue);
+      color: var(--orange) !important;
+      padding: 9px 20px;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.01em;
+      border: 1px solid var(--blue-light);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      padding: 88px 56px 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .eyebrow {
+      font-size: 11px;
+      color: var(--orange);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      margin-bottom: 22px;
+    }
+    h1 {
+      font-size: 54px;
+      font-weight: 600;
+      line-height: 1.07;
+      letter-spacing: -0.02em;
+      color: var(--cream);
+      margin-bottom: 32px;
+    }
+    h1 em { font-style: normal; color: var(--orange); }
+    .bullet-list { display: flex; flex-direction: column; gap: 11px; margin-bottom: 40px; }
+    .bullet { display: flex; gap: 13px; align-items: flex-start; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); flex-shrink: 0; margin-top: 9px; }
+    .bullet-dot.blue { background: var(--blue-light); }
+    .bullet span { font-size: 15px; color: var(--cream2); line-height: 1.65; }
+    .bullet span.strong { color: var(--cream); font-weight: 500; }
+
+    /* KNAPPER — blå med orange tekst */
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--blue);
+      color: var(--orange);
+      padding: 14px 30px;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 700;
+      display: inline-block;
+      border: 1px solid var(--blue-light);
+      box-shadow: 0 4px 24px var(--blue-glow);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--cream);
+      padding: 14px 30px;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 500;
+      border: 0.5px solid var(--border-brown);
+      display: inline-block;
+    }
+
+    /* ─── DIVIDER ─── */
+    .divider { height: 0.5px; background: var(--border-brown); margin: 0 56px; }
+
+    /* ─── PROBLEM SECTION ─── */
+    .problem-section { padding: 72px 56px; }
+    h2 {
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      max-width: 600px;
+    }
+    .section-body { font-size: 16px; color: var(--cream2); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
+    .section-eyebrow { font-size: 11px; color: var(--orange); letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; margin-bottom: 14px; }
+
+    /* PROBLEM CARDS — blå med orange elementer */
+    .card-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
+    .card {
+      background: var(--blue);
+      border-radius: 12px;
+      padding: 26px 22px;
+      border: 1px solid rgba(96,144,255,0.2);
+      box-shadow: 0 2px 20px var(--blue-glow);
+    }
+    .card-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 17px;
+      color: var(--orange);
+      font-weight: 700;
+    }
+    .card h4 { font-size: 14px; font-weight: 700; margin-bottom: 8px; color: var(--orange); }
+    .card p { font-size: 13px; color: rgba(245,232,212,0.7); line-height: 1.6; }
+
+    /* ─── FEEL SECTION ─── */
+    .feel-section { background: var(--brown-mid); padding: 72px 56px; border-top: 0.5px solid var(--border-brown); border-bottom: 0.5px solid var(--border-brown); }
+    .feel-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 2px;
+      background: var(--border-blue);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 40px;
+    }
+    /* FEEL ITEMS — blå med orange bogstaver */
+    .feel-item {
+      background: var(--blue);
+      padding: 32px 26px;
+    }
+    .feel-letter { font-size: 42px; font-weight: 700; line-height: 1; margin-bottom: 7px; color: var(--orange); font-family: Georgia, serif; }
+    .feel-word { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(245,232,212,0.55); margin-bottom: 12px; }
+    .feel-desc { font-size: 13px; color: rgba(245,232,212,0.75); line-height: 1.65; }
+
+    /* ─── METRICS ─── */
+    .metrics-section { padding: 72px 56px; }
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 14px;
+      margin-top: 40px;
+    }
+    .metric {
+      background: var(--blue);
+      border-radius: 12px;
+      padding: 28px 24px;
+      border: 1px solid rgba(96,144,255,0.2);
+      box-shadow: 0 2px 20px var(--blue-glow);
+    }
+    .metric-num { font-size: 38px; font-weight: 700; line-height: 1; margin-bottom: 8px; color: var(--orange); }
+    .metric-label { font-size: 12px; color: rgba(245,232,212,0.65); line-height: 1.5; }
+
+    /* ─── FOR WHO ─── */
+    .forwho-section { background: var(--brown-mid); padding: 72px 56px; border-top: 0.5px solid var(--border-brown); }
+    .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+    .forwho-col h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--cream2); margin-bottom: 22px; }
+    .check-item { display: flex; gap: 12px; margin-bottom: 16px; align-items: flex-start; }
+    .check-dot {
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--blue);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 2px;
+      border: 1px solid rgba(96,144,255,0.3);
+    }
+    .check-dot svg { width: 10px; height: 10px; }
+    .check-text { font-size: 14px; color: var(--cream2); line-height: 1.6; }
+
+    /* ─── CTA ─── */
+    .cta-section {
+      padding: 88px 56px;
+      text-align: center;
+      background: var(--blue);
+      border-top: 1px solid rgba(96,144,255,0.2);
+    }
+    .cta-section h2 { color: var(--orange); margin: 0 auto 14px; }
+    .cta-section p { color: rgba(245,232,212,0.8); font-size: 17px; max-width: 440px; margin: 0 auto 36px; line-height: 1.65; }
+    .btn-cta {
+      background: var(--orange);
+      color: var(--blue);
+      padding: 15px 36px;
+      border-radius: 9px;
+      font-size: 16px;
+      font-weight: 800;
+      display: inline-block;
+      letter-spacing: 0.01em;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--brown-dark);
+      border-top: 0.5px solid var(--border-brown);
+      padding: 28px 56px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      color: var(--cream2);
+    }
+    footer strong { color: var(--orange); font-family: Georgia, serif; font-size: 15px; }
+
+    /* ─── COMPASS ─── */
+    .compass-wrap { display: flex; align-items: center; justify-content: center; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-logo">Feel the Room</div>
+    <div class="nav-links">
+      <span>Programs</span>
+      <span>Framework</span>
+      <span>About</span>
+      <span class="btn-nav">Book discovery call</span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div>
+      <div class="eyebrow">Sales Leadership · F.E.E.L. Framework</div>
+      <h1>Feel the Room.<br><em>Lead with Intention.</em></h1>
+      <div class="bullet-list">
+        <div class="bullet"><div class="bullet-dot"></div><span>Too many sales leaders are disconnected from their gut feeling.</span></div>
+        <div class="bullet"><div class="bullet-dot"></div><span>They can't feel the room. They can't read the energy on their team.</span></div>
+        <div class="bullet"><div class="bullet-dot"></div><span>Not because they lack talent — but because no one taught them how.</span></div>
+        <div class="bullet"><div class="bullet-dot blue"></div><span class="strong">F.E.E.L. gives you the awareness, the tools, and the balance to lead — and actually feel the difference.</span></div>
+      </div>
+      <div class="btn-row">
+        <div class="btn-primary">Explore the Programs</div>
+        <div class="btn-secondary">Book a discovery call</div>
+      </div>
+    </div>
+    <div class="compass-wrap">
+      <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="max-width:440px;">
+        <defs>
+          <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#1A4DC4" stop-opacity="0.22"/>
+            <stop offset="60%" stop-color="#E06820" stop-opacity="0.06"/>
+            <stop offset="100%" stop-color="#E06820" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="240" cy="240" r="220" fill="url(#rg1)"/>
+        <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#1A4DC4" stroke-width="1" opacity="0.5"/>
+        <rect x="143" y="143" width="194" height="194" fill="none" stroke="#E06820" stroke-width="0.7" opacity="0.25"/>
+        <circle cx="240" cy="240" r="112" fill="none" stroke="#1A4DC4" stroke-width="0.9" opacity="0.45"/>
+        <line x1="240" y1="30" x2="240" y2="128" stroke="#E06820" stroke-width="0.6" opacity="0.5"/>
+        <line x1="450" y1="240" x2="352" y2="240" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
+        <line x1="240" y1="450" x2="240" y2="352" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
+        <line x1="30" y1="240" x2="128" y2="240" stroke="#1A4DC4" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="240" cy="30"  r="4" fill="#E06820" opacity="0.9"/>
+        <circle cx="450" cy="240" r="3" fill="#1A4DC4" opacity="0.7"/>
+        <circle cx="240" cy="450" r="3" fill="#1A4DC4" opacity="0.7"/>
+        <circle cx="30"  cy="240" r="3" fill="#1A4DC4" opacity="0.7"/>
+        <text x="240" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="#E06820" opacity="1">F</text>
+        <text x="472" y="247" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#1A4DC4" opacity="0.9">E</text>
+        <text x="240" y="477" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#1A4DC4" opacity="0.9">E</text>
+        <text x="10"  y="247" text-anchor="middle" font-family="Georgia,serif" font-size="21" fill="#E06820" opacity="0.7">L</text>
+        <g transform="rotate(25,240,240)">
+          <polygon points="240,128 236,240 240,250 244,240" fill="#E06820" opacity="0.9"/>
+          <polygon points="240,352 236,240 240,250 244,240" fill="#1A4DC4" opacity="0.4"/>
+        </g>
+        <circle cx="240" cy="240" r="9" fill="none" stroke="#E06820" stroke-width="1.2" opacity="0.6"/>
+        <circle cx="240" cy="240" r="4" fill="#E06820" opacity="0.95"/>
+      </svg>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PROBLEM -->
+  <div class="problem-section">
+    <div class="section-eyebrow">The challenge</div>
+    <h2>You know how to sell. But leading a room is a different skill.</h2>
+    <p class="section-body">The best salespeople often become the worst leaders — not because they lack talent, but because no one taught them the transition. Scripts don't work. Pressure doesn't scale.</p>
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-icon">↑</div>
+        <h4>You're carrying the team</h4>
+        <p>You're still the top performer. But the team doesn't move without you pushing it.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">⊙</div>
+        <h4>The energy is off</h4>
+        <p>You feel it. Something in the room isn't right. You just don't know what to do about it.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">◎</div>
+        <h4>Results without substance</h4>
+        <p>You're hitting numbers — but it costs too much. The culture is hollow, the team is tired.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">→</div>
+        <h4>You know there's more</h4>
+        <p>You've seen what great leadership looks like. You just need a method that works for humans.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- FEEL FRAMEWORK -->
+  <div class="feel-section">
+    <div class="section-eyebrow">The method</div>
+    <h2>The F.E.E.L. Framework</h2>
+    <p class="section-body">Fire principper. To programmer. Én metode der virker for lederen og sælgeren — fordi den samme bevidsthed der gør dig til en god leder, gør dig til en bedre closer.</p>
+    <div class="feel-grid">
+      <div class="feel-item">
+        <div class="feel-letter">F</div>
+        <div class="feel-word">Feel</div>
+        <div class="feel-desc">Feel the room — and yourself. Your energy is neurobiologically contagious. Learn to regulate your state and read your team before you speak.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Explore</div>
+        <div class="feel-desc">The one who asks the questions holds the power. Stop giving the answers — start asking the right questions. Dream → Problem → Solution.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Elevate</div>
+        <div class="feel-desc">Coaching over instruction. Help your salespeople find the answers themselves. Ask the question that reveals the real blocker.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">L</div>
+        <div class="feel-word">Lead</div>
+        <div class="feel-desc">Build the culture. Recruit the whole person. Create a team that performs because they want to — not because you push them.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics-section">
+    <div class="section-eyebrow">Results in practice</div>
+    <h2>Same team. Same product. Completely different results.</h2>
+    <div class="metrics-grid">
+      <div class="metric"><div class="metric-num">+90%</div><div class="metric-label">Year-on-year growth in new business sign-ups</div></div>
+      <div class="metric"><div class="metric-num">+87%</div><div class="metric-label">Year-on-year growth in approved businesses</div></div>
+      <div class="metric"><div class="metric-num">80+</div><div class="metric-label">Employee Net Promoter Score</div></div>
+      <div class="metric"><div class="metric-num" style="font-size:22px;padding-top:8px;color:var(--cream2);">Same</div><div class="metric-label">Team size. Same product. Same market.</div></div>
+    </div>
+  </div>
+
+  <!-- FOR WHO -->
+  <div class="forwho-section">
+    <div class="section-eyebrow">Who this is for</div>
+    <h2>For the leader who wants to win — and still sleep at night.</h2>
+    <div class="forwho-grid">
+      <div class="forwho-col">
+        <h3>This is for you if</h3>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You lead a sales team and want to stop reacting — and start leading with intention</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're a salesperson who's tired of scripts and wants to actually connect with customers</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want a framework you can use on Monday — not a theory you'll forget by Friday</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You care about performance and culture — and refuse to believe you have to choose between them</div></div>
+      </div>
+      <div class="forwho-col">
+        <h3>You might recognise this</h3>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You feel the energy shift in a room — but don't always know what to do with it</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Your team has more in them — but something is blocking the performance you know is possible</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You've tried the playbooks. The scripts. The KPI dashboards. And something is still missing</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#E06820" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want to build something that lasts — not just hit this quarter's target</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <h2>Ready to lead with intention?</h2>
+    <p>Two programs. One framework. Built for the leader who wants to perform at their best.</p>
+    <div class="btn-cta">Explore the Programs →</div>
+  </div>
+
+  <footer>
+    <strong>Feel the Room</strong>
+    <span>© 2026 · Lead with Intention</span>
+    <span>Programs · Framework · About</span>
+  </footer>
+
+</body>
+</html>
