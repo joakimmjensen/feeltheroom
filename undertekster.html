@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undertekster — FTR</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0F0E0C; --surface: #1A1917; --surface2: #242220; --surface3: #2E2C29;
+      --gold: #C49A6A; --gold2: #D4AA7A; --text: #F5F0E8; --muted: #8A8070;
+      --border: #2A2825; --green: #4A9268; --red: #9B4A4A;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background: var(--bg);
+           color: var(--text); min-height: 100vh; display: flex; flex-direction: column;
+           align-items: center; justify-content: center; padding: 24px; }
+
+    .card { background: var(--surface); border: 1px solid var(--border); border-radius: 16px;
+            padding: 40px 44px; width: 100%; max-width: 580px; }
+
+    h1 { font-size: 22px; font-weight: normal; color: var(--gold); margin-bottom: 4px; font-family: Georgia, serif; }
+    .sub { font-size: 13px; color: var(--muted); margin-bottom: 32px; }
+
+    /* API key */
+    .api-row { margin-bottom: 28px; }
+    .field-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+                   color: var(--muted); margin-bottom: 8px; display: flex; justify-content: space-between; align-items: center; }
+    .field-label a { color: var(--gold); font-size: 10px; text-decoration: none; }
+    .field-input { width: 100%; background: var(--surface2); border: 1px solid var(--border);
+                   border-radius: 8px; padding: 10px 14px; color: var(--text); font-size: 13px;
+                   font-family: monospace; outline: none; transition: border-color 0.15s; }
+    .field-input:focus { border-color: rgba(196,154,106,0.5); }
+    .field-input.saved { border-color: rgba(74,146,104,0.4); }
+
+    /* Drop zone */
+    .drop-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 40px 24px;
+                 text-align: center; cursor: pointer; transition: all 0.2s; margin-bottom: 20px;
+                 position: relative; }
+    .drop-zone:hover, .drop-zone.drag-over { border-color: var(--gold); background: rgba(196,154,106,0.04); }
+    .drop-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+    .drop-icon { font-size: 36px; margin-bottom: 10px; }
+    .drop-label { font-size: 14px; color: var(--muted); line-height: 1.6; }
+    .drop-label em { color: var(--gold); font-style: normal; }
+    .drop-limit { font-size: 11px; color: var(--muted); margin-top: 6px; opacity: 0.6; }
+    .file-chosen { display: none; margin-bottom: 16px; padding: 10px 14px; background: var(--surface2);
+                   border: 1px solid var(--border); border-radius: 8px; font-size: 13px; color: var(--text); }
+
+    /* Language */
+    .lang-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+                  color: var(--muted); margin-bottom: 10px; }
+    .lang-row { display: flex; gap: 10px; margin-bottom: 28px; }
+    .lang-btn { flex: 1; padding: 13px; border: 1px solid var(--border); border-radius: 8px;
+                background: var(--surface2); color: var(--muted); font-size: 14px; cursor: pointer;
+                transition: all 0.15s; text-align: center; user-select: none; }
+    .lang-btn:hover { border-color: rgba(196,154,106,0.4); }
+    .lang-btn.active { border-color: var(--gold); color: var(--gold); background: rgba(196,154,106,0.07); }
+
+    /* Run button */
+    .run-btn { width: 100%; padding: 15px; background: var(--gold); color: #0F0E0C;
+               border: none; border-radius: 9px; font-size: 15px; font-weight: 600;
+               cursor: pointer; transition: opacity 0.15s; letter-spacing: 0.01em; }
+    .run-btn:hover:not(:disabled) { opacity: 0.88; }
+    .run-btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+    /* Progress */
+    .progress { display: none; margin-top: 24px; }
+    .progress.visible { display: block; }
+    .progress-bar-wrap { height: 3px; background: var(--surface3); border-radius: 2px; overflow: hidden; margin-bottom: 10px; }
+    .progress-bar { height: 100%; background: var(--gold); border-radius: 2px; width: 0%;
+                    transition: width 0.4s; animation: indeterminate 1.4s infinite linear; }
+    @keyframes indeterminate { 0%{transform:translateX(-100%);width:60%} 100%{transform:translateX(200%);width:60%} }
+    .progress-bar.done { animation: none; width: 100%; background: var(--green); }
+    .progress-msg { font-size: 12px; color: var(--muted); font-family: monospace; }
+
+    /* Result */
+    .result { display: none; margin-top: 20px; padding: 18px 20px; border-radius: 10px;
+              border: 1px solid rgba(74,146,104,0.35); background: rgba(74,146,104,0.05); }
+    .result.visible { display: block; }
+    .result-title { font-size: 13px; color: var(--green); margin-bottom: 6px; font-weight: 600; }
+    .result-sub { font-size: 12px; color: var(--muted); margin-bottom: 14px; }
+    .dl-btn { display: inline-block; padding: 9px 20px; background: var(--green); color: white;
+              border-radius: 7px; font-size: 13px; text-decoration: none; font-weight: 500;
+              transition: opacity 0.15s; }
+    .dl-btn:hover { opacity: 0.85; }
+    .preview-toggle { margin-left: 12px; font-size: 12px; color: var(--muted); cursor: pointer;
+                      text-decoration: underline; }
+    .srt-preview { display: none; margin-top: 14px; background: var(--surface2); border: 1px solid var(--border);
+                   border-radius: 8px; padding: 14px; font-family: monospace; font-size: 11px;
+                   color: var(--muted); max-height: 180px; overflow-y: auto; line-height: 1.7;
+                   white-space: pre-wrap; }
+    .srt-preview.open { display: block; }
+
+    /* Error */
+    .error-box { display: none; margin-top: 20px; padding: 14px 18px; border-radius: 10px;
+                 border: 1px solid rgba(155,74,74,0.35); background: rgba(155,74,74,0.05);
+                 font-size: 13px; color: #C47A7A; line-height: 1.6; }
+    .error-box.visible { display: block; }
+
+    /* Footer */
+    .footer { margin-top: 20px; font-size: 11px; color: var(--muted); text-align: center;
+              opacity: 0.6; }
+  </style>
+</head>
+<body>
+<div class="card">
+  <h1>Undertekster</h1>
+  <p class="sub">Upload en video — få en .srt undertekstfil klar til LinkedIn, YouTube eller dit redigeringsprogram.</p>
+
+  <!-- API KEY -->
+  <div class="api-row">
+    <div class="field-label">
+      <span>OpenAI API-nøgle</span>
+      <a href="https://platform.openai.com/api-keys" target="_blank">Hent nøgle →</a>
+    </div>
+    <input type="password" class="field-input" id="apiKey"
+           placeholder="sk-..." autocomplete="off" />
+    <div style="font-size:11px;color:var(--muted);margin-top:6px;">
+      Gemmes lokalt i din browser. Forlader aldrig din maskine undtagen til OpenAI.
+    </div>
+  </div>
+
+  <!-- FILE -->
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept="video/*,audio/*,.mp4,.mov,.mp3,.m4a,.wav,.webm,.mkv" />
+    <div class="drop-icon">🎬</div>
+    <div class="drop-label">Træk video hertil eller <em>klik for at vælge</em></div>
+    <div class="drop-limit">Maks 25 MB · mp4, mov, mp3, m4a, wav, webm</div>
+  </div>
+  <div class="file-chosen" id="fileChosen"></div>
+
+  <!-- LANGUAGE -->
+  <div class="lang-label">Undertekstsprog</div>
+  <div class="lang-row">
+    <div class="lang-btn active" id="btn-da" onclick="setLang('da')">🇩🇰&nbsp; Dansk</div>
+    <div class="lang-btn" id="btn-en" onclick="setLang('en')">🇬🇧&nbsp; Engelsk</div>
+  </div>
+
+  <!-- RUN -->
+  <button class="run-btn" id="runBtn" disabled onclick="run()">Lav undertekster</button>
+
+  <!-- PROGRESS -->
+  <div class="progress" id="progress">
+    <div class="progress-bar-wrap"><div class="progress-bar" id="progressBar"></div></div>
+    <div class="progress-msg" id="progressMsg">Sender til Whisper…</div>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="result">
+    <div class="result-title">✓ Undertekster klar</div>
+    <div class="result-sub" id="resultSub"></div>
+    <a class="dl-btn" id="dlBtn" href="#">Download .srt</a>
+    <span class="preview-toggle" onclick="togglePreview()">Vis indhold</span>
+    <div class="srt-preview" id="srtPreview"></div>
+  </div>
+
+  <!-- ERROR -->
+  <div class="error-box" id="errorBox"></div>
+</div>
+
+<div class="footer">Powered by OpenAI Whisper · Din API-nøgle bruges kun til denne forespørgsel</div>
+
+<script>
+  let selectedFile = null;
+  let selectedLang = 'da';
+  let srtContent = '';
+
+  // ── API KEY persist ───────────────────────────────────────
+  const apiInput = document.getElementById('apiKey');
+  const saved = localStorage.getItem('ftr_openai_key');
+  if (saved) { apiInput.value = saved; apiInput.classList.add('saved'); }
+  apiInput.addEventListener('input', () => {
+    const v = apiInput.value.trim();
+    if (v.startsWith('sk-')) { localStorage.setItem('ftr_openai_key', v); apiInput.classList.add('saved'); }
+    updateBtn();
+  });
+
+  // ── File input ────────────────────────────────────────────
+  const dz = document.getElementById('dropZone');
+  const fi = document.getElementById('fileInput');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag-over'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('drag-over'));
+  dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag-over'); setFile(e.dataTransfer.files[0]); });
+  fi.addEventListener('change', e => setFile(e.target.files[0]));
+
+  function setFile(f) {
+    if (!f) return;
+    if (f.size > 25 * 1024 * 1024) {
+      showError('Filen er større end 25 MB. Komprimer videoen eller brug en kortere klip.');
+      return;
+    }
+    selectedFile = f;
+    const fc = document.getElementById('fileChosen');
+    fc.style.display = 'block';
+    fc.textContent = '📁 ' + f.name + ' · ' + (f.size / 1024 / 1024).toFixed(1) + ' MB';
+    hideResult(); updateBtn();
+  }
+
+  // ── Language ──────────────────────────────────────────────
+  function setLang(l) {
+    selectedLang = l;
+    document.getElementById('btn-da').classList.toggle('active', l === 'da');
+    document.getElementById('btn-en').classList.toggle('active', l === 'en');
+  }
+
+  function updateBtn() {
+    const key = apiInput.value.trim();
+    document.getElementById('runBtn').disabled = !(selectedFile && key.startsWith('sk-'));
+  }
+
+  // ── Run ───────────────────────────────────────────────────
+  async function run() {
+    const key = apiInput.value.trim();
+    if (!selectedFile || !key) return;
+
+    hideResult();
+    document.getElementById('errorBox').classList.remove('visible');
+    document.getElementById('runBtn').disabled = true;
+
+    const prog = document.getElementById('progress');
+    const bar = document.getElementById('progressBar');
+    const msg = document.getElementById('progressMsg');
+    prog.classList.add('visible');
+    bar.style.animation = '';
+    bar.style.width = '0%';
+    msg.textContent = 'Sender til OpenAI Whisper…';
+
+    try {
+      const fd = new FormData();
+      fd.append('file', selectedFile, selectedFile.name);
+      fd.append('model', 'whisper-1');
+      fd.append('response_format', 'srt');
+
+      const endpoint = selectedLang === 'en'
+        ? 'https://api.openai.com/v1/audio/translations'
+        : 'https://api.openai.com/v1/audio/transcriptions';
+
+      if (selectedLang === 'da') fd.append('language', 'da');
+
+      msg.textContent = 'Transkriberer… (kan tage 30–120 sek. afhængig af videolængde)';
+
+      const res = await fetch(endpoint, {
+        method: 'POST',
+        headers: { 'Authorization': 'Bearer ' + key },
+        body: fd,
+      });
+
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error?.message || 'Fejl fra OpenAI (' + res.status + ')');
+      }
+
+      srtContent = await res.text();
+
+      // Done
+      bar.style.animation = 'none';
+      bar.style.width = '100%';
+      bar.style.background = 'var(--green)';
+      msg.textContent = '✓ Færdig';
+
+      showResult();
+
+    } catch (e) {
+      prog.classList.remove('visible');
+      showError(e.message);
+      document.getElementById('runBtn').disabled = false;
+    }
+  }
+
+  // ── Result ────────────────────────────────────────────────
+  function showResult() {
+    const stem = selectedFile.name.replace(/\.[^.]+$/, '');
+    const fname = stem + '.srt';
+
+    const blob = new Blob([srtContent], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+
+    document.getElementById('dlBtn').href = url;
+    document.getElementById('dlBtn').download = fname;
+    document.getElementById('resultSub').textContent = fname + ' · ' + selectedLang === 'da' ? 'Dansk' : 'Engelsk';
+    document.getElementById('srtPreview').textContent = srtContent;
+    document.getElementById('result').classList.add('visible');
+  }
+
+  function hideResult() {
+    document.getElementById('result').classList.remove('visible');
+    document.getElementById('srtPreview').classList.remove('open');
+  }
+
+  function togglePreview() {
+    document.getElementById('srtPreview').classList.toggle('open');
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('errorBox');
+    el.textContent = '⚠ ' + msg;
+    el.classList.add('visible');
+  }
+</script>
+</body>
+</html>
