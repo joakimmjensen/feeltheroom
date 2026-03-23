@@ -129,6 +129,25 @@
     .script-closer { font-size: 14px; color: var(--text); font-weight: bold; padding: 10px 14px; background: rgba(74,122,155,0.08); border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; }
     .script-notes { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.6; }
 
+    /* DENNE UGE */
+    .uge-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .uge-post { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; }
+    .uge-post.uge-posted { border-color: rgba(74,146,104,0.5); background: rgba(74,146,104,0.04); }
+    .uge-day { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-family: -apple-system, sans-serif; margin-bottom: 6px; }
+    .uge-date { color: var(--gold); }
+    .uge-title { font-size: 13px; color: var(--text); line-height: 1.45; margin-bottom: 10px; }
+    .uge-open-btn { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: rgba(196,154,106,0.12); color: var(--gold); border: 1px solid rgba(196,154,106,0.25); cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.15s; }
+    .uge-open-btn:hover { background: rgba(196,154,106,0.22); }
+
+    /* LINKEDIN NOTES */
+    .post-notes { margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--border); }
+    .notes-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; font-family: -apple-system, sans-serif; }
+    .notes-url, .notes-text { width: 100%; background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 13px; margin-bottom: 8px; display: block; }
+    .notes-url { font-family: -apple-system, sans-serif; }
+    .notes-text { font-family: Georgia, serif; min-height: 72px; resize: vertical; line-height: 1.6; }
+    .notes-url:focus, .notes-text:focus { outline: none; border-color: rgba(196,154,106,0.4); }
+    .notes-url::placeholder, .notes-text::placeholder { color: var(--muted); }
+
     /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
@@ -199,11 +218,11 @@
     <div class="cal-grid">
       <!-- Headers -->
       <div class="cal-header"></div>
-      <div class="cal-header">Uge 1<br><span style="font-weight:normal;font-size:10px;">9–13 mar</span></div>
-      <div class="cal-header">Uge 2<br><span style="font-weight:normal;font-size:10px;">16–20 mar</span></div>
-      <div class="cal-header">Uge 3<br><span style="font-weight:normal;font-size:10px;">23–27 mar</span></div>
-      <div class="cal-header">Uge 4<br><span style="font-weight:normal;font-size:10px;">30 mar–3 apr</span></div>
-      <div class="cal-header">Uge 5<br><span style="font-weight:normal;font-size:10px;">6–10 apr</span></div>
+      <div class="cal-header">Uge 1<br><span style="font-weight:normal;font-size:10px;">23–27 mar</span></div>
+      <div class="cal-header">Uge 2<br><span style="font-weight:normal;font-size:10px;">30 mar–3 apr</span></div>
+      <div class="cal-header">Uge 3<br><span style="font-weight:normal;font-size:10px;">6–10 apr</span></div>
+      <div class="cal-header">Uge 4<br><span style="font-weight:normal;font-size:10px;">13–17 apr</span></div>
+      <div class="cal-header">Uge 5<br><span style="font-weight:normal;font-size:10px;">20–24 apr</span></div>
 
       <!-- MANDAG -->
       <div class="cal-day-label">Man</div>
@@ -323,19 +342,10 @@
 
   <hr>
 
-  <!-- READY TO POST — SEEDSTER EXPERIENCE -->
-  <div class="section">
-    <div class="section-title">Klar til post nu</div>
-    <div style="background:var(--surface);border:1px solid rgba(196,122,58,0.35);border-radius:10px;padding:20px 24px;">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:12px;">
-        <div>
-          <div style="font-size:15px;color:var(--text);margin-bottom:6px;">Seedster Experience Post — Marbella</div>
-          <div style="font-size:13px;color:var(--muted);">9 samtaler. 9 virksomheder. 4 timer. Med Adtool-testimonial. Tag: Seedster, Lunar, individer.</div>
-        </div>
-        <span class="badge ready" onclick="cycleBadge(this)">Klar</span>
-      </div>
-      <div style="font-size:12px;color:var(--muted);font-style:italic;">Husk: post med billeder fra Marbella · tag @Seedster @Lunar og navnene der nævnes</div>
-    </div>
+  <!-- POST DENNE UGE -->
+  <div class="section" id="denne-uge-section">
+    <div class="section-title">Post denne uge</div>
+    <div class="uge-grid" id="denne-uge-posts"></div>
   </div>
 
   <hr>
@@ -1540,9 +1550,9 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
   }
 
   function updateStats() {
-    const all = document.querySelectorAll('.badge');
+    const calBadges = document.querySelectorAll('.cal-cell .badge');
     let posted = 0, ready = 0, draft = 0, idea = 0;
-    all.forEach(b => {
+    calBadges.forEach(b => {
       if (b.classList.contains('posted')) posted++;
       else if (b.classList.contains('ready')) ready++;
       else if (b.classList.contains('draft')) draft++;
@@ -1552,11 +1562,9 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
     document.getElementById('stat-ready').textContent = ready;
     document.getElementById('stat-draft').textContent = draft;
     document.getElementById('stat-idea').textContent = idea;
-    const scriptsPosted = document.querySelectorAll('.post-card.is-posted').length;
-    document.getElementById('stat-scripts-posted').textContent = scriptsPosted;
+    const cardsPosted = document.querySelectorAll('.post-card.is-posted').length;
+    document.getElementById('stat-scripts-posted').textContent = cardsPosted;
   }
-
-  updateStats();
 
   // ── POST CARDS: toggle open/close ────────────────────────────
   function togglePost(header) {
@@ -1571,7 +1579,8 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
 
   // ── COPY BUTTON ───────────────────────────────────────────────
   function copyPost(btn) {
-    const el = btn.nextElementSibling;
+    const body = btn.closest('.post-card-body');
+    const el = body.querySelector('.post-text');
     const text = el.innerText || el.textContent;
     navigator.clipboard.writeText(text.trim()).then(() => {
       const orig = btn.textContent;
@@ -1589,12 +1598,118 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
     hint.textContent = isOpen ? 'Vis ↓' : 'Luk ↑';
   }
 
+  // ── POST DENNE UGE ────────────────────────────────────────────
+  const weeklyPlan = [
+    // Uge 1: 23–27 mar
+    [
+      { day: 'Mandag',  date: '23. mar', title: 'Seedster #4 — Drøm → Problem → Løsning', idx: 8 },
+      { day: 'Onsdag',  date: '25. mar', title: 'Team Core Values', idx: 9 },
+      { day: 'Fredag',  date: '27. mar', title: 'Seedster #9 — Håndværkere til Australien', idx: 7 },
+    ],
+    // Uge 2: 30 mar–3 apr
+    [
+      { day: 'Mandag',  date: '30. mar', title: 'Strategisk spørgeteknik', idx: 10 },
+      { day: 'Onsdag',  date: '1. apr',  title: 'Performativ balance', idx: 11 },
+      { day: 'Fredag',  date: '3. apr',  title: 'Seedster #1 — Byg på viden, ikke på tro', idx: 0 },
+    ],
+    // Uge 3: 6–10 apr
+    [
+      { day: 'Mandag',  date: '6. apr',  title: 'Lukketeknikken — pre-close', idx: 12 },
+      { day: 'Onsdag',  date: '8. apr',  title: 'Hele mennesket — rekruttering', idx: 13 },
+      { day: 'Fredag',  date: '10. apr', title: 'Seedster #5 — Pia og autenticitet', idx: 3 },
+    ],
+    // Uge 4: 13–17 apr
+    [
+      { day: 'Mandag',  date: '13. apr', title: 'Tænk udefra og ind', idx: 14 },
+      { day: 'Onsdag',  date: '15. apr', title: 'Fejr de små ting', idx: 15 },
+      { day: 'Fredag',  date: '17. apr', title: 'Seedster #6 — Christina', idx: 4 },
+    ],
+    // Uge 5: 20–24 apr
+    [
+      { day: 'Mandag',  date: '20. apr', title: 'Du har allerede svaret', idx: 16 },
+      { day: 'Onsdag',  date: '22. apr', title: 'Energi som kompas', idx: 17 },
+      { day: 'Fredag',  date: '24. apr', title: 'Seedster #3 — Konceptuér din viden', idx: 2 },
+    ],
+  ];
+
+  // Map post card index → calendar cell title substring (for badge sync)
+  const calMap = {
+    8:  'Seedster #4',
+    9:  'Team Core Values',
+    7:  'Seedster #9',
+    10: 'Strategisk spørgeteknik',
+    11: 'Performativ balance',
+    0:  'Seedster #1',
+    12: 'Lukketeknikken',
+    13: 'Hele mennesket',
+    3:  'Seedster #5',
+    14: 'Tænk udefra',
+    15: 'Fejr de små ting',
+    4:  'Seedster #6',
+    16: 'Du har allerede svaret',
+    17: 'Energi som kompas',
+    2:  'Seedster #3',
+  };
+
+  function openPost(idx) {
+    const cards = document.querySelectorAll('.post-card');
+    const card = cards[idx];
+    if (!card) return;
+    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const body = card.querySelector('.post-card-body');
+    const hint = card.querySelector('.post-toggle-hint');
+    if (body && !body.classList.contains('open')) {
+      body.classList.add('open');
+      if (hint) hint.textContent = 'Luk ↑';
+    }
+  }
+
+  function syncCalBadge(idx, state) {
+    const titleKey = calMap[idx];
+    if (!titleKey) return;
+    document.querySelectorAll('.cal-cell').forEach(cell => {
+      const titleEl = cell.querySelector('.cal-cell-title');
+      if (titleEl && titleEl.textContent.includes(titleKey)) {
+        const badge = cell.querySelector('.badge');
+        if (badge) {
+          states.forEach(s => badge.classList.remove(s));
+          badge.classList.add(state);
+          badge.textContent = labels[state];
+          updateStats();
+        }
+      }
+    });
+  }
+
+  function renderDenneUge() {
+    const container = document.getElementById('denne-uge-posts');
+    if (!container) return;
+    const start = new Date('2026-03-23');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const weekIdx = Math.floor((today - start) / (7 * 24 * 3600 * 1000));
+    if (weekIdx < 0 || weekIdx >= weeklyPlan.length) {
+      container.innerHTML = '<p style="color:var(--muted);font-size:13px;font-style:italic;">Ingen planlagte posts denne uge.</p>';
+      return;
+    }
+    const week = weeklyPlan[weekIdx];
+    container.innerHTML = week.map(p => {
+      const isPosted = localStorage.getItem('ftr_posted_post_' + p.idx) !== null;
+      return `<div class="uge-post${isPosted ? ' uge-posted' : ''}">
+        <div class="uge-day">${p.day} · <span class="uge-date">${p.date}</span></div>
+        <div class="uge-title">${p.title}</div>
+        <button class="uge-open-btn" onclick="openPost(${p.idx})">Åbn opslag →</button>
+      </div>`;
+    }).join('');
+  }
+
   // ── EDITABLE POSTS + POSTED TRACKING (localStorage) ──────────
   document.querySelectorAll('.post-card').forEach((card, i) => {
     const id = 'post_' + i;
     const header = card.querySelector('.post-card-header');
+    const body = card.querySelector('.post-card-body');
     const postText = card.querySelector('.post-text');
-    if (!postText || !header) return;
+    if (!postText || !header || !body) return;
 
     // Make text editable
     postText.contentEditable = 'true';
@@ -1606,6 +1721,19 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
     btn.textContent = 'Markér postet';
     const hint = header.querySelector('.post-toggle-hint');
     header.insertBefore(btn, hint);
+
+    // Inject LinkedIn notes section
+    const notes = document.createElement('div');
+    notes.className = 'post-notes';
+    notes.innerHTML = `
+      <div class="notes-label">LinkedIn</div>
+      <input type="url" class="notes-url" placeholder="URL til opslaget (når postet)" />
+      <div class="notes-label" style="margin-top:10px;">Reaktioner &amp; noter</div>
+      <textarea class="notes-text" placeholder="Hvad skete der? Likes, kommentarer, hvad fungerede..."></textarea>`;
+    body.appendChild(notes);
+
+    const urlInput = notes.querySelector('.notes-url');
+    const notesArea = notes.querySelector('.notes-text');
 
     // Load saved text
     const savedText = localStorage.getItem('ftr_text_' + id);
@@ -1620,9 +1748,23 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
       btn.textContent = '✓ ' + d.date;
     }
 
+    // Load saved LinkedIn data
+    const savedUrl = localStorage.getItem('ftr_url_' + id);
+    if (savedUrl) urlInput.value = savedUrl;
+    const savedNotes = localStorage.getItem('ftr_notes_' + id);
+    if (savedNotes) notesArea.value = savedNotes;
+
     // Save text on edit
     postText.addEventListener('input', () => {
       localStorage.setItem('ftr_text_' + id, postText.innerText);
+    });
+
+    // Save LinkedIn data on change
+    urlInput.addEventListener('input', () => {
+      localStorage.setItem('ftr_url_' + id, urlInput.value);
+    });
+    notesArea.addEventListener('input', () => {
+      localStorage.setItem('ftr_notes_' + id, notesArea.value);
     });
 
     // Toggle posted on button click
@@ -1633,16 +1775,22 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
         btn.classList.remove('active');
         btn.textContent = 'Markér postet';
         localStorage.removeItem('ftr_posted_' + id);
+        syncCalBadge(i, 'ready');
       } else {
         const date = new Date().toLocaleDateString('da-DK', { day: 'numeric', month: 'short' });
         card.classList.add('is-posted');
         btn.classList.add('active');
         btn.textContent = '✓ ' + date;
         localStorage.setItem('ftr_posted_' + id, JSON.stringify({ date }));
+        syncCalBadge(i, 'posted');
       }
       updateStats();
+      renderDenneUge();
     });
   });
+
+  updateStats();
+  renderDenneUge();
 </script>
 
 </body>
