@@ -103,6 +103,32 @@
     /* DIVIDER */
     hr { border: none; border-top: 1px solid var(--border); margin: 48px 0; }
 
+    /* POSTED STATE */
+    .post-card.is-posted { border-color: rgba(74,146,104,0.6); }
+    .post-card.is-posted .post-card-header { background: rgba(74,146,104,0.07); }
+    .posted-btn { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: rgba(138,128,112,0.12); color: var(--muted); border: 1px solid rgba(138,128,112,0.2); cursor: pointer; font-family: -apple-system, sans-serif; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; }
+    .posted-btn:hover { background: rgba(74,146,104,0.15); color: #6AB888; border-color: rgba(74,146,104,0.3); }
+    .posted-btn.active { background: rgba(74,146,104,0.15); color: #6AB888; border-color: rgba(74,146,104,0.4); }
+    .post-text[contenteditable="true"]:focus { outline: 1px solid rgba(196,154,106,0.4); border-color: rgba(196,154,106,0.4); }
+    .post-text[contenteditable="true"]:focus::after { content: none; }
+
+    /* VIDEO SCRIPTS */
+    .script-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+    .script-card-header { display: flex; justify-content: space-between; align-items: center; padding: 14px 18px; cursor: pointer; gap: 12px; transition: background 0.15s; }
+    .script-card-header:hover { background: var(--surface2); }
+    .script-card-title { font-size: 13px; color: var(--text); }
+    .script-card-body { display: none; padding: 0 18px 18px; border-top: 1px solid var(--border); }
+    .script-card-body.open { display: block; }
+    .script-section { margin-top: 14px; }
+    .script-label { font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; font-family: -apple-system, sans-serif; }
+    .script-hook { font-size: 15px; color: var(--text); font-style: italic; line-height: 1.5; padding: 10px 14px; background: rgba(196,154,106,0.08); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; }
+    .script-points { list-style: none; padding: 0; margin: 0; }
+    .script-points li { font-size: 13px; color: var(--text); padding: 5px 0 5px 16px; position: relative; border-bottom: 1px solid var(--border); line-height: 1.5; }
+    .script-points li:last-child { border-bottom: none; }
+    .script-points li::before { content: "→"; position: absolute; left: 0; color: var(--muted); font-size: 11px; top: 7px; }
+    .script-closer { font-size: 14px; color: var(--text); font-weight: bold; padding: 10px 14px; background: rgba(74,122,155,0.08); border-left: 3px solid var(--blue); border-radius: 0 6px 6px 0; }
+    .script-notes { font-size: 12px; color: var(--muted); font-style: italic; line-height: 1.6; }
+
     /* MOBILE */
     @media (max-width: 768px) {
       nav { padding: 0 20px; }
@@ -149,6 +175,10 @@
     <div class="stat-box">
       <div class="stat-num" id="stat-idea">0</div>
       <div class="stat-label">Idé</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="stat-scripts-posted">0</div>
+      <div class="stat-label">Opslag postet</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">27</div>
@@ -1166,6 +1196,210 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
 
   <hr>
 
+  <!-- VIDEO SCRIPTS -->
+  <div class="section">
+    <div class="section-title">Video Scripts · 15 stk · LinkedIn 60–90 sek</div>
+    <p class="cycle-hint" style="margin-bottom:20px;">Klik for at åbne. HOOK = de første 3 sekunder. POINTER = talking points (ikke manuskript). CLOSER = ét sætning udenad. PERFORMANCE = leveringstip.</p>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#1 · Byg på viden, ikke på tro</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"De havde bygget produktet i 6 måneder. De havde aldrig talt med en eneste slutbruger."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>De vidste ikke, hvem der egentlig skulle betale</li><li>Tre led fra slutbrugeren — uden at vide det</li><li>10 samtaler med slutbrugere > 6 måneders udvikling</li><li>Byg det, folk faktisk vil have — ikke det, du tror de vil have</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Byg på viden. Ikke på tro."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rolig start. Lad "aldrig talt med en eneste slutbruger" synke. Stærk og simpel closer — sig den langsomt.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#2 · Kan de finde dig?</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Han havde 7.000 YouTube-følgere. Og nul B2B-kunder."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>B2B og B2C er det samme — vi er alle mennesker</li><li>Hans kunder søger præcis som hans følgere</li><li>Det er ikke et lead-problem — det er et synlighedsproblem</li><li>"Hvis du var din egen kunde — hvad ville du gøre?"</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Spørgsmålet er ikke: 'Hvordan finder jeg kunder?' Det er: 'Kan de finde mig?'"</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rask tempo. Konfidentiel. Stor pause inden closeren — lad spørgsmålet hænge.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#3 · Konceptuér din viden</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"De havde 40 års erfaring. Og de vidste ikke, at det var deres største konkurrencefordel."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Halvdelen af Danmarks elmålere på 2 år — men viden sidder i hovederne</li><li>Viden er en kæmpe valuta, men kun hvis den er ude at leve</li><li>Pak den ned. Gør den håndgribelig. Rul den fra toppen af bakken.</li><li>Leads følger viden — ikke annoncer</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Konceptuér din viden. Og se kunderne finde dig."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Eftertænksom start. Byg gradvist op. Closeren leveres med ro — ikke sælgertone.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#4 · Drøm → Problem → Feature → Løsning</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Han rammer altid en mur, når han præsenterer sin løsning. Her er hvorfor."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>4 faser i et godt salgsmøde — de fleste springer direkte til løsning</li><li>Fase 1: Byg drømmen — hvad vil de? Hvad betyder det for dem?</li><li>Fase 2: Problem — hvad holder dem tilbage? Konsekvensen?</li><li>Fase 3: Feature + Fase 4: Løsning — nu passer det præcis til dem</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Du rammer ikke en mur med løsningen. Du rammer en mur, fordi du sprang de tre første faser over."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Direkte og lidt udfordrende. Tal til dem som sælger. Godt tempo — ikke for langsomt.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#5 · Din erfaring lever kun, hvis nogen ved den</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Hun spurgte mig, om hun skulle hyre en 25-årig til at fortælle hendes historie. Jeg sagde nej."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>En 25-årig kan sige de exakte ord — men ikke fortælle det på samme måde</li><li>141 år gammel virksomhed, 24 ansatte — hendes erfaring er uvurderlig</li><li>Du kan ikke skalere produktionen — men du kan skalere din viden</li><li>Autenticitet kan ikke outsources</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Din erfaring er dit brand. Men kun hvis nogen ved det."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Varmt og overbevisende. Lad "men kun hvis nogen ved det" hænge — det er pointen.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#6 · Salg er ikke en personlighedstype</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Det første, hun sagde, var: Jeg er ikke en sælgertype."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"Hvad er en sælgertype?" — hun beskrev én, der presser og ikke lytter</li><li>Det er ikke salg — det er pres med et mål</li><li>10 år som sygeplejerske: spurgte ind, fandt problemet, foreslog løsningen</li><li>Hun var allerede sælger — hun vidste det bare ikke</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Salg er ikke en personlighedstype. Det er en tilgang. Og den har du måske allerede."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Engagerende — næsten smilende. Overrask dem med pointen. Tal til dem, der tror de ikke kan sælge.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#7 · Opfør dig som en svamp</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Hans første dag som CEO. Han spurgte: Hvordan viser jeg autoritet fra dag 1?"</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Svar: Ingenting. [pause]</li><li>Opfør dig som en svamp — sug alt til dig</li><li>Forstå kunderne, medarbejderne, hvad der rent faktisk virker</li><li>Autoritet opbygges ikke ved at tale — det opbygges ved at vide</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Titlen fik du på dag 1. Tilliden skal du gøre dig fortjent til."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rolig og autoritativ. Stor pause efter "Ingenting." — lad det sidde. Closeren leveres langsomt.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#8 · Markedsundersøgelse er dit bedste salgsmøde</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"De ville ind på tre nye markeder. Jeg sagde: Sælg ingenting."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Ring og spørg — ikke pitch: "Vi overvejer at komme. Hvad er jeres største udfordring?"</li><li>20 interviews = 20 potentielle kunder der kender dig</li><li>Du er ikke en sælger næste gang du ringer — du er ham der lyttede</li><li>De fleste validerer beslutninger. De bedste starter relationer.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Markedsundersøgelse er ikke bare research. Det er dit bedste salgsmøde."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energisk. Lidt provocerende med "sælg ingenting." Godt tempo — en ny idé pr. sætning.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#9 · Stop med at spørge "Forstyrrer jeg?"</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Stop med at starte dine opkald med: Forstyrrer jeg?"</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Det lyder høfligt — men det er verdens nemmeste escape route</li><li>Skift til: "Håber jeg fanger det på et godt tidspunkt"</li><li>"Hvorfor?" sender folk tilbage til barndomsværelset — brug "vil du fortælle mig lidt mere?"</li><li>De klikkede ikke tilfældigt — det er en drøm, de har båret rundt på</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Præcis det samme spørgsmål. Halvt så meget modstand."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Praktisk og direkte. Folk kan bruge det i morgen. Vis eksemplet live — sig begge versioner.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#10 · Den der stiller spørgsmål har magten</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Spørgsmål styrer tanker. Tanker styrer beslutninger."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Vis to versioner: "Hvad er din udfordring?" vs "Hvad ville det betyde, hvis det var løst?"</li><li>Præcis det samme møde — to vidt forskellige steder du ender</li><li>De fleste stiller spørgsmål for at finde grunde til at pitche</li><li>De bedste stiller spørgsmål for at forstå — og det mærkes</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Inden dit næste møde: skriv tre spørgsmål ned. Ikke for svar. For retning."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Tankevækkende. Demonstrér gerne de to spørgsmålsversioner live med toneskifte.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#11 · Performativ balance</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Vi vælger ikke mellem høj performance og sjov. Vi insisterer på begge."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Det er nemt at lade performance overskygge alt andet</li><li>En sælger i god energi lukker mere — det er ikke en følelse, det er et tal</li><li>Fejr undervejs — ikke kun ved målstregen. Gamify de kedelige ting.</li><li>Energi er brændstof — og det er lederens ansvar at fylde det op</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Performativ balance er ikke et fluffy koncept. Det er en forretningsstrategi."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energisk og smilende — lev pointen. Hvis du siger det kedelig, tror ingen på det.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#12 · Lad dem sælge til sig selv</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"De fleste sælgere er nervøse for at spørge efter aftalen. Jeg har aldrig forstået det."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"Synes du nogenlunde, at det her lever op til det billede, du havde?"</li><li>De siger ja → "Fedt. Hvorfor?" → de sælger til sig selv. Lyt. Afbryd ikke.</li><li>De siger nej → hvad mangler? Nu har du noget at arbejde med.</li><li>Ingen måske — aftale det fra start: "Ja eller nej — ikke måske."</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Klargør godt, og lukningen passer på sig selv."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rolig og selvsikker. Ikke anmasende. Du taler fra et sted, du har styr på det her.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#13 · Fejr de små ting</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"En af mine sælgere bookede sit første møde med en CFO. Ingen lukket deal. Og vi fejrede det."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Energi er brændstof — fyld det op undervejs, ikke kun ved målstregen</li><li>Den sælger der fejres for CFO-mødet ringer til tre mere</li><li>Performance er en vane — vaner bygges med øjeblikkelig feedback</li><li>Mange teams fejrer kvartalsresultatet. De bedste fejrer mandagens pipeline.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Fejr de små ting. Mens de sker."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Varmt og autentisk — ikke prechy. Du tror på det her, og det skal ses. Simpel closer, sig den stille.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#14 · Du har allerede svaret</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Folk kommer til mig for råd. Jeg giver dem sjældent nogen."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>9 ud af 10 gange har de allerede svaret</li><li>"Hvad ville du anbefale en anden at gøre i din situation?" [pause]</li><li>Det første sidder. Det andet glemmer du på vej ud af lokalet.</li><li>Bedste reaktion: "Det vidste jeg godt. Jeg var bare ikke klar over, at jeg vidste det."</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"De fleste ved godt, hvad de skal gøre. De har bare brug for nogen, der stiller det rigtige spørgsmål."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Langsomt og sikkert. Lad pausen tale. Styr ikke for meget — lad seeren selv nå frem til pointen.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="script-card-title">#15 · Energi som kompas</span></div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Jeg træner 4-5 gange om ugen. Ikke fordi jeg er besat af kroppen."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>God fysisk form = bedre mental form. Klarere. Roligere. Mere tålmodig.</li><li>Vi taler meget om mindset — men mindset bor i kroppen</li><li>Mange behandler kroppen som noget sekundært — "når tingene roer sig"</li><li>Energi er ikke noget du har. Det er noget du bygger. Dagligt.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Det mest underrated konkurrencefortrin, jeg kender."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rolig og personlig. Vær dig selv — dette er det personlige fundament. Ingen sælgertone. Nøgtern og ærlig.</div></div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
   <!-- IDÉBANK -->
   <div class="section">
     <div class="section-title">Idébank · 27 emner</div>
@@ -1292,6 +1526,7 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
 </div>
 
 <script>
+  // ── CALENDAR BADGES ──────────────────────────────────────────
   const states = ['idea', 'draft', 'ready', 'posted'];
   const labels = { idea: 'Idé', draft: 'Kladde', ready: 'Klar', posted: 'Postet' };
 
@@ -1317,11 +1552,16 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
     document.getElementById('stat-ready').textContent = ready;
     document.getElementById('stat-draft').textContent = draft;
     document.getElementById('stat-idea').textContent = idea;
+    const scriptsPosted = document.querySelectorAll('.post-card.is-posted').length;
+    document.getElementById('stat-scripts-posted').textContent = scriptsPosted;
   }
 
   updateStats();
 
+  // ── POST CARDS: toggle open/close ────────────────────────────
   function togglePost(header) {
+    const btn = header.querySelector('.posted-btn');
+    if (btn && event.target === btn) return;
     const body = header.nextElementSibling;
     const hint = header.querySelector('.post-toggle-hint');
     const isOpen = body.classList.contains('open');
@@ -1329,14 +1569,80 @@ Det er det mest underrated konkurrencefortrin, jeg kender.</div>
     hint.textContent = isOpen ? 'Vis ↓' : 'Luk ↑';
   }
 
+  // ── COPY BUTTON ───────────────────────────────────────────────
   function copyPost(btn) {
-    const text = btn.nextElementSibling.textContent;
-    navigator.clipboard.writeText(text).then(() => {
+    const el = btn.nextElementSibling;
+    const text = el.innerText || el.textContent;
+    navigator.clipboard.writeText(text.trim()).then(() => {
       const orig = btn.textContent;
       btn.textContent = 'Kopieret!';
       setTimeout(() => btn.textContent = orig, 2000);
     });
   }
+
+  // ── SCRIPT CARDS ─────────────────────────────────────────────
+  function toggleScript(header) {
+    const body = header.nextElementSibling;
+    const hint = header.querySelector('.post-toggle-hint');
+    const isOpen = body.classList.contains('open');
+    body.classList.toggle('open', !isOpen);
+    hint.textContent = isOpen ? 'Vis ↓' : 'Luk ↑';
+  }
+
+  // ── EDITABLE POSTS + POSTED TRACKING (localStorage) ──────────
+  document.querySelectorAll('.post-card').forEach((card, i) => {
+    const id = 'post_' + i;
+    const header = card.querySelector('.post-card-header');
+    const postText = card.querySelector('.post-text');
+    if (!postText || !header) return;
+
+    // Make text editable
+    postText.contentEditable = 'true';
+    postText.spellcheck = false;
+
+    // Inject "Markér postet" button before toggle hint
+    const btn = document.createElement('button');
+    btn.className = 'posted-btn';
+    btn.textContent = 'Markér postet';
+    const hint = header.querySelector('.post-toggle-hint');
+    header.insertBefore(btn, hint);
+
+    // Load saved text
+    const savedText = localStorage.getItem('ftr_text_' + id);
+    if (savedText !== null) postText.innerText = savedText;
+
+    // Load saved posted state
+    const postedData = localStorage.getItem('ftr_posted_' + id);
+    if (postedData) {
+      const d = JSON.parse(postedData);
+      card.classList.add('is-posted');
+      btn.classList.add('active');
+      btn.textContent = '✓ ' + d.date;
+    }
+
+    // Save text on edit
+    postText.addEventListener('input', () => {
+      localStorage.setItem('ftr_text_' + id, postText.innerText);
+    });
+
+    // Toggle posted on button click
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (card.classList.contains('is-posted')) {
+        card.classList.remove('is-posted');
+        btn.classList.remove('active');
+        btn.textContent = 'Markér postet';
+        localStorage.removeItem('ftr_posted_' + id);
+      } else {
+        const date = new Date().toLocaleDateString('da-DK', { day: 'numeric', month: 'short' });
+        card.classList.add('is-posted');
+        btn.classList.add('active');
+        btn.textContent = '✓ ' + date;
+        localStorage.setItem('ftr_posted_' + id, JSON.stringify({ date }));
+      }
+      updateStats();
+    });
+  });
 </script>
 
 </body>
