@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PPA Logbog — FTR</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #0F0E0C; color: #E8E0D4; font-family: 'Helvetica Neue', sans-serif; min-height: 100vh; }
+
+    .topbar { background: #1A1915; border-bottom: 1px solid #2A2820; padding: 14px 32px; display: flex; align-items: center; justify-content: space-between; }
+    .topbar-left { display: flex; align-items: center; gap: 16px; }
+    .back-link { color: #8B8070; text-decoration: none; font-size: 13px; }
+    .back-link:hover { color: #C8A96E; }
+    .sep { color: #3A3830; }
+    .page-title { font-size: 13px; color: #C8A96E; letter-spacing: 0.08em; text-transform: uppercase; }
+    .badge-green { background: #1C2B1A; color: #6DBF67; font-size: 11px; padding: 3px 10px; border-radius: 20px; }
+    .badge-gold { background: #2B2210; color: #C8A96E; font-size: 11px; padding: 3px 10px; border-radius: 20px; }
+
+    .hero { padding: 48px 32px 32px; max-width: 1000px; margin: 0 auto; }
+    .hero-label { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: #C8A96E; margin-bottom: 12px; }
+    .hero h1 { font-family: Georgia, serif; font-size: 32px; font-weight: 400; color: #F0E8D8; line-height: 1.2; margin-bottom: 10px; }
+    .hero-sub { font-size: 14px; color: #7A7060; line-height: 1.6; max-width: 560px; }
+
+    /* PROGRESS */
+    .progress-wrap { max-width: 1000px; margin: 0 auto 40px; padding: 0 32px; }
+    .progress-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; margin-bottom: 14px; }
+    .prog-card { background: #1A1915; border: 1px solid #2A2820; border-radius: 10px; padding: 14px 12px; text-align: center; }
+    .prog-card.done { border-color: #2D4A28; background: #141C12; }
+    .prog-card.active { border-color: #4A3A18; background: #1C1810; }
+    .prog-num { font-size: 22px; font-weight: 700; color: #3A3830; margin-bottom: 4px; }
+    .prog-card.done .prog-num { color: #6DBF67; }
+    .prog-card.active .prog-num { color: #C8A96E; }
+    .prog-label { font-size: 10px; color: #5A5040; line-height: 1.3; }
+    .prog-card.done .prog-label { color: #4D8A47; }
+    .prog-card.active .prog-label { color: #A8904A; }
+    .prog-check { font-size: 14px; margin-top: 6px; }
+    .progress-track { height: 4px; background: #1A1915; border-radius: 2px; overflow: hidden; }
+    .progress-fill { height: 100%; background: #6DBF67; border-radius: 2px; }
+    .progress-meta { display: flex; justify-content: space-between; font-size: 11px; color: #5A5040; margin-top: 6px; }
+
+    /* CONTENT */
+    .content { max-width: 1000px; margin: 0 auto; padding: 0 32px 80px; display: flex; flex-direction: column; gap: 24px; }
+
+    .module-block { background: #1A1915; border: 1px solid #2A2820; border-radius: 12px; overflow: hidden; }
+    .module-block.done { border-color: #2D4A28; }
+    .module-block.active { border-color: #4A3A18; }
+
+    .mod-head { display: grid; grid-template-columns: 70px 1fr auto; align-items: center; padding: 20px 24px; gap: 16px; border-bottom: 1px solid #222018; }
+    .mod-num-big { font-family: Georgia, serif; font-size: 34px; font-weight: 400; color: #2A2820; line-height: 1; }
+    .mod-title { font-family: Georgia, serif; font-size: 18px; color: #F0E8D8; margin-bottom: 3px; }
+    .mod-sub { font-size: 12px; color: #6A6050; }
+    .status-pill { font-size: 11px; padding: 4px 12px; border-radius: 20px; font-weight: 500; white-space: nowrap; }
+    .sp-done { background: #1C2B1A; color: #6DBF67; border: 1px solid #2D4A28; }
+    .sp-active { background: #2B2210; color: #C8A96E; border: 1px solid #4A3A18; }
+    .sp-pending { background: #1A1915; color: #4A4038; border: 1px solid #2A2820; }
+
+    .mod-body { padding: 24px; display: flex; flex-direction: column; gap: 16px; }
+
+    /* LESSONS */
+    .lessons-list { display: flex; flex-direction: column; gap: 5px; }
+    .lesson-row { display: flex; align-items: flex-start; gap: 10px; padding: 9px 12px; border-radius: 7px; background: #141210; border: 1px solid #1E1C18; }
+    .lesson-row.done-l { border-color: #1E2E1A; background: #111510; }
+    .lesson-row.active-l { border-color: #2E2510; background: #161210; }
+    .l-icon { font-size: 12px; width: 16px; flex-shrink: 0; padding-top: 2px; color: #4A4038; }
+    .lesson-row.done-l .l-icon { color: #4D8A47; }
+    .lesson-row.active-l .l-icon { color: #C8A96E; }
+    .l-name { font-size: 13px; color: #A09080; }
+    .lesson-row.done-l .l-name { color: #4D8A47; }
+    .lesson-row.active-l .l-name { color: #C8A96E; }
+    .l-note { font-size: 11px; color: #4A4038; margin-top: 2px; line-height: 1.4; }
+    .lesson-row.active-l .l-note { color: #6A5A38; }
+
+    /* BOXES */
+    .notes-box { background: #141210; border: 1px solid #222018; border-radius: 8px; padding: 16px 18px; }
+    .box-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; }
+    .notes-box .box-label { color: #5A5040; }
+    .feel-box { background: #101C10; border: 1px solid #1A2E1A; border-radius: 8px; padding: 16px 18px; }
+    .feel-box .box-label { color: #4D8A47; }
+    .decisions-box { background: #10101C; border: 1px solid #1A1A2E; border-radius: 8px; padding: 16px 18px; }
+    .decisions-box .box-label { color: #4A6A9A; }
+    .next-box { background: #1C1810; border: 1px solid #3A2E18; border-radius: 8px; padding: 16px 18px; }
+    .next-box .box-label { color: #C8A96E; }
+
+    .row-item { display: flex; gap: 8px; margin-bottom: 8px; align-items: flex-start; }
+    .row-item:last-child { margin-bottom: 0; }
+    .dot { width: 4px; height: 4px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+    .notes-box .dot { background: #C8A96E; }
+    .feel-box .dot { background: #6DBF67; }
+    .row-text { font-size: 13px; line-height: 1.55; }
+    .notes-box .row-text { color: #8A8070; }
+    .feel-box .row-text { color: #4D7A47; }
+    .row-text strong { font-weight: 500; }
+    .notes-box .row-text strong { color: #C0B8A8; }
+    .feel-box .row-text strong { color: #6DBF67; }
+
+    .decision-row { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+    .decision-row:last-child { margin-bottom: 0; }
+    .dec-pill { font-size: 10px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+    .dec-done { background: #1C2B1A; color: #6DBF67; }
+    .dec-pending { background: #2A1C10; color: #C87040; }
+    .dec-open { background: #1A1915; color: #5A5040; }
+    .dec-text { font-size: 13px; color: #8A8070; line-height: 1.5; }
+    .dec-text strong { color: #C0B8A8; font-weight: 500; }
+
+    .next-step { display: flex; gap: 10px; margin-bottom: 8px; align-items: flex-start; }
+    .next-step:last-child { margin-bottom: 0; }
+    .next-num { font-size: 11px; font-weight: 700; color: #C8A96E; min-width: 18px; padding-top: 2px; }
+    .next-text { font-size: 13px; color: #A09070; line-height: 1.5; }
+
+    .placeholder-text { font-size: 13px; color: #2A2820; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-left">
+    <a href="hq.html" class="back-link">← HQ</a>
+    <span class="sep">|</span>
+    <span class="page-title">PPA Logbog</span>
+  </div>
+  <div style="display:flex;gap:8px;align-items:center;">
+    <span class="badge-green">2 / 6 done</span>
+    <span class="badge-gold">Module 3 aktiv</span>
+  </div>
+</div>
+
+<div class="hero">
+  <p class="hero-label">Passive Profit Accelerator</p>
+  <h1>Logbog — hvad vi lærer<br>og hvad vi gør med det</h1>
+  <p class="hero-sub">Alle noter, beslutninger og F.E.E.L.-applikationer fra PPA-kurset. Opdateres løbende mens vi bygger.</p>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-grid">
+    <div class="prog-card done">
+      <div class="prog-num">1</div>
+      <div class="prog-label">Course Strategy</div>
+      <div class="prog-check">✓</div>
+    </div>
+    <div class="prog-card done">
+      <div class="prog-num">2</div>
+      <div class="prog-label">Start Marketing</div>
+      <div class="prog-check">✓</div>
+    </div>
+    <div class="prog-card active">
+      <div class="prog-num">3</div>
+      <div class="prog-label">Prep for Sale</div>
+      <div class="prog-check">→</div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">4</div>
+      <div class="prog-label">Pre-Sale Launch</div>
+      <div class="prog-check"> </div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">5</div>
+      <div class="prog-label">Deliver Your Course</div>
+      <div class="prog-check"> </div>
+    </div>
+    <div class="prog-card">
+      <div class="prog-num">6</div>
+      <div class="prog-label">Automate Sales</div>
+      <div class="prog-check"> </div>
+    </div>
+  </div>
+  <div class="progress-track">
+    <div class="progress-fill" style="width:33%"></div>
+  </div>
+  <div class="progress-meta"><span>PPA fremgang</span><span>2 / 6 moduler</span></div>
+</div>
+
+<div class="content">
+
+  <!-- MODULE 1 -->
+  <div class="module-block done">
+    <div class="mod-head">
+      <div class="mod-num-big" style="color:#2D4A28;">1</div>
+      <div>
+        <div class="mod-title">Course Strategy</div>
+        <div class="mod-sub">ICP · Kursusstruktur · Messaging</div>
+      </div>
+      <span class="status-pill sp-done">✓ Gennemført</span>
+    </div>
+    <div class="mod-body">
+      <div class="lessons-list">
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Strategy Overview</div></div></div>
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Creating a Course that Sells</div></div></div>
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Knowing Your Ideal Client</div></div></div>
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Create Your Course Outline</div></div></div>
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">MILESTONE: Course Outline Complete</div></div></div>
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Refine Your Messaging</div></div></div>
+      </div>
+      <div class="notes-box">
+        <div class="box-label">Vigtigste læringer</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>Point A → B er fundamentet.</strong> Hele kurset er bygget op om at tage kunden fra et konkret smertepunkt til et konkret resultat.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>ICP = Marcus.</strong> Salgsleder, 28–40, B2B, Captain PI. Han nikker til 7 af de 10 pains i Module 0.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>Kursets messaging</strong> skal tale direkte til Marcus — ikke til alle ledere generelt.</div></div>
+      </div>
+      <div class="feel-box">
+        <div class="box-label">F.E.E.L. application</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>programs.html</strong> — begge kurser fuldt mappede med moduler, lessons og extras.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>course-leaders.html</strong> — build-tracker for F.E.E.L. for Leaders. Module 0 er fuldt scriptede.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Messaging på forsiden og programs-siden er allerede skrevet med Marcus for øje.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 2 -->
+  <div class="module-block done">
+    <div class="mod-head">
+      <div class="mod-num-big" style="color:#2D4A28;">2</div>
+      <div>
+        <div class="mod-title">Start Marketing</div>
+        <div class="mod-sub">Audience building · Content engine · LinkedIn</div>
+      </div>
+      <span class="status-pill sp-done">✓ Gennemført</span>
+    </div>
+    <div class="mod-body">
+      <div class="notes-box">
+        <div class="box-label">Vigtigste læringer</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>Byg audience FØR du launcher.</strong> PPA's model: warm up over måneder, launch til et publikum der allerede kender dig.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>LinkedIn er den primære kanal</strong> — ~4.900 followers, 3x/uge (man/ons/fre), dansk indhold.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">5-ugers indholdsplan kørende: Mar 9 – Apr 10. 11 Seedster-posts klar, 15 posts i alt.</div></div>
+      </div>
+      <div class="feel-box">
+        <div class="box-label">F.E.E.L. application</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>content-bank.html</strong> — 5-ugers kalender, Seedster-posts og idébank med 27 emner.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Seedster-posts er stærkeste content — rigtige coaching-øjeblikke fra praksis.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Næste content-cyklus (post Apr 10) planlægges inden Costa Rica slutter.</div></div>
+      </div>
+      <div class="decisions-box">
+        <div class="box-label">Beslutninger</div>
+        <div class="decision-row"><span class="dec-pill dec-done">besluttet</span><div class="dec-text"><strong>Kanal:</strong> LinkedIn primær. YouTube long-form som næste step.</div></div>
+        <div class="decision-row"><span class="dec-pill dec-pending">afventer</span><div class="dec-text"><strong>Email list:</strong> Endnu ikke i gang. PPA anbefaler at starte tidligt — vigtig prioritet.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 3 -->
+  <div class="module-block active">
+    <div class="mod-head">
+      <div class="mod-num-big" style="color:#4A3A18;">3</div>
+      <div>
+        <div class="mod-title">Prep for Sale</div>
+        <div class="mod-sub">Salgsside · Pricing · Checkout · Welcome email · Kartra</div>
+      </div>
+      <span class="status-pill sp-active">→ Aktiv nu</span>
+    </div>
+    <div class="mod-body">
+      <div class="lessons-list">
+        <div class="lesson-row done-l"><span class="l-icon">✓</span><div><div class="l-name">Overview</div><div class="l-note">Mål: hurtigst mulige vej til at kurset er klar til salg. Kartra har templates til alt.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Course Branding</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Price your Course</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Creating Mockups</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Create Your Sales Page</div><div class="l-note">Hele Point A → B-historien. Template tilgængeligt i Kartra.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">MILESTONE: Sales Page Complete</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Create Your Thank You Page</div><div class="l-note">Bekræfter køb + login-info.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Set Up Payment Processors</div><div class="l-note">Stripe eller PayPal. Kan starte med én og tilføje den anden senere.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Set Up Checkout</div><div class="l-note">Kursus tilføjes som "produkt" i Kartra.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Create your Welcome Email</div><div class="l-note">Varm velkomst + kursets login + hvad de kan forvente.</div></div></div>
+        <div class="lesson-row"><span class="l-icon">○</span><div><div class="l-name">Connect all the pieces together</div><div class="l-note">Salgsside → Thank you page → Welcome email → kursusadgang. Alt hænger sammen.</div></div></div>
+      </div>
+      <div class="next-box">
+        <div class="box-label">Næste konkrete skridt</div>
+        <div class="next-step"><div class="next-num">1.</div><div class="next-text">Beslut prisen på F.E.E.L. for Leaders — alt andet afhænger af det.</div></div>
+        <div class="next-step"><div class="next-num">2.</div><div class="next-text">Gennemfør "Price your Course" i PPA og noter beslutningen her.</div></div>
+        <div class="next-step"><div class="next-num">3.</div><div class="next-text">Opret kursus i Kartra og tilpas PPA-skabelon til F.E.E.L.-branding.</div></div>
+        <div class="next-step"><div class="next-num">4.</div><div class="next-text">Skriv salgsside — indholdet fra programs.html er allerede der. Kartra-template giver strukturen.</div></div>
+        <div class="next-step"><div class="next-num">5.</div><div class="next-text">Opret Stripe-konto og tilkobl Kartra.</div></div>
+      </div>
+      <div class="decisions-box">
+        <div class="box-label">Åbne beslutninger</div>
+        <div class="decision-row"><span class="dec-pill dec-pending">afventer</span><div class="dec-text"><strong>Pris på F.E.E.L. for Leaders</strong> — hvad koster kurset? PPA har et pricing-modul der hjælper.</div></div>
+        <div class="decision-row"><span class="dec-pill dec-pending">afventer</span><div class="dec-text"><strong>Platform bekræftet:</strong> Kartra er PPA's anbefalede platform og det logiske valg.</div></div>
+        <div class="decision-row"><span class="dec-pill dec-open">ikke startet</span><div class="dec-text"><strong>Mockups:</strong> Visuelle billeder af kurset til salgsside og LinkedIn-promotion.</div></div>
+        <div class="decision-row"><span class="dec-pill dec-open">ikke startet</span><div class="dec-text"><strong>Stripe-konto:</strong> Skal oprettes og tilkobles Kartra inden checkout kan sættes op.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 4 -->
+  <div class="module-block">
+    <div class="mod-head">
+      <div class="mod-num-big">4</div>
+      <div>
+        <div class="mod-title">Pre-Sale Launch</div>
+        <div class="mod-sub">Sælg FØR kurset er bygget · Lanceringsflow · Waitlist</div>
+      </div>
+      <span class="status-pill sp-pending">Ikke startet</span>
+    </div>
+    <div class="mod-body">
+      <div class="notes-box">
+        <div class="box-label">Hvad dette modul handler om</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>PPA's kerneidé:</strong> lav et pre-sale inden du optager ét eneste video. Valider at nogen vil betale inden du investerer tid.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Typisk: waitlist eller founder-pris til et begrænset antal. Skaber urgency og social proof.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">For FTR: LinkedIn-audience er allerede varm. Et pre-sale er realistisk og sandsynligvis hurtigt.</div></div>
+      </div>
+      <div class="feel-box">
+        <div class="box-label">F.E.E.L. application (fremtid)</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>Roadmap May–Jun:</strong> 3–5 intro coaching clients à 15k DKK. Pre-sale i bytte for feedback og testimonials.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Founder-prisen bør være markant lavere end salgsprisen — men kræver at prisen er besluttet først (Module 3).</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 5 -->
+  <div class="module-block">
+    <div class="mod-head">
+      <div class="mod-num-big">5</div>
+      <div>
+        <div class="mod-title">Deliver Your Course</div>
+        <div class="mod-sub">Platform · Optagelse · Kursusoplevelse</div>
+      </div>
+      <span class="status-pill sp-pending">Ikke startet</span>
+    </div>
+    <div class="mod-body">
+      <div class="notes-box">
+        <div class="box-label">Hvad dette modul handler om</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Teknisk opsætning: upload af videoer, kursusstruktur, brugeroplevelse i Kartra.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Det er her F.E.E.L.-videoscripts skal optages. <strong>Module 0 er klar. Module 1–4 mangler scripting.</strong></div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Udstyr: iPhone 17 Pro + Røde Wireless Micro. Allerede klar.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODULE 6 -->
+  <div class="module-block">
+    <div class="mod-head">
+      <div class="mod-num-big">6</div>
+      <div>
+        <div class="mod-title">Automate Sales</div>
+        <div class="mod-sub">Evergreen funnel · Email sequences · Passiv indkomst</div>
+      </div>
+      <span class="status-pill sp-pending">Ikke startet</span>
+    </div>
+    <div class="mod-body">
+      <div class="notes-box">
+        <div class="box-label">Hvad dette modul handler om</div>
+        <div class="row-item"><div class="dot"></div><div class="row-text"><strong>Evergreen funnel:</strong> kurset sælger sig selv uden aktive lanceringer hver gang.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Email-sekvenser, automatisk onboarding og follow-up.</div></div>
+        <div class="row-item"><div class="dot"></div><div class="row-text">Det ultimative mål: <strong>FTR som passiv indkomstkilde</strong> der kan erstatte Lunar inden dec 2026.</div></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
