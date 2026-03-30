@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feel the Room — Lead with Intention.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f0e8d1;
+      --bg2: #e8dfc4;
+      --bg3: #ddd4b5;
+      --red: #e90000;
+      --red-dark: #c00000;
+      --text: #1a1208;
+      --text2: #5a4e38;
+      --border: rgba(26,18,8,0.12);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+    a { color: var(--red); text-decoration: none; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      padding: 0 48px; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: var(--bg);
+    }
+    .nav-logo img { height: 36px; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 14px; color: var(--text2); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a.active { color: var(--red); font-weight: 600; }
+    .btn-nav {
+      background: var(--red); color: #fff !important;
+      padding: 9px 20px; border-radius: 6px;
+      font-weight: 600; font-size: 14px !important;
+      transition: background .2s;
+    }
+    .btn-nav:hover { background: var(--red-dark); }
+
+    /* HERO */
+    .hero { padding: 96px 48px 80px; }
+    .hero-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; max-width: 1100px; margin: 0 auto; }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--red); font-weight: 600; margin-bottom: 20px;
+    }
+    .hero-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 58px; font-weight: 700; line-height: 1.08;
+      color: var(--text); margin-bottom: 28px; letter-spacing: -0.01em;
+    }
+    .hero-title em { font-style: italic; color: var(--red); }
+    .bullets { display: flex; flex-direction: column; gap: 12px; margin-bottom: 40px; }
+    .bullet { display: flex; gap: 14px; align-items: flex-start; }
+    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; margin-top: 9px; }
+    .bullet span { font-size: 16px; color: var(--text2); line-height: 1.6; }
+    .bullet.strong span { color: var(--text); font-weight: 500; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red); color: #fff;
+      padding: 14px 32px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 600; display: inline-block;
+      transition: background .2s;
+    }
+    .btn-primary:hover { background: var(--red-dark); color: #fff; }
+    .btn-secondary {
+      background: transparent; color: var(--text);
+      padding: 14px 32px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 500; display: inline-block;
+      border: 1.5px solid var(--border); cursor: pointer;
+      transition: border-color .2s;
+    }
+    .btn-secondary:hover { border-color: var(--text); }
+
+    /* COMPASS — adapted to red brand */
+    .compass-wrap { display: flex; align-items: center; justify-content: center; }
+
+    /* DIVIDER */
+    .divider { height: 1px; background: var(--border); margin: 0 48px; }
+
+    /* SECTIONS */
+    section { padding: 80px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .eyebrow {
+      font-size: 11px; color: var(--red); letter-spacing: 0.12em;
+      text-transform: uppercase; font-weight: 600; margin-bottom: 16px;
+    }
+    h2.section-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36px; font-weight: 700; line-height: 1.2;
+      max-width: 580px; margin-bottom: 16px;
+    }
+    .section-body { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.75; }
+
+    /* PROBLEM CARDS */
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: 16px; margin-top: 44px; }
+    .card {
+      background: var(--bg2); border-radius: var(--radius);
+      padding: 28px; border: 1px solid var(--border);
+      transition: border-color .2s;
+    }
+    .card:hover { border-color: var(--red); }
+    .card-icon { font-size: 20px; margin-bottom: 14px; }
+    .card h4 { font-family: 'Playfair Display', serif; font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--text2); line-height: 1.6; }
+
+    /* F.E.E.L. */
+    .feel-section { background: var(--text); color: #f0e8d1; }
+    .feel-section .eyebrow { color: var(--red); }
+    .feel-section h2.section-title { color: #f0e8d1; }
+    .feel-section .section-body { color: rgba(240,232,209,0.65); }
+    .feel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 44px; background: rgba(240,232,209,0.1); border-radius: var(--radius); overflow: hidden; }
+    .feel-item { background: var(--text); padding: 36px 28px; }
+    .feel-letter { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; color: var(--red); line-height: 1; margin-bottom: 6px; }
+    .feel-word { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(240,232,209,0.4); margin-bottom: 16px; }
+    .feel-desc { font-size: 14px; color: rgba(240,232,209,0.7); line-height: 1.65; }
+
+    /* FOR WHO */
+    .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 44px; }
+    .forwho-col h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 22px; }
+    .check-item { display: flex; gap: 13px; margin-bottom: 14px; align-items: flex-start; }
+    .check-dot { width: 20px; height: 20px; border-radius: 50%; background: rgba(233,0,0,0.1); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .check-dot svg { width: 10px; height: 10px; }
+    .check-text { font-size: 14px; color: var(--text2); line-height: 1.55; }
+
+    /* OFFERINGS */
+    .offerings-section { background: var(--bg2); }
+    .offering-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px,1fr)); gap: 16px; margin-top: 44px; }
+    .offering-card {
+      background: var(--bg); border-radius: var(--radius);
+      padding: 32px 28px; border: 1px solid var(--border);
+    }
+    .offering-card.featured { border: 2px solid var(--red); }
+    .offering-tag { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--red); margin-bottom: 12px; }
+    .offering-name { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    .offering-desc { font-size: 14px; color: var(--text2); line-height: 1.65; margin-bottom: 22px; }
+    .offering-link { font-size: 14px; color: var(--red); font-weight: 600; }
+
+    /* CTA */
+    .cta-section {
+      background: var(--red); color: #fff;
+      text-align: center; padding: 96px 48px;
+    }
+    .cta-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px; font-weight: 700;
+      margin-bottom: 16px; color: #fff;
+    }
+    .cta-section p { font-size: 17px; color: rgba(255,255,255,0.8); max-width: 440px; margin: 0 auto 40px; }
+    .btn-white {
+      display: inline-block;
+      background: #fff; color: var(--red) !important;
+      padding: 14px 36px; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700;
+      transition: opacity .2s;
+    }
+    .btn-white:hover { opacity: .9; }
+
+    /* FOOTER */
+    footer {
+      padding: 28px 48px; border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: var(--text2); flex-wrap: wrap; gap: 12px;
+    }
+    footer a { color: var(--text2); }
+    footer a:hover { color: var(--red); }
+
+    /* MOBILE */
+    @media (max-width: 640px) {
+      nav { padding: 16px 24px; }
+      .hero { padding: 64px 24px 56px; }
+      .hero-inner { grid-template-columns: 1fr; }
+      .hero-inner > div:last-child { display: none; }
+      .hero-title { font-size: 38px; }
+      section { padding: 60px 24px; }
+      .divider { margin: 0 24px; }
+      .feel-grid { grid-template-columns: 1fr 1fr; }
+      .forwho-grid { grid-template-columns: 1fr; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">
+    <img src="assets/logo-wide.png" alt="Feel the Room">
+  </a>
+  <div class="nav-links">
+    <a href="programs.html">Programs</a>
+    <a href="freebies/index.html">Free Tools</a>
+    <a href="about.html">About</a>
+    <a href="programs.html" class="btn-nav">Book a call</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">Sales Leadership · F.E.E.L. Framework</div>
+      <h1 class="hero-title">Feel the Room.<br><em>Lead with Intention.</em></h1>
+      <div class="bullets">
+        <div class="bullet"><div class="bullet-dot"></div><span>Too many sales leaders are disconnected from their gut feeling.</span></div>
+        <div class="bullet"><div class="bullet-dot"></div><span>They can't feel the room. They can't read the energy on their team.</span></div>
+        <div class="bullet"><div class="bullet-dot"></div><span>Not because they lack talent — but because no one taught them how.</span></div>
+        <div class="bullet"><div class="bullet-dot"></div><span>They were promoted from great salesperson to leader — and handed a title instead of a toolkit.</span></div>
+        <div class="bullet strong"><div class="bullet-dot"></div><span>F.E.E.L. gives you the awareness, the tools, and the performative balance to lead — and actually feel the difference.</span></div>
+      </div>
+      <div class="btn-row">
+        <a href="programs.html" class="btn-primary">Explore the Programs</a>
+        <a href="programs.html" class="btn-secondary">Book a discovery call</a>
+      </div>
+    </div>
+    <!-- COMPASS — new red brand -->
+    <div class="compass-wrap">
+      <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="max-width:420px;">
+        <defs>
+          <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#e90000" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#e90000" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="240" cy="240" r="220" fill="url(#rg1)"/>
+        <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#e90000" stroke-width="1" opacity="0.25"/>
+        <rect x="143" y="143" width="194" height="194" fill="none" stroke="#e90000" stroke-width="0.8" opacity="0.15" transform="rotate(45,240,240)"/>
+        <circle cx="240" cy="240" r="112" fill="none" stroke="#e90000" stroke-width="1" opacity="0.2"/>
+        <line x1="240" y1="30"  x2="240" y2="128" stroke="#e90000" stroke-width="0.8" opacity="0.2"/>
+        <line x1="450" y1="240" x2="352" y2="240" stroke="#e90000" stroke-width="0.8" opacity="0.15"/>
+        <line x1="240" y1="450" x2="240" y2="352" stroke="#e90000" stroke-width="0.8" opacity="0.15"/>
+        <line x1="30"  y1="240" x2="128" y2="240" stroke="#e90000" stroke-width="0.8" opacity="0.15"/>
+        <circle cx="240" cy="30"  r="3.5" fill="#e90000" opacity="0.5"/>
+        <circle cx="450" cy="240" r="3.5" fill="#e90000" opacity="0.3"/>
+        <circle cx="240" cy="450" r="3.5" fill="#e90000" opacity="0.3"/>
+        <circle cx="30"  cy="240" r="3.5" fill="#e90000" opacity="0.3"/>
+        <text x="240" y="18"  text-anchor="middle" font-family="Georgia,serif" font-size="30" font-weight="700" fill="#e90000" opacity="0.9">F</text>
+        <text x="470" y="247" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#e90000" opacity="0.5">E</text>
+        <text x="240" y="476" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#e90000" opacity="0.5">E</text>
+        <text x="10"  y="247" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#e90000" opacity="0.5">L</text>
+        <g transform="rotate(25, 240, 240)">
+          <polygon points="240,130 236.5,240 240,250 243.5,240" fill="#e90000" opacity="0.85"/>
+          <polygon points="240,350 236.5,240 240,250 243.5,240" fill="#e90000" opacity="0.2"/>
+        </g>
+        <circle cx="240" cy="240" r="8" fill="none" stroke="#e90000" stroke-width="1.2" opacity="0.4"/>
+        <circle cx="240" cy="240" r="3.5" fill="#e90000" opacity="0.9"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROBLEM -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">The challenge</div>
+    <h2 class="section-title">You know how to sell. But leading a room is a different skill.</h2>
+    <p class="section-body">The best salespeople often become the worst leaders — not because they lack talent, but because no one taught them the transition. Scripts don't work. Pressure doesn't scale.</p>
+    <div class="card-grid">
+      <div class="card"><div class="card-icon">↑</div><h4>You're carrying the team</h4><p>You're still the top performer. But the team doesn't move without you pushing it — and that's not leadership, that's burnout.</p></div>
+      <div class="card"><div class="card-icon">⊙</div><h4>The energy is off</h4><p>You feel it. Something in the room isn't right. A salesperson is losing confidence. A deal is slipping. You just don't know what to do about it.</p></div>
+      <div class="card"><div class="card-icon">◎</div><h4>Results without substance</h4><p>You're hitting numbers — but it costs too much. The culture is hollow, the team is tired, and you're not sure how long it holds.</p></div>
+      <div class="card"><div class="card-icon">→</div><h4>You know there's more</h4><p>You've seen what great leadership looks like. You just need a method — one that works for humans, not spreadsheets.</p></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- F.E.E.L. -->
+<section class="feel-section" id="framework">
+  <div class="section-inner">
+    <div class="eyebrow">The method</div>
+    <h2 class="section-title">The F.E.E.L. Framework</h2>
+    <p class="section-body">Four principles. Two programs. One method that works for the leader and the salesperson — because the same awareness that makes you a great leader makes you a great closer.</p>
+    <div class="feel-grid">
+      <div class="feel-item">
+        <div class="feel-letter">F</div>
+        <div class="feel-word">Feel</div>
+        <div class="feel-desc">Feel the room — and yourself. Your energy is neurobiologically contagious. Learn to regulate your state, read your salespeople, and build the whole-person foundation that makes everything else possible.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Explore</div>
+        <div class="feel-desc">The one who asks the questions holds the power. Stop giving the answers — start asking the right questions. Dream → Problem → Solution. Always in that order.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Elevate</div>
+        <div class="feel-desc">Coaching over instruction. Help your salespeople find the answers themselves. Ask the question that reveals the real blocker — and let them hear themselves say what needs to change.</div>
+      </div>
+      <div class="feel-item">
+        <div class="feel-letter">L</div>
+        <div class="feel-word">Lead</div>
+        <div class="feel-desc">Build the culture. Recruit the whole person. Set targets that motivate. Create the weekly rhythm that keeps the team sharp — and build a team that performs because they want to, not because you push them.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider" style="background:rgba(240,232,209,0.1);margin:0;"></div>
+
+<!-- FOR WHO -->
+<section>
+  <div class="section-inner">
+    <div class="eyebrow">Who this is for</div>
+    <h2 class="section-title">For the leader who wants to win — and still sleep at night.</h2>
+    <div class="forwho-grid">
+      <div class="forwho-col">
+        <h3>This is for you if</h3>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#e90000" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You lead a sales team and want to stop reacting — and start leading with intention</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#e90000" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're a salesperson who's tired of scripts and wants to actually connect with customers</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#e90000" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You know the results are there — you just need the method to unlock them consistently</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#e90000" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're willing to do the real work — on yourself first, then on your team</div></div>
+      </div>
+      <div class="forwho-col">
+        <h3>This is NOT for you if</h3>
+        <div class="check-item"><div class="check-dot" style="background:rgba(90,78,56,0.1);"><svg viewBox="0 0 10 10"><path d="M3 3l4 4M7 3l-4 4" stroke="#5a4e38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're looking for a quick fix or a motivational shortcut</div></div>
+        <div class="check-item"><div class="check-dot" style="background:rgba(90,78,56,0.1);"><svg viewBox="0 0 10 10"><path d="M3 3l4 4M7 3l-4 4" stroke="#5a4e38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You believe great leadership is purely about numbers and targets</div></div>
+        <div class="check-item"><div class="check-dot" style="background:rgba(90,78,56,0.1);"><svg viewBox="0 0 10 10"><path d="M3 3l4 4M7 3l-4 4" stroke="#5a4e38" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're not open to the idea that how you show up emotionally affects your team's performance</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OFFERINGS -->
+<section class="offerings-section">
+  <div class="section-inner">
+    <div class="eyebrow">The Programs</div>
+    <h2 class="section-title">Two programs. One framework.</h2>
+    <p class="section-body">Whether you lead people or sell to them — F.E.E.L. meets you where you are.</p>
+    <div class="offering-cards">
+      <div class="offering-card featured">
+        <div class="offering-tag">Online Course · Coming Soon</div>
+        <div class="offering-name">F.E.E.L. for Leaders</div>
+        <div class="offering-desc">The complete leadership system for sales leaders who want to build high-performing teams without burning themselves or their people out. Built on the F.E.E.L. framework.</div>
+        <a href="programs.html" class="offering-link">Learn more →</a>
+      </div>
+      <div class="offering-card">
+        <div class="offering-tag">Online Course · Coming Soon</div>
+        <div class="offering-name">F.E.E.L. for Sales</div>
+        <div class="offering-desc">For the salesperson who wants to sell with conviction, not manipulation. Built on the same framework — applied to the client conversation.</div>
+        <a href="programs.html" class="offering-link">Learn more →</a>
+      </div>
+      <div class="offering-card">
+        <div class="offering-tag">1:1 Coaching</div>
+        <div class="offering-name">Work Directly with Joakim</div>
+        <div class="offering-desc">Limited spots. For leaders and sales professionals who want accelerated, personal results with direct coaching and accountability.</div>
+        <a href="programs.html" class="offering-link">Enquire →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to lead with intention?</h2>
+  <p>Start with a free tool from the F.E.E.L. methodology — no email required.</p>
+  <a href="freebies/index.html" class="btn-white">Explore Free Tools →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Feel the Room · Joakim Møller Jensen</span>
+  <div style="display:flex;gap:24px;">
+    <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a>
+    <a href="programs.html">Programs</a>
+    <a href="freebies/index.html">Free Tools</a>
+  </div>
+</footer>
+
+</body>
+</html>
