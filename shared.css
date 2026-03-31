@@ -26,20 +26,6 @@
   --surface2:      var(--bg3);
 }
 
-/* ── Design tokens — dark mode ── */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg:       #1A1714;
-    --bg2:      #211E1A;
-    --bg3:      #2A2621;
-    --text:     #F0EBE3;
-    --text2:    #9B9189;
-    --gold:     #ff3322;
-    --gold2:    #ff5540;
-    --gold-dim: rgba(255,8,0,0.10);
-    --border:   rgba(240,235,227,0.1);
-  }
-}
 
 /* ── Base styles ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -82,17 +68,8 @@ nav {
 
 .nav-logo-dark  { display: none; }
 .nav-logo-light { display: block; }
-
-/* Generic logo theme switching — use on any <img> */
 .logo-light { display: block; }
 .logo-dark  { display: none; }
-
-@media (prefers-color-scheme: dark) {
-  .nav-logo-dark  { display: block; }
-  .nav-logo-light { display: none; }
-  .logo-light { display: none; }
-  .logo-dark  { display: block; }
-}
 
 .nav-links {
   display: flex;
