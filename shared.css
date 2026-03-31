@@ -11,9 +11,9 @@
   --bg3:          #EDE0CC;
   --text:         #1C1A17;
   --text2:        #6B6457;
-  --gold:         #8B6F47;
-  --gold2:        #A08050;
-  --gold-dim:     rgba(139,111,71,0.10);
+  --gold:         #ff0800;
+  --gold2:        #cc0600;
+  --gold-dim:     rgba(255,8,0,0.07);
   --border:       rgba(28,26,23,0.12);
   --radius:       12px;
   --radius-sm:    8px;
@@ -34,9 +34,9 @@
     --bg3:      #2A2621;
     --text:     #F0EBE3;
     --text2:    #9B9189;
-    --gold:     #C49A6A;
-    --gold2:    #D4AA7A;
-    --gold-dim: rgba(196,154,106,0.12);
+    --gold:     #ff3322;
+    --gold2:    #ff5540;
+    --gold-dim: rgba(255,8,0,0.10);
     --border:   rgba(240,235,227,0.1);
   }
 }

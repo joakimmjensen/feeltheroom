@@ -8,8 +8,8 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#8B6F47; --accent-light:#F5EDE0; --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
-    @media (prefers-color-scheme: dark) { :root { --bg:#1A1714; --bg2:#211E1A; --bg3:#2A2621; --text:#F0EBE3; --text2:#9B9189; --accent:#C49A6A; --accent-light:#2A2218; --border:rgba(240,235,227,0.1); } }
+    :root { --bg:#FDFAF6; --bg2:#F5EDE0; --bg3:#EDE0CC; --text:#1C1A17; --text2:#6B6457; --accent:#ff0800; --accent-light:rgba(255,8,0,0.07); --border:rgba(28,26,23,0.12); --radius:12px; --radius-sm:8px; }
+    @media (prefers-color-scheme: dark) { :root { --bg:#1A1714; --bg2:#211E1A; --bg3:#2A2621; --text:#F0EBE3; --text2:#9B9189; --accent:#ff3322; --accent-light:rgba(255,8,0,0.10); --border:rgba(240,235,227,0.1); } }
     html { scroll-behavior: smooth; }
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
     a { color: var(--accent); text-decoration: none; }
@@ -141,8 +141,8 @@
         <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;">
           <defs>
             <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+              <stop offset="0%" stop-color="#ff0800" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#ff0800" stop-opacity="0"/>
             </radialGradient>
           </defs>
 
@@ -150,42 +150,42 @@
           <circle cx="240" cy="240" r="220" fill="url(#rg1)"/>
 
           <!-- Outer diamond -->
-          <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+          <polygon points="240,30 450,240 240,450 30,240" fill="none" stroke="#ff0800" stroke-width="0.8" opacity="0.4"/>
 
           <!-- Inner square (45° rotated diamond) -->
-          <rect x="143" y="143" width="194" height="194" fill="none" stroke="#C49A6A" stroke-width="0.6" opacity="0.22"/>
+          <rect x="143" y="143" width="194" height="194" fill="none" stroke="#ff0800" stroke-width="0.6" opacity="0.22"/>
 
           <!-- Inner circle -->
-          <circle cx="240" cy="240" r="112" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.38"/>
+          <circle cx="240" cy="240" r="112" fill="none" stroke="#ff0800" stroke-width="0.8" opacity="0.38"/>
 
           <!-- Cardinal connectors — diamond to circle -->
-          <line x1="240" y1="30"  x2="240" y2="128" stroke="#C49A6A" stroke-width="0.5" opacity="0.3"/>
-          <line x1="450" y1="240" x2="352" y2="240" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
-          <line x1="240" y1="450" x2="240" y2="352" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
-          <line x1="30"  y1="240" x2="128" y2="240" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+          <line x1="240" y1="30"  x2="240" y2="128" stroke="#ff0800" stroke-width="0.5" opacity="0.3"/>
+          <line x1="450" y1="240" x2="352" y2="240" stroke="#ff0800" stroke-width="0.5" opacity="0.2"/>
+          <line x1="240" y1="450" x2="240" y2="352" stroke="#ff0800" stroke-width="0.5" opacity="0.2"/>
+          <line x1="30"  y1="240" x2="128" y2="240" stroke="#ff0800" stroke-width="0.5" opacity="0.2"/>
 
           <!-- Tick dots at diamond corners -->
-          <circle cx="240" cy="30"  r="3" fill="#C49A6A" opacity="0.6"/>
-          <circle cx="450" cy="240" r="3" fill="#C49A6A" opacity="0.35"/>
-          <circle cx="240" cy="450" r="3" fill="#C49A6A" opacity="0.35"/>
-          <circle cx="30"  cy="240" r="3" fill="#C49A6A" opacity="0.35"/>
+          <circle cx="240" cy="30"  r="3" fill="#ff0800" opacity="0.6"/>
+          <circle cx="450" cy="240" r="3" fill="#ff0800" opacity="0.35"/>
+          <circle cx="240" cy="450" r="3" fill="#ff0800" opacity="0.35"/>
+          <circle cx="30"  cy="240" r="3" fill="#ff0800" opacity="0.35"/>
 
           <!-- F — big and dominant at top -->
-          <text x="240" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#C49A6A" opacity="1">F</text>
+          <text x="240" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="32" font-weight="700" fill="#ff0800" opacity="1">F</text>
           <!-- E E L — smaller -->
-          <text x="468" y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">E</text>
-          <text x="240" y="474" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">E</text>
-          <text x="12"  y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#C49A6A" opacity="0.65">L</text>
+          <text x="468" y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#ff0800" opacity="0.65">E</text>
+          <text x="240" y="474" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#ff0800" opacity="0.65">E</text>
+          <text x="12"  y="246" text-anchor="middle" font-family="Georgia,serif" font-size="20" fill="#ff0800" opacity="0.65">L</text>
 
           <!-- Tilted needle ~25° -->
           <g transform="rotate(25, 240, 240)">
-            <polygon points="240,130 236.5,240 240,248 243.5,240" fill="#C49A6A" opacity="0.8"/>
-            <polygon points="240,350 236.5,240 240,248 243.5,240" fill="#8B6F47" opacity="0.28"/>
+            <polygon points="240,130 236.5,240 240,248 243.5,240" fill="#ff0800" opacity="0.8"/>
+            <polygon points="240,350 236.5,240 240,248 243.5,240" fill="#ff0800" opacity="0.28"/>
           </g>
 
           <!-- Center -->
-          <circle cx="240" cy="240" r="8" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.5"/>
-          <circle cx="240" cy="240" r="3.5" fill="#C49A6A" opacity="0.85"/>
+          <circle cx="240" cy="240" r="8" fill="none" stroke="#ff0800" stroke-width="1" opacity="0.5"/>
+          <circle cx="240" cy="240" r="3.5" fill="#ff0800" opacity="0.85"/>
         </svg>
       </div>
     </div>
@@ -246,17 +246,17 @@
     <div class="forwho-grid">
       <div class="forwho-col">
         <h3>This is for you if</h3>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You lead a sales team and want to stop reacting — and start leading with intention</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're a salesperson who's tired of scripts and wants to actually connect with customers</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want a framework you can use on Monday — not a theory you'll forget by Friday</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You care about performance and culture — and refuse to believe you have to choose between them</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You lead a sales team and want to stop reacting — and start leading with intention</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You're a salesperson who's tired of scripts and wants to actually connect with customers</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want a framework you can use on Monday — not a theory you'll forget by Friday</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You care about performance and culture — and refuse to believe you have to choose between them</div></div>
       </div>
       <div class="forwho-col">
         <h3>You might recognise this</h3>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You feel the energy shift in a room — but don't always know what to do with it</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Your team has more in them — but something is blocking the performance you know is possible</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You've tried the playbooks. The scripts. The KPI dashboards. And something is still missing</div></div>
-        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#8B6F47" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want to build something that lasts — not just hit this quarter's target</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You feel the energy shift in a room — but don't always know what to do with it</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">Your team has more in them — but something is blocking the performance you know is possible</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You've tried the playbooks. The scripts. The KPI dashboards. And something is still missing</div></div>
+        <div class="check-item"><div class="check-dot"><svg viewBox="0 0 10 10"><path d="M2 5l2.5 2.5 3.5-4" stroke="#ff0800" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg></div><div class="check-text">You want to build something that lasts — not just hit this quarter's target</div></div>
       </div>
     </div>
   </section>
