@@ -46,7 +46,7 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 100;
   padding: 0 48px;
-  height: 64px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -61,7 +61,7 @@ nav {
 }
 
 .nav-logo-img {
-  height: 34px;
+  height: 44px;
   width: auto;
   display: block;
 }

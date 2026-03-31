@@ -66,8 +66,7 @@
 
   var navContent =
     '<a href="' + base + 'index.html" class="nav-logo">'
-    + '<img src="' + base + 'long%20red%20w%3Ao.svg" alt="Feel the Room" class="nav-logo-img nav-logo-light">'
-    + '<img src="' + base + 'long%20white%20w%3Ao.svg" alt="Feel the Room" class="nav-logo-img nav-logo-dark">'
+    + '<img src="' + base + 'stacked%20red.svg" alt="Feel the Room" class="nav-logo-img">'
     + '</a>'
     + '<div class="nav-links">' + linksHTML + '</div>'
     + ctaHTML
