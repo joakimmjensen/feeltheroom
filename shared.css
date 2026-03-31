@@ -6,8 +6,8 @@
 
 /* ── Design tokens — light mode ── */
 :root {
-  --bg:           #f6ede0;
-  --bg2:          #f0e8d1;
+  --bg:           #f0e8d1;
+  --bg2:          #f6ede0;
   --bg3:          #e8dcc4;
   --text:         #1C1A17;
   --text2:        #6B6457;
