@@ -65,7 +65,7 @@
     + '</button>';
 
   var navContent =
-    '<a href="' + base + 'index.html" class="nav-logo">Feel the Room</a>'
+    '<a href="' + base + 'index.html" class="nav-logo"><img src="' + base + 'long%20logo%20wo.png" alt="Feel the Room" class="nav-logo-img"></a>'
     + '<div class="nav-links">' + linksHTML + '</div>'
     + ctaHTML
     + hamburger;
