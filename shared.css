@@ -78,14 +78,20 @@ nav {
   height: 34px;
   width: auto;
   display: block;
-  mix-blend-mode: multiply;
 }
 
+.nav-logo-dark  { display: none; }
+.nav-logo-light { display: block; }
+
+/* Generic logo theme switching — use on any <img> */
+.logo-light { display: block; }
+.logo-dark  { display: none; }
+
 @media (prefers-color-scheme: dark) {
-  .nav-logo-img {
-    mix-blend-mode: normal;
-    border-radius: 4px;
-  }
+  .nav-logo-dark  { display: block; }
+  .nav-logo-light { display: none; }
+  .logo-light { display: none; }
+  .logo-dark  { display: block; }
 }
 
 .nav-links {
