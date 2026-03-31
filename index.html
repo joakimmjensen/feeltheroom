@@ -137,7 +137,11 @@
       </div>
       <!-- RIGHT: compass graphic — Dobbelt Diamant -->
       <div style="display:flex; align-items:center; justify-content:center;">
-        <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="max-width:480px;">
+        <div style="position:relative; width:100%; max-width:480px;">
+          <!-- FTR Orb background -->
+          <img src="FTR%20Orb.svg" alt="" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:110%; height:110%; object-fit:contain; pointer-events:none; opacity:0.85;">
+          <!-- Compass SVG -->
+          <svg width="100%" viewBox="-30 -30 540 540" xmlns="http://www.w3.org/2000/svg" style="position:relative; z-index:1;">
           <defs>
             <radialGradient id="rg1" cx="50%" cy="50%" r="50%">
               <stop offset="0%" stop-color="#ff0800" stop-opacity="0.1"/>
@@ -186,6 +190,7 @@
           <circle cx="240" cy="240" r="8" fill="none" stroke="#ff0800" stroke-width="1" opacity="0.5"/>
           <circle cx="240" cy="240" r="3.5" fill="#ff0800" opacity="0.85"/>
         </svg>
+        </div>
       </div>
     </div>
   </section>
