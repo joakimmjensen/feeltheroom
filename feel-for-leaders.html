@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.E.E.L. for Leaders — Feel the Room</title>
+  <meta name="description" content="A leadership program built for sales leaders who were promoted because they were the best — and now have to lead everyone else. On-demand or 3-month cohort.">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="shared.css">
+  <script src="nav.js" defer></script>
+  <style>
+    :root {
+      --bg: #f0e8d1; --bg2: #f6ede0; --bg3: #e8dcc4;
+      --text: #1C1A17; --text2: #6B6457; --text3: #9B9189;
+      --accent: #ff0800; --accent2: #cc0600; --accent-dim: rgba(255,8,0,0.07);
+      --border: rgba(28,26,23,0.11); --border-strong: rgba(28,26,23,0.20);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* LAYOUT */
+    .wrap { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+    .wrap-wide { max-width: 1060px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 88px 0; }
+    .divider { height: 0.5px; background: var(--border); }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+
+    /* HERO */
+    .hero { padding: 100px 0 80px; background: var(--bg); border-bottom: 0.5px solid var(--border); }
+    .hero-kicker { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .hero-kicker::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--accent); }
+    .hero h1 { font-size: clamp(36px, 5.5vw, 62px); font-weight: 700; line-height: 1.06; letter-spacing: -0.03em; color: var(--text); max-width: 800px; margin-bottom: 32px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 19px; color: var(--text2); max-width: 580px; line-height: 1.65; margin-bottom: 52px; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #f6ede0; padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; text-decoration: none; display: inline-block; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .87; }
+    .btn-ghost { background: transparent; color: var(--text); padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px; text-decoration: none; border: 0.5px solid var(--border-strong); display: inline-block; transition: border-color .2s; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-proof { margin-top: 52px; display: flex; gap: 40px; flex-wrap: wrap; }
+    .hero-proof-item { font-size: 13px; color: var(--text3); display: flex; align-items: center; gap: 8px; }
+    .hero-proof-item::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; flex-shrink: 0; }
+
+    /* THE PROBLEM */
+    .problem { background: var(--text); color: #f6ede0; padding: 88px 0; }
+    .problem .eyebrow { color: var(--accent); }
+    .problem h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: #f6ede0; max-width: 700px; margin-bottom: 24px; }
+    .problem-body { font-size: 17px; color: rgba(246,237,224,0.72); line-height: 1.75; max-width: 640px; margin-bottom: 20px; }
+    .problem-body strong { color: #f6ede0; font-weight: 500; }
+    .problem-list { margin-top: 36px; display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid rgba(246,237,224,0.12); }
+    .problem-item { display: flex; gap: 18px; align-items: flex-start; padding: 20px 0; border-bottom: 0.5px solid rgba(246,237,224,0.12); }
+    .problem-num { font-size: 11px; font-weight: 600; color: var(--accent); min-width: 28px; padding-top: 3px; letter-spacing: 0.05em; }
+    .problem-text { font-size: 15px; color: rgba(246,237,224,0.80); line-height: 1.6; }
+    .problem-text strong { color: #f6ede0; }
+
+    /* REFRAME */
+    .reframe { background: var(--bg2); border-bottom: 0.5px solid var(--border); }
+    .reframe-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .reframe h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .reframe-body { font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 16px; }
+    .reframe-quote { border-left: 3px solid var(--accent); padding: 16px 20px; background: var(--bg); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; margin-top: 28px; }
+    .reframe-quote p { font-size: 15px; font-style: italic; color: var(--text2); line-height: 1.65; }
+    .reframe-quote cite { font-size: 12px; color: var(--text3); margin-top: 8px; display: block; font-style: normal; }
+    .reframe-right { display: flex; flex-direction: column; gap: 12px; padding-top: 8px; }
+    .reframe-card { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 20px 22px; }
+    .reframe-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+    .reframe-card-label.was { color: #b08060; }
+    .reframe-card-label.is { color: var(--accent); }
+    .reframe-card p { font-size: 14px; color: var(--text2); line-height: 1.55; }
+    .arrow-divider { text-align: center; font-size: 18px; color: var(--accent); padding: 4px 0; }
+
+    /* FRAMEWORK */
+    .framework { background: var(--bg); }
+    .framework-header { text-align: center; max-width: 620px; margin: 0 auto 64px; }
+    .framework-header h2 { font-size: clamp(28px, 3.5vw, 44px); font-weight: 700; line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 18px; }
+    .framework-header p { font-size: 17px; color: var(--text2); line-height: 1.65; }
+    .feel-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 48px; }
+    .feel-cell { background: var(--bg2); padding: 32px 24px 28px; }
+    .feel-letter { font-size: 52px; font-weight: 800; color: var(--accent); line-height: 1; margin-bottom: 6px; letter-spacing: -0.03em; }
+    .feel-word { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+    .feel-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .feel-desc strong { color: var(--text); font-weight: 500; }
+    .framework-note { text-align: center; font-size: 14px; color: var(--text3); font-style: italic; }
+
+    /* CURRICULUM */
+    .curriculum { background: var(--bg2); }
+    .curriculum h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .curriculum-sub { font-size: 16px; color: var(--text2); max-width: 540px; margin-bottom: 44px; line-height: 1.65; }
+    .modules { display: flex; flex-direction: column; gap: 10px; }
+    .mod { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .mod-top { display: grid; grid-template-columns: 56px 1fr; }
+    .mod-letter { background: var(--accent-dim); display: flex; align-items: center; justify-content: center; }
+    .mod-letter span { font-size: 26px; font-weight: 800; color: var(--accent); }
+    .mod-content { padding: 22px 24px; }
+    .mod-tag { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 6px; }
+    .mod-title { font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .mod-desc { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 14px; }
+    .mod-lessons { display: flex; flex-direction: column; gap: 6px; }
+    .mod-lesson { display: flex; gap: 10px; align-items: flex-start; }
+    .mod-lesson::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
+    .mod-lesson span { font-size: 13px; color: var(--text2); line-height: 1.5; }
+
+    /* COHORT VS ONDEMAND */
+    .paths { background: var(--bg); }
+    .paths h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .paths-sub { font-size: 16px; color: var(--text2); max-width: 560px; margin-bottom: 48px; line-height: 1.65; }
+    .paths-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .path-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .path-card.featured { border: 1.5px solid var(--accent); }
+    .path-header { padding: 28px 28px 24px; border-bottom: 0.5px solid var(--border); }
+    .path-badge { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 14px; }
+    .path-badge.cohort { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.18); }
+    .path-badge.ondemand { background: var(--bg3); color: var(--text3); }
+    .path-card.featured .path-header { background: var(--bg); }
+    .path-name { font-size: 22px; font-weight: 700; color: var(--text); margin-bottom: 8px; letter-spacing: -0.01em; }
+    .path-tagline { font-size: 14px; color: var(--text2); line-height: 1.55; }
+    .path-includes { padding: 24px 28px; border-bottom: 0.5px solid var(--border); }
+    .path-includes-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 14px; }
+    .path-feature { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 11px; }
+    .path-feature:last-child { margin-bottom: 0; }
+    .pf-dot { width: 18px; height: 18px; border-radius: 50%; background: var(--accent-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+    .pf-dot svg { width: 9px; height: 9px; }
+    .pf-text { font-size: 14px; color: var(--text2); line-height: 1.5; }
+    .pf-text strong { color: var(--text); font-weight: 500; }
+    .path-pricing { padding: 24px 28px; }
+    .path-early { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .path-price { font-size: 36px; font-weight: 800; color: var(--text); line-height: 1; letter-spacing: -0.02em; margin-bottom: 4px; }
+    .path-price sub { font-size: 14px; font-weight: 500; color: var(--text3); vertical-align: middle; }
+    .path-price-note { font-size: 12px; color: var(--text3); margin-bottom: 18px; line-height: 1.5; }
+    .path-cta { display: block; text-align: center; padding: 13px; border-radius: var(--radius-sm); font-size: 14px; font-weight: 600; text-decoration: none; transition: opacity .2s; }
+    .path-cta.primary { background: var(--accent); color: #f6ede0; }
+    .path-cta.secondary { background: var(--bg3); color: var(--text); }
+    .path-cta:hover { opacity: .85; }
+    .path-ladder { font-size: 11px; color: var(--text3); margin-top: 10px; text-align: center; }
+    .exclusive-note { margin-top: 20px; background: var(--accent-dim); border: 1px solid rgba(255,8,0,0.14); border-radius: var(--radius-sm); padding: 14px 16px; display: flex; gap: 10px; align-items: flex-start; }
+    .exclusive-note-icon { font-size: 16px; flex-shrink: 0; }
+    .exclusive-note p { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+    /* FOR WHO */
+    .forwho { background: var(--bg2); }
+    .forwho h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 44px; }
+    .forwho-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+    .forwho-col h3 { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 20px; padding-bottom: 10px; border-bottom: 0.5px solid var(--border); }
+    .forwho-col h3.yes { color: var(--accent); }
+    .fw-item { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 14px; }
+    .fw-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; }
+    .fw-dot.yes { background: var(--accent); }
+    .fw-dot.no { background: var(--text3); }
+    .fw-text { font-size: 15px; color: var(--text2); line-height: 1.55; }
+
+    /* JOAKIM */
+    .joakim { background: var(--bg); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .joakim-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+    .joakim h2 { font-size: clamp(22px, 2.5vw, 32px); font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .joakim-body { font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 16px; }
+    .joakim-body strong { color: var(--text); font-weight: 500; }
+    .joakim-signatures { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+    .sig { border-left: 3px solid var(--accent); padding: 10px 16px; background: var(--bg2); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; }
+    .sig p { font-size: 14px; font-style: italic; color: var(--text2); }
+    .joakim-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .jstat { background: var(--bg2); padding: 24px 20px; }
+    .jstat-num { font-size: 32px; font-weight: 800; color: var(--accent); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+    .jstat-label { font-size: 12px; color: var(--text3); line-height: 1.4; }
+    .method-list { margin-top: 20px; background: var(--bg2); border-radius: var(--radius); border: 0.5px solid var(--border); padding: 20px; }
+    .method-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; }
+    .method-item { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 10px; font-size: 13px; color: var(--text2); }
+    .method-item::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+
+    /* CERTIFICATION */
+    .certification { background: var(--bg2); }
+    .cert-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .certification h2 { font-size: clamp(24px, 3vw, 36px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .cert-body { font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 16px; }
+    .cert-items { display: flex; flex-direction: column; gap: 14px; margin-top: 28px; }
+    .cert-item { display: flex; gap: 14px; align-items: flex-start; }
+    .cert-icon { width: 36px; height: 36px; border-radius: var(--radius-sm); background: var(--accent-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 16px; }
+    .cert-text h4 { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .cert-text p { font-size: 13px; color: var(--text2); line-height: 1.5; }
+    .cert-visual { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius); padding: 36px 32px; text-align: center; }
+    .cert-visual-badge { width: 80px; height: 80px; border-radius: 50%; background: var(--accent-dim); border: 2px solid rgba(255,8,0,0.2); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 32px; }
+    .cert-visual h3 { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+    .cert-visual p { font-size: 13px; color: var(--text3); line-height: 1.5; }
+    .cert-visual-details { margin-top: 20px; text-align: left; display: flex; flex-direction: column; gap: 8px; }
+    .cert-detail { font-size: 13px; color: var(--text2); display: flex; gap: 8px; align-items: flex-start; }
+    .cert-detail::before { content: '✓'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+
+    /* FAQ */
+    .faq { background: var(--bg); }
+    .faq h2 { font-size: clamp(22px, 2.5vw, 34px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 44px; }
+    .faq-list { display: flex; flex-direction: column; gap: 0; border-top: 0.5px solid var(--border); }
+    .faq-item { border-bottom: 0.5px solid var(--border); padding: 22px 0; cursor: pointer; }
+    .faq-q { font-size: 16px; font-weight: 500; color: var(--text); display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+    .faq-q::after { content: '+'; font-size: 20px; color: var(--accent); flex-shrink: 0; font-weight: 400; }
+    .faq-item.open .faq-q::after { content: '–'; }
+    .faq-a { font-size: 15px; color: var(--text2); line-height: 1.7; margin-top: 14px; max-width: 680px; display: none; }
+    .faq-item.open .faq-a { display: block; }
+
+    /* FINAL CTA */
+    .final-cta { background: var(--text); padding: 96px 0; text-align: center; }
+    .final-cta .eyebrow { color: var(--accent); }
+    .final-cta h2 { font-size: clamp(28px, 4vw, 48px); font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; color: #f6ede0; max-width: 620px; margin: 0 auto 22px; }
+    .final-cta p { font-size: 17px; color: rgba(246,237,224,0.68); max-width: 480px; margin: 0 auto 44px; line-height: 1.65; }
+    .final-cta .btn-row { justify-content: center; }
+    .final-cta .btn-primary { background: var(--accent); }
+    .final-cta .btn-ghost { border-color: rgba(246,237,224,0.28); color: #f6ede0; }
+    .final-cta .btn-ghost:hover { border-color: #f6ede0; }
+
+    /* FOOTER */
+    footer { border-top: 0.5px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--text3); flex-wrap: wrap; gap: 12px; background: var(--bg); }
+    footer a { color: var(--text3); }
+    footer a:hover { color: var(--accent); }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .wrap, .wrap-wide { padding: 0 24px; }
+      section { padding: 60px 0; }
+      .hero { padding: 72px 0 60px; }
+      .feel-grid { grid-template-columns: 1fr 1fr; }
+      .reframe-inner, .paths-grid, .forwho-grid, .joakim-inner, .cert-inner { grid-template-columns: 1fr; gap: 36px; }
+      .hero h1 { font-size: 34px; }
+      footer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV injected by nav.js -->
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-kicker">F.E.E.L. for Leaders · Leadership Program</div>
+    <h1>You were the best<br>in the room.<br>Now you have to <em>lead</em> it.</h1>
+    <p class="hero-sub">The skills that made you a great salesperson won't automatically make you a great leader. F.E.E.L. for Leaders gives you the awareness, the framework, and the tools to close that gap — for good.</p>
+    <div class="btn-row">
+      <a href="#paths" class="btn-primary">Apply for the Cohort →</a>
+      <a href="#paths" class="btn-ghost">On-demand access</a>
+    </div>
+    <div class="hero-proof">
+      <span class="hero-proof-item">3-month transformation</span>
+      <span class="hero-proof-item">6–10 leaders per cohort</span>
+      <span class="hero-proof-item">Certification included</span>
+      <span class="hero-proof-item">Application required</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── THE PROBLEM ─── -->
+<section class="problem">
+  <div class="wrap">
+    <div class="eyebrow">The Gap</div>
+    <h2>Nobody teaches you how to lead the people you used to sell alongside.</h2>
+    <p class="problem-body">You were promoted because you delivered results. You closed deals others couldn't. You read clients before they even opened their mouths. You were good — and everyone knew it.</p>
+    <p class="problem-body">Then someone gave you a title and a team. And none of those instincts transferred automatically.</p>
+    <p class="problem-body"><strong>That's not a personality flaw. That's a gap in your training.</strong></p>
+    <div class="problem-list">
+      <div class="problem-item">
+        <span class="problem-num">01</span>
+        <span class="problem-text">You manage on autopilot — showing up differently in every conversation because nobody taught you what <strong>intentional leadership actually looks like</strong>.</span>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">02</span>
+        <span class="problem-text">You can read a prospect in minutes, but <strong>your own team is still a mystery</strong> — their energy, their real blockers, what makes them run or shut down.</span>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">03</span>
+        <span class="problem-text">You were promoted because you perform. But now you're responsible for <strong>the performance of people who are nothing like you</strong>.</span>
+      </div>
+      <div class="problem-item">
+        <span class="problem-num">04</span>
+        <span class="problem-text">You know the numbers. The pipeline. The quota. But <strong>the room — the human energy in it — still slips past you</strong> more often than you'd admit.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── REFRAME ─── -->
+<section class="reframe">
+  <div class="wrap">
+    <div class="reframe-inner">
+      <div>
+        <div class="eyebrow">The Shift</div>
+        <h2>Great leadership isn't a personality type.</h2>
+        <p class="reframe-body">Every sales leader we've worked with had the same fear: that something was fundamentally missing in them. That other leaders were just naturally charismatic, naturally calm, naturally good with people.</p>
+        <p class="reframe-body">They weren't. They just had a framework. <strong>A way of reading situations, asking the right questions, and showing up with intention — instead of reaction.</strong></p>
+        <p class="reframe-body">The best leaders aren't the loudest. They're the most aware. They feel the room before they move. They lead from understanding, not from pressure.</p>
+        <div class="reframe-quote">
+          <p>"The best salesperson is just an advisor. The best leader is just someone who's genuinely curious about their people — and knows what to do with what they find."</p>
+          <cite>— Joakim Jensen, F.E.E.L. Framework</cite>
+        </div>
+      </div>
+      <div class="reframe-right">
+        <div class="reframe-card">
+          <div class="reframe-card-label was">Before F.E.E.L.</div>
+          <p>Reacting to the room instead of reading it. Managing by results, not awareness. Winning some conversations, losing others — without knowing why.</p>
+        </div>
+        <div class="arrow-divider">↓</div>
+        <div class="reframe-card">
+          <div class="reframe-card-label is">After F.E.E.L.</div>
+          <p>Walking into any room with a clear read on the energy. Knowing when to push and when to hold back. Building a team that trusts you — because you actually understand them.</p>
+        </div>
+        <div class="reframe-card" style="margin-top:4px; border-color: rgba(255,8,0,0.2);">
+          <div class="reframe-card-label is">The core principle</div>
+          <p>Build on knowledge, not belief. Every conversation you enter is data. F.E.E.L. teaches you how to collect it, read it, and lead from it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FRAMEWORK ─── -->
+<section class="framework">
+  <div class="wrap">
+    <div class="framework-header">
+      <div class="eyebrow">The Framework</div>
+      <h2>Four letters.<br>One operating system.</h2>
+      <p>F.E.E.L. is the methodology behind every conversation, every coaching session, every team interaction. It's not a script — it's a way of thinking about people.</p>
+    </div>
+    <div class="feel-grid">
+      <div class="feel-cell">
+        <div class="feel-letter">F</div>
+        <div class="feel-word">Feel</div>
+        <div class="feel-desc"><strong>Read the room before you enter it.</strong> Understand the energy, the emotional undercurrents, and what your people actually need — before you say a word. Most leaders skip this entirely.</div>
+      </div>
+      <div class="feel-cell">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Explore</div>
+        <div class="feel-desc"><strong>Ask, don't tell.</strong> The best leaders are relentlessly curious. They create clarity through the right questions — and let people arrive at their own answers. Telling creates compliance. Exploring creates commitment.</div>
+      </div>
+      <div class="feel-cell">
+        <div class="feel-letter">E</div>
+        <div class="feel-word">Elevate</div>
+        <div class="feel-desc"><strong>Raise the ceiling for everyone around you.</strong> Not through pressure — through awareness of who they are, what drives them, and what's holding them back. You can't elevate what you can't see.</div>
+      </div>
+      <div class="feel-cell">
+        <div class="feel-letter">L</div>
+        <div class="feel-word">Lead</div>
+        <div class="feel-desc"><strong>Move with intention, not reaction.</strong> Make decisions with confidence. Hold the room without dominating it. Build the kind of trust that drives performance — and lasts beyond your title.</div>
+      </div>
+    </div>
+    <p class="framework-note">F.E.E.L. draws from behavioral science, deep listening, identity work, and real-world sales leadership — built from hundreds of hours in the room with leaders exactly like you.</p>
+  </div>
+</section>
+
+<!-- ─── CURRICULUM ─── -->
+<section class="curriculum" id="curriculum">
+  <div class="wrap">
+    <div class="eyebrow">What You'll Learn</div>
+    <h2>Four modules.<br>Everything changes.</h2>
+    <p class="curriculum-sub">Each module is built around one letter of the framework — and one fundamental shift in how you show up as a leader.</p>
+    <div class="modules">
+
+      <div class="mod">
+        <div class="mod-top">
+          <div class="mod-letter"><span>F</span></div>
+          <div class="mod-content">
+            <div class="mod-tag">Module 1 · Feel</div>
+            <div class="mod-title">Reading the Room — and the People In It</div>
+            <div class="mod-desc">The most overlooked leadership skill: knowing what's actually happening before you act. You'll learn to read behavioral cues, emotional energy, and the unspoken dynamics in any conversation or meeting.</div>
+            <div class="mod-lessons">
+              <div class="mod-lesson"><span>Why your gut was right — and how to trust it with data, not just instinct</span></div>
+              <div class="mod-lesson"><span>The 6 social needs that drive every person on your team (and how to spot them fast)</span></div>
+              <div class="mod-lesson"><span>Reading behavioral profiles: who needs autonomy, who needs approval, who needs to win</span></div>
+              <div class="mod-lesson"><span>Energy calibration: how to reset before you enter any high-stakes room</span></div>
+              <div class="mod-lesson"><span>Voice, pace, and presence — the signals you're sending before you say anything</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-top">
+          <div class="mod-letter"><span>E</span></div>
+          <div class="mod-content">
+            <div class="mod-tag">Module 2 · Explore</div>
+            <div class="mod-title">The Art of the Right Question</div>
+            <div class="mod-desc">Most leaders are addicted to telling. This module breaks that habit. You'll master a questioning methodology that creates clarity, builds trust, and makes your people feel genuinely understood — not managed.</div>
+            <div class="mod-lessons">
+              <div class="mod-lesson"><span>Why "why" closes people down — and what to ask instead</span></div>
+              <div class="mod-lesson"><span>The Explore conversation structure: from surface to root cause in under 10 minutes</span></div>
+              <div class="mod-lesson"><span>Calibrated questions: how to ask in a way that matches who you're talking to</span></div>
+              <div class="mod-lesson"><span>Active listening as a leadership weapon — what you're missing right now</span></div>
+              <div class="mod-lesson"><span>How to handle resistance without pushing back</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-top">
+          <div class="mod-letter"><span>E</span></div>
+          <div class="mod-content">
+            <div class="mod-tag">Module 3 · Elevate</div>
+            <div class="mod-title">Growing People Who Outperform Their Own Expectations</div>
+            <div class="mod-desc">This is where the real leadership work happens. You'll learn how to close the gap between where your people are and where they're capable of going — by understanding what's actually holding them back.</div>
+            <div class="mod-lessons">
+              <div class="mod-lesson"><span>The limiting beliefs that kill performance — and how to surface them without therapy</span></div>
+              <div class="mod-lesson"><span>Identity reframing: helping someone become who they already are</span></div>
+              <div class="mod-lesson"><span>Coaching vs. managing — knowing which one the moment requires</span></div>
+              <div class="mod-lesson"><span>Building culture through individual conversations, not company-wide initiatives</span></div>
+              <div class="mod-lesson"><span>The feedback formula that actually changes behavior</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-top">
+          <div class="mod-letter"><span>L</span></div>
+          <div class="mod-content">
+            <div class="mod-tag">Module 4 · Lead</div>
+            <div class="mod-title">Holding the Room. Owning Your Authority.</div>
+            <div class="mod-desc">The final module is about integration — bringing F, E, and E together into a consistent leadership presence. You'll end this module with a personal operating system that works in every room, every situation.</div>
+            <div class="mod-lessons">
+              <div class="mod-lesson"><span>Power framing: how to set the agenda without dominating the conversation</span></div>
+              <div class="mod-lesson"><span>Hiring with a behavioral lens — stop hiring yourself, start building complement</span></div>
+              <div class="mod-lesson"><span>Difficult conversations without damage: the LAER approach</span></div>
+              <div class="mod-lesson"><span>Decision-making under pressure: your energy as a compass</span></div>
+              <div class="mod-lesson"><span>Your personal leadership manifesto — how you lead, why, and what you stand for</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── PATHS ─── -->
+<section class="paths" id="paths">
+  <div class="wrap">
+    <div class="eyebrow">Choose Your Path</div>
+    <h2>Two ways in.<br>One transformation.</h2>
+    <p class="paths-sub">Whether you learn at your own pace or go through the program with Joakim and a group of peers, the framework is the same. The depth of the experience is up to you.</p>
+    <div class="paths-grid">
+
+      <!-- COHORT -->
+      <div class="path-card featured">
+        <div class="path-header">
+          <div class="path-badge cohort">Cohort Program — Most Powerful</div>
+          <div class="path-name">F.E.E.L. for Leaders<br>Cohort</div>
+          <div class="path-tagline">A 3-month group transformation with Joakim as your coach, 6–9 peers, and a structured progression through all four modules — live.</div>
+        </div>
+        <div class="path-includes">
+          <div class="path-includes-label">What's included</div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>Full F.E.E.L. curriculum</strong> — all 4 modules delivered over 3 months</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>Live coaching sessions</strong> with Joakim — apply the framework to your real situations</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>6–9 peers</strong> — a curated group of sales leaders at the same stage</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>F.E.E.L. Certification</strong> upon completion — something to carry forward</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>Community access</strong> — ongoing connection with the F.E.E.L. alumni network</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>All workbooks and templates</strong> — tools you'll still use in 5 years</div>
+          </div>
+        </div>
+        <div class="path-pricing">
+          <div class="path-early">Early Bird — First Cohort</div>
+          <div class="path-price">5.000 kr <sub>/ month</sub></div>
+          <div class="path-price-note">3-month program · 15.000 kr total<br>Regular price: 15.000 kr/month when this cohort is full.</div>
+          <a href="mailto:hello@feeltheroom.dk?subject=Cohort Application" class="path-cta primary">Apply for a Spot →</a>
+          <div class="path-ladder">→ 10.000 kr/md for next cohort · 15.000 kr/md regular</div>
+        </div>
+        <div style="padding: 0 28px 24px;">
+          <div class="exclusive-note">
+            <span class="exclusive-note-icon">◎</span>
+            <p>Cohort spots are limited to 6–10 leaders. We review every application personally — this isn't a sign-up, it's a selection. If accepted, you'll hear back within 5 business days.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ON-DEMAND -->
+      <div class="path-card">
+        <div class="path-header">
+          <div class="path-badge ondemand">On-Demand Course</div>
+          <div class="path-name">F.E.E.L. for Leaders<br>Self-Paced</div>
+          <div class="path-tagline">The complete F.E.E.L. framework at your own pace. All four modules, all the tools. Learn when it fits — apply immediately.</div>
+        </div>
+        <div class="path-includes">
+          <div class="path-includes-label">What's included</div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>Full F.E.E.L. curriculum</strong> — all 4 modules, lifetime access</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>All workbooks and templates</strong> — the same tools as the cohort</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot"><svg viewBox="0 0 10 10" fill="none"><path d="M2 5l2.5 2.5L8 3" stroke="#ff0800" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+            <div class="pf-text"><strong>Go at your own pace</strong> — no fixed schedule, no cohort timing</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot" style="background: var(--bg3); border: 1px solid var(--border);"></div>
+            <div class="pf-text" style="color: var(--text3);">Live coaching sessions not included</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot" style="background: var(--bg3); border: 1px solid var(--border);"></div>
+            <div class="pf-text" style="color: var(--text3);">Certification not included</div>
+          </div>
+          <div class="path-feature">
+            <div class="pf-dot" style="background: var(--bg3); border: 1px solid var(--border);"></div>
+            <div class="pf-text" style="color: var(--text3);">Community access not included</div>
+          </div>
+        </div>
+        <div class="path-pricing">
+          <div class="path-early">Founder Price — Limited Time</div>
+          <div class="path-price">4.000 kr</div>
+          <div class="path-price-note">One-time payment · Lifetime access<br>Regular price: 15.000 kr.</div>
+          <a href="mailto:hello@feeltheroom.dk?subject=On-Demand Access" class="path-cta secondary">Get Instant Access →</a>
+          <div class="path-ladder">→ 10.000 kr next · 15.000 kr regular</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOR WHO ─── -->
+<section class="forwho">
+  <div class="wrap">
+    <div class="eyebrow">Who This Is For</div>
+    <h2>This program was built for one person.</h2>
+    <div class="forwho-grid">
+      <div class="forwho-col">
+        <h3 class="yes">This is you ↓</h3>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You were promoted because you delivered results — and now you lead the team you used to compete with</div></div>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You know your numbers cold, but something about the human side of leadership still feels like guesswork</div></div>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You want a framework — not another motivational talk or leadership book you'll put down after chapter 3</div></div>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You're managing people who are nothing like you — different drives, different fears, different needs</div></div>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You want to perform at your highest and build a team that matches that level</div></div>
+        <div class="fw-item"><div class="fw-dot yes"></div><div class="fw-text">You're ready to do the actual work — not just collect another certificate</div></div>
+      </div>
+      <div class="forwho-col">
+        <h3>This isn't for you if ↓</h3>
+        <div class="fw-item"><div class="fw-dot no"></div><div class="fw-text">You're looking for quick hacks or scripts to manage difficult people</div></div>
+        <div class="fw-item"><div class="fw-dot no"></div><div class="fw-text">You believe leadership is fixed — you either have it or you don't</div></div>
+        <div class="fw-item"><div class="fw-dot no"></div><div class="fw-text">You want theory without application — this program requires you to use it on real situations, in real time</div></div>
+        <div class="fw-item"><div class="fw-dot no"></div><div class="fw-text">You're not ready to look at how you show up — honestly, not defensively</div></div>
+        <div class="fw-item"><div class="fw-dot no"></div><div class="fw-text">You're expecting someone to fix your team for you</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── JOAKIM ─── -->
+<section class="joakim">
+  <div class="wrap">
+    <div class="joakim-inner">
+      <div>
+        <div class="eyebrow">Your Coach</div>
+        <h2>Joakim Jensen has been in the room. Many times.</h2>
+        <p class="joakim-body">Joakim has spent years coaching sales leaders, entrepreneurs, and high performers across industries — in workshops, in 1:1 sessions, and on the floor where deals get made and teams get built or broken.</p>
+        <p class="joakim-body">What he found, over and over: <strong>the most capable leaders weren't lacking confidence or competence. They were lacking awareness.</strong> A way to read what was actually happening in the room — and respond to it with intention.</p>
+        <p class="joakim-body">F.E.E.L. isn't a theory he built in a boardroom. It's distilled from hundreds of real conversations with real people — their exact words, their exact patterns, their exact turning points.</p>
+        <div class="joakim-signatures">
+          <div class="sig"><p>"Leadership isn't a personality type. It's a practice."</p></div>
+          <div class="sig"><p>"Build on knowledge, not belief."</p></div>
+          <div class="sig"><p>"You don't close. You confirm. And the same is true when you lead."</p></div>
+        </div>
+      </div>
+      <div>
+        <div class="joakim-stats">
+          <div class="jstat">
+            <div class="jstat-num">100+</div>
+            <div class="jstat-label">Leaders and salespeople coached directly</div>
+          </div>
+          <div class="jstat">
+            <div class="jstat-num">4</div>
+            <div class="jstat-label">Core disciplines woven into F.E.E.L.</div>
+          </div>
+          <div class="jstat">
+            <div class="jstat-num">3 mo</div>
+            <div class="jstat-label">Average time to full framework integration</div>
+          </div>
+          <div class="jstat">
+            <div class="jstat-num">6–10</div>
+            <div class="jstat-label">Leaders per cohort — by design</div>
+          </div>
+        </div>
+        <div class="method-list">
+          <div class="method-label">The methodology draws from</div>
+          <div class="method-item">Behavioral profiling — who people are and what drives them</div>
+          <div class="method-item">Deep listening and questioning technique</div>
+          <div class="method-item">Identity and mindset work — what's actually holding your people back</div>
+          <div class="method-item">Real sales leadership — not textbook, but field-tested</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CERTIFICATION ─── -->
+<section class="certification">
+  <div class="wrap">
+    <div class="cert-inner">
+      <div>
+        <div class="eyebrow">Cohort Only</div>
+        <h2>Leave with something that means something.</h2>
+        <p class="cert-body">The F.E.E.L. Certification isn't a PDF you print and forget. It's a signal — to yourself and to everyone you lead — that you've done the actual work.</p>
+        <p class="cert-body">Cohort graduates receive certification upon completing all four modules and demonstrating the framework in practice. You'll also become part of the F.E.E.L. alumni community — a network of sales leaders who operate differently.</p>
+        <div class="cert-items">
+          <div class="cert-item">
+            <div class="cert-icon">◎</div>
+            <div class="cert-text">
+              <h4>F.E.E.L. Certified Leader</h4>
+              <p>Official certification issued on completion of the 3-month cohort program</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">◈</div>
+            <div class="cert-text">
+              <h4>Alumni Community Access</h4>
+              <p>Ongoing access to the F.E.E.L. community — leaders who speak the same language</p>
+            </div>
+          </div>
+          <div class="cert-item">
+            <div class="cert-icon">→</div>
+            <div class="cert-text">
+              <h4>Priority Access to Future Cohorts</h4>
+              <p>Alumni get first access when new cohorts open — for themselves or their teams</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="cert-visual">
+        <div class="cert-visual-badge">◎</div>
+        <h3>F.E.E.L. Certified Leader</h3>
+        <p>Issued by Feel the Room · F.E.E.L. Framework</p>
+        <div class="cert-visual-details">
+          <div class="cert-detail">Completed all 4 F.E.E.L. modules</div>
+          <div class="cert-detail">Demonstrated framework in live coaching</div>
+          <div class="cert-detail">3-month cohort program</div>
+          <div class="cert-detail">Community membership included</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FAQ ─── -->
+<section class="faq">
+  <div class="wrap">
+    <div class="eyebrow">Questions</div>
+    <h2>The ones we hear most.</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">How is the cohort structured across 3 months?</div>
+        <div class="faq-a">Each month focuses on one or two letters of the framework — starting with F (Feel) and E (Explore) in month one, moving into E (Elevate) in month two, and L (Lead) and integration in month three. There are regular live sessions with Joakim, peer discussions, and practical assignments you apply to your actual leadership situations.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What does the application process look like?</div>
+        <div class="faq-a">Send an application email with a short description of your current role, your team, and what you're hoping to change. Joakim reviews every application personally. If it's a fit, you'll be invited to a short call before your spot is confirmed. This isn't a filter to weed people out — it's to make sure the cohort dynamic is right for everyone in it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I'm not a Danish speaker. Is this program in English?</div>
+        <div class="faq-a">Yes. All F.E.E.L. for Leaders content — both on-demand and cohort — is delivered in English.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can my company pay for this?</div>
+        <div class="faq-a">Yes. We can issue an invoice directly to your company. Many cohort participants expense this as professional development. Reach out and we'll handle the details.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">What's the difference between the cohort and on-demand, really?</div>
+        <div class="faq-a">The content is the same — all four modules, all the tools. What the cohort adds is Joakim in the room with you: live coaching on your specific situations, peer learning from leaders going through the same things, and the accountability that comes from being in a group. If you want the framework fast, on-demand works. If you want the transformation, the cohort is built for that.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">When does the next cohort start?</div>
+        <div class="faq-a">Cohort dates are confirmed once spots are filled. Apply now to secure the early bird price and we'll confirm your start date. Cohorts are kept small by design — when it's full, it's full.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">I've done leadership training before. Why is this different?</div>
+        <div class="faq-a">Most leadership training teaches theory or communication models. F.E.E.L. is built from the inside out — starting with how you read situations, then how you ask, then how you grow people, then how you lead. It's applied to your real context, not taught in a vacuum. And the cohort format means it's never just you and a workbook.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FINAL CTA ─── -->
+<section class="final-cta">
+  <div class="wrap">
+    <div class="eyebrow">Ready</div>
+    <h2>The room is already reading you. Time to read it back.</h2>
+    <p>Apply for a cohort spot or get immediate on-demand access. Either way, the work starts now.</p>
+    <div class="btn-row">
+      <a href="mailto:hello@feeltheroom.dk?subject=Cohort Application — F.E.E.L. for Leaders" class="btn-primary">Apply for the Cohort →</a>
+      <a href="mailto:hello@feeltheroom.dk?subject=On-Demand Access — F.E.E.L. for Leaders" class="btn-ghost">On-demand access</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <span>© 2026 Feel the Room · F.E.E.L. Framework</span>
+  <div style="display:flex; gap:24px;">
+    <a href="index.html">Home</a>
+    <a href="programs.html">Programs</a>
+    <a href="about.html">About</a>
+  </div>
+</footer>
+
+<script>
+  // FAQ toggle
+  document.querySelectorAll('.faq-item').forEach(item => {
+    item.querySelector('.faq-q').addEventListener('click', () => {
+      item.classList.toggle('open');
+    });
+  });
+</script>
+
+</body>
+</html>
