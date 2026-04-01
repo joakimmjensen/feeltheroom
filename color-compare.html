@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FTR — Lys beige varianter</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #e8dcc4; padding: 48px 40px; }
+    h1 { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #6B6457; margin-bottom: 8px; }
+    .subtitle { font-size: 14px; color: #6B6457; margin-bottom: 48px; }
+
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #9B9189; margin-bottom: 20px; margin-top: 48px; }
+
+    /* PALETTE ROW */
+    .palette { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .swatch-col { display: flex; flex-direction: column; gap: 0; width: 160px; }
+    .swatch { height: 80px; border-radius: 10px 10px 0 0; display: flex; align-items: flex-end; padding: 10px 14px; }
+    .swatch-info { background: #1C1A17; border-radius: 0 0 10px 10px; padding: 10px 14px; }
+    .swatch-name { font-size: 12px; font-weight: 600; color: #f6ede0; margin-bottom: 2px; }
+    .swatch-hex { font-size: 11px; color: rgba(246,237,224,0.55); font-family: monospace; }
+    .swatch-tag { font-size: 9px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; border-radius: 4px; padding: 2px 7px; display: inline-block; }
+    .tag-current { background: rgba(255,8,0,0.15); color: #ff0800; }
+    .tag-new { background: rgba(28,26,23,0.12); color: #6B6457; }
+
+    /* CONTRAST DEMOS */
+    .demos { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 8px; }
+    .demo { border-radius: 12px; overflow: hidden; }
+    .demo-header { padding: 8px 14px; font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; border-bottom: 1px solid rgba(28,26,23,0.08); }
+    .demo-body { padding: 18px 16px; }
+    .demo-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ff0800; margin-bottom: 8px; }
+    .demo-title { font-size: 15px; font-weight: 700; color: #1C1A17; line-height: 1.2; margin-bottom: 8px; letter-spacing: -0.01em; }
+    .demo-body-text { font-size: 11px; color: #6B6457; line-height: 1.6; margin-bottom: 14px; }
+    .demo-btn { background: #ff0800; color: #f6ede0; font-size: 10px; font-weight: 600; padding: 7px 14px; border-radius: 6px; display: inline-block; }
+    .demo-card { border-radius: 8px; padding: 12px; margin-top: 12px; }
+
+    /* SIDE BY SIDE: red on each bg */
+    .red-test { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 8px; }
+    .rt-cell { border-radius: 10px; padding: 20px 16px; display: flex; flex-direction: column; gap: 8px; }
+    .rt-label { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(28,26,23,0.4); }
+    .rt-red { font-size: 22px; font-weight: 800; color: #ff0800; letter-spacing: -0.02em; }
+    .rt-dark { font-size: 13px; font-weight: 600; color: #1C1A17; }
+    .rt-muted { font-size: 11px; color: #6B6457; }
+  </style>
+</head>
+<body>
+
+  <h1>FTR Brand — Lys beige varianter</h1>
+  <p class="subtitle">Nuværende lys beige vs. 4 mørkere forslag — set mod mørk beige og rød.</p>
+
+  <!-- SWATCHES -->
+  <div class="section-label">Farverne</div>
+  <div class="palette">
+
+    <div class="swatch-col">
+      <div class="swatch" style="background:#f6ede0;">
+        <span class="swatch-tag tag-current">Nuværende</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Lys beige</div>
+        <div class="swatch-hex">#f6ede0</div>
+      </div>
+    </div>
+
+    <div class="swatch-col">
+      <div class="swatch" style="background:#f2e8d8;">
+        <span class="swatch-tag tag-new">Forslag A</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Varm sand +1</div>
+        <div class="swatch-hex">#f2e8d8</div>
+      </div>
+    </div>
+
+    <div class="swatch-col">
+      <div class="swatch" style="background:#ede3d0;">
+        <span class="swatch-tag tag-new">Forslag B</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Varm sand +2</div>
+        <div class="swatch-hex">#ede3d0</div>
+      </div>
+    </div>
+
+    <div class="swatch-col">
+      <div class="swatch" style="background:#e9dec8;">
+        <span class="swatch-tag tag-new">Forslag C</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Varm sand +3</div>
+        <div class="swatch-hex">#e9dec8</div>
+      </div>
+    </div>
+
+    <div class="swatch-col">
+      <div class="swatch" style="background:#e4d8bf;">
+        <span class="swatch-tag tag-new">Forslag D</span>
+      </div>
+      <div class="swatch-info">
+        <div class="swatch-name">Varm sand +4</div>
+        <div class="swatch-hex">#e4d8bf</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CONTRAST: rød + mørk tekst på hver baggrund -->
+  <div class="section-label">Rød + tekst kontrast på hver farve</div>
+  <div class="red-test">
+
+    <div class="rt-cell" style="background:#f6ede0;">
+      <div class="rt-label">Nuværende #f6ede0</div>
+      <div class="rt-red">F.E.E.L.</div>
+      <div class="rt-dark">Lead with Intention</div>
+      <div class="rt-muted">Sales leaders who were promoted because they were the best.</div>
+    </div>
+
+    <div class="rt-cell" style="background:#f2e8d8;">
+      <div class="rt-label">Forslag A #f2e8d8</div>
+      <div class="rt-red">F.E.E.L.</div>
+      <div class="rt-dark">Lead with Intention</div>
+      <div class="rt-muted">Sales leaders who were promoted because they were the best.</div>
+    </div>
+
+    <div class="rt-cell" style="background:#ede3d0;">
+      <div class="rt-label">Forslag B #ede3d0</div>
+      <div class="rt-red">F.E.E.L.</div>
+      <div class="rt-dark">Lead with Intention</div>
+      <div class="rt-muted">Sales leaders who were promoted because they were the best.</div>
+    </div>
+
+    <div class="rt-cell" style="background:#e9dec8;">
+      <div class="rt-label">Forslag C #e9dec8</div>
+      <div class="rt-red">F.E.E.L.</div>
+      <div class="rt-dark">Lead with Intention</div>
+      <div class="rt-muted">Sales leaders who were promoted because they were the best.</div>
+    </div>
+
+    <div class="rt-cell" style="background:#e4d8bf;">
+      <div class="rt-label">Forslag D #e4d8bf</div>
+      <div class="rt-red">F.E.E.L.</div>
+      <div class="rt-dark">Lead with Intention</div>
+      <div class="rt-muted">Sales leaders who were promoted because they were the best.</div>
+    </div>
+
+  </div>
+
+  <!-- FULL PAGE DEMO -->
+  <div class="section-label">Side-sektion demo — på hver farve</div>
+  <div class="demos">
+
+    <div class="demo" style="background:#f6ede0;">
+      <div class="demo-header" style="background:#f6ede0;">Nuværende</div>
+      <div class="demo-body">
+        <div class="demo-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="demo-title">You were the best in the room.</div>
+        <div class="demo-body-text">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+        <div class="demo-btn">Apply →</div>
+        <div class="demo-card" style="background:#f0e8d1; border: 0.5px solid rgba(28,26,23,0.1);">
+          <div style="font-size:10px;font-weight:600;color:#1C1A17;">Module 1 — Feel</div>
+          <div style="font-size:10px;color:#6B6457;margin-top:4px;">Reading the Room</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo" style="background:#f2e8d8;">
+      <div class="demo-header" style="background:#f2e8d8;">Forslag A</div>
+      <div class="demo-body">
+        <div class="demo-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="demo-title">You were the best in the room.</div>
+        <div class="demo-body-text">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+        <div class="demo-btn">Apply →</div>
+        <div class="demo-card" style="background:#f0e8d1; border: 0.5px solid rgba(28,26,23,0.1);">
+          <div style="font-size:10px;font-weight:600;color:#1C1A17;">Module 1 — Feel</div>
+          <div style="font-size:10px;color:#6B6457;margin-top:4px;">Reading the Room</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo" style="background:#ede3d0;">
+      <div class="demo-header" style="background:#ede3d0;">Forslag B</div>
+      <div class="demo-body">
+        <div class="demo-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="demo-title">You were the best in the room.</div>
+        <div class="demo-body-text">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+        <div class="demo-btn">Apply →</div>
+        <div class="demo-card" style="background:#f0e8d1; border: 0.5px solid rgba(28,26,23,0.1);">
+          <div style="font-size:10px;font-weight:600;color:#1C1A17;">Module 1 — Feel</div>
+          <div style="font-size:10px;color:#6B6457;margin-top:4px;">Reading the Room</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo" style="background:#e9dec8;">
+      <div class="demo-header" style="background:#e9dec8;">Forslag C</div>
+      <div class="demo-body">
+        <div class="demo-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="demo-title">You were the best in the room.</div>
+        <div class="demo-body-text">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+        <div class="demo-btn">Apply →</div>
+        <div class="demo-card" style="background:#f0e8d1; border: 0.5px solid rgba(28,26,23,0.1);">
+          <div style="font-size:10px;font-weight:600;color:#1C1A17;">Module 1 — Feel</div>
+          <div style="font-size:10px;color:#6B6457;margin-top:4px;">Reading the Room</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="demo" style="background:#e4d8bf;">
+      <div class="demo-header" style="background:#e4d8bf;">Forslag D</div>
+      <div class="demo-body">
+        <div class="demo-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="demo-title">You were the best in the room.</div>
+        <div class="demo-body-text">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+        <div class="demo-btn">Apply →</div>
+        <div class="demo-card" style="background:#f0e8d1; border: 0.5px solid rgba(28,26,23,0.1);">
+          <div style="font-size:10px;font-weight:600;color:#1C1A17;">Module 1 — Feel</div>
+          <div style="font-size:10px;color:#6B6457;margin-top:4px;">Reading the Room</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
