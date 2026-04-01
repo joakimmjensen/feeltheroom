@@ -14,104 +14,45 @@
 
     .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #9B9189; margin-bottom: 20px; margin-top: 52px; padding-bottom: 10px; border-bottom: 1px solid rgba(28,26,23,0.12); }
 
-    /* ── FIXED COLORS ROW ── */
-    .fixed-row { display: flex; gap: 12px; margin-bottom: 4px; }
-    .fixed-swatch { border-radius: 10px; padding: 20px 20px 16px; flex: 1; }
-    .fs-label { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(28,26,23,0.4); margin-bottom: 10px; }
-    .fs-name { font-size: 15px; font-weight: 700; color: #1C1A17; margin-bottom: 4px; }
-    .fs-hex { font-size: 12px; font-family: monospace; color: #6B6457; }
-    .fs-lock { display: inline-block; font-size: 9px; font-weight: 600; background: rgba(28,26,23,0.1); color: #6B6457; padding: 2px 8px; border-radius: 20px; margin-top: 10px; }
+    .variants { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; margin-top: 8px; }
 
-    /* ── VARIANT GRID ── */
-    .variants { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 8px; }
-
-    /* Mini brand card per variant */
     .variant-card { border-radius: 14px; overflow: hidden; box-shadow: 0 2px 12px rgba(28,26,23,0.12); }
     .vc-tag { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 6px 14px; }
-    .vc-tag.current { background: #ff0800; color: #f6ede0; }
+    .vc-tag.anchor { background: #ff0800; color: #f6ede0; }
     .vc-tag.proposal { background: rgba(28,26,23,0.08); color: #6B6457; }
 
-    /* Hero band — lys beige */
-    .vc-light { padding: 18px 16px 16px; }
+    .vc-light { padding: 18px 14px 16px; }
     .vc-eyebrow { font-size: 8px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ff0800; margin-bottom: 7px; }
-    .vc-title { font-size: 14px; font-weight: 700; color: #1C1A17; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .vc-title { font-size: 13px; font-weight: 700; color: #1C1A17; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.01em; }
     .vc-body { font-size: 10px; color: #6B6457; line-height: 1.55; margin-bottom: 12px; }
     .vc-btn { background: #ff0800; color: #f6ede0; font-size: 9px; font-weight: 600; padding: 6px 12px; border-radius: 5px; display: inline-block; }
 
-    /* Mørk beige section */
-    .vc-dark { background: #f0e8d1; padding: 14px 16px; border-top: 0.5px solid rgba(28,26,23,0.08); }
+    .vc-dark { background: #f0e8d1; padding: 14px 14px; border-top: 0.5px solid rgba(28,26,23,0.08); }
     .vc-dark-label { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; margin-bottom: 8px; }
-    .vc-dark-card { background: #f6ede0; border-radius: 6px; padding: 10px 12px; border: 0.5px solid rgba(28,26,23,0.09); }
+    .vc-dark-card { border-radius: 6px; padding: 10px 12px; border: 0.5px solid rgba(28,26,23,0.09); }
     .vc-card-title { font-size: 10px; font-weight: 600; color: #1C1A17; margin-bottom: 3px; }
     .vc-card-sub { font-size: 9px; color: #6B6457; }
 
-    /* Red section */
-    .vc-red { background: #ff0800; padding: 14px 16px; }
+    .vc-red { background: #ff0800; padding: 14px 14px; }
     .vc-red-title { font-size: 12px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 4px; }
-    .vc-red-sub { font-size: 9px; line-height: 1.5; opacity: 0.8; }
+    .vc-red-sub { font-size: 9px; line-height: 1.5; opacity: 0.75; }
 
-    /* Hex strip */
-    .vc-hexrow { background: #1C1A17; padding: 10px 16px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
-    .vc-hex { font-size: 9px; font-family: monospace; color: rgba(246,237,224,0.55); background: rgba(246,237,224,0.06); padding: 2px 7px; border-radius: 4px; }
-    .vc-hex.hl { color: #f6ede0; background: rgba(255,8,0,0.25); }
+    .vc-hexrow { background: #1C1A17; padding: 10px 14px; display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+    .vc-hex { font-size: 9px; font-family: monospace; color: rgba(246,237,224,0.5); background: rgba(246,237,224,0.06); padding: 2px 7px; border-radius: 4px; }
+    .vc-hex.hl { color: #f6ede0; background: rgba(255,8,0,0.3); }
   </style>
 </head>
 <body>
 
-  <h1>FTR Brand — Farvepalette sammenligning</h1>
-  <p class="subtitle">Mørk beige og Candy Apple Red er låst. Lys beige er den vi kigger på.<br>Hvert kort viser alle tre farver i sammenhæng.</p>
+  <h1>FTR — Nuancer mellem A og B</h1>
+  <p class="subtitle">A (#f2e8d8) og B (#ede3d0) er ankerpunkter. De 4 nye er imellem dem.</p>
 
-  <!-- FIXED COLORS -->
-  <div class="section-label">Låste farver — ændres ikke</div>
-  <div class="fixed-row">
-    <div class="fixed-swatch" style="background:#f0e8d1;">
-      <div class="fs-label">Mørk beige · låst</div>
-      <div class="fs-name">Mørk beige</div>
-      <div class="fs-hex">#f0e8d1</div>
-      <div class="fs-lock">🔒 Ændres ikke</div>
-    </div>
-    <div class="fixed-swatch" style="background:#ff0800;">
-      <div class="fs-label" style="color:rgba(246,237,224,0.5);">Candy Apple Red · låst</div>
-      <div class="fs-name" style="color:#f6ede0;">Candy Apple Red</div>
-      <div class="fs-hex" style="color:rgba(246,237,224,0.7);">#ff0800</div>
-      <div class="fs-lock" style="background:rgba(246,237,224,0.15);color:#f6ede0;">🔒 Ændres ikke</div>
-    </div>
-  </div>
-
-  <!-- VARIANTS -->
-  <div class="section-label">Lys beige — nuværende vs. forslag A B C D</div>
+  <div class="section-label">A → A1 → A2 → A3 → A4 → B</div>
   <div class="variants">
 
-    <!-- NUVÆRENDE -->
+    <!-- A — anker -->
     <div class="variant-card">
-      <div class="vc-tag current">Nuværende</div>
-      <div class="vc-light" style="background:#f6ede0;">
-        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
-        <div class="vc-title">You were the best in the room.</div>
-        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
-        <div class="vc-btn">Apply →</div>
-      </div>
-      <div class="vc-dark">
-        <div class="vc-dark-label">Mørk beige sektion</div>
-        <div class="vc-dark-card" style="background:#f6ede0;">
-          <div class="vc-card-title">Module 1 — Feel</div>
-          <div class="vc-card-sub">Reading the Room</div>
-        </div>
-      </div>
-      <div class="vc-red">
-        <div class="vc-red-title" style="color:#f6ede0;">Lead with Intention.</div>
-        <div class="vc-red-sub" style="color:#f6ede0;">Rød sektion · tekst i lys beige</div>
-      </div>
-      <div class="vc-hexrow">
-        <div class="vc-hex hl">#f6ede0</div>
-        <div class="vc-hex">#f0e8d1</div>
-        <div class="vc-hex">#ff0800</div>
-      </div>
-    </div>
-
-    <!-- FORSLAG A -->
-    <div class="variant-card">
-      <div class="vc-tag proposal">Forslag A</div>
+      <div class="vc-tag anchor">A — anker</div>
       <div class="vc-light" style="background:#f2e8d8;">
         <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
         <div class="vc-title">You were the best in the room.</div>
@@ -119,7 +60,7 @@
         <div class="vc-btn">Apply →</div>
       </div>
       <div class="vc-dark">
-        <div class="vc-dark-label">Mørk beige sektion</div>
+        <div class="vc-dark-label">Mørk beige</div>
         <div class="vc-dark-card" style="background:#f2e8d8;">
           <div class="vc-card-title">Module 1 — Feel</div>
           <div class="vc-card-sub">Reading the Room</div>
@@ -127,7 +68,7 @@
       </div>
       <div class="vc-red">
         <div class="vc-red-title" style="color:#f2e8d8;">Lead with Intention.</div>
-        <div class="vc-red-sub" style="color:#f2e8d8;">Rød sektion · tekst i lys beige</div>
+        <div class="vc-red-sub" style="color:#f2e8d8;">Tekst på rød baggrund</div>
       </div>
       <div class="vc-hexrow">
         <div class="vc-hex hl">#f2e8d8</div>
@@ -136,9 +77,117 @@
       </div>
     </div>
 
-    <!-- FORSLAG B -->
+    <!-- A1 -->
     <div class="variant-card">
-      <div class="vc-tag proposal">Forslag B</div>
+      <div class="vc-tag proposal">A1</div>
+      <div class="vc-light" style="background:#f1e6d5;">
+        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="vc-title">You were the best in the room.</div>
+        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
+        <div class="vc-btn">Apply →</div>
+      </div>
+      <div class="vc-dark">
+        <div class="vc-dark-label">Mørk beige</div>
+        <div class="vc-dark-card" style="background:#f1e6d5;">
+          <div class="vc-card-title">Module 1 — Feel</div>
+          <div class="vc-card-sub">Reading the Room</div>
+        </div>
+      </div>
+      <div class="vc-red">
+        <div class="vc-red-title" style="color:#f1e6d5;">Lead with Intention.</div>
+        <div class="vc-red-sub" style="color:#f1e6d5;">Tekst på rød baggrund</div>
+      </div>
+      <div class="vc-hexrow">
+        <div class="vc-hex hl">#f1e6d5</div>
+        <div class="vc-hex">#f0e8d1</div>
+        <div class="vc-hex">#ff0800</div>
+      </div>
+    </div>
+
+    <!-- A2 -->
+    <div class="variant-card">
+      <div class="vc-tag proposal">A2</div>
+      <div class="vc-light" style="background:#f0e4d2;">
+        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="vc-title">You were the best in the room.</div>
+        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
+        <div class="vc-btn">Apply →</div>
+      </div>
+      <div class="vc-dark">
+        <div class="vc-dark-label">Mørk beige</div>
+        <div class="vc-dark-card" style="background:#f0e4d2;">
+          <div class="vc-card-title">Module 1 — Feel</div>
+          <div class="vc-card-sub">Reading the Room</div>
+        </div>
+      </div>
+      <div class="vc-red">
+        <div class="vc-red-title" style="color:#f0e4d2;">Lead with Intention.</div>
+        <div class="vc-red-sub" style="color:#f0e4d2;">Tekst på rød baggrund</div>
+      </div>
+      <div class="vc-hexrow">
+        <div class="vc-hex hl">#f0e4d2</div>
+        <div class="vc-hex">#f0e8d1</div>
+        <div class="vc-hex">#ff0800</div>
+      </div>
+    </div>
+
+    <!-- A3 -->
+    <div class="variant-card">
+      <div class="vc-tag proposal">A3</div>
+      <div class="vc-light" style="background:#eee2cf;">
+        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="vc-title">You were the best in the room.</div>
+        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
+        <div class="vc-btn">Apply →</div>
+      </div>
+      <div class="vc-dark">
+        <div class="vc-dark-label">Mørk beige</div>
+        <div class="vc-dark-card" style="background:#eee2cf;">
+          <div class="vc-card-title">Module 1 — Feel</div>
+          <div class="vc-card-sub">Reading the Room</div>
+        </div>
+      </div>
+      <div class="vc-red">
+        <div class="vc-red-title" style="color:#eee2cf;">Lead with Intention.</div>
+        <div class="vc-red-sub" style="color:#eee2cf;">Tekst på rød baggrund</div>
+      </div>
+      <div class="vc-hexrow">
+        <div class="vc-hex hl">#eee2cf</div>
+        <div class="vc-hex">#f0e8d1</div>
+        <div class="vc-hex">#ff0800</div>
+      </div>
+    </div>
+
+    <!-- A4 -->
+    <div class="variant-card">
+      <div class="vc-tag proposal">A4</div>
+      <div class="vc-light" style="background:#ece0cc;">
+        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
+        <div class="vc-title">You were the best in the room.</div>
+        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
+        <div class="vc-btn">Apply →</div>
+      </div>
+      <div class="vc-dark">
+        <div class="vc-dark-label">Mørk beige</div>
+        <div class="vc-dark-card" style="background:#ece0cc;">
+          <div class="vc-card-title">Module 1 — Feel</div>
+          <div class="vc-card-sub">Reading the Room</div>
+        </div>
+      </div>
+      <div class="vc-red">
+        <div class="vc-red-title" style="color:#ece0cc;">Lead with Intention.</div>
+        <div class="vc-red-sub" style="color:#ece0cc;">Tekst på rød baggrund</div>
+      </div>
+      <div class="vc-hexrow">
+        <div class="vc-hex hl">#ece0cc</div>
+        <div class="vc-hex">#f0e8d1</div>
+        <div class="vc-hex">#ff0800</div>
+      </div>
+    </div>
+
+    <!-- B — anker -->
+    <div class="variant-card">
+      <div class="vc-tag anchor">B — anker</div>
       <div class="vc-light" style="background:#ede3d0;">
         <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
         <div class="vc-title">You were the best in the room.</div>
@@ -146,7 +195,7 @@
         <div class="vc-btn">Apply →</div>
       </div>
       <div class="vc-dark">
-        <div class="vc-dark-label">Mørk beige sektion</div>
+        <div class="vc-dark-label">Mørk beige</div>
         <div class="vc-dark-card" style="background:#ede3d0;">
           <div class="vc-card-title">Module 1 — Feel</div>
           <div class="vc-card-sub">Reading the Room</div>
@@ -154,64 +203,10 @@
       </div>
       <div class="vc-red">
         <div class="vc-red-title" style="color:#ede3d0;">Lead with Intention.</div>
-        <div class="vc-red-sub" style="color:#ede3d0;">Rød sektion · tekst i lys beige</div>
+        <div class="vc-red-sub" style="color:#ede3d0;">Tekst på rød baggrund</div>
       </div>
       <div class="vc-hexrow">
         <div class="vc-hex hl">#ede3d0</div>
-        <div class="vc-hex">#f0e8d1</div>
-        <div class="vc-hex">#ff0800</div>
-      </div>
-    </div>
-
-    <!-- FORSLAG C -->
-    <div class="variant-card">
-      <div class="vc-tag proposal">Forslag C</div>
-      <div class="vc-light" style="background:#e9dec8;">
-        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
-        <div class="vc-title">You were the best in the room.</div>
-        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
-        <div class="vc-btn">Apply →</div>
-      </div>
-      <div class="vc-dark">
-        <div class="vc-dark-label">Mørk beige sektion</div>
-        <div class="vc-dark-card" style="background:#e9dec8;">
-          <div class="vc-card-title">Module 1 — Feel</div>
-          <div class="vc-card-sub">Reading the Room</div>
-        </div>
-      </div>
-      <div class="vc-red">
-        <div class="vc-red-title" style="color:#e9dec8;">Lead with Intention.</div>
-        <div class="vc-red-sub" style="color:#e9dec8;">Rød sektion · tekst i lys beige</div>
-      </div>
-      <div class="vc-hexrow">
-        <div class="vc-hex hl">#e9dec8</div>
-        <div class="vc-hex">#f0e8d1</div>
-        <div class="vc-hex">#ff0800</div>
-      </div>
-    </div>
-
-    <!-- FORSLAG D -->
-    <div class="variant-card">
-      <div class="vc-tag proposal">Forslag D</div>
-      <div class="vc-light" style="background:#e4d8bf;">
-        <div class="vc-eyebrow">F.E.E.L. for Leaders</div>
-        <div class="vc-title">You were the best in the room.</div>
-        <div class="vc-body">A 3-month program for sales leaders who want to lead at their highest.</div>
-        <div class="vc-btn">Apply →</div>
-      </div>
-      <div class="vc-dark">
-        <div class="vc-dark-label">Mørk beige sektion</div>
-        <div class="vc-dark-card" style="background:#e4d8bf;">
-          <div class="vc-card-title">Module 1 — Feel</div>
-          <div class="vc-card-sub">Reading the Room</div>
-        </div>
-      </div>
-      <div class="vc-red">
-        <div class="vc-red-title" style="color:#e4d8bf;">Lead with Intention.</div>
-        <div class="vc-red-sub" style="color:#e4d8bf;">Rød sektion · tekst i lys beige</div>
-      </div>
-      <div class="vc-hexrow">
-        <div class="vc-hex hl">#e4d8bf</div>
         <div class="vc-hex">#f0e8d1</div>
         <div class="vc-hex">#ff0800</div>
       </div>
