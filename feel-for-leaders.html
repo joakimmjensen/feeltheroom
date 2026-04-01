@@ -105,6 +105,31 @@
     .mod-lesson::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
     .mod-lesson span { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
+    /* WORKBOOK MOCKUP */
+    .wb-showcase { display: flex; justify-content: center; margin-bottom: 52px; }
+    .workbook-wrap { position: relative; width: 280px; }
+    .wb-shadow2 { position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; background: #ddd0b8; border-radius: 10px; }
+    .wb-shadow1 { position: absolute; top: 4px; left: 4px; width: 100%; height: 100%; background: #e8dcc4; border-radius: 10px; }
+    .wb-page { position: relative; background: #f6ede0; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(28,26,23,0.18); }
+    .wb-header { background: var(--accent); padding: 20px 22px 16px; }
+    .wb-header-eyebrow { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,237,224,0.7); margin-bottom: 6px; }
+    .wb-header-title { font-size: 17px; font-weight: 800; color: #f6ede0; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .wb-header-sub { font-size: 8px; color: rgba(246,237,224,0.75); font-style: italic; letter-spacing: 0.05em; }
+    .wb-body { padding: 18px 22px 20px; }
+    .wb-module-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; }
+    .wb-section-title { font-size: 11px; font-weight: 700; color: #1C1A17; margin-bottom: 12px; }
+    .wb-question { margin-bottom: 14px; }
+    .wb-q-label { font-size: 8px; font-weight: 600; color: #6B6457; margin-bottom: 5px; }
+    .wb-q-line { height: 1px; background: rgba(28,26,23,0.15); margin-bottom: 4px; }
+    .wb-q-line.short { width: 70%; }
+    .wb-feel-row { display: flex; gap: 6px; margin-top: 14px; }
+    .wb-feel-box { flex: 1; background: #f0e8d1; border-radius: 6px; padding: 8px 6px; text-align: center; }
+    .wb-feel-letter { font-size: 14px; font-weight: 800; color: var(--accent); line-height: 1; }
+    .wb-feel-word { font-size: 6.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #9B9189; margin-top: 2px; }
+    .wb-footer { padding: 10px 22px 14px; border-top: 0.5px solid rgba(28,26,23,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .wb-footer-brand { font-size: 8px; font-weight: 700; color: var(--accent); font-family: Georgia, serif; letter-spacing: 0.03em; }
+    .wb-footer-page { font-size: 8px; color: #9B9189; }
+
     /* COHORT VS ONDEMAND */
     .paths { background: var(--bg); }
     .paths h2 { font-size: clamp(24px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 14px; }
@@ -353,6 +378,50 @@
     <div class="eyebrow">What You'll Learn</div>
     <h2>Four modules.<br>Everything changes.</h2>
     <p class="curriculum-sub">Each module is built around one letter of the framework — and one fundamental shift in how you show up as a leader.</p>
+
+    <div class="wb-showcase">
+      <div class="workbook-wrap">
+        <div class="wb-shadow2"></div>
+        <div class="wb-shadow1"></div>
+        <div class="wb-page">
+          <div class="wb-header">
+            <div class="wb-header-eyebrow">F.E.E.L. for Leaders · Workbook</div>
+            <div class="wb-header-title">Module 1<br>Feel the Room</div>
+            <div class="wb-header-sub">Lead with Intention.</div>
+          </div>
+          <div class="wb-body">
+            <div class="wb-module-tag">Module 1 · F — Feel</div>
+            <div class="wb-section-title">Before you enter the room</div>
+            <div class="wb-question">
+              <div class="wb-q-label">What energy are you bringing in today?</div>
+              <div class="wb-q-line"></div>
+              <div class="wb-q-line short"></div>
+            </div>
+            <div class="wb-question">
+              <div class="wb-q-label">What do your people need from you right now?</div>
+              <div class="wb-q-line"></div>
+              <div class="wb-q-line short"></div>
+            </div>
+            <div class="wb-question">
+              <div class="wb-q-label">What's one assumption you're holding about this conversation?</div>
+              <div class="wb-q-line"></div>
+              <div class="wb-q-line"></div>
+            </div>
+            <div class="wb-feel-row">
+              <div class="wb-feel-box"><div class="wb-feel-letter">F</div><div class="wb-feel-word">Feel</div></div>
+              <div class="wb-feel-box"><div class="wb-feel-letter">E</div><div class="wb-feel-word">Explore</div></div>
+              <div class="wb-feel-box"><div class="wb-feel-letter">E</div><div class="wb-feel-word">Elevate</div></div>
+              <div class="wb-feel-box"><div class="wb-feel-letter">L</div><div class="wb-feel-word">Lead</div></div>
+            </div>
+          </div>
+          <div class="wb-footer">
+            <div class="wb-footer-brand">Feel the Room</div>
+            <div class="wb-footer-page">feeltheroom.dk</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="modules">
 
       <div class="mod">
