@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're In — F.E.E.L. for Leaders</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="shared.css">
+  <script src="nav.js" defer></script>
+  <style>
+    :root {
+      --bg: #f0e8d1; --bg2: #fff4e3; --bg3: #e8dcc4;
+      --text: #1C1A17; --text2: #6B6457; --text3: #9B9189;
+      --accent: #ff0800; --accent2: #cc0600; --accent-dim: rgba(255,8,0,0.07);
+      --border: rgba(28,26,23,0.11); --border-strong: rgba(28,26,23,0.20);
+      --radius: 12px; --radius-sm: 8px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg2); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+
+    .wrap { max-width: 680px; margin: 0 auto; padding: 0 40px; }
+
+    /* HERO */
+    .hero { padding: 100px 0 80px; text-align: center; }
+    .hero-icon { width: 64px; height: 64px; background: var(--accent-dim); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; border: 1.5px solid rgba(255,8,0,0.15); }
+    .hero-icon svg { width: 28px; height: 28px; }
+    .hero-kicker { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .hero h1 { font-size: clamp(32px, 5vw, 52px); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; margin-bottom: 24px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 18px; color: var(--text2); line-height: 1.65; max-width: 520px; margin: 0 auto; }
+
+    .divider { height: 0.5px; background: var(--border); }
+
+    /* WHAT HAPPENS NEXT */
+    .next { padding: 72px 0; }
+    .next h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 36px; text-align: center; }
+    .steps { display: flex; flex-direction: column; gap: 0; border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .step { display: grid; grid-template-columns: 52px 1fr; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
+    .step:last-child { border-bottom: none; }
+    .step-num { background: var(--accent-dim); display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--accent); }
+    .step-body { padding: 20px 24px; }
+    .step-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .step-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* JOAKIM NOTE */
+    .joa-note { padding: 72px 0; background: var(--bg); }
+    .joa-inner { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 40px; }
+    .joa-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; }
+    .joa-text { font-size: 16px; color: var(--text2); line-height: 1.8; font-style: italic; margin-bottom: 28px; }
+    .joa-text strong { color: var(--text); font-style: normal; font-weight: 500; }
+    .joa-sig { display: flex; align-items: center; gap: 14px; }
+    .joa-sig-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .joa-sig-title { font-size: 12px; color: var(--text3); }
+
+    /* WHAT YOU GET */
+    .included { padding: 72px 0; }
+    .included h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+    .included-sub { font-size: 15px; color: var(--text2); margin-bottom: 36px; }
+    .items { display: flex; flex-direction: column; gap: 12px; }
+    .item { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-sm); padding: 18px 22px; display: flex; gap: 16px; align-items: flex-start; }
+    .item-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 7px; }
+    .item-body {}
+    .item-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .item-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
+
+    /* CTA */
+    .cta { padding: 72px 0 100px; text-align: center; }
+    .cta h2 { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 14px; }
+    .cta p { font-size: 16px; color: var(--text2); margin-bottom: 36px; }
+    .btn-primary { background: var(--accent); color: #fff4e3; padding: 15px 36px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; text-decoration: none; display: inline-block; transition: opacity .2s; }
+    .btn-primary:hover { opacity: .87; }
+    .btn-ghost { background: transparent; color: var(--text); padding: 15px 36px; border-radius: var(--radius-sm); font-size: 15px; text-decoration: none; border: 0.5px solid var(--border-strong); display: inline-block; transition: border-color .2s; margin-left: 12px; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  </style>
+</head>
+<body>
+
+<!-- nav injected by nav.js -->
+
+<!-- ─── HERO ─── -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-icon">
+      <svg viewBox="0 0 24 24" fill="none" stroke="#ff0800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="20 6 9 17 4 12"></polyline>
+      </svg>
+    </div>
+    <div class="hero-kicker">F.E.E.L. for Leaders</div>
+    <h1>You're in.<br><em>Welcome.</em></h1>
+    <p class="hero-sub">Your spot is confirmed. Check your inbox — a personal email from Joakim is on its way with everything you need to get started.</p>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── NEXT STEPS ─── -->
+<section class="next">
+  <div class="wrap">
+    <h2>What happens next</h2>
+    <div class="steps">
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Check your inbox</div>
+          <div class="step-desc">A welcome email from Joakim is on its way. It contains your onboarding details, the program schedule, and a link to your first module.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Complete the onboarding form</div>
+          <div class="step-desc">A short form to help Joakim understand where you are right now — your team, your current challenges, and what you most want to change in the next 3 months.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Join the cohort space</div>
+          <div class="step-desc">You'll get access to the private community where your cohort meets, shares, and holds each other accountable throughout the program.</div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Show up ready on Day 1</div>
+          <div class="step-desc">The program kicks off with a live session. Come with one real leadership challenge you're facing right now. That's where we start.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── PERSONAL NOTE ─── -->
+<section class="joa-note">
+  <div class="wrap">
+    <div class="joa-inner">
+      <div class="joa-eyebrow">A note from Joakim</div>
+      <p class="joa-text">
+        "You made a decision most people in your position never make. <strong>You chose to build on knowledge, not belief.</strong><br><br>
+        The next 3 months are going to challenge you — in the best possible way. I'll be in the room with you every step of the way. Not to tell you who to be, but to help you see what's already there.<br><br>
+        See you on Day 1."
+      </p>
+      <div class="joa-sig">
+        <div>
+          <div class="joa-sig-name">Joakim Jensen</div>
+          <div class="joa-sig-title">Founder, Feel the Room</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── WHAT'S INCLUDED ─── -->
+<section class="included">
+  <div class="wrap">
+    <h2>Everything that's waiting for you</h2>
+    <p class="included-sub">A reminder of what you've unlocked.</p>
+    <div class="items">
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Full F.E.E.L. Curriculum — 4 modules</div>
+          <div class="item-desc">Feel · Explore · Elevate · Lead — delivered live over 3 months, with recordings available after each session.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Module Workbooks</div>
+          <div class="item-desc">A structured workbook for each module — reflection prompts, frameworks, and space to track your progress week by week.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Live Coaching with Joakim</div>
+          <div class="item-desc">Real coaching on your real situations — not hypotheticals. Joakim is in the room with you every session.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">Cohort Community Access</div>
+          <div class="item-desc">A private space with 6–10 leaders going through the same shift. Peer learning, accountability, and people who understand the room you're in.</div>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item-dot"></div>
+        <div class="item-body">
+          <div class="item-title">F.E.E.L. for Leaders Certification</div>
+          <div class="item-desc">Issued on completion of the full 3-month program. A signal that you did the work — not just attended.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── CTA ─── -->
+<section class="cta">
+  <div class="wrap">
+    <h2>Questions before we start?</h2>
+    <p>Reach out directly — Joakim reads every message personally.</p>
+    <a href="mailto:hola@feeltheroom.dk" class="btn-primary">Email Joakim →</a>
+    <a href="index.html" class="btn-ghost">Back to home</a>
+  </div>
+</section>
+
+</body>
+</html>
