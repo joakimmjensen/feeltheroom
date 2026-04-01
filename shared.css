@@ -4,8 +4,9 @@
    To change a colour — change it once, here.
    ============================================================ */
 
-/* ── Design tokens — light mode ── */
+/* ── Design tokens — always light mode ── */
 :root {
+  color-scheme: light;
   --bg:           #f0e8d1;
   --bg2:          #f6ede0;
   --bg3:          #e8dcc4;
