@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>F.E.E.L. for Leaders — Mockups</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: #e8dcc4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 60px 40px; }
+    h1 { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; margin-bottom: 60px; text-align: center; }
+
+    .mockup-row { display: flex; gap: 48px; justify-content: center; flex-wrap: wrap; margin-bottom: 80px; }
+    .mockup-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; text-align: center; margin-top: 20px; }
+
+    /* ── MOCKUP 1: LAPTOP ── */
+    .laptop { width: 420px; flex-shrink: 0; }
+    .laptop-body { background: #2a2825; border-radius: 14px 14px 0 0; padding: 12px 12px 0; position: relative; }
+    .laptop-camera { width: 6px; height: 6px; border-radius: 50%; background: #444; margin: 0 auto 8px; }
+    .laptop-screen { background: #f0e8d1; border-radius: 6px; overflow: hidden; }
+    .laptop-screen-inner { padding: 16px; }
+    .ls-nav { background: #f0e8d1; border-bottom: 0.5px solid rgba(28,26,23,0.12); padding: 8px 12px; display: flex; align-items: center; justify-content: space-between; }
+    .ls-logo { font-size: 9px; font-weight: 700; color: #ff0800; letter-spacing: 0.05em; font-family: Georgia, serif; }
+    .ls-links { display: flex; gap: 10px; }
+    .ls-link { font-size: 7px; color: #9B9189; }
+    .ls-hero { padding: 18px 14px 14px; border-bottom: 0.5px solid rgba(28,26,23,0.1); }
+    .ls-eyebrow { font-size: 7px; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; margin-bottom: 8px; }
+    .ls-title { font-size: 14px; font-weight: 700; color: #1C1A17; line-height: 1.2; margin-bottom: 6px; letter-spacing: -0.02em; }
+    .ls-title em { color: #ff0800; font-style: normal; }
+    .ls-sub { font-size: 7px; color: #6B6457; line-height: 1.5; margin-bottom: 10px; max-width: 200px; }
+    .ls-btn { display: inline-block; background: #ff0800; color: #f6ede0; font-size: 7px; font-weight: 600; padding: 5px 12px; border-radius: 4px; }
+    .ls-modules { padding: 12px 14px; display: flex; flex-direction: column; gap: 5px; }
+    .ls-mod-label { font-size: 7px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #9B9189; margin-bottom: 4px; }
+    .ls-mod { background: #f6ede0; border-radius: 6px; padding: 7px 10px; display: flex; gap: 8px; align-items: center; }
+    .ls-mod-letter { font-size: 11px; font-weight: 800; color: #ff0800; width: 14px; flex-shrink: 0; }
+    .ls-mod-info { flex: 1; }
+    .ls-mod-title { font-size: 7.5px; font-weight: 600; color: #1C1A17; margin-bottom: 1px; }
+    .ls-mod-sub { font-size: 6.5px; color: #9B9189; }
+    .ls-mod-check { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(28,26,23,0.15); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .ls-mod-check.done { background: #ff0800; border-color: #ff0800; }
+    .ls-mod-check.done::after { content: '✓'; font-size: 7px; color: #f6ede0; }
+    .laptop-base { background: #333; height: 12px; border-radius: 0 0 4px 4px; }
+    .laptop-stand { background: #2a2825; height: 6px; width: 120px; margin: 0 auto; border-radius: 0 0 6px 6px; }
+    .laptop-foot { background: #222; height: 3px; width: 180px; margin: 0 auto; border-radius: 0 0 4px 4px; }
+
+    /* ── MOCKUP 2: WORKBOOK ── */
+    .workbook { width: 300px; flex-shrink: 0; }
+    .workbook-wrap { position: relative; }
+    /* Shadow pages behind */
+    .wb-shadow2 { position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; background: #ddd0b8; border-radius: 10px; }
+    .wb-shadow1 { position: absolute; top: 4px; left: 4px; width: 100%; height: 100%; background: #e8dcc4; border-radius: 10px; }
+    /* Main page */
+    .wb-page { position: relative; background: #f6ede0; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(28,26,23,0.18); }
+    .wb-header { background: #ff0800; padding: 20px 22px 16px; }
+    .wb-header-eyebrow { font-size: 8px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(246,237,224,0.7); margin-bottom: 6px; }
+    .wb-header-title { font-size: 17px; font-weight: 800; color: #f6ede0; line-height: 1.1; letter-spacing: -0.01em; margin-bottom: 4px; }
+    .wb-header-sub { font-size: 8px; color: rgba(246,237,224,0.75); font-style: italic; letter-spacing: 0.05em; }
+    .wb-body { padding: 18px 22px 20px; }
+    .wb-module-tag { font-size: 8px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #ff0800; margin-bottom: 10px; }
+    .wb-section-title { font-size: 11px; font-weight: 700; color: #1C1A17; margin-bottom: 12px; }
+    .wb-question { margin-bottom: 14px; }
+    .wb-q-label { font-size: 8px; font-weight: 600; color: #6B6457; margin-bottom: 5px; }
+    .wb-q-line { height: 1px; background: rgba(28,26,23,0.15); margin-bottom: 4px; }
+    .wb-q-line.short { width: 70%; }
+    .wb-feel-row { display: flex; gap: 6px; margin-top: 14px; }
+    .wb-feel-box { flex: 1; background: #f0e8d1; border-radius: 6px; padding: 8px 6px; text-align: center; }
+    .wb-feel-letter { font-size: 14px; font-weight: 800; color: #ff0800; line-height: 1; }
+    .wb-feel-word { font-size: 6.5px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #9B9189; margin-top: 2px; }
+    .wb-footer { padding: 10px 22px 14px; border-top: 0.5px solid rgba(28,26,23,0.1); display: flex; justify-content: space-between; align-items: center; }
+    .wb-footer-brand { font-size: 8px; font-weight: 700; color: #ff0800; font-family: Georgia, serif; letter-spacing: 0.03em; }
+    .wb-footer-page { font-size: 8px; color: #9B9189; }
+
+    /* ── MOCKUP 3: BUNDLE ── */
+    .bundle { width: 460px; flex-shrink: 0; }
+    .bundle-wrap { background: #1C1A17; border-radius: 16px; padding: 32px 28px; position: relative; overflow: hidden; }
+    .bundle-glow { position: absolute; top: -60px; left: 50%; transform: translateX(-50%); width: 300px; height: 300px; background: radial-gradient(circle, rgba(255,8,0,0.15) 0%, transparent 70%); pointer-events: none; }
+    .bundle-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: #ff0800; margin-bottom: 10px; text-align: center; }
+    .bundle-title { font-size: 20px; font-weight: 800; color: #f6ede0; text-align: center; margin-bottom: 4px; letter-spacing: -0.02em; }
+    .bundle-sub { font-size: 11px; color: rgba(246,237,224,0.5); text-align: center; margin-bottom: 28px; font-style: italic; }
+    .bundle-items { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
+    .bundle-item { background: rgba(246,237,224,0.06); border: 0.5px solid rgba(246,237,224,0.1); border-radius: 8px; padding: 11px 14px; display: flex; gap: 12px; align-items: center; }
+    .bundle-item-icon { width: 28px; height: 28px; border-radius: 6px; background: rgba(255,8,0,0.12); display: flex; align-items: center; justify-content: center; font-size: 13px; flex-shrink: 0; }
+    .bundle-item-text { flex: 1; }
+    .bundle-item-title { font-size: 12px; font-weight: 600; color: #f6ede0; margin-bottom: 2px; }
+    .bundle-item-sub { font-size: 10px; color: rgba(246,237,224,0.45); }
+    .bundle-item-check { font-size: 12px; color: #ff0800; flex-shrink: 0; }
+    .bundle-divider { height: 0.5px; background: rgba(246,237,224,0.08); margin-bottom: 20px; }
+    .bundle-pricing { text-align: center; }
+    .bundle-price-label { font-size: 10px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #ff0800; margin-bottom: 6px; }
+    .bundle-price { font-size: 32px; font-weight: 800; color: #f6ede0; letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px; }
+    .bundle-price sub { font-size: 13px; font-weight: 400; color: rgba(246,237,224,0.5); vertical-align: middle; }
+    .bundle-price-note { font-size: 10px; color: rgba(246,237,224,0.4); margin-bottom: 16px; }
+    .bundle-cta { background: #ff0800; color: #f6ede0; font-size: 12px; font-weight: 600; padding: 12px 28px; border-radius: 6px; display: inline-block; }
+  </style>
+</head>
+<body>
+  <h1>F.E.E.L. for Leaders — Mockup Concepts</h1>
+
+  <div class="mockup-row">
+
+    <!-- MOCKUP 1: LAPTOP -->
+    <div>
+      <div class="laptop">
+        <div class="laptop-body">
+          <div class="laptop-camera"></div>
+          <div class="laptop-screen">
+            <div class="ls-nav">
+              <div class="ls-logo">FEEL THE ROOM</div>
+              <div class="ls-links">
+                <span class="ls-link">Programs</span>
+                <span class="ls-link">About</span>
+                <span class="ls-link">Book a call →</span>
+              </div>
+            </div>
+            <div class="ls-hero">
+              <div class="ls-eyebrow">F.E.E.L. for Leaders · Cohort Program</div>
+              <div class="ls-title">You were the best<br>in the room. Now<br><em>lead</em> it.</div>
+              <div class="ls-sub">A 3-month program for sales leaders who want to perform at their highest — and build teams that match.</div>
+              <div class="ls-btn">Apply for the Cohort →</div>
+            </div>
+            <div class="ls-modules">
+              <div class="ls-mod-label">The Curriculum</div>
+              <div class="ls-mod">
+                <div class="ls-mod-letter">F</div>
+                <div class="ls-mod-info">
+                  <div class="ls-mod-title">Feel — Reading the Room</div>
+                  <div class="ls-mod-sub">Behavioral cues · Energy calibration · 6 Social Needs</div>
+                </div>
+                <div class="ls-mod-check done"></div>
+              </div>
+              <div class="ls-mod">
+                <div class="ls-mod-letter">E</div>
+                <div class="ls-mod-info">
+                  <div class="ls-mod-title">Explore — The Right Question</div>
+                  <div class="ls-mod-sub">Calibrated questions · Deep listening · NEPQ</div>
+                </div>
+                <div class="ls-mod-check done"></div>
+              </div>
+              <div class="ls-mod">
+                <div class="ls-mod-letter">E</div>
+                <div class="ls-mod-info">
+                  <div class="ls-mod-title">Elevate — Grow Your People</div>
+                  <div class="ls-mod-sub">Identity reframing · Limiting beliefs · Culture</div>
+                </div>
+                <div class="ls-mod-check"></div>
+              </div>
+              <div class="ls-mod">
+                <div class="ls-mod-letter">L</div>
+                <div class="ls-mod-info">
+                  <div class="ls-mod-title">Lead — Hold the Room</div>
+                  <div class="ls-mod-sub">Power framing · Decisions · Authority</div>
+                </div>
+                <div class="ls-mod-check"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="laptop-base"></div>
+        <div class="laptop-stand"></div>
+        <div class="laptop-foot"></div>
+      </div>
+      <div class="mockup-label">1 — Course Platform</div>
+    </div>
+
+    <!-- MOCKUP 2: WORKBOOK -->
+    <div>
+      <div class="workbook">
+        <div class="workbook-wrap">
+          <div class="wb-shadow2"></div>
+          <div class="wb-shadow1"></div>
+          <div class="wb-page">
+            <div class="wb-header">
+              <div class="wb-header-eyebrow">F.E.E.L. for Leaders · Workbook</div>
+              <div class="wb-header-title">Module 1<br>Feel the Room</div>
+              <div class="wb-header-sub">Lead with Intention.</div>
+            </div>
+            <div class="wb-body">
+              <div class="wb-module-tag">Module 1 · F — Feel</div>
+              <div class="wb-section-title">Before you enter the room</div>
+              <div class="wb-question">
+                <div class="wb-q-label">What energy are you bringing in today?</div>
+                <div class="wb-q-line"></div>
+                <div class="wb-q-line short"></div>
+              </div>
+              <div class="wb-question">
+                <div class="wb-q-label">What do your people need from you right now?</div>
+                <div class="wb-q-line"></div>
+                <div class="wb-q-line short"></div>
+              </div>
+              <div class="wb-question">
+                <div class="wb-q-label">What's one assumption you're holding about this conversation?</div>
+                <div class="wb-q-line"></div>
+                <div class="wb-q-line"></div>
+              </div>
+              <div class="wb-feel-row">
+                <div class="wb-feel-box"><div class="wb-feel-letter">F</div><div class="wb-feel-word">Feel</div></div>
+                <div class="wb-feel-box"><div class="wb-feel-letter">E</div><div class="wb-feel-word">Explore</div></div>
+                <div class="wb-feel-box"><div class="wb-feel-letter">E</div><div class="wb-feel-word">Elevate</div></div>
+                <div class="wb-feel-box"><div class="wb-feel-letter">L</div><div class="wb-feel-word">Lead</div></div>
+              </div>
+            </div>
+            <div class="wb-footer">
+              <div class="wb-footer-brand">Feel the Room</div>
+              <div class="wb-footer-page">feeltheroom.dk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">2 — Module Workbook</div>
+    </div>
+
+  </div>
+
+  <!-- MOCKUP 3: BUNDLE -->
+  <div style="display:flex; justify-content:center;">
+    <div>
+      <div class="bundle">
+        <div class="bundle-wrap">
+          <div class="bundle-glow"></div>
+          <div class="bundle-eyebrow">Early Bird — First Cohort</div>
+          <div class="bundle-title">F.E.E.L. for Leaders</div>
+          <div class="bundle-sub">Everything included in your 3-month transformation</div>
+          <div class="bundle-items">
+            <div class="bundle-item">
+              <div class="bundle-item-icon">◎</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">Full F.E.E.L. Curriculum</div>
+                <div class="bundle-item-sub">4 modules · All lessons · Lifetime access</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+            <div class="bundle-item">
+              <div class="bundle-item-icon">◈</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">Live Coaching with Joakim</div>
+                <div class="bundle-item-sub">Apply the framework to your real situations</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+            <div class="bundle-item">
+              <div class="bundle-item-icon">⬡</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">Cohort of 6–10 Leaders</div>
+                <div class="bundle-item-sub">Curated peers at the same stage as you</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+            <div class="bundle-item">
+              <div class="bundle-item-icon">◻</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">All Workbooks & Templates</div>
+                <div class="bundle-item-sub">4 module workbooks · Tools you'll still use in 5 years</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+            <div class="bundle-item">
+              <div class="bundle-item-icon">✦</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">F.E.E.L. Certification</div>
+                <div class="bundle-item-sub">Issued on completion of the full program</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+            <div class="bundle-item">
+              <div class="bundle-item-icon">→</div>
+              <div class="bundle-item-text">
+                <div class="bundle-item-title">Alumni Community Access</div>
+                <div class="bundle-item-sub">Ongoing network of F.E.E.L.-certified leaders</div>
+              </div>
+              <div class="bundle-item-check">✓</div>
+            </div>
+          </div>
+          <div class="bundle-divider"></div>
+          <div class="bundle-pricing">
+            <div class="bundle-price-label">Early Bird Price</div>
+            <div class="bundle-price">5.000 kr <sub>/ month</sub></div>
+            <div class="bundle-price-note">3-month program · Regular price: 15.000 kr/month</div>
+            <div class="bundle-cta">Apply for a Spot →</div>
+          </div>
+        </div>
+      </div>
+      <div class="mockup-label">3 — Bundle / Pricing Card</div>
+    </div>
+  </div>
+
+</body>
+</html>
