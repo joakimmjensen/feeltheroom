@@ -106,8 +106,16 @@
     .mod-lesson span { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
     /* WORKBOOK MOCKUP */
-    .wb-showcase { display: flex; justify-content: center; margin-bottom: 52px; }
-    .workbook-wrap { position: relative; width: 280px; }
+    .wb-showcase { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; margin-bottom: 56px; }
+    .wb-copy { }
+    .wb-copy-label { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; }
+    .wb-copy h3 { font-size: 22px; font-weight: 700; line-height: 1.2; letter-spacing: -0.01em; color: var(--text); margin-bottom: 14px; }
+    .wb-copy p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 20px; }
+    .wb-copy-list { display: flex; flex-direction: column; gap: 10px; }
+    .wb-copy-item { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; color: var(--text2); line-height: 1.5; }
+    .wb-copy-item::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+    .workbook-wrap { position: relative; width: 100%; max-width: 360px; margin: 0 auto; }
+    @media (max-width: 680px) { .wb-showcase { grid-template-columns: 1fr; } }
     .wb-shadow2 { position: absolute; top: 8px; left: 8px; width: 100%; height: 100%; background: #ddd0b8; border-radius: 10px; }
     .wb-shadow1 { position: absolute; top: 4px; left: 4px; width: 100%; height: 100%; background: #e8dcc4; border-radius: 10px; }
     .wb-page { position: relative; background: #f6ede0; border-radius: 10px; overflow: hidden; box-shadow: 0 8px 32px rgba(28,26,23,0.18); }
@@ -380,6 +388,17 @@
     <p class="curriculum-sub">Each module is built around one letter of the framework — and one fundamental shift in how you show up as a leader.</p>
 
     <div class="wb-showcase">
+      <div class="wb-copy">
+        <div class="wb-copy-label">Included in the program</div>
+        <h3>A workbook for every module</h3>
+        <p>Each module comes with a structured workbook — built around the questions that actually matter before, during, and after your leadership conversations.</p>
+        <div class="wb-copy-list">
+          <div class="wb-copy-item">Reflection prompts before high-stakes conversations</div>
+          <div class="wb-copy-item">Frameworks you can use in real-time with your team</div>
+          <div class="wb-copy-item">Space to track what's changing — week by week</div>
+          <div class="wb-copy-item">One for each module — F, E, E, and L</div>
+        </div>
+      </div>
       <div class="workbook-wrap">
         <div class="wb-shadow2"></div>
         <div class="wb-shadow1"></div>
