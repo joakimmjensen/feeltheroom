@@ -180,8 +180,8 @@
   <!-- STATS -->
   <div class="stats-row">
     <div class="stat-box">
-      <div class="stat-num" id="stat-posted">0</div>
-      <div class="stat-label">Posted</div>
+      <div class="stat-num" id="stat-scripts-posted">0</div>
+      <div class="stat-label">Published</div>
     </div>
     <div class="stat-box">
       <div class="stat-num" id="stat-ready">0</div>
@@ -192,20 +192,12 @@
       <div class="stat-label">Draft</div>
     </div>
     <div class="stat-box">
-      <div class="stat-num" id="stat-idea">0</div>
-      <div class="stat-label">Idea</div>
-    </div>
-    <div class="stat-box">
-      <div class="stat-num" id="stat-scripts-posted">0</div>
-      <div class="stat-label">Posts published</div>
-    </div>
-    <div class="stat-box">
       <div class="stat-num" id="stat-total-posts">0</div>
-      <div class="stat-label">Posts written</div>
+      <div class="stat-label">Written</div>
     </div>
     <div class="stat-box">
       <div class="stat-num">38</div>
-      <div class="stat-label">Ideas in bank</div>
+      <div class="stat-label">Ideas</div>
     </div>
   </div>
 
@@ -1458,7 +1450,7 @@ Det var fire timer, jeg ikke glemmer.
         <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Jeg træner 4-5 gange om ugen. Ikke fordi jeg er besat af kroppen."</div></div>
         <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>God fysisk form = bedre mental form. Klarere. Roligere. Mere tålmodig.</li><li>Vi taler meget om mindset — men mindset bor i kroppen</li><li>Mange behandler kroppen som noget sekundært — "når tingene roer sig"</li><li>Energi er ikke noget du har. Det er noget du bygger. Dagligt.</li></ul></div>
         <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Det mest underrated konkurrencefortrin, jeg kender."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Rolig og personlig. Vær dig selv — dette er det personlige fundament. Ingen sælgertone. Nøgtern og ærlig.</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and personal. Be yourself — this is about the personal foundation. No sales tone. Straightforward and honest.</div></div>
       </div>
     </div>
 
@@ -1508,7 +1500,7 @@ Det var fire timer, jeg ikke glemmer.
       <div class="perf-field"><div class="perf-label">DM'er denne måned</div><input class="perf-input" id="perf-dms" type="number" placeholder="0" /></div>
       <div class="perf-field"><div class="perf-label">Leads fra LinkedIn</div><input class="perf-input" id="perf-leads" type="number" placeholder="0" /></div>
     </div>
-    <div class="perf-field" style="margin-bottom:10px;"><div class="perf-label">Bedste opslag denne måned · URL</div><input class="perf-input" id="perf-best-url" type="url" placeholder="https://linkedin.com/posts/..." /></div>
+    <div class="perf-field" style="margin-bottom:10px;"><div class="perf-label">Best post this month · URL</div><input class="perf-input" id="perf-best-url" type="url" placeholder="https://linkedin.com/posts/..." /></div>
     <div class="perf-field" style="margin-bottom:16px;"><div class="perf-label">Hvad virkede? Hook, format, emne</div><textarea class="perf-input" id="perf-notes" placeholder="Skriv hvad der fungerede..." style="min-height:80px;resize:vertical;line-height:1.6;font-family:Georgia,serif;"></textarea></div>
     <button class="save-btn" onclick="savePerfData()">Gem opsummering</button>
     <span id="perf-saved-msg" style="font-size:12px;color:var(--muted);margin-left:12px;font-family:-apple-system,sans-serif;display:none;">Gemt ✓</span>
@@ -3215,7 +3207,7 @@ Then we go from there.</div>
       </div>
     </div>
 
-    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Fra content plan — Leadership in practice + personligt fundament</div>
+    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Fra content plan — Leadership in practice + personal foundation</div>
     <div class="idea-grid" style="margin-bottom:28px;">
       <div class="idea-card">
         <div class="idea-card-title">Team Core Values Workshop — how you defined your values</div>
@@ -3325,10 +3317,8 @@ Then we go from there.</div>
       else if (b.classList.contains('draft')) draft++;
       else if (b.classList.contains('idea')) idea++;
     });
-    document.getElementById('stat-posted').textContent = posted;
     document.getElementById('stat-ready').textContent = ready;
     document.getElementById('stat-draft').textContent = draft;
-    document.getElementById('stat-idea').textContent = idea;
     const cardsPosted = document.querySelectorAll('.post-card.is-posted').length;
     document.getElementById('stat-scripts-posted').textContent = cardsPosted;
     const totalPosts = document.querySelectorAll('.post-card').length;
@@ -3496,7 +3486,7 @@ Then we go from there.</div>
     notes.className = 'post-notes';
     notes.innerHTML = `
       <div class="notes-label">LinkedIn</div>
-      <input type="url" class="notes-url" placeholder="URL til opslaget (når postet)" />
+      <input type="url" class="notes-url" placeholder="LinkedIn URL (once published)" />
       <div class="notes-label" style="margin-top:10px;">Reaktioner &amp; noter</div>
       <textarea class="notes-text" placeholder="Hvad skete der? Likes, kommentarer, hvad fungerede..."></textarea>`;
     body.appendChild(notes);
