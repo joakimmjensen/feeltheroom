@@ -8,33 +8,32 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #0F0E0C;
-      --surface: #1A1917;
-      --surface2: #242220;
-      --surface3: #2E2C29;
-      --gold: #C49A6A;
-      --gold2: #D4AA7A;
-      --text: #F5F0E8;
-      --muted: #8A8070;
-      --border: #2A2825;
-      --radius: 10px;
-      --green: #4A9268;
-      --green-bg: rgba(74,146,104,0.12);
-      --orange: #C47A3A;
-      --orange-bg: rgba(196,122,58,0.12);
-      --blue: #4A7A9B;
-      --blue-bg: rgba(74,122,155,0.12);
-      --red: #9B4A4A;
-      --red-bg: rgba(155,74,74,0.12);
+      --bg:       #f0e8d1;
+      --surface:  #fff4e3;
+      --surface2: #e8dcc4;
+      --surface3: #dfd5bb;
+      --gold:     #ff0800;
+      --gold2:    #cc0600;
+      --text:     #1C1A17;
+      --muted:    #6B6457;
+      --border:   rgba(28,26,23,0.12);
+      --radius:   10px;
+      --green: #2e7d52;
+      --green-bg: rgba(46,125,82,0.1);
+      --orange: #b85c00;
+      --orange-bg: rgba(184,92,0,0.1);
+      --blue: #2a5f8f;
+      --blue-bg: rgba(42,95,143,0.1);
+      --red: #cc2200;
+      --red-bg: rgba(204,34,0,0.1);
     }
     html { scroll-behavior: smooth; }
-    body { font-family: Georgia, 'Times New Roman', serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.7; }
 
     /* NAV */
-    nav { padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
-    .nav-logo { font-size: 14px; font-weight: 700; color: var(--gold); font-family: Georgia, serif; }
+    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg); position: sticky; top: 0; z-index: 100; }
+    .nav-left { font-size: 14px; font-weight: 600; color: var(--muted); font-family: -apple-system, sans-serif; letter-spacing: 0.04em; }
     .nav-right { display: flex; align-items: center; gap: 20px; }
-    .nav-badge { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(155,74,74,0.2); color: #C47A7A; border: 1px solid rgba(155,74,74,0.3); padding: 3px 10px; border-radius: 4px; }
     .nav-hint { font-size: 12px; color: var(--muted); font-family: -apple-system, sans-serif; }
 
     /* LAYOUT */
@@ -83,7 +82,7 @@
     .bank-table th { text-align: left; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-weight: normal; padding: 10px 14px; border-bottom: 1px solid var(--border); white-space: nowrap; }
     .bank-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.5; }
     .bank-table tr:last-child td { border-bottom: none; }
-    .bank-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .bank-table tr:hover td { background: rgba(28,26,23,0.03); }
     .bank-title { color: var(--text); }
     .bank-notes { color: var(--muted); font-size: 12px; font-style: italic; }
 
@@ -164,10 +163,10 @@
 <body>
 
 <nav>
-  <span class="nav-logo">Feel the Room</span>
+  <span class="nav-left">Content Bank</span>
   <div class="nav-right">
-    <span class="nav-badge">Ikke offentlig</span>
     <span class="nav-hint">Kun til Joa</span>
+    <a href="index.html"><img src="long%20red%20w%3Ao.svg" alt="Feel the Room" style="height:32px; width:auto; display:block;"></a>
   </div>
 </nav>
 
