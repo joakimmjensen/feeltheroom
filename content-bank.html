@@ -200,7 +200,11 @@
       <div class="stat-label">Opslag postet</div>
     </div>
     <div class="stat-box">
-      <div class="stat-num">27</div>
+      <div class="stat-num" id="stat-total-posts">0</div>
+      <div class="stat-label">Posts skrevet</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num">38</div>
       <div class="stat-label">Idéer i bank</div>
     </div>
   </div>
@@ -1462,6 +1466,984 @@ Det var fire timer, jeg ikke glemmer.
 
   <hr>
 
+  <!-- PERFORMANCE DASHBOARD -->
+  <div class="section">
+    <div class="section-title">LinkedIn Performance · Månedsoverblik</div>
+    <p class="cycle-hint" style="margin-bottom:20px;">Opdatér månedligt. Gemt i browseren.</p>
+    <style>
+      .perf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-bottom: 20px; }
+      .perf-field { display: flex; flex-direction: column; gap: 6px; }
+      .perf-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-family: -apple-system, sans-serif; }
+      .perf-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 14px; font-family: -apple-system, sans-serif; width: 100%; }
+      .perf-input:focus { outline: none; border-color: rgba(196,154,106,0.4); }
+      .save-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 18px; border-radius: 4px; background: rgba(196,154,106,0.15); color: var(--gold); border: 1px solid rgba(196,154,106,0.3); cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.15s; }
+      .save-btn:hover { background: rgba(196,154,106,0.25); }
+    </style>
+    <div class="stats-row" style="margin-bottom:24px;">
+      <div class="stat-box">
+        <div class="stat-num" id="perf-followers-disp">—</div>
+        <div class="stat-label">Følgere</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-growth-disp">—</div>
+        <div class="stat-label">Vækst / mdr</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-impressions-disp">—</div>
+        <div class="stat-label">Impressions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-dms-disp">—</div>
+        <div class="stat-label">DM'er / mdr</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-leads-disp">—</div>
+        <div class="stat-label">Leads</div>
+      </div>
+    </div>
+    <div class="perf-grid">
+      <div class="perf-field"><div class="perf-label">Følgere total</div><input class="perf-input" id="perf-followers" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Follower-vækst (mdr)</div><input class="perf-input" id="perf-growth" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Impressions (mdr)</div><input class="perf-input" id="perf-impressions" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">DM'er denne måned</div><input class="perf-input" id="perf-dms" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Leads fra LinkedIn</div><input class="perf-input" id="perf-leads" type="number" placeholder="0" /></div>
+    </div>
+    <div class="perf-field" style="margin-bottom:10px;"><div class="perf-label">Bedste opslag denne måned · URL</div><input class="perf-input" id="perf-best-url" type="url" placeholder="https://linkedin.com/posts/..." /></div>
+    <div class="perf-field" style="margin-bottom:16px;"><div class="perf-label">Hvad virkede? Hook, format, emne</div><textarea class="perf-input" id="perf-notes" placeholder="Skriv hvad der fungerede..." style="min-height:80px;resize:vertical;line-height:1.6;font-family:Georgia,serif;"></textarea></div>
+    <button class="save-btn" onclick="savePerfData()">Gem opsummering</button>
+    <span id="perf-saved-msg" style="font-size:12px;color:var(--muted);margin-left:12px;font-family:-apple-system,sans-serif;display:none;">Gemt ✓</span>
+  </div>
+
+  <hr>
+
+  <!-- ENGLISH POSTS -->
+  <div class="section">
+    <div class="section-title">English Posts · 25 drafts · Ready to post</div>
+    <p class="cycle-hint" style="margin-bottom:24px;">All new content in English. Click to open, edit inline, copy to LinkedIn.</p>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Say No to a Client</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I said no to a client last year.
+
+They had budget. They wanted the engagement.
+
+But something was off.
+
+They wanted me to fix their team while avoiding the conversation their team actually needed to have.
+
+That never works.
+
+The best outcomes I've had — they happened because the client was ready to hear hard things.
+
+When someone isn't, you can do everything right and it still won't land.
+
+The hardest skill in sales isn't closing.
+
+It's knowing when to walk away.
+
+Not every yes is worth taking.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">I have 50 goals written down</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I have 50 goals written down.
+
+Not a vision board. Not quarterly OKRs.
+
+50 specific things I want to do, build, feel, and become.
+
+Some are professional. Some are deeply personal. Some are embarrassingly small.
+
+The point isn't to achieve all 50.
+
+The point is clarity.
+
+When you know what you want, you stop saying yes to everything that doesn't move you toward it.
+
+Most people don't know what they want with enough precision.
+
+They have a vague direction.
+
+Write 50 things. Specific things.
+
+It's harder than it sounds.
+
+That's why it works.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Why. Why Not. Why Not Me.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">Three questions I ask myself when I'm hesitating.
+
+1. Why do I want this?
+2. Why haven't I done it yet?
+3. Why not me?
+
+The first gets you honest about motivation.
+
+The second exposes the real obstacle.
+
+The third breaks the ceiling.
+
+Most people stop at "why not me?" because they can list ten reasons.
+
+But those reasons don't hold up under scrutiny.
+
+Someone with less experience started. Someone with more fear took the leap. Someone with half the skills figured it out.
+
+Why not you?
+
+The question doesn't give you permission.
+
+It removes the excuse you've been hiding behind.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Sales Is a Mirror of Your Life</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The best salespeople I know have one thing in common.
+
+They do the work on themselves.
+
+Not because they read self-help books.
+
+Because they understand: how you do anything is how you do everything.
+
+If you avoid hard conversations at home, you avoid them in sales.
+
+If you can't hold discipline in your personal life, you can't hold it in pipeline management.
+
+If you're scared to be rejected by people you love, you're scared to be rejected by a prospect.
+
+Sales doesn't lie.
+
+It shows you exactly who you are under pressure.
+
+That's why self-development isn't separate from sales training.
+
+It is the sales training.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">The most underestimated sales skill? Emotional regulation.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The most underestimated sales skill?
+
+Emotional regulation.
+
+Not charisma. Not closing techniques. Not objection handling.
+
+The ability to stay calm when a prospect pushes back.
+
+The ability to sit in silence without filling it.
+
+The ability to receive a no without collapsing.
+
+Most salespeople are reactive. A signal goes in, a reaction comes out.
+
+The best ones have a pause.
+
+That pause is everything.
+
+It's where you choose your response instead of your gut choosing it for you.
+
+You can train this.
+
+Start by noticing when you're triggered. Name it. Then choose what to do next.
+
+The pause gets longer. The results get better.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Sales = Discipline + The Ability to Keep Going</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">Talent gets you in the door.
+
+Discipline keeps you in the game.
+
+I've seen talented salespeople flame out because they couldn't handle consistency.
+
+No big moments. No glory calls. Just: make the calls, follow up, show up, repeat.
+
+And I've seen average people outlast everyone else simply by refusing to stop.
+
+The most durable competitive advantage in sales isn't skill.
+
+It's the decision to still be here in three years.
+
+Most people quit before they get good.
+
+They quit when it's hard. When the pipeline is cold. When the last three deals fell through.
+
+That's exactly when you can't quit.
+
+Stay in the game long enough, and the game starts to play differently.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Self-Development Is Your Best Contribution</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I used to think self-development was selfish.
+
+Time spent on myself felt like time stolen from work, from family, from everything else.
+
+Then I realized: the best thing I can bring to any room is a better version of me.
+
+When I'm clearer, I ask better questions.
+When I'm more regulated, I hold better conversations.
+When I know myself, I help others know themselves.
+
+Self-development isn't separate from leadership.
+
+It is leadership.
+
+The leader who never works on themselves eventually runs out of things to give.
+
+Invest in yourself.
+
+Not because it feels good.
+
+Because everyone around you gets a better version of you when you do.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Don't Put a Mask On</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I tried to be more polished once.
+
+More professional. Safer answers. Careful wording.
+
+It didn't work.
+
+Not because people didn't respond to it. But because I couldn't sustain it.
+
+The version of you that tries to be what people want is exhausting to maintain.
+
+And people feel it anyway.
+
+The most magnetic people I know are magnetic because they don't pretend.
+
+They say what they think. They admit what they don't know. They show up the same way every time.
+
+Authenticity isn't just more honest.
+
+It's more effective.
+
+Because the person you're trying to impress doesn't trust performance.
+
+They trust people.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">The Importance of Qualification</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">Most bad sales experiences come from one mistake.
+
+Skipping qualification.
+
+You take the call. You run the demo. You spend two hours building a proposal.
+
+And then they say: "We don't really have budget for this."
+
+You should have known that in the first five minutes.
+
+Qualification isn't gatekeeping. It's respect.
+
+Respect for your time. Respect for theirs.
+
+Four things to confirm before going further:
+
+Is there a real problem?
+Do they have the authority to act?
+Do they have budget?
+Is the timing right?
+
+If you can't say yes to all four, you're not in a sales conversation.
+
+You're in a free consulting session.
+
+Qualify early. Qualify often.
+
+Your conversion rate will thank you.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Frame Setting = Control</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">Whoever sets the frame controls the conversation.
+
+Most salespeople walk into a meeting and accept the frame the prospect has already set.
+
+"We're just exploring options."
+"We've been happy with our current provider."
+"Talk me through your pricing."
+
+Those are their frames. And if you accept them, you're playing their game.
+
+Set your own frame early.
+
+"Before we dive in — I'd like to understand what success actually looks like for you in the next 90 days."
+
+Now you're the one driving.
+
+Frame setting isn't manipulation.
+
+It's structure. It helps both of you get somewhere useful faster.
+
+If you don't set the frame, someone else will.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">"Maybe" is the most expensive word in sales</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">"Maybe" is the most expensive word in sales.
+
+It sounds like progress. It feels like hope.
+
+But it's usually just delayed rejection with a polite face on.
+
+I don't accept maybe.
+
+Not because I'm pushy. Because it wastes time — mine and theirs.
+
+If someone can't tell me yes or no, I ask directly:
+
+"What would need to be true for this to be a yes?"
+
+Now we're having a real conversation.
+
+Either they tell me what's missing and we can work with it.
+
+Or they tell me it's not right and we can both move on.
+
+The best sales cultures I've seen don't celebrate pipeline.
+
+They celebrate clarity.
+
+Fuck yes or fuck no.
+
+Everything else is just noise.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">The Power of Silence</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I asked a question.
+
+Then I stopped talking.
+
+For seven full seconds.
+
+It felt like forever.
+
+The prospect shifted. Started talking. And told me exactly what I needed to know to close the deal.
+
+Most salespeople are terrified of silence.
+
+They fill it. With features. With anecdotes. With reassurance.
+
+But silence isn't a problem.
+
+Silence is an invitation.
+
+It says: I'm waiting. I believe what you have to say matters.
+
+The next time you ask a question, let the silence do its work.
+
+Seven seconds.
+
+Don't flinch.
+
+The answer that comes after the pause is usually the real one.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Make the Signature a Non-Event</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The worst thing you can do at the close is make it feel like a big deal.
+
+Because big deals make people nervous.
+
+Nervous people slow down. Ask more questions. Want to "think it over."
+
+The goal of a well-run sales process is that by the time you reach the signature, it feels inevitable.
+
+Not pressured. Not rushed.
+
+Just: the obvious next step.
+
+You get there by doing the work earlier.
+
+Agreeing on the problem. Agreeing on the criteria. Agreeing on the value.
+
+If you've done that, the signature is a formality.
+
+If you haven't, no closing technique will save you.
+
+Make the whole conversation feel like the close.
+
+Then the close is just a signature.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Demo Like Ice Cream</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">You don't hand someone a spoon and say: "Here's how ice cream is made."
+
+You give them a taste.
+
+Most product demos do the wrong thing.
+
+They explain. They feature-walk. They show everything.
+
+What they should do is give the customer the feeling of having the problem solved.
+
+Not "here's how it works."
+
+"Here's what your world looks like when it works."
+
+The most effective demos follow one rule:
+
+Lead with the outcome. Work backwards to the feature.
+
+"Imagine you start Monday morning and can see exactly which leads are ready to buy — this is where that shows up."
+
+That's a taste.
+
+Features close no one.
+
+The feeling of the problem already being solved — that closes deals.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Know the Court</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">Before I walk into any high-stakes conversation, I ask myself: who's in the room?
+
+Not just names and titles.
+
+Who has authority? Who has influence with no authority? Who is silently opposed? Who wants this to work more than anyone?
+
+In basketball, the best players don't just see the ball.
+
+They see the court.
+
+In sales and leadership, the court is the room you're in.
+
+The politics. The dynamics. The history between the people.
+
+You can have the perfect pitch and still lose if you don't read the room.
+
+Prepare your content.
+
+But prepare your read even harder.
+
+Know who you're talking to. What they care about. What they're afraid of.
+
+Then walk in.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">I hate sales scripts</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I hate sales scripts.
+
+Not because they don't work.
+
+But because they make you sound like you're reading one.
+
+And people can hear it.
+
+The alternative isn't to wing it.
+
+The alternative is to understand the principle behind the script so well that you don't need the script.
+
+Why do we open with rapport? Because people buy from people they like.
+
+Why do we start with their situation? Because people feel understood before they feel sold to.
+
+Why do we ask about consequences? Because pain is a more powerful motivator than gain.
+
+When you understand the why, you can have the same conversation a hundred different ways.
+
+And every version feels like it was made for that person.
+
+Because it was.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">You know things people would pay to learn</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">You know things other people would pay to learn.
+
+I'm certain of it.
+
+The problem is you can't see it from the inside.
+
+You've done something for so long that it feels obvious. Normal. Not worth charging for.
+
+That's the blind spot.
+
+What's obvious to you took you years to learn. Those years have value.
+
+The path to productizing your knowledge:
+
+Start with what you do naturally when someone asks for help.
+Notice the pattern in your advice.
+Name the framework.
+Test it with one person.
+Charge for the second.
+
+You don't need a perfect course or a polished offer.
+
+You need one person to pay you for what you already know how to do.
+
+Start there.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="post-card-title-text">Hire Slow. Fire Fast.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The most expensive decision I've made in leadership?
+
+Holding on too long.
+
+I knew within three weeks. The energy was wrong. The fit was wrong.
+
+But I told myself: they'll settle in. It takes time.
+
+Six months later, the team was exhausted and I was right where I started.
+
+Hiring slowly is a discipline.
+
+Use the interview to understand the person, not just the skills.
+
+What drives them when no one is watching? What broke them in their last role? How do they handle being wrong?
+
+Skills can be learned. Character can't be changed.
+
+And when you know it's not right — act.
+
+The kindest thing you can do for someone is give them the chance to find where they actually fit.
+
+Hire slow. But when you know, move fast.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="post-card-title-text">We don't have one target. We have three.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">We don't have one target.
+
+We have three.
+
+Expected: The number that keeps the lights on.
+Good: The number that means we did something.
+GOAT: The number that means we actually went for it.
+
+Most teams set one number and call it a goal.
+
+The problem: once you hit it, the game is over.
+
+With three levels, someone who hits Expected doesn't feel like they won.
+
+And someone who misses GOAT but hits Good still has something to be proud of.
+
+Three levels also changes the conversation.
+
+"We hit Expected. What would have needed to be different to hit Good?"
+
+That's more useful than: "We hit the target. Great."
+
+Define your three levels.
+
+Then go after the one in the middle.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">The best sales conversations don't feel like sales</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The best sales conversations don't feel like sales conversations.
+
+They feel like two people working together to figure out if there's a fit.
+
+That only happens when you're fully present.
+
+Not working through a checklist. Not waiting for the right moment to pivot to pricing.
+
+Actually listening.
+
+Most salespeople are thinking about their next move while the prospect is talking.
+
+The best ones are only thinking about what the prospect is saying right now.
+
+There's a word for this: intentionality.
+
+You can't be intentional and scripted at the same time.
+
+So instead of memorizing what to say, practice noticing what's actually happening.
+
+What is this person really telling you?
+
+What aren't they saying that matters?
+
+Show up with full attention. The rest takes care of itself.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">I work a full-time job. And I'm building something on the side.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I work a full-time job.
+
+And I'm building something on the side.
+
+I'm not going to pretend that's easy.
+
+There are evenings I'm too tired. Mornings I can't get started. Weeks where the side project feels pointless.
+
+But I keep coming back to one question:
+
+If not now, when?
+
+The moment is never perfect. The energy is never completely there. Something always needs attention first.
+
+The balance isn't about having equal time for both.
+
+It's about being intentional with the time you have.
+
+One focused hour beats three distracted ones.
+
+Build in the margins. Show up when you said you would.
+
+And remember why you started.
+
+The best time to begin was yesterday. The second best is today.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-coaching">C</span>
+          <span class="post-card-title-text">Champion Building — You're never selling to a company</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">You're never selling to a company.
+
+You're selling to a person inside a company who wants to be the hero.
+
+That's your champion.
+
+They're the one who believed in the solution before everyone else did.
+
+They're the one who will walk into that internal meeting and fight for you when you're not in the room.
+
+Your job in enterprise sales isn't to close the deal.
+
+It's to make your champion look smart.
+
+Give them the language to explain your value.
+Give them the data to defend the decision.
+Give them the confidence to push through the internal friction.
+
+The most sophisticated salespeople I know don't sell.
+
+They build champions.
+
+Find yours. Arm them. Win together.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-lederskab">L</span>
+          <span class="post-card-title-text">The best salespeople care about more than their number</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">The best salespeople I've managed care about more than their number.
+
+They care about the company's number.
+
+There's a difference.
+
+A salesperson who only cares about their quota will close the wrong deals to hit it.
+
+A salesperson who cares about the company will close the right ones — and push back when something doesn't make sense.
+
+That's not idealism. That's aligned incentives.
+
+When you show your team the full picture — the revenue we need, why we need it, what it unlocks — something shifts.
+
+The pipeline stops being abstract.
+
+Every conversation has a reason.
+
+Share the context. Share the stakes.
+
+People rise to a mission.
+
+They grind through a quota.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Self-care is not the reward. It's the infrastructure.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I'm not talking about bubble baths.
+
+I'm talking about the unsexy things that keep you sharp.
+
+Sleep. Movement. Food. The conversations you've been avoiding.
+
+Most high performers treat self-care as a reward.
+
+Something they'll do once the work is done.
+
+The work is never done.
+
+Self-care isn't the reward. It's the infrastructure.
+
+When I skip it, I notice it in two days. My conversations are shallower. My patience thinner. My decisions slower.
+
+When I'm consistent, everything is easier.
+
+Not because life gets easier.
+
+Because I'm sharper.
+
+Protect your energy with the same discipline you protect your calendar.
+
+It is a performance strategy.</div>
+      </div>
+    </div>
+
+    <div class="post-card">
+      <div class="post-card-header" onclick="togglePost(this)">
+        <div class="post-card-meta">
+          <span class="wheel-tag wheel-personligt">P</span>
+          <span class="post-card-title-text">Values aren't what you believe. They're what you do when it costs you something.</span>
+        </div>
+        <span class="post-toggle-hint">Vis ↓</span>
+      </div>
+      <div class="post-card-body">
+        <button class="copy-btn" onclick="copyPost(this)">Copy</button>
+        <div class="post-text">I spent years chasing the wrong things.
+
+Not because I was stupid.
+
+Because I hadn't defined what mattered to me.
+
+Values aren't what you believe.
+
+They're what you do when it costs you something.
+
+Do you choose honesty when it's uncomfortable? That's a value.
+Do you protect your time even when people are disappointed? That's a value.
+Do you choose long-term over short-term consistently? That's a value.
+
+When you know your values, decisions get easier.
+
+Not painless. Easier.
+
+Because you have a filter.
+
+"Does this align with who I'm trying to be?"
+
+Yes or no.
+
+Know your values. Write them down.
+
+Then build your behavior around them — not the other way around.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <hr>
+
   <!-- IDÉBANK -->
   <div class="section">
     <div class="section-title">Idébank · 38 emner</div>
@@ -1664,6 +2646,8 @@ Det var fire timer, jeg ikke glemmer.
     document.getElementById('stat-idea').textContent = idea;
     const cardsPosted = document.querySelectorAll('.post-card.is-posted').length;
     document.getElementById('stat-scripts-posted').textContent = cardsPosted;
+    const totalPosts = document.querySelectorAll('.post-card').length;
+    document.getElementById('stat-total-posts').textContent = totalPosts;
   }
 
   // ── POST CARDS: toggle open/close ────────────────────────────
@@ -1891,6 +2875,47 @@ Det var fire timer, jeg ikke glemmer.
 
   updateStats();
   renderDenneUge();
+
+  // ── PERFORMANCE DASHBOARD ─────────────────────────────────────
+  function savePerfData() {
+    ['followers','growth','impressions','dms','leads'].forEach(k => {
+      const el = document.getElementById('perf-' + k);
+      if (el) localStorage.setItem('ftr_perf_' + k, el.value);
+    });
+    const url = document.getElementById('perf-best-url');
+    const notes = document.getElementById('perf-notes');
+    if (url) localStorage.setItem('ftr_perf_best_url', url.value);
+    if (notes) localStorage.setItem('ftr_perf_notes', notes.value);
+    // Update display numbers
+    updatePerfDisplay();
+    const msg = document.getElementById('perf-saved-msg');
+    if (msg) { msg.style.display = 'inline'; setTimeout(() => msg.style.display = 'none', 2000); }
+  }
+
+  function updatePerfDisplay() {
+    ['followers','growth','impressions','dms','leads'].forEach(k => {
+      const val = localStorage.getItem('ftr_perf_' + k);
+      const disp = document.getElementById('perf-' + k + '-disp');
+      if (disp) disp.textContent = val ? Number(val).toLocaleString('da-DK') : '—';
+    });
+  }
+
+  function loadPerfData() {
+    ['followers','growth','impressions','dms','leads'].forEach(k => {
+      const val = localStorage.getItem('ftr_perf_' + k);
+      const el = document.getElementById('perf-' + k);
+      if (el && val !== null) el.value = val;
+    });
+    const url = document.getElementById('perf-best-url');
+    const urlVal = localStorage.getItem('ftr_perf_best_url');
+    if (url && urlVal) url.value = urlVal;
+    const notes = document.getElementById('perf-notes');
+    const notesVal = localStorage.getItem('ftr_perf_notes');
+    if (notes && notesVal) notes.value = notesVal;
+    updatePerfDisplay();
+  }
+
+  loadPerfData();
 </script>
 
 </body>
