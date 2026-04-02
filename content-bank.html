@@ -93,6 +93,18 @@
     .idea-card-title { font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.45; }
     .idea-card-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
 
+    /* VIDEO CARDS */
+    .video-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
+    .video-card-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.4; }
+    .video-card-why { font-size: 12.5px; color: var(--muted); line-height: 1.55; }
+    .video-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-top: 2px; }
+    .video-format-tag { font-size: 11px; background: rgba(28,26,23,0.07); color: var(--text); border-radius: 4px; padding: 2px 8px; font-family: -apple-system, sans-serif; }
+    .video-priority-tag { font-size: 11px; border-radius: 4px; padding: 2px 8px; font-weight: 600; font-family: -apple-system, sans-serif; }
+    .prio-1 { background: #ff0800; color: #fff; }
+    .prio-2 { background: #f0e8d1; color: #1C1A17; border: 1px solid #d4c9b0; }
+    .prio-3 { background: transparent; color: var(--muted); border: 1px solid var(--border); }
+    .section-sub { font-size: 13px; color: var(--muted); margin-top: 4px; line-height: 1.6; font-family: -apple-system, sans-serif; }
+
     /* LEGEND */
     .legend { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 20px; }
     .legend-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: var(--muted); font-family: -apple-system, sans-serif; }
@@ -3293,6 +3305,131 @@ Then we go from there.</div>
         <div class="idea-card-title">Shared goals — why salespeople need to see the big picture</div>
         <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
       </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- VIDEO POSTS ─────────────────────────────────────────────── -->
+  <div class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-title">🎥 Video posts</div>
+        <div class="section-sub">Curated from the content bank — posts that hit harder on camera than in text.<br>
+        Recommended cadence: <strong>1 video per week</strong> — enough to build presence without burning out.</div>
+      </div>
+    </div>
+
+    <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap:14px; margin-top:18px;">
+
+      <div class="video-card">
+        <div class="video-card-title">Why. Why Not. Why Not Me.</div>
+        <div class="video-card-why">A personal monologue that builds to a punchline. The structure is already built for a 60-sec delivery.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-1">Start here</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">The Power of Silence</div>
+        <div class="video-card-why">You can demonstrate it live — hold the silence on camera. Uncomfortable for the viewer = memorable.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Demo / roleplay</span>
+          <span class="video-priority-tag prio-1">Start here</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Christina — "I'm not a sales type"</div>
+        <div class="video-card-why">A belief-flip story. Before → After. Relatable to every non-sales person in your audience.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Story</span>
+          <span class="video-priority-tag prio-1">Start here</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Energy as a compass</div>
+        <div class="video-card-why">This is your personal philosophy and it shows on you. The topic becomes the medium.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-2">High impact</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Don't Put a Mask On</div>
+        <div class="video-card-why">Direct to camera, vulnerable. Builds deep trust. Works best raw — no cuts, no b-roll.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-2">High impact</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Demo Like Ice Cream</div>
+        <div class="video-card-why">A technique with a physical, visual metaphor. You can act it out — pulling features vs offering a taste.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Demo / roleplay</span>
+          <span class="video-priority-tag prio-2">High impact</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">I hate sales scripts</div>
+        <div class="video-card-why">Strong opinion = strong hook. Will spark comments. Polarizing in the best way.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-2">High impact</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">CEO day 1 — "Act like a sponge"</div>
+        <div class="video-card-why">A story with a concrete principle. The image of a sponge is visual and memorable — works in video.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Story</span>
+          <span class="video-priority-tag prio-3">Build towards</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Say No to a Client</div>
+        <div class="video-card-why">Counterintuitive and instantly engaging. Great for a short punchy format with one core lesson.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-3">Build towards</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Self-care is not the reward. It's the infrastructure.</div>
+        <div class="video-card-why">A reframe that challenges a widespread belief. Works as a slow, calm delivery — you model it as you say it.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-3">Build towards</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Sales Is a Mirror of Your Life</div>
+        <div class="video-card-why">Big idea, personal stakes. Works as a manifesto video. Let this one breathe — don't rush it.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Manifesto</span>
+          <span class="video-priority-tag prio-3">Build towards</span>
+        </div>
+      </div>
+
+      <div class="video-card">
+        <div class="video-card-title">Hire Slow. Fire Fast.</div>
+        <div class="video-card-why">Punchy leadership take. Good for building a leadership audience alongside the sales audience.</div>
+        <div class="video-card-meta">
+          <span class="video-format-tag">Talking head</span>
+          <span class="video-priority-tag prio-3">Build towards</span>
+        </div>
+      </div>
+
     </div>
   </div>
 
