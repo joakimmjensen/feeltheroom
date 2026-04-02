@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kompas — Diamant × Dynamisk</title>
+<style>
+  :root { --bg:#0F0E0C; --gold:#C49A6A; --gold2:#8B6F47; --text:#F5F0E8; --text2:#8A8070; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; padding:48px 32px; }
+  h1 { font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--text2); margin-bottom:6px; }
+  p.sub { font-size:13px; color:var(--text2); margin-bottom:48px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:32px; }
+  .card { background:#181714; border:1px solid #2a2620; border-radius:16px; overflow:hidden; }
+  .graphic { background:var(--bg); display:flex; align-items:center; justify-content:center; height:340px; }
+  .label { padding:20px 24px; border-top:1px solid #2a2620; }
+  .num { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold2); margin-bottom:6px; }
+  .name { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .desc { font-size:13px; color:var(--text2); line-height:1.5; }
+</style>
+</head>
+<body>
+
+<h1>Diamant × Dynamisk — 5 kombinationer</h1>
+<p class="sub">Diamantens geometriske form kombineret med Dynamisk's energi og skrå nål.</p>
+
+<div class="grid">
+
+  <!-- COMBO 1: Diamond frame + tilted needle + big F -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="c1g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#c1g)"/>
+        <!-- Diamond outer -->
+        <polygon points="150,28 272,150 150,272 28,150" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <!-- Inner circle -->
+        <circle cx="150" cy="150" r="76" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.45"/>
+        <!-- Lines diamond to circle -->
+        <line x1="150" y1="28"  x2="150" y2="74"  stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="272" y1="150" x2="226" y2="150" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="150" y1="272" x2="150" y2="226" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="28"  y1="150" x2="74"  y2="150" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <!-- Big dominant F -->
+        <text x="150" y="20" text-anchor="middle" font-family="Georgia,serif" font-size="24" font-weight="700" fill="#C49A6A" opacity="1">F</text>
+        <!-- Smaller E E L -->
+        <text x="285" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#C49A6A" opacity="0.7">E</text>
+        <text x="150" y="292" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#C49A6A" opacity="0.7">E</text>
+        <text x="15"  y="155" text-anchor="middle" font-family="Georgia,serif" font-size="15" fill="#C49A6A" opacity="0.7">L</text>
+        <!-- Tilted needle (rotated ~20° clockwise) -->
+        <g transform="rotate(20, 150, 150)">
+          <polygon points="150,78 147,150 150,156 153,150" fill="#C49A6A" opacity="0.85"/>
+          <polygon points="150,222 147,150 150,156 153,150" fill="#8B6F47" opacity="0.3"/>
+        </g>
+        <!-- Center -->
+        <circle cx="150" cy="150" r="5" fill="#C49A6A" opacity="0.9"/>
+        <circle cx="150" cy="150" r="9" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <!-- Diamond corner accent -->
+        <polygon points="150,34 153,41 150,48 147,41" fill="#C49A6A" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Kombination 1</div>
+      <div class="name">Diamant + Skrå nål</div>
+      <div class="desc">Diamantens rene form med Dynamisk's skrå nål og store F. Energi i geometri.</div>
+    </div>
+  </div>
+
+  <!-- COMBO 2: Diamond + tilted needle + F glow effect -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="c2g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="c2fg" cx="50%" cy="10%" r="40%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Glow near F -->
+        <ellipse cx="150" cy="60" rx="80" ry="60" fill="url(#c2fg)"/>
+        <circle cx="150" cy="150" r="130" fill="url(#c2g)"/>
+        <!-- Diamond outer — slightly bolder -->
+        <polygon points="150,26 274,150 150,274 26,150" fill="none" stroke="#C49A6A" stroke-width="1.2" opacity="0.5"/>
+        <!-- Inner circle -->
+        <circle cx="150" cy="150" r="76" fill="none" stroke="#C49A6A" stroke-width="0.7" opacity="0.35"/>
+        <!-- Connector lines -->
+        <line x1="150" y1="26"  x2="150" y2="74"  stroke="#C49A6A" stroke-width="0.7" opacity="0.4"/>
+        <line x1="274" y1="150" x2="226" y2="150" stroke="#C49A6A" stroke-width="0.7" opacity="0.25"/>
+        <line x1="150" y1="274" x2="150" y2="226" stroke="#C49A6A" stroke-width="0.7" opacity="0.25"/>
+        <line x1="26"  y1="150" x2="74"  y2="150" stroke="#C49A6A" stroke-width="0.7" opacity="0.25"/>
+        <!-- Letters — F brighter than rest -->
+        <text x="150" y="18" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#F5F0E8" opacity="0.95">F</text>
+        <text x="286" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">E</text>
+        <text x="150" y="294" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">E</text>
+        <text x="14"  y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">L</text>
+        <!-- Tilted needle ~15° -->
+        <g transform="rotate(15, 150, 150)">
+          <polygon points="150,76 147,150 150,157 153,150" fill="#C49A6A" opacity="0.9"/>
+          <polygon points="150,224 147,150 150,157 153,150" fill="#8B6F47" opacity="0.25"/>
+        </g>
+        <circle cx="150" cy="150" r="4.5" fill="#F5F0E8" opacity="0.85"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Kombination 2</div>
+      <div class="name">Diamant + Lys F</div>
+      <div class="desc">F lyser hvidt — som et nordstjerne-punkt. Resten falder i guld bagved.</div>
+    </div>
+  </div>
+
+  <!-- COMBO 3: Diamond + tilted needle + double diamond rings -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="c3g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#c3g)"/>
+        <!-- Outer diamond -->
+        <polygon points="150,26 274,150 150,274 26,150" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <!-- Inner diamond (rotated 45° = square) -->
+        <rect x="96" y="96" width="108" height="108" fill="none" stroke="#C49A6A" stroke-width="0.6" opacity="0.25" transform="rotate(0,150,150)"/>
+        <!-- Inner circle -->
+        <circle cx="150" cy="150" r="60" fill="none" stroke="#C49A6A" stroke-width="0.7" opacity="0.35"/>
+        <!-- Cardinal connectors -->
+        <line x1="150" y1="26"  x2="150" y2="90"  stroke="#C49A6A" stroke-width="0.5" opacity="0.3"/>
+        <line x1="274" y1="150" x2="210" y2="150" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <line x1="150" y1="274" x2="150" y2="210" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <line x1="26"  y1="150" x2="90"  y2="150" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <!-- Tick dots at diamond corners -->
+        <circle cx="150" cy="26"  r="2.5" fill="#C49A6A" opacity="0.6"/>
+        <circle cx="274" cy="150" r="2.5" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="150" cy="274" r="2.5" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="26"  cy="150" r="2.5" fill="#C49A6A" opacity="0.4"/>
+        <!-- Letters -->
+        <text x="150" y="16" text-anchor="middle" font-family="Georgia,serif" font-size="22" font-weight="700" fill="#C49A6A" opacity="0.95">F</text>
+        <text x="285" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.65">E</text>
+        <text x="150" y="291" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.65">E</text>
+        <text x="15"  y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.65">L</text>
+        <!-- Tilted needle ~25° -->
+        <g transform="rotate(25, 150, 150)">
+          <polygon points="150,82 147,150 150,157 153,150" fill="#C49A6A" opacity="0.8"/>
+          <polygon points="150,218 147,150 150,157 153,150" fill="#8B6F47" opacity="0.28"/>
+        </g>
+        <circle cx="150" cy="150" r="5" fill="#C49A6A" opacity="0.85"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Kombination 3</div>
+      <div class="name">Dobbelt Diamant</div>
+      <div class="desc">Ydre diamant + indre kvadrat + cirkel. Tre lag geometri med skrå nål i midten.</div>
+    </div>
+  </div>
+
+  <!-- COMBO 4: Diamond + no needle, crosshair center, dynamic F size -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="c4g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.13"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#c4g)"/>
+        <!-- Diamond outer — thick -->
+        <polygon points="150,24 276,150 150,276 24,150" fill="none" stroke="#C49A6A" stroke-width="1.4" opacity="0.55"/>
+        <!-- Circle -->
+        <circle cx="150" cy="150" r="70" fill="none" stroke="#C49A6A" stroke-width="0.7" opacity="0.4"/>
+        <!-- Full cross lines through center (tilted 20°) -->
+        <g transform="rotate(20, 150, 150)">
+          <line x1="150" y1="24" x2="150" y2="276" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+          <line x1="24" y1="150" x2="276" y2="150" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+          <!-- Needle along the tilted axis -->
+          <polygon points="150,76 147,150 150,157 153,150" fill="#C49A6A" opacity="0.85"/>
+          <polygon points="150,224 147,150 150,157 153,150" fill="#8B6F47" opacity="0.25"/>
+        </g>
+        <!-- Letters — F much bigger -->
+        <text x="150" y="14" text-anchor="middle" font-family="Georgia,serif" font-size="28" font-weight="700" fill="#C49A6A" opacity="1">F</text>
+        <text x="289" y="156" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C49A6A" opacity="0.55">E</text>
+        <text x="150" y="295" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C49A6A" opacity="0.55">E</text>
+        <text x="11"  y="156" text-anchor="middle" font-family="Georgia,serif" font-size="13" fill="#C49A6A" opacity="0.55">L</text>
+        <!-- Center crosshair -->
+        <circle cx="150" cy="150" r="6" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.7"/>
+        <circle cx="150" cy="150" r="2" fill="#C49A6A" opacity="0.9"/>
+        <!-- Corner accents on diamond -->
+        <polygon points="150,30 153,38 150,46 147,38" fill="#C49A6A" opacity="0.7"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Kombination 4</div>
+      <div class="name">Diamant + Drejet akse</div>
+      <div class="desc">Hele aksesystemet er drejet. F er stor og dominerende. Kompas i aktiv bevægelse.</div>
+    </div>
+  </div>
+
+  <!-- COMBO 5: Diamond outer + dynamic bold serif F + minimal inner -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="c5g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+          <linearGradient id="c5ng" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#F5F0E8" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0.5"/>
+          </linearGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#c5g)"/>
+        <!-- Clean diamond -->
+        <polygon points="150,26 274,150 150,274 26,150" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.45"/>
+        <!-- Very subtle inner circle -->
+        <circle cx="150" cy="150" r="68" fill="none" stroke="#C49A6A" stroke-width="0.5" opacity="0.25"/>
+        <!-- Short tick marks only at top and cardinal points -->
+        <line x1="150" y1="26"  x2="150" y2="40"  stroke="#C49A6A" stroke-width="1.5" opacity="0.7"/>
+        <line x1="274" y1="150" x2="260" y2="150" stroke="#C49A6A" stroke-width="1"   opacity="0.4"/>
+        <line x1="150" y1="274" x2="150" y2="260" stroke="#C49A6A" stroke-width="1"   opacity="0.4"/>
+        <line x1="26"  y1="150" x2="40"  y2="150" stroke="#C49A6A" stroke-width="1"   opacity="0.4"/>
+        <!-- Letters -->
+        <text x="150" y="16" text-anchor="middle" font-family="Georgia,serif" font-size="26" font-weight="700" fill="#C49A6A" opacity="1">F</text>
+        <text x="284" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">E</text>
+        <text x="150" y="292" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">E</text>
+        <text x="16"  y="155" text-anchor="middle" font-family="Georgia,serif" font-size="14" fill="#C49A6A" opacity="0.6">L</text>
+        <!-- Gradient needle tilted ~18° — more dramatic length -->
+        <g transform="rotate(18, 150, 150)">
+          <polygon points="150,60 147.5,150 150,158 152.5,150" fill="url(#c5ng)" opacity="0.9"/>
+          <polygon points="150,230 147.5,150 150,158 152.5,150" fill="#8B6F47" opacity="0.22"/>
+        </g>
+        <!-- Center jewel -->
+        <circle cx="150" cy="150" r="7" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.5"/>
+        <circle cx="150" cy="150" r="3" fill="#F5F0E8" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Kombination 5</div>
+      <div class="name">Diamant + Gradirentnål</div>
+      <div class="desc">Lang nål med gradient fra hvid til guld, drejet let. Ren diamant uden støj. Mest elegant.</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:48px;font-size:12px;color:#4a4540;text-align:center">1 · 2 · 3 · 4 · 5 — hvilken peger du mod?</p>
+</body>
+</html>

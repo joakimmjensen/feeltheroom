@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Graphic Concepts</title>
+<style>
+  :root {
+    --bg: #0F0E0C;
+    --gold: #C49A6A;
+    --gold2: #8B6F47;
+    --text: #F5F0E8;
+    --text2: #8A8070;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; padding: 48px 32px; }
+  h1 { font-size: 14px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text2); margin-bottom: 48px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+  .card {
+    background: #181714;
+    border: 1px solid #2a2620;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .card-graphic {
+    background: #0F0E0C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 320px;
+    position: relative;
+  }
+  .card-label {
+    padding: 20px 24px;
+    border-top: 1px solid #2a2620;
+  }
+  .card-num { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold2); margin-bottom: 6px; }
+  .card-name { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+  .card-desc { font-size: 13px; color: var(--text2); line-height: 1.5; }
+</style>
+</head>
+<body>
+
+<h1>Hero Graphic — 5 forslag</h1>
+
+<div class="grid">
+
+  <!-- CONCEPT 1: Pulse wave -->
+  <div class="card">
+    <div class="card-graphic">
+      <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g1" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Background glow -->
+        <circle cx="140" cy="140" r="120" fill="url(#g1)"/>
+        <!-- Pulse rings — varying opacity to suggest animation -->
+        <circle cx="140" cy="140" r="30"  fill="none" stroke="#C49A6A" stroke-width="1.5" opacity="0.9"/>
+        <circle cx="140" cy="140" r="55"  fill="none" stroke="#C49A6A" stroke-width="1"   opacity="0.55"/>
+        <circle cx="140" cy="140" r="82"  fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.3"/>
+        <circle cx="140" cy="140" r="110" fill="none" stroke="#C49A6A" stroke-width="0.6" opacity="0.15"/>
+        <!-- Center dot -->
+        <circle cx="140" cy="140" r="8" fill="#C49A6A" opacity="0.9"/>
+        <circle cx="140" cy="140" r="4" fill="#F5F0E8" opacity="0.8"/>
+        <!-- Crosshair subtle -->
+        <line x1="140" y1="100" x2="140" y2="120" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <line x1="140" y1="160" x2="140" y2="180" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <line x1="100" y1="140" x2="120" y2="140" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <line x1="160" y1="140" x2="180" y2="140" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="card-label">
+      <div class="card-num">Forslag 1</div>
+      <div class="card-name">Pulse / Radar</div>
+      <div class="card-desc">Enkelt centrum med ringe der breder sig ud. Symboliserer bevidsthed — at du "mærker" rummet.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 2: F·E·E·L compass -->
+  <div class="card">
+    <div class="card-graphic">
+      <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g2" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="140" cy="140" r="110" fill="url(#g2)"/>
+        <!-- Outer ring -->
+        <circle cx="140" cy="140" r="100" fill="none" stroke="#8B6F47" stroke-width="0.6" opacity="0.3"/>
+        <!-- Inner ring -->
+        <circle cx="140" cy="140" r="64" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.5"/>
+        <!-- Tick marks -->
+        <line x1="140" y1="40" x2="140" y2="52" stroke="#C49A6A" stroke-width="1.5" opacity="0.8"/>
+        <line x1="140" y1="228" x2="140" y2="240" stroke="#C49A6A" stroke-width="1.5" opacity="0.8"/>
+        <line x1="40" y1="140" x2="52" y2="140" stroke="#C49A6A" stroke-width="1.5" opacity="0.8"/>
+        <line x1="228" y1="140" x2="240" y2="140" stroke="#C49A6A" stroke-width="1.5" opacity="0.8"/>
+        <!-- Diagonal ticks -->
+        <line x1="70" y1="70" x2="78" y2="78" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="210" y1="70" x2="202" y2="78" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="70" y1="210" x2="78" y2="202" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="210" y1="210" x2="202" y2="202" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <!-- Letters at cardinal points -->
+        <text x="140" y="30" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" letter-spacing="1" opacity="0.9">F</text>
+        <text x="254" y="145" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" letter-spacing="1" opacity="0.9">E</text>
+        <text x="140" y="260" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" letter-spacing="1" opacity="0.9">E</text>
+        <text x="26" y="145" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" letter-spacing="1" opacity="0.9">L</text>
+        <!-- Center -->
+        <circle cx="140" cy="140" r="6" fill="#C49A6A" opacity="0.8"/>
+        <!-- Needle -->
+        <polygon points="140,80 136,140 140,145 144,140" fill="#C49A6A" opacity="0.6"/>
+        <polygon points="140,200 136,140 140,145 144,140" fill="#8B6F47" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="card-label">
+      <div class="card-num">Forslag 2</div>
+      <div class="card-name">Kompas / F·E·E·L</div>
+      <div class="card-desc">F, E, E, L som de fire verdenshjørner på et kompas. Navigation og retning som metafor for lederskab.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 3: Waveform / frequency -->
+  <div class="card">
+    <div class="card-graphic">
+      <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0"/>
+            <stop offset="20%" stop-color="#C49A6A" stop-opacity="0.8"/>
+            <stop offset="80%" stop-color="#C49A6A" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="g3b" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0"/>
+            <stop offset="20%" stop-color="#8B6F47" stop-opacity="0.5"/>
+            <stop offset="80%" stop-color="#8B6F47" stop-opacity="0.5"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- Wave lines — different amplitudes -->
+        <!-- Line 1 - small top -->
+        <path d="M20,110 Q50,98 70,110 Q90,122 110,110 Q130,98 140,110 Q150,122 170,110 Q190,98 210,110 Q230,122 260,110" fill="none" stroke="url(#g3b)" stroke-width="1" opacity="0.4"/>
+        <!-- Line 2 - medium -->
+        <path d="M20,125 Q50,105 70,125 Q90,145 110,125 Q130,105 140,125 Q150,145 170,125 Q190,105 210,125 Q230,145 260,125" fill="none" stroke="url(#g3b)" stroke-width="1.2" opacity="0.55"/>
+        <!-- Line 3 - main bold wave -->
+        <path d="M20,140 Q50,105 70,140 Q90,175 110,140 Q130,105 140,140 Q150,175 170,140 Q190,105 210,140 Q230,175 260,140" fill="none" stroke="url(#g3)" stroke-width="2" opacity="0.9"/>
+        <!-- Line 4 - medium mirror -->
+        <path d="M20,155 Q50,175 70,155 Q90,135 110,155 Q130,175 140,155 Q150,135 170,155 Q190,175 210,155 Q230,135 260,155" fill="none" stroke="url(#g3b)" stroke-width="1.2" opacity="0.55"/>
+        <!-- Line 5 - small bottom -->
+        <path d="M20,170 Q50,158 70,170 Q90,182 110,170 Q130,158 140,170 Q150,182 170,170 Q190,158 210,170 Q230,182 260,170" fill="none" stroke="url(#g3b)" stroke-width="1" opacity="0.4"/>
+        <!-- Center dot on wave -->
+        <circle cx="140" cy="140" r="4" fill="#C49A6A" opacity="0.9"/>
+        <!-- Vertical center line -->
+        <line x1="140" y1="60" x2="140" y2="220" stroke="#C49A6A" stroke-width="0.6" stroke-dasharray="2 4" opacity="0.25"/>
+      </svg>
+    </div>
+    <div class="card-label">
+      <div class="card-num">Forslag 3</div>
+      <div class="card-name">Frekvens / Energi</div>
+      <div class="card-desc">Bølger der bevæger sig. Symboliserer den energi og stemning du lærer at mærke i rummet.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 4: Minimal portrait + aura -->
+  <div class="card">
+    <div class="card-graphic">
+      <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="g4" cx="50%" cy="38%" r="45%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+          <radialGradient id="g4b" cx="50%" cy="38%" r="50%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.08"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <!-- Outer aura -->
+        <ellipse cx="140" cy="115" rx="90" ry="90" fill="url(#g4b)"/>
+        <!-- Inner aura -->
+        <ellipse cx="140" cy="115" rx="56" ry="56" fill="url(#g4)"/>
+        <!-- Head -->
+        <circle cx="140" cy="100" r="32" fill="none" stroke="#C49A6A" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="140" cy="100" r="22" fill="#C49A6A" opacity="0.12"/>
+        <!-- Body / shoulders -->
+        <path d="M90,210 Q105,160 140,155 Q175,160 190,210" fill="none" stroke="#C49A6A" stroke-width="1.5" opacity="0.5"/>
+        <!-- Subtle aura rings -->
+        <ellipse cx="140" cy="115" rx="72" ry="72" fill="none" stroke="#C49A6A" stroke-width="0.6" stroke-dasharray="3 5" opacity="0.25"/>
+        <ellipse cx="140" cy="115" rx="96" ry="96" fill="none" stroke="#C49A6A" stroke-width="0.4" stroke-dasharray="2 7" opacity="0.12"/>
+        <!-- Small dots suggesting awareness/sensing -->
+        <circle cx="60" cy="90" r="2.5" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="220" cy="90" r="2.5" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="48" cy="130" r="1.8" fill="#C49A6A" opacity="0.25"/>
+        <circle cx="232" cy="130" r="1.8" fill="#C49A6A" opacity="0.25"/>
+        <circle cx="75" cy="55" r="1.5" fill="#C49A6A" opacity="0.2"/>
+        <circle cx="205" cy="55" r="1.5" fill="#C49A6A" opacity="0.2"/>
+      </svg>
+    </div>
+    <div class="card-label">
+      <div class="card-num">Forslag 4</div>
+      <div class="card-name">Tilstedeværelse / Aura</div>
+      <div class="card-desc">Minimal menneskelig silhouet med en aura-effekt. Personlig, varmt — handler om din tilstedeværelse som leder.</div>
+    </div>
+  </div>
+
+  <!-- CONCEPT 5: Large FEEL typography -->
+  <div class="card">
+    <div class="card-graphic">
+      <svg width="280" height="280" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="g5" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.9"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0.4"/>
+          </linearGradient>
+          <linearGradient id="g5bg" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.04"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        <!-- Background subtle -->
+        <rect x="20" y="60" width="240" height="160" rx="8" fill="url(#g5bg)"/>
+        <!-- Large letters — vertically stacked, editorial -->
+        <text x="50" y="120" font-family="Georgia,serif" font-size="64" font-weight="700" fill="url(#g5)" letter-spacing="-2" opacity="1">F</text>
+        <text x="50" y="120" font-family="Georgia,serif" font-size="64" font-weight="700" fill="none" stroke="#C49A6A" stroke-width="0.5" letter-spacing="-2" opacity="0.2">F</text>
+
+        <text x="100" y="120" font-family="Georgia,serif" font-size="64" font-weight="700" fill="url(#g5)" opacity="0.75">E</text>
+        <text x="150" y="120" font-family="Georgia,serif" font-size="64" font-weight="700" fill="url(#g5)" opacity="0.55">E</text>
+        <text x="197" y="120" font-family="Georgia,serif" font-size="64" font-weight="700" fill="url(#g5)" opacity="0.35">L</text>
+
+        <!-- Subtle underline / rule -->
+        <line x1="50" y1="134" x2="230" y2="134" stroke="#C49A6A" stroke-width="0.8" opacity="0.25"/>
+
+        <!-- Tagline below -->
+        <text x="50" y="158" font-family="-apple-system,sans-serif" font-size="11" fill="#8B6F47" letter-spacing="3" opacity="0.7">THE ROOM</text>
+
+        <!-- Small decorative element -->
+        <circle cx="230" cy="158" r="3" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.4"/>
+        <circle cx="230" cy="158" r="1.2" fill="#C49A6A" opacity="0.5"/>
+
+        <!-- Bottom subtle dots / texture -->
+        <circle cx="50" cy="195" r="1.5" fill="#C49A6A" opacity="0.2"/>
+        <circle cx="65" cy="195" r="1.5" fill="#C49A6A" opacity="0.15"/>
+        <circle cx="80" cy="195" r="1.5" fill="#C49A6A" opacity="0.1"/>
+      </svg>
+    </div>
+    <div class="card-label">
+      <div class="card-num">Forslag 5</div>
+      <div class="card-name">Typografi / Editorial</div>
+      <div class="card-desc">FEEL i stort serif-display med faldende opacity. Rent, modigt og grafisk stærkt. Ingen noder, ingen net.</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:48px; font-size:12px; color:#4a4540; text-align:center;">Hvilket nummer vil du gå videre med?</p>
+
+</body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kompas Variationer — Feel the Room</title>
+<style>
+  :root { --bg:#0F0E0C; --gold:#C49A6A; --gold2:#8B6F47; --text:#F5F0E8; --text2:#8A8070; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; padding:48px 32px; }
+  h1 { font-size:12px; letter-spacing:.15em; text-transform:uppercase; color:var(--text2); margin-bottom:8px; }
+  p.sub { font-size:13px; color:var(--text2); margin-bottom:48px; }
+  .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:32px; }
+  .card { background:#181714; border:1px solid #2a2620; border-radius:16px; overflow:hidden; }
+  .graphic { background:var(--bg); display:flex; align-items:center; justify-content:center; height:340px; }
+  .label { padding:20px 24px; border-top:1px solid #2a2620; }
+  .num { font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold2); margin-bottom:6px; }
+  .name { font-size:16px; font-weight:600; color:var(--text); margin-bottom:6px; }
+  .desc { font-size:13px; color:var(--text2); line-height:1.5; }
+</style>
+</head>
+<body>
+
+<h1>Kompas — 6 variationer</h1>
+<p class="sub">Baseret på Forslag 2. Hvad fungerer bedst som hero-grafik?</p>
+
+<div class="grid">
+
+  <!-- V1: Original reference -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v1g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.14"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v1g)"/>
+        <circle cx="150" cy="150" r="118" fill="none" stroke="#8B6F47" stroke-width="0.6" opacity="0.3"/>
+        <circle cx="150" cy="150" r="74" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.5"/>
+        <line x1="150" y1="32" x2="150" y2="48" stroke="#C49A6A" stroke-width="2" opacity="0.8"/>
+        <line x1="150" y1="252" x2="150" y2="268" stroke="#C49A6A" stroke-width="2" opacity="0.8"/>
+        <line x1="32" y1="150" x2="48" y2="150" stroke="#C49A6A" stroke-width="2" opacity="0.8"/>
+        <line x1="252" y1="150" x2="268" y2="150" stroke="#C49A6A" stroke-width="2" opacity="0.8"/>
+        <line x1="74" y1="74" x2="84" y2="84" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="226" y1="74" x2="216" y2="84" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="74" y1="226" x2="84" y2="216" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <line x1="226" y1="226" x2="216" y2="216" stroke="#8B6F47" stroke-width="0.8" opacity="0.4"/>
+        <text x="150" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" fill="#C49A6A" opacity="0.9">F</text>
+        <text x="278" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" fill="#C49A6A" opacity="0.9">E</text>
+        <text x="150" y="290" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" fill="#C49A6A" opacity="0.9">E</text>
+        <text x="22" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="15" font-weight="700" fill="#C49A6A" opacity="0.9">L</text>
+        <circle cx="150" cy="150" r="6" fill="#C49A6A" opacity="0.8"/>
+        <polygon points="150,82 146,150 150,156 154,150" fill="#C49A6A" opacity="0.65"/>
+        <polygon points="150,218 146,150 150,156 154,150" fill="#8B6F47" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 1 — Reference</div>
+      <div class="name">Klassisk kompas</div>
+      <div class="desc">Udgangspunktet. F·E·E·L som verdenshjørner med nål og dobbelt ring.</div>
+    </div>
+  </div>
+
+  <!-- V2: Minimal -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v2g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.07"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v2g)"/>
+        <circle cx="150" cy="150" r="100" fill="none" stroke="#C49A6A" stroke-width="0.5" opacity="0.4"/>
+        <line x1="150" y1="50" x2="150" y2="62" stroke="#C49A6A" stroke-width="1.2" opacity="0.6"/>
+        <line x1="150" y1="238" x2="150" y2="250" stroke="#C49A6A" stroke-width="1.2" opacity="0.6"/>
+        <line x1="50" y1="150" x2="62" y2="150" stroke="#C49A6A" stroke-width="1.2" opacity="0.6"/>
+        <line x1="238" y1="150" x2="250" y2="150" stroke="#C49A6A" stroke-width="1.2" opacity="0.6"/>
+        <text x="150" y="38" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#C49A6A" opacity="0.95">F</text>
+        <text x="268" y="157" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="150" y="276" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="32" y="157" text-anchor="middle" font-family="Georgia,serif" font-size="22" fill="#C49A6A" opacity="0.95">L</text>
+        <circle cx="150" cy="150" r="3" fill="#C49A6A" opacity="0.7"/>
+        <line x1="150" y1="80" x2="150" y2="220" stroke="#C49A6A" stroke-width="0.4" opacity="0.15"/>
+        <line x1="80" y1="150" x2="220" y2="150" stroke="#C49A6A" stroke-width="0.4" opacity="0.15"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 2</div>
+      <div class="name">Minimal / Stille</div>
+      <div class="desc">Ingen nål. Kun én ring og de fire bogstaver i serif. Meget roligt og fokuseret.</div>
+    </div>
+  </div>
+
+  <!-- V3: Bold architectural -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v3g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v3g)"/>
+        <circle cx="150" cy="150" r="118" fill="none" stroke="#C49A6A" stroke-width="1.5" opacity="0.5"/>
+        <circle cx="150" cy="150" r="80" fill="none" stroke="#C49A6A" stroke-width="0.6" opacity="0.25"/>
+        <line x1="150" y1="32" x2="150" y2="50" stroke="#C49A6A" stroke-width="2.5" opacity="0.9"/>
+        <line x1="150" y1="250" x2="150" y2="268" stroke="#C49A6A" stroke-width="2.5" opacity="0.9"/>
+        <line x1="32" y1="150" x2="50" y2="150" stroke="#C49A6A" stroke-width="2.5" opacity="0.9"/>
+        <line x1="250" y1="150" x2="268" y2="150" stroke="#C49A6A" stroke-width="2.5" opacity="0.9"/>
+        <line x1="83" y1="55" x2="89" y2="65" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="217" y1="55" x2="211" y2="65" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="83" y1="245" x2="89" y2="235" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="217" y1="245" x2="211" y2="235" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="55" y1="83" x2="65" y2="89" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="245" y1="83" x2="235" y2="89" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="55" y1="217" x2="65" y2="211" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <line x1="245" y1="217" x2="235" y2="211" stroke="#C49A6A" stroke-width="1" opacity="0.35"/>
+        <text x="150" y="134" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#C49A6A" opacity="0.7" letter-spacing="3">F</text>
+        <text x="210" y="156" text-anchor="start" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#C49A6A" opacity="0.7" letter-spacing="3">E</text>
+        <text x="150" y="178" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#C49A6A" opacity="0.7" letter-spacing="3">E</text>
+        <text x="90" y="156" text-anchor="end" font-family="-apple-system,sans-serif" font-size="13" font-weight="700" fill="#C49A6A" opacity="0.7" letter-spacing="3">L</text>
+        <polygon points="150,76 147,150 150,155 153,150" fill="#C49A6A" opacity="0.8"/>
+        <polygon points="150,224 147,150 150,155 153,150" fill="#8B6F47" opacity="0.35"/>
+        <circle cx="150" cy="150" r="7" fill="none" stroke="#C49A6A" stroke-width="1.5" opacity="0.7"/>
+        <circle cx="150" cy="150" r="3" fill="#C49A6A" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 3</div>
+      <div class="name">Arkitektonisk / Teknisk</div>
+      <div class="desc">Tyk yderring, 12 takter, bogstaver inde i ringen. Mere præcision og autoritet.</div>
+    </div>
+  </div>
+
+  <!-- V4: Diamond orientation -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v4g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#8B6F47" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#8B6F47" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v4g)"/>
+        <polygon points="150,30 270,150 150,270 30,150" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.35"/>
+        <circle cx="150" cy="150" r="72" fill="none" stroke="#C49A6A" stroke-width="0.8" opacity="0.4"/>
+        <line x1="150" y1="30" x2="150" y2="78" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="270" y1="150" x2="222" y2="150" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="150" y1="270" x2="150" y2="222" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <line x1="30" y1="150" x2="78" y2="150" stroke="#C49A6A" stroke-width="0.6" opacity="0.3"/>
+        <text x="150" y="20" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#C49A6A" opacity="0.95">F</text>
+        <text x="284" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="150" y="288" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="16" y="155" text-anchor="middle" font-family="Georgia,serif" font-size="18" font-weight="700" fill="#C49A6A" opacity="0.95">L</text>
+        <polygon points="150,82 147,150 150,156 153,150" fill="#C49A6A" opacity="0.7"/>
+        <polygon points="150,218 147,150 150,156 153,150" fill="#8B6F47" opacity="0.3"/>
+        <circle cx="150" cy="150" r="5" fill="#C49A6A" opacity="0.8"/>
+        <polygon points="150,36 153,43 150,50 147,43" fill="#C49A6A" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 4</div>
+      <div class="name">Diamant / Geometrisk</div>
+      <div class="desc">Kvadratisk ydre form — giver kompasset et mere unikt og skarpt geometrisk udtryk.</div>
+    </div>
+  </div>
+
+  <!-- V5: With full words -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v5g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.1"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v5g)"/>
+        <circle cx="150" cy="150" r="115" fill="none" stroke="#8B6F47" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="150" cy="150" r="72" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.45"/>
+        <line x1="150" y1="35" x2="150" y2="52" stroke="#C49A6A" stroke-width="1.8" opacity="0.8"/>
+        <line x1="150" y1="248" x2="150" y2="265" stroke="#C49A6A" stroke-width="1.8" opacity="0.8"/>
+        <line x1="35" y1="150" x2="52" y2="150" stroke="#C49A6A" stroke-width="1.8" opacity="0.8"/>
+        <line x1="248" y1="150" x2="265" y2="150" stroke="#C49A6A" stroke-width="1.8" opacity="0.8"/>
+        <text x="150" y="26" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="800" fill="#C49A6A" opacity="0.95">F</text>
+        <text x="278" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="800" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="150" y="284" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="800" fill="#C49A6A" opacity="0.95">E</text>
+        <text x="22" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="16" font-weight="800" fill="#C49A6A" opacity="0.95">L</text>
+        <text x="150" y="40" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="7" fill="#8B6F47" opacity="0.7" letter-spacing="1.5">FEEL</text>
+        <text x="278" y="168" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="7" fill="#8B6F47" opacity="0.7" letter-spacing="1.5">ENERGY</text>
+        <text x="150" y="296" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="7" fill="#8B6F47" opacity="0.7" letter-spacing="1.5">EMBODY</text>
+        <text x="22" y="168" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="7" fill="#8B6F47" opacity="0.7" letter-spacing="1.5">LEAD</text>
+        <polygon points="150,86 147,150 150,156 153,150" fill="#C49A6A" opacity="0.65"/>
+        <polygon points="150,214 147,150 150,156 153,150" fill="#8B6F47" opacity="0.3"/>
+        <circle cx="150" cy="150" r="6" fill="none" stroke="#C49A6A" stroke-width="1.2" opacity="0.7"/>
+        <circle cx="150" cy="150" r="2.5" fill="#C49A6A" opacity="0.9"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 5</div>
+      <div class="name">Med ord / Metodologi</div>
+      <div class="desc">Bogstav + ord under hvert hjørne — FEEL, ENERGY, EMBODY, LEAD. Fortæller historien visuelt.</div>
+    </div>
+  </div>
+
+  <!-- V6: Orbital rings -->
+  <div class="card">
+    <div class="graphic">
+      <svg width="300" height="300" viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="v6g" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#C49A6A" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#C49A6A" stop-opacity="0"/>
+          </radialGradient>
+        </defs>
+        <circle cx="150" cy="150" r="130" fill="url(#v6g)"/>
+        <circle cx="150" cy="150" r="116" fill="none" stroke="#C49A6A" stroke-width="0.4" opacity="0.2"/>
+        <circle cx="150" cy="150" r="88"  fill="none" stroke="#C49A6A" stroke-width="0.7" opacity="0.35"/>
+        <circle cx="150" cy="150" r="60"  fill="none" stroke="#C49A6A" stroke-width="1"   opacity="0.5"/>
+        <line x1="150" y1="150" x2="150" y2="34" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <line x1="150" y1="150" x2="150" y2="266" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <line x1="150" y1="150" x2="34" y2="150" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <line x1="150" y1="150" x2="266" y2="150" stroke="#C49A6A" stroke-width="0.5" opacity="0.2"/>
+        <circle cx="150" cy="62"  r="3" fill="#C49A6A" opacity="0.7"/>
+        <circle cx="238" cy="150" r="3" fill="#C49A6A" opacity="0.7"/>
+        <circle cx="150" cy="238" r="3" fill="#C49A6A" opacity="0.7"/>
+        <circle cx="62"  cy="150" r="3" fill="#C49A6A" opacity="0.7"/>
+        <circle cx="150" cy="90"  r="2" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="210" cy="150" r="2" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="150" cy="210" r="2" fill="#C49A6A" opacity="0.4"/>
+        <circle cx="90"  cy="150" r="2" fill="#C49A6A" opacity="0.4"/>
+        <text x="150" y="22" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" opacity="0.9">F</text>
+        <text x="280" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" opacity="0.9">E</text>
+        <text x="150" y="290" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" opacity="0.9">E</text>
+        <text x="20" y="155" text-anchor="middle" font-family="-apple-system,sans-serif" font-size="14" font-weight="700" fill="#C49A6A" opacity="0.9">L</text>
+        <circle cx="150" cy="150" r="8" fill="none" stroke="#C49A6A" stroke-width="1" opacity="0.6"/>
+        <circle cx="150" cy="150" r="3" fill="#C49A6A" opacity="0.8"/>
+      </svg>
+    </div>
+    <div class="label">
+      <div class="num">Variation 6</div>
+      <div class="name">Orbital / Solsystem</div>
+      <div class="desc">Tre ringe med prikker ved skæringspunkterne. Ingen nål — mere kontemplativt og raffineret.</div>
+    </div>
+  </div>
+
+</div>
+
+<p style="margin-top:48px;font-size:12px;color:#4a4540;text-align:center">Hvilken variation vil du gå videre med?</p>
+</body>
+</html>
