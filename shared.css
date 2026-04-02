@@ -92,7 +92,7 @@ nav {
 }
 
 .nav-links a {
-  font-size: 14px;
+  font-size: 16px;
   color: var(--text2);
   text-decoration: none;
   transition: color .2s;
@@ -108,7 +108,7 @@ nav {
   padding: 8px 18px;
   border-radius: 6px;
   font-weight: 600;
-  font-size: 14px !important;
+  font-size: 16px !important;
   transition: opacity .2s;
   text-decoration: none;
   font-family: var(--font-brand);
