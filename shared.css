@@ -4,9 +4,19 @@
    To change a colour — change it once, here.
    ============================================================ */
 
+/* ── Brand font ── */
+@font-face {
+  font-family: 'Molen Surplus';
+  src: url('Molen Surplus.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* ── Design tokens — always light mode ── */
 :root {
   color-scheme: light;
+  --font-brand:   'Molen Surplus', Georgia, serif;
   --bg:           #f0e8d1;
   --bg2:          #fff4e3;
   --bg3:          #e8dcc4;
