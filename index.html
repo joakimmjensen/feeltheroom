@@ -25,14 +25,14 @@
     section { padding:80px 48px; }
     .divider { height:0.5px; background:var(--border); margin:0 48px; }
     .hero { padding:96px 48px 80px; }
-    .hero-eyebrow { font-size:12px; color:var(--text2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px; }
-    .hero-title { font-size:56px; font-weight:600; line-height:1.08; max-width:680px; margin-bottom:28px; letter-spacing:-0.02em; }
-    .hero-title em { font-style:normal; color:var(--accent); }
+    .hero-eyebrow { font-size:12px; color:var(--text2); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:24px; font-family:var(--font-brand); }
+    .hero-title { font-size:56px; font-weight:600; line-height:1.08; max-width:680px; margin-bottom:28px; letter-spacing:-0.02em; font-family:var(--font-brand); }
+    .hero-title em { font-style:normal; color:var(--accent); font-family:var(--font-brand); }
     .hero-sub { font-size:18px; color:var(--text2); max-width:520px; line-height:1.7; margin-bottom:44px; }
     .btn-row { display:flex; gap:12px; flex-wrap:wrap; }
     .btn-primary { background:var(--accent); color:#fff4e3; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
     .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; }
-    .eyebrow { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; }
+    .eyebrow { font-size:11px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; font-family:var(--font-brand); }
     h2.section-title { font-size:34px; font-weight:600; line-height:1.2; max-width:580px; margin-bottom:16px; letter-spacing:-0.01em; }
     .section-body { font-size:16px; color:var(--text2); max-width:560px; line-height:1.75; }
     .card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:16px; margin-top:44px; }
@@ -43,7 +43,7 @@
     .feel-section { background:var(--bg2); }
     .feel-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:2px; margin-top:44px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
     .feel-item { background:var(--bg); padding:32px 28px; }
-    .feel-letter { font-size:40px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:8px; }
+    .feel-letter { font-size:40px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:8px; font-family:var(--font-brand); }
     .feel-word { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.1em; color:var(--text2); margin-bottom:14px; }
     .feel-desc { font-size:14px; color:var(--text2); line-height:1.65; }
     .forwho-grid { display:grid; grid-template-columns:1fr 1fr; gap:48px; margin-top:44px; }
@@ -53,26 +53,26 @@
     .check-dot svg { width:10px; height:10px; }
     .check-text { font-size:14px; color:var(--text2); line-height:1.55; }
     .case-card { background:var(--bg2); border-radius:var(--radius); border:0.5px solid var(--border); padding:44px; margin-top:44px; }
-    .case-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:10px; }
+    .case-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:10px; font-family:var(--font-brand); }
     .case-title { font-size:22px; font-weight:600; margin-bottom:14px; }
     .case-body { font-size:15px; color:var(--text2); line-height:1.75; max-width:620px; margin-bottom:36px; }
     .metrics-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); gap:2px; background:var(--border); border-radius:var(--radius-sm); overflow:hidden; }
     .metric { background:var(--bg); padding:22px 26px; }
-    .metric-num { font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:7px; }
+    .metric-num { font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:7px; font-family:var(--font-brand); }
     .metric-label { font-size:12px; color:var(--text2); line-height:1.4; }
     .case-disclaimer { font-size:12px; color:var(--text2); margin-top:18px; font-style:italic; opacity:0.75; }
     .offerings-section { background:var(--bg2); }
     .offering-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-top:44px; }
     .offering-card { background:var(--bg); border-radius:var(--radius); padding:32px 28px; border:0.5px solid var(--border); }
     .offering-card.featured { border:1.5px solid var(--accent); }
-    .offering-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:12px; }
+    .offering-tag { font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:12px; font-family:var(--font-brand); }
     .offering-name { font-size:20px; font-weight:600; margin-bottom:10px; }
     .offering-desc { font-size:14px; color:var(--text2); line-height:1.65; margin-bottom:22px; }
     .offering-link { font-size:14px; color:var(--accent); font-weight:600; text-decoration:none; display:inline-block; }
     .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:stretch; }
     .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
     .about-stat { background:var(--bg2); padding:22px 20px; }
-    .about-stat-num { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; }
+    .about-stat-num { font-size:28px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; font-family:var(--font-brand); }
     .about-stat-label { font-size:12px; color:var(--text2); line-height:1.4; }
     .testi-section { background:var(--bg2); }
     .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; margin-top:44px; }
@@ -109,7 +109,7 @@
       <div>
         <div class="hero-eyebrow">Sales Leadership · F.E.E.L. Framework</div>
         <img src="long%20red%20w%3Ao.svg" alt="Feel the Room" style="height:64px; width:auto; margin-bottom:10px; display:block;">
-        <div style="font-size:18px; color:var(--text2); letter-spacing:0.18em; text-transform:uppercase; font-weight:400; margin-bottom:28px; font-family:Georgia,serif; font-style:italic;">Lead with Intention.</div>
+        <div style="font-size:18px; color:var(--text2); letter-spacing:0.18em; text-transform:uppercase; font-weight:400; margin-bottom:28px; font-family:var(--font-brand); font-style:italic;">Lead with Intention.</div>
         <div style="margin-bottom:32px; display:flex; flex-direction:column; gap:10px;">
           <div style="display:flex; gap:14px; align-items:flex-start;">
             <span style="width:6px; height:6px; border-radius:50%; background:var(--accent); flex-shrink:0; margin-top:8px;"></span>
@@ -338,19 +338,19 @@
       </div>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
         <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius);padding:22px 20px;">
-          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;">20</div>
+          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;font-family:var(--font-brand);">20</div>
           <div style="font-size:13px;color:var(--text2);">Scenario questions</div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius);padding:22px 20px;">
-          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;">15</div>
+          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;font-family:var(--font-brand);">15</div>
           <div style="font-size:13px;color:var(--text2);">Core words you choose</div>
         </div>
         <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--radius);padding:22px 20px;">
-          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;">9</div>
+          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;font-family:var(--font-brand);">9</div>
           <div style="font-size:13px;color:var(--text2);">Unique aura profiles</div>
         </div>
         <div style="background:var(--bg);border:1.5px solid var(--accent);border-radius:var(--radius);padding:22px 20px;">
-          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;">Free</div>
+          <div style="font-size:22px;font-weight:700;color:var(--accent);margin-bottom:4px;font-family:var(--font-brand);">Free</div>
           <div style="font-size:13px;color:var(--text2);">No email required</div>
         </div>
       </div>
