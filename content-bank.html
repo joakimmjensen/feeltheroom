@@ -89,10 +89,20 @@
 
     /* IDEA BANK */
     .idea-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 10px; }
-    .idea-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; cursor: pointer; transition: border-color 0.15s; }
+    .idea-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; transition: border-color 0.15s; position: relative; }
     .idea-card:hover { border-color: var(--gold); }
-    .idea-card-title { font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.45; }
+    .idea-card-title { font-size: 13px; color: var(--text); margin-bottom: 8px; line-height: 1.45; padding-right: 18px; }
     .idea-card-meta { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .idea-delete-btn { position: absolute; top: 8px; right: 8px; background: none; border: none; color: var(--muted); font-size: 14px; cursor: pointer; line-height: 1; padding: 2px 4px; border-radius: 3px; opacity: 0; transition: opacity 0.15s; }
+    .idea-card:hover .idea-delete-btn { opacity: 1; }
+    .idea-delete-btn:hover { color: var(--red); }
+    .add-idea-form { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
+    .add-idea-input { flex: 1; min-width: 200px; padding: 9px 14px; font-size: 13px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--text); font-family: -apple-system, sans-serif; }
+    .add-idea-input:focus { outline: none; border-color: rgba(196,154,106,0.5); }
+    .add-idea-select { padding: 9px 12px; font-size: 12px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; color: var(--muted); font-family: -apple-system, sans-serif; cursor: pointer; }
+    .add-idea-btn { padding: 9px 18px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; background: rgba(196,154,106,0.15); color: var(--gold); border: 1px solid rgba(196,154,106,0.3); border-radius: 6px; cursor: pointer; font-family: -apple-system, sans-serif; white-space: nowrap; transition: background 0.15s; }
+    .add-idea-btn:hover { background: rgba(196,154,106,0.25); }
+    .idea-empty { font-size: 13px; color: var(--muted); font-style: italic; padding: 20px 0; }
 
     /* VIDEO CARDS */
     .video-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px 18px; display: flex; flex-direction: column; gap: 10px; }
@@ -197,6 +207,10 @@
 
   <!-- STATS -->
   <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-num" id="stat-idea">0</div>
+      <div class="stat-label">Ideas</div>
+    </div>
     <div class="stat-box">
       <div class="stat-num" id="stat-draft">0</div>
       <div class="stat-label">Draft</div>
@@ -3051,173 +3065,22 @@ Then we go from there.</div>
 
   <!-- IDÉBANK -->
   <div class="section">
-    <div class="section-title">Idea Bank · 38 topics</div>
-    <p class="cycle-hint" style="margin-bottom:20px;">Fra Joa's notesbog og content plan. Click a badge to change status.</p>
+    <div class="section-title">Idea Bank</div>
+    <p class="cycle-hint" style="margin-bottom:16px;">Add new ideas here. When you start writing a draft, delete the idea.</p>
 
-    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">From the notebook</div>
-    <div class="idea-grid" style="margin-bottom:28px;">
-
-      <div class="idea-card">
-        <div class="idea-card-title">Say no to a client</div>
-        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">50 goals</div>
-        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Questions to yourself — Why, Why Not, Why Not Me?</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The Power of Lists</div>
-        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Sales is a mirror of your life — The Whole Human</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Emotionally Regulated</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Sales = Discipline + The Ability to Keep Going</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Self-development is your best contribution</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Don't put a mask on — Authenticity</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The Importance of Qualification</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Frame Setting = Kontrol</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The one who asks the questions is in control</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Fuck Yes or Fuck No — eliminate "maybe"</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The three pillars</div>
-        <div class="idea-card-meta"><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The Power of Silence</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">How to Close</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Make the signature a non-event</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Demo like Ice Cream</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Know the Court!</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
+    <div class="add-idea-form">
+      <input type="text" class="add-idea-input" id="new-idea-input" placeholder="New idea..." onkeydown="if(event.key==='Enter')addIdea()" />
+      <select class="add-idea-select" id="new-idea-wheel">
+        <option value="">No tag</option>
+        <option value="coaching">C — Coaching</option>
+        <option value="lederskab">L — Leadership</option>
+        <option value="personligt">P — Personal</option>
+      </select>
+      <button class="add-idea-btn" onclick="addIdea()">+ Add idea</button>
     </div>
 
-    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">Fra content plan — Leadership in practice + personal foundation</div>
-    <div class="idea-grid" style="margin-bottom:28px;">
-      <div class="idea-card">
-        <div class="idea-card-title">Team Core Values Workshop — how you defined your values</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Performance needs fun — you can't perform without having fun. Closing week vs Friday bar</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">The whole person — why you ask about hobbies in interviews</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Celebrate the small things — the team wanted to do something together after each milestone. Not a flat screen, just each other</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Energy as a compass — sensing the energy in a room, when a client is ready, when they need space</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Think outside in — stop building solutions in a vacuum</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">People already have the answers — they just need someone to listen</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Take care of yourself — energy outside work directly affects performance</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Know your values — as an individual and as a team</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Closing technique — "Do you feel I can solve your problems? Yes? Why not now?"</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Take your time recruiting — the right people are everything</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-    </div>
-
-    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px;">From content plan — topic bank</div>
-    <div class="idea-grid">
-      <div class="idea-card">
-        <div class="idea-card-title">I hate scripts — with a concrete scenario</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Turning your knowledge into a product</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Hire slow, fire fast — the avatar exercise</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Expected / Good / GOAT targets</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Awareness in sales conversations — intentionality vs scripts</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Balancing Lunar and Feel the Room</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Champion building in enterprise sales</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-      <div class="idea-card">
-        <div class="idea-card-title">Shared goals — why salespeople need to see the big picture</div>
-        <div class="idea-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>
-      </div>
-    </div>
+    <div class="idea-grid" id="idea-bank-grid"></div>
+    <p class="idea-empty" id="idea-empty-msg">No ideas yet. Add one above.</p>
   </div>
 
   <hr>
@@ -3358,6 +3221,14 @@ Then we go from there.</div>
     states.forEach(s => el.classList.remove(s));
     el.classList.add(next);
     el.textContent = labels[next];
+    // If an idea-card badge is cycled past 'idea', remove it from the bank
+    if (next !== 'idea') {
+      const card = el.closest('.idea-card');
+      if (card && card.dataset.ideaId) {
+        deleteIdeaById(card.dataset.ideaId);
+        return;
+      }
+    }
     updateStats();
   }
 
@@ -3371,6 +3242,7 @@ Then we go from there.</div>
       else if (b.classList.contains('draft')) draft++;
       else if (b.classList.contains('idea')) idea++;
     });
+    document.getElementById('stat-idea').textContent = idea;
     document.getElementById('stat-ready').textContent = ready;
     document.getElementById('stat-approved').textContent = approved;
     document.getElementById('stat-draft').textContent = draft;
@@ -3378,6 +3250,56 @@ Then we go from there.</div>
     document.getElementById('stat-scripts-posted').textContent = cardsPosted;
     const totalPosts = document.querySelectorAll('.post-card').length;
     document.getElementById('stat-total-posts').textContent = totalPosts;
+  }
+
+  // ── IDEA BANK ─────────────────────────────────────────────────
+  function getIdeas() {
+    try { return JSON.parse(localStorage.getItem('ftr_ideas') || '[]'); } catch { return []; }
+  }
+  function saveIdeas(ideas) {
+    localStorage.setItem('ftr_ideas', JSON.stringify(ideas));
+  }
+  function renderIdeas() {
+    const ideas = getIdeas();
+    const grid = document.getElementById('idea-bank-grid');
+    const empty = document.getElementById('idea-empty-msg');
+    if (!grid) return;
+    grid.innerHTML = '';
+    if (ideas.length === 0) {
+      empty.style.display = '';
+      updateStats();
+      return;
+    }
+    empty.style.display = 'none';
+    ideas.forEach(idea => {
+      const card = document.createElement('div');
+      card.className = 'idea-card';
+      card.dataset.ideaId = idea.id;
+      const wheelTag = idea.wheel ? `<span class="wheel-tag wheel-${idea.wheel}">${{coaching:'C',lederskab:'L',personligt:'P'}[idea.wheel]}</span>` : '';
+      card.innerHTML = `
+        <button class="idea-delete-btn" onclick="deleteIdeaById('${idea.id}')" title="Remove idea">×</button>
+        <div class="idea-card-title">${idea.title}</div>
+        <div class="idea-card-meta">${wheelTag}<span class="badge idea" onclick="cycleBadge(this)">Idea</span></div>`;
+      grid.appendChild(card);
+    });
+    updateStats();
+  }
+  function addIdea() {
+    const input = document.getElementById('new-idea-input');
+    const wheelSelect = document.getElementById('new-idea-wheel');
+    const title = input.value.trim();
+    if (!title) { input.focus(); return; }
+    const ideas = getIdeas();
+    ideas.unshift({ id: 'idea_' + Date.now(), title, wheel: wheelSelect.value });
+    saveIdeas(ideas);
+    input.value = '';
+    wheelSelect.value = '';
+    renderIdeas();
+  }
+  function deleteIdeaById(id) {
+    const ideas = getIdeas().filter(i => i.id !== id);
+    saveIdeas(ideas);
+    renderIdeas();
   }
 
   // ── POST CARDS: toggle open/close ────────────────────────────
@@ -3640,6 +3562,7 @@ Then we go from there.</div>
 
   updateStats();
   renderDenneUge();
+  renderIdeas();
 
   // ── PERFORMANCE DASHBOARD ─────────────────────────────────────
   function savePerfData() {
