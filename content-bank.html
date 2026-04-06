@@ -69,6 +69,7 @@
     .badge.idea { background: rgba(138,128,112,0.15); color: var(--muted); border: 1px solid rgba(138,128,112,0.25); }
     .badge.draft { background: var(--blue-bg); color: #6A9FBB; border: 1px solid rgba(74,122,155,0.3); }
     .badge.ready { background: var(--orange-bg); color: #D4924A; border: 1px solid rgba(196,122,58,0.35); }
+    .badge.approved { background: rgba(100,80,150,0.12); color: #8B6FC8; border: 1px solid rgba(100,80,150,0.3); }
     .badge.posted { background: var(--green-bg); color: #6AB888; border: 1px solid rgba(74,146,104,0.35); }
 
     /* WHEEL TAGS */
@@ -121,6 +122,11 @@
     .posted-btn { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: rgba(138,128,112,0.12); color: var(--muted); border: 1px solid rgba(138,128,112,0.2); cursor: pointer; font-family: -apple-system, sans-serif; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; }
     .posted-btn:hover { background: rgba(74,146,104,0.15); color: #6AB888; border-color: rgba(74,146,104,0.3); }
     .posted-btn.active { background: rgba(74,146,104,0.15); color: #6AB888; border-color: rgba(74,146,104,0.4); }
+    .approve-btn { font-size: 10px; letter-spacing: 0.09em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; background: rgba(138,128,112,0.12); color: var(--muted); border: 1px solid rgba(138,128,112,0.2); cursor: pointer; font-family: -apple-system, sans-serif; white-space: nowrap; transition: all 0.15s; flex-shrink: 0; }
+    .approve-btn:hover { background: rgba(100,80,150,0.12); color: #8B6FC8; border-color: rgba(100,80,150,0.3); }
+    .approve-btn.active { background: rgba(100,80,150,0.15); color: #8B6FC8; border-color: rgba(100,80,150,0.4); }
+    .post-card.is-approved { border-color: rgba(100,80,150,0.5); }
+    .post-card.is-approved .post-card-header { background: rgba(100,80,150,0.05); }
     .post-text[contenteditable="true"]:focus { outline: 1px solid rgba(196,154,106,0.4); border-color: rgba(196,154,106,0.4); }
     .post-text[contenteditable="true"]:focus::after { content: none; }
 
@@ -201,7 +207,11 @@
     </div>
     <div class="stat-box">
       <div class="stat-num" id="stat-ready">0</div>
-      <div class="stat-label">Ready to Post</div>
+      <div class="stat-label">Ready for Review</div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-num" id="stat-approved">0</div>
+      <div class="stat-label">Approved to Post</div>
     </div>
     <div class="stat-box">
       <div class="stat-num" id="stat-scripts-posted">0</div>
@@ -1526,7 +1536,7 @@ Four hours I won't forget.
 
   <!-- ENGLISH POSTS -->
   <div class="section">
-    <div class="section-title">English Posts · 25 drafts · Ready to post</div>
+    <div class="section-title">English Posts · 25 drafts · Ready for Review</div>
     <p class="cycle-hint" style="margin-bottom:24px;">All new content in English. Click to open, edit inline, copy to LinkedIn.</p>
 
     <div class="post-card">
@@ -3437,8 +3447,8 @@ Then we go from there.</div>
 
 <script>
   // ── CALENDAR BADGES ──────────────────────────────────────────
-  const states = ['idea', 'draft', 'ready', 'posted'];
-  const labels = { idea: 'Idea', draft: 'Draft', ready: 'Ready', posted: 'Posted' };
+  const states = ['idea', 'draft', 'ready', 'approved', 'posted'];
+  const labels = { idea: 'Idea', draft: 'Draft', ready: 'Ready for Review', approved: 'Approved to Post', posted: 'Posted' };
 
   function cycleBadge(el) {
     const curr = states.indexOf(el.className.split(' ').find(c => states.includes(c)));
@@ -3451,14 +3461,16 @@ Then we go from there.</div>
 
   function updateStats() {
     const allBadges = document.querySelectorAll('.cal-cell .badge, .idea-card .badge');
-    let posted = 0, ready = 0, draft = 0, idea = 0;
+    let posted = 0, approved = 0, ready = 0, draft = 0, idea = 0;
     allBadges.forEach(b => {
       if (b.classList.contains('posted')) posted++;
+      else if (b.classList.contains('approved')) approved++;
       else if (b.classList.contains('ready')) ready++;
       else if (b.classList.contains('draft')) draft++;
       else if (b.classList.contains('idea')) idea++;
     });
     document.getElementById('stat-ready').textContent = ready;
+    document.getElementById('stat-approved').textContent = approved;
     document.getElementById('stat-draft').textContent = draft;
     const cardsPosted = document.querySelectorAll('.post-card.is-posted').length;
     document.getElementById('stat-scripts-posted').textContent = cardsPosted;
@@ -3615,11 +3627,17 @@ Then we go from there.</div>
     postText.contentEditable = 'true';
     postText.spellcheck = false;
 
+    // Inject "Approved to Post" button before toggle hint
+    const approveBtn = document.createElement('button');
+    approveBtn.className = 'approve-btn';
+    approveBtn.textContent = 'Approved to Post';
+    const hint = header.querySelector('.post-toggle-hint');
+    header.insertBefore(approveBtn, hint);
+
     // Inject "Markér postet" button before toggle hint
     const btn = document.createElement('button');
     btn.className = 'posted-btn';
     btn.textContent = 'Markér postet';
-    const hint = header.querySelector('.post-toggle-hint');
     header.insertBefore(btn, hint);
 
     // Inject LinkedIn notes section
@@ -3638,6 +3656,13 @@ Then we go from there.</div>
     // Load saved text
     const savedText = localStorage.getItem('ftr_text_' + id);
     if (savedText !== null) postText.innerText = savedText;
+
+    // Load saved approved state
+    if (localStorage.getItem('ftr_approved_' + id)) {
+      card.classList.add('is-approved');
+      approveBtn.classList.add('active');
+      approveBtn.textContent = '✓ Approved';
+    }
 
     // Load saved posted state
     const postedData = localStorage.getItem('ftr_posted_' + id);
@@ -3665,6 +3690,22 @@ Then we go from there.</div>
     });
     notesArea.addEventListener('input', () => {
       localStorage.setItem('ftr_notes_' + id, notesArea.value);
+    });
+
+    // Toggle approved on button click
+    approveBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      if (card.classList.contains('is-approved')) {
+        card.classList.remove('is-approved');
+        approveBtn.classList.remove('active');
+        approveBtn.textContent = 'Approved to Post';
+        localStorage.removeItem('ftr_approved_' + id);
+      } else {
+        card.classList.add('is-approved');
+        approveBtn.classList.add('active');
+        approveBtn.textContent = '✓ Approved';
+        localStorage.setItem('ftr_approved_' + id, '1');
+      }
     });
 
     // Toggle posted on button click
