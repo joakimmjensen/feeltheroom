@@ -364,99 +364,9 @@
 
   <hr>
 
-  <!-- SEEDSTER POSTS OVERSIGT -->
+  <!-- SEEDSTER POSTS -->
   <div class="section">
-    <div class="section-title">Seedster Posts · 11 written &amp; ready</div>
-    <table class="bank-table" style="background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;">
-      <thead>
-        <tr>
-          <th style="width:5%;">#</th>
-          <th style="width:32%;">Title / Person</th>
-          <th style="width:38%;">Key insight</th>
-          <th style="width:10%;">Wheel</th>
-          <th style="width:15%;">Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td style="color:var(--muted);">1</td>
-          <td class="bank-title">4Power — Two engineers who never asked the end user</td>
-          <td class="bank-notes">"Build on knowledge, not belief."</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">2</td>
-          <td class="bank-title">Mick — Ukrainian teacher</td>
-          <td class="bank-notes">"Can they find me?" — visibility vs lead problem</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">3</td>
-          <td class="bank-title">Kasper+Jesper — Electricity meters</td>
-          <td class="bank-notes">Life cycle events as sales calendar</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">5</td>
-          <td class="bank-title">Bia — Panel curtains</td>
-          <td class="bank-notes">"Your experience only lives if someone knows it."</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">6</td>
-          <td class="bank-title">Christina — Nurse → salesperson</td>
-          <td class="bank-notes">"Sales is not a personality type."</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">7</td>
-          <td class="bank-title">CEO day 1 — "Act like a sponge"</td>
-          <td class="bank-notes">Understand before you act. Trust > title.</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">8</td>
-          <td class="bank-title">Adtool — international skalering</td>
-          <td class="bank-notes">Market research = your best sales meeting.</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">9</td>
-          <td class="bank-title">Tradespeople to Australia</td>
-          <td class="bank-notes">"Am I interrupting?" = escape route. "Can you tell me a bit more?" > "Why?"</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">4</td>
-          <td class="bank-title">Tobias Just — Just Media</td>
-          <td class="bank-notes">Dream → Problem → Feature → Solution. Stop pitching too early.</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-        <tr>
-          <td style="color:var(--muted);">★</td>
-          <td class="bank-title">Overview — 9 conversations. 9 companies. 4 hours.</td>
-          <td class="bank-notes">Marbella recap. Tag @Seedster @Lunar + the names mentioned. Post with photos.</td>
-          <td><span class="wheel-tag wheel-coaching">C</span></td>
-          <td><span class="badge ready" onclick="cycleBadge(this)">Ready</span></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <hr>
-
-  <!-- SKREVNE POSTS FULDE TEKSTER -->
-  <div class="section">
-    <div class="section-title">Posts · Fulde tekster · Copy-paste til LinkedIn</div>
+    <div class="section-title">Seedster Posts · Marbella</div>
     <p class="cycle-hint" style="margin-bottom:24px;">Click a title to open the full post.</p>
 
     <style>
@@ -3619,18 +3529,24 @@ Then we go from there.</div>
     postText.contentEditable = 'true';
     postText.spellcheck = false;
 
-    // Inject "Approved to Post" button before toggle hint
+    // Wrap buttons + toggle hint in a fixed-width actions container (ensures alignment)
+    const hint = header.querySelector('.post-toggle-hint');
+    const actions = document.createElement('div');
+    actions.style.cssText = 'display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto;';
+    header.insertBefore(actions, hint);
+    actions.appendChild(hint);
+
+    // Inject "Approved to Post" button
     const approveBtn = document.createElement('button');
     approveBtn.className = 'approve-btn';
     approveBtn.textContent = 'Approved to Post';
-    const hint = header.querySelector('.post-toggle-hint');
-    header.insertBefore(approveBtn, hint);
+    actions.insertBefore(approveBtn, hint);
 
-    // Inject "Markér postet" button before toggle hint
+    // Inject "Markér postet" button
     const btn = document.createElement('button');
     btn.className = 'posted-btn';
     btn.textContent = 'Markér postet';
-    header.insertBefore(btn, hint);
+    actions.insertBefore(btn, hint);
 
     // Inject LinkedIn notes section
     const notes = document.createElement('div');
