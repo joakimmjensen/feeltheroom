@@ -233,9 +233,10 @@
     </div>
   </div>
 
+
   <!-- CALENDAR -->
   <div class="section">
-    <div class="section-title">5-Week Plan · Weeks 1–5 · March–April 2026</div>
+  <div class="section-title">5-Week Plan · Weeks 1–5 · March–April 2026</div>
     <p class="cycle-hint">Click a badge to cycle status: Idea → Draft → Ready → Posted</p>
     <div class="legend">
       <div class="legend-item"><span class="wheel-tag wheel-coaching">C</span> Coaching moment</div>
@@ -244,7 +245,7 @@
     </div>
 
     <div class="cal-grid">
-      <!-- Headers -->
+  <!-- Headers -->
       <div class="cal-header"></div>
       <div class="cal-header">Week 1<br><span style="font-weight:normal;font-size:10px;">23–27 Mar</span></div>
       <div class="cal-header">Week 2<br><span style="font-weight:normal;font-size:10px;">30 Mar–3 Apr</span></div>
@@ -252,7 +253,7 @@
       <div class="cal-header">Week 4<br><span style="font-weight:normal;font-size:10px;">13–17 Apr</span></div>
       <div class="cal-header">Week 5<br><span style="font-weight:normal;font-size:10px;">20–24 Apr</span></div>
 
-      <!-- MANDAG -->
+  <!-- MANDAG -->
       <div class="cal-day-label">Mon</div>
       <div class="cal-cell">
         <div class="cal-cell-title">Seedster #4 — Dream → Problem → Solution</div>
@@ -290,7 +291,7 @@
         </div>
       </div>
 
-      <!-- ONSDAG -->
+  <!-- ONSDAG -->
       <div class="cal-day-label">Wed</div>
       <div class="cal-cell">
         <div class="cal-cell-title">Team Core Values Workshop</div>
@@ -328,7 +329,7 @@
         </div>
       </div>
 
-      <!-- FREDAG -->
+  <!-- FREDAG -->
       <div class="cal-day-label">Fri</div>
       <div class="cal-cell">
         <div class="cal-cell-title">Seedster #9 — Tradespeople to Australia</div>
@@ -372,15 +373,37 @@
 
   <!-- POST DENNE UGE -->
   <div class="section" id="denne-uge-section">
-    <div class="section-title">Post this week</div>
+  <div class="section-title">Post this week</div>
     <div class="uge-grid" id="denne-uge-posts"></div>
+  </div>
+
+  <hr>
+
+  <!-- IDÉBANK -->
+  <div class="section">
+  <div class="section-title">Idea Bank</div>
+    <p class="cycle-hint" style="margin-bottom:16px;">Add new ideas here. When you start writing a draft, delete the idea.</p>
+
+    <div class="add-idea-form">
+      <input type="text" class="add-idea-input" id="new-idea-input" placeholder="New idea..." onkeydown="if(event.key==='Enter')addIdea()" />
+      <select class="add-idea-select" id="new-idea-wheel">
+        <option value="">No tag</option>
+        <option value="coaching">C — Coaching</option>
+        <option value="lederskab">L — Leadership</option>
+        <option value="personligt">P — Personal</option>
+      </select>
+      <button class="add-idea-btn" onclick="addIdea()">+ Add idea</button>
+    </div>
+
+    <div class="idea-grid" id="idea-bank-grid"></div>
+    <p class="idea-empty" id="idea-empty-msg">No ideas yet. Add one above.</p>
   </div>
 
   <hr>
 
   <!-- SEEDSTER POSTS -->
   <div class="section">
-    <div class="section-title">Seedster Posts · Marbella</div>
+  <div class="section-title">Seedster Posts · Marbella</div>
     <p class="cycle-hint" style="margin-bottom:24px;">Click a title to open the full post.</p>
 
     <style>
@@ -798,8 +821,8 @@ He hits a wall because he skipped the first three phases.</div>
 
   <!-- KALENDER-POSTS FULDE TEKSTER -->
   <div class="section">
-    <div class="section-title">Calendar Posts · 9 written &amp; ready</div>
-    <p class="cycle-hint" style="margin-bottom:24px;">The 9 non-Seedster posts from the 5-week plan. Click to open.</p>
+  <div class="section-title">Written Posts</div>
+    <p class="cycle-hint" style="margin-bottom:24px;">Click to open, edit inline, copy to LinkedIn.</p>
 
     <div class="post-card">
       <div class="post-card-header" onclick="togglePost(this)">
@@ -1147,7 +1170,7 @@ It's the most underrated competitive advantage I know.</div>
       </div>
     </div>
 
-    <!-- SEEDSTER OVERVIEW POST -->
+  <!-- SEEDSTER OVERVIEW POST -->
     <div class="post-card">
       <div class="post-card-header" onclick="togglePost(this)">
         <div class="post-card-meta">
@@ -1192,269 +1215,8 @@ Four hours I won't forget.
       </div>
     </div>
 
-  </div>
-
-  <hr>
-
-  <!-- VIDEO SCRIPTS -->
-  <div class="section">
-    <div class="section-title">Video Scripts · 15 scripts · LinkedIn 60–90 sec</div>
-    <p class="cycle-hint" style="margin-bottom:20px;">Click to open. HOOK = first 3 seconds. POINTER = talking points (not a script). CLOSER = one line memorised. PERFORMANCE = delivery tips.</p>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#1 · Build on knowledge, not belief</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They had been building the product for 6 months. They had never spoken to a single end user."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>They didn't know who was actually supposed to pay</li><li>Three steps removed from the end user — without knowing it</li><li>10 conversations with end users > 6 months of development</li><li>Build what people actually want — not what you think they want</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Build on knowledge. Not on belief."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm start. Let "never spoken to a single end user" land. Strong and simple closer — say it slowly.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#2 · Can they find you?</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"He had 7,000 YouTube followers. And zero B2B clients."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>B2B and B2C are the same — we're all people</li><li>His clients search exactly like his followers</li><li>It's not a lead problem — it's a visibility problem</li><li>"If you were your own client — what would you do?"</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The question isn't: 'How do I find clients?' It's: 'Can they find me?'"</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Fast pace. Confident. Big pause before the closer — let the question hang.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#3 · Conceptualise your knowledge</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They had 40 years of experience. And they didn't know it was their biggest competitive advantage."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Half of Denmark's electricity meters in 2 years — but the knowledge is stuck in people's heads</li><li>Knowledge is a huge currency, but only if it's out there living</li><li>Package it. Make it tangible. Roll it from the top of the hill.</li><li>Leads follow knowledge — not ads</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Conceptualise your knowledge. And watch the clients find you."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Thoughtful start. Build gradually. Deliver the closer with calm — not a sales tone.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#4 · Dream → Problem → Feature → Solution</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"He always hits a wall when he presents his solution. Here's why."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>4 phases in a good sales meeting — most people jump straight to solution</li><li>Phase 1: Build the dream — what do they want? What does it mean to them?</li><li>Phase 2: Problem — what's holding them back? The consequence?</li><li>Phase 3: Feature + Phase 4: Solution — now it fits exactly</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"You don't hit a wall with the solution. You hit a wall because you skipped the first three phases."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Direct and slightly challenging. Talk to them as a salesperson. Good pace — not too slow.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#5 · Your experience only lives if people know it</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"She asked me if she should hire a 25-year-old to tell her story. I said no."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>A 25-year-old can say the exact words — but can't tell it the same way</li><li>141-year-old company, 24 employees — her experience is invaluable</li><li>You can't scale production — but you can scale your knowledge</li><li>Authenticity cannot be outsourced</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Your experience is your brand. But only if people know it."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Warm and convincing. Let "but only if people know it" hang — that's the point.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#6 · Sales is not a personality type</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"The first thing she said was: I'm not a sales type."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"What's a sales type?" — she described someone who pushes and doesn't listen</li><li>That's not sales — that's pressure with a target</li><li>10 years as a nurse: asked questions, found the problem, suggested the solution</li><li>She was already a salesperson — she just didn't know it</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Sales is not a personality type. It's an approach. And you might already have it."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Engaging — almost smiling. Surprise them with the point. Talk to those who think they can't sell.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#7 · Act like a sponge</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"His first day as CEO. He asked: How do I show authority from day one?"</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Answer: Nothing. [pause]</li><li>Act like a sponge — absorb everything</li><li>Understand the clients, the team, what actually works</li><li>Authority isn't built by talking — it's built by knowing</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The title you got on day one. Trust is something you have to earn."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and authoritative. Big pause after "Nothing." — let it sit. Deliver the closer slowly.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#8 · Market research is your best sales meeting</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They wanted to enter three new markets. I said: Don't sell anything."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Call and ask — don't pitch: "We're considering entering. What's your biggest challenge?"</li><li>20 interviews = 20 potential clients who already know you</li><li>Next time you call — you're not a salesperson. You're the one who listened.</li><li>Most people validate decisions. The best ones start relationships.</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Market research isn't just research. It's your best sales meeting."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energetic. Slightly provocative with "don't sell anything." Good pace — one new idea per sentence.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#9 · Stop asking "Am I interrupting?"</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Stop starting your calls with: Am I interrupting?"</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>It sounds polite — but it's the world's easiest escape route</li><li>Switch to: "Hope I caught you at a good time"</li><li>"Why?" sends people back to the defence — use "would you tell me a bit more about that?"</li><li>They didn't click by accident — it's a dream they've been carrying around</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Exact same question. Half the resistance."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Practical and direct. People can use this tomorrow. Show the example live — say both versions.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#10 · The one asking questions has the power</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Questions control thoughts. Thoughts control decisions."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Show two versions: "What's your challenge?" vs "What would it mean if it was solved?"</li><li>Exact same meeting — two completely different places you end up</li><li>Most people ask questions to find reasons to pitch</li><li>The best ask questions to understand — and that's felt</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Before your next meeting: write down three questions. Not for answers. For direction."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Thought-provoking. Consider demonstrating the two question versions live with a tone shift.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#11 · Performance needs fun</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"We don't choose between high performance and fun. We insist on both."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>It's easy to let performance overshadow everything else</li><li>A salesperson with good energy closes more — that's not a feeling, it's a number</li><li>Celebrate along the way — not just at the finish line. Gamify the boring stuff.</li><li>Energy is fuel — and it's the leader's responsibility to fill it up</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Performance needs fun is not a fluffy concept. It's a business strategy."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energetic and smiling — live the point. If you say it in a boring way, no one will believe it.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#12 · Let them sell to themselves</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Most salespeople are nervous about asking for the deal. I've never understood that."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"Do you feel this more or less lives up to the picture you had?"</li><li>They say yes → "Great. Why?" → they sell to themselves. Listen. Don't interrupt.</li><li>They say no → what's missing? Now you have something to work with.</li><li>No maybe — agree on it upfront: "Yes or no — not maybe."</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Prepare well, and the close takes care of itself."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and confident. Not pushy. You're speaking from a place of certainty.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#13 · Celebrate the small things</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"One of my salespeople booked their first meeting with a CFO. No closed deal. And we celebrated it."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Energy is fuel — fill it up along the way, not just at the finish line</li><li>The salesperson who gets celebrated for the CFO meeting calls three more</li><li>Performance is a habit — habits are built with immediate feedback</li><li>Most teams celebrate the quarterly result. The best ones celebrate Monday's pipeline.</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Celebrate the small things. While they're happening."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Warm and authentic — not preachy. You believe this, and it should show. Simple closer, say it quietly.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#14 · You already have the answer</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"People come to me for advice. I rarely give any."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>9 out of 10 times they already have the answer</li><li>"What would you recommend someone else do in your situation?" [pause]</li><li>The first one sticks. The second you forget on your way out of the room.</li><li>Best reaction: "I already knew that. I just didn't realise I knew it."</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Most people already know what to do. They just need someone to ask the right question."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Slow and assured. Let the pause speak. Don't over-direct — let the viewer reach the point themselves.</div></div>
-      </div>
-    </div>
-
-    <div class="script-card">
-      <div class="script-card-header" onclick="toggleScript(this)">
-        <div class="post-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="script-card-title">#15 · Energy as a compass</span></div>
-        <span class="post-toggle-hint">Show ↓</span>
-      </div>
-      <div class="script-card-body">
-        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"I train 4-5 times a week. Not because I'm obsessed with my body."</div></div>
-        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Good physical shape = better mental shape. Clearer. Calmer. More patient.</li><li>We talk a lot about mindset — but mindset lives in the body</li><li>Many treat the body as secondary — "when things calm down"</li><li>Energy is not something you have. It's something you build. Daily.</li></ul></div>
-        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The most underrated competitive advantage I know."</div></div>
-        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and personal. Be yourself — this is about the personal foundation. No sales tone. Straightforward and honest.</div></div>
-      </div>
-    </div>
-
-  </div>
-
-  <hr>
-
-  <!-- PERFORMANCE DASHBOARD -->
-  <div class="section">
-    <div class="section-title">LinkedIn Performance · Monthly overview</div>
-    <p class="cycle-hint" style="margin-bottom:20px;">Update monthly. Saved in browser.</p>
-    <style>
-      .perf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-bottom: 20px; }
-      .perf-field { display: flex; flex-direction: column; gap: 6px; }
-      .perf-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-family: -apple-system, sans-serif; }
-      .perf-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 14px; font-family: -apple-system, sans-serif; width: 100%; }
-      .perf-input:focus { outline: none; border-color: rgba(196,154,106,0.4); }
-      .save-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 18px; border-radius: 4px; background: rgba(196,154,106,0.15); color: var(--gold); border: 1px solid rgba(196,154,106,0.3); cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.15s; }
-      .save-btn:hover { background: rgba(196,154,106,0.25); }
-    </style>
-    <div class="stats-row" style="margin-bottom:24px;">
-      <div class="stat-box">
-        <div class="stat-num" id="perf-followers-disp">—</div>
-        <div class="stat-label">Followers</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="perf-growth-disp">—</div>
-        <div class="stat-label">Growth / mo</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="perf-impressions-disp">—</div>
-        <div class="stat-label">Impressions</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="perf-dms-disp">—</div>
-        <div class="stat-label">DMs / mo</div>
-      </div>
-      <div class="stat-box">
-        <div class="stat-num" id="perf-leads-disp">—</div>
-        <div class="stat-label">Leads</div>
-      </div>
-    </div>
-    <div class="perf-grid">
-      <div class="perf-field"><div class="perf-label">Total followers</div><input class="perf-input" id="perf-followers" type="number" placeholder="0" /></div>
-      <div class="perf-field"><div class="perf-label">Follower growth (mo)</div><input class="perf-input" id="perf-growth" type="number" placeholder="0" /></div>
-      <div class="perf-field"><div class="perf-label">Impressions (mo)</div><input class="perf-input" id="perf-impressions" type="number" placeholder="0" /></div>
-      <div class="perf-field"><div class="perf-label">DMs this month</div><input class="perf-input" id="perf-dms" type="number" placeholder="0" /></div>
-      <div class="perf-field"><div class="perf-label">Leads from LinkedIn</div><input class="perf-input" id="perf-leads" type="number" placeholder="0" /></div>
-    </div>
-    <div class="perf-field" style="margin-bottom:10px;"><div class="perf-label">Best post this month · URL</div><input class="perf-input" id="perf-best-url" type="url" placeholder="https://linkedin.com/posts/..." /></div>
-    <div class="perf-field" style="margin-bottom:16px;"><div class="perf-label">What worked? Hook, format, topic</div><textarea class="perf-input" id="perf-notes" placeholder="Write what worked..." style="min-height:80px;resize:vertical;line-height:1.6;font-family:Georgia,serif;"></textarea></div>
-    <button class="save-btn" onclick="savePerfData()">Save summary</button>
-    <span id="perf-saved-msg" style="font-size:12px;color:var(--muted);margin-left:12px;font-family:-apple-system,sans-serif;display:none;">Saved ✓</span>
-  </div>
-
-  <hr>
-
-  <!-- ENGLISH POSTS -->
-  <div class="section">
-    <div class="section-title">English Posts · 25 drafts · Ready for Review</div>
-    <p class="cycle-hint" style="margin-bottom:24px;">All new content in English. Click to open, edit inline, copy to LinkedIn.</p>
-
+  <!-- English Posts -->
+    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:28px 0 16px;padding-top:24px;border-top:1px solid var(--border);">English drafts</div>
     <div class="post-card">
       <div class="post-card-header" onclick="togglePost(this)">
         <div class="post-card-meta">
@@ -3060,41 +2822,212 @@ Then we go from there.</div>
     </div>
 
   </div>
-
-  <hr>
-
-  <!-- IDÉBANK -->
-  <div class="section">
-    <div class="section-title">Idea Bank</div>
-    <p class="cycle-hint" style="margin-bottom:16px;">Add new ideas here. When you start writing a draft, delete the idea.</p>
-
-    <div class="add-idea-form">
-      <input type="text" class="add-idea-input" id="new-idea-input" placeholder="New idea..." onkeydown="if(event.key==='Enter')addIdea()" />
-      <select class="add-idea-select" id="new-idea-wheel">
-        <option value="">No tag</option>
-        <option value="coaching">C — Coaching</option>
-        <option value="lederskab">L — Leadership</option>
-        <option value="personligt">P — Personal</option>
-      </select>
-      <button class="add-idea-btn" onclick="addIdea()">+ Add idea</button>
-    </div>
-
-    <div class="idea-grid" id="idea-bank-grid"></div>
-    <p class="idea-empty" id="idea-empty-msg">No ideas yet. Add one above.</p>
   </div>
 
   <hr>
 
-  <!-- VIDEO POSTS ─────────────────────────────────────────────── -->
+  <!-- VIDEO SCRIPTS -->
   <div class="section">
-    <div class="section-header">
-      <div>
-        <div class="section-title">🎥 Video posts</div>
-        <div class="section-sub">Curated from the content bank — posts that hit harder on camera than in text.<br>
-        Recommended cadence: <strong>1 video per week</strong> — enough to build presence without burning out.</div>
+  <div class="section-title">Video Posts &amp; Scripts</div>
+    <p class="cycle-hint" style="margin-bottom:20px;">Click to open. HOOK = first 3 seconds. POINTER = talking points (not a script). CLOSER = one line memorised. PERFORMANCE = delivery tips.</p>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#1 · Build on knowledge, not belief</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They had been building the product for 6 months. They had never spoken to a single end user."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>They didn't know who was actually supposed to pay</li><li>Three steps removed from the end user — without knowing it</li><li>10 conversations with end users > 6 months of development</li><li>Build what people actually want — not what you think they want</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Build on knowledge. Not on belief."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm start. Let "never spoken to a single end user" land. Strong and simple closer — say it slowly.</div></div>
       </div>
     </div>
 
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#2 · Can they find you?</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"He had 7,000 YouTube followers. And zero B2B clients."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>B2B and B2C are the same — we're all people</li><li>His clients search exactly like his followers</li><li>It's not a lead problem — it's a visibility problem</li><li>"If you were your own client — what would you do?"</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The question isn't: 'How do I find clients?' It's: 'Can they find me?'"</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Fast pace. Confident. Big pause before the closer — let the question hang.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#3 · Conceptualise your knowledge</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They had 40 years of experience. And they didn't know it was their biggest competitive advantage."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Half of Denmark's electricity meters in 2 years — but the knowledge is stuck in people's heads</li><li>Knowledge is a huge currency, but only if it's out there living</li><li>Package it. Make it tangible. Roll it from the top of the hill.</li><li>Leads follow knowledge — not ads</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Conceptualise your knowledge. And watch the clients find you."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Thoughtful start. Build gradually. Deliver the closer with calm — not a sales tone.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#4 · Dream → Problem → Feature → Solution</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"He always hits a wall when he presents his solution. Here's why."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>4 phases in a good sales meeting — most people jump straight to solution</li><li>Phase 1: Build the dream — what do they want? What does it mean to them?</li><li>Phase 2: Problem — what's holding them back? The consequence?</li><li>Phase 3: Feature + Phase 4: Solution — now it fits exactly</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"You don't hit a wall with the solution. You hit a wall because you skipped the first three phases."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Direct and slightly challenging. Talk to them as a salesperson. Good pace — not too slow.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#5 · Your experience only lives if people know it</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"She asked me if she should hire a 25-year-old to tell her story. I said no."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>A 25-year-old can say the exact words — but can't tell it the same way</li><li>141-year-old company, 24 employees — her experience is invaluable</li><li>You can't scale production — but you can scale your knowledge</li><li>Authenticity cannot be outsourced</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Your experience is your brand. But only if people know it."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Warm and convincing. Let "but only if people know it" hang — that's the point.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#6 · Sales is not a personality type</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"The first thing she said was: I'm not a sales type."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"What's a sales type?" — she described someone who pushes and doesn't listen</li><li>That's not sales — that's pressure with a target</li><li>10 years as a nurse: asked questions, found the problem, suggested the solution</li><li>She was already a salesperson — she just didn't know it</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Sales is not a personality type. It's an approach. And you might already have it."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Engaging — almost smiling. Surprise them with the point. Talk to those who think they can't sell.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#7 · Act like a sponge</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"His first day as CEO. He asked: How do I show authority from day one?"</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Answer: Nothing. [pause]</li><li>Act like a sponge — absorb everything</li><li>Understand the clients, the team, what actually works</li><li>Authority isn't built by talking — it's built by knowing</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The title you got on day one. Trust is something you have to earn."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and authoritative. Big pause after "Nothing." — let it sit. Deliver the closer slowly.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#8 · Market research is your best sales meeting</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"They wanted to enter three new markets. I said: Don't sell anything."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Call and ask — don't pitch: "We're considering entering. What's your biggest challenge?"</li><li>20 interviews = 20 potential clients who already know you</li><li>Next time you call — you're not a salesperson. You're the one who listened.</li><li>Most people validate decisions. The best ones start relationships.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Market research isn't just research. It's your best sales meeting."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energetic. Slightly provocative with "don't sell anything." Good pace — one new idea per sentence.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#9 · Stop asking "Am I interrupting?"</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Stop starting your calls with: Am I interrupting?"</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>It sounds polite — but it's the world's easiest escape route</li><li>Switch to: "Hope I caught you at a good time"</li><li>"Why?" sends people back to the defence — use "would you tell me a bit more about that?"</li><li>They didn't click by accident — it's a dream they've been carrying around</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Exact same question. Half the resistance."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Practical and direct. People can use this tomorrow. Show the example live — say both versions.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#10 · The one asking questions has the power</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Questions control thoughts. Thoughts control decisions."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Show two versions: "What's your challenge?" vs "What would it mean if it was solved?"</li><li>Exact same meeting — two completely different places you end up</li><li>Most people ask questions to find reasons to pitch</li><li>The best ask questions to understand — and that's felt</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Before your next meeting: write down three questions. Not for answers. For direction."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Thought-provoking. Consider demonstrating the two question versions live with a tone shift.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#11 · Performance needs fun</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"We don't choose between high performance and fun. We insist on both."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>It's easy to let performance overshadow everything else</li><li>A salesperson with good energy closes more — that's not a feeling, it's a number</li><li>Celebrate along the way — not just at the finish line. Gamify the boring stuff.</li><li>Energy is fuel — and it's the leader's responsibility to fill it up</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Performance needs fun is not a fluffy concept. It's a business strategy."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Energetic and smiling — live the point. If you say it in a boring way, no one will believe it.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#12 · Let them sell to themselves</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"Most salespeople are nervous about asking for the deal. I've never understood that."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>"Do you feel this more or less lives up to the picture you had?"</li><li>They say yes → "Great. Why?" → they sell to themselves. Listen. Don't interrupt.</li><li>They say no → what's missing? Now you have something to work with.</li><li>No maybe — agree on it upfront: "Yes or no — not maybe."</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Prepare well, and the close takes care of itself."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and confident. Not pushy. You're speaking from a place of certainty.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-lederskab">L</span><span class="script-card-title">#13 · Celebrate the small things</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"One of my salespeople booked their first meeting with a CFO. No closed deal. And we celebrated it."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Energy is fuel — fill it up along the way, not just at the finish line</li><li>The salesperson who gets celebrated for the CFO meeting calls three more</li><li>Performance is a habit — habits are built with immediate feedback</li><li>Most teams celebrate the quarterly result. The best ones celebrate Monday's pipeline.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Celebrate the small things. While they're happening."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Warm and authentic — not preachy. You believe this, and it should show. Simple closer, say it quietly.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-coaching">C</span><span class="script-card-title">#14 · You already have the answer</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"People come to me for advice. I rarely give any."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>9 out of 10 times they already have the answer</li><li>"What would you recommend someone else do in your situation?" [pause]</li><li>The first one sticks. The second you forget on your way out of the room.</li><li>Best reaction: "I already knew that. I just didn't realise I knew it."</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"Most people already know what to do. They just need someone to ask the right question."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Slow and assured. Let the pause speak. Don't over-direct — let the viewer reach the point themselves.</div></div>
+      </div>
+    </div>
+
+    <div class="script-card">
+      <div class="script-card-header" onclick="toggleScript(this)">
+        <div class="post-card-meta"><span class="wheel-tag wheel-personligt">P</span><span class="script-card-title">#15 · Energy as a compass</span></div>
+        <span class="post-toggle-hint">Show ↓</span>
+      </div>
+      <div class="script-card-body">
+        <div class="script-section"><div class="script-label">Hook</div><div class="script-hook">"I train 4-5 times a week. Not because I'm obsessed with my body."</div></div>
+        <div class="script-section"><div class="script-label">Pointer</div><ul class="script-points"><li>Good physical shape = better mental shape. Clearer. Calmer. More patient.</li><li>We talk a lot about mindset — but mindset lives in the body</li><li>Many treat the body as secondary — "when things calm down"</li><li>Energy is not something you have. It's something you build. Daily.</li></ul></div>
+        <div class="script-section"><div class="script-label">Closer</div><div class="script-closer">"The most underrated competitive advantage I know."</div></div>
+        <div class="script-section"><div class="script-label">Performance</div><div class="script-notes">Calm and personal. Be yourself — this is about the personal foundation. No sales tone. Straightforward and honest.</div></div>
+      </div>
+    </div>
+
+  
+    <div style="font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--muted);margin:28px 0 16px;padding-top:24px;border-top:1px solid var(--border);">Recommended for video</div>
     <div style="display:grid; grid-template-columns: repeat(auto-fill, minmax(320px,1fr)); gap:14px; margin-top:18px;">
 
       <div class="video-card">
@@ -3209,6 +3142,59 @@ Then we go from there.</div>
   </div>
 
 </div>
+  </div>
+
+  <hr>
+
+  <!-- PERFORMANCE DASHBOARD -->
+  <div class="section">
+  <div class="section-title">LinkedIn Performance Review</div>
+    <p class="cycle-hint" style="margin-bottom:20px;">Update monthly. Saved in browser.</p>
+    <style>
+      .perf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; margin-bottom: 20px; }
+      .perf-field { display: flex; flex-direction: column; gap: 6px; }
+      .perf-label { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); font-family: -apple-system, sans-serif; }
+      .perf-input { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px; color: var(--text); font-size: 14px; font-family: -apple-system, sans-serif; width: 100%; }
+      .perf-input:focus { outline: none; border-color: rgba(196,154,106,0.4); }
+      .save-btn { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; padding: 7px 18px; border-radius: 4px; background: rgba(196,154,106,0.15); color: var(--gold); border: 1px solid rgba(196,154,106,0.3); cursor: pointer; font-family: -apple-system, sans-serif; transition: background 0.15s; }
+      .save-btn:hover { background: rgba(196,154,106,0.25); }
+    </style>
+    <div class="stats-row" style="margin-bottom:24px;">
+      <div class="stat-box">
+        <div class="stat-num" id="perf-followers-disp">—</div>
+        <div class="stat-label">Followers</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-growth-disp">—</div>
+        <div class="stat-label">Growth / mo</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-impressions-disp">—</div>
+        <div class="stat-label">Impressions</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-dms-disp">—</div>
+        <div class="stat-label">DMs / mo</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-num" id="perf-leads-disp">—</div>
+        <div class="stat-label">Leads</div>
+      </div>
+    </div>
+    <div class="perf-grid">
+      <div class="perf-field"><div class="perf-label">Total followers</div><input class="perf-input" id="perf-followers" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Follower growth (mo)</div><input class="perf-input" id="perf-growth" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Impressions (mo)</div><input class="perf-input" id="perf-impressions" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">DMs this month</div><input class="perf-input" id="perf-dms" type="number" placeholder="0" /></div>
+      <div class="perf-field"><div class="perf-label">Leads from LinkedIn</div><input class="perf-input" id="perf-leads" type="number" placeholder="0" /></div>
+    </div>
+    <div class="perf-field" style="margin-bottom:10px;"><div class="perf-label">Best post this month · URL</div><input class="perf-input" id="perf-best-url" type="url" placeholder="https://linkedin.com/posts/..." /></div>
+    <div class="perf-field" style="margin-bottom:16px;"><div class="perf-label">What worked? Hook, format, topic</div><textarea class="perf-input" id="perf-notes" placeholder="Write what worked..." style="min-height:80px;resize:vertical;line-height:1.6;font-family:Georgia,serif;"></textarea></div>
+    <button class="save-btn" onclick="savePerfData()">Save summary</button>
+    <span id="perf-saved-msg" style="font-size:12px;color:var(--muted);margin-left:12px;font-family:-apple-system,sans-serif;display:none;">Saved ✓</span>
+  </div>
+
+
 
 <script>
   // ── CALENDAR BADGES ──────────────────────────────────────────
