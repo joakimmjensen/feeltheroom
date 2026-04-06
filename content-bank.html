@@ -176,15 +176,56 @@
     .notes-url:focus, .notes-text:focus { outline: none; border-color: rgba(196,154,106,0.4); }
     .notes-url::placeholder, .notes-text::placeholder { color: var(--muted); }
 
+    /* CARD ACTIONS (desktop) */
+    .card-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; }
+
+    /* CALENDAR SCROLL WRAP */
+    .cal-scroll-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
     /* MOBILE */
     @media (max-width: 768px) {
-      nav { padding: 0 20px; }
-      .page { padding: 28px 20px 60px; }
-      .cal-grid { grid-template-columns: 60px repeat(5, 1fr); font-size: 12px; }
+      /* Nav */
+      nav { padding: 0 16px; height: 52px; }
+      .nav-hint { display: none; }
+
+      /* Layout */
+      .page { padding: 20px 14px 60px; }
+      .page-header { margin-bottom: 24px; }
+
+      /* Stats — 3 per row */
+      .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 28px; }
+      .stat-box { min-width: 0; padding: 10px 12px; }
+      .stat-num { font-size: 20px; }
+
+      /* Calendar — fixed width, scroll horizontally */
+      .cal-grid { min-width: 540px; font-size: 11px; }
       .cal-cell { padding: 8px 10px; min-height: 60px; }
       .cal-cell-title { font-size: 11px; }
-      .stats-row { gap: 8px; }
-      .stat-box { min-width: 90px; }
+      .cal-header, .cal-day-label { font-size: 10px; padding: 8px 10px; }
+
+      /* Post this week — 1 column */
+      .uge-grid { grid-template-columns: 1fr; }
+
+      /* Post cards — wrap actions to second row */
+      .post-card-header { flex-wrap: wrap; padding: 12px 14px; gap: 6px; }
+      .post-card-meta { flex: 1 1 100%; min-width: 0; }
+      .card-actions { margin-left: 0; width: 100%; justify-content: flex-end; }
+      .posted-btn, .approve-btn { font-size: 9px; padding: 4px 8px; }
+      .post-card-body { padding: 0 14px 16px; }
+      .post-text { font-size: 13px; padding: 14px 16px; }
+      .copy-btn { font-size: 10px; }
+
+      /* Add idea form — stack vertically */
+      .add-idea-form { flex-direction: column; }
+      .add-idea-input { min-width: 0; width: 100%; }
+      .add-idea-select { width: 100%; }
+      .add-idea-btn { width: 100%; text-align: center; }
+
+      /* Idea grid — 1 column */
+      .idea-grid { grid-template-columns: 1fr; }
+
+      /* Section */
+      .section { margin-bottom: 36px; }
     }
   </style>
 </head>
@@ -244,7 +285,7 @@
       <div class="legend-item"><span class="wheel-tag wheel-personligt">P</span> Personal foundation</div>
     </div>
 
-    <div class="cal-grid">
+    <div class="cal-scroll-wrap"><div class="cal-grid">
   <!-- Headers -->
       <div class="cal-header"></div>
       <div class="cal-header">Week 1<br><span style="font-weight:normal;font-size:10px;">23–27 Mar</span></div>
@@ -366,7 +407,7 @@
           <span class="badge idea" onclick="cycleBadge(this)">Idea</span>
         </div>
       </div>
-    </div>
+    </div></div><!-- /cal-scroll-wrap -->
   </div>
 
   <hr>
@@ -2958,7 +2999,7 @@ Then we go from there.</div>
     // Wrap buttons + toggle hint in a fixed-width actions container (ensures alignment)
     const hint = header.querySelector('.post-toggle-hint');
     const actions = document.createElement('div');
-    actions.style.cssText = 'display:flex;align-items:center;gap:8px;flex-shrink:0;margin-left:auto;';
+    actions.className = 'card-actions';
     header.insertBefore(actions, hint);
     actions.appendChild(hint);
 
