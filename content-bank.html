@@ -3216,15 +3216,15 @@ Then we go from there.</div>
   }
 
   function updateStats() {
-    const allBadges = document.querySelectorAll('.cal-cell .badge, .idea-card .badge');
-    let posted = 0, approved = 0, ready = 0, draft = 0, idea = 0;
-    allBadges.forEach(b => {
+    const calBadges = document.querySelectorAll('.cal-cell .badge');
+    let posted = 0, approved = 0, ready = 0, draft = 0;
+    calBadges.forEach(b => {
       if (b.classList.contains('posted')) posted++;
       else if (b.classList.contains('approved')) approved++;
       else if (b.classList.contains('ready')) ready++;
       else if (b.classList.contains('draft')) draft++;
-      else if (b.classList.contains('idea')) idea++;
     });
+    const idea = document.querySelectorAll('#idea-bank-grid .idea-card').length;
     document.getElementById('stat-idea').textContent = idea;
     document.getElementById('stat-ready').textContent = ready;
     document.getElementById('stat-approved').textContent = approved;
