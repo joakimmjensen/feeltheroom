@@ -80,10 +80,16 @@
     .stats-section + .stats-section { border-top: 0.5px solid var(--border); }
     .stats-group-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
     .stats-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 0; }
-    .stat-item { background: var(--bg2); padding: 24px 20px; text-align: center; }
+    .stat-item { background: var(--bg2); padding: 24px 20px; text-align: center; position: relative; cursor: pointer; transition: background 0.15s; }
+    .stat-item:hover { background: var(--bg3); }
+    .stat-item .stat-hint { font-size: 10px; color: var(--accent); opacity: 0.6; margin-top: 6px; letter-spacing: 0.06em; }
     .stat-number { font-family: Georgia, serif; font-size: 32px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
     .stat-number em { font-style: normal; color: var(--accent); }
     .stat-label { font-size: 11px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
+    /* STAT POPOVER */
+    .stat-popover { display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 13px; line-height: 1.6; padding: 14px 16px; border-radius: 8px; width: 220px; text-align: left; z-index: 10; pointer-events: none; }
+    .stat-popover::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--text); }
+    .stat-item.open .stat-popover { display: block; }
 
     /* TESTIMONIALS */
     .testimonials { max-width: 800px; margin: 0 auto; padding: 0 24px; }
@@ -219,20 +225,28 @@
       <div class="stats-group-label">Personally led sales</div>
       <div class="stats-inner">
         <div class="stat-item">
+          <div class="stat-popover">Across 6 industries: telemarketing, wholesale, digital marketing, insurance, SaaS, and fintech — from 2011 to today.</div>
           <div class="stat-number">13<em>+</em></div>
           <div class="stat-label">Years of sales &amp; leadership experience</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
         <div class="stat-item">
+          <div class="stat-popover">Estimated from average daily call volume across 13 years of active front-line sales work. Not theory — reps on the phone.</div>
           <div class="stat-number">80<em>K+</em></div>
           <div class="stat-label">Sales calls across career</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
         <div class="stat-item">
+          <div class="stat-popover">Face-to-face and virtual client meetings — from cold introductions to final close — across all industries and seniority levels.</div>
           <div class="stat-number">5<em>K+</em></div>
           <div class="stat-label">Client meetings — cold to close</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
         <div class="stat-item">
+          <div class="stat-popover">Personal sales across 5 roles: telemarketing (2yr), wholesale (2yr), digital marketing (2yr), insurance (4.5yr), SaaS (2yr). Converted from DKK at market rate.</div>
           <div class="stat-number">€11<em>M+</em></div>
           <div class="stat-label">In personal sales revenue</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
       </div>
     </div>
@@ -241,16 +255,22 @@
       <div class="stats-group-label">Team led sales &amp; leadership</div>
       <div class="stats-inner">
         <div class="stat-item">
+          <div class="stat-popover">Combined annual revenue of teams led across telemarketing, retail, insurance, SaaS, and fintech (Lunar). Converted from DKK at market rate.</div>
           <div class="stat-number">€42<em>M+</em></div>
           <div class="stat-label">In revenue through teams led</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
         <div class="stat-item">
+          <div class="stat-popover">Telemarketing (1→8), retail (1→10), insurance agency (5→70), second insurance (5→150), SaaS AEs (8), fintech/Lunar (2→15 across countries).</div>
           <div class="stat-number">5</div>
           <div class="stat-label">Teams built and scaled from the ground up</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
         <div class="stat-item">
+          <div class="stat-popover">Direct personal leadership responsibility — including 15 people at one of Denmark's largest insurance companies, and cross-country management at Lunar.</div>
           <div class="stat-number">70<em>+</em></div>
           <div class="stat-label">People led across industries and countries</div>
+          <div class="stat-hint">tap to learn more</div>
         </div>
       </div>
     </div>
@@ -433,6 +453,19 @@
       // TODO: Replace with Systeme.io embed when ready
       form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;text-align:center;">You\'re on the list. Talk soon. 🤝</p>';
     }
+
+    // Stat popovers
+    document.querySelectorAll('.stat-item').forEach(item => {
+      item.addEventListener('click', e => {
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.stat-item.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+        e.stopPropagation();
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.stat-item.open').forEach(el => el.classList.remove('open'));
+    });
   </script>
 
 </body>
