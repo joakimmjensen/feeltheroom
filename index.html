@@ -88,6 +88,36 @@
     .cta-section p { font-size:17px; color:var(--text2); max-width:440px; margin:0 auto 40px; }
     .email-form { display:flex; gap:10px; max-width:420px; margin:0 auto; }
     .email-form input { flex:1; padding:12px 18px; border-radius:var(--radius-sm); border:0.5px solid var(--border); background:var(--bg); color:var(--text); font-size:15px; }
+    /* VSL */
+    .vsl-section { padding:0 48px 72px; }
+    .vsl-outer { position:relative; width:100%; max-width:800px; margin:0 auto; padding-bottom:calc(56.25% * 800/100vw); }
+    .video-outer { position:relative; width:100%; max-width:800px; margin:0 auto; padding-bottom:56.25%; background:var(--bg3); border-radius:var(--radius); overflow:hidden; border:0.5px solid var(--border); }
+    .video-outer iframe, .video-outer video { position:absolute; inset:0; width:100%; height:100%; border:none; }
+    .video-placeholder { position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px; }
+    .play-btn { width:76px; height:76px; border-radius:50%; background:var(--accent); display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform 0.15s; }
+    .play-btn:hover { transform:scale(1.06); }
+    .play-btn svg { margin-left:5px; }
+    .video-label { font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--text2); }
+    .pull-quote { max-width:640px; margin:48px auto 0; text-align:center; }
+    .pull-quote p { font-family:Georgia,serif; font-size:21px; line-height:1.65; color:var(--text2); font-style:italic; }
+    .pull-quote strong { color:var(--text); font-style:normal; font-weight:600; }
+    /* THREE FOUNDATIONS */
+    .foundations-section { padding:80px 48px; background:var(--bg2); }
+    .foundations-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px, 1fr)); gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin-top:44px; }
+    .foundation-item { background:var(--bg); padding:32px 28px; }
+    .foundation-num { font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; font-weight:600; }
+    .foundation-title { font-family:Georgia,serif; font-size:20px; font-weight:600; margin-bottom:12px; line-height:1.2; }
+    .foundation-body { font-size:14px; color:var(--text2); line-height:1.7; }
+    /* FREEBIES */
+    .freebies-section-home { padding:80px 48px; }
+    .freebies-grid-home { display:grid; grid-template-columns:repeat(2, 1fr); gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; margin-top:44px; }
+    .freebie-item { background:var(--bg2); padding:24px 28px; display:flex; gap:16px; align-items:flex-start; }
+    .freebie-num { font-family:Georgia,serif; font-size:22px; font-weight:600; color:var(--accent); opacity:0.4; line-height:1; flex-shrink:0; width:28px; }
+    .freebie-title { font-size:14px; font-weight:600; color:var(--text); margin-bottom:4px; }
+    .freebie-desc { font-size:13px; color:var(--text2); line-height:1.6; }
+    .freebies-note { text-align:center; font-size:13px; color:var(--text2); margin-top:20px; }
+    .freebies-note strong { color:var(--text); }
+    @media (max-width:640px) { .vsl-section { padding:0 24px 56px; } .foundations-section { padding:60px 24px; } .freebies-section-home { padding:60px 24px; } .freebies-grid-home { grid-template-columns:1fr; } }
     footer { padding:28px 48px; border-top:0.5px solid var(--border); display:flex; justify-content:space-between; align-items:center; font-size:13px; color:var(--text2); flex-wrap:wrap; gap:12px; }
     footer a { color:var(--text2); }
     footer a:hover { color:var(--accent); }
@@ -214,6 +244,24 @@
     </div>
   </section>
 
+  <!-- VSL -->
+  <div class="vsl-section">
+    <div class="video-outer">
+      <!-- Swap in video embed when filmed: <iframe src="YOUR_URL" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <polygon points="6,3 20,12 6,21" fill="#f6ede0"/>
+          </svg>
+        </div>
+        <span class="video-label">Watch · 7 min</span>
+      </div>
+    </div>
+    <div class="pull-quote">
+      <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
+    </div>
+  </div>
+
   <div class="divider"></div>
 
   <!-- PROBLEM -->
@@ -256,6 +304,32 @@
         <div class="feel-letter">L</div>
         <div class="feel-word">Lead</div>
         <div class="feel-desc">Build the culture. Recruit the whole person. Set targets that motivate. Create the weekly rhythm that keeps the team sharp — and build a team that performs because they want to, not because you push them.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- THREE FOUNDATIONS -->
+  <section class="foundations-section">
+    <div class="eyebrow">The Foundation</div>
+    <h2 class="section-title">Three things that have to be in place before any technique makes sense.</h2>
+    <p class="section-body">Most training skips straight to the method. I start underneath it.</p>
+    <div class="foundations-grid">
+      <div class="foundation-item">
+        <div class="foundation-num">01 — Energy</div>
+        <h3 class="foundation-title">Feel the Room</h3>
+        <p class="foundation-body">Reading what's actually happening before a word is said. Knowing when to ask a question — and how — versus when to stay quiet and let the room breathe. You can't learn this from a script. You develop it.</p>
+      </div>
+      <div class="foundation-item">
+        <div class="foundation-num">02 — Culture</div>
+        <h3 class="foundation-title">Performative Balance</h3>
+        <p class="foundation-body">You cannot perform without having fun. And you cannot have fun without performing. Building that culture means hiring the right person for the room you're trying to build — not just the best CV.</p>
+      </div>
+      <div class="foundation-item">
+        <div class="foundation-num">03 — Human</div>
+        <h3 class="foundation-title">The Whole Person</h3>
+        <p class="foundation-body">Are you sleeping? Moving? Emotionally regulated when you walk into a room that matters? If not — no technique will take you where you want to go. You'll keep buying courses and wondering why the needle isn't moving.</p>
       </div>
     </div>
   </section>
@@ -438,14 +512,35 @@
 
   <div class="divider"></div>
 
+  <!-- FREEBIES -->
+  <section class="freebies-section-home">
+    <div class="eyebrow">Inside the waitlist</div>
+    <h2 class="section-title">Eight tools. Sent over 16 weeks. Yours the moment you sign up.</h2>
+    <p class="section-body">Each one is a practical extract from the F.E.E.L. framework — built for leaders and commercial profiles who want to go deeper than technique.</p>
+    <div class="freebies-grid-home">
+      <div class="freebie-item"><div class="freebie-num">01</div><div><div class="freebie-title">Team Values Workshop</div><div class="freebie-desc">A step-by-step facilitation guide for building team values that actually drive behaviour.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">02</div><div><div class="freebie-title">Pre-Meeting State Checklist</div><div class="freebie-desc">Prepare your state — not just your pitch. Before any room that matters.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">03</div><div><div class="freebie-title">Objection Mapping Framework</div><div class="freebie-desc">Turn resistance into clarity. A structured way to understand what objections are really saying.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">04</div><div><div class="freebie-title">1:1 Coaching Guide</div><div class="freebie-desc">How to run one-on-ones that actually develop people — not just check status.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">05</div><div><div class="freebie-title">Team Orchestration Rhythm</div><div class="freebie-desc">The cadence and structure that keeps high-performing teams aligned without micromanagement.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">06</div><div><div class="freebie-title">Hire Interview Guide</div><div class="freebie-desc">How to interview for the whole person — not just the CV. Spot culture fit before day one.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">07</div><div><div class="freebie-title">FTR Aura Profile</div><div class="freebie-desc">Understand your natural energy in a room — and how to work with it, not against it.</div></div></div>
+      <div class="freebie-item"><div class="freebie-num">08</div><div><div class="freebie-title">How to Structure a Sales Call</div><div class="freebie-desc">The 7-step F.E.E.L. sales flow with key questions and time guides for each phase.</div></div></div>
+    </div>
+    <p class="freebies-note">One sent every two weeks. <strong>No pitch. No upsell.</strong> Just the tools.</p>
+  </section>
+
+  <div class="divider"></div>
+
   <!-- CTA -->
   <section class="cta-section" id="waitlist">
-    <h2>Ready to feel the difference?</h2>
-    <p>Join the waitlist — or book a call to talk about what you need.</p>
-    <div class="email-form">
-      <input type="email" id="waitlist-email" placeholder="Your email address" />
-      <button class="btn-primary">Join waitlist</button>
-    </div>
+    <h2>If this landed — you already know if you're the right person.</h2>
+    <p>Request access. You'll hear from me when the time is right.</p>
+    <form class="email-form" onsubmit="handleWaitlist(event)">
+      <input type="email" id="waitlist-email" placeholder="Your email address" required />
+      <button type="submit" class="btn-primary">Request access</button>
+    </form>
+    <p style="font-size:13px;color:var(--text2);margin-top:12px;">No pitch. No spam. Something useful in the meantime.</p>
   </section>
 
   <footer style="flex-direction:column; align-items:center; gap:20px; padding:40px 48px;">
@@ -459,6 +554,14 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    function handleWaitlist(e) {
+      e.preventDefault();
+      const form = e.target;
+      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;">You\'re on the list. Talk soon.</p>';
+    }
+  </script>
 
 </body>
 </html>
