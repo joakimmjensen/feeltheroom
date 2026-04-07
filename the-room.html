@@ -20,312 +20,117 @@
       --radius: 12px;
     }
     html { scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      font-size: 16px;
-      line-height: 1.7;
-    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
 
     /* NAV */
-    nav {
-      padding: 0 48px;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 0.5px solid var(--border);
-    }
+    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
     .nav-logo img { height: 22px; display: block; }
 
     /* HERO */
-    .hero {
-      max-width: 720px;
-      margin: 0 auto;
-      padding: 80px 24px 48px;
-      text-align: center;
-    }
-    .eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text2);
-      margin-bottom: 24px;
-    }
-    .hero h1 {
-      font-family: Georgia, serif;
-      font-size: clamp(36px, 6vw, 58px);
-      font-weight: 600;
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      color: var(--text);
-      margin-bottom: 24px;
-    }
+    .hero { max-width: 760px; margin: 0 auto; padding: 88px 24px 52px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 24px; }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(38px, 6vw, 60px); font-weight: 600; line-height: 1.07; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
     .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero-sub {
-      font-size: 18px;
-      color: var(--text2);
-      line-height: 1.7;
-      max-width: 520px;
-      margin: 0 auto 48px;
-    }
+    .hero-sub { font-size: 19px; color: var(--text2); line-height: 1.7; max-width: 540px; margin: 0 auto; }
 
     /* VIDEO */
-    .video-wrap {
-      max-width: 780px;
-      margin: 0 auto 64px;
-      padding: 0 24px;
-    }
-    .video-outer {
-      position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      background: var(--bg3);
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 0.5px solid var(--border);
-    }
-    .video-outer iframe,
-    .video-outer video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
-    .video-placeholder {
-      position: absolute;
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      color: var(--text2);
-    }
-    .play-btn {
-      width: 72px;
-      height: 72px;
-      border-radius: 50%;
-      background: var(--accent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .play-btn svg { margin-left: 4px; }
-    .video-label {
-      font-size: 13px;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--text2);
-    }
+    .video-wrap { max-width: 800px; margin: 52px auto 0; padding: 0 24px; }
+    .video-outer { position: relative; width: 100%; padding-bottom: 56.25%; background: var(--bg3); border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
+    .video-outer iframe, .video-outer video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
+    .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+    .play-btn { width: 76px; height: 76px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s, opacity 0.15s; }
+    .play-btn:hover { transform: scale(1.06); }
+    .play-btn svg { margin-left: 5px; }
+    .video-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); }
 
-    /* COPY BELOW VIDEO */
-    .below-video {
-      max-width: 600px;
-      margin: 0 auto 64px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .below-video p {
-      font-family: Georgia, serif;
-      font-size: 20px;
-      line-height: 1.65;
-      color: var(--text2);
-      font-style: italic;
-    }
-    .below-video strong {
-      color: var(--text);
-      font-style: normal;
-      font-weight: 600;
-    }
+    /* PULL QUOTE */
+    .pull-quote { max-width: 640px; margin: 56px auto 0; padding: 0 24px; text-align: center; }
+    .pull-quote p { font-family: Georgia, serif; font-size: 21px; line-height: 1.65; color: var(--text2); font-style: italic; }
+    .pull-quote strong { color: var(--text); font-style: normal; font-weight: 600; }
 
-    /* FORM */
-    .form-section {
-      max-width: 520px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-      text-align: center;
-    }
-    .form-label {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--text2);
-      margin-bottom: 20px;
-    }
-    .form-row {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 14px;
-    }
-    .form-row input {
-      flex: 1;
-      padding: 14px 18px;
-      border: 0.5px solid var(--border);
-      border-radius: 8px;
-      background: var(--bg2);
-      font-size: 15px;
-      color: var(--text);
-      outline: none;
-      font-family: inherit;
-      transition: border-color 0.15s;
-    }
+    /* FORM — FIRST */
+    .form-wrap { max-width: 500px; margin: 48px auto 0; padding: 0 24px; text-align: center; }
+    .form-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; display: block; }
+    .form-row { display: flex; gap: 10px; margin-bottom: 12px; }
+    .form-row input { flex: 1; padding: 14px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--bg2); font-size: 15px; color: var(--text); outline: none; font-family: inherit; transition: border-color 0.15s; }
     .form-row input::placeholder { color: var(--text2); }
-    .form-row input:focus { border-color: rgba(28,26,23,0.35); }
-    .btn-access {
-      padding: 14px 28px;
-      background: var(--accent);
-      color: #f6ede0;
-      border: none;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      cursor: pointer;
-      white-space: nowrap;
-      font-family: inherit;
-      transition: opacity 0.15s;
-    }
-    .btn-access:hover { opacity: 0.88; }
-    .form-note {
-      font-size: 12px;
-      color: var(--text2);
-      line-height: 1.5;
-    }
+    .form-row input:focus { border-color: rgba(28,26,23,0.4); }
+    .btn-access { padding: 14px 28px; background: var(--accent); color: #f6ede0; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: inherit; transition: opacity 0.15s; }
+    .btn-access:hover { opacity: 0.87; }
+    .form-note { font-size: 12px; color: var(--text2); line-height: 1.6; }
 
-    /* DIVIDER */
-    .divider {
-      height: 0.5px;
-      background: var(--border);
-      max-width: 780px;
-      margin: 0 auto 64px;
-    }
+    /* SECTION DIVIDER */
+    .divider { height: 0.5px; background: var(--border); max-width: 800px; margin: 72px auto; }
+
+    /* THREE FOUNDATIONS */
+    .foundations { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .section-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; }
+    .section-headline { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; max-width: 560px; }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
+    .foundations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 0; }
+    .foundation-item { background: var(--bg2); padding: 32px 28px; }
+    .foundation-num { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 600; }
+    .foundation-title { font-family: Georgia, serif; font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.2; }
+    .foundation-body { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* STATS */
+    .stats-bar { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin: 72px 0; }
+    .stats-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2px; background: var(--border); }
+    .stat-item { background: var(--bg2); padding: 32px 24px; text-align: center; }
+    .stat-number { font-family: Georgia, serif; font-size: 36px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
+    .stat-number em { font-style: normal; color: var(--accent); }
+    .stat-label { font-size: 12px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
+
+    /* TESTIMONIALS */
+    .testimonials { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 40px; }
+    .testimonial-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px; }
+    .testimonial-quote { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 24px; font-style: italic; }
+    .testimonial-quote::before { content: '"'; font-size: 32px; color: var(--accent); line-height: 0; vertical-align: -12px; margin-right: 4px; font-style: normal; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg3); border: 0.5px solid var(--border); flex-shrink: 0; object-fit: cover; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--text2); }
+    .testimonial-name { font-size: 14px; font-weight: 600; color: var(--text); }
+    .testimonial-role { font-size: 12px; color: var(--text2); }
 
     /* WHO IT'S FOR */
-    .who-section {
-      max-width: 680px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-    }
-    .who-eyebrow {
-      font-size: 11px;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--text2);
-      margin-bottom: 32px;
-      text-align: center;
-    }
-    .who-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 2px;
-      background: var(--border);
-      border-radius: var(--radius);
-      overflow: hidden;
-    }
-    .who-item {
-      background: var(--bg2);
-      padding: 28px 24px;
-    }
-    .who-item h4 {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 8px;
-      color: var(--text);
-    }
-    .who-item p {
-      font-size: 13px;
-      color: var(--text2);
-      line-height: 1.6;
-    }
+    .who-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
+    .who-item { background: var(--bg2); padding: 28px 24px; }
+    .who-check { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .who-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .who-item p { font-size: 13px; color: var(--text2); line-height: 1.65; }
 
     /* ABOUT */
-    .about-section {
-      max-width: 680px;
-      margin: 0 auto 80px;
-      padding: 0 24px;
-      display: flex;
-      gap: 32px;
-      align-items: flex-start;
-    }
-    .about-img {
-      width: 80px;
-      height: 80px;
-      border-radius: 50%;
-      object-fit: cover;
-      flex-shrink: 0;
-      border: 0.5px solid var(--border);
-    }
-    .about-text h3 {
-      font-size: 16px;
-      font-weight: 600;
-      margin-bottom: 6px;
-    }
-    .about-text p {
-      font-size: 14px;
-      color: var(--text2);
-      line-height: 1.7;
-    }
-    .about-text .about-tag {
-      display: inline-block;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 10px;
-    }
+    .about-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .about-inner { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 44px; display: grid; grid-template-columns: 140px 1fr; gap: 40px; align-items: start; margin-top: 40px; }
+    .about-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 0.5px solid var(--border); display: block; }
+    .about-tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
+    .about-name { font-family: Georgia, serif; font-size: 24px; font-weight: 600; margin-bottom: 6px; }
+    .about-title { font-size: 14px; color: var(--text2); margin-bottom: 20px; }
+    .about-body { font-size: 15px; color: var(--text2); line-height: 1.8; }
+    .about-body p { margin-bottom: 14px; }
+    .about-body p:last-child { margin-bottom: 0; }
+    .about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
+    .badge { font-size: 12px; color: var(--text2); background: var(--bg3); border: 0.5px solid var(--border); padding: 5px 12px; border-radius: 20px; }
 
-    /* BOTTOM FORM */
-    .bottom-cta {
-      background: var(--bg2);
-      border-top: 0.5px solid var(--border);
-      padding: 72px 24px;
-      text-align: center;
-    }
-    .bottom-cta h2 {
-      font-family: Georgia, serif;
-      font-size: clamp(24px, 4vw, 36px);
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin-bottom: 16px;
-      max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .bottom-cta p {
-      font-size: 16px;
-      color: var(--text2);
-      margin-bottom: 36px;
-    }
+    /* BOTTOM CTA */
+    .bottom-cta { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 80px 24px; text-align: center; margin-top: 72px; }
+    .bottom-cta h2 { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 16px; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .bottom-cta .sub { font-size: 17px; color: var(--text2); margin-bottom: 40px; }
 
     /* FOOTER */
-    footer {
-      padding: 24px 48px;
-      border-top: 0.5px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-    footer p {
-      font-size: 12px;
-      color: var(--text2);
-    }
-    footer a {
-      font-size: 12px;
-      color: var(--text2);
-      text-decoration: none;
-    }
+    footer { padding: 24px 48px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    footer p { font-size: 12px; color: var(--text2); }
+    footer a { font-size: 12px; color: var(--text2); text-decoration: none; }
     footer a:hover { color: var(--text); }
 
     /* MOBILE */
-    @media (max-width: 600px) {
+    @media (max-width: 680px) {
       nav { padding: 0 20px; }
       .hero { padding: 56px 20px 36px; }
       .form-row { flex-direction: column; }
-      .about-section { flex-direction: column; gap: 16px; }
-      .about-img { width: 60px; height: 60px; }
+      .about-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
+      .about-photo { width: 100px; height: 100px; }
       footer { flex-direction: column; text-align: center; padding: 20px; }
     }
   </style>
@@ -349,29 +154,28 @@
   <!-- VIDEO -->
   <div class="video-wrap">
     <div class="video-outer">
-      <!-- Replace src with actual video embed when ready -->
-      <!-- <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> -->
+      <!-- Swap in video embed when filmed: <iframe src="YOUR_URL" allowfullscreen></iframe> -->
       <div class="video-placeholder">
         <div class="play-btn">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
             <polygon points="6,3 20,12 6,21" fill="#f6ede0"/>
           </svg>
         </div>
-        <span class="video-label">Watch · 6 min</span>
+        <span class="video-label">Watch · 7 min</span>
       </div>
     </div>
   </div>
 
-  <!-- COPY BELOW VIDEO -->
-  <div class="below-video">
+  <!-- PULL QUOTE -->
+  <div class="pull-quote">
     <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
   </div>
 
-  <!-- FORM -->
-  <div class="form-section">
-    <p class="form-label">Get early access</p>
+  <!-- FIRST FORM -->
+  <div class="form-wrap">
+    <span class="form-label">Get early access</span>
     <form class="form-row" onsubmit="handleSubmit(event)">
-      <input type="email" placeholder="Your email address" required id="email-input" />
+      <input type="email" placeholder="Your email address" required />
       <button type="submit" class="btn-access">Request access</button>
     </form>
     <p class="form-note">No pitch. No spam. You'll hear from me when the time is right.<br>And I'll send you something useful in the meantime.</p>
@@ -379,21 +183,115 @@
 
   <div class="divider"></div>
 
+  <!-- THREE FOUNDATIONS -->
+  <div class="foundations">
+    <p class="section-eyebrow">The Foundation</p>
+    <h2 class="section-headline">Three things that have to be in place before any technique makes sense.</h2>
+    <p class="section-sub">Most training skips straight to the method. I start underneath it.</p>
+    <div class="foundations-grid">
+      <div class="foundation-item">
+        <div class="foundation-num">01 — Energy</div>
+        <h3 class="foundation-title">Feel the Room</h3>
+        <p class="foundation-body">Reading what's actually happening before a word is said. Knowing when to ask a question — and how — versus when to stay quiet and let the room breathe. You can't learn this from a script. You develop it.</p>
+      </div>
+      <div class="foundation-item">
+        <div class="foundation-num">02 — Culture</div>
+        <h3 class="foundation-title">Performative Balance</h3>
+        <p class="foundation-body">You cannot perform without having fun. And you cannot have fun without performing. Building that culture means hiring the right person for the room you're trying to build — not just the best CV.</p>
+      </div>
+      <div class="foundation-item">
+        <div class="foundation-num">03 — Human</div>
+        <h3 class="foundation-title">The Whole Person</h3>
+        <p class="foundation-body">Are you sleeping? Moving? Emotionally regulated when you walk into a room that matters? If not — no technique will take you where you want to go. You'll keep buying courses and wondering why the needle isn't moving.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-inner">
+      <div class="stat-item">
+        <div class="stat-number">13<em>+</em></div>
+        <div class="stat-label">Years in sales &amp; commercial leadership</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number"><em>$</em>M</div>
+        <div class="stat-label">Million-dollar deals closed with Europe's biggest companies</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">×<em>N</em></div>
+        <div class="stat-label">Teams scaled from solo to full cross-country departments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">10<em>.0</em></div>
+        <div class="stat-label">Seedster mentor rating — Marbella</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TESTIMONIALS -->
+  <div class="testimonials">
+    <p class="section-eyebrow">What people say</p>
+    <h2 class="section-headline">From the room.</h2>
+    <div class="testimonial-grid">
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">You're in for a treat. He's something else.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">M</div>
+          <div>
+            <div class="testimonial-name">Marbella Seedster participant</div>
+            <div class="testimonial-role">Said to the next group walking in</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote"><!-- ADD QUOTE --></p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name"><!-- NAME --></div>
+            <div class="testimonial-role"><!-- ROLE --></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote"><!-- ADD QUOTE --></p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">B</div>
+          <div>
+            <div class="testimonial-name"><!-- NAME --></div>
+            <div class="testimonial-role"><!-- ROLE --></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
   <!-- WHO IT'S FOR -->
   <div class="who-section">
-    <p class="who-eyebrow">Who this is for</p>
+    <p class="section-eyebrow">Who this is for</p>
+    <h2 class="section-headline">Not for everyone. Built for a specific kind of person.</h2>
     <div class="who-grid">
       <div class="who-item">
+        <div class="who-check">For you if →</div>
         <h4>Sales leaders</h4>
-        <p>Who feel like they're constantly pushing uphill — and know there's another level.</p>
+        <p>You feel like you're constantly pushing uphill. You know there's another level — and you're tired of symptom-treating with more courses.</p>
       </div>
       <div class="who-item">
+        <div class="who-check">For you if →</div>
         <h4>Founders</h4>
-        <p>Building teams who want to perform and actually enjoy doing it.</p>
+        <p>You're building a team and want them to perform and actually enjoy doing it. Culture isn't a buzzword for you — it's the foundation.</p>
       </div>
       <div class="who-item">
+        <div class="who-check">For you if →</div>
         <h4>Commercial profiles</h4>
-        <p>Who want to operate at their highest level — not just at work, but as a human being.</p>
+        <p>You operate in rooms that matter. You've sat in a meeting and known — before a word was said — that something was off. Or on.</p>
       </div>
     </div>
   </div>
@@ -402,22 +300,41 @@
 
   <!-- ABOUT -->
   <div class="about-section">
-    <img src="joakim.jpg" alt="Joakim" class="about-img" />
-    <div class="about-text">
-      <span class="about-tag">Joakim Jensen</span>
-      <h3>Sales leader. Coach. Builder.</h3>
-      <p>Head of Sales at Lunar. Seedster mentor. I've spent years in commercial roles — as a salesperson, as a leader, and as the person in the room who's supposed to perform. What changed everything wasn't a better technique. It was learning to feel what was actually happening.</p>
+    <p class="section-eyebrow">Who's behind this</p>
+    <h2 class="section-headline">I couldn't find this person. So I'm becoming him.</h2>
+    <div class="about-inner">
+      <img src="joakim.jpg" alt="Joakim Jensen" class="about-photo" />
+      <div>
+        <span class="about-tag">Joakim Møller Jensen</span>
+        <h3 class="about-name">Joakim Jensen</h3>
+        <p class="about-title">Head of Sales, Nordics — Lunar &nbsp;·&nbsp; Seedster Mentor</p>
+        <div class="about-body">
+          <p>I've spent 13 years in high-performance sales and commercial leadership. I've closed million-dollar deals with some of the biggest companies in Europe. I've scaled teams from just me to full departments running across countries.</p>
+          <p>Through all of it, I kept looking for someone who taught it the way I experienced it — not just the technique, but the whole thing. The culture. The energy. What it actually takes to perform at your highest level, and to stay human while doing it.</p>
+          <p>I'm particularly focused on the psychological side of sales and leadership — and on how what you do outside the office directly shapes what you deliver inside it. Performance is shaped by the whole person. Not just the work hours.</p>
+          <p>I couldn't find that person. So I'm becoming him.</p>
+        </div>
+        <div class="about-badges">
+          <span class="badge">Head of Sales — Lunar</span>
+          <span class="badge">Seedster Mentor 10.0</span>
+          <span class="badge">13+ years in sales</span>
+          <span class="badge">Cross-country teams</span>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- BOTTOM CTA -->
   <div class="bottom-cta">
     <h2>If this landed — you already know if you're the right person.</h2>
-    <p>Request access. You'll hear from me when the time is right.</p>
-    <form class="form-row" style="max-width:440px;margin:0 auto;" onsubmit="handleSubmit(event)">
-      <input type="email" placeholder="Your email address" required />
-      <button type="submit" class="btn-access">Request access</button>
-    </form>
+    <p class="sub">Request access. You'll hear from me when the time is right.</p>
+    <div class="form-wrap" style="margin-top:0;">
+      <form class="form-row" style="max-width:460px;margin:0 auto 12px;" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn-access">Request access</button>
+      </form>
+      <p class="form-note">No pitch. No spam. Something useful in the meantime.</p>
+    </div>
   </div>
 
   <!-- FOOTER -->
@@ -430,10 +347,8 @@
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
-      const email = form.querySelector('input[type="email"]').value;
-      // TODO: connect to email platform (Mailchimp / ConvertKit / etc.)
-      // For now, show confirmation
-      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;">You\'re on the list. Talk soon.</p>';
+      // TODO: Replace with Systeme.io embed when ready
+      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;text-align:center;">You\'re on the list. Talk soon. 🤝</p>';
     }
   </script>
 
