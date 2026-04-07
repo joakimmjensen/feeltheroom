@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
+  <meta name="color-scheme" content="light">
+  <title>The Room — Feel the Room</title>
+  <meta name="description" content="Something is being built. For sales leaders and founders who feel there's another level. Request access." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --bg3: #e8dcc4;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #ff0800;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* NAV */
+    nav {
+      padding: 0 48px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .nav-logo img { height: 22px; display: block; }
+
+    /* HERO */
+    .hero {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px 48px;
+      text-align: center;
+    }
+    .eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 600;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 24px;
+    }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub {
+      font-size: 18px;
+      color: var(--text2);
+      line-height: 1.7;
+      max-width: 520px;
+      margin: 0 auto 48px;
+    }
+
+    /* VIDEO */
+    .video-wrap {
+      max-width: 780px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+    }
+    .video-outer {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      background: var(--bg3);
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 0.5px solid var(--border);
+    }
+    .video-outer iframe,
+    .video-outer video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: var(--text2);
+    }
+    .play-btn {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .play-btn svg { margin-left: 4px; }
+    .video-label {
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--text2);
+    }
+
+    /* COPY BELOW VIDEO */
+    .below-video {
+      max-width: 600px;
+      margin: 0 auto 64px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .below-video p {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1.65;
+      color: var(--text2);
+      font-style: italic;
+    }
+    .below-video strong {
+      color: var(--text);
+      font-style: normal;
+      font-weight: 600;
+    }
+
+    /* FORM */
+    .form-section {
+      max-width: 520px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .form-label {
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 20px;
+    }
+    .form-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+    .form-row input {
+      flex: 1;
+      padding: 14px 18px;
+      border: 0.5px solid var(--border);
+      border-radius: 8px;
+      background: var(--bg2);
+      font-size: 15px;
+      color: var(--text);
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.15s;
+    }
+    .form-row input::placeholder { color: var(--text2); }
+    .form-row input:focus { border-color: rgba(28,26,23,0.35); }
+    .btn-access {
+      padding: 14px 28px;
+      background: var(--accent);
+      color: #f6ede0;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      font-family: inherit;
+      transition: opacity 0.15s;
+    }
+    .btn-access:hover { opacity: 0.88; }
+    .form-note {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.5;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 0.5px;
+      background: var(--border);
+      max-width: 780px;
+      margin: 0 auto 64px;
+    }
+
+    /* WHO IT'S FOR */
+    .who-section {
+      max-width: 680px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .who-eyebrow {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text2);
+      margin-bottom: 32px;
+      text-align: center;
+    }
+    .who-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2px;
+      background: var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .who-item {
+      background: var(--bg2);
+      padding: 28px 24px;
+    }
+    .who-item h4 {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .who-item p {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* ABOUT */
+    .about-section {
+      max-width: 680px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+      display: flex;
+      gap: 32px;
+      align-items: flex-start;
+    }
+    .about-img {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 0.5px solid var(--border);
+    }
+    .about-text h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .about-text p {
+      font-size: 14px;
+      color: var(--text2);
+      line-height: 1.7;
+    }
+    .about-text .about-tag {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    /* BOTTOM FORM */
+    .bottom-cta {
+      background: var(--bg2);
+      border-top: 0.5px solid var(--border);
+      padding: 72px 24px;
+      text-align: center;
+    }
+    .bottom-cta h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      margin-bottom: 16px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .bottom-cta p {
+      font-size: 16px;
+      color: var(--text2);
+      margin-bottom: 36px;
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 24px 48px;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    footer p {
+      font-size: 12px;
+      color: var(--text2);
+    }
+    footer a {
+      font-size: 12px;
+      color: var(--text2);
+      text-decoration: none;
+    }
+    footer a:hover { color: var(--text); }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .hero { padding: 56px 20px 36px; }
+      .form-row { flex-direction: column; }
+      .about-section { flex-direction: column; gap: 16px; }
+      .about-img { width: 60px; height: 60px; }
+      footer { flex-direction: column; text-align: center; padding: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="nav-logo">
+      <img src="long red.svg" alt="Feel the Room" />
+    </a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow">Feel the Room</p>
+    <h1>Most sales training<br>treats <em>the symptom.</em></h1>
+    <p class="hero-sub">There's a layer underneath the technique. And it changes everything.</p>
+  </section>
+
+  <!-- VIDEO -->
+  <div class="video-wrap">
+    <div class="video-outer">
+      <!-- Replace src with actual video embed when ready -->
+      <!-- <iframe src="YOUR_VIDEO_URL" allowfullscreen></iframe> -->
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+            <polygon points="6,3 20,12 6,21" fill="#f6ede0"/>
+          </svg>
+        </div>
+        <span class="video-label">Watch · 6 min</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- COPY BELOW VIDEO -->
+  <div class="below-video">
+    <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section">
+    <p class="form-label">Get early access</p>
+    <form class="form-row" onsubmit="handleSubmit(event)">
+      <input type="email" placeholder="Your email address" required id="email-input" />
+      <button type="submit" class="btn-access">Request access</button>
+    </form>
+    <p class="form-note">No pitch. No spam. You'll hear from me when the time is right.<br>And I'll send you something useful in the meantime.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHO IT'S FOR -->
+  <div class="who-section">
+    <p class="who-eyebrow">Who this is for</p>
+    <div class="who-grid">
+      <div class="who-item">
+        <h4>Sales leaders</h4>
+        <p>Who feel like they're constantly pushing uphill — and know there's another level.</p>
+      </div>
+      <div class="who-item">
+        <h4>Founders</h4>
+        <p>Building teams who want to perform and actually enjoy doing it.</p>
+      </div>
+      <div class="who-item">
+        <h4>Commercial profiles</h4>
+        <p>Who want to operate at their highest level — not just at work, but as a human being.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <div class="about-section">
+    <img src="joakim.jpg" alt="Joakim" class="about-img" />
+    <div class="about-text">
+      <span class="about-tag">Joakim Jensen</span>
+      <h3>Sales leader. Coach. Builder.</h3>
+      <p>Head of Sales at Lunar. Seedster mentor. I've spent years in commercial roles — as a salesperson, as a leader, and as the person in the room who's supposed to perform. What changed everything wasn't a better technique. It was learning to feel what was actually happening.</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div class="bottom-cta">
+    <h2>If this landed — you already know if you're the right person.</h2>
+    <p>Request access. You'll hear from me when the time is right.</p>
+    <form class="form-row" style="max-width:440px;margin:0 auto;" onsubmit="handleSubmit(event)">
+      <input type="email" placeholder="Your email address" required />
+      <button type="submit" class="btn-access">Request access</button>
+    </form>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Feel the Room</p>
+    <a href="/">feeltheroom.dk</a>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const email = form.querySelector('input[type="email"]').value;
+      // TODO: connect to email platform (Mailchimp / ConvertKit / etc.)
+      // For now, show confirmation
+      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;">You\'re on the list. Talk soon.</p>';
+    }
+  </script>
+
+</body>
+</html>
