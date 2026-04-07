@@ -79,16 +79,18 @@
     .stats-section:last-child { padding-bottom: 28px; }
     .stats-section + .stats-section { border-top: 0.5px solid var(--border); }
     .stats-group-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
-    .stats-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 0; }
+    .stats-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: visible; margin-bottom: 0; }
     .stat-item { background: var(--bg2); padding: 24px 20px; text-align: center; position: relative; cursor: pointer; transition: background 0.15s; }
+    .stat-item:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .stat-item:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
     .stat-item:hover { background: var(--bg3); }
     .stat-item .stat-hint { font-size: 10px; color: var(--accent); opacity: 0.6; margin-top: 6px; letter-spacing: 0.06em; }
     .stat-number { font-family: Georgia, serif; font-size: 32px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
     .stat-number em { font-style: normal; color: var(--accent); }
     .stat-label { font-size: 11px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
     /* STAT POPOVER */
-    .stat-popover { display: none; position: absolute; bottom: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 13px; line-height: 1.6; padding: 14px 16px; border-radius: 8px; width: 220px; text-align: left; z-index: 10; pointer-events: none; }
-    .stat-popover::after { content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-top-color: var(--text); }
+    .stat-popover { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 13px; line-height: 1.6; padding: 14px 16px; border-radius: 8px; width: 220px; text-align: left; z-index: 100; pointer-events: none; }
+    .stat-popover::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: var(--text); }
     .stat-item.open .stat-popover { display: block; }
 
     /* TESTIMONIALS */
