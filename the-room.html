@@ -74,12 +74,16 @@
     .foundation-body { font-size: 14px; color: var(--text2); line-height: 1.7; }
 
     /* STATS */
-    .stats-bar { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin: 72px 0; }
-    .stats-inner { max-width: 800px; margin: 0 auto; padding: 0 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2px; background: var(--border); }
-    .stat-item { background: var(--bg2); padding: 32px 24px; text-align: center; }
-    .stat-number { font-family: Georgia, serif; font-size: 36px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
+    .stats-bar { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin: 72px 0; padding: 0 24px; }
+    .stats-section { max-width: 800px; margin: 0 auto; padding: 28px 0 0; }
+    .stats-section:last-child { padding-bottom: 28px; }
+    .stats-section + .stats-section { border-top: 0.5px solid var(--border); }
+    .stats-group-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+    .stats-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 0; }
+    .stat-item { background: var(--bg2); padding: 24px 20px; text-align: center; }
+    .stat-number { font-family: Georgia, serif; font-size: 32px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
     .stat-number em { font-style: normal; color: var(--accent); }
-    .stat-label { font-size: 12px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
+    .stat-label { font-size: 11px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
 
     /* TESTIMONIALS */
     .testimonials { max-width: 800px; margin: 0 auto; padding: 0 24px; }
@@ -210,24 +214,47 @@
 
   <!-- STATS BAR -->
   <div class="stats-bar">
-    <div class="stats-inner">
-      <div class="stat-item">
-        <div class="stat-number">13<em>+</em></div>
-        <div class="stat-label">Years of sales &amp; leadership experience</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">80<em>K+</em></div>
-        <div class="stat-label">Sales calls made across career</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">5<em>K+</em></div>
-        <div class="stat-label">Client meetings — from cold to close</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">400<em>M+</em></div>
-        <div class="stat-label">DKK in commercial revenue — personally and through teams</div>
+
+    <div class="stats-section">
+      <div class="stats-group-label">Personally led sales</div>
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-number">13<em>+</em></div>
+          <div class="stat-label">Years of sales &amp; leadership experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">80<em>K+</em></div>
+          <div class="stat-label">Sales calls across career</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5<em>K+</em></div>
+          <div class="stat-label">Client meetings — cold to close</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">100<em>M+</em></div>
+          <div class="stat-label">DKK in personal sales revenue</div>
+        </div>
       </div>
     </div>
+
+    <div class="stats-section">
+      <div class="stats-group-label">Team led sales &amp; leadership</div>
+      <div class="stats-inner">
+        <div class="stat-item">
+          <div class="stat-number">300<em>M+</em></div>
+          <div class="stat-label">DKK in revenue through teams led</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Teams built and scaled from the ground up</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">70<em>+</em></div>
+          <div class="stat-label">People led across industries and countries</div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <!-- TESTIMONIALS -->
