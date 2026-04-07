@@ -14,515 +14,235 @@
       --text2: #6B6457;
       --accent: #ff0800;
       --border: rgba(28,26,23,0.12);
-      --radius: 12px;
-      --green: #2a7a4b;
     }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
+    .page { height: 100vh; display: grid; grid-template-rows: 44px 36px 1fr; }
 
-    /* NAV */
-    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
-    .nav-logo { font-family: Georgia, serif; font-size: 15px; font-weight: 700; color: var(--accent); }
-    .nav-title { font-size: 13px; color: var(--text2); }
-    .nav-progress { display: flex; gap: 6px; align-items: center; }
-    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--border); cursor: pointer; transition: background 0.2s; }
-    .nav-dot.active { background: var(--accent); border-color: var(--accent); }
-    .nav-dot.done { background: var(--green); border-color: var(--green); }
+    /* TOPBAR */
+    .topbar { display: flex; align-items: center; gap: 16px; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
+    .logo { font-family: Georgia, serif; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .top-title { font-size: 11px; color: var(--text2); flex-shrink: 0; }
+    .timeline-strip { display: flex; align-items: center; flex: 1; justify-content: center; }
+    .tl-item { display: flex; align-items: center; }
+    .tl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--text2); flex-shrink: 0; }
+    .tl-line { width: 32px; height: 1px; background: var(--border); }
+    .tl-label { font-size: 9px; color: var(--text2); white-space: nowrap; margin: 0 4px; letter-spacing: 0.04em; }
+    .top-meta { display: flex; gap: 8px; flex-shrink: 0; }
+    .top-pill { font-size: 9px; background: var(--bg3); border-radius: 20px; padding: 2px 8px; color: var(--text2); letter-spacing: 0.05em; }
 
-    /* LAYOUT */
-    .container { max-width: 780px; margin: 0 auto; padding: 0 24px 120px; }
+    /* PREFLIGHT */
+    .preflight { display: flex; align-items: center; gap: 6px; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--bg2); overflow-x: auto; }
+    .pf-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); font-weight: 700; flex-shrink: 0; margin-right: 4px; }
+    .pf-chip { display: flex; align-items: center; gap: 5px; padding: 3px 9px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 20px; cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
+    .pf-chip:hover { background: var(--bg3); }
+    .pf-chip input { width: 11px; height: 11px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+    .pf-chip label { font-size: 10px; color: var(--text); cursor: pointer; white-space: nowrap; }
 
-    /* INTRO */
-    .intro { padding: 64px 0 48px; border-bottom: 0.5px solid var(--border); margin-bottom: 64px; }
-    .intro-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
-    .intro h1 { font-family: Georgia, serif; font-size: clamp(32px, 5vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
-    .intro-meta { display: flex; gap: 24px; flex-wrap: wrap; }
-    .meta-item { font-size: 13px; color: var(--text2); display: flex; gap: 8px; align-items: center; }
-    .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+    /* MAIN GRID */
+    .main { display: grid; grid-template-columns: repeat(5, 1fr); overflow: hidden; }
+    .card { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
+    .card:last-child { border-right: none; }
 
-    /* CHAPTER */
-    .chapter { margin-bottom: 72px; scroll-margin-top: 80px; }
-    .chapter-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
-    .chapter-num { font-family: Georgia, serif; font-size: 48px; font-weight: 600; color: var(--accent); opacity: 0.2; line-height: 1; flex-shrink: 0; width: 56px; }
-    .chapter-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
-    .chapter-title { font-family: Georgia, serif; font-size: 26px; font-weight: 600; line-height: 1.2; }
-    .chapter-duration { font-size: 12px; color: var(--text2); margin-top: 6px; }
+    /* CARD HEAD */
+    .card-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--border); background: var(--bg2); flex-shrink: 0; }
+    .card-num { font-family: Georgia, serif; font-size: 22px; font-weight: 600; color: var(--accent); opacity: 0.25; line-height: 1; }
+    .card-tag { font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-top: 2px; }
+    .card-title { font-family: Georgia, serif; font-size: 13px; font-weight: 600; line-height: 1.2; margin-top: 2px; }
+    .card-sub { font-size: 9.5px; color: var(--text2); margin-top: 3px; line-height: 1.4; }
 
-    /* BULLETS BLOCK */
-    .bullets-block { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 36px; margin-bottom: 20px; position: relative; }
-    .bullets-block::before { content: 'TALKING POINTS'; font-size: 9px; letter-spacing: 0.14em; font-weight: 700; color: var(--text2); opacity: 0.4; position: absolute; top: 16px; right: 20px; }
-    .bullets-block ul { list-style: none; display: flex; flex-direction: column; gap: 0; }
-    .bullets-block li { font-size: 18px; line-height: 1.7; color: var(--text); padding: 12px 0; border-bottom: 0.5px solid var(--border); display: flex; gap: 14px; align-items: flex-start; }
-    .bullets-block li:last-child { border-bottom: none; padding-bottom: 0; }
-    .bullet-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 12px; }
-    .bullets-block li strong { font-weight: 700; }
-    .bullets-block li em { color: var(--text2); font-style: italic; font-size: 15px; }
+    /* CARD BODY */
+    .card-body { flex: 1; overflow-y: auto; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
+    .card-body::-webkit-scrollbar { width: 3px; }
+    .card-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* BULLETS */
+    .b-item { display: flex; gap: 7px; align-items: flex-start; padding: 5px 0; border-bottom: 0.5px solid var(--border); }
+    .b-item:last-child { border-bottom: none; }
+    .b-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
+    .b-text { font-size: 11.5px; line-height: 1.5; color: var(--text); }
+    .b-text strong { font-weight: 700; }
+    .b-text em { color: var(--text2); font-style: italic; font-size: 10.5px; }
 
     /* NOTES */
-    .notes-block { border-left: 2px solid var(--accent); padding: 16px 20px; margin-bottom: 20px; background: rgba(255,8,0,0.03); border-radius: 0 8px 8px 0; }
-    .notes-block .notes-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
-    .notes-block ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
-    .notes-block li { font-size: 14px; color: var(--text2); display: flex; gap: 10px; align-items: flex-start; }
-    .notes-block li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
-
-    /* CHECKLIST */
-    .checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
-    .check-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.15s; }
-    .check-item:hover { background: var(--bg3); }
-    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
-    .check-item label { font-size: 14px; color: var(--text); line-height: 1.5; cursor: pointer; }
-    .check-item label span { font-size: 12px; color: var(--text2); display: block; margin-top: 2px; }
-
-    /* DIVIDER */
-    .divider { height: 0.5px; background: var(--border); margin: 48px 0; }
-
-    /* SETUP GRID */
-    .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
-    .setup-item { background: var(--bg2); padding: 24px 20px; }
-    .setup-icon { font-size: 20px; margin-bottom: 10px; }
-    .setup-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
-    .setup-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
-
-    /* TIMELINE */
-    .timeline { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
-    .timeline-header { display: flex; align-items: center; padding: 14px 20px; border-bottom: 0.5px solid var(--border); gap: 16px; background: var(--bg3); }
-    .timeline-header-time { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); width: 56px; flex-shrink: 0; }
-    .timeline-header-label { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); flex: 1; }
-    .timeline-header-dur { font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); }
-    .timeline-section { border-bottom: 0.5px solid var(--border); }
-    .timeline-section:last-child { border-bottom: none; }
-    .timeline-row { display: flex; align-items: flex-start; padding: 20px 20px 16px; gap: 16px; }
-    .timeline-time { font-family: Georgia, serif; font-size: 13px; color: var(--accent); font-weight: 600; width: 56px; flex-shrink: 0; padding-top: 2px; }
-    .timeline-body { flex: 1; }
-    .timeline-label { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
-    .timeline-bullets { list-style: none; display: flex; flex-direction: column; gap: 5px; padding-bottom: 2px; }
-    .timeline-bullets li { font-size: 13px; color: var(--text2); display: flex; gap: 10px; align-items: flex-start; line-height: 1.5; }
-    .timeline-bullets li::before { content: '—'; color: var(--accent); flex-shrink: 0; opacity: 0.5; }
-    .timeline-bullets li strong { color: var(--text); font-weight: 600; }
-    .timeline-dur { font-size: 12px; color: var(--text2); flex-shrink: 0; padding-top: 3px; }
-    .timeline-total { display: flex; align-items: center; padding: 14px 20px; gap: 16px; background: var(--bg3); }
-    .timeline-total-time { font-family: Georgia, serif; font-size: 13px; color: var(--accent); font-weight: 600; width: 56px; flex-shrink: 0; }
-    .timeline-total-label { font-size: 14px; font-weight: 700; color: var(--text); flex: 1; }
-    .timeline-total-dur { font-size: 13px; font-weight: 700; color: var(--text); }
-
-    /* PRINT BUTTON */
-    .print-btn { position: fixed; bottom: 32px; right: 32px; background: var(--text); color: var(--bg); border: none; padding: 12px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
-    .print-btn:hover { opacity: 0.85; }
-
-    @media print { nav, .print-btn { display: none; } body { background: white; } }
-    @media (max-width: 680px) { nav { padding: 0 20px; } .nav-title { display: none; } }
+    .notes { border-left: 2px solid var(--accent); padding: 6px 10px; background: rgba(255,8,0,0.03); border-radius: 0 6px 6px 0; }
+    .notes-label { font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+    .n-item { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 4px; }
+    .n-item:last-child { margin-bottom: 0; }
+    .n-arr { color: var(--accent); font-size: 10px; font-weight: 600; line-height: 1.4; flex-shrink: 0; }
+    .n-text { font-size: 10px; color: var(--text2); line-height: 1.4; }
   </style>
 </head>
 <body>
+<div class="page">
 
-  <nav>
-    <span class="nav-logo">FTR</span>
-    <span class="nav-title">VSL Recording Guide — The Room</span>
-    <div class="nav-progress" id="navProgress"></div>
-  </nav>
+  <div class="topbar">
+    <span class="logo">FTR</span>
+    <span class="top-title">VSL Recording Guide</span>
+    <div class="timeline-strip">
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">00:00 Start</div></div>
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">01:15 Mid</div></div>
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">03:15 Why me</div></div>
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">04:30 Why you</div></div>
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">05:30 CTA</div></div>
+      <div class="tl-line"></div>
+      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">~6:30 Done</div></div>
+    </div>
+    <div class="top-meta">
+      <span class="top-pill">6–8 min</span>
+      <span class="top-pill">Talking head</span>
+      <span class="top-pill">Bullets only — don't memorise</span>
+    </div>
+  </div>
 
-  <div class="container">
+  <div class="preflight">
+    <span class="pf-label">Preflight</span>
+    <div class="pf-chip"><input type="checkbox" id="p1"><label for="p1">Phone on airplane mode</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p2"><label for="p2">Drink water (0.5L+)</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p3"><label for="p3">Move your body (10 min)</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p4"><label for="p4">Read bullets once</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p5"><label for="p5">Eye level camera</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p6"><label for="p6">Front light only</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p7"><label for="p7">Ventilation off</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p8"><label for="p8">10 sec audio test</label></div>
+    <div class="pf-chip"><input type="checkbox" id="p9"><label for="p9">Clean background</label></div>
+  </div>
 
-    <!-- INTRO -->
-    <div class="intro">
-      <div class="intro-eyebrow">The Room — VSL</div>
-      <h1>Recording Guide</h1>
-      <div class="intro-meta">
-        <div class="meta-item"><div class="meta-dot"></div>5 chapters</div>
-        <div class="meta-item"><div class="meta-dot"></div>Estimated: 6–8 min</div>
-        <div class="meta-item"><div class="meta-dot"></div>Format: talking head, one room</div>
-        <div class="meta-item"><div class="meta-dot"></div>Speak freely from bullets — not word for word</div>
+  <div class="main">
+
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">1</div>
+        <div class="card-tag">00:00 — ~75 sec</div>
+        <div class="card-title">Start</div>
+        <div class="card-sub">Hook + problem. Calm. Direct. No sales tone.</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I have a hard time relating to other sales coaches or leadership programs</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I've done SPIN Selling, Solution Selling, MEDDPICC, Situational Leadership, Authentic Leadership</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">They're fucking good at what they do</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">It just doesn't stick</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>The foundation is missing</strong></div></div>
+        </div>
+        <div class="notes">
+          <div class="notes-label">Performance</div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"They're fucking good" — neutral. An observation, not an attack.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"It just doesn't stick" — pause after. Let them nod inside.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"The foundation is missing" — weight. Short. Slow.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">No salesperson energy. Thinker energy. Like talking to yourself.</div></div>
+        </div>
       </div>
     </div>
 
-    <!-- ═══════════════════ KAPITEL 0: FØR DU OPTAGER ═══════════════════ -->
-    <div class="chapter" id="ch0">
-      <div class="chapter-header">
-        <div class="chapter-num">0</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">Setup</div>
-          <div class="chapter-title">Before you hit record</div>
-          <div class="chapter-duration">30 minutes before recording</div>
-        </div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">2</div>
+        <div class="card-tag">01:15 — ~120 sec</div>
+        <div class="card-title">Mid — the foundations</div>
+        <div class="card-sub">The core. Take your time. Use your hands.</div>
       </div>
-
-      <div class="setup-grid">
-        <div class="setup-item">
-          <div class="setup-icon">📷</div>
-          <div class="setup-title">Camera</div>
-          <div class="setup-body">Eye level. Horizontal. Close enough so your face fills ~60% of the frame. Tripod or stable surface.</div>
+      <div class="card-body">
+        <div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">That's why I've tried to conceptualise my 13 years as a sales executive and leader</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Energy as a Compass</strong> — Feel the Room</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>The Whole Human</strong></div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Build Culture that Builds People</strong> — Performative Balance</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Lead with questions</strong> — on a sales call or in a 1:1</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Solution Selling</strong></div></div>
         </div>
-        <div class="setup-item">
-          <div class="setup-icon">💡</div>
-          <div class="setup-title">Light</div>
-          <div class="setup-body">Light from the front — never from behind. A window facing you is ideal. Avoid overhead light alone.</div>
+        <div class="notes">
+          <div class="notes-label">Performance</div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Count with your fingers — gives the viewer an anchor.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Performative Balance" — say slowly. This is your concept.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"The Whole Human" — more personal energy. Eye contact with lens.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Tease, don't explain. They sign up to go deeper.</div></div>
         </div>
-        <div class="setup-item">
-          <div class="setup-icon">🎙️</div>
-          <div class="setup-title">Audio</div>
-          <div class="setup-body">Turn off ventilation. Close windows. External mic if possible. Test 10 seconds before you start.</div>
-        </div>
-        <div class="setup-item">
-          <div class="setup-icon">🏠</div>
-          <div class="setup-title">Background</div>
-          <div class="setup-body">Clean and intentional. A room that feels like you — not sterile.</div>
-        </div>
-      </div>
-
-      <div class="checklist">
-        <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Phone on airplane mode<span>No notifications mid-recording</span></label></div>
-        <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Drink water<span>At least 0.5L — voice and energy are connected</span></label></div>
-        <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Move your body<span>10 min walk or workout — activate before you record</span></label></div>
-        <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Read through the bullets once<span>Not to memorise — to feel the flow</span></label></div>
-        <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Test audio and video<span>10 second test recording. Watch and listen before you start.</span></label></div>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">State note</div>
-        <ul>
-          <li>You don't need to be perfect. You need to be present. There's a difference.</li>
-          <li>Talk to one person. A specific person you know — imagine them in front of you.</li>
-          <li>Record chapter by chapter. Not everything in one take.</li>
-        </ul>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <!-- TIDSOVERSIGT -->
-    <div class="timeline">
-      <div class="timeline-header">
-        <div class="timeline-header-time">Chapter</div>
-        <div class="timeline-header-label">Time overview — full script</div>
-        <div class="timeline-header-dur">Duration</div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">3</div>
+        <div class="card-tag">03:15 — ~75 sec</div>
+        <div class="card-title">Why me</div>
+        <div class="card-sub">Personal first — credentials last.</div>
       </div>
-
-      <div class="timeline-section">
-        <div class="timeline-row">
-          <div class="timeline-time">00:00</div>
-          <div class="timeline-body">
-            <div class="timeline-label">Start — it just doesn't stick</div>
-            <ul class="timeline-bullets">
-              <li>I have a hard time relating to other sales coaches or leadership programs</li>
-              <li>I've done SPIN Selling, Solution Selling, MEDDPICC, Situational Leadership, Authentic Leadership</li>
-              <li>They're fucking good at what they do</li>
-              <li>It just doesn't stick</li>
-              <li><strong>The foundation is missing</strong></li>
-            </ul>
-          </div>
-          <div class="timeline-dur">~75 sec</div>
+      <div class="card-body">
+        <div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">First of all, because I really believe this is essential to perform — as individual or team</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I hope you already feel some kind of relation to me</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I wasn't able to find this person back then — so I decided I'll <strong>become him</strong></div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><em>Then the numbers:</em></div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">13 years in high-performance sales and leadership across seven industries</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Closed million-dollar deals with the biggest companies in Europe</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Built and scaled 5 different teams with +70 people</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Not many people have walked the talk and want to teach others how to</div></div>
         </div>
-      </div>
-
-      <div class="timeline-section">
-        <div class="timeline-row">
-          <div class="timeline-time">01:15</div>
-          <div class="timeline-body">
-            <div class="timeline-label">Mid — the four foundations</div>
-            <ul class="timeline-bullets">
-              <li>That's why I've tried to conceptualise my 13 years of experience as a sales executive and leader</li>
-              <li><strong>Energy as a Compass</strong> — Feel the Room</li>
-              <li><strong>The Whole Human</strong></li>
-              <li><strong>Build Culture that Builds People</strong> — Performative Balance</li>
-              <li><strong>How to lead with questions</strong> — whether it's on a sales call or in a 1:1 development setting</li>
-            </ul>
-          </div>
-          <div class="timeline-dur">~120 sec</div>
+        <div class="notes">
+          <div class="notes-label">Performance</div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I hope you already feel some relation" — vulnerable. Stay there. Don't rush.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I'll become him" — pause before "become him". Two words. Let them land.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Credentials: factual, not a pitch. Telling, not selling.</div></div>
         </div>
-      </div>
-
-      <div class="timeline-section">
-        <div class="timeline-row">
-          <div class="timeline-time">03:15</div>
-          <div class="timeline-body">
-            <div class="timeline-label">Why me</div>
-            <ul class="timeline-bullets">
-              <li>First of all, because I really believe that this is essential in order to perform — as an individual or as a team</li>
-              <li>And because I hope that already now, you feel some kind of relation to me</li>
-              <li>I wasn't able to find this person back then — so I decided I'll <strong>become him</strong></li>
-              <li>13 years in high-performance sales and commercial leadership across seven industries</li>
-              <li>Closed million-dollar deals with the biggest companies in Europe</li>
-              <li>Built and scaled 5 different teams with +70 people</li>
-              <li>There aren't many people out there who've walked the talk and want to teach others how to</li>
-            </ul>
-          </div>
-          <div class="timeline-dur">~75 sec</div>
-        </div>
-      </div>
-
-      <div class="timeline-section">
-        <div class="timeline-row">
-          <div class="timeline-time">04:30</div>
-          <div class="timeline-body">
-            <div class="timeline-label">Why you</div>
-            <ul class="timeline-bullets">
-              <li>I'm not 100% sure who this will resonate with</li>
-              <li>I only want to work with people who this resonates with</li>
-              <li>I hope I can stand out as a little bit more different than the others</li>
-              <li>But I imagine it'll be either other sales leaders, startup founders or sales executives</li>
-            </ul>
-          </div>
-          <div class="timeline-dur">~60 sec</div>
-        </div>
-      </div>
-
-      <div class="timeline-section">
-        <div class="timeline-row">
-          <div class="timeline-time">05:30</div>
-          <div class="timeline-body">
-            <div class="timeline-label">CTA — Request Access</div>
-            <ul class="timeline-bullets">
-              <li>Below this video <em>(point down)</em></li>
-              <li>If you decide to sign up you get: tools, frameworks, guides, workshops etc.</li>
-              <li>Dropping every 2nd week</li>
-              <li>Until you hear from me — when I'm ready to work</li>
-              <li><strong>Once again — if any of this landed, you know you're the right person.</strong></li>
-              <li>Request access. Drop your email. I'll see you on the other side.</li>
-            </ul>
-          </div>
-          <div class="timeline-dur">~60 sec</div>
-        </div>
-      </div>
-
-      <div class="timeline-total">
-        <div class="timeline-total-time">~6:30</div>
-        <div class="timeline-total-label">Total</div>
-        <div class="timeline-total-dur">6–8 min</div>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <!-- ═══════════════════ KAPITEL 1: START ═══════════════════ -->
-    <div class="chapter" id="ch1">
-      <div class="chapter-header">
-        <div class="chapter-num">1</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">00:00 — ~75 seconds</div>
-          <div class="chapter-title">Start</div>
-          <div class="chapter-duration">Hook + the problem. Calm. Direct. No sales tone.</div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">4</div>
+        <div class="card-tag">04:30 — ~60 sec</div>
+        <div class="card-title">Why you</div>
+        <div class="card-sub">Honest and filtering. Not for everyone — that's a strength.</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I'm not 100% sure who this will resonate with</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I only want to work with people who this resonates with</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I hope I can stand out as a little bit more different than the others</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">I imagine: sales leaders, startup founders, or sales executives</div></div>
         </div>
-      </div>
-
-      <div class="bullets-block">
-        <ul>
-          <li><div class="bullet-dot"></div>I have a hard time relating to other sales coaches or leadership programs</li>
-          <li><div class="bullet-dot"></div>I've done SPIN Selling, Solution Selling, MEDDPICC, Situational Leadership, Authentic Leadership</li>
-          <li><div class="bullet-dot"></div>They're fucking good at what they do</li>
-          <li><div class="bullet-dot"></div>It just doesn't stick</li>
-          <li><div class="bullet-dot"></div><strong>The foundation is missing</strong></li>
-        </ul>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Performance notes</div>
-        <ul>
-          <li>"They're fucking good at what they do" — keep it neutral. Not an attack. An observation.</li>
-          <li>"It just doesn't stick" — pause after. Let them nod on the inside.</li>
-          <li>"The foundation is missing" — weight. Short sentence. Slow.</li>
-          <li>No salesperson energy here. Thinker energy. Like you're talking to yourself.</li>
-        </ul>
+        <div class="notes">
+          <div class="notes-label">Performance</div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Not 100% sure who this will resonate with" — your strongest line. Honesty beats polished pitch.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Only want people who this resonates with" — filters right people in, wrong ones out.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">No hype. No "this is for YOU if..." list. Just honest observation.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Energy: calm and slightly more personal than the rest of the video.</div></div>
+        </div>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <!-- ═══════════════════ KAPITEL 2: MID ═══════════════════ -->
-    <div class="chapter" id="ch2">
-      <div class="chapter-header">
-        <div class="chapter-num">2</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">01:15 — ~120 seconds</div>
-          <div class="chapter-title">Mid — the four foundations</div>
-          <div class="chapter-duration">The core. Take your time with each point. Use your hands.</div>
+    <div class="card">
+      <div class="card-head">
+        <div class="card-num">5</div>
+        <div class="card-tag">05:30 — ~60 sec</div>
+        <div class="card-title">CTA — Request Access</div>
+        <div class="card-sub">Simple. Concrete. End strong.</div>
+      </div>
+      <div class="card-body">
+        <div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Below this video <em>(point down)</em></div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Sign up → tools, frameworks, guides, workshops</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Dropping every 2nd week</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Until you hear from me — when I'm ready to work</div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Once again — if any of this landed, you know you're the right person</strong></div></div>
+          <div class="b-item"><div class="b-dot"></div><div class="b-text">Request access. Drop your email. I'll see you on the other side.</div></div>
         </div>
-      </div>
-
-      <div class="bullets-block">
-        <ul>
-          <li><div class="bullet-dot"></div>That's why I've tried to conceptualise my 13 years of experience as a sales executive and leader</li>
-          <li><div class="bullet-dot"></div><strong>Energy as a Compass</strong> — Feel the Room</li>
-          <li><div class="bullet-dot"></div><strong>The Whole Human</strong></li>
-          <li><div class="bullet-dot"></div><strong>Build Culture that Builds People</strong> — Performative Balance</li>
-          <li><div class="bullet-dot"></div><strong>How to lead with questions</strong> — whether it's on a sales call or in a 1:1 development setting</li>
-        </ul>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Performance notes</div>
-        <ul>
-          <li>Use numbers physically — one finger, two fingers etc. Gives the viewer an anchor point.</li>
-          <li>"Performative Balance" — say it slowly and clearly. This is your concept. Give it extra space.</li>
-          <li>"The Whole Human" — slightly more personal energy here. Eye contact with the lens.</li>
-          <li>"Lead with questions — whether sales call or 1:1" — key point. It's what ties everything together.</li>
-          <li>You don't need to go deep on each point — tease it. They sign up to go deeper.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- ═══════════════════ KAPITEL 3: WHY ME ═══════════════════ -->
-    <div class="chapter" id="ch3">
-      <div class="chapter-header">
-        <div class="chapter-num">3</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">03:15 — ~75 seconds</div>
-          <div class="chapter-title">Why me</div>
-          <div class="chapter-duration">Personal first — credentials last. Not the other way around.</div>
+        <div class="notes">
+          <div class="notes-label">Performance</div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Below this video" — point down with your hand. Physical direction works.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Until you hear from me" — mystery. Nothing more than that.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"If any of this landed" — pause before. Look directly into the lens. This is your close.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I'll see you on the other side" — natural smile. Not forced. Mean it.</div></div>
+          <div class="n-item"><div class="n-arr">→</div><div class="n-text">The last words are not a sale — they're an invitation. Hold that energy.</div></div>
         </div>
-      </div>
-
-      <div class="bullets-block">
-        <ul>
-          <li><div class="bullet-dot"></div>First of all, because I really believe that this is essential in order to perform — as an individual or as a team</li>
-          <li><div class="bullet-dot"></div>And because I hope that already now, you feel some kind of relation to me</li>
-          <li><div class="bullet-dot"></div>I wasn't able to find this person back then — so I decided I'll <strong>become him</strong></li>
-          <li><div class="bullet-dot"></div><em>And then the numbers:</em></li>
-          <li><div class="bullet-dot"></div>13 years in high-performance sales and commercial leadership across seven industries</li>
-          <li><div class="bullet-dot"></div>Closed million-dollar deals with the biggest companies in Europe</li>
-          <li><div class="bullet-dot"></div>Built and scaled 5 different teams with +70 people</li>
-          <li><div class="bullet-dot"></div>There aren't many people out there who've walked the talk and want to teach others how to</li>
-        </ul>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Performance notes</div>
-        <ul>
-          <li>"I hope you already feel some kind of relation to me" — this is vulnerable and authentic. Stay there. Don't rush past it.</li>
-          <li>"I wasn't able to find this person — so I decided I'll become him" — pause before "become him". Two words. Let them land.</li>
-          <li>Credentials: say them factually, not as a sales pitch. You're telling — not selling.</li>
-          <li>"There aren't many people who've walked the talk" — your differentiator. Gentle but clear.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- ═══════════════════ KAPITEL 4: WHY YOU ═══════════════════ -->
-    <div class="chapter" id="ch4">
-      <div class="chapter-header">
-        <div class="chapter-num">4</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">04:30 — ~60 seconds</div>
-          <div class="chapter-title">Why you</div>
-          <div class="chapter-duration">Honest and filtering. Not for everyone — and that's a strength.</div>
-        </div>
-      </div>
-
-      <div class="bullets-block">
-        <ul>
-          <li><div class="bullet-dot"></div>I'm not 100% sure who this will resonate with</li>
-          <li><div class="bullet-dot"></div>I only want to work with people who this resonates with</li>
-          <li><div class="bullet-dot"></div>I hope I can stand out as a little bit more different than the others</li>
-          <li><div class="bullet-dot"></div>But I imagine it'll be either other sales leaders, startup founders or sales executives</li>
-        </ul>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Performance notes</div>
-        <ul>
-          <li>"I'm not 100% sure who this will resonate with" — your strongest line in this whole section. Honesty beats polished pitch every time.</li>
-          <li>"I only want to work with people who this resonates with" — it filters the right people in and the wrong people out. That's exactly the point.</li>
-          <li>No hype. No "this is for YOU if..." list. Just an honest observation.</li>
-          <li>Energy: calm and slightly more personal than the rest of the video.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- ═══════════════════ KAPITEL 5: CTA ═══════════════════ -->
-    <div class="chapter" id="ch5">
-      <div class="chapter-header">
-        <div class="chapter-num">5</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">05:30 — ~60 seconds</div>
-          <div class="chapter-title">CTA — Request Access</div>
-          <div class="chapter-duration">Simple. Concrete. End strong.</div>
-        </div>
-      </div>
-
-      <div class="bullets-block">
-        <ul>
-          <li><div class="bullet-dot"></div>Below this video <em>(point down)</em></li>
-          <li><div class="bullet-dot"></div>If you decide to sign up you get: tools, frameworks, guides, workshops etc.</li>
-          <li><div class="bullet-dot"></div>Dropping every 2nd week</li>
-          <li><div class="bullet-dot"></div>Until you hear from me — when I'm ready to work</li>
-          <li><div class="bullet-dot"></div><strong>Once again — if any of this landed, you know you're the right person.</strong></li>
-          <li><div class="bullet-dot"></div>Request access. Drop your email. I'll see you on the other side.</li>
-        </ul>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Performance notes</div>
-        <ul>
-          <li>"Below this video" — point down with your hand. Physical direction works.</li>
-          <li>"Until you hear from me — when I'm ready to work" — mystery. Nothing more than that.</li>
-          <li>"Once again — if any of this landed" — small pause before. Look directly into the lens. This is your close.</li>
-          <li>"I'll see you on the other side" — natural smile. Not forced. Mean it.</li>
-          <li>The last words are not a sale — they're an invitation. Hold that energy.</li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="divider"></div>
-
-    <!-- EFTER OPTAGELSE -->
-    <div class="chapter" id="ch6">
-      <div class="chapter-header">
-        <div class="chapter-num">✓</div>
-        <div class="chapter-meta">
-          <div class="chapter-tag">After recording</div>
-          <div class="chapter-title">Next steps</div>
-        </div>
-      </div>
-
-      <div class="checklist">
-        <div class="check-item"><input type="checkbox" id="p1"><label for="p1">Watch without sound<span>Read the energy visually — is the presence there?</span></label></div>
-        <div class="check-item"><input type="checkbox" id="p2"><label for="p2">Listen without picture<span>Voice clear? Pace calm? Filler words?</span></label></div>
-        <div class="check-item"><input type="checkbox" id="p3"><label for="p3">Cut intro and outro silence<span>Start directly on the first word — no dead air</span></label></div>
-        <div class="check-item"><input type="checkbox" id="p4"><label for="p4">Upload and embed in the pages<span>Replace the video placeholder in the-room.html and index.html with your embed link</span></label></div>
-      </div>
-
-      <div class="notes-block">
-        <div class="notes-label">Remember</div>
-        <ul>
-          <li>Perfect is the enemy of done. An authentic take beats a polished take — always.</li>
-          <li>Record 2–3 takes per chapter and choose afterwards.</li>
-          <li>Stuck on one chapter? Skip to the next and come back.</li>
-        </ul>
       </div>
     </div>
 
   </div>
-
-  <button class="print-btn" onclick="window.print()">Print guide</button>
-
-  <script>
-    const chapters = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6'];
-    const nav = document.getElementById('navProgress');
-    chapters.forEach((id, i) => {
-      const dot = document.createElement('div');
-      dot.className = 'nav-dot';
-      dot.onclick = () => document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
-      nav.appendChild(dot);
-    });
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const idx = chapters.indexOf(entry.target.id);
-        if (idx === -1) return;
-        const dots = nav.querySelectorAll('.nav-dot');
-        if (entry.isIntersecting) {
-          dots.forEach((d, i) => {
-            if (i < idx) d.className = 'nav-dot done';
-            else if (i === idx) d.className = 'nav-dot active';
-            else d.className = 'nav-dot';
-          });
-        }
-      });
-    }, { threshold: 0.3 });
-    chapters.forEach(id => { const el = document.getElementById(id); if (el) observer.observe(el); });
-  </script>
-
+</div>
 </body>
 </html>
