@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VSL Recording Guide — The Room</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --bg3: #e8dcc4;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #ff0800;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+      --green: #2a7a4b;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+
+    /* NAV */
+    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
+    .nav-logo { font-family: Georgia, serif; font-size: 15px; font-weight: 700; color: var(--accent); }
+    .nav-title { font-size: 13px; color: var(--text2); }
+    .nav-progress { display: flex; gap: 6px; align-items: center; }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--border); cursor: pointer; transition: background 0.2s; }
+    .nav-dot.active { background: var(--accent); border-color: var(--accent); }
+    .nav-dot.done { background: var(--green); border-color: var(--green); }
+
+    /* LAYOUT */
+    .container { max-width: 780px; margin: 0 auto; padding: 0 24px 120px; }
+
+    /* INTRO */
+    .intro { padding: 64px 0 48px; border-bottom: 0.5px solid var(--border); margin-bottom: 64px; }
+    .intro-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
+    .intro h1 { font-family: Georgia, serif; font-size: clamp(32px, 5vw, 48px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .intro-meta { display: flex; gap: 24px; flex-wrap: wrap; }
+    .meta-item { font-size: 13px; color: var(--text2); display: flex; gap: 8px; align-items: center; }
+    .meta-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+    /* CHAPTER */
+    .chapter { margin-bottom: 72px; scroll-margin-top: 80px; }
+    .chapter-header { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 32px; }
+    .chapter-num { font-family: Georgia, serif; font-size: 48px; font-weight: 600; color: var(--accent); opacity: 0.2; line-height: 1; flex-shrink: 0; width: 56px; }
+    .chapter-meta { }
+    .chapter-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 6px; }
+    .chapter-title { font-family: Georgia, serif; font-size: 26px; font-weight: 600; line-height: 1.2; }
+    .chapter-duration { font-size: 12px; color: var(--text2); margin-top: 6px; }
+
+    /* SCRIPT BLOCK */
+    .script-block { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 36px; margin-bottom: 20px; position: relative; }
+    .script-block::before { content: 'SCRIPT'; font-size: 9px; letter-spacing: 0.14em; font-weight: 700; color: var(--text2); opacity: 0.4; position: absolute; top: 16px; right: 20px; }
+    .script-block p { font-size: 17px; line-height: 1.85; color: var(--text); margin-bottom: 18px; }
+    .script-block p:last-child { margin-bottom: 0; }
+    .script-block em { font-style: italic; color: var(--text2); }
+    .script-block strong { font-weight: 600; color: var(--text); }
+    .pause { display: inline-block; background: var(--bg3); border-radius: 4px; padding: 1px 8px; font-size: 12px; font-weight: 600; color: var(--text2); letter-spacing: 0.04em; margin: 0 4px; vertical-align: middle; }
+
+    /* NOTES */
+    .notes-block { border-left: 2px solid var(--accent); padding: 16px 20px; margin-bottom: 20px; background: rgba(255,8,0,0.03); border-radius: 0 8px 8px 0; }
+    .notes-block .notes-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 10px; }
+    .notes-block ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+    .notes-block li { font-size: 14px; color: var(--text2); display: flex; gap: 10px; align-items: flex-start; }
+    .notes-block li::before { content: '→'; color: var(--accent); flex-shrink: 0; font-weight: 600; }
+
+    /* CHECKLIST */
+    .checklist { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .check-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px 16px; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 8px; cursor: pointer; transition: background 0.15s; }
+    .check-item:hover { background: var(--bg3); }
+    .check-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--accent); flex-shrink: 0; margin-top: 2px; cursor: pointer; }
+    .check-item label { font-size: 14px; color: var(--text); line-height: 1.5; cursor: pointer; }
+    .check-item label span { font-size: 12px; color: var(--text2); display: block; margin-top: 2px; }
+
+    /* DIVIDER */
+    .divider { height: 0.5px; background: var(--border); margin: 48px 0; }
+
+    /* SETUP GRID */
+    .setup-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+    .setup-item { background: var(--bg2); padding: 24px 20px; }
+    .setup-icon { font-size: 20px; margin-bottom: 10px; }
+    .setup-title { font-size: 14px; font-weight: 600; margin-bottom: 6px; }
+    .setup-body { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* TIMELINE */
+    .timeline { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 20px; }
+    .timeline-row { display: flex; align-items: center; padding: 14px 20px; border-bottom: 0.5px solid var(--border); gap: 16px; }
+    .timeline-row:last-child { border-bottom: none; }
+    .timeline-time { font-family: Georgia, serif; font-size: 13px; color: var(--accent); font-weight: 600; width: 56px; flex-shrink: 0; }
+    .timeline-label { font-size: 14px; color: var(--text); flex: 1; }
+    .timeline-dur { font-size: 12px; color: var(--text2); }
+
+    /* PRINT BUTTON */
+    .print-btn { position: fixed; bottom: 32px; right: 32px; background: var(--text); color: var(--bg); border: none; padding: 12px 22px; border-radius: 8px; font-size: 14px; font-weight: 600; cursor: pointer; font-family: inherit; transition: opacity 0.15s; }
+    .print-btn:hover { opacity: 0.85; }
+
+    @media print {
+      nav, .print-btn { display: none; }
+      body { background: white; }
+      .script-block { border: 1px solid #ccc; }
+    }
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .chapter-num { font-size: 36px; width: 44px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-logo">FTR</span>
+    <span class="nav-title">VSL Recording Guide — The Room</span>
+    <div class="nav-progress" id="navProgress"></div>
+  </nav>
+
+  <div class="container">
+
+    <!-- INTRO -->
+    <div class="intro">
+      <div class="intro-eyebrow">The Room — VSL</div>
+      <h1>Recording Guide</h1>
+      <div class="intro-meta">
+        <div class="meta-item"><div class="meta-dot"></div>7 kapitler</div>
+        <div class="meta-item"><div class="meta-dot"></div>Estimeret: 7–8 min</div>
+        <div class="meta-item"><div class="meta-dot"></div>Format: talking head, ét rum</div>
+        <div class="meta-item"><div class="meta-dot"></div>Ingen teleprompter — tal frit fra hvert kapitel</div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 0: BEFORE YOU RECORD -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch0">
+      <div class="chapter-header">
+        <div class="chapter-num">0</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">Forberedelse</div>
+          <div class="chapter-title">Inden du trykker record</div>
+          <div class="chapter-duration">Gør dette dagen inden + 30 min inden optagelse</div>
+        </div>
+      </div>
+
+      <div class="setup-grid">
+        <div class="setup-item">
+          <div class="setup-icon">📷</div>
+          <div class="setup-title">Kamera</div>
+          <div class="setup-body">Øjenhøjde. Telefon eller kamera — begge virker. Sæt på stativ. Horisontal. Tæt nok på at ansigtet fylder 60% af billedet.</div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">💡</div>
+          <div class="setup-title">Lys</div>
+          <div class="setup-body">Lys fra fronten — aldrig bagfra. Vindue foran dig er ideelt. Undgå overhead-lys alene — giver mørke øjne.</div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">🎙️</div>
+          <div class="setup-title">Lyd</div>
+          <div class="setup-body">Sluk ventilation, luk vinduer. Brug ekstern mikrofon hvis muligt. Tøj uden polyester der gnider. Test 10 sek inden.</div>
+        </div>
+        <div class="setup-item">
+          <div class="setup-icon">🏠</div>
+          <div class="setup-title">Baggrund</div>
+          <div class="setup-body">Ren, intentionel. Et rum der føles som dig — ikke sterilt. Lidt tekstur er bedre end en hvid væg.</div>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" id="c1"><label for="c1">Telefon på flytilstand<span>Notifikationer slukkes — ingen forstyrrelser midt i optagelsen</span></label></div>
+        <div class="check-item"><input type="checkbox" id="c2"><label for="c2">Drukket vand<span>Stemme og energi hænger sammen. Mindst 0,5L inden du starter</span></label></div>
+        <div class="check-item"><input type="checkbox" id="c3"><label for="c3">Bevæget dig<span>10 min walk, lift, eller noget der aktiverer kroppen. Performative balance starter her.</span></label></div>
+        <div class="check-item"><input type="checkbox" id="c4"><label for="c4">Læst scriptet højt én gang<span>Ikke for at huske det ord for ord — men for at mærke rytmen</span></label></div>
+        <div class="check-item"><input type="checkbox" id="c5"><label for="c5">Testet lyd og billede<span>10 sekunders testoptagelse. Se den igennem. Juster inden du starter.</span></label></div>
+        <div class="check-item"><input type="checkbox" id="c6"><label for="c6">Valgt tøj<span>Mørkt og enkelt. Ingen logoer, ingen mønstre der distraherer. Du er fokus — ikke tøjet.</span></label></div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">State-note</div>
+        <ul>
+          <li>Du behøver ikke være perfekt — du skal være til stede. Der er forskel.</li>
+          <li>Tal til én person. Forestil dig din ideelle seer. Én konkret person.</li>
+          <li>Fejl og genoptagelser er normale. Optag kapitel for kapitel — ikke hele stykket i ét.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- TIDSOVERSIGT -->
+    <div class="timeline">
+      <div class="timeline-row" style="background:var(--bg3);">
+        <div class="timeline-time">Kapitel</div>
+        <div class="timeline-label" style="font-weight:600;font-size:13px;letter-spacing:0.06em;text-transform:uppercase;">Tidsoversigt</div>
+        <div class="timeline-dur" style="font-weight:600;">Varighed</div>
+      </div>
+      <div class="timeline-row"><div class="timeline-time">00:00</div><div class="timeline-label">Hook — det der stopper dem</div><div class="timeline-dur">~30 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">00:30</div><div class="timeline-label">Problemet med teknikker</div><div class="timeline-dur">~60 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">01:30</div><div class="timeline-label">De tre fundamenter</div><div class="timeline-dur">~90 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">03:00</div><div class="timeline-label">Adtool-historien</div><div class="timeline-dur">~90 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">04:30</div><div class="timeline-label">Hvorfor mig — hvorfor nu</div><div class="timeline-dur">~60 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">05:30</div><div class="timeline-label">Hvem er det til</div><div class="timeline-dur">~60 sek</div></div>
+      <div class="timeline-row"><div class="timeline-time">06:30</div><div class="timeline-label">CTA — request access</div><div class="timeline-dur">~45 sek</div></div>
+      <div class="timeline-row" style="background:var(--bg3);"><div class="timeline-time">~7:15</div><div class="timeline-label" style="font-weight:600;">Total</div><div class="timeline-dur" style="font-weight:600;">7–8 min</div></div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 1: HOOK -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch1">
+      <div class="chapter-header">
+        <div class="chapter-num">1</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">00:00 — ~30 sekunder</div>
+          <div class="chapter-title">Hook</div>
+          <div class="chapter-duration">Det første de ser. Afgørende. Giv det plads.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>Most sales training treats the symptom.</p>
+        <p><span class="pause">pause</span></p>
+        <p>A new script. A new closing technique. A new framework for handling objections.</p>
+        <p>And you use it for a week. Maybe two. And then — slowly — it slides off.</p>
+        <p>Not because the technique was wrong. But because <strong>it was sitting on top of something that wasn't solid.</strong></p>
+        <p>That's what I want to talk to you about.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"Most sales training treats the symptom." — Sig det. Kig direkte i linsen. Pause efter.</li>
+          <li>Lad "slides off" have luft. Det er det billede de skal sidde med.</li>
+          <li>Tempo: roligt og kontrolleret. Ikke sælger-energi. Tanker-energi.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 2: THE PROBLEM WITH TECHNIQUES -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch2">
+      <div class="chapter-header">
+        <div class="chapter-num">2</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">00:30 — ~60 sekunder</div>
+          <div class="chapter-title">Problemet med teknikker</div>
+          <div class="chapter-duration">Sæt scenen. Giv dem genkendelighed.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>I've watched it happen. Good salespeople — smart, motivated people — who go to training, come back fired up, try the new thing... and six weeks later they're back to the old patterns.</p>
+        <p>It's not a discipline problem. It's not a motivation problem.</p>
+        <p>It's that the training never went deep enough.</p>
+        <p><span class="pause">pause</span></p>
+        <p>Because under every technique — under every script, every question, every close — there's a layer. A human layer. And if that layer isn't developed, the technique has nothing to attach to.</p>
+        <p>It's like building on sand. It holds for a while. Until it doesn't.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"It's not a discipline problem" — lad det lande inden du fortsætter.</li>
+          <li>"Building on sand" — du kan bruge dine hænder her. Fysisk gestus forstærker billedet.</li>
+          <li>Ikke anklageende. Empatisk. Du har set det. Du forstår det.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 3: THE THREE FOUNDATIONS -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch3">
+      <div class="chapter-header">
+        <div class="chapter-num">3</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">01:30 — ~90 sekunder</div>
+          <div class="chapter-title">De tre fundamenter</div>
+          <div class="chapter-duration">Kerneindholdet. Tag dig tid til hvert punkt.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>Over 13 years — across industries, across thousands of conversations — I've found that there are three things that have to be in place before any technique makes sense.</p>
+        <p><strong>The first is energy.</strong> Being able to feel the room — actually feel it, before a word is said. Reading the person in front of you. Knowing when to ask and when to stay quiet. This isn't something you're taught in a sales course. It's something you develop.</p>
+        <p><strong>The second is culture.</strong> What I call Performative Balance. You cannot perform without having fun. And you cannot have fun without performing. That sounds simple — but most teams are missing one side of it. And the leader is usually why.</p>
+        <p><strong>The third is the whole person.</strong> Are you sleeping? Are you moving? Are you emotionally regulated when you walk into a room that matters? Because if you're not — no technique will take you where you want to go. You'll keep buying programs, keep learning new frameworks — and keep wondering why the needle isn't moving.</p>
+        <p><span class="pause">pause</span></p>
+        <p>These three things. That's the foundation. Everything else builds from here.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>Brug numre fysisk — én finger, to fingre, tre. Giver seeren et anker.</li>
+          <li>"Performative Balance" — sig det langsomt og tydeligt. Det er dit koncept. Giv det plads.</li>
+          <li>"The whole person" — energien her skal være lidt mere personlig. Som om du taler direkte til én der genkender sig selv.</li>
+          <li>Den afsluttende pause + "Everything else builds from here" er et naturligt åndedræt-moment for seeren.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 4: ADTOOL STORY -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch4">
+      <div class="chapter-header">
+        <div class="chapter-num">4</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">03:00 — ~90 sekunder</div>
+          <div class="chapter-title">Adtool-historien</div>
+          <div class="chapter-duration">Moment of understanding. Konkret. Fortæl det som det skete.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>Let me give you a specific example of what this looks like in practice.</p>
+        <p>I was working with a founder earlier this year. His company — Adtool — had gone from zero to 150,000 euros monthly recurring revenue in four months. They were preparing to expand internationally.</p>
+        <p>We sat down together. And within the first hour, we weren't talking about sales scripts or market entry strategies. We were talking about their core team values. About who they were hiring — not just their skills, but who they were as people. About what kind of energy they wanted in every room they built.</p>
+        <p>We talked about Performative Balance — that idea that performance and fun aren't opposites. That the best teams perform because they enjoy what they're doing, and they enjoy what they're doing because they're performing.</p>
+        <p>When the session ended, he stopped at the door. And he said to the next group coming in: <em>"You're in for a treat. He's something else."</em></p>
+        <p><span class="pause">pause</span></p>
+        <p>That's the moment I knew what I was building was real. And why I had to share it.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>Fortæl historien som en fortælling — ikke som et CV-punkt. Bliv i nuet.</li>
+          <li>"150,000 euros monthly recurring revenue in four months" — ro på. Det er imponerende. Lad det registrere.</li>
+          <li>Citatet — "You're in for a treat. He's something else." — sig det som du hørte det. Ikke med stolthed. Med stilhed.</li>
+          <li>Den efterfølgende pause er vigtig. Seeren skal mærke, at du mærker noget her.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 5: WHY ME / WHY NOW -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch5">
+      <div class="chapter-header">
+        <div class="chapter-num">5</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">04:30 — ~60 sekunder</div>
+          <div class="chapter-title">Hvorfor mig — og hvorfor nu</div>
+          <div class="chapter-duration">Troværdighed. Direkte. Ikke hovmodigt — faktisk.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>I'm doing this because I looked for this person for years. Someone who taught it this way — not just the technique, but the whole thing. The energy. The culture. What it actually takes to show up at your best, and stay human while doing it.</p>
+        <p>I couldn't find that person.</p>
+        <p><span class="pause">pause</span></p>
+        <p>So I'm becoming him.</p>
+        <p><span class="pause">pause</span></p>
+        <p>I've spent 13 years in high-performance sales and commercial leadership — across seven industries. I've closed million-dollar deals with some of the biggest companies in Europe. I've built and scaled five teams, across countries and functions.</p>
+        <p>And there aren't many people out there who combine the psychological side of sales, the leadership culture piece, and the whole-person foundation. I want to change that.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"I couldn't find that person. <em>pause</em> So I'm becoming him." — To korte sætninger med luft imellem. Ikke hurtigt. Lad dem lande.</li>
+          <li>Credentials-delen skal siges faktisk, ikke sælgende. Du fortæller ikke for at imponere — du fortæller for at de ved, hvem du er.</li>
+          <li>Energi: en lille stigning her. Du er ved at runde af mod CTA.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 6: WHO IT'S FOR -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch6">
+      <div class="chapter-header">
+        <div class="chapter-num">6</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">05:30 — ~60 sekunder</div>
+          <div class="chapter-title">Hvem er det til</div>
+          <div class="chapter-duration">Specifik. Filtrerende. Giver de rette en følelse af at blive set.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>This isn't for everyone. And I mean that.</p>
+        <p>This is for sales leaders who feel like they're constantly pushing uphill — and who know, somewhere, that there's another level available to them.</p>
+        <p>It's for founders who are building teams and want those teams to perform <em>and</em> actually enjoy doing it. Who believe that culture and results aren't opposites.</p>
+        <p>It's for commercial profiles who've sat in a meeting and felt — before anyone said a word — that something was off. Or on. People who feel the room. And want to learn to use it.</p>
+        <p>If you've bought courses before and something was still missing — this might be what was missing.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"This isn't for everyone. And I mean that." — kig direkte. Det skal føles som øjenkontakt.</li>
+          <li>Hvert segment (sales leaders / founders / commercial profiles) kan have en lille pause imellem. Lad dem tjekke om det er dem.</li>
+          <li>"If you've bought courses before and something was still missing" — blid tone. Ingen dom. Forståelse.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- CHAPTER 7: CTA -->
+    <!-- ═══════════════════════════════════════ -->
+    <div class="chapter" id="ch7">
+      <div class="chapter-header">
+        <div class="chapter-num">7</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">06:30 — ~45 sekunder</div>
+          <div class="chapter-title">CTA — Request Access</div>
+          <div class="chapter-duration">Simpelt. Roligt. Ingen hype. Ingen pitch.</div>
+        </div>
+      </div>
+
+      <div class="script-block">
+        <p>I'm building something. I know what it is. I know who it's for.</p>
+        <p>I'm not ready to talk about it yet — but I'm building it for the people who are already feeling what I've been describing.</p>
+        <p>Below this video, there's a form. It just asks for your email. No pitch. No spam.</p>
+        <p>If you sign up, you'll get something useful in the meantime — a tool, a framework, something you can use right now. And when the time is right, you'll hear from me.</p>
+        <p><span class="pause">pause</span></p>
+        <p>If this landed — you already know if you're the right person.</p>
+        <p>Request access. I'll see you on the other side.</p>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"I'm building something." — simpelt. Roligt. Næsten whisper-energi.</li>
+          <li>"Below this video" — du kan lave en gestus nedad. Fysisk vejvisning hjælper.</li>
+          <li>"If this landed" — pause inden. Det er den afgørende sætning. Giv den plads.</li>
+          <li>Afslut med et naturligt smil — ikke forceret. Det du mener det.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- AFTER RECORDING -->
+    <div class="chapter" id="ch8">
+      <div class="chapter-header">
+        <div class="chapter-num">✓</div>
+        <div class="chapter-meta">
+          <div class="chapter-tag">Efter optagelsen</div>
+          <div class="chapter-title">Næste skridt</div>
+        </div>
+      </div>
+
+      <div class="checklist">
+        <div class="check-item"><input type="checkbox" id="p1"><label for="p1">Se optagelsen igennem uden lyd<span>Se om energien og tilstedeværelsen er der — du kan læse det visuelt</span></label></div>
+        <div class="check-item"><input type="checkbox" id="p2"><label for="p2">Lyt til optagelsen uden billede<span>Høres stemmen klar? Er tempoet roligt? Er der unødvendige fyldord?</span></label></div>
+        <div class="check-item"><input type="checkbox" id="p3"><label for="p3">Klip intro-stilhed (første 2 sek) og outro-stilhed<span>Klipperen starter på "Most" — ikke på dig der hiver vejret inden</span></label></div>
+        <div class="check-item"><input type="checkbox" id="p4"><label for="p4">Upload rå fil — klip evt. kapitel for kapitel<span>Lettere at genoptage ét kapitel end hele stykket</span></label></div>
+        <div class="check-item"><input type="checkbox" id="p5"><label for="p5">Sæt ind i the-room.html og test på mobil<span>Erstat video-placeholder med dit embed-link</span></label></div>
+      </div>
+
+      <div class="notes-block">
+        <div class="notes-label">Husk</div>
+        <ul>
+          <li>Perfekt er fjenden af færdig. En autentisk take slår en poleret take — altid.</li>
+          <li>Optag gerne 2–3 takes per kapitel. Vælg bagefter.</li>
+          <li>Hvis du hænger på ét kapitel — spring til det næste og vend tilbage.</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /container -->
+
+  <button class="print-btn" onclick="window.print()">Print guide</button>
+
+  <script>
+    // Nav progress dots
+    const chapters = ['ch0','ch1','ch2','ch3','ch4','ch5','ch6','ch7','ch8'];
+    const nav = document.getElementById('navProgress');
+    chapters.forEach((id, i) => {
+      const dot = document.createElement('div');
+      dot.className = 'nav-dot';
+      dot.title = document.querySelector(`#${id} .chapter-title`)?.textContent || '';
+      dot.onclick = () => document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+      nav.appendChild(dot);
+    });
+
+    // Mark dots as active on scroll
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const idx = chapters.indexOf(entry.target.id);
+        if (idx === -1) return;
+        const dots = nav.querySelectorAll('.nav-dot');
+        if (entry.isIntersecting) {
+          dots.forEach((d, i) => {
+            if (i < idx) d.className = 'nav-dot done';
+            else if (i === idx) d.className = 'nav-dot active';
+            else d.className = 'nav-dot';
+          });
+        }
+      });
+    }, { threshold: 0.3 });
+    chapters.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+  </script>
+
+</body>
+</html>
