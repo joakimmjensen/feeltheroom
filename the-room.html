@@ -125,6 +125,17 @@
     .about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
     .badge { font-size: 12px; color: var(--text2); background: var(--bg3); border: 0.5px solid var(--border); padding: 5px 12px; border-radius: 20px; }
 
+    /* FREEBIES */
+    .freebies-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .freebies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
+    .freebie-item { background: var(--bg2); padding: 24px 28px; display: flex; gap: 16px; align-items: flex-start; }
+    .freebie-num { font-family: Georgia, serif; font-size: 22px; font-weight: 600; color: var(--accent); opacity: 0.4; line-height: 1; flex-shrink: 0; width: 28px; }
+    .freebie-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .freebie-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .freebies-note { text-align: center; font-size: 13px; color: var(--text2); margin-top: 20px; }
+    .freebies-note strong { color: var(--text); }
+    @media (max-width: 680px) { .freebies-grid { grid-template-columns: 1fr; } }
+
     /* BOTTOM CTA */
     .bottom-cta { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 80px 24px; text-align: center; margin-top: 72px; }
     .bottom-cta h2 { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 16px; max-width: 540px; margin-left: auto; margin-right: auto; }
@@ -427,6 +438,74 @@
       </div>
     </div>
   </div>
+
+  <!-- FREEBIES TEASER -->
+  <div class="freebies-section">
+    <p class="section-eyebrow">What's waiting for you</p>
+    <h2 class="section-headline">Eight tools. Sent over 16 weeks. Yours the moment you sign up.</h2>
+    <p class="section-sub">Each one is a practical extract from the F.E.E.L. framework — built for leaders and commercial profiles who want to go deeper than technique.</p>
+    <div class="freebies-grid">
+      <div class="freebie-item">
+        <div class="freebie-num">01</div>
+        <div>
+          <div class="freebie-title">Team Values Workshop</div>
+          <div class="freebie-desc">A step-by-step facilitation guide for building team values that actually drive behaviour.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">02</div>
+        <div>
+          <div class="freebie-title">Pre-Meeting State Checklist</div>
+          <div class="freebie-desc">Prepare your state — not just your pitch. Before any room that matters.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">03</div>
+        <div>
+          <div class="freebie-title">Objection Mapping Framework</div>
+          <div class="freebie-desc">Turn resistance into clarity. A structured way to understand what objections are really saying.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">04</div>
+        <div>
+          <div class="freebie-title">1:1 Coaching Guide</div>
+          <div class="freebie-desc">How to run one-on-ones that actually develop people — not just check status.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">05</div>
+        <div>
+          <div class="freebie-title">Team Orchestration Rhythm</div>
+          <div class="freebie-desc">The cadence and structure that keeps high-performing teams aligned without micromanagement.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">06</div>
+        <div>
+          <div class="freebie-title">Hire Interview Guide</div>
+          <div class="freebie-desc">How to interview for the whole person — not just the CV. Spot culture fit before day one.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">07</div>
+        <div>
+          <div class="freebie-title">FTR Aura Profile</div>
+          <div class="freebie-desc">Understand your natural energy in a room — and how to work with it, not against it.</div>
+        </div>
+      </div>
+      <div class="freebie-item">
+        <div class="freebie-num">08</div>
+        <div>
+          <div class="freebie-title">How to Structure a Sales Call</div>
+          <div class="freebie-desc">The 7-step F.E.E.L. sales flow with key questions and time guides for each phase.</div>
+        </div>
+      </div>
+    </div>
+    <p class="freebies-note">One sent every two weeks. <strong>No pitch. No upsell.</strong> Just the tools.</p>
+  </div>
+
+  <div class="divider"></div>
 
   <!-- BOTTOM CTA -->
   <div class="bottom-cta">
