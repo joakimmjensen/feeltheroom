@@ -14,235 +14,270 @@
       --text2: #6B6457;
       --accent: #ff0800;
       --border: rgba(28,26,23,0.12);
+      --radius: 10px;
     }
-    html, body { height: 100%; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); }
-    .page { height: 100vh; display: grid; grid-template-rows: 44px 36px 1fr; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      font-size: 12px;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+    }
 
     /* TOPBAR */
-    .topbar { display: flex; align-items: center; gap: 16px; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--bg); }
-    .logo { font-family: Georgia, serif; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
-    .top-title { font-size: 11px; color: var(--text2); flex-shrink: 0; }
-    .timeline-strip { display: flex; align-items: center; flex: 1; justify-content: center; }
-    .tl-item { display: flex; align-items: center; }
-    .tl-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border); border: 1.5px solid var(--text2); flex-shrink: 0; }
-    .tl-line { width: 32px; height: 1px; background: var(--border); }
-    .tl-label { font-size: 9px; color: var(--text2); white-space: nowrap; margin: 0 4px; letter-spacing: 0.04em; }
-    .top-meta { display: flex; gap: 8px; flex-shrink: 0; }
-    .top-pill { font-size: 9px; background: var(--bg3); border-radius: 20px; padding: 2px 8px; color: var(--text2); letter-spacing: 0.05em; }
+    .topbar {
+      flex-shrink: 0;
+      background: var(--bg);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 16px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .topbar-logo { font-family: Georgia, serif; font-size: 13px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+    .topbar-divider { width: 0.5px; height: 20px; background: var(--border); flex-shrink: 0; }
+    .timeline-strip { display: flex; align-items: center; flex: 1; overflow: hidden; }
+    .tl-item { display: flex; align-items: center; gap: 6px; padding: 4px 10px; white-space: nowrap; }
+    .tl-num { font-size: 9px; font-weight: 700; color: var(--accent); opacity: 0.5; }
+    .tl-name { font-size: 11px; color: var(--text2); }
+    .tl-dur { font-size: 9px; color: var(--text2); opacity: 0.6; margin-left: 2px; }
+    .tl-arrow { font-size: 9px; color: var(--border); padding: 0 2px; }
+    .topbar-pills { display: flex; gap: 8px; flex-shrink: 0; }
+    .pill { font-size: 10px; color: var(--text2); background: var(--bg2); border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 10px; white-space: nowrap; }
+    .pill.accent { color: var(--accent); border-color: rgba(255,8,0,0.2); background: rgba(255,8,0,0.05); }
 
-    /* PREFLIGHT */
-    .preflight { display: flex; align-items: center; gap: 6px; padding: 0 16px; border-bottom: 1px solid var(--border); background: var(--bg2); overflow-x: auto; }
-    .pf-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); font-weight: 700; flex-shrink: 0; margin-right: 4px; }
-    .pf-chip { display: flex; align-items: center; gap: 5px; padding: 3px 9px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 20px; cursor: pointer; flex-shrink: 0; transition: background 0.15s; }
-    .pf-chip:hover { background: var(--bg3); }
-    .pf-chip input { width: 11px; height: 11px; accent-color: var(--accent); cursor: pointer; flex-shrink: 0; }
+    /* PREFLIGHT STRIP */
+    .preflight-strip {
+      flex-shrink: 0;
+      background: var(--bg2);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 16px;
+      height: 34px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      overflow: hidden;
+    }
+    .preflight-label { font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; font-weight: 700; color: var(--text2); opacity: 0.5; margin-right: 8px; flex-shrink: 0; }
+    .pf-chip { display: flex; align-items: center; gap: 5px; background: var(--bg); border: 0.5px solid var(--border); border-radius: 20px; padding: 3px 9px; cursor: pointer; flex-shrink: 0; }
+    .pf-chip input[type="checkbox"] { width: 11px; height: 11px; accent-color: var(--accent); cursor: pointer; }
     .pf-chip label { font-size: 10px; color: var(--text); cursor: pointer; white-space: nowrap; }
 
     /* MAIN GRID */
-    .main { display: grid; grid-template-columns: repeat(5, 1fr); overflow: hidden; }
-    .card { border-right: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
-    .card:last-child { border-right: none; }
+    .grid-wrap {
+      flex: 1;
+      overflow: hidden;
+      padding: 12px 16px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+    }
 
-    /* CARD HEAD */
-    .card-head { padding: 10px 12px 8px; border-bottom: 1px solid var(--border); background: var(--bg2); flex-shrink: 0; }
-    .card-num { font-family: Georgia, serif; font-size: 22px; font-weight: 600; color: var(--accent); opacity: 0.25; line-height: 1; }
-    .card-tag { font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-top: 2px; }
-    .card-title { font-family: Georgia, serif; font-size: 13px; font-weight: 600; line-height: 1.2; margin-top: 2px; }
-    .card-sub { font-size: 9.5px; color: var(--text2); margin-top: 3px; line-height: 1.4; }
-
-    /* CARD BODY */
-    .card-body { flex: 1; overflow-y: auto; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
-    .card-body::-webkit-scrollbar { width: 3px; }
-    .card-body::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+    /* CARD */
+    .card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; overflow: hidden; min-height: 0; }
+    .card-head { padding: 10px 12px 8px; border-bottom: 0.5px solid var(--border); flex-shrink: 0; }
+    .card-meta { display: flex; align-items: center; gap: 6px; margin-bottom: 4px; }
+    .card-num { font-family: Georgia, serif; font-size: 16px; font-weight: 600; color: var(--accent); opacity: 0.25; line-height: 1; }
+    .card-tag { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; }
+    .card-title { font-family: Georgia, serif; font-size: 13px; font-weight: 600; line-height: 1.2; margin-bottom: 2px; }
+    .card-sub { font-size: 10px; color: var(--text2); line-height: 1.4; }
 
     /* BULLETS */
-    .b-item { display: flex; gap: 7px; align-items: flex-start; padding: 5px 0; border-bottom: 0.5px solid var(--border); }
-    .b-item:last-child { border-bottom: none; }
-    .b-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 5px; }
-    .b-text { font-size: 11.5px; line-height: 1.5; color: var(--text); }
-    .b-text strong { font-weight: 700; }
-    .b-text em { color: var(--text2); font-style: italic; font-size: 10.5px; }
+    .card-bullets { flex: 1; overflow-y: auto; padding: 8px 12px; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+    .card-bullets ul { list-style: none; display: flex; flex-direction: column; }
+    .card-bullets li { display: flex; gap: 7px; align-items: flex-start; padding: 5px 0; border-bottom: 0.5px solid var(--border); font-size: 11px; line-height: 1.45; color: var(--text); }
+    .card-bullets li:last-child { border-bottom: none; padding-bottom: 0; }
+    .b-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--accent); flex-shrink: 0; margin-top: 6px; }
+    .card-bullets li strong { font-weight: 700; }
+    .card-bullets li em { color: var(--text2); font-style: italic; font-size: 10px; }
 
     /* NOTES */
-    .notes { border-left: 2px solid var(--accent); padding: 6px 10px; background: rgba(255,8,0,0.03); border-radius: 0 6px 6px 0; }
-    .notes-label { font-size: 8.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
-    .n-item { display: flex; gap: 6px; align-items: flex-start; margin-bottom: 4px; }
-    .n-item:last-child { margin-bottom: 0; }
-    .n-arr { color: var(--accent); font-size: 10px; font-weight: 600; line-height: 1.4; flex-shrink: 0; }
-    .n-text { font-size: 10px; color: var(--text2); line-height: 1.4; }
+    .card-notes { flex-shrink: 0; border-top: 0.5px solid var(--border); padding: 8px 12px; background: rgba(255,8,0,0.03); }
+    .notes-label { font-size: 8px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 700; margin-bottom: 5px; }
+    .card-notes ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .card-notes li { font-size: 10px; color: var(--text2); display: flex; gap: 5px; align-items: flex-start; line-height: 1.4; }
+    .card-notes li::before { content: '\2192'; color: var(--accent); flex-shrink: 0; font-weight: 600; font-size: 9px; }
   </style>
 </head>
 <body>
-<div class="page">
 
   <div class="topbar">
-    <span class="logo">FTR</span>
-    <span class="top-title">VSL Recording Guide</span>
+    <span class="topbar-logo">FTR</span>
+    <div class="topbar-divider"></div>
     <div class="timeline-strip">
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">00:00 Start</div></div>
-      <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">01:15 Mid</div></div>
-      <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">03:15 Why me</div></div>
-      <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">04:30 Why you</div></div>
-      <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">05:30 CTA</div></div>
-      <div class="tl-line"></div>
-      <div class="tl-item"><div class="tl-dot"></div><div class="tl-label">~6:30 Done</div></div>
+      <div class="tl-item"><span class="tl-num">1</span><span class="tl-name">Start</span><span class="tl-dur">~75s</span></div>
+      <div class="tl-arrow">&#8250;</div>
+      <div class="tl-item"><span class="tl-num">2</span><span class="tl-name">Mid</span><span class="tl-dur">~120s</span></div>
+      <div class="tl-arrow">&#8250;</div>
+      <div class="tl-item"><span class="tl-num">3</span><span class="tl-name">Why me</span><span class="tl-dur">~75s</span></div>
+      <div class="tl-arrow">&#8250;</div>
+      <div class="tl-item"><span class="tl-num">4</span><span class="tl-name">Why you</span><span class="tl-dur">~60s</span></div>
+      <div class="tl-arrow">&#8250;</div>
+      <div class="tl-item"><span class="tl-num">5</span><span class="tl-name">CTA</span><span class="tl-dur">~60s</span></div>
     </div>
-    <div class="top-meta">
-      <span class="top-pill">6–8 min</span>
-      <span class="top-pill">Talking head</span>
-      <span class="top-pill">Bullets only — don't memorise</span>
+    <div class="topbar-divider"></div>
+    <div class="topbar-pills">
+      <div class="pill accent">6-8 min total</div>
+      <div class="pill">Talking head</div>
+      <div class="pill">Speak from bullets</div>
     </div>
   </div>
 
-  <div class="preflight">
-    <span class="pf-label">Preflight</span>
-    <div class="pf-chip"><input type="checkbox" id="p1"><label for="p1">Phone on airplane mode</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p2"><label for="p2">Drink water (0.5L+)</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p3"><label for="p3">Move your body (10 min)</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p4"><label for="p4">Read bullets once</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p5"><label for="p5">Eye level camera</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p6"><label for="p6">Front light only</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p7"><label for="p7">Ventilation off</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p8"><label for="p8">10 sec audio test</label></div>
-    <div class="pf-chip"><input type="checkbox" id="p9"><label for="p9">Clean background</label></div>
+  <div class="preflight-strip">
+    <div class="preflight-label">Before you record</div>
+    <div class="pf-chip"><input type="checkbox" id="pf1"><label for="pf1">Phone on airplane mode</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf2"><label for="pf2">0.5L water drunk</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf3"><label for="pf3">Body activated (10 min walk)</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf4"><label for="pf4">Bullets read through once</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf5"><label for="pf5">Audio tested</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf6"><label for="pf6">Light from front</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf7"><label for="pf7">Camera eye level</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf8"><label for="pf8">Background intentional</label></div>
+    <div class="pf-chip"><input type="checkbox" id="pf9"><label for="pf9">One person in mind</label></div>
   </div>
 
-  <div class="main">
+  <div class="grid-wrap">
 
     <div class="card">
       <div class="card-head">
-        <div class="card-num">1</div>
-        <div class="card-tag">00:00 — ~75 sec</div>
+        <div class="card-meta"><div class="card-num">1</div><div class="card-tag">00:00 — ~75s</div></div>
         <div class="card-title">Start</div>
-        <div class="card-sub">Hook + problem. Calm. Direct. No sales tone.</div>
+        <div class="card-sub">Hook + the problem. Calm. Direct. No sales tone.</div>
       </div>
-      <div class="card-body">
-        <div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I have a hard time relating to other sales coaches or leadership programs</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I've done SPIN Selling, Solution Selling, MEDDPICC, Situational Leadership, Authentic Leadership</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">They're fucking good at what they do</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">It just doesn't stick</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>The foundation is missing</strong></div></div>
-        </div>
-        <div class="notes">
-          <div class="notes-label">Performance</div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"They're fucking good" — neutral. An observation, not an attack.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"It just doesn't stick" — pause after. Let them nod inside.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"The foundation is missing" — weight. Short. Slow.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">No salesperson energy. Thinker energy. Like talking to yourself.</div></div>
-        </div>
+      <div class="card-bullets">
+        <ul>
+          <li><div class="b-dot"></div>I have a hard time relating to other sales coaches or leadership programs</li>
+          <li><div class="b-dot"></div>I've done SPIN Selling, Solution Selling, MEDDPICC, Situational Leadership, Authentic Leadership</li>
+          <li><div class="b-dot"></div>They're fucking good at what they do</li>
+          <li><div class="b-dot"></div>It just doesn't stick</li>
+          <li><div class="b-dot"></div><strong>The foundation is missing</strong></li>
+        </ul>
+      </div>
+      <div class="card-notes">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"They're fucking good" — neutral. An observation, not an attack.</li>
+          <li>"It just doesn't stick" — pause after. Let them nod inside.</li>
+          <li>"The foundation is missing" — short. Slow. Weight.</li>
+          <li>Thinker energy. Like talking to yourself.</li>
+        </ul>
       </div>
     </div>
 
     <div class="card">
       <div class="card-head">
-        <div class="card-num">2</div>
-        <div class="card-tag">01:15 — ~120 sec</div>
+        <div class="card-meta"><div class="card-num">2</div><div class="card-tag">01:15 — ~120s</div></div>
         <div class="card-title">Mid — the foundations</div>
-        <div class="card-sub">The core. Take your time. Use your hands.</div>
+        <div class="card-sub">The core. Take time with each. Use your hands.</div>
       </div>
-      <div class="card-body">
-        <div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">That's why I've tried to conceptualise my 13 years as a sales executive and leader</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Energy as a Compass</strong> — Feel the Room</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>The Whole Human</strong></div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Build Culture that Builds People</strong> — Performative Balance</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Lead with questions</strong> — on a sales call or in a 1:1</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Solution Selling</strong></div></div>
-        </div>
-        <div class="notes">
-          <div class="notes-label">Performance</div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Count with your fingers — gives the viewer an anchor.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Performative Balance" — say slowly. This is your concept.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"The Whole Human" — more personal energy. Eye contact with lens.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Tease, don't explain. They sign up to go deeper.</div></div>
-        </div>
+      <div class="card-bullets">
+        <ul>
+          <li><div class="b-dot"></div>That's why I've tried to conceptualise my 13 years as a sales executive and leader</li>
+          <li><div class="b-dot"></div><strong>Energy as a Compass</strong> — Feel the Room</li>
+          <li><div class="b-dot"></div><strong>The Whole Human</strong></li>
+          <li><div class="b-dot"></div><strong>Build Culture that Builds People</strong> — Performative Balance</li>
+          <li><div class="b-dot"></div><strong>How to lead with questions</strong> — sales call or 1:1 development</li>
+          <li><div class="b-dot"></div><strong>Solution Selling</strong></li>
+        </ul>
+      </div>
+      <div class="card-notes">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>Use fingers — one, two, three. Gives viewer an anchor.</li>
+          <li>"Performative Balance" — say slowly. It's your concept. Give it space.</li>
+          <li>"The Whole Human" — personal energy. Eye contact with the lens.</li>
+          <li>Tease each point. They sign up to go deeper.</li>
+        </ul>
       </div>
     </div>
 
     <div class="card">
       <div class="card-head">
-        <div class="card-num">3</div>
-        <div class="card-tag">03:15 — ~75 sec</div>
+        <div class="card-meta"><div class="card-num">3</div><div class="card-tag">03:15 — ~75s</div></div>
         <div class="card-title">Why me</div>
         <div class="card-sub">Personal first — credentials last.</div>
       </div>
-      <div class="card-body">
-        <div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">First of all, because I really believe this is essential to perform — as individual or team</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I hope you already feel some kind of relation to me</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I wasn't able to find this person back then — so I decided I'll <strong>become him</strong></div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><em>Then the numbers:</em></div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">13 years in high-performance sales and leadership across seven industries</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Closed million-dollar deals with the biggest companies in Europe</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Built and scaled 5 different teams with +70 people</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Not many people have walked the talk and want to teach others how to</div></div>
-        </div>
-        <div class="notes">
-          <div class="notes-label">Performance</div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I hope you already feel some relation" — vulnerable. Stay there. Don't rush.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I'll become him" — pause before "become him". Two words. Let them land.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Credentials: factual, not a pitch. Telling, not selling.</div></div>
-        </div>
+      <div class="card-bullets">
+        <ul>
+          <li><div class="b-dot"></div>First of all, because I really believe this is essential — as an individual or team</li>
+          <li><div class="b-dot"></div>And because I hope you already feel some kind of relation to me</li>
+          <li><div class="b-dot"></div>I wasn't able to find this person — so I decided I'll <strong>become him</strong></li>
+          <li><div class="b-dot"></div><em>And then the numbers:</em></li>
+          <li><div class="b-dot"></div>13 years in high-performance sales and leadership across 7 industries</li>
+          <li><div class="b-dot"></div>Closed million-dollar deals with the biggest companies in Europe</li>
+          <li><div class="b-dot"></div>Built and scaled 5 different teams with +70 people</li>
+          <li><div class="b-dot"></div>There aren't many people who've walked the talk and want to teach others how to</li>
+        </ul>
+      </div>
+      <div class="card-notes">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"I hope you feel some relation" — vulnerable. Don't rush past it.</li>
+          <li>"Become him" — pause before. Two words. Let them land.</li>
+          <li>Credentials: tell, don't sell. Factual, not pitchy.</li>
+          <li>"Walked the talk" — gentle but clear. Your differentiator.</li>
+        </ul>
       </div>
     </div>
 
     <div class="card">
       <div class="card-head">
-        <div class="card-num">4</div>
-        <div class="card-tag">04:30 — ~60 sec</div>
+        <div class="card-meta"><div class="card-num">4</div><div class="card-tag">04:30 — ~60s</div></div>
         <div class="card-title">Why you</div>
-        <div class="card-sub">Honest and filtering. Not for everyone — that's a strength.</div>
+        <div class="card-sub">Honest and filtering. Not for everyone — that's the point.</div>
       </div>
-      <div class="card-body">
-        <div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I'm not 100% sure who this will resonate with</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I only want to work with people who this resonates with</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I hope I can stand out as a little bit more different than the others</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">I imagine: sales leaders, startup founders, or sales executives</div></div>
-        </div>
-        <div class="notes">
-          <div class="notes-label">Performance</div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Not 100% sure who this will resonate with" — your strongest line. Honesty beats polished pitch.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Only want people who this resonates with" — filters right people in, wrong ones out.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">No hype. No "this is for YOU if..." list. Just honest observation.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">Energy: calm and slightly more personal than the rest of the video.</div></div>
-        </div>
+      <div class="card-bullets">
+        <ul>
+          <li><div class="b-dot"></div>I'm not 100% sure who this will resonate with</li>
+          <li><div class="b-dot"></div>I only want to work with people who this resonates with</li>
+          <li><div class="b-dot"></div>I hope I can stand out as a little bit more different than the others</li>
+          <li><div class="b-dot"></div>But I imagine: other sales leaders, startup founders, sales executives</li>
+        </ul>
+      </div>
+      <div class="card-notes">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"Not 100% sure who this resonates with" — your strongest line. Honesty beats polish.</li>
+          <li>"Only want people who this resonates" — filters right in, wrong out.</li>
+          <li>No hype. No "this is for YOU if" list. Just honest.</li>
+          <li>Energy: calm, slightly more personal.</li>
+        </ul>
       </div>
     </div>
 
     <div class="card">
       <div class="card-head">
-        <div class="card-num">5</div>
-        <div class="card-tag">05:30 — ~60 sec</div>
+        <div class="card-meta"><div class="card-num">5</div><div class="card-tag">05:30 — ~60s</div></div>
         <div class="card-title">CTA — Request Access</div>
         <div class="card-sub">Simple. Concrete. End strong.</div>
       </div>
-      <div class="card-body">
-        <div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Below this video <em>(point down)</em></div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Sign up → tools, frameworks, guides, workshops</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Dropping every 2nd week</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Until you hear from me — when I'm ready to work</div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text"><strong>Once again — if any of this landed, you know you're the right person</strong></div></div>
-          <div class="b-item"><div class="b-dot"></div><div class="b-text">Request access. Drop your email. I'll see you on the other side.</div></div>
-        </div>
-        <div class="notes">
-          <div class="notes-label">Performance</div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Below this video" — point down with your hand. Physical direction works.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"Until you hear from me" — mystery. Nothing more than that.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"If any of this landed" — pause before. Look directly into the lens. This is your close.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">"I'll see you on the other side" — natural smile. Not forced. Mean it.</div></div>
-          <div class="n-item"><div class="n-arr">→</div><div class="n-text">The last words are not a sale — they're an invitation. Hold that energy.</div></div>
-        </div>
+      <div class="card-bullets">
+        <ul>
+          <li><div class="b-dot"></div>Below this video <em>(point down)</em></li>
+          <li><div class="b-dot"></div>Sign up — tools, frameworks, guides, workshops</li>
+          <li><div class="b-dot"></div>Dropping every 2nd week</li>
+          <li><div class="b-dot"></div>Until you hear from me — when I'm ready to work</li>
+          <li><div class="b-dot"></div><strong>If any of this landed — you know you're the right person</strong></li>
+          <li><div class="b-dot"></div>Request access. Drop your email. I'll see you on the other side.</li>
+        </ul>
+      </div>
+      <div class="card-notes">
+        <div class="notes-label">Performance notes</div>
+        <ul>
+          <li>"Below this video" — point down. Physical direction works.</li>
+          <li>"Until you hear from me" — mystery. Nothing more.</li>
+          <li>"If any of this landed" — pause. Look straight into the lens. This is your close.</li>
+          <li>"I'll see you on the other side" — natural smile. Mean it.</li>
+          <li>Not a sale — an invitation. Hold that energy.</li>
+        </ul>
       </div>
     </div>
 
   </div>
-</div>
+
 </body>
 </html>
