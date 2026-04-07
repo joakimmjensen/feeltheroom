@@ -83,7 +83,7 @@
 
     /* TESTIMONIALS */
     .testimonials { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 40px; }
+    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
     .testimonial-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px; }
     .testimonial-quote { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 24px; font-style: italic; }
     .testimonial-quote::before { content: '"'; font-size: 32px; color: var(--accent); line-height: 0; vertical-align: -12px; margin-right: 4px; font-style: normal; }
@@ -129,6 +129,7 @@
       nav { padding: 0 20px; }
       .hero { padding: 56px 20px 36px; }
       .form-row { flex-direction: column; }
+      .testimonial-grid { grid-template-columns: 1fr; }
       .about-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
       .about-photo { width: 100px; height: 100px; }
       footer { flex-direction: column; text-align: center; padding: 20px; }
@@ -247,6 +248,17 @@
       </div>
 
       <div class="testimonial-card">
+        <p class="testimonial-quote">What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people. My only advice has always been: keep doing exactly what you're doing. Because it works. And because it inspires.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">I</div>
+          <div>
+            <div class="testimonial-name">Indira Comakci</div>
+            <div class="testimonial-role">Chief of Staff</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
         <p class="testimonial-quote">Joakim is exceptionally skilled at reading the people he talks to and competently sells solutions that match the customers' needs. His feedback always elevates things to the next level.</p>
         <div class="testimonial-author">
           <div class="testimonial-avatar">S</div>
@@ -264,6 +276,50 @@
           <div>
             <div class="testimonial-name">Christian Thorsø Pedersen</div>
             <div class="testimonial-role">Senior Account Executive, Salesforce</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Joakim is a highly social extrovert, spreading positive energy wherever he goes. He's the type of person that is great for any team culture — always making sure that everyone is feeling good, or understanding why they don't.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">A</div>
+          <div>
+            <div class="testimonial-name">Aaron Marchmann</div>
+            <div class="testimonial-role">Head of Business Development</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">Joakim not only demonstrated exceptional skills in client and sales process management, but was instrumental in raising the bar for the entire team — leading by example and showing a new performance reality.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">D</div>
+          <div>
+            <div class="testimonial-name">Dimitri Devillers</div>
+            <div class="testimonial-role">Head of Sales</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">A strong mindset and character which bleeds into his determination, drive, grit and hard work on a daily basis. An innate ability to understand customers' needs, pains and problems across industries and personas. One of the best sales people I have ever worked alongside.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">J</div>
+          <div>
+            <div class="testimonial-name">Johan Christopher Mortensen</div>
+            <div class="testimonial-role">Sales Manager</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p class="testimonial-quote">What truly sets Joakim apart is humility paired with relentless confidence — a scarce combination. With his mindset and dedication, I have no doubt he's on a trajectory to become a star. Keep an eye on him.</p>
+        <div class="testimonial-author">
+          <div class="testimonial-avatar">B</div>
+          <div>
+            <div class="testimonial-name">Brian Strøh Strange</div>
+            <div class="testimonial-role">CCO</div>
           </div>
         </div>
       </div>
