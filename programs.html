@@ -28,7 +28,7 @@
 
     /* NAV */
     nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg); }
-    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent); text-decoration: none; font-family: Georgia, serif; }
+    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent); text-decoration: none; font-family: var(--font-brand); }
     .nav-links { display: flex; align-items: center; gap: 32px; }
     .nav-links a { font-size: 14px; color: var(--text2); text-decoration: none; transition: color .2s; }
     .nav-links a:hover { color: var(--text); }
@@ -105,7 +105,8 @@
     .module-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; user-select: none; transition: background .15s; }
     .module-header:hover { background: var(--surface2); }
 
-    .mod-badge { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+    .mod-badge { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; font-family: var(--font-brand); }
+    .mb-0, .mb-bonus { font-size: 13px; font-family: system-ui, sans-serif; }
     .mb-0 { background: var(--surface2); color: var(--text3); }
     .mb-fl { background: var(--blue-bg); color: var(--blue); border: 1px solid rgba(96,165,250,.2); }
     .mb-el1 { background: rgba(96,165,250,.05); color: #7dd3fc; border: 1px solid rgba(96,165,250,.15); }
@@ -125,6 +126,32 @@
 
     .module-body { display: none; border-top: 1px solid var(--border); }
     .module-body.open { display: block; }
+
+    /* MODULE LEFT BORDERS */
+    #ml1 { border-left: 3px solid var(--blue); }
+    #ml2 { border-left: 3px solid #7dd3fc; }
+    #ml3 { border-left: 3px solid var(--orange); }
+    #ml4 { border-left: 3px solid var(--purple); }
+    #ms1 { border-left: 3px solid var(--green); }
+    #ms2 { border-left: 3px solid #86efac; }
+    #ms3 { border-left: 3px solid var(--orange); }
+    #ms4 { border-left: 3px solid var(--purple); }
+
+    /* JOURNEY BAR */
+    .journey-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; padding: 14px 20px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
+    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; opacity: .3; transition: opacity .2s; }
+    .journey-step.active { opacity: 1; }
+    .jb-letter { font-family: var(--font-brand); font-size: 30px; font-weight: 700; line-height: 1; }
+    .jb-label { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+    .journey-arrow { font-size: 12px; color: var(--text3); opacity: .4; flex-shrink: 0; padding-bottom: 14px; }
+    #jb-leaders .journey-step[data-step="F"] .jb-letter { color: var(--blue); }
+    #jb-leaders .journey-step[data-step="E1"] .jb-letter { color: #7dd3fc; }
+    #jb-leaders .journey-step[data-step="E2"] .jb-letter { color: var(--orange); }
+    #jb-leaders .journey-step[data-step="L"] .jb-letter { color: var(--purple); }
+    #jb-sales .journey-step[data-step="F"] .jb-letter { color: var(--green); }
+    #jb-sales .journey-step[data-step="E1"] .jb-letter { color: #86efac; }
+    #jb-sales .journey-step[data-step="E2"] .jb-letter { color: var(--orange); }
+    #jb-sales .journey-step[data-step="L"] .jb-letter { color: var(--purple); }
 
     /* GOALS BOX */
     .goals-box { padding: 12px 20px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); }
@@ -327,6 +354,15 @@
         </div>
       </div>
 
+      <div class="journey-bar" id="jb-leaders">
+        <div class="journey-step" data-step="F"><div class="jb-letter">F</div><div class="jb-label">Foundation</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="E1"><div class="jb-letter">E</div><div class="jb-label">Elevation</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="E2"><div class="jb-letter">E</div><div class="jb-label">Exploration</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="L"><div class="jb-letter">L</div><div class="jb-label">Liberation</div></div>
+      </div>
       <span class="section-label">Click each module to expand</span>
       <div class="modules">
 
@@ -576,6 +612,15 @@
         </div>
       </div>
 
+      <div class="journey-bar" id="jb-sales">
+        <div class="journey-step" data-step="F"><div class="jb-letter">F</div><div class="jb-label">Foundation</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="E1"><div class="jb-letter">E</div><div class="jb-label">Elevation</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="E2"><div class="jb-letter">E</div><div class="jb-label">Exploration</div></div>
+        <div class="journey-arrow">→</div>
+        <div class="journey-step" data-step="L"><div class="jb-letter">L</div><div class="jb-label">Liberation</div></div>
+      </div>
       <span class="section-label">Click each module to expand</span>
       <div class="modules">
 
@@ -930,6 +975,17 @@ function toggleModule(id) {
   var open = body.classList.contains('open');
   body.classList.toggle('open', !open);
   chev.classList.toggle('open', !open);
+  // Highlight journey step
+  var stepMap = { ml1:'F', ml2:'E1', ml3:'E2', ml4:'L', ms1:'F', ms2:'E1', ms3:'E2', ms4:'L' };
+  var jbId = id.startsWith('ml') ? 'jb-leaders' : 'jb-sales';
+  var jb = document.getElementById(jbId);
+  if (jb && stepMap[id]) {
+    jb.querySelectorAll('.journey-step').forEach(function(s){ s.classList.remove('active'); });
+    if (!open) {
+      var el = jb.querySelector('[data-step="' + stepMap[id] + '"]');
+      if (el) el.classList.add('active');
+    }
+  }
 }
 </script>
 </body>
