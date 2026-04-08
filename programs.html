@@ -9,141 +9,110 @@
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <style>
     :root {
-      --bg: #f0e8d1; --surface: #fff4e3; --surface2: #e8dcc4; --surface3: #ddd0b8;
-      --border: rgba(28,26,23,0.10); --border-strong: rgba(28,26,23,0.18);
+      --bg: #f0e8d1; --bg2: #fff4e3; --bg3: #e8dcc4;
       --text: #1C1A17; --text2: #6B6457; --text3: #9B9189;
-      --gold: #ff0800; --gold2: #cc0600; --gold-dim: rgba(255,8,0,0.07);
-      --green: #2D7A4F; --green-bg: rgba(45,122,79,0.07); --green-dim: rgba(45,122,79,0.12);
-      --blue: #2563A8; --blue-bg: rgba(37,99,168,0.07); --blue-dim: rgba(37,99,168,0.12);
-      --orange: #B85C1A; --orange-bg: rgba(184,92,26,0.07);
-      --purple: #6B4FA8; --purple-bg: rgba(107,79,168,0.07);
-      --red: #B83232; --red-bg: rgba(184,50,50,0.07);
-      --radius: 10px; --radius-lg: 16px;
-      --serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
-      --sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+      --accent: #ff0800; --accent2: #cc0600; --accent-dim: rgba(255,8,0,0.07);
+      --border: rgba(28,26,23,0.11); --border-strong: rgba(28,26,23,0.20);
+      --radius: 12px; --radius-sm: 8px; --radius-lg: 16px;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 16px; line-height: 1.65; -webkit-font-smoothing: antialiased; }
-
-    /* NAV */
-    nav { position: sticky; top: 0; left: 0; right: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg); }
-    .nav-logo { font-size: 15px; font-weight: 700; letter-spacing: 0.03em; color: var(--accent); text-decoration: none; font-family: var(--font-brand); }
-    .nav-links { display: flex; align-items: center; gap: 32px; }
-    .nav-links a { font-size: 14px; color: var(--text2); text-decoration: none; transition: color .2s; }
-    .nav-links a:hover { color: var(--text); }
-    .nav-links a.active { color: var(--accent); font-weight: 600; }
-    .btn-nav { background: var(--text); color: var(--bg) !important; padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 14px !important; transition: opacity .2s; text-decoration: none; }
-    .btn-nav:hover { opacity: .88; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; font-size: 16px; line-height: 1.7; -webkit-font-smoothing: antialiased; }
+    a { color: var(--accent); text-decoration: none; }
 
     /* LAYOUT */
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 40px; }
+    .container { max-width: 860px; margin: 0 auto; padding: 0 40px; }
+    section { padding: 88px 0; }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; display: block; }
 
     /* HERO */
-    .hero { padding: 80px 0 72px; text-align: center; border-bottom: 0.5px solid var(--border); }
-    .eyebrow { font-size: 12px; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-    .hero h1 { font-size: clamp(36px, 5vw, 56px); line-height: 1.1; letter-spacing: -0.02em; color: var(--text); max-width: 760px; margin: 0 auto 24px; }
-    .hero h1 em { font-style: italic; color: var(--gold2); }
-    .hero-sub { font-size: 18px; color: var(--text2); max-width: 520px; margin: 0 auto 40px; line-height: 1.7; }
-    .hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
-    .btn-primary { background: var(--gold); color: #fff4e3; padding: 13px 28px; border-radius: 8px; font-size: 15px; font-weight: 600; text-decoration: none; transition: opacity .2s; display: inline-block; }
-    .btn-primary:hover { opacity: .88; }
-    .btn-ghost { background: transparent; color: var(--text); padding: 13px 28px; border-radius: 8px; font-size: 15px; text-decoration: none; border: 0.5px solid var(--border-strong); transition: border-color .2s, color .2s; display: inline-block; }
-    .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-    .btn-primary, .btn-ghost { cursor: pointer; font-family: var(--sans); }
-    .hero-btn-active { background: var(--gold) !important; color: #fff4e3 !important; border-color: var(--gold) !important; }
-    .hero-btn-inactive { background: transparent !important; color: var(--text) !important; border: 0.5px solid var(--border-strong) !important; }
+    .hero { padding: 100px 0 80px; background: var(--bg); border-bottom: 0.5px solid var(--border); }
+    .hero-kicker { font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text3); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+    .hero-kicker::before { content: ''; display: inline-block; width: 28px; height: 1px; background: var(--accent); }
+    .hero h1 { font-size: clamp(36px, 5.5vw, 62px); font-weight: 700; line-height: 1.06; letter-spacing: -0.03em; color: var(--text); max-width: 800px; margin-bottom: 32px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 19px; color: var(--text2); max-width: 580px; line-height: 1.65; margin-bottom: 52px; }
+    .btn-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: var(--accent); color: #fff4e3; padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px; font-weight: 600; text-decoration: none; display: inline-block; transition: opacity .2s; cursor: pointer; border: none; font-family: inherit; }
+    .btn-primary:hover { opacity: .87; }
+    .btn-ghost { background: transparent; color: var(--text); padding: 14px 32px; border-radius: var(--radius-sm); font-size: 15px; text-decoration: none; border: 0.5px solid var(--border-strong); display: inline-block; transition: border-color .2s, color .2s; cursor: pointer; font-family: inherit; }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-proof { margin-top: 48px; display: flex; gap: 36px; flex-wrap: wrap; }
+    .hero-proof-item { font-size: 13px; color: var(--text3); display: flex; align-items: center; gap: 8px; }
+    .hero-proof-item::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); display: inline-block; flex-shrink: 0; }
 
     /* PROGRAM SWITCHER */
-    .program-switcher { padding: 56px 0 0; }
-    .switcher-tabs { display: flex; gap: 8px; margin-bottom: 48px; border-bottom: 0.5px solid var(--border); padding-bottom: 0; }
-    .switcher-tab { padding: 14px 28px; font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text2); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color .2s, border-color .2s; margin-bottom: -1px; }
+    .program-switcher { padding: 0; }
+    .switcher-tabs { display: flex; border-bottom: 0.5px solid var(--border); }
+    .switcher-tab { padding: 18px 32px; font-family: inherit; font-size: 15px; font-weight: 500; color: var(--text2); background: none; border: none; border-bottom: 2px solid transparent; cursor: pointer; transition: color .2s, border-color .2s; margin-bottom: -0.5px; }
     .switcher-tab:hover { color: var(--text); }
-    .switcher-tab.active-l { color: var(--blue); border-bottom-color: var(--blue); }
-    .switcher-tab.active-s { color: var(--green); border-bottom-color: var(--green); }
-    .program-panel { display: none; }
+    .switcher-tab.active { color: var(--accent); border-bottom-color: var(--accent); font-weight: 600; }
+    .program-panel { display: none; padding: 64px 0; }
     .program-panel.active { display: block; }
 
-    /* PANEL HERO */
-    .panel-header { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
-    .panel-tag { display: inline-block; font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; }
-    .tag-l { background: var(--blue-dim); color: var(--blue); border: 1px solid rgba(96,165,250,.25); }
-    .tag-s { background: var(--green-dim); color: var(--green); border: 1px solid rgba(74,222,128,.25); }
-    .panel-title { font-size: clamp(22px, 3vw, 34px); color: var(--text); line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 12px; }
-    .panel-sub { font-size: 15px; color: var(--text2); line-height: 1.65; }
-    .panel-stats { display: flex; gap: 24px; margin-top: 24px; }
-    .panel-stat-val { font-family: var(--serif); font-size: 28px; color: var(--gold2); display: block; }
+    /* PANEL HEADER */
+    .panel-header { margin-bottom: 56px; }
+    .panel-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; padding: 4px 12px; border-radius: 20px; margin-bottom: 18px; background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.18); }
+    .panel-title { font-size: clamp(28px, 4vw, 46px); font-weight: 700; line-height: 1.08; letter-spacing: -0.03em; color: var(--text); max-width: 700px; margin-bottom: 18px; }
+    .panel-sub { font-size: 17px; color: var(--text2); max-width: 560px; line-height: 1.7; margin-bottom: 32px; }
+    .panel-stats { display: flex; gap: 40px; }
+    .panel-stat-val { font-size: 36px; font-weight: 800; color: var(--accent); display: block; line-height: 1; letter-spacing: -0.02em; margin-bottom: 4px; }
     .panel-stat-label { font-size: 12px; color: var(--text3); }
 
-
     /* FLOW BAR */
-    .flow-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 14px 0; }
-    .flow-step { font-size: 11px; font-weight: 500; padding: 4px 10px; border-radius: 20px; }
-    .fs-intro { background: var(--blue-bg); color: #7dd3fc; }
-    .fs-dream { background: var(--green-bg); color: var(--green); }
-    .fs-cs { background: var(--blue-bg); color: var(--blue); }
-    .fs-prob { background: var(--orange-bg); color: var(--orange); }
-    .fs-probe { background: rgba(251,146,60,.12); color: #fdba74; }
-    .fs-pitch { background: var(--purple-bg); color: var(--purple); }
-    .fs-close { background: var(--gold-dim); color: var(--gold2); }
+    .flow-label { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; margin-top: 36px; }
+    .flow-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin-bottom: 48px; }
+    .flow-step { font-size: 11px; font-weight: 500; padding: 5px 13px; border-radius: 20px; background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.15); }
     .flow-arrow { color: var(--text3); font-size: 11px; }
 
     /* MODULES */
-    .section-label { font-size: 11px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 12px; display: block; margin-top: 32px; }
+    .section-label { font-size: 11px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 16px; display: block; }
     .modules { display: flex; flex-direction: column; gap: 8px; }
-
-    .module { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
-    .module-header { display: flex; align-items: center; gap: 14px; padding: 16px 20px; cursor: pointer; user-select: none; transition: background .15s; }
-    .module-header:hover { background: var(--surface2); }
-
-    .mod-badge { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; font-family: var(--font-brand); }
+    .module { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    #ml1, #ml2, #ml3, #ml4, #ms1, #ms2, #ms3, #ms4 { border-left: 3px solid var(--accent); }
+    .module-header { display: flex; align-items: center; gap: 16px; padding: 18px 22px; cursor: pointer; user-select: none; transition: background .15s; }
+    .module-header:hover { background: var(--bg3); }
+    .mod-badge { width: 44px; height: 44px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; flex-shrink: 0; font-family: var(--font-brand); background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.15); }
     .mb-0, .mb-bonus { font-size: 13px; font-family: system-ui, sans-serif; }
-    .mb-0 { background: #f0e8d1; color: #999; }
-    .mb-fl, .mb-el1, .mb-el2, .mb-ll,
-    .mb-fs, .mb-es1, .mb-es2, .mb-ls { background: rgba(255,8,0,.08); color: #ff0800; border: 1px solid rgba(255,8,0,.15); }
-    .mb-bonus { background: #ff0800; color: #f6ede0; }
-
+    .mb-0 { background: var(--bg3); color: var(--text3); border: 0.5px solid var(--border); }
+    .mb-bonus { background: var(--accent); color: #fff4e3; border: none; }
+    .mb-fl, .mb-el1, .mb-el2, .mb-ll, .mb-fs, .mb-es1, .mb-es2, .mb-ls { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.15); }
     .module-info { flex: 1; }
-    .module-name { font-size: 14px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+    .module-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
     .module-sub { font-size: 12px; color: var(--text3); }
     .module-chevron { font-size: 11px; color: var(--text3); transition: transform .2s; flex-shrink: 0; }
     .module-chevron.open { transform: rotate(180deg); }
-
-    .module-body { display: none; border-top: 1px solid var(--border); }
+    .module-body { display: none; border-top: 0.5px solid var(--border); }
     .module-body.open { display: block; }
 
-    /* MODULE LEFT BORDERS */
-    #ml1, #ml2, #ml3, #ml4,
-    #ms1, #ms2, #ms3, #ms4 { border-left: 3px solid #ff0800; }
-
     /* JOURNEY BAR */
-    .journey-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; padding: 14px 20px; background: #f6ede0; border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
-    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; opacity: .35; transition: opacity .2s; }
+    .journey-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 24px; padding: 16px 20px; background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius); }
+    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; opacity: .3; transition: opacity .2s; }
     .journey-step.active { opacity: 1; }
-    .jb-letter { font-family: var(--font-brand); font-size: 26px; font-weight: 700; line-height: 1; color: #ff0800; background: #f0e8d1; border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
-    .jb-label { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
+    .jb-letter { font-family: var(--font-brand); font-size: 26px; font-weight: 700; line-height: 1; color: var(--accent); background: var(--bg2); border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
+    .jb-label { font-size: 9px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); }
     .journey-arrow { font-size: 12px; color: var(--text3); opacity: .4; flex-shrink: 0; padding-bottom: 18px; }
 
     /* GOALS BOX */
-    .goals-box { padding: 12px 20px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); }
-    .goals-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
-    .goal-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 4px; }
-    .goal-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 6px; }
-    .dot-blue { background: var(--blue); }
-    .dot-green { background: var(--green); }
-    .goal-text { font-size: 12px; color: var(--text2); line-height: 1.45; }
+    .goals-box { padding: 14px 22px 16px; background: var(--bg3); border-bottom: 0.5px solid var(--border); }
+    .goals-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 10px; }
+    .goal-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 6px; }
+    .goal-dot, .dot-blue, .dot-green { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 7px; background: var(--accent); }
+    .goal-text { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
     /* EVIDENCE BOX */
-    .evidence-box { padding: 10px 20px; background: rgba(74,222,128,.04); border-bottom: 1px solid rgba(74,222,128,.1); }
-    .evidence-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 3px; }
-    .evidence-text { font-size: 12px; color: #86efac; line-height: 1.5; }
+    .evidence-box { padding: 12px 22px; background: var(--accent-dim); border-bottom: 0.5px solid rgba(255,8,0,0.1); }
+    .evidence-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 4px; }
+    .evidence-text { font-size: 12px; color: var(--text2); line-height: 1.55; }
 
     /* WHOLE PERSON BOX */
-    .whole-person-box { margin: 12px 20px; background: var(--surface2); border-left: 3px solid var(--blue); border-radius: var(--radius); padding: 12px 16px; }
-    .wp-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--blue); margin-bottom: 6px; }
-    .wp-quote { font-size: 13px; font-style: italic; color: var(--text2); margin-bottom: 8px; line-height: 1.5; }
+    .whole-person-box { margin: 14px 22px; background: var(--accent-dim); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 18px; }
+    .wp-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .wp-quote { font-size: 14px; font-style: italic; color: var(--text2); margin-bottom: 8px; line-height: 1.55; }
     .wp-pillars { display: flex; gap: 6px; flex-wrap: wrap; }
-    .wp-pill { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 12px; background: var(--surface3); color: var(--text2); }
+    .wp-pill { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 12px; background: var(--bg2); color: var(--text2); border: 0.5px solid var(--border); }
 
     /* LESSONS */
     .lessons { padding: 4px 20px 12px; }
@@ -155,125 +124,108 @@
     .lesson-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
 
     /* TARGET GRID */
-    .target-box { margin: 0 20px 12px; }
+    .target-box { margin: 0 22px 14px; }
     .target-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-    .target-card { border-radius: var(--radius); padding: 10px 12px; text-align: center; }
-    .tc-e { background: var(--blue-bg); }
-    .tc-g { background: var(--green-bg); }
-    .tc-goat { background: var(--orange-bg); }
-    .tc-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; margin-bottom: 4px; }
-    .tc-e .tc-label { color: var(--blue); }
-    .tc-g .tc-label { color: var(--green); }
-    .tc-goat .tc-label { color: var(--orange); }
-    .tc-desc { font-size: 11px; line-height: 1.4; }
-    .tc-e .tc-desc { color: #93c5fd; }
-    .tc-g .tc-desc { color: #86efac; }
-    .tc-goat .tc-desc { color: #fdba74; }
+    .target-card, .tc-e, .tc-g, .tc-goat { border-radius: var(--radius-sm); padding: 12px 14px; background: var(--bg3); border: 0.5px solid var(--border); }
+    .tc-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: 4px; }
+    .tc-desc { font-size: 11px; color: var(--text2); line-height: 1.4; }
 
     /* CADENCE */
-    .cadence-box { margin: 0 20px 12px; }
-    .cadence-section { font-size: 11px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
-    .cadence-section.cl { color: var(--blue); }
-    .cadence-section.ct { color: var(--orange); }
-    .cadence-row { display: flex; gap: 12px; align-items: flex-start; padding: 6px 0; }
-    .cadence-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 6px; min-width: 110px; text-align: center; flex-shrink: 0; }
-    .ct-mon { background: var(--blue-bg); color: var(--blue); }
-    .ct-wed { background: var(--surface2); color: var(--text3); }
-    .ct-fri { background: var(--purple-bg); color: var(--purple); }
-    .ct-mo { background: var(--orange-bg); color: var(--orange); }
+    .cadence-box { margin: 0 22px 14px; }
+    .cadence-section { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); margin-bottom: 10px; margin-top: 20px; }
+    .cadence-section.cl, .cadence-section.ct { color: var(--accent); }
+    .cadence-row { display: flex; gap: 14px; align-items: flex-start; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+    .cadence-tag, .ct-mon, .ct-wed, .ct-fri, .ct-mo { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 6px; min-width: 110px; text-align: center; flex-shrink: 0; background: var(--bg2); color: var(--text3); border: 0.5px solid var(--border); }
     .cadence-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
     .cadence-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
-    .roleplay-box { background: var(--surface2); border-radius: var(--radius); padding: 12px 14px; margin-top: 10px; }
-    .rp-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
+    .roleplay-box { background: var(--bg3); border-radius: var(--radius-sm); padding: 14px 16px; margin-top: 12px; border: 0.5px solid var(--border); }
+    .rp-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); margin-bottom: 8px; }
     .rp-flow { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
-    .rp-step { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 12px; }
-    .rs-intro { background: var(--blue-bg); color: var(--blue); }
-    .rs-dream { background: var(--green-bg); color: var(--green); }
-    .rs-cs { background: var(--blue-bg); color: #7dd3fc; }
-    .rs-prob { background: var(--orange-bg); color: var(--orange); }
-    .rs-probe { background: rgba(251,146,60,.12); color: #fdba74; }
-    .rs-pitch { background: var(--purple-bg); color: var(--purple); }
-    .rs-close { background: var(--gold-dim); color: var(--gold2); }
+    .rp-step, .rs-intro, .rs-dream, .rs-cs, .rs-prob, .rs-probe, .rs-pitch, .rs-close { font-size: 11px; font-weight: 500; padding: 3px 9px; border-radius: 12px; background: var(--accent-dim); color: var(--accent); }
     .rp-arrow { font-size: 10px; color: var(--text3); }
-    .rp-note { font-size: 11px; color: var(--text3); margin-top: 6px; }
+    .rp-note { font-size: 11px; color: var(--text3); margin-top: 8px; }
 
-    /* POWER OF NO BOX */
-    .pon-box { margin: 12px 20px; background: rgba(74,222,128,.04); border: 1px solid rgba(74,222,128,.1); border-left: 3px solid var(--green); border-radius: var(--radius); padding: 14px 16px; }
-    .pon-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--green); margin-bottom: 6px; }
-    .pon-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 6px; }
-    .pon-desc { font-size: 12px; color: var(--text2); line-height: 1.55; margin-bottom: 10px; }
-    .dialogue { background: var(--surface2); border-radius: 6px; padding: 10px 12px; margin-bottom: 8px; }
-    .d-label { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .08em; color: var(--text3); margin-bottom: 6px; }
-    .d-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 4px; }
+    /* POWER OF NO */
+    .pon-box { margin: 14px 22px; background: var(--accent-dim); border-left: 3px solid var(--accent); border-radius: 0 var(--radius-sm) var(--radius-sm) 0; padding: 14px 18px; }
+    .pon-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .pon-title { font-size: 13px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .pon-desc { font-size: 12px; color: var(--text2); line-height: 1.55; margin-bottom: 12px; }
+    .dialogue { background: var(--bg2); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 8px; border: 0.5px solid var(--border); }
+    .d-label { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text3); margin-bottom: 8px; }
+    .d-row { display: flex; gap: 8px; align-items: flex-start; margin-bottom: 6px; }
     .d-row:last-child { margin-bottom: 0; }
-    .d-who { font-size: 11px; font-weight: 500; min-width: 50px; margin-top: 1px; }
-    .d-you { color: var(--blue); }
-    .d-them { color: var(--green); }
+    .d-who { font-size: 11px; font-weight: 600; min-width: 50px; margin-top: 1px; color: var(--text3); }
+    .d-you, .d-them { color: var(--accent); }
     .d-line { font-size: 12px; color: var(--text); }
-    .d-note { font-size: 11px; color: var(--text3); font-style: italic; margin-top: 1px; }
-
-    /* OBJECTION TABLE */
-    .obj-box { padding: 0 20px 16px; }
-    .obj-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
-    .obj-table th { font-size: 11px; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: var(--text3); padding: 8px 10px; text-align: left; border-bottom: 1px solid var(--border); }
-    .obj-table td { padding: 9px 10px; font-size: 12px; color: var(--text2); border-bottom: 1px solid var(--border); vertical-align: top; line-height: 1.4; }
-    .obj-table tr:last-child td { border-bottom: none; }
-    .obj-table td:first-child { font-weight: 500; color: var(--text); }
-    .obj-badge { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 10px; background: var(--red-bg); color: var(--red); margin-left: 4px; }
+    .d-note { font-size: 11px; color: var(--text3); font-style: italic; margin-top: 2px; }
 
     /* EXTRAS */
-    .extras-bar { padding: 10px 20px 14px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
-    .extras-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--text3); width: 100%; margin-bottom: 2px; }
-    .extra-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 20px; background: var(--orange-bg); color: var(--orange); border: 1px solid rgba(251,146,60,.2); }
+    .extras-bar { padding: 12px 22px 16px; border-top: 0.5px solid var(--border); display: flex; flex-wrap: wrap; gap: 6px; align-items: flex-start; }
+    .extras-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text3); width: 100%; margin-bottom: 4px; }
+    .extra-tag { font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 20px; background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(255,8,0,0.15); }
+
+    /* OBJECTION TABLE */
+    .obj-box { padding: 0 22px 18px; }
+    .obj-table { width: 100%; border-collapse: collapse; }
+    .obj-table th { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); padding: 10px 12px; text-align: left; border-bottom: 0.5px solid var(--border); }
+    .obj-table td { padding: 10px 12px; font-size: 12px; color: var(--text2); border-bottom: 0.5px solid var(--border); vertical-align: top; line-height: 1.45; }
+    .obj-table tr:last-child td { border-bottom: none; }
+    .obj-table td:first-child { font-weight: 500; color: var(--text); }
+    .obj-badge { display: inline-block; font-size: 10px; padding: 1px 7px; border-radius: 10px; background: var(--accent-dim); color: var(--accent); margin-left: 5px; border: 1px solid rgba(255,8,0,0.15); }
 
     /* COMPARISON */
-    .comparison { padding: 80px 0; border-top: 0.5px solid var(--border); background: var(--surface); }
-    .section-title { font-size: clamp(24px, 3vw, 36px); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; }
+    .comparison { background: var(--bg2); }
+    .section-title { font-size: clamp(24px, 3vw, 38px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; color: var(--text); margin-bottom: 14px; }
     .section-body { font-size: 16px; color: var(--text2); line-height: 1.75; max-width: 580px; margin-bottom: 40px; }
     .comp-table { width: 100%; border-collapse: collapse; }
-    .comp-table th { padding: 14px 18px; text-align: left; font-size: 13px; font-weight: 500; color: var(--text2); border-bottom: 1px solid var(--border); }
+    .comp-table th { padding: 14px 18px; text-align: left; font-size: 13px; font-weight: 600; color: var(--text); border-bottom: 0.5px solid var(--border); background: var(--bg3); }
     .comp-table th:not(:first-child) { text-align: center; }
-    .comp-table td { padding: 12px 18px; font-size: 13px; color: var(--text2); border-bottom: 1px solid var(--border); }
+    .comp-table td { padding: 12px 18px; font-size: 13px; color: var(--text2); border-bottom: 0.5px solid var(--border); }
     .comp-table td:not(:first-child) { text-align: center; }
     .comp-table tr:last-child td { border-bottom: none; }
-    .check { color: var(--green); font-size: 15px; }
+    .check { color: var(--accent); font-size: 15px; font-weight: 600; }
     .dash { color: var(--text3); }
-    .col-l { color: var(--blue); }
-    .col-s { color: var(--green); }
+    .col-l, .col-s { color: var(--text); font-weight: 600; }
+
+    /* L DUALITY */
+    .duality-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; max-width: 720px; margin: 0 auto; }
+    .duality-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; }
+    .duality-letter { width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--accent-dim); border: 1px solid rgba(255,8,0,0.18); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: var(--accent); margin-bottom: 14px; font-family: var(--font-brand); }
+    .duality-label { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+    .duality-name { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 10px; }
+    .duality-desc { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+    /* SEQUENCE */
+    .seq-row { display: flex; align-items: stretch; margin-bottom: 28px; }
+    .seq-step { flex: 1; background: var(--bg2); border: 0.5px solid var(--border); padding: 24px 20px; text-align: center; }
+    .seq-step:first-child { border-radius: var(--radius) 0 0 var(--radius); }
+    .seq-step:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
+    .seq-arrow { display: flex; align-items: center; padding: 0 6px; color: var(--text3); font-size: 18px; flex-shrink: 0; background: var(--bg); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); }
+    .seq-icon { font-size: 28px; margin-bottom: 10px; }
+    .seq-num { font-size: 10px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+    .seq-name { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 6px; }
+    .seq-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+    .seq-note { font-size: 13px; color: var(--text2); line-height: 1.7; border-top: 0.5px solid var(--border); padding-top: 20px; max-width: 640px; }
 
     /* CTA */
-    .cta-section { padding: 80px 0; border-top: 0.5px solid var(--border); text-align: center; }
-    .cta-section .section-title { max-width: 480px; margin: 0 auto 14px; }
-    .cta-section .section-body { margin: 0 auto 36px; text-align: center; }
+    .cta-section { background: var(--text); text-align: center; }
+    .cta-section .eyebrow { color: var(--accent); }
+    .cta-section .section-title { color: #fff4e3; max-width: 520px; margin: 0 auto 18px; }
+    .cta-section .section-body { color: rgba(246,237,224,0.70); margin: 0 auto 44px; text-align: center; max-width: 480px; }
+    .cta-section .btn-ghost { border-color: rgba(246,237,224,0.28); color: #fff4e3; }
+    .cta-section .btn-ghost:hover { border-color: #fff4e3; }
     .cta-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    /* FOOTER */
-    footer { border-top: 0.5px solid var(--border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; }
-    .footer-copy { font-size: 13px; color: var(--text3); }
-    .footer-links { display: flex; gap: 24px; }
-    .footer-links a { font-size: 13px; color: var(--text3); text-decoration: none; transition: color .2s; }
-    .footer-links a:hover { color: var(--text); }
-
-    .nav-hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-    .nav-hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-    @media (max-width: 860px) {
-      nav { padding: 0 20px; position: relative; }
-      .nav-links a:not(.btn-nav) { display: none; }
-      .nav-hamburger { display: flex; }
-      .nav-links { display: none !important; position: absolute; top: 100%; left: 0; right: 0; background: var(--bg); border-bottom: 0.5px solid var(--border); flex-direction: column; padding: 20px 24px; gap: 16px; z-index: 99; height: auto; }
-      .nav-links.open { display: flex !important; }
-      .nav-links a { display: block !important; }
+    /* MOBILE */
+    @media (max-width: 700px) {
       .container { padding: 0 20px; }
-      .hero { padding: 120px 0 60px; }
-      .panel-header { grid-template-columns: 1fr; }
-      .ab-grid { grid-template-columns: 1fr; }
-      .ab-arrow { display: none; }
-      .target-grid { grid-template-columns: 1fr; }
-      footer { flex-direction: column; gap: 16px; text-align: center; }
-      .l-dual-grid { grid-template-columns: 1fr !important; }
-      .seq-row { flex-direction: column !important; }
-      .seq-row > div[style*="border-radius:10px 0"] { border-radius: 10px 10px 0 0 !important; }
-      .seq-row > div[style*="border-radius:0 10px"] { border-radius: 0 0 10px 10px !important; border-left: 0.5px solid var(--border) !important; }
+      section { padding: 60px 0; }
+      .hero { padding: 72px 0 60px; }
+      .target-grid, .duality-grid { grid-template-columns: 1fr; }
+      .seq-row { flex-direction: column; }
+      .seq-step:first-child { border-radius: var(--radius) var(--radius) 0 0; }
+      .seq-step:last-child { border-radius: 0 0 var(--radius) var(--radius); }
+      .seq-arrow { padding: 8px 0; justify-content: center; }
     }
   </style>
   <link rel="stylesheet" href="shared.css">
@@ -285,12 +237,17 @@
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <p class="eyebrow">F.E.E.L. Programs</p>
-    <h1>Two programs. <em>One framework.</em> Built for the room you're in.</h1>
-    <p class="hero-sub">Foundation. Elevation. Exploration. Liberation. One for the leader, one for the team — both built on the same framework, because great performance starts with the person, not the pitch.</p>
-    <div class="hero-cta">
-      <button id="hero-btn-l" class="btn-primary hero-btn-active" onclick="switchProgram('l')">F.E.E.L. for Leaders</button>
-      <button id="hero-btn-s" class="btn-ghost hero-btn-inactive" onclick="switchProgram('s')">F.E.E.L. for Sales</button>
+    <div class="hero-kicker">F.E.E.L. Programs · Feel the Room</div>
+    <h1>Two programs.<br><em>One framework.</em></h1>
+    <p class="hero-sub">Foundation. Elevation. Exploration. Liberation. One for the leader, one for the team — because great performance starts with the person, not the pitch.</p>
+    <div class="btn-row">
+      <button id="hero-btn-l" class="btn-primary" onclick="switchProgram('l')">F.E.E.L. for Leaders</button>
+      <button id="hero-btn-s" class="btn-ghost" onclick="switchProgram('s')">F.E.E.L. for Sales</button>
+    </div>
+    <div class="hero-proof">
+      <span class="hero-proof-item">28 lessons · 14 extras (Leaders)</span>
+      <span class="hero-proof-item">31 lessons · 9 extras (Sales)</span>
+      <span class="hero-proof-item">Cohort + on-demand</span>
     </div>
   </div>
 </section>
@@ -299,22 +256,20 @@
 <section class="program-switcher" id="leaders">
   <div class="container">
     <div class="switcher-tabs">
-      <button class="switcher-tab active-l" id="btn-l" onclick="switchProgram('l')">F.E.E.L. for Leaders</button>
+      <button class="switcher-tab active" id="btn-l" onclick="switchProgram('l')">F.E.E.L. for Leaders</button>
       <button class="switcher-tab" id="btn-s" onclick="switchProgram('s')">F.E.E.L. for Sales</button>
     </div>
 
     <!-- ═══ LEADERS PANEL ═══ -->
     <div class="program-panel active" id="panel-l">
       <div class="panel-header">
-        <div>
-          <span class="panel-tag tag-l">For Leaders</span>
-          <h2 class="panel-title">F.E.E.L. for Leaders</h2>
-          <p class="panel-sub">Four modules. One learning journey. Start with your foundation, elevate your awareness, explore through questions, and liberate your team.</p>
-          <div class="panel-stats">
-            <div><span class="panel-stat-val">5</span><span class="panel-stat-label">Modules</span></div>
-            <div><span class="panel-stat-val">28</span><span class="panel-stat-label">Lessons</span></div>
-            <div><span class="panel-stat-val">14</span><span class="panel-stat-label">Extras</span></div>
-          </div>
+        <span class="panel-tag">For Leaders</span>
+        <h2 class="panel-title">F.E.E.L. for Leaders</h2>
+        <p class="panel-sub">Four modules. One learning journey. Start with your foundation, elevate your awareness, explore through questions, and liberate your team.</p>
+        <div class="panel-stats">
+          <div><span class="panel-stat-val">5</span><span class="panel-stat-label">Modules</span></div>
+          <div><span class="panel-stat-val">28</span><span class="panel-stat-label">Lessons</span></div>
+          <div><span class="panel-stat-val">14</span><span class="panel-stat-label">Extras</span></div>
         </div>
       </div>
 
@@ -353,8 +308,8 @@
             <div class="module-chevron" id="chev-ml1">▼</div>
           </div>
           <div class="module-body" id="body-ml1">
-            <div class="whole-person-box" style="border-left-color:var(--gold2);background:var(--gold-dim)">
-              <p class="wp-label" style="color:var(--gold2)">Start here — your behavioral baseline</p>
+            <div class="whole-person-box">
+              <p class="wp-label">Start here — your behavioral baseline</p>
               <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px">Know your own Aura Profile before you read anyone else's</p>
               <p style="font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:10px">F starts with the foundation. Before you can read the room, regulate your energy, or lead others — you need to show up at your best. That starts with how you live. If you haven't taken the Aura Profile yet, do it before lesson 1.1.</p>
               <a href="profile-test.html" style="font-size:12px;font-weight:600;color:var(--gold2);text-decoration:none;border-bottom:1px solid rgba(255,8,0,0.25);padding-bottom:1px">Take the FTR Aura Profile →</a>
@@ -535,7 +490,7 @@
                 <p class="rp-note">Two play salesperson and customer — 1–2 take notes. Roles rotate so everyone tries every position.</p>
               </div>
 
-              <div class="cadence-row" style="margin-top:12px;"><span class="cadence-tag ct-mo" style="background:var(--orange-bg); color:var(--orange); min-width:110px; text-align:center; font-size:11px; font-weight:500; padding:3px 10px; border-radius:6px;">Monthly 1:1</span><div><p class="cadence-title">Personal & Performance Coaching</p><p class="cadence-desc">The whole person + sales skills. Not just numbers — but direction, development and what's on their mind personally.</p></div></div>
+              <div class="cadence-row" style="margin-top:12px;"><span class="cadence-tag">Monthly 1:1</span><div><p class="cadence-title">Personal & Performance Coaching</p><p class="cadence-desc">The whole person + sales skills. Not just numbers — but direction, development and what's on their mind personally.</p></div></div>
             </div>
 
             <div class="extras-bar"><span class="extras-label">Extras</span><span class="extra-tag">Psychological safety team assessment</span><span class="extra-tag">Core values workshop template</span><span class="extra-tag">Recruitment script</span><span class="extra-tag">30-60-90 onboarding plan</span><span class="extra-tag">Weekly meeting template</span><span class="extra-tag">Monthly 1:1 template</span></div>
@@ -547,28 +502,24 @@
     <!-- ═══ SALES PANEL ═══ -->
     <div class="program-panel" id="panel-s">
       <div class="panel-header">
-        <div>
-          <span class="panel-tag tag-s">For Sales</span>
-          <h2 class="panel-title">F.E.E.L. for Sales</h2>
-          <p class="panel-sub">Understand your customer deeper than they understand themselves — and let them sell to themselves. No scripts. No pressure. Just the right conversation.</p>
-          <div class="panel-stats">
-            <div><span class="panel-stat-val">6</span><span class="panel-stat-label">Modules</span></div>
-            <div><span class="panel-stat-val">31</span><span class="panel-stat-label">Lessons</span></div>
-            <div><span class="panel-stat-val">9</span><span class="panel-stat-label">Extras</span></div>
-          </div>
+        <span class="panel-tag">For Sales</span>
+        <h2 class="panel-title">F.E.E.L. for Sales</h2>
+        <p class="panel-sub">Understand your customer deeper than they understand themselves — and let them sell to themselves. No scripts. No pressure. Just the right conversation.</p>
+        <div class="panel-stats">
+          <div><span class="panel-stat-val">6</span><span class="panel-stat-label">Modules</span></div>
+          <div><span class="panel-stat-val">31</span><span class="panel-stat-label">Lessons</span></div>
+          <div><span class="panel-stat-val">9</span><span class="panel-stat-label">Extras</span></div>
         </div>
-        <div>
-          <p style="font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin:16px 0 8px;">The sales flow</p>
-          <div class="flow-bar">
-            <span class="flow-step fs-intro">Intro</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-dream">Dream</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-cs">Current State</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-prob">Problem</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-probe">Probe</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-pitch">3-Pillar Pitch</span><span class="flow-arrow">→</span>
-            <span class="flow-step fs-close">Close</span>
-          </div>
-        </div>
+      </div>
+      <p class="flow-label">The sales flow</p>
+      <div class="flow-bar">
+        <span class="flow-step">Intro</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Dream</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Current State</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Problem</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Probe</span><span class="flow-arrow">→</span>
+        <span class="flow-step">3-Pillar Pitch</span><span class="flow-arrow">→</span>
+        <span class="flow-step">Close</span>
       </div>
 
       <div class="journey-bar" id="jb-sales">
@@ -606,8 +557,8 @@
             <div class="module-chevron" id="chev-ms1">▼</div>
           </div>
           <div class="module-body" id="body-ms1">
-            <div class="whole-person-box" style="border-left-color:var(--gold2);background:var(--gold-dim)">
-              <p class="wp-label" style="color:var(--gold2)">Start here — your behavioral baseline</p>
+            <div class="whole-person-box">
+              <p class="wp-label">Start here — your behavioral baseline</p>
               <p style="font-size:13px;font-weight:500;color:var(--text);margin-bottom:4px">Know your own Aura Profile before you read the customer</p>
               <p style="font-size:12px;color:var(--text2);line-height:1.55;margin-bottom:10px">F starts with the foundation. Before you can read the customer, regulate your state, or perform in a high-stakes conversation — you need to show up at your best. That starts with how you live. If you haven't taken the Aura Profile yet, do it before lesson 1.1.</p>
               <a href="profile-test.html" style="font-size:12px;font-weight:600;color:var(--gold2);text-decoration:none;border-bottom:1px solid rgba(255,8,0,0.25);padding-bottom:1px">Take the FTR Aura Profile →</a>
@@ -823,57 +774,57 @@
 </section>
 
 <!-- L DUALITY -->
-<section style="padding:80px 0;border-top:0.5px solid var(--border)">
+<section>
   <div class="container">
-    <p class="eyebrow" style="text-align:center">L = Liberation</p>
+    <span class="eyebrow" style="text-align:center">L = Liberation</span>
     <h2 class="section-title" style="text-align:center;max-width:560px;margin:0 auto 14px">L = Liberation. But it looks different depending on who's in the room.</h2>
     <p class="section-body" style="text-align:center;margin:0 auto 40px">Same framework. Same philosophy. Whether you're leading people or leading a conversation — you're practising the same fundamental skill: creating forward movement without force.</p>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:760px;margin:0 auto">
-      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:24px">
-        <div style="width:36px;height:36px;border-radius:8px;background:var(--blue-dim);border:1px solid rgba(96,165,250,.2);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--blue);margin-bottom:14px">L</div>
-        <p style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px">F.E.E.L. for Leaders</p>
-        <p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">Liberate the team</p>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65">Build culture, psychological safety, and the conditions for people to perform because they want to. Belonging cues, radical candor, team values, and the rhythm that keeps it all alive.</p>
+    <div class="duality-grid">
+      <div class="duality-card">
+        <div class="duality-letter">L</div>
+        <div class="duality-label">F.E.E.L. for Leaders</div>
+        <div class="duality-name">Liberate the team</div>
+        <p class="duality-desc">Build culture, psychological safety, and the conditions for people to perform because they want to. Belonging cues, radical candor, team values, and the rhythm that keeps it all alive.</p>
       </div>
-      <div style="background:var(--surface);border:0.5px solid var(--border);border-radius:12px;padding:24px">
-        <div style="width:36px;height:36px;border-radius:8px;background:var(--green-dim);border:1px solid rgba(74,222,128,.2);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--green);margin-bottom:14px">L</div>
-        <p style="font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:6px">F.E.E.L. for Sales</p>
-        <p style="font-size:16px;font-weight:600;color:var(--text);margin-bottom:8px">Liberate the customer</p>
-        <p style="font-size:13px;color:var(--text2);line-height:1.65">Guide them from indecision to decision without pressure. They close themselves. Negative Reverse, 3-Pillar Pitching, and the pre-close that lets the customer convince themselves. You don't close. You confirm.</p>
+      <div class="duality-card">
+        <div class="duality-letter">L</div>
+        <div class="duality-label">F.E.E.L. for Sales</div>
+        <div class="duality-name">Liberate the customer</div>
+        <p class="duality-desc">Guide them from indecision to decision without pressure. They close themselves. Negative Reverse, 3-Pillar Pitching, and the pre-close that lets the customer convince themselves. You don't close. You confirm.</p>
       </div>
     </div>
   </div>
 </section>
 
 <!-- IDEAL SEQUENCE -->
-<section style="padding:80px 0;border-top:0.5px solid var(--border);background:var(--surface)">
+<section style="background:var(--bg2)">
   <div class="container">
-    <p class="eyebrow">The full deployment</p>
+    <span class="eyebrow">The full deployment</span>
     <h2 class="section-title">The leader goes first. The team follows.</h2>
     <p class="section-body">The most effective way to use F.E.E.L. is as a company-wide language — starting at the top.</p>
-    <div style="display:flex;align-items:stretch;gap:0;margin-bottom:28px">
-      <div style="flex:1;background:var(--bg);border:0.5px solid var(--border);border-radius:10px 0 0 10px;padding:24px 20px;text-align:center">
-        <div style="font-size:28px;margin-bottom:10px">🧭</div>
-        <p style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--gold2);margin-bottom:6px">Step 1</p>
-        <p style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">Aura Profile</p>
-        <p style="font-size:12px;color:var(--text2);line-height:1.5">Leader takes the behavioral profile. Understand your own pattern before you lead others.</p>
+    <div class="seq-row">
+      <div class="seq-step">
+        <div class="seq-icon">🧭</div>
+        <div class="seq-num">Step 1</div>
+        <div class="seq-name">Aura Profile</div>
+        <p class="seq-desc">Leader takes the behavioral profile. Understand your own pattern before you lead others.</p>
       </div>
-      <div style="display:flex;align-items:center;padding:0 6px;color:var(--text3);font-size:18px;flex-shrink:0">→</div>
-      <div style="flex:1;background:var(--bg);border:0.5px solid var(--border);border-left:none;border-right:none;padding:24px 20px;text-align:center">
-        <div style="font-size:28px;margin-bottom:10px">🎯</div>
-        <p style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);margin-bottom:6px">Step 2</p>
-        <p style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">F.E.E.L. for Leaders</p>
-        <p style="font-size:12px;color:var(--text2);line-height:1.5">Foundation → Elevation → Exploration → Liberation. Build yourself, read the room, coach with questions, and liberate your team. You learn the full framework first.</p>
+      <div class="seq-arrow">→</div>
+      <div class="seq-step">
+        <div class="seq-icon">🎯</div>
+        <div class="seq-num">Step 2</div>
+        <div class="seq-name">F.E.E.L. for Leaders</div>
+        <p class="seq-desc">Foundation → Elevation → Exploration → Liberation. Build yourself, read the room, coach with questions, and liberate your team.</p>
       </div>
-      <div style="display:flex;align-items:center;padding:0 6px;color:var(--text3);font-size:18px;flex-shrink:0">→</div>
-      <div style="flex:1;background:var(--bg);border:0.5px solid var(--border);border-radius:0 10px 10px 0;padding:24px 20px;text-align:center">
-        <div style="font-size:28px;margin-bottom:10px">⚡</div>
-        <p style="font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--green);margin-bottom:6px">Step 3</p>
-        <p style="font-size:14px;font-weight:600;color:var(--text);margin-bottom:6px">F.E.E.L. for Sales</p>
-        <p style="font-size:12px;color:var(--text2);line-height:1.5">Roll it out to the team. Leader already knows the framework — so coaching conversations are sharper and more precise.</p>
+      <div class="seq-arrow">→</div>
+      <div class="seq-step">
+        <div class="seq-icon">⚡</div>
+        <div class="seq-num">Step 3</div>
+        <div class="seq-name">F.E.E.L. for Sales</div>
+        <p class="seq-desc">Roll it out to the team. Leader already knows the framework — so coaching conversations are sharper and more precise.</p>
       </div>
     </div>
-    <p style="font-size:13px;color:var(--text2);line-height:1.7;border-top:0.5px solid var(--border);padding-top:20px;max-width:640px"><strong style="color:var(--text)">Why it works:</strong> When the leader and the team speak the same language — Foundation, Elevation, Exploration, Liberation — coaching conversations go from generic to surgical. The leader already knows what "good" looks like in the customer conversation. That's the multiplier.</p>
+    <p class="seq-note"><strong>Why it works:</strong> When the leader and the team speak the same language — Foundation, Elevation, Exploration, Liberation — coaching conversations go from generic to surgical. The leader already knows what "good" looks like in the customer conversation. That's the multiplier.</p>
   </div>
 </section>
 
@@ -914,13 +865,13 @@
 function switchProgram(p) {
   document.getElementById('panel-l').classList.toggle('active', p === 'l');
   document.getElementById('panel-s').classList.toggle('active', p === 's');
-  document.getElementById('btn-l').className = 'switcher-tab' + (p === 'l' ? ' active-l' : '');
-  document.getElementById('btn-s').className = 'switcher-tab' + (p === 's' ? ' active-s' : '');
+  document.getElementById('btn-l').className = 'switcher-tab' + (p === 'l' ? ' active' : '');
+  document.getElementById('btn-s').className = 'switcher-tab' + (p === 's' ? ' active' : '');
   var btnL = document.getElementById('hero-btn-l');
   var btnS = document.getElementById('hero-btn-s');
   if (btnL && btnS) {
-    btnL.className = p === 'l' ? 'btn-primary hero-btn-active' : 'btn-ghost hero-btn-inactive';
-    btnS.className = p === 's' ? 'btn-primary hero-btn-active' : 'btn-ghost hero-btn-inactive';
+    btnL.className = p === 'l' ? 'btn-primary' : 'btn-ghost';
+    btnS.className = p === 's' ? 'btn-primary' : 'btn-ghost';
   }
   document.getElementById('cta-l-section').style.display = p === 'l' ? '' : 'none';
   document.getElementById('cta-s-section').style.display = p === 's' ? '' : 'none';
