@@ -75,15 +75,6 @@
     .panel-stat-val { font-family: var(--serif); font-size: 28px; color: var(--gold2); display: block; }
     .panel-stat-label { font-size: 12px; color: var(--text3); }
 
-    /* AB BOX */
-    .ab-grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px; align-items: start; margin-bottom: 8px; }
-    .ab-box { background: var(--surface2); border-radius: var(--radius); padding: 16px 18px; }
-    .ab-label { font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 6px; display: block; }
-    .ab-label.a { color: var(--red); }
-    .ab-label.bl { color: var(--blue); }
-    .ab-label.bg { color: var(--green); }
-    .ab-text { font-size: 13px; color: var(--text2); line-height: 1.55; }
-    .ab-arrow { font-size: 18px; color: var(--text3); padding-top: 30px; text-align: center; }
 
     /* FLOW BAR */
     .flow-bar { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; padding: 14px 0; }
@@ -126,13 +117,12 @@
     #ms1, #ms2, #ms3, #ms4 { border-left: 3px solid #ff0800; }
 
     /* JOURNEY BAR */
-    .journey-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; padding: 14px 20px; background: var(--surface2); border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
-    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 3px; flex: 1; opacity: .3; transition: opacity .2s; }
+    .journey-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 16px; padding: 14px 20px; background: #f6ede0; border: 0.5px solid var(--border); border-radius: var(--radius-lg); }
+    .journey-step { display: flex; flex-direction: column; align-items: center; gap: 6px; flex: 1; opacity: .35; transition: opacity .2s; }
     .journey-step.active { opacity: 1; }
-    .jb-letter { font-family: var(--font-brand); font-size: 30px; font-weight: 700; line-height: 1; }
+    .jb-letter { font-family: var(--font-brand); font-size: 26px; font-weight: 700; line-height: 1; color: #ff0800; background: #f0e8d1; border-radius: 10px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; }
     .jb-label { font-size: 9px; font-weight: 500; letter-spacing: .08em; text-transform: uppercase; color: var(--text3); }
-    .journey-arrow { font-size: 12px; color: var(--text3); opacity: .4; flex-shrink: 0; padding-bottom: 14px; }
-    .jb-letter { color: #ff0800; }
+    .journey-arrow { font-size: 12px; color: var(--text3); opacity: .4; flex-shrink: 0; padding-bottom: 18px; }
 
     /* GOALS BOX */
     .goals-box { padding: 12px 20px 14px; background: var(--surface2); border-bottom: 1px solid var(--border); }
@@ -324,13 +314,6 @@
             <div><span class="panel-stat-val">5</span><span class="panel-stat-label">Modules</span></div>
             <div><span class="panel-stat-val">28</span><span class="panel-stat-label">Lessons</span></div>
             <div><span class="panel-stat-val">14</span><span class="panel-stat-label">Extras</span></div>
-          </div>
-        </div>
-        <div>
-          <div class="ab-grid">
-            <div class="ab-box"><span class="ab-label a">Where you are</span><p class="ab-text">You react. You give the answer instead of asking the question — because it's faster. You push, and when someone delivers, you hand them a gift card. The team moves. But only when you push.</p></div>
-            <div class="ab-arrow">→</div>
-            <div class="ab-box"><span class="ab-label bl">Where you're going</span><p class="ab-text">You show up fully present — regulated, grounded, ready. You read the room in seconds and coach instead of direct. Your team has psychological safety, a shared identity, and a culture they're proud to be part of. They perform — and they want to be there.</p></div>
           </div>
         </div>
       </div>
@@ -575,11 +558,6 @@
           </div>
         </div>
         <div>
-          <div class="ab-grid">
-            <div class="ab-box"><span class="ab-label a">Where you are</span><p class="ab-text">Pitching the product. Talking more than listening. Closing with pressure — and feeling it doesn't work.</p></div>
-            <div class="ab-arrow">→</div>
-            <div class="ab-box"><span class="ab-label bg">Where you're going</span><p class="ab-text">You guide the customer from problem to decision — with logic and emotion — so they close themselves.</p></div>
-          </div>
           <p style="font-size:11px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--text3); margin:16px 0 8px;">The sales flow</p>
           <div class="flow-bar">
             <span class="flow-step fs-intro">Intro</span><span class="flow-arrow">→</span>
