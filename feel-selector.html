@@ -537,13 +537,16 @@
       <p class="summary-empty">Start tapping above to build your curriculum.</p>
     </div>
     <div class="summary-cta">
-      <strong>Screenshot this when you're done</strong> — or send it to Joakim's conversation with Claude and we'll build the modules from your selections.
+      <button id="copy-btn" onclick="copySelections()" style="width:100%;padding:14px;background:var(--accent);color:#f6ede0;border:none;border-radius:8px;font-size:15px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:12px;">Copy my selections — paste into chat</button>
+      <span id="copy-confirm" style="display:none;font-size:13px;color:var(--accent);font-weight:600;">Copied! Paste it into the Claude conversation.</span>
+      <p style="font-size:13px;color:var(--text2);">Your selections are saved automatically — they'll still be here when you come back.</p>
     </div>
   </div>
 </div>
 
 <script>
-  const selections = {};
+  const STORAGE_KEY = 'feel-selector-v1';
+  const selections = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
 
   const pillarNames = {
     '1': 'Feel the Room', '1b': 'Feel the Room', '1c': 'Feel the Room',
@@ -573,8 +576,38 @@
         selections[pillar].push({ id, name });
       }
     }
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(selections));
     renderSummary();
   }
+
+  function copySelections() {
+    const total = Object.values(selections).reduce((acc, arr) => acc + arr.length, 0);
+    if (total === 0) { alert('Pick some items first!'); return; }
+    let text = 'MINE VALG FRA F.E.E.L. CURRICULUM BUILDER\n\n';
+    pillarOrder.forEach(pillar => {
+      if (selections[pillar] && selections[pillar].length > 0) {
+        text += `${pillar.toUpperCase()}\n`;
+        selections[pillar].forEach(i => { text += `- ${i.name}\n`; });
+        text += '\n';
+      }
+    });
+    text += `(${total} items selected)`;
+    navigator.clipboard.writeText(text).then(() => {
+      document.getElementById('copy-confirm').style.display = 'block';
+      setTimeout(() => { document.getElementById('copy-confirm').style.display = 'none'; }, 3000);
+    });
+  }
+
+  // Restore selected cards from localStorage on load
+  document.querySelectorAll('.card').forEach(card => {
+    const id = card.dataset.id;
+    const pillarKey = card.closest('.cards').dataset.pillar;
+    const pillar = pillarNames[pillarKey];
+    if (selections[pillar] && selections[pillar].find(i => i.id === id)) {
+      card.classList.add('selected');
+    }
+  });
+  renderSummary();
 
   function renderSummary() {
     const total = Object.values(selections).reduce((acc, arr) => acc + arr.length, 0);
