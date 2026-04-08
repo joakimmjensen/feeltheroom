@@ -269,25 +269,11 @@
 
     <div class="category-label">Key Experts to Reference</div>
     <div class="cards" data-pillar="2c">
-      <div class="card" data-id="p2-edmondson" onclick="toggle(this)">
-        <div class="card-check"></div>
-        <div class="card-body">
-          <div class="card-name">Amy Edmondson — Harvard</div>
-          <div class="card-desc">World's #1 researcher on psychological safety. Proves high standards + psychological safety are co-dependent, not a trade-off. "The Fearless Organization."</div>
-        </div>
-      </div>
       <div class="card" data-id="p2-coyle" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
           <div class="card-name">Daniel Coyle — The Culture Code <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">4 years embedded in Navy SEALs, Pixar, San Antonio Spurs. Three things all elite cultures share. The best book on what culture actually looks like in real time.</div>
-        </div>
-      </div>
-      <div class="card" data-id="p2-kimscott" onclick="toggle(this)">
-        <div class="card-check"></div>
-        <div class="card-body">
-          <div class="card-name">Kim Scott — Radical Candor</div>
-          <div class="card-desc">Former Apple and Google executive. The warmth/rigor model that makes Performative Balance operationally real.</div>
         </div>
       </div>
     </div>
@@ -473,14 +459,6 @@
           <span class="card-tag">Workshop</span>
         </div>
       </div>
-      <div class="card" data-id="p4-growmodel" onclick="toggle(this)">
-        <div class="card-check"></div>
-        <div class="card-body">
-          <div class="card-name">GROW Coaching Model</div>
-          <div class="card-desc">Goal · Reality · Options · Will. The foundational coaching framework — every question is open and curiosity-driven. Simple scaffolding for leaders who are learning to coach rather than direct.</div>
-          <span class="card-tag">Framework</span>
-        </div>
-      </div>
       <div class="card" data-id="p4-advicetrap" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
@@ -597,6 +575,16 @@
       setTimeout(() => { document.getElementById('copy-confirm').style.display = 'none'; }, 3000);
     });
   }
+
+  // Clean stale IDs from localStorage (cards that no longer exist in HTML)
+  const validIds = new Set([...document.querySelectorAll('.card')].map(c => c.dataset.id));
+  pillarOrder.forEach(pillar => {
+    if (selections[pillar]) {
+      selections[pillar] = selections[pillar].filter(i => validIds.has(i.id));
+      if (selections[pillar].length === 0) delete selections[pillar];
+    }
+  });
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(selections));
 
   // Restore selected cards from localStorage on load
   document.querySelectorAll('.card').forEach(card => {
