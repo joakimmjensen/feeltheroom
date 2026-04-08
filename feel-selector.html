@@ -46,9 +46,10 @@
     .card.selected .card-check { background: var(--accent); border-color: var(--accent); }
     .card.selected .card-check::after { content: ''; display: block; width: 6px; height: 10px; border: 2px solid #f6ede0; border-top: none; border-left: none; transform: rotate(45deg) translateY(-1px); }
     .card-body {}
-    .card-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .card-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
     .card-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
     .card-tag { display: inline-block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(255,8,0,0.08); padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+    .rec-badge { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #1C1A17; background: var(--bg3); border: 0.5px solid rgba(28,26,23,0.2); padding: 2px 8px; border-radius: 20px; white-space: nowrap; }
 
     .divider { height: 0.5px; background: var(--border); margin: 48px 0 0; }
 
@@ -99,7 +100,7 @@
       <div class="card" data-id="p1-polyvagal" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Polyvagal Theory</div>
+          <div class="card-name">Polyvagal Theory <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">The nervous system scans constantly for safety vs. threat. A leader's regulated state IS the signal to the room. Before you read the room, the room is reading you.</div>
           <span class="card-tag">Science</span>
         </div>
@@ -143,7 +144,7 @@
       <div class="card" data-id="p1-stateshift" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">State Shift Protocol</div>
+          <div class="card-name">State Shift Protocol <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Intentional use of body, breath, and movement to shift energy state before entering a high-stakes room. Not a mindset trick — a physiological intervention.</div>
           <span class="card-tag">Tool</span>
         </div>
@@ -171,7 +172,7 @@
       <div class="card" data-id="p1-navarro" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Joe Navarro — FBI</div>
+          <div class="card-name">Joe Navarro — FBI <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">25 years reading people under pressure. Non-verbal intelligence as a professional discipline. "What Every BODY Is Saying."</div>
         </div>
       </div>
@@ -207,7 +208,7 @@
       <div class="card" data-id="p2-learningzone" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Learning Zone Matrix (Edmondson)</div>
+          <div class="card-name">Learning Zone Matrix (Edmondson) <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">4 zones: Apathy (low/low), Comfort (safe/no standards), Anxiety (standards/no safety), Learning Zone (both high). Sustainable high performance only lives in the Learning Zone.</div>
           <span class="card-tag">Framework</span>
         </div>
@@ -215,7 +216,7 @@
       <div class="card" data-id="p2-radicalcandor" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Radical Candor (Kim Scott)</div>
+          <div class="card-name">Radical Candor (Kim Scott) <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Care Personally + Challenge Directly. Destroys the false choice between "nice leader" and "tough leader." The operational model for Performative Balance.</div>
           <span class="card-tag">Framework</span>
         </div>
@@ -278,7 +279,7 @@
       <div class="card" data-id="p2-coyle" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Daniel Coyle — The Culture Code</div>
+          <div class="card-name">Daniel Coyle — The Culture Code <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">4 years embedded in Navy SEALs, Pixar, San Antonio Spurs. Three things all elite cultures share. The best book on what culture actually looks like in real time.</div>
         </div>
       </div>
@@ -307,7 +308,7 @@
       <div class="card" data-id="p3-fivefields" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">The Five Fields of The Whole Person</div>
+          <div class="card-name">The Five Fields of The Whole Person <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Sleep · Movement · Diet · Hydration · Emotional Regulation — as a performance stack, not a wellness checklist. Each field has hard data connecting it to leadership output.</div>
           <span class="card-tag">FTR Original</span>
         </div>
@@ -323,7 +324,7 @@
       <div class="card" data-id="p3-emotionalcontagion" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Emotional Contagion</div>
+          <div class="card-name">Emotional Contagion <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Emotions spread from leader to team faster than peer to peer — amplified by hierarchy. A dysregulated leader destabilizes the whole team. Regulation is not personal wellness — it's performance.</div>
           <span class="card-tag">Science</span>
         </div>
@@ -343,7 +344,7 @@
       <div class="card" data-id="p3-checklist" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Pre-Meeting State Checklist</div>
+          <div class="card-name">Pre-Meeting State Checklist <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">5 checks before any room that matters: Sleep ✓ Movement ✓ Hydration ✓ Blood sugar stable ✓ Emotional state ✓. Most leaders prep the agenda — not themselves.</div>
           <span class="card-tag">FTR Tool</span>
         </div>
@@ -386,7 +387,7 @@
       <div class="card" data-id="p3-huberman" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Andrew Huberman — Stanford</div>
+          <div class="card-name">Andrew Huberman — Stanford <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Most listened-to science podcast in the world. Translates peer-reviewed neuroscience on sleep, stress, exercise, and breath into actionable protocols. Consulted with elite military.</div>
         </div>
       </div>
@@ -415,7 +416,7 @@
       <div class="card" data-id="p4-salesformula" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Current → Dream → Problem → Probe → Solution</div>
+          <div class="card-name">Current → Dream → Problem → Probe → Solution <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Your original sales and coaching framework. Dream comes before Problem — creating emotional investment before gap identification. Probe is the most skipped and most powerful step. Works in both sales rooms and leadership conversations.</div>
           <span class="card-tag">FTR Original</span>
         </div>
@@ -423,7 +424,7 @@
       <div class="card" data-id="p4-system12" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">System 1 + System 2 Decision-Making (Kahneman)</div>
+          <div class="card-name">System 1 + System 2 Decision-Making (Kahneman) <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Decisions are made emotionally (System 1) and rationalized logically (System 2). Dream activates System 1. Solution speaks to System 2. Probe without addressing System 1 first is why most sales conversations fail.</div>
           <span class="card-tag">Science</span>
         </div>
@@ -459,7 +460,7 @@
       <div class="card" data-id="p4-coachinghabit" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">The 7 Coaching Questions (MBS)</div>
+          <div class="card-name">The 7 Coaching Questions (MBS) <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">"What's on your mind?" · "And what else?" · "What's the real challenge here for you?" · "What do you want?" · "How can I help?" · "If you're saying yes to this, what are you saying no to?" · "What was most useful for you?"</div>
           <span class="card-tag">Tool</span>
         </div>
@@ -517,7 +518,7 @@
       <div class="card" data-id="p4-voss" onclick="toggle(this)">
         <div class="card-check"></div>
         <div class="card-body">
-          <div class="card-name">Chris Voss — Never Split the Difference</div>
+          <div class="card-name">Chris Voss — Never Split the Difference <span class="rec-badge">★ Mit valg</span></div>
           <div class="card-desc">Former FBI hostage negotiator. Calibrated questions, tactical empathy, addressing emotional concerns first. Bridges Pillar 1 (Feel the Room) and Pillar 4 (Lead with Curiosity) directly.</div>
         </div>
       </div>
