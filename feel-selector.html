@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
+  <title>F.E.E.L. Curriculum Builder — FTR</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --bg3: #e8dcc4;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #ff0800;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+    }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.6; }
+
+    nav { padding: 0 32px; height: 56px; display: flex; align-items: center; border-bottom: 0.5px solid var(--border); }
+    nav img { height: 20px; }
+
+    .intro { max-width: 680px; margin: 0 auto; padding: 56px 24px 0; text-align: center; }
+    .intro .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; }
+    .intro h1 { font-family: Georgia, serif; font-size: clamp(28px, 5vw, 44px); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px; }
+    .intro h1 em { font-style: normal; color: var(--accent); }
+    .intro p { font-size: 17px; color: var(--text2); max-width: 520px; margin: 0 auto; }
+
+    .pillars { max-width: 800px; margin: 56px auto 0; padding: 0 24px; display: flex; flex-direction: column; gap: 48px; }
+
+    .pillar-block {}
+    .pillar-header { margin-bottom: 24px; }
+    .pillar-tag { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+    .pillar-title { font-family: Georgia, serif; font-size: 26px; font-weight: 600; line-height: 1.1; margin-bottom: 6px; }
+    .pillar-sub { font-size: 14px; color: var(--text2); }
+
+    .category-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text2); font-weight: 600; margin: 20px 0 10px; }
+
+    .cards { display: flex; flex-direction: column; gap: 8px; }
+    .card { background: var(--bg2); border: 1.5px solid transparent; border-radius: var(--radius); padding: 18px 20px; cursor: pointer; transition: border-color 0.15s, background 0.15s; display: flex; align-items: flex-start; gap: 14px; user-select: none; -webkit-tap-highlight-color: transparent; }
+    .card:hover { background: var(--bg3); }
+    .card.selected { border-color: var(--accent); background: #fff5f5; }
+    .card-check { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--border); flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center; transition: background 0.15s, border-color 0.15s; }
+    .card.selected .card-check { background: var(--accent); border-color: var(--accent); }
+    .card.selected .card-check::after { content: ''; display: block; width: 6px; height: 10px; border: 2px solid #f6ede0; border-top: none; border-left: none; transform: rotate(45deg) translateY(-1px); }
+    .card-body {}
+    .card-name { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .card-desc { font-size: 13px; color: var(--text2); line-height: 1.55; }
+    .card-tag { display: inline-block; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(255,8,0,0.08); padding: 2px 8px; border-radius: 20px; margin-top: 6px; }
+
+    .divider { height: 0.5px; background: var(--border); margin: 48px 0 0; }
+
+    /* SUMMARY */
+    .summary-wrap { max-width: 800px; margin: 48px auto 0; padding: 0 24px 80px; }
+    .summary-box { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px; }
+    .summary-title { font-family: Georgia, serif; font-size: 20px; font-weight: 600; margin-bottom: 20px; }
+    .summary-count { display: inline-block; font-size: 13px; color: var(--text2); margin-bottom: 20px; }
+    .summary-pillar { margin-bottom: 20px; }
+    .summary-pillar:last-child { margin-bottom: 0; }
+    .summary-pillar-name { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 8px; }
+    .summary-items { display: flex; flex-wrap: wrap; gap: 6px; }
+    .summary-item { font-size: 13px; background: var(--bg3); border: 0.5px solid var(--border); padding: 4px 12px; border-radius: 20px; color: var(--text); }
+    .summary-empty { font-size: 14px; color: var(--text2); font-style: italic; }
+    .summary-cta { margin-top: 24px; padding-top: 20px; border-top: 0.5px solid var(--border); font-size: 14px; color: var(--text2); }
+    .summary-cta strong { color: var(--text); }
+
+    @media (max-width: 600px) {
+      nav { padding: 0 20px; }
+      .pillar-title { font-size: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <img src="long red.svg" alt="Feel the Room" />
+</nav>
+
+<div class="intro">
+  <p class="eyebrow">F.E.E.L. Curriculum Builder</p>
+  <h1>Pick what <em>feels right.</em></h1>
+  <p>Tap the frameworks, tools, and experts that resonate with your experience and your voice. No right answers — just what belongs in your course.</p>
+</div>
+
+<div class="pillars">
+
+  <!-- PILLAR 1 -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-tag">01 — Energy</div>
+      <div class="pillar-title">Feel the Room</div>
+      <div class="pillar-sub">Reading what's happening before a word is said — and using energy strategically</div>
+    </div>
+
+    <div class="category-label">Frameworks</div>
+    <div class="cards" data-pillar="1">
+      <div class="card" data-id="p1-polyvagal" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Polyvagal Theory</div>
+          <div class="card-desc">The nervous system scans constantly for safety vs. threat. A leader's regulated state IS the signal to the room. Before you read the room, the room is reading you.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-fourplayer" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">The Four Player Model</div>
+          <div class="card-desc">Every conversation has four roles: Mover, Follower, Opposer, Bystander. A trained room reader can diagnose which roles are missing — and why the room isn't moving.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-eli" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Energy Leadership Index (ELI)</div>
+          <div class="card-desc">7 energy levels from catabolic (fear-based, reactive) to anabolic (intentional, creative). You can't use energy strategically if you don't know which level you're operating from.</div>
+          <span class="card-tag">Assessment</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-thinslicing" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Thin Slicing</div>
+          <div class="card-desc">Humans make accurate judgments in 2-second "thin slices" of behavior. Reading the room in the first seconds of entering is a real, trainable skill — not intuition.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Tools & Practices</div>
+    <div class="cards" data-pillar="1b">
+      <div class="card" data-id="p1-energyaudit" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Weekly Energy Audit</div>
+          <div class="card-desc">What gave energy this week? What took it? Over time, a personal energy compass emerges — a map of what drains vs. fuels you in real leadership situations.</div>
+          <span class="card-tag">Practice</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-stateshift" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">State Shift Protocol</div>
+          <div class="card-desc">Intentional use of body, breath, and movement to shift energy state before entering a high-stakes room. Not a mindset trick — a physiological intervention.</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-bodyaudit" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Body Language Audit</div>
+          <div class="card-desc">Record a sales call or leadership meeting. Watch it on mute. Identify discomfort signals, energy shifts, and moments where the room changed — before anyone said a word.</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p1-heartmath" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Heart Coherence (HeartMath)</div>
+          <div class="card-desc">When heart rhythm is coherent, intuition and decision quality increase — and you can sense others more accurately. The physiology behind using energy as a compass.</div>
+          <span class="card-tag">Science + Tool</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Key Experts to Reference</div>
+    <div class="cards" data-pillar="1c">
+      <div class="card" data-id="p1-navarro" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Joe Navarro — FBI</div>
+          <div class="card-desc">25 years reading people under pressure. Non-verbal intelligence as a professional discipline. "What Every BODY Is Saying."</div>
+        </div>
+      </div>
+      <div class="card" data-id="p1-schwartz" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Tony Schwartz — The Energy Project</div>
+          <div class="card-desc">"It's not time you manage — it's energy." 4 dimensions: physical, emotional, mental, purpose. Directly maps to The Whole Person.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p1-vanedwards" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Vanessa Van Edwards — Science of People</div>
+          <div class="card-desc">Most accessible bridge between non-verbal science and real-world performance. "Cues" — the science of charisma and first impressions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PILLAR 2 -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-tag">02 — Culture</div>
+      <div class="pillar-title">Performative Balance</div>
+      <div class="pillar-sub">You can't perform without having fun. You can't have fun without performing.</div>
+    </div>
+
+    <div class="category-label">Frameworks</div>
+    <div class="cards" data-pillar="2">
+      <div class="card" data-id="p2-learningzone" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Learning Zone Matrix (Edmondson)</div>
+          <div class="card-desc">4 zones: Apathy (low/low), Comfort (safe/no standards), Anxiety (standards/no safety), Learning Zone (both high). Sustainable high performance only lives in the Learning Zone.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p2-radicalcandor" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Radical Candor (Kim Scott)</div>
+          <div class="card-desc">Care Personally + Challenge Directly. Destroys the false choice between "nice leader" and "tough leader." The operational model for Performative Balance.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p2-fivedysfunctions" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Five Dysfunctions of a Team (Lencioni)</div>
+          <div class="card-desc">Trust → Conflict → Commitment → Accountability → Results. The pyramid. Base: vulnerability-based trust. Fun cannot exist without it.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p2-belongingcues" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Belonging Cues (Daniel Coyle)</div>
+          <div class="card-desc">Laughter, eye contact, close physical proximity, energized short exchanges — these are measurable signals that a culture is alive. Fun is a belonging signal, and belonging drives performance.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Tools & Practices</div>
+    <div class="cards" data-pillar="2b">
+      <div class="card" data-id="p2-hiringframe" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">"Hire for the Room You're Building" Framework</div>
+          <div class="card-desc">Define the culture you're building. Reverse-engineer behavioral interview questions that test for it — not just skills. Hire people who make the room better, not just fill a role.</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p2-psychsurvey" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Psychological Safety Survey (Edmondson)</div>
+          <div class="card-desc">Free, research-validated 7-item scale. Deploy before and after cohort to measure culture shift. Gives teams a shared language for what's missing.</div>
+          <span class="card-tag">Assessment</span>
+        </div>
+      </div>
+      <div class="card" data-id="p2-candorworkshop" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Radical Candor Feedback Workshop</div>
+          <div class="card-desc">Teams map their real feedback behaviors on the Care/Challenge matrix. Reveals the dominant failure mode — usually Ruinous Empathy in high-performing sales orgs.</div>
+          <span class="card-tag">Workshop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Key Experts to Reference</div>
+    <div class="cards" data-pillar="2c">
+      <div class="card" data-id="p2-edmondson" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Amy Edmondson — Harvard</div>
+          <div class="card-desc">World's #1 researcher on psychological safety. Proves high standards + psychological safety are co-dependent, not a trade-off. "The Fearless Organization."</div>
+        </div>
+      </div>
+      <div class="card" data-id="p2-coyle" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Daniel Coyle — The Culture Code</div>
+          <div class="card-desc">4 years embedded in Navy SEALs, Pixar, San Antonio Spurs. Three things all elite cultures share. The best book on what culture actually looks like in real time.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p2-kimscott" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Kim Scott — Radical Candor</div>
+          <div class="card-desc">Former Apple and Google executive. The warmth/rigor model that makes Performative Balance operationally real.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PILLAR 3 -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-tag">03 — Human</div>
+      <div class="pillar-title">The Whole Person</div>
+      <div class="pillar-sub">Sleep · Movement · Diet · Hydration · Emotional Regulation</div>
+    </div>
+
+    <div class="category-label">Frameworks</div>
+    <div class="cards" data-pillar="3">
+      <div class="card" data-id="p3-fivefields" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">The Five Fields of The Whole Person</div>
+          <div class="card-desc">Sleep · Movement · Diet · Hydration · Emotional Regulation — as a performance stack, not a wellness checklist. Each field has hard data connecting it to leadership output.</div>
+          <span class="card-tag">FTR Original</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-allostaticload" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Allostatic Load</div>
+          <div class="card-desc">Accumulated wear from chronic stress and poor recovery. Leaders with high allostatic load make worse decisions and have lower empathy — measurably. The cost of ignoring the whole person.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-emotionalcontagion" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Emotional Contagion</div>
+          <div class="card-desc">Emotions spread from leader to team faster than peer to peer — amplified by hierarchy. A dysregulated leader destabilizes the whole team. Regulation is not personal wellness — it's performance.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-energyrecovery" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Energy Recovery Model (Schwartz)</div>
+          <div class="card-desc">Performance requires full engagement — which requires deliberate recovery. The best performers aren't those who work most, but those who oscillate most efficiently between exertion and recovery.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Tools & Practices</div>
+    <div class="cards" data-pillar="3b">
+      <div class="card" data-id="p3-checklist" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Pre-Meeting State Checklist</div>
+          <div class="card-desc">5 checks before any room that matters: Sleep ✓ Movement ✓ Hydration ✓ Blood sugar stable ✓ Emotional state ✓. Most leaders prep the agenda — not themselves.</div>
+          <span class="card-tag">FTR Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-sleepaudit" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">7-Day Sleep Audit</div>
+          <div class="card-desc">Track bedtime, wake time, energy rating, and decision quality rating for 7 days. Leaders are often shocked by the correlation. Based on Matthew Walker's research.</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-somaticwheel" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Somatic Check-In Wheel</div>
+          <div class="card-desc">Where are you in your nervous system right now? Ventral vagal (social, safe) · Sympathetic (fight/flight) · Dorsal (shutdown). Converts Polyvagal Theory into a daily leadership habit.</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p3-stateprotocol" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">State Management Protocol</div>
+          <div class="card-desc">Physiological sigh (double inhale, extended exhale) + 60-second body scan + intention setting. Opens every cohort session. Models the habit while teaching the science.</div>
+          <span class="card-tag">Practice</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Key Experts to Reference</div>
+    <div class="cards" data-pillar="3c">
+      <div class="card" data-id="p3-walker" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Matthew Walker — UC Berkeley</div>
+          <div class="card-desc">Sleep deprivation costs $2,000/employee/year. REM sleep is the brain's emotional regulation mechanism. "Why We Sleep." Non-negotiable credibility on sleep as leadership tool.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p3-huberman" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Andrew Huberman — Stanford</div>
+          <div class="card-desc">Most listened-to science podcast in the world. Translates peer-reviewed neuroscience on sleep, stress, exercise, and breath into actionable protocols. Consulted with elite military.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p3-attia" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Peter Attia — The Drive</div>
+          <div class="card-desc">Performance physician. Hard data on nutrition, Zone 2 training, sleep, and emotional health as interrelated performance drivers. For leaders who want the science without the fluff.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- PILLAR 4 -->
+  <div class="pillar-block">
+    <div class="pillar-header">
+      <div class="pillar-tag">04 — Leadership</div>
+      <div class="pillar-title">Lead with Curiosity</div>
+      <div class="pillar-sub">The leader who asks the right questions builds a team that can't stop thinking</div>
+    </div>
+
+    <div class="category-label">Frameworks</div>
+    <div class="cards" data-pillar="4">
+      <div class="card" data-id="p4-salesformula" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Current → Dream → Problem → Probe → Solution</div>
+          <div class="card-desc">Your original sales and coaching framework. Dream comes before Problem — creating emotional investment before gap identification. Probe is the most skipped and most powerful step. Works in both sales rooms and leadership conversations.</div>
+          <span class="card-tag">FTR Original</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-system12" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">System 1 + System 2 Decision-Making (Kahneman)</div>
+          <div class="card-desc">Decisions are made emotionally (System 1) and rationalized logically (System 2). Dream activates System 1. Solution speaks to System 2. Probe without addressing System 1 first is why most sales conversations fail.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-multipliers" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Multipliers vs. Diminishers (Wiseman)</div>
+          <div class="card-desc">Multiplier leaders (who ask questions) get 2x the output from the same people as Diminisher leaders (who give answers). Curiosity is not a personality trait — it's observable, teachable behavior.</div>
+          <span class="card-tag">Research</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-humbleinquiry" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Humble Inquiry (Schein)</div>
+          <div class="card-desc">Asking from genuine curiosity — not diagnostic intent. Rebuilds trust and surfaces what's actually happening in the organization. The deepest level of reading the room is asking the question that makes the truth safe to speak.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-sdt" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Self-Determination Theory (Deci & Ryan)</div>
+          <div class="card-desc">People are most intrinsically motivated when they experience autonomy, competence, and relatedness. A curiosity-based leader creates all three — simultaneously. Questions are an SDT delivery mechanism.</div>
+          <span class="card-tag">Science</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Tools & Practices</div>
+    <div class="cards" data-pillar="4b">
+      <div class="card" data-id="p4-coachinghabit" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">The 7 Coaching Questions (MBS)</div>
+          <div class="card-desc">"What's on your mind?" · "And what else?" · "What's the real challenge here for you?" · "What do you want?" · "How can I help?" · "If you're saying yes to this, what are you saying no to?" · "What was most useful for you?"</div>
+          <span class="card-tag">Tool</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-questionstorming" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Question Storming (Warren Berger)</div>
+          <div class="card-desc">Generate 50+ questions about a challenge before anyone is allowed to offer a single answer. Forces curiosity at a team level. Used at IDEO and Google. Direct cohort exercise.</div>
+          <span class="card-tag">Workshop</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-growmodel" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">GROW Coaching Model</div>
+          <div class="card-desc">Goal · Reality · Options · Will. The foundational coaching framework — every question is open and curiosity-driven. Simple scaffolding for leaders who are learning to coach rather than direct.</div>
+          <span class="card-tag">Framework</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-advicetrap" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">The Advice Trap Workshop (MBS)</div>
+          <div class="card-desc">Identify your "Advice Monster" archetype: Tell-It, Save-It, or Control-It. Then practice replacing advice impulses with questions. 90-minute format. Immediately actionable for sales leaders.</div>
+          <span class="card-tag">Workshop</span>
+        </div>
+      </div>
+      <div class="card" data-id="p4-probetriad" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Current→Dream→Problem→Probe→Solution Triads</div>
+          <div class="card-desc">3-person role-play: leader-coach, coachee, observer. Practice the full sales/coaching formula with feedback loop. Both a selling AND leadership development tool in one exercise.</div>
+          <span class="card-tag">FTR Workshop</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="category-label">Key Experts to Reference</div>
+    <div class="cards" data-pillar="4c">
+      <div class="card" data-id="p4-mbs" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Michael Bungay Stanier (MBS)</div>
+          <div class="card-desc">Author of The Coaching Habit — world's bestselling coaching book (1M+ copies). "Stay curious a little longer, give advice a little more slowly." Curiosity as an operating system.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p4-wiseman" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Liz Wiseman — Multipliers</div>
+          <div class="card-desc">Researched leaders at Oracle, Google, and others. Multipliers get 2x output. The research case for curiosity as a competitive advantage in leadership.</div>
+        </div>
+      </div>
+      <div class="card" data-id="p4-voss" onclick="toggle(this)">
+        <div class="card-check"></div>
+        <div class="card-body">
+          <div class="card-name">Chris Voss — Never Split the Difference</div>
+          <div class="card-desc">Former FBI hostage negotiator. Calibrated questions, tactical empathy, addressing emotional concerns first. Bridges Pillar 1 (Feel the Room) and Pillar 4 (Lead with Curiosity) directly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- SUMMARY -->
+<div class="summary-wrap">
+  <div class="divider" style="margin-bottom:40px;"></div>
+  <div class="summary-box">
+    <div class="summary-title">Your curriculum so far</div>
+    <span class="summary-count" id="summary-count">0 items selected</span>
+    <div id="summary-content">
+      <p class="summary-empty">Start tapping above to build your curriculum.</p>
+    </div>
+    <div class="summary-cta">
+      <strong>Screenshot this when you're done</strong> — or send it to Joakim's conversation with Claude and we'll build the modules from your selections.
+    </div>
+  </div>
+</div>
+
+<script>
+  const selections = {};
+
+  const pillarNames = {
+    '1': 'Feel the Room', '1b': 'Feel the Room', '1c': 'Feel the Room',
+    '2': 'Performative Balance', '2b': 'Performative Balance', '2c': 'Performative Balance',
+    '3': 'The Whole Person', '3b': 'The Whole Person', '3c': 'The Whole Person',
+    '4': 'Lead with Curiosity', '4b': 'Lead with Curiosity', '4c': 'Lead with Curiosity',
+  };
+
+  const pillarOrder = ['Feel the Room', 'Performative Balance', 'The Whole Person', 'Lead with Curiosity'];
+
+  function toggle(card) {
+    const id = card.dataset.id;
+    const name = card.querySelector('.card-name').textContent;
+    const pillarKey = card.closest('.cards').dataset.pillar;
+    const pillar = pillarNames[pillarKey];
+
+    if (card.classList.contains('selected')) {
+      card.classList.remove('selected');
+      if (selections[pillar]) {
+        selections[pillar] = selections[pillar].filter(i => i.id !== id);
+        if (selections[pillar].length === 0) delete selections[pillar];
+      }
+    } else {
+      card.classList.add('selected');
+      if (!selections[pillar]) selections[pillar] = [];
+      if (!selections[pillar].find(i => i.id === id)) {
+        selections[pillar].push({ id, name });
+      }
+    }
+    renderSummary();
+  }
+
+  function renderSummary() {
+    const total = Object.values(selections).reduce((acc, arr) => acc + arr.length, 0);
+    document.getElementById('summary-count').textContent = total === 0 ? '0 items selected' : `${total} item${total > 1 ? 's' : ''} selected`;
+
+    const content = document.getElementById('summary-content');
+    if (total === 0) {
+      content.innerHTML = '<p class="summary-empty">Start tapping above to build your curriculum.</p>';
+      return;
+    }
+
+    let html = '';
+    pillarOrder.forEach(pillar => {
+      if (selections[pillar] && selections[pillar].length > 0) {
+        html += `<div class="summary-pillar">
+          <div class="summary-pillar-name">${pillar}</div>
+          <div class="summary-items">
+            ${selections[pillar].map(i => `<span class="summary-item">${i.name}</span>`).join('')}
+          </div>
+        </div>`;
+      }
+    });
+    content.innerHTML = html;
+  }
+</script>
+
+</body>
+</html>
