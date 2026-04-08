@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
   <meta name="color-scheme" content="light">
+  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <title>The Room — Feel the Room</title>
   <meta name="description" content="Something is being built. For sales leaders and founders who feel there's another level. Request access." />
   <style>
@@ -35,13 +36,17 @@
 
     /* VIDEO */
     .video-wrap { max-width: 800px; margin: 52px auto 0; padding: 0 24px; }
-    .video-outer { position: relative; width: 100%; padding-bottom: 56.25%; background: var(--bg3); border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
-    .video-outer iframe, .video-outer video { position: absolute; inset: 0; width: 100%; height: 100%; border: none; }
-    .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
-    .play-btn { width: 76px; height: 76px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform 0.15s, opacity 0.15s; }
-    .play-btn:hover { transform: scale(1.06); }
-    .play-btn svg { margin-left: 5px; }
+    .video-outer { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); background: #1C1A17; }
+    .video-outer .plyr { --plyr-color-main: #ff0800; --plyr-video-background: #1C1A17; border-radius: var(--radius); }
+    .plyr__control--overlaid { background: #f0e8d1 !important; box-shadow: 0 4px 24px rgba(0,0,0,0.3) !important; }
+    .plyr__control--overlaid:hover { background: #e8dcc4 !important; transform: scale(1.06); }
+    .plyr__control--overlaid svg { fill: #ff0800 !important; }
     .video-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); }
+
+    /* FORM SOCIAL PROOF */
+    .form-sp { margin-top: 20px; padding-top: 16px; border-top: 0.5px solid var(--border); }
+    .form-sp-quote { display: block; font-family: Georgia, serif; font-size: 14px; font-style: italic; color: var(--text); line-height: 1.6; margin-bottom: 6px; }
+    .form-sp-name { font-size: 11px; letter-spacing: 0.08em; color: var(--text2); text-transform: uppercase; }
 
     /* PULL QUOTE */
     .pull-quote { max-width: 640px; margin: 56px auto 0; padding: 0 24px; text-align: center; }
@@ -178,15 +183,10 @@
   <!-- VIDEO -->
   <div class="video-wrap">
     <div class="video-outer">
-      <video controls playsinline preload="metadata" poster="">
+      <video id="player" playsinline preload="metadata">
         <source src="vsl_edited.mp4" type="video/mp4" />
       </video>
     </div>
-  </div>
-
-  <!-- PULL QUOTE -->
-  <div class="pull-quote">
-    <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
   </div>
 
   <!-- FIRST FORM -->
@@ -197,6 +197,15 @@
       <button type="submit" class="btn-access">Request access</button>
     </form>
     <p class="form-note">No pitch. No spam. You'll hear from me when the time is right.<br>And I'll send you something useful in the meantime.</p>
+    <div class="form-sp">
+      <span class="form-sp-quote">"You're in for a treat. He's something else."</span>
+      <span class="form-sp-name">— Said about Joakim, Marbella Seedster 2024</span>
+    </div>
+  </div>
+
+  <!-- PULL QUOTE -->
+  <div class="pull-quote">
+    <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
   </div>
 
   <div class="divider"></div>
@@ -520,7 +529,14 @@
     <a href="/">feeltheroom.dk</a>
   </footer>
 
+  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script>
+    const player = new Plyr('#player', {
+      controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
+      tooltips: { controls: false, seek: true },
+      resetOnEnd: false,
+    });
+
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
