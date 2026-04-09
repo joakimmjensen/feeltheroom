@@ -70,10 +70,17 @@
     .offering-desc { font-size:14px; color:var(--text2); line-height:1.65; margin-bottom:22px; }
     .offering-link { font-size:14px; color:var(--accent); font-weight:600; text-decoration:none; display:inline-block; }
     .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:stretch; }
-    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--border); border-radius:var(--radius); overflow:hidden; }
-    .about-stat { background:var(--bg2); padding:22px 20px; }
-    .about-stat-num { font-size:34px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:6px; font-family:var(--font-brand); }
-    .about-stat-label { font-size:12px; color:var(--text2); line-height:1.4; }
+    .about-stats { display:flex; flex-direction:column; gap:0; border:0.5px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-top:auto; padding-top:28px; }
+    .stat-category { padding:20px 24px; }
+    .stat-category + .stat-category { border-top:0.5px solid var(--border); }
+    .stat-category-label { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
+    .stat-row { display:grid; gap:2px; background:var(--border); border-radius:var(--radius-sm); overflow:hidden; }
+    .stat-row.cols-4 { grid-template-columns:repeat(4,1fr); }
+    .stat-row.cols-3 { grid-template-columns:repeat(3,1fr); }
+    .stat-cell { background:var(--bg); padding:14px 16px; }
+    .stat-cell-num { font-size:24px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:5px; font-family:var(--font-brand); }
+    .stat-cell-num em { font-style:normal; font-size:16px; }
+    .stat-cell-label { font-size:11px; color:var(--text2); line-height:1.4; }
     .testi-section { background:var(--bg2); }
     .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; margin-top:44px; }
     .testi-card { background:var(--bg); border-radius:var(--radius); padding:28px; border:0.5px solid var(--border); }
@@ -324,13 +331,24 @@
         <p class="section-body">I've led teams that have sold in the three-digit millions in DKK ARR. I've closed deals across industries, markets, and cultures.</p>
         <p class="section-body" style="margin-top:14px;">And through all of it, one thing has stayed constant: I've always felt the energy in the room — in the people in front of me, in the team around me, in the conversation happening beneath the conversation.</p>
         <p class="section-body" style="margin-top:14px; font-weight:500; color:var(--text);">That's the key to everything I've done. And it's what I want to teach you.</p>
-        <div class="about-stats" style="margin-top:auto; padding-top:28px;">
-          <div class="about-stat"><div class="about-stat-num">100k+</div><div class="about-stat-label">Sales conversations across 13 years</div></div>
-          <div class="about-stat"><div class="about-stat-num">3,000+</div><div class="about-stat-label">Client & leadership meetings</div></div>
-          <div class="about-stat"><div class="about-stat-num">€45M+</div><div class="about-stat-label">Career sales track record</div></div>
-          <div class="about-stat"><div class="about-stat-num">80+</div><div class="about-stat-label">eNPS score as a people leader</div></div>
-          <div class="about-stat"><div class="about-stat-num">+90%</div><div class="about-stat-label">Improvement in team performance</div></div>
-          <div class="about-stat"><div class="about-stat-num">13 yrs</div><div class="about-stat-label">Sales & leadership experience</div></div>
+        <div class="about-stats">
+          <div class="stat-category">
+            <div class="stat-category-label">Personally Led Sales</div>
+            <div class="stat-row cols-4">
+              <div class="stat-cell"><div class="stat-cell-num">13<em>+</em></div><div class="stat-cell-label">Years of sales &amp; leadership experience</div></div>
+              <div class="stat-cell"><div class="stat-cell-num">80<em>K+</em></div><div class="stat-cell-label">Sales calls across career</div></div>
+              <div class="stat-cell"><div class="stat-cell-num">5<em>K+</em></div><div class="stat-cell-label">Client meetings — cold to close</div></div>
+              <div class="stat-cell"><div class="stat-cell-num">€11<em>M+</em></div><div class="stat-cell-label">In personal sales revenue</div></div>
+            </div>
+          </div>
+          <div class="stat-category">
+            <div class="stat-category-label">Team Led Sales &amp; Leadership</div>
+            <div class="stat-row cols-3">
+              <div class="stat-cell"><div class="stat-cell-num">€42<em>M+</em></div><div class="stat-cell-label">In revenue through teams led</div></div>
+              <div class="stat-cell"><div class="stat-cell-num">5</div><div class="stat-cell-label">Teams built and scaled from the ground up</div></div>
+              <div class="stat-cell"><div class="stat-cell-num">70<em>+</em></div><div class="stat-cell-label">People led across industries and countries</div></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
