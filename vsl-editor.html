@@ -107,11 +107,18 @@ body.selecting .word{cursor:crosshair;}
   <button class="btn btn-ghost" onclick="selectMode()">Select range</button>
   <button class="btn btn-ghost" onclick="clearAll()">Clear all</button>
   <div class="sep"></div>
-  <button class="btn btn-ghost" onclick="deleteFromTo(0, 17.34)">Delete intro silence</button>
-  <button class="btn btn-ghost" onclick="deletePhrase('Hi guys')">Delete "Hi guys"</button>
+  <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);opacity:.6;">Foreslåede klip</span>
+  <button class="btn btn-danger" onclick="deleteFromTo(69,86)" title="17 sek stilhed — noget gik galt her">✂ Stilhed 1:09–1:26</button>
+  <button class="btn btn-danger" onclick="deleteFromTo(260,279)" title="Sætning dør ud — ingen landing"  >✂ Rambling 4:20–4:39</button>
+  <button class="btn btn-danger" onclick="deleteFromTo(587,600)" title='"code sorry" — hørbart fejltag'  >✂ Flub 9:47–10:00</button>
+  <button class="btn btn-danger" onclick="deleteFromTo(613,648)" title="Repetitivt svagt slut"            >✂ Svagt slut 10:13–10:48</button>
+  <div class="sep"></div>
+  <span style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text2);opacity:.6;">Overvej</span>
+  <button class="btn btn-ghost" onclick="deleteFromTo(179,191)" title="For blødt/generisk til VSL"       >? Community 2:59–3:11</button>
+  <button class="btn btn-ghost" onclick="deleteFromTo(404,425)" title="Selv-fokuseret framing"           >? Purpose 6:44–7:05</button>
   <div class="sep"></div>
   <button class="btn btn-primary" onclick="exportCuts()">Export cuts.json</button>
-  <span class="toolbar-hint">Tap words to mark for deletion &nbsp;·&nbsp; Tap again to restore</span>
+  <span class="toolbar-hint">Klik ord for at markere/fjerne · Klik knapper for hurtige forslag</span>
 </div>
 
 <div class="transcript-wrap">
