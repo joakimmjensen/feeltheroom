@@ -35,11 +35,10 @@
   }
 
   var links = [
-    { page: 'programs.html',       label: 'Programs',    featured: true  },
-    { page: 'about.html',          label: 'About',       featured: false },
-    { page: 'testimonials.html',   label: 'Testimonials',featured: false },
-    { page: 'profile-test.html',   label: 'Aura Profile',featured: true  },
-    { page: 'freebies/index.html', label: 'Free Tools',  featured: false },
+    { page: 'programs.html',     label: 'Programs',     featured: true  },
+    { page: 'the-room.html',     label: 'The Room',     featured: false },
+    { page: 'testimonials.html', label: 'Testimonials', featured: false },
+    { page: 'profile-test.html', label: 'Aura Profile', featured: true  },
   ];
 
   var linksHTML = links.map(function (link) {
