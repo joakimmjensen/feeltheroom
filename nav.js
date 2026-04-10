@@ -45,9 +45,7 @@
   var linksHTML = links.map(function (link) {
     var active = isActive(link.page);
     var cls    = active ? ' class="active"' : '';
-    // Featured links (Programs, Aura Profile) always shown in gold unless active
-    var style  = (!active && link.featured) ? ' style="color:var(--accent,var(--gold,#ff0800));font-weight:600;"' : '';
-    return '<a href="' + base + link.page + '"' + cls + style + '>' + link.label + '</a>';
+    return '<a href="' + base + link.page + '"' + cls + '>' + link.label + '</a>';
   }).join('');
 
   // Right-side button

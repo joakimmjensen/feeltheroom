@@ -93,13 +93,14 @@ nav {
 
 .nav-links a {
   font-size: 16px;
-  color: var(--text2);
+  color: var(--text);
   text-decoration: none;
   transition: color .2s;
   font-family: var(--font-brand);
+  font-weight: 500;
 }
 
-.nav-links a:hover  { color: var(--text); }
+.nav-links a:hover, .nav-links a:active { color: var(--gold); }
 .nav-links a.active { color: var(--gold); font-weight: 600; }
 
 .btn-nav {
