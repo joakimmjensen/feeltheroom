@@ -72,17 +72,23 @@
     .offering-desc { font-size:14px; color:var(--text2); line-height:1.65; margin-bottom:22px; }
     .offering-link { font-size:14px; color:var(--accent); font-weight:600; text-decoration:none; display:inline-block; }
     .about-inner { display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:stretch; }
-    .about-stats { display:flex; flex-direction:column; gap:0; border:0.5px solid var(--border); border-radius:var(--radius); overflow:hidden; margin-top:auto; padding-top:28px; }
+    .about-stats { display:flex; flex-direction:column; gap:0; border:0.5px solid var(--border); border-radius:var(--radius); overflow:visible; margin-top:auto; padding-top:28px; }
     .stat-category { padding:20px 24px; }
     .stat-category + .stat-category { border-top:0.5px solid var(--border); }
     .stat-category-label { font-size:9px; font-weight:700; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent); margin-bottom:14px; }
-    .stat-row { display:grid; gap:2px; background:var(--border); border-radius:var(--radius-sm); overflow:hidden; }
-    .stat-row.cols-4 { grid-template-columns:repeat(4,1fr); }
+    .stat-row { display:grid; gap:2px; background:var(--border); border-radius:var(--radius-sm); overflow:visible; }
     .stat-row.cols-3 { grid-template-columns:repeat(3,1fr); }
-    .stat-cell { background:var(--bg); padding:14px 16px; }
+    .stat-cell { background:var(--bg); padding:18px 16px; position:relative; cursor:pointer; transition:background .15s; }
+    .stat-cell:first-child { border-radius:var(--radius-sm) 0 0 var(--radius-sm); }
+    .stat-cell:last-child { border-radius:0 var(--radius-sm) var(--radius-sm) 0; }
+    .stat-cell:hover { background:var(--bg3); }
     .stat-cell-num { font-size:36px; font-weight:700; color:var(--accent); line-height:1; margin-bottom:5px; font-family:var(--font-brand); }
     .stat-cell-num em { font-style:normal; font-size:22px; }
     .stat-cell-label { font-size:11px; color:var(--text2); line-height:1.4; }
+    .stat-cell-hint { font-size:10px; color:var(--accent); opacity:0.6; margin-top:6px; letter-spacing:0.06em; }
+    .stat-popover { display:none; position:absolute; top:calc(100% + 10px); left:50%; transform:translateX(-50%); background:var(--text); color:var(--bg); font-size:13px; line-height:1.6; padding:14px 16px; border-radius:8px; width:220px; text-align:left; z-index:100; pointer-events:none; }
+    .stat-popover::before { content:''; position:absolute; bottom:100%; left:50%; transform:translateX(-50%); border:6px solid transparent; border-bottom-color:var(--text); }
+    .stat-cell.open .stat-popover { display:block; }
     .testi-section { background:var(--bg2); }
     .testi-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px; margin-top:44px; }
     .testi-card { background:var(--bg); border-radius:var(--radius); padding:28px; border:0.5px solid var(--border); }
@@ -327,17 +333,41 @@
           <div class="stat-category">
             <div class="stat-category-label">Personally Led Sales</div>
             <div class="stat-row cols-3">
-              <div class="stat-cell"><div class="stat-cell-num">80<em>K+</em></div><div class="stat-cell-label">Sales calls across career</div></div>
-              <div class="stat-cell"><div class="stat-cell-num">5<em>K+</em></div><div class="stat-cell-label">Client meetings — cold to close</div></div>
-              <div class="stat-cell"><div class="stat-cell-num">€11<em>M+</em></div><div class="stat-cell-label">In personal sales revenue</div></div>
+              <div class="stat-cell">
+                <div class="stat-popover">Estimated from average daily call volume across 13 years of active front-line sales work. Not theory — reps on the phone.</div>
+                <div class="stat-cell-num">80<em>K+</em></div><div class="stat-cell-label">Sales calls across career</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-popover">Face-to-face and virtual client meetings — from cold introductions to final close — across all industries and seniority levels.</div>
+                <div class="stat-cell-num">5<em>K+</em></div><div class="stat-cell-label">Client meetings — cold to close</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-popover">Personal sales across 5 roles: telemarketing (2yr), wholesale (2yr), digital marketing (2yr), insurance (4.5yr), SaaS (2yr). Converted from DKK at market rate.</div>
+                <div class="stat-cell-num">€11<em>M+</em></div><div class="stat-cell-label">In personal sales revenue</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
             </div>
           </div>
           <div class="stat-category">
             <div class="stat-category-label">Team Led Sales &amp; Leadership</div>
             <div class="stat-row cols-3">
-              <div class="stat-cell"><div class="stat-cell-num">€42<em>M+</em></div><div class="stat-cell-label">In revenue through teams led</div></div>
-              <div class="stat-cell"><div class="stat-cell-num">5</div><div class="stat-cell-label">Teams built and scaled from the ground up</div></div>
-              <div class="stat-cell"><div class="stat-cell-num">70<em>+</em></div><div class="stat-cell-label">People led across industries and countries</div></div>
+              <div class="stat-cell">
+                <div class="stat-popover">Combined annual revenue of teams led across telemarketing, retail, insurance, SaaS, and fintech. Converted from DKK at market rate.</div>
+                <div class="stat-cell-num">€42<em>M+</em></div><div class="stat-cell-label">In revenue through teams led</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-popover">Telemarketing (1→8), retail (1→10), insurance agency (3→11), second insurance agency (1→15), SaaS AEs (8), fintech (2→15 across countries).</div>
+                <div class="stat-cell-num">5</div><div class="stat-cell-label">Teams built and scaled from the ground up</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
+              <div class="stat-cell">
+                <div class="stat-popover">Across telemarketing, retail, insurance, SaaS, and fintech — spanning multiple countries and seniority levels.</div>
+                <div class="stat-cell-num">70<em>+</em></div><div class="stat-cell-label">People led across industries and countries</div>
+                <div class="stat-cell-hint">tap to learn more</div>
+              </div>
             </div>
           </div>
         </div>
@@ -430,6 +460,19 @@
       const form = e.target;
       form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;">You\'re on the list. Talk soon.</p>';
     }
+
+    // Stat popovers
+    document.querySelectorAll('.stat-cell').forEach(cell => {
+      cell.addEventListener('click', e => {
+        e.stopPropagation();
+        const isOpen = cell.classList.contains('open');
+        document.querySelectorAll('.stat-cell.open').forEach(el => el.classList.remove('open'));
+        if (!isOpen) cell.classList.add('open');
+      });
+    });
+    document.addEventListener('click', () => {
+      document.querySelectorAll('.stat-cell.open').forEach(el => el.classList.remove('open'));
+    });
   </script>
 
 </body>
