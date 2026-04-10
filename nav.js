@@ -54,7 +54,7 @@
   if (cta === 'print') {
     ctaHTML = '<button class="btn-print" onclick="window.print()">Print / Save PDF</button>';
   } else if (cta !== 'none') {
-    ctaHTML = '<a href="' + base + 'index.html#waitlist" class="btn-nav">Book a call \u2192</a>';
+    ctaHTML = '<a href="' + base + 'index.html#waitlist" class="btn-nav">Request access \u2192</a>';
   }
 
   var hamburger = '<button class="nav-hamburger" aria-label="Menu"'
