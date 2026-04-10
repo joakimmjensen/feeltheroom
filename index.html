@@ -30,8 +30,10 @@
     .hero-title em { font-style:normal; color:var(--accent); }
     .hero-sub { font-size:18px; color:var(--text2); max-width:520px; line-height:1.7; margin-bottom:44px; }
     .btn-row { display:flex; gap:12px; flex-wrap:wrap; }
-    .btn-primary { background:var(--accent); color:#fff4e3; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; }
-    .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; }
+    .btn-primary { background:var(--accent); color:#fff4e3; padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:600; cursor:pointer; border:none; text-decoration:none; display:inline-block; transition:opacity .18s; }
+    .btn-primary:hover { opacity:.85; }
+    .btn-secondary { background:transparent; color:var(--text); padding:13px 30px; border-radius:var(--radius-sm); font-size:15px; font-weight:500; cursor:pointer; border:0.5px solid var(--border); text-decoration:none; display:inline-block; transition:background .18s, border-color .18s; }
+    .btn-secondary:hover { background:var(--bg3); border-color:var(--text3); }
     .eyebrow { font-size:16px; color:var(--accent); letter-spacing:0.1em; text-transform:uppercase; font-weight:600; margin-bottom:16px; font-family:var(--font-brand); }
     h2.section-title { font-size:34px; font-weight:600; line-height:1.2; max-width:580px; margin-bottom:16px; letter-spacing:-0.01em; }
     .section-body { font-size:16px; color:var(--text2); max-width:560px; line-height:1.75; }
@@ -321,12 +323,6 @@
         <p class="section-body" style="margin-top:14px;">Through all of it, I kept looking for someone who taught it the way I experienced it — not just the technique, but the whole thing. The culture. The energy. What it actually takes to perform at your highest level, and to stay human while doing it.</p>
         <p class="section-body" style="margin-top:14px;">I'm particularly focused on the psychological side of sales and leadership — and on how what you do outside the office directly shapes what you deliver inside it. Performance is shaped by the whole person. Not just the work hours.</p>
         <p class="section-body" style="margin-top:14px; font-weight:500; color:var(--text);">I couldn't find that person. So I'm becoming him.</p>
-        <div style="display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; margin-bottom:4px;">
-          <span style="font-size:12px; font-weight:600; letter-spacing:0.04em; padding:6px 14px; border-radius:100px; background:var(--bg3); color:var(--text2);">Head of Sales, Nordics</span>
-          <span style="font-size:12px; font-weight:600; letter-spacing:0.04em; padding:6px 14px; border-radius:100px; background:var(--bg3); color:var(--text2);">Seedster Mentor 10.0</span>
-          <span style="font-size:12px; font-weight:600; letter-spacing:0.04em; padding:6px 14px; border-radius:100px; background:var(--bg3); color:var(--text2);">13+ years in sales</span>
-          <span style="font-size:12px; font-weight:600; letter-spacing:0.04em; padding:6px 14px; border-radius:100px; background:var(--bg3); color:var(--text2);">Cross-country teams</span>
-        </div>
         <div class="about-stats">
           <div class="stat-category">
             <div class="stat-category-label">Personally Led Sales</div>
