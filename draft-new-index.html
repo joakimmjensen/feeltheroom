@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Feel the Room — Draft</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --bg3: #e8dcc4;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #ff0800;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+      --font-brand: 'Molenilo', Georgia, serif;
+    }
+    @font-face {
+      font-family: 'Molenilo';
+      src: url('Molenilo.woff2') format('woff2'), url('Molenilo.woff') format('woff');
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* NAV */
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg); }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 15px; color: var(--text); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .btn-nav { background: var(--text); color: var(--bg); padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: opacity .2s; }
+    .btn-nav:hover { opacity: .85; }
+
+    /* HERO */
+    .hero { padding: 100px 48px 72px; max-width: 1100px; margin: 0 auto; }
+    .hero-eyebrow { font-size: 13px; color: var(--text2); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 24px; }
+    .hero-title { font-size: clamp(42px, 6vw, 68px); font-weight: 700; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 28px; max-width: 780px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 19px; color: var(--text2); line-height: 1.7; max-width: 520px; margin-bottom: 44px; }
+    .btn-primary { background: var(--accent); color: #fff; padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 600; display: inline-block; transition: opacity .18s; border: none; cursor: pointer; }
+    .btn-primary:hover { opacity: .85; }
+    .btn-secondary { background: transparent; color: var(--text); padding: 14px 32px; border-radius: 8px; font-size: 15px; font-weight: 500; display: inline-block; border: 0.5px solid var(--border); transition: background .18s; }
+    .btn-secondary:hover { background: var(--bg3); }
+    .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+
+    /* VSL */
+    .vsl-wrap { padding: 0 48px 72px; max-width: 1100px; margin: 0 auto; }
+    .video-outer { position: relative; width: 100%; max-width: 840px; margin: 0 auto; padding-bottom: calc(56.25% * min(840px, 100%) / 100%); background: var(--bg3); border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
+    .video-outer video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .video-placeholder { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; }
+    .play-btn { width: 80px; height: 80px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: transform .15s; }
+    .play-btn:hover { transform: scale(1.06); }
+    .video-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); }
+
+    /* PULL QUOTE */
+    .pull-quote { max-width: 640px; margin: 48px auto 0; text-align: center; padding: 0 24px; }
+    .pull-quote p { font-family: Georgia, serif; font-size: 21px; line-height: 1.65; color: var(--text2); font-style: italic; }
+    .pull-quote strong { color: var(--text); font-style: normal; font-weight: 600; }
+
+    /* DIVIDER */
+    .divider { height: 0.5px; background: var(--border); margin: 0 48px; }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 13px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; font-family: var(--font-brand); }
+
+    /* SECTION */
+    section { padding: 80px 48px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    h2.section-title { font-size: clamp(28px, 4vw, 40px); font-weight: 700; line-height: 1.15; letter-spacing: -0.02em; margin-bottom: 16px; max-width: 620px; }
+    .section-body { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.8; }
+
+    /* FEEL */
+    .feel-section { background: var(--bg2); }
+    .feel-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; margin-top: 44px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .feel-item { background: var(--bg); padding: 32px 28px; }
+    .feel-letter { font-size: 44px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 8px; font-family: var(--font-brand); }
+    .feel-word { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
+    .feel-desc { font-size: 14px; color: var(--text2); line-height: 1.7; }
+
+    /* WHO */
+    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; margin-top: 44px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .who-item { background: var(--bg2); padding: 32px 28px; }
+    .who-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .who-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .who-item p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; margin-top: 44px; }
+    .about-photo { width: 100%; border-radius: var(--radius); display: block; filter: grayscale(10%); }
+    .about-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .about-stats { margin-top: 32px; border: 0.5px solid var(--border); border-radius: var(--radius); overflow: visible; }
+    .stat-category { padding: 20px 24px; }
+    .stat-category + .stat-category { border-top: 0.5px solid var(--border); }
+    .stat-category-label { font-size: 9px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border-radius: 8px; overflow: visible; }
+    .stat-cell { background: var(--bg); padding: 18px 16px; position: relative; cursor: pointer; transition: background .15s; }
+    .stat-cell:hover { background: var(--bg3); }
+    .stat-cell-num { font-size: 34px; font-weight: 700; color: var(--accent); line-height: 1; margin-bottom: 5px; font-family: var(--font-brand); }
+    .stat-cell-num em { font-style: normal; font-size: 20px; }
+    .stat-cell-label { font-size: 11px; color: var(--text2); line-height: 1.4; }
+    .stat-cell-hint { font-size: 10px; color: var(--accent); opacity: 0.6; margin-top: 6px; }
+    .stat-popover { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 13px; line-height: 1.6; padding: 14px 16px; border-radius: 8px; width: 220px; z-index: 100; }
+    .stat-popover::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: var(--text); }
+    .stat-cell.open .stat-popover { display: block; }
+
+    /* TESTIMONIALS */
+    .testi-section { background: var(--bg2); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-top: 44px; }
+    .testi-card { background: var(--bg); border-radius: var(--radius); padding: 28px; border: 0.5px solid var(--border); }
+    .testi-bar { height: 2px; width: 24px; background: var(--accent); opacity: 0.4; margin-bottom: 16px; }
+    .testi-quote { font-size: 15px; line-height: 1.75; color: var(--text2); margin-bottom: 18px; font-style: italic; }
+    .testi-name { font-size: 14px; font-weight: 600; }
+    .testi-role { font-size: 13px; color: var(--text2); }
+
+    /* FREEBIES */
+    .freebies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 44px; }
+    .freebie-item { background: var(--bg2); padding: 24px 28px; display: flex; gap: 16px; align-items: flex-start; }
+    .freebie-num { font-family: var(--font-brand); font-size: 32px; font-weight: 600; color: var(--accent); opacity: 0.4; line-height: 1; flex-shrink: 0; width: 44px; }
+    .freebie-title { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+    .freebie-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+    /* CTA / FORM */
+    .cta-section { text-align: center; padding: 96px 48px; }
+    .cta-section h2 { font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; max-width: 540px; margin-left: auto; margin-right: auto; }
+    .cta-section p { font-size: 17px; color: var(--text2); margin-bottom: 40px; }
+    .email-form { display: flex; gap: 10px; max-width: 420px; margin: 0 auto; }
+    .email-form input { flex: 1; padding: 13px 18px; border-radius: 8px; border: 0.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 15px; }
+    .email-form input:focus { outline: none; border-color: var(--accent); }
+
+    /* FOOTER */
+    footer { padding: 40px 48px; border-top: 0.5px solid var(--border); display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    footer img { height: 80px; width: auto; }
+    .footer-bottom { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 13px; color: var(--text2); flex-wrap: wrap; gap: 12px; }
+    .footer-bottom a { color: var(--text2); }
+    .footer-bottom a:hover { color: var(--accent); }
+
+    /* MOBILE */
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 64px 24px 48px; }
+      .vsl-wrap { padding: 0 24px 56px; }
+      .divider { margin: 0 24px; }
+      section { padding: 60px 24px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .freebies-grid { grid-template-columns: 1fr; }
+      .email-form { flex-direction: column; }
+      .cta-section { padding: 72px 24px; }
+      footer { padding: 32px 24px; }
+      .footer-bottom { flex-direction: column; align-items: center; text-align: center; }
+    }
+
+    /* DRAFT BANNER */
+    .draft-banner { background: var(--accent); color: #fff; text-align: center; padding: 10px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; }
+  </style>
+</head>
+<body>
+
+  <div class="draft-banner">DRAFT — Ikke live endnu</div>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">
+      <img src="long%20red%20w%3Ao.svg" alt="Feel the Room">
+    </a>
+    <div class="nav-links">
+      <a href="programs.html">Programs</a>
+      <a href="testimonials.html">Testimonials</a>
+      <a href="profile-test.html">Aura Profile</a>
+    </div>
+    <a href="#waitlist" class="btn-nav">Request access →</a>
+  </nav>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">Feel the Room · Lead with Intention</div>
+    <h1 class="hero-title">Most sales training<br>treats <em>the symptom.</em></h1>
+    <p class="hero-sub">There's a layer underneath the technique. And it changes everything. F.E.E.L. is what happens when you go underneath it.</p>
+    <div class="hero-btns">
+      <a href="#waitlist" class="btn-primary">Request access →</a>
+      <a href="#method" class="btn-secondary">See the method</a>
+    </div>
+  </div>
+
+  <!-- VSL -->
+  <div class="vsl-wrap">
+    <div class="video-outer" style="padding-bottom: 56.25%;">
+      <div class="video-placeholder">
+        <div class="play-btn">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <polygon points="6,3 20,12 6,21" fill="#f6ede0"/>
+          </svg>
+        </div>
+        <span class="video-label">Watch · 10 min</span>
+      </div>
+    </div>
+    <div class="pull-quote">
+      <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- F.E.E.L. METHOD -->
+  <section class="feel-section" id="method">
+    <div class="section-inner">
+      <div class="eyebrow">The method</div>
+      <h2 class="section-title">The framework behind<br>a sustainable performance culture.</h2>
+      <p class="section-body">F.E.E.L. is a four-pillar framework built around a simple truth: a leader who shows up fully — physically, mentally, and emotionally — outperforms every tactic, script, or playbook.<br><br>It's not soft skills.<br>It's the foundation everything else is built on.</p>
+      <div class="feel-grid">
+        <div class="feel-item">
+          <div class="feel-letter">F</div>
+          <div class="feel-word">Foundation</div>
+          <div class="feel-desc">You feel like you're running on low battery.<br><br>Foundation teaches you to lead yourself first — so you show up fully for your team.</div>
+        </div>
+        <div class="feel-item">
+          <div class="feel-letter">E</div>
+          <div class="feel-word">Elevation</div>
+          <div class="feel-desc">You're trained to read prospects.<br><br>Elevation gives you the same skill for the people you lead.</div>
+        </div>
+        <div class="feel-item">
+          <div class="feel-letter">E</div>
+          <div class="feel-word">Exploration</div>
+          <div class="feel-desc">You give answers when people need questions.<br><br>Exploration turns you into the leader who unlocks — not directs.</div>
+        </div>
+        <div class="feel-item">
+          <div class="feel-letter">L</div>
+          <div class="feel-word">Liberation</div>
+          <div class="feel-desc">Your team performs when you're watching.<br><br>Liberation builds a culture they actually want to be part of.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- WHO IT'S FOR -->
+  <section>
+    <div class="section-inner">
+      <div class="eyebrow">Who this is for</div>
+      <h2 class="section-title">Not for everyone.<br>Built for a specific kind of person.</h2>
+      <div class="who-grid">
+        <div class="who-item">
+          <div class="who-tag">For you if →</div>
+          <h4>Sales leaders</h4>
+          <p>You feel like you're constantly pushing uphill. You know there's another level — and you're tired of symptom-treating with more courses.</p>
+        </div>
+        <div class="who-item">
+          <div class="who-tag">For you if →</div>
+          <h4>Founders</h4>
+          <p>You're building a team and want them to perform and actually enjoy doing it. Culture isn't a buzzword for you — it's the foundation.</p>
+        </div>
+        <div class="who-item">
+          <div class="who-tag">For you if →</div>
+          <h4>Commercial profiles</h4>
+          <p>You operate in rooms that matter. You've sat in a meeting and known — before a word was said — that something was off. Or on.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ABOUT -->
+  <section>
+    <div class="section-inner">
+      <div class="eyebrow">About Joakim</div>
+      <h2 class="section-title">I couldn't find this person.<br>So I'm becoming him.</h2>
+      <div class="about-grid">
+        <div>
+          <img src="https://raw.githubusercontent.com/joakimmjensen/feeltheroom/main/joakim.jpg" alt="Joakim Møller Jensen" class="about-photo">
+          <div class="about-btns">
+            <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank" class="btn-primary">Connect on LinkedIn →</a>
+            <a href="#waitlist" class="btn-secondary">Let's talk</a>
+          </div>
+        </div>
+        <div>
+          <p style="font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:14px;">I've spent 13 years in high-performance sales and commercial leadership.<br>B2C, B2B, Low-ticket, High-ticket.<br>I've closed enterprise deals with some of the biggest companies in Europe.<br>I've scaled teams from just me to full departments running across countries.</p>
+          <p style="font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:14px;">Through all of it, I kept looking for someone who taught it the way I experienced it — not just the technique, but the whole thing.<br>The culture. The energy. The whole person.</p>
+          <p style="font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:14px;">I'm particularly focused on the psychological side of sales and leadership — and on how what you do outside the office directly shapes what you deliver inside it.<br>Performance is shaped by the whole person. Not just the work hours.</p>
+          <p style="font-size:16px; color:var(--text); line-height:1.8; font-weight:500;">I couldn't find that person. So I'm becoming him.</p>
+          <div class="about-stats">
+            <div class="stat-category">
+              <div class="stat-category-label">Personally Led Sales</div>
+              <div class="stat-row">
+                <div class="stat-cell">
+                  <div class="stat-popover">Estimated from average daily call volume across 13 years of active front-line sales work. Not theory — reps on the phone.</div>
+                  <div class="stat-cell-num">80<em>K+</em></div>
+                  <div class="stat-cell-label">Sales calls across career</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+                <div class="stat-cell">
+                  <div class="stat-popover">Face-to-face and virtual client meetings — from cold introductions to final close — across all industries and seniority levels.</div>
+                  <div class="stat-cell-num">5<em>K+</em></div>
+                  <div class="stat-cell-label">Client meetings — cold to close</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+                <div class="stat-cell">
+                  <div class="stat-popover">Personal sales across 5 roles: telemarketing (2yr), wholesale (2yr), digital marketing (2yr), insurance (4.5yr), SaaS (2yr). Converted from DKK at market rate.</div>
+                  <div class="stat-cell-num">€11<em>M+</em></div>
+                  <div class="stat-cell-label">In personal sales revenue</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+              </div>
+            </div>
+            <div class="stat-category">
+              <div class="stat-category-label">Team Led Sales &amp; Leadership</div>
+              <div class="stat-row">
+                <div class="stat-cell">
+                  <div class="stat-popover">Combined annual revenue of teams led across telemarketing, retail, insurance, SaaS, and fintech. Converted from DKK at market rate.</div>
+                  <div class="stat-cell-num">€42<em>M+</em></div>
+                  <div class="stat-cell-label">In revenue through teams led</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+                <div class="stat-cell">
+                  <div class="stat-popover">Telemarketing (1→8), retail (1→10), insurance agency (3→11), second insurance agency (1→15), SaaS AEs (8), fintech (2→15 across countries).</div>
+                  <div class="stat-cell-num">5</div>
+                  <div class="stat-cell-label">Teams built and scaled from the ground up</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+                <div class="stat-cell">
+                  <div class="stat-popover">Across telemarketing, retail, insurance, SaaS, and fintech — spanning multiple countries and seniority levels.</div>
+                  <div class="stat-cell-num">70<em>+</em></div>
+                  <div class="stat-cell-label">People led across industries and countries</div>
+                  <div class="stat-cell-hint">tap to learn more</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- TESTIMONIALS -->
+  <section class="testi-section">
+    <div class="section-inner">
+      <div class="eyebrow">What people say</div>
+      <h2 class="section-title">From the room.</h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"You're in for a treat. He's something else."</p>
+          <div class="testi-name">Marbella Seedster participant</div>
+          <div class="testi-role">Said to the next group walking in</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people. My only advice has always been: keep doing exactly what you're doing. Because it works. And because it inspires."</p>
+          <div class="testi-name">Indira Comakci</div>
+          <div class="testi-role">Chief of Staff</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"Joakim possesses very unique people skills that are a game changer to any conversation. He is one of the quickest people I have ever seen to build a professional relationship — with prospects, clients, co-workers and partners alike."</p>
+          <div class="testi-name">Christian Thorsø Pedersen</div>
+          <div class="testi-role">Senior Account Executive, Salesforce</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"Joakim not only demonstrated exceptional skills in client and sales process management, but was instrumental in raising the bar for the entire team — leading by example and showing a new performance reality."</p>
+          <div class="testi-name">Dimitri Devillers</div>
+          <div class="testi-role">Head of Sales</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"A strong mindset and character which bleeds into his determination, drive, grit and hard work on a daily basis. One of the best sales people I have ever worked alongside."</p>
+          <div class="testi-name">Johan Christopher Mortensen</div>
+          <div class="testi-role">Sales Manager</div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-bar"></div>
+          <p class="testi-quote">"What truly sets Joakim apart is humility paired with relentless confidence — a scarce combination. With his mindset and dedication, I have no doubt he's on a trajectory to become a star. Keep an eye on him."</p>
+          <div class="testi-name">Brian Strøh Strange</div>
+          <div class="testi-role">CCO</div>
+        </div>
+      </div>
+      <p style="margin-top:32px; text-align:center;"><a href="testimonials.html" style="font-size:14px; font-weight:600; color:var(--accent);">See all testimonials →</a></p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- FREEBIES + WAITLIST -->
+  <section id="waitlist">
+    <div class="section-inner">
+      <div class="eyebrow">Request access</div>
+      <h2 class="section-title">From me, to you.</h2>
+      <p class="section-body">The moment you join, I'll send a thank-you — followed by eight practical tools from the F.E.E.L. framework.<br><br>Frameworks, guides, and workshops I've used throughout my career.<br><br>One sent every two weeks.<br><br>No pitch. No upsell. No bullshit.<br>Just the kind of content most people would charge for.</p>
+      <div class="freebies-grid">
+        <div class="freebie-item"><div class="freebie-num">01</div><div><div class="freebie-title">Team Values Workshop</div><div class="freebie-desc">A step-by-step facilitation guide for building team values that actually drive behaviour.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">02</div><div><div class="freebie-title">Pre-Meeting State Checklist</div><div class="freebie-desc">Prepare your state — not just your pitch. Before any room that matters.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">03</div><div><div class="freebie-title">Objection Mapping Framework</div><div class="freebie-desc">Turn resistance into clarity. A structured way to understand what objections are really saying.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">04</div><div><div class="freebie-title">1:1 Coaching Guide</div><div class="freebie-desc">How to run one-on-ones that actually develop people — not just check status.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">05</div><div><div class="freebie-title">Team Orchestration Rhythm</div><div class="freebie-desc">The cadence and structure that keeps high-performing teams aligned without micromanagement.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">06</div><div><div class="freebie-title">Hire Interview Guide</div><div class="freebie-desc">How to interview for the whole person — not just the CV. Spot culture fit before day one.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">07</div><div><div class="freebie-title">FTR Aura Profile</div><div class="freebie-desc">Understand your natural energy in a room — and how to work with it, not against it.</div></div></div>
+        <div class="freebie-item"><div class="freebie-num">08</div><div><div class="freebie-title">How to Structure a Sales Call</div><div class="freebie-desc">The 7-step F.E.E.L. sales flow with key questions and time guides for each phase.</div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta-section" style="background: var(--bg2);">
+    <h2>If this landed — you already know if you're the right person.</h2>
+    <p>Request access. You'll hear from me when the time is right.</p>
+    <form class="email-form" onsubmit="handleWaitlist(event)">
+      <input type="email" placeholder="Your email address" required />
+      <button type="submit" class="btn-primary">Request access</button>
+    </form>
+    <p style="font-size:13px; color:var(--text2); margin-top:12px;">No pitch. No spam. Something useful in the meantime.</p>
+  </section>
+
+  <footer>
+    <img src="stacked%20red%20w%3Ao.svg" alt="Feel the Room">
+    <div class="footer-bottom">
+      <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+      <div style="display:flex; gap:24px;">
+        <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a>
+        <a href="testimonials.html">Testimonials</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Stat popovers
+    document.querySelectorAll('.stat-cell').forEach(function(cell) {
+      cell.addEventListener('click', function() {
+        var isOpen = this.classList.contains('open');
+        document.querySelectorAll('.stat-cell').forEach(function(c) { c.classList.remove('open'); });
+        if (!isOpen) this.classList.add('open');
+      });
+    });
+
+    function handleWaitlist(e) {
+      e.preventDefault();
+      var email = e.target.querySelector('input[type=email]').value;
+      fetch('https://hook.eu2.make.com/r7e2v19p4e7fvjr7ms2yqvjq9k2j58er', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, source: 'draft-new-index' })
+      }).then(function() {
+        e.target.innerHTML = '<p style="color:var(--accent);font-weight:600;font-size:16px;">You\'re in. I\'ll be in touch.</p>';
+      }).catch(function() {
+        e.target.innerHTML = '<p style="color:var(--accent);font-weight:600;font-size:16px;">You\'re in. I\'ll be in touch.</p>';
+      });
+    }
+  </script>
+</body>
+</html>
