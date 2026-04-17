@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
+  <meta name="color-scheme" content="light">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Room — Feel the Room</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --bg3: #e8dcc4;
+      --text: #1C1A17;
+      --text2: #6B6457;
+      --accent: #ff0800;
+      --border: rgba(28,26,23,0.12);
+      --radius: 12px;
+      --font-brand: 'Molenilo', Georgia, serif;
+    }
+    @font-face {
+      font-family: 'Molenilo';
+      src: url('Molenilo.woff2') format('woff2'), url('Molenilo.woff') format('woff');
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
+    a { color: var(--accent); text-decoration: none; }
+
+    /* DRAFT BANNER */
+    .draft-banner { background: var(--accent); color: #fff; text-align: center; padding: 10px 24px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; }
+
+    /* NAV — uses shared nav.js but scoped here for draft */
+    nav { position: sticky; top: 0; z-index: 100; padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); background: var(--bg); }
+    .nav-logo img { height: 28px; width: auto; }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 15px; color: var(--text); font-weight: 500; transition: color .2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .btn-nav { background: var(--text); color: var(--bg); padding: 8px 18px; border-radius: 6px; font-weight: 600; font-size: 14px; transition: opacity .2s; display: inline-block; }
+    .btn-nav:hover { opacity: .85; }
+
+    /* EYEBROW */
+    .eyebrow { font-size: 13px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; font-weight: 600; margin-bottom: 14px; font-family: var(--font-brand); }
+
+    /* HERO */
+    .hero { padding: 96px 48px 80px; max-width: 860px; margin: 0 auto; }
+    .hero-title { font-size: clamp(40px, 6vw, 64px); font-weight: 700; line-height: 1.06; letter-spacing: -0.025em; margin-bottom: 28px; }
+    .hero-title em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 19px; color: var(--text2); line-height: 1.75; max-width: 560px; }
+
+    /* DIVIDER */
+    .divider { height: 0.5px; background: var(--border); margin: 0 48px; }
+
+    /* SECTION */
+    .section { padding: 72px 48px; max-width: 860px; margin: 0 auto; }
+    h2.section-title { font-size: clamp(26px, 3.5vw, 36px); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 20px; }
+    .section-body { font-size: 16px; color: var(--text2); line-height: 1.8; max-width: 580px; }
+    .section-body p { margin-bottom: 16px; }
+    .section-body p:last-child { margin-bottom: 0; }
+
+    /* WHO GRID */
+    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; margin-top: 40px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .who-item { background: var(--bg2); padding: 32px 28px; }
+    .who-tag { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .who-item h4 { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
+    .who-item p { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* WHAT YOU GET */
+    .perks-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 40px; }
+    .perk-card { background: var(--bg2); border-radius: var(--radius); padding: 28px 24px; border: 0.5px solid var(--border); }
+    .perk-num { font-family: var(--font-brand); font-size: 28px; color: var(--accent); opacity: 0.35; line-height: 1; margin-bottom: 12px; }
+    .perk-title { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
+    .perk-body { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+    /* FORM SECTION */
+    .form-section { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); padding: 80px 48px; }
+    .form-inner { max-width: 560px; margin: 0 auto; }
+    .form-title { font-size: clamp(28px, 4vw, 40px); font-weight: 700; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .form-sub { font-size: 17px; color: var(--text2); margin-bottom: 40px; line-height: 1.7; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field label { font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text2); }
+    .form-field input { padding: 13px 16px; border-radius: 8px; border: 0.5px solid var(--border); background: var(--bg); color: var(--text); font-size: 15px; transition: border-color .15s; }
+    .form-field input:focus { outline: none; border-color: var(--accent); }
+    .form-field.full { grid-column: 1 / -1; }
+    .btn-join { width: 100%; padding: 16px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; margin-top: 8px; transition: opacity .18s; }
+    .btn-join:hover { opacity: .85; }
+    .form-note { font-size: 13px; color: var(--text2); text-align: center; margin-top: 14px; }
+
+    /* FOOTER */
+    footer { padding: 32px 48px; border-top: 0.5px solid var(--border); display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: var(--text2); flex-wrap: wrap; gap: 12px; }
+    footer a { color: var(--text2); }
+    footer a:hover { color: var(--accent); }
+
+    /* MOBILE */
+    @media (max-width: 680px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; }
+      .hero { padding: 64px 24px 56px; }
+      .section { padding: 56px 24px; }
+      .divider { margin: 0 24px; }
+      .form-section { padding: 64px 24px; }
+      .form-grid { grid-template-columns: 1fr; }
+      footer { padding: 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+  <link rel="stylesheet" href="shared.css">
+  <script src="nav.js" defer></script>
+</head>
+<body>
+
+  <div class="draft-banner">DRAFT — Ikke live endnu</div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="eyebrow">The Room</div>
+    <h1 class="hero-title">A network for people who think about<br>performance <em>differently.</em></h1>
+    <p class="hero-sub">Not a course. Not a newsletter. A room — for leaders and commercial profiles who are done treating symptoms and want to go to the source.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT IS IT -->
+  <div class="section">
+    <div class="eyebrow">What this is</div>
+    <h2 class="section-title">The right people.<br>Thinking about the right things.</h2>
+    <div class="section-body">
+      <p>The Room is a network built around a simple belief: that the leaders who perform at the highest level don't just have better tactics — they think about performance, culture, and leadership in a fundamentally different way.</p>
+      <p>It's a place to connect with others who are building the same thing. Who care about the psychological side of leadership. Who know that what you do outside the office shapes what you deliver inside it.</p>
+      <p>When The Room opens, members will have access to content, conversations, and a community of people who are building something real.</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHO IT'S FOR -->
+  <div class="section">
+    <div class="eyebrow">Who gets in</div>
+    <h2 class="section-title">You'll know if this is for you.</h2>
+    <div class="who-grid">
+      <div class="who-item">
+        <div class="who-tag">This is for you if →</div>
+        <h4>Sales leaders</h4>
+        <p>You manage people, not just pipelines. You know the culture you build is the performance you get — and you want to build it right.</p>
+      </div>
+      <div class="who-item">
+        <div class="who-tag">This is for you if →</div>
+        <h4>Founders</h4>
+        <p>You're building a team from scratch. You want people who perform because they believe in it — not because they're being watched.</p>
+      </div>
+      <div class="who-item">
+        <div class="who-tag">This is for you if →</div>
+        <h4>Commercial profiles</h4>
+        <p>You operate in rooms that matter. You've always felt there's something underneath the technique — and you want to understand what it is.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- WHAT YOU GET -->
+  <div class="section">
+    <div class="eyebrow">What's inside</div>
+    <h2 class="section-title">From me, to you — while you wait.</h2>
+    <p class="section-body" style="margin-bottom:0;">The moment you join, I'll send a thank-you — followed by eight practical tools from the F.E.E.L. framework. Frameworks, guides, and workshops I've used throughout my career. One sent every two weeks.</p>
+    <div class="perks-grid">
+      <div class="perk-card">
+        <div class="perk-num">01</div>
+        <div class="perk-title">Eight free tools</div>
+        <div class="perk-body">Practical extracts from the F.E.E.L. framework — sent over 16 weeks. No pitch. No upsell.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-num">02</div>
+        <div class="perk-title">Early access</div>
+        <div class="perk-body">When The Room opens, founding members get in first — and on terms that won't be available later.</div>
+      </div>
+      <div class="perk-card">
+        <div class="perk-num">03</div>
+        <div class="perk-title">A network that thinks like you</div>
+        <div class="perk-body">Connect with leaders and commercial profiles who are building the same thing — in a room built around performance and culture.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section" id="join">
+    <div class="form-inner">
+      <div class="eyebrow">Join The Room</div>
+      <h2 class="form-title">If this landed —<br>you already know.</h2>
+      <p class="form-sub">Tell me a bit about yourself. I'll reach out personally when The Room opens.</p>
+      <form onsubmit="handleJoin(event)">
+        <div class="form-grid">
+          <div class="form-field">
+            <label>First name</label>
+            <input type="text" name="firstname" placeholder="Joakim" required />
+          </div>
+          <div class="form-field">
+            <label>Last name</label>
+            <input type="text" name="lastname" placeholder="Jensen" required />
+          </div>
+          <div class="form-field full">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="joakim@company.com" required />
+          </div>
+          <div class="form-field full">
+            <label>Job title</label>
+            <input type="text" name="jobtitle" placeholder="Head of Sales / Founder / ..." required />
+          </div>
+        </div>
+        <button type="submit" class="btn-join">Join The Room →</button>
+        <p class="form-note">No pitch. No spam. Something useful in the meantime.</p>
+      </form>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2026 Feel the Room · Joakim Møller Jensen</div>
+    <div style="display:flex; gap:24px;">
+      <a href="https://www.linkedin.com/in/joakim-m-jensen/" target="_blank">LinkedIn</a>
+      <a href="testimonials.html">Testimonials</a>
+    </div>
+  </footer>
+
+  <script>
+    function handleJoin(e) {
+      e.preventDefault();
+      var data = {
+        firstname: e.target.firstname.value,
+        lastname:  e.target.lastname.value,
+        email:     e.target.email.value,
+        jobtitle:  e.target.jobtitle.value,
+        source:    'the-room'
+      };
+      fetch('https://hook.eu2.make.com/r7e2v19p4e7fvjr7ms2yqvjq9k2j58er', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      }).catch(function(){});
+      e.target.closest('.form-inner').innerHTML =
+        '<p style="font-size:20px; font-weight:700; color:var(--text); margin-bottom:12px;">You\'re in.</p>' +
+        '<p style="font-size:16px; color:var(--text2); line-height:1.75;">I\'ll reach out personally when The Room opens.<br>Something useful is on its way in the meantime.</p>';
+    }
+  </script>
+</body>
+</html>
