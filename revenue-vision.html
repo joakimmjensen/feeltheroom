@@ -17,14 +17,19 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 64px 48px; max-width: 1100px; margin: 0 auto; }
 
+    /* CURRENCY TOGGLE */
+    .currency-toggle { display: inline-flex; background: var(--bg2); border: 0.5px solid var(--border); border-radius: 100px; padding: 3px; gap: 2px; }
+    .currency-toggle button { border: none; background: none; cursor: pointer; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 18px; border-radius: 100px; color: var(--text2); transition: all 0.15s ease; }
+    .currency-toggle button.active { background: var(--text); color: #fff; }
+
     .header { margin-bottom: 64px; }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px; }
     .header-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
-    .header-title { font-family: var(--font-brand); font-size: 42px; font-weight: 400; font-style: italic; color: var(--text); line-height: 1.15; margin-bottom: 12px; }
-    .header-sub { font-size: 15px; color: var(--text2); line-height: 1.6; }
+    .header-title { font-family: var(--font-brand); font-size: 42px; font-weight: 400; font-style: italic; color: var(--text); line-height: 1.15; }
+    .header-sub { font-size: 15px; color: var(--text2); line-height: 1.6; margin-top: 12px; }
 
     /* PRODUCTS */
     .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 20px; }
-
     .products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 64px; }
     .product-card { background: var(--bg2); border: 0.5px solid var(--border); padding: 24px 20px 28px; }
     .product-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 16px; }
@@ -40,8 +45,8 @@
     .stage.highlight .stage-label { color: rgba(255,255,255,0.5); }
     .stage.highlight .stage-title { color: #fff; }
     .stage.highlight .stage-total-label { color: rgba(255,255,255,0.5); }
-    .stage.highlight .stage-total-usd { color: var(--accent); }
-    .stage.highlight .stage-total-dkk { color: rgba(255,255,255,0.7); }
+    .stage.highlight .stage-total-primary { color: var(--accent); }
+    .stage.highlight .stage-total-secondary { color: rgba(255,255,255,0.5); }
     .stage.highlight .stage-rows { border-top-color: rgba(255,255,255,0.1); }
     .stage.highlight .stage-row-name { color: rgba(255,255,255,0.5); }
     .stage.highlight .stage-row-val { color: rgba(255,255,255,0.85); }
@@ -50,16 +55,16 @@
     .stage-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 6px; }
     .stage-title { font-family: var(--font-brand); font-size: 20px; font-style: italic; color: var(--text); margin-bottom: 28px; }
     .stage-total-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 6px; }
-    .stage-total-usd { font-family: var(--font-brand); font-size: 40px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 4px; }
-    .stage-total-dkk { font-size: 16px; color: var(--text2); margin-bottom: 28px; font-family: var(--font-brand); font-style: italic; }
+    .stage-total-primary { font-family: var(--font-brand); font-size: 40px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stage-total-secondary { font-size: 14px; color: var(--text2); margin-bottom: 28px; font-family: var(--font-brand); font-style: italic; }
 
-    .stage-rows { border-top: 0.5px solid var(--border); padding-top: 20px; display: flex; flex-direction: column; gap: 0; }
+    .stage-rows { border-top: 0.5px solid var(--border); padding-top: 20px; display: flex; flex-direction: column; }
     .stage-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
     .stage-row:last-child { border-bottom: none; }
     .stage-row-name { font-size: 11px; color: var(--text2); }
     .stage-row-val { font-size: 12px; font-weight: 600; color: var(--text); text-align: right; }
 
-    /* MEMBERSHIP HIGHLIGHT */
+    /* MEMBERSHIP */
     .membership-box { background: var(--bg2); border: 0.5px solid var(--border); padding: 32px; margin-bottom: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
     .membership-left .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px; }
     .membership-left h3 { font-family: var(--font-brand); font-size: 26px; font-style: italic; margin-bottom: 10px; }
@@ -75,7 +80,6 @@
     .manifesto { border-top: 0.5px solid var(--border); padding-top: 48px; }
     .manifesto-text { font-family: var(--font-brand); font-size: 22px; font-style: italic; color: var(--text); line-height: 1.7; max-width: 680px; }
     .manifesto-text span { color: var(--accent); }
-
     .note { font-size: 11px; color: var(--text2); margin-top: 32px; }
 
     @media (max-width: 768px) {
@@ -89,8 +93,16 @@
 <body>
 
   <div class="header">
-    <div class="header-eyebrow">Feel the Room — Business Vision</div>
-    <h1 class="header-title">What this becomes.</h1>
+    <div class="header-top">
+      <div>
+        <div class="header-eyebrow">Feel the Room — Business Vision</div>
+        <h1 class="header-title">What this becomes.</h1>
+      </div>
+      <div class="currency-toggle">
+        <button id="btn-dkk" class="active" onclick="setCurrency('dkk')">DKK</button>
+        <button id="btn-usd" onclick="setCurrency('usd')">USD</button>
+      </div>
+    </div>
     <p class="header-sub">A full-stack leadership brand. Five revenue streams. Built on real transformation.</p>
   </div>
 
@@ -100,38 +112,38 @@
 
     <div class="product-card">
       <div class="product-name">Cohort Program</div>
-      <div class="product-price">$2,500</div>
+      <div class="product-price" data-dkk="17.250 kr" data-usd="$2,500">17.250 kr</div>
       <div class="product-price-sub">per participant</div>
       <div class="product-detail">3-month format · 6 sessions · 10 participants · 2–4 rounds/year</div>
     </div>
 
     <div class="product-card">
       <div class="product-name">1:1 Coaching</div>
-      <div class="product-price">$1,500</div>
+      <div class="product-price" data-dkk="10.350 kr" data-usd="$1,500">10.350 kr</div>
       <div class="product-price-sub">6-session package</div>
       <div class="product-detail" style="margin-bottom:12px;">Deep personal work · 60 min/session</div>
-      <div class="product-price" style="font-size:22px;">$2,500</div>
+      <div class="product-price" style="font-size:22px;" data-dkk="17.250 kr" data-usd="$2,500">17.250 kr</div>
       <div class="product-price-sub">12-session package</div>
       <div class="product-detail">Extended engagement · Full transformation arc</div>
     </div>
 
     <div class="product-card">
       <div class="product-name">Video Course</div>
-      <div class="product-price">$995</div>
+      <div class="product-price" data-dkk="6.870 kr" data-usd="$995">6.870 kr</div>
       <div class="product-price-sub">one-time</div>
       <div class="product-detail">Module-based · Self-paced · Passive income · Scales without you</div>
     </div>
 
     <div class="product-card">
       <div class="product-name">Membership</div>
-      <div class="product-price">179 kr</div>
+      <div class="product-price" data-dkk="179 kr" data-usd="$26">179 kr</div>
       <div class="product-price-sub">per month</div>
       <div class="product-detail">Paid community · Exclusive content · Recurring · Compounds over time</div>
     </div>
 
     <div class="product-card">
       <div class="product-name">Whitepapers</div>
-      <div class="product-price">$20</div>
+      <div class="product-price" data-dkk="138 kr" data-usd="$20">138 kr</div>
       <div class="product-price-sub">per download</div>
       <div class="product-detail">Low-ticket · High volume · Entry point to the ecosystem</div>
     </div>
@@ -147,14 +159,14 @@
         <div class="stage-label">Stage 1</div>
         <div class="stage-title">Year One</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-usd">~$104,000</div>
-        <div class="stage-total-dkk">~718.000 kr</div>
+        <div class="stage-total-primary" data-dkk="~718.000 kr" data-usd="~$104,000">~718.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$104,000" data-usd="~718.000 kr">~$104,000</div>
         <div class="stage-rows">
-          <div class="stage-row"><span class="stage-row-name">Cohort (2 rounds)</span><span class="stage-row-val">$50,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (8x) + 12-session (2x)</span><span class="stage-row-val">$17,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Video Course (~20 sales)</span><span class="stage-row-val">$20,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Membership (50 members)</span><span class="stage-row-val">90.000 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$4,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Cohort (2 rounds)</span><span class="stage-row-val" data-dkk="345.000 kr" data-usd="$50,000">345.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (8x) + 12-session (2x)</span><span class="stage-row-val" data-dkk="117.300 kr" data-usd="$17,000">117.300 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~20 sales)</span><span class="stage-row-val" data-dkk="138.000 kr" data-usd="$20,000">138.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (50 members)</span><span class="stage-row-val" data-dkk="90.000 kr" data-usd="$13,000">90.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="27.600 kr" data-usd="$4,000">27.600 kr</span></div>
         </div>
       </div>
 
@@ -162,14 +174,14 @@
         <div class="stage-label">Stage 2</div>
         <div class="stage-title">Years 2–3</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-usd">~$203,000</div>
-        <div class="stage-total-dkk">~1.400.000 kr</div>
+        <div class="stage-total-primary" data-dkk="~1.400.000 kr" data-usd="~$203,000">~1.400.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$203,000" data-usd="~1.400.000 kr">~$203,000</div>
         <div class="stage-rows">
-          <div class="stage-row"><span class="stage-row-name">Cohort (3 rounds)</span><span class="stage-row-val">$75,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (15x) + 12-session (5x)</span><span class="stage-row-val">$35,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Video Course (~50 sales)</span><span class="stage-row-val">$50,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Membership (100 members)</span><span class="stage-row-val">215.000 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$12,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Cohort (3 rounds)</span><span class="stage-row-val" data-dkk="517.500 kr" data-usd="$75,000">517.500 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (15x) + 12-session (5x)</span><span class="stage-row-val" data-dkk="241.500 kr" data-usd="$35,000">241.500 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~50 sales)</span><span class="stage-row-val" data-dkk="345.000 kr" data-usd="$50,000">345.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (100 members)</span><span class="stage-row-val" data-dkk="215.000 kr" data-usd="$31,000">215.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="82.800 kr" data-usd="$12,000">82.800 kr</span></div>
         </div>
       </div>
 
@@ -177,14 +189,14 @@
         <div class="stage-label">Stage 3</div>
         <div class="stage-title">Fully Running</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-usd">~$347,000</div>
-        <div class="stage-total-dkk">~2.400.000 kr</div>
+        <div class="stage-total-primary" data-dkk="~2.400.000 kr" data-usd="~$347,000">~2.400.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$347,000" data-usd="~2.400.000 kr">~$347,000</div>
         <div class="stage-rows">
-          <div class="stage-row"><span class="stage-row-name">Cohort (4 rounds)</span><span class="stage-row-val">$100,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (20x) + 12-session (10x)</span><span class="stage-row-val">$55,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Video Course (~100 sales)</span><span class="stage-row-val">$100,000</span></div>
-          <div class="stage-row"><span class="stage-row-name">Membership (200 members)</span><span class="stage-row-val">430.000 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$30,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Cohort (4 rounds)</span><span class="stage-row-val" data-dkk="690.000 kr" data-usd="$100,000">690.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (20x) + 12-session (10x)</span><span class="stage-row-val" data-dkk="379.500 kr" data-usd="$55,000">379.500 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~100 sales)</span><span class="stage-row-val" data-dkk="690.000 kr" data-usd="$100,000">690.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (200 members)</span><span class="stage-row-val" data-dkk="430.000 kr" data-usd="$62,000">430.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="207.000 kr" data-usd="$30,000">207.000 kr</span></div>
         </div>
       </div>
 
@@ -196,7 +208,7 @@
     <div class="section-label" style="margin-bottom:20px;">Membership — The Recurring Engine</div>
     <div class="membership-box">
       <div class="membership-left">
-        <div class="eyebrow">179 kr / month</div>
+        <div class="eyebrow" id="membership-eyebrow">179 kr / month</div>
         <h3>The number that compounds while you sleep.</h3>
         <p>Membership is the only product in the suite that grows passively. Every month a member stays is revenue you didn't have to sell again. At 200 members, it covers most of your fixed costs before you've done anything else.</p>
       </div>
@@ -210,10 +222,26 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>50</td><td>8.950 kr</td><td>107.400 kr</td></tr>
-            <tr><td>100</td><td>17.900 kr</td><td>214.800 kr</td></tr>
-            <tr><td>200</td><td>35.800 kr</td><td>429.600 kr</td></tr>
-            <tr><td>500</td><td>89.500 kr</td><td>1.074.000 kr</td></tr>
+            <tr>
+              <td>50</td>
+              <td data-dkk="8.950 kr" data-usd="$1,300">8.950 kr</td>
+              <td data-dkk="107.400 kr" data-usd="$15,600">107.400 kr</td>
+            </tr>
+            <tr>
+              <td>100</td>
+              <td data-dkk="17.900 kr" data-usd="$2,600">17.900 kr</td>
+              <td data-dkk="214.800 kr" data-usd="$31,200">214.800 kr</td>
+            </tr>
+            <tr>
+              <td>200</td>
+              <td data-dkk="35.800 kr" data-usd="$5,200">35.800 kr</td>
+              <td data-dkk="429.600 kr" data-usd="$62,400">429.600 kr</td>
+            </tr>
+            <tr>
+              <td>500</td>
+              <td data-dkk="89.500 kr" data-usd="$13,000">89.500 kr</td>
+              <td data-dkk="1.074.000 kr" data-usd="$156,000">1.074.000 kr</td>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -232,6 +260,21 @@
     </p>
     <p class="note">Exchange rate: $1 = 6.90 kr · Projections are directional, not guaranteed · Updated April 2026</p>
   </div>
+
+  <script>
+    let current = 'dkk';
+
+    function setCurrency(c) {
+      current = c;
+      document.getElementById('btn-dkk').classList.toggle('active', c === 'dkk');
+      document.getElementById('btn-usd').classList.toggle('active', c === 'usd');
+      document.getElementById('membership-eyebrow').textContent = c === 'dkk' ? '179 kr / month' : '$26 / month';
+
+      document.querySelectorAll('[data-dkk][data-usd]').forEach(el => {
+        el.textContent = el.dataset[c];
+      });
+    }
+  </script>
 
 </body>
 </html>
