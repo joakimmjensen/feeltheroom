@@ -56,7 +56,11 @@
     .stage-title { font-family: var(--font-brand); font-size: 20px; font-style: italic; color: var(--text); margin-bottom: 28px; }
     .stage-total-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 6px; }
     .stage-total-primary { font-family: var(--font-brand); font-size: 40px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 4px; }
-    .stage-total-secondary { font-size: 14px; color: var(--text2); margin-bottom: 28px; font-family: var(--font-brand); font-style: italic; }
+    .stage-total-secondary { font-size: 14px; color: var(--text2); font-family: var(--font-brand); font-style: italic; margin-bottom: 8px; }
+    .stage-monthly { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); margin-bottom: 24px; }
+    .stage-monthly span { color: var(--text); }
+    .stage.highlight .stage-monthly { color: rgba(255,255,255,0.4); }
+    .stage.highlight .stage-monthly span { color: rgba(255,255,255,0.75); }
 
     .stage-rows { border-top: 0.5px solid var(--border); padding-top: 20px; display: flex; flex-direction: column; }
     .stage-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
@@ -119,10 +123,10 @@
 
     <div class="product-card">
       <div class="product-name">1:1 Coaching</div>
-      <div class="product-price" data-dkk="10.350 kr" data-usd="$1,500">10.350 kr</div>
+      <div class="product-price" data-dkk="13.800 kr" data-usd="$2,000">13.800 kr</div>
       <div class="product-price-sub">6-session package</div>
       <div class="product-detail" style="margin-bottom:12px;">Deep personal work · 60 min/session</div>
-      <div class="product-price" style="font-size:22px;" data-dkk="17.250 kr" data-usd="$2,500">17.250 kr</div>
+      <div class="product-price" style="font-size:22px;" data-dkk="24.150 kr" data-usd="$3,500">24.150 kr</div>
       <div class="product-price-sub">12-session package</div>
       <div class="product-detail">Extended engagement · Full transformation arc</div>
     </div>
@@ -159,11 +163,12 @@
         <div class="stage-label">Stage 1</div>
         <div class="stage-title">Year One</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-primary" data-dkk="~718.000 kr" data-usd="~$104,000">~718.000 kr</div>
-        <div class="stage-total-secondary" data-dkk="~$104,000" data-usd="~718.000 kr">~$104,000</div>
+        <div class="stage-total-primary" data-dkk="~759.000 kr" data-usd="~$110,000">~759.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$110,000" data-usd="~759.000 kr">~$110,000</div>
+        <div class="stage-monthly" data-dkk="≈ <span>63.250 kr</span> / month" data-usd="≈ <span>$9.200</span> / month">≈ <span>63.250 kr</span> / month</div>
         <div class="stage-rows">
           <div class="stage-row"><span class="stage-row-name">Cohort (2 rounds)</span><span class="stage-row-val" data-dkk="345.000 kr" data-usd="$50,000">345.000 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (8x) + 12-session (2x)</span><span class="stage-row-val" data-dkk="117.300 kr" data-usd="$17,000">117.300 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (8x) + 12-session (2x)</span><span class="stage-row-val" data-dkk="158.700 kr" data-usd="$23,000">158.700 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Video Course (~20 sales)</span><span class="stage-row-val" data-dkk="138.000 kr" data-usd="$20,000">138.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Membership (50 members)</span><span class="stage-row-val" data-dkk="90.000 kr" data-usd="$13,000">90.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="27.600 kr" data-usd="$4,000">27.600 kr</span></div>
@@ -174,11 +179,12 @@
         <div class="stage-label">Stage 2</div>
         <div class="stage-title">Years 2–3</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-primary" data-dkk="~1.400.000 kr" data-usd="~$203,000">~1.400.000 kr</div>
-        <div class="stage-total-secondary" data-dkk="~$203,000" data-usd="~1.400.000 kr">~$203,000</div>
+        <div class="stage-total-primary" data-dkk="~1.490.000 kr" data-usd="~$215,000">~1.490.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$215,000" data-usd="~1.490.000 kr">~$215,000</div>
+        <div class="stage-monthly" data-dkk="≈ <span>124.000 kr</span> / month" data-usd="≈ <span>$17.900</span> / month">≈ <span>124.000 kr</span> / month</div>
         <div class="stage-rows">
           <div class="stage-row"><span class="stage-row-name">Cohort (3 rounds)</span><span class="stage-row-val" data-dkk="517.500 kr" data-usd="$75,000">517.500 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (15x) + 12-session (5x)</span><span class="stage-row-val" data-dkk="241.500 kr" data-usd="$35,000">241.500 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (15x) + 12-session (5x)</span><span class="stage-row-val" data-dkk="327.750 kr" data-usd="$47,500">327.750 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Video Course (~50 sales)</span><span class="stage-row-val" data-dkk="345.000 kr" data-usd="$50,000">345.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Membership (100 members)</span><span class="stage-row-val" data-dkk="215.000 kr" data-usd="$31,000">215.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="82.800 kr" data-usd="$12,000">82.800 kr</span></div>
@@ -189,11 +195,12 @@
         <div class="stage-label">Stage 3</div>
         <div class="stage-title">Fully Running</div>
         <div class="stage-total-label">Annual Revenue</div>
-        <div class="stage-total-primary" data-dkk="~2.400.000 kr" data-usd="~$347,000">~2.400.000 kr</div>
-        <div class="stage-total-secondary" data-dkk="~$347,000" data-usd="~2.400.000 kr">~$347,000</div>
+        <div class="stage-total-primary" data-dkk="~2.535.000 kr" data-usd="~$367,000">~2.535.000 kr</div>
+        <div class="stage-total-secondary" data-dkk="~$367,000" data-usd="~2.535.000 kr">~$367,000</div>
+        <div class="stage-monthly" data-dkk="≈ <span>211.000 kr</span> / month" data-usd="≈ <span>$30.600</span> / month">≈ <span>211.000 kr</span> / month</div>
         <div class="stage-rows">
           <div class="stage-row"><span class="stage-row-name">Cohort (4 rounds)</span><span class="stage-row-val" data-dkk="690.000 kr" data-usd="$100,000">690.000 kr</span></div>
-          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (20x) + 12-session (10x)</span><span class="stage-row-val" data-dkk="379.500 kr" data-usd="$55,000">379.500 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 — 6-session (20x) + 12-session (10x)</span><span class="stage-row-val" data-dkk="517.500 kr" data-usd="$75,000">517.500 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Video Course (~100 sales)</span><span class="stage-row-val" data-dkk="690.000 kr" data-usd="$100,000">690.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Membership (200 members)</span><span class="stage-row-val" data-dkk="430.000 kr" data-usd="$62,000">430.000 kr</span></div>
           <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val" data-dkk="207.000 kr" data-usd="$30,000">207.000 kr</span></div>
@@ -271,7 +278,8 @@
       document.getElementById('membership-eyebrow').textContent = c === 'dkk' ? '179 kr / month' : '$26 / month';
 
       document.querySelectorAll('[data-dkk][data-usd]').forEach(el => {
-        el.textContent = el.dataset[c];
+        const val = el.dataset[c];
+        if (val.includes('<')) { el.innerHTML = val; } else { el.textContent = val; }
       });
     }
   </script>
