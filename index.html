@@ -162,12 +162,16 @@
             var tagline = document.getElementById('hero-tagline');
             if (!logo || !tagline) return;
             var logoW = logo.getBoundingClientRect().width;
-            if (logoW === 0) return;
-            tagline.style.letterSpacing = '0';
+            if (logoW === 0) { setTimeout(matchTaglineWidth, 50); return; }
+            tagline.style.letterSpacing = '0px';
             var textW = tagline.getBoundingClientRect().width;
             var chars = tagline.textContent.trim().length - 1;
             tagline.style.letterSpacing = ((logoW - textW) / chars) + 'px';
           }
+          matchTaglineWidth();
+          window.addEventListener('load', matchTaglineWidth);
+          setTimeout(matchTaglineWidth, 100);
+          setTimeout(matchTaglineWidth, 500);
           window.addEventListener('resize', matchTaglineWidth);
         </script>
         <div style="margin-bottom:32px;">
