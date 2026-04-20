@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FTR — Revenue Vision</title>
+  <style>
+    :root {
+      --bg: #f6ede0;
+      --bg2: #f0e8d1;
+      --accent: #ff0800;
+      --text: #1a1a1a;
+      --text2: #5a4a3a;
+      --border: rgba(0,0,0,0.08);
+      --font-brand: Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; padding: 64px 48px; max-width: 1100px; margin: 0 auto; }
+
+    .header { margin-bottom: 64px; }
+    .header-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .header-title { font-family: var(--font-brand); font-size: 42px; font-weight: 400; font-style: italic; color: var(--text); line-height: 1.15; margin-bottom: 12px; }
+    .header-sub { font-size: 15px; color: var(--text2); line-height: 1.6; }
+
+    /* PRODUCTS */
+    .section-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 20px; }
+
+    .products-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; margin-bottom: 64px; }
+    .product-card { background: var(--bg2); border: 0.5px solid var(--border); padding: 24px 20px 28px; }
+    .product-name { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 16px; }
+    .product-price { font-family: var(--font-brand); font-size: 28px; color: var(--accent); font-style: italic; line-height: 1.1; margin-bottom: 4px; }
+    .product-price-sub { font-size: 12px; color: var(--text2); }
+    .product-detail { font-size: 12px; color: var(--text2); margin-top: 14px; line-height: 1.5; border-top: 0.5px solid var(--border); padding-top: 14px; }
+
+    /* PROJECTIONS */
+    .projections { margin-bottom: 64px; }
+    .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .stage { background: var(--bg2); border: 0.5px solid var(--border); padding: 32px 28px; position: relative; overflow: hidden; }
+    .stage.highlight { background: var(--text); }
+    .stage.highlight .stage-label { color: rgba(255,255,255,0.5); }
+    .stage.highlight .stage-title { color: #fff; }
+    .stage.highlight .stage-total-label { color: rgba(255,255,255,0.5); }
+    .stage.highlight .stage-total-usd { color: var(--accent); }
+    .stage.highlight .stage-total-dkk { color: rgba(255,255,255,0.7); }
+    .stage.highlight .stage-rows { border-top-color: rgba(255,255,255,0.1); }
+    .stage.highlight .stage-row-name { color: rgba(255,255,255,0.5); }
+    .stage.highlight .stage-row-val { color: rgba(255,255,255,0.85); }
+    .stage.highlight .stage-row { border-bottom-color: rgba(255,255,255,0.08); }
+
+    .stage-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--text2); margin-bottom: 6px; }
+    .stage-title { font-family: var(--font-brand); font-size: 20px; font-style: italic; color: var(--text); margin-bottom: 28px; }
+    .stage-total-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 6px; }
+    .stage-total-usd { font-family: var(--font-brand); font-size: 40px; font-style: italic; color: var(--accent); line-height: 1; margin-bottom: 4px; }
+    .stage-total-dkk { font-size: 16px; color: var(--text2); margin-bottom: 28px; font-family: var(--font-brand); font-style: italic; }
+
+    .stage-rows { border-top: 0.5px solid var(--border); padding-top: 20px; display: flex; flex-direction: column; gap: 0; }
+    .stage-row { display: flex; justify-content: space-between; align-items: baseline; padding: 8px 0; border-bottom: 0.5px solid var(--border); }
+    .stage-row:last-child { border-bottom: none; }
+    .stage-row-name { font-size: 11px; color: var(--text2); }
+    .stage-row-val { font-size: 12px; font-weight: 600; color: var(--text); text-align: right; }
+
+    /* MEMBERSHIP HIGHLIGHT */
+    .membership-box { background: var(--bg2); border: 0.5px solid var(--border); padding: 32px; margin-bottom: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .membership-left .eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 10px; }
+    .membership-left h3 { font-family: var(--font-brand); font-size: 26px; font-style: italic; margin-bottom: 10px; }
+    .membership-left p { font-size: 13px; color: var(--text2); line-height: 1.6; }
+    .membership-table { width: 100%; border-collapse: collapse; }
+    .membership-table th { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); text-align: left; padding: 0 0 10px; border-bottom: 0.5px solid var(--border); }
+    .membership-table th:not(:first-child) { text-align: right; }
+    .membership-table td { font-size: 13px; padding: 10px 0; border-bottom: 0.5px solid var(--border); color: var(--text2); }
+    .membership-table td:not(:first-child) { text-align: right; font-weight: 600; color: var(--text); }
+    .membership-table tr:last-child td { border-bottom: none; }
+
+    /* MANIFESTO */
+    .manifesto { border-top: 0.5px solid var(--border); padding-top: 48px; }
+    .manifesto-text { font-family: var(--font-brand); font-size: 22px; font-style: italic; color: var(--text); line-height: 1.7; max-width: 680px; }
+    .manifesto-text span { color: var(--accent); }
+
+    .note { font-size: 11px; color: var(--text2); margin-top: 32px; }
+
+    @media (max-width: 768px) {
+      body { padding: 40px 24px; }
+      .products-grid { grid-template-columns: 1fr 1fr; }
+      .stages { grid-template-columns: 1fr; }
+      .membership-box { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="header-eyebrow">Feel the Room — Business Vision</div>
+    <h1 class="header-title">What this becomes.</h1>
+    <p class="header-sub">A full-stack leadership brand. Five revenue streams. Built on real transformation.</p>
+  </div>
+
+  <!-- PRODUCTS -->
+  <div class="section-label">The Product Suite</div>
+  <div class="products-grid">
+
+    <div class="product-card">
+      <div class="product-name">Cohort Program</div>
+      <div class="product-price">$2,500</div>
+      <div class="product-price-sub">per participant</div>
+      <div class="product-detail">3-month format · 6 sessions · 10 participants · 2–4 rounds/year</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-name">1:1 Coaching</div>
+      <div class="product-price">$1,500</div>
+      <div class="product-price-sub">6-session package</div>
+      <div class="product-detail">Deep personal work · 60 min/session · 10–30 packages/year</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-name">Video Course</div>
+      <div class="product-price">$995</div>
+      <div class="product-price-sub">one-time</div>
+      <div class="product-detail">Module-based · Self-paced · Passive income · Scales without you</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-name">Membership</div>
+      <div class="product-price">179 kr</div>
+      <div class="product-price-sub">per month</div>
+      <div class="product-detail">Paid community · Exclusive content · Recurring · Compounds over time</div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-name">Whitepapers</div>
+      <div class="product-price">$20</div>
+      <div class="product-price-sub">per download</div>
+      <div class="product-detail">Low-ticket · High volume · Entry point to the ecosystem</div>
+    </div>
+
+  </div>
+
+  <!-- PROJECTIONS -->
+  <div class="projections">
+    <div class="section-label" style="margin-bottom:20px;">Revenue Projections</div>
+    <div class="stages">
+
+      <div class="stage">
+        <div class="stage-label">Stage 1</div>
+        <div class="stage-title">Year One</div>
+        <div class="stage-total-label">Annual Revenue</div>
+        <div class="stage-total-usd">~$89,000</div>
+        <div class="stage-total-dkk">~615.000 kr</div>
+        <div class="stage-rows">
+          <div class="stage-row"><span class="stage-row-name">Cohort (2 rounds)</span><span class="stage-row-val">$50,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 (10 packages)</span><span class="stage-row-val">$15,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~20 sales)</span><span class="stage-row-val">$20,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (50 members)</span><span class="stage-row-val">90.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$4,000</span></div>
+        </div>
+      </div>
+
+      <div class="stage">
+        <div class="stage-label">Stage 2</div>
+        <div class="stage-title">Years 2–3</div>
+        <div class="stage-total-label">Annual Revenue</div>
+        <div class="stage-total-usd">~$163,000</div>
+        <div class="stage-total-dkk">~1.125.000 kr</div>
+        <div class="stage-rows">
+          <div class="stage-row"><span class="stage-row-name">Cohort (3 rounds)</span><span class="stage-row-val">$75,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 (20 packages)</span><span class="stage-row-val">$30,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~50 sales)</span><span class="stage-row-val">$50,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (100 members)</span><span class="stage-row-val">215.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$12,000</span></div>
+        </div>
+      </div>
+
+      <div class="stage highlight">
+        <div class="stage-label">Stage 3</div>
+        <div class="stage-title">Fully Running</div>
+        <div class="stage-total-label">Annual Revenue</div>
+        <div class="stage-total-usd">~$357,000</div>
+        <div class="stage-total-dkk">~2.460.000 kr</div>
+        <div class="stage-rows">
+          <div class="stage-row"><span class="stage-row-name">Cohort (4 rounds)</span><span class="stage-row-val">$100,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">1:1 (30 packages)</span><span class="stage-row-val">$45,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Video Course (~100 sales)</span><span class="stage-row-val">$100,000</span></div>
+          <div class="stage-row"><span class="stage-row-name">Membership (200 members)</span><span class="stage-row-val">430.000 kr</span></div>
+          <div class="stage-row"><span class="stage-row-name">Whitepapers</span><span class="stage-row-val">$30,000</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- MEMBERSHIP -->
+  <div style="margin-top:48px;">
+    <div class="section-label" style="margin-bottom:20px;">Membership — The Recurring Engine</div>
+    <div class="membership-box">
+      <div class="membership-left">
+        <div class="eyebrow">179 kr / month</div>
+        <h3>The number that compounds while you sleep.</h3>
+        <p>Membership is the only product in the suite that grows passively. Every month a member stays is revenue you didn't have to sell again. At 200 members, it covers most of your fixed costs before you've done anything else.</p>
+      </div>
+      <div>
+        <table class="membership-table">
+          <thead>
+            <tr>
+              <th>Members</th>
+              <th>Per Month</th>
+              <th>Per Year</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>50</td><td>8.950 kr</td><td>107.400 kr</td></tr>
+            <tr><td>100</td><td>17.900 kr</td><td>214.800 kr</td></tr>
+            <tr><td>200</td><td>35.800 kr</td><td>429.600 kr</td></tr>
+            <tr><td>500</td><td>89.500 kr</td><td>1.074.000 kr</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANIFESTO -->
+  <div class="manifesto">
+    <p class="manifesto-text">
+      This is not a side project.<br>
+      This is a <span>full business</span> — built on one belief:<br>
+      that the human side of leadership<br>
+      is the greatest competitive advantage<br>
+      any organization has.<br><br>
+      <span>Lead with intention.</span>
+    </p>
+    <p class="note">Exchange rate: $1 = 6.90 kr · Projections are directional, not guaranteed · Updated April 2026</p>
+  </div>
+
+</body>
+</html>
