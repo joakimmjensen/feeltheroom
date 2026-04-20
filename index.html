@@ -154,26 +154,8 @@
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:64px; align-items:center;">
       <!-- LEFT -->
       <div>
-        <img id="hero-logo" src="long%20red%20w%3Ao.svg" alt="Feel the Room" style="height:64px; width:auto; margin-bottom:10px; display:block;" onload="matchTaglineWidth()">
-        <div id="hero-tagline" style="font-size:18px; color:var(--text2); text-transform:uppercase; font-weight:400; margin-bottom:28px; font-family:Georgia,serif; font-style:italic; display:block;">Lead with Intention.</div>
-        <script>
-          function matchTaglineWidth() {
-            var logo = document.getElementById('hero-logo');
-            var tagline = document.getElementById('hero-tagline');
-            if (!logo || !tagline) return;
-            var logoW = logo.getBoundingClientRect().width;
-            if (logoW === 0) { setTimeout(matchTaglineWidth, 50); return; }
-            tagline.style.letterSpacing = '0px';
-            var textW = tagline.getBoundingClientRect().width;
-            var chars = tagline.textContent.trim().length - 1;
-            tagline.style.letterSpacing = ((logoW - textW) / chars) + 'px';
-          }
-          matchTaglineWidth();
-          window.addEventListener('load', matchTaglineWidth);
-          setTimeout(matchTaglineWidth, 100);
-          setTimeout(matchTaglineWidth, 500);
-          window.addEventListener('resize', matchTaglineWidth);
-        </script>
+        <img src="long%20red%20w%3Ao.svg" alt="Feel the Room" style="height:64px; width:371px; margin-bottom:10px; display:block;">
+        <div style="width:371px; font-size:18px; color:var(--text2); text-transform:uppercase; font-weight:400; margin-bottom:28px; font-family:Georgia,serif; font-style:italic; display:flex; justify-content:space-between; letter-spacing:normal;"><span>L</span><span>E</span><span>A</span><span>D</span><span style="width:12px"></span><span>W</span><span>I</span><span>T</span><span>H</span><span style="width:12px"></span><span>I</span><span>N</span><span>T</span><span>E</span><span>N</span><span>T</span><span>I</span><span>O</span><span>N</span><span>.</span></div>
         <div style="margin-bottom:32px;">
           <p style="font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:16px;">I help sales and commercial leaders build a sustainable performance culture — starting with the whole person.</p>
           <p style="font-size:16px; color:var(--text2); line-height:1.8; margin-bottom:16px;">That means getting intentional about your own energy, understanding the people around you, and building a team culture grounded in shared values.</p>
