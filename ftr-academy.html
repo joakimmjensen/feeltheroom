@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FTR Academy — Private</title>
+  <style>
+    :root {
+      --bg: #f6ede0; --bg2: #f0e8d1; --accent: #ff0800;
+      --text: #1a1a1a; --text2: #5a4a3a; --border: rgba(0,0,0,0.08);
+      --green: #2d7a4f; --font-brand: Georgia, serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; min-height: 100vh; }
+
+    /* TOP BAR */
+    .topbar { background: var(--text); padding: 12px 48px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+    .topbar-brand { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); }
+    .topbar-progress { display: flex; align-items: center; gap: 12px; }
+    .topbar-bar { width: 160px; height: 3px; background: rgba(255,255,255,0.15); border-radius: 3px; }
+    .topbar-fill { height: 100%; background: var(--accent); border-radius: 3px; transition: width 0.4s ease; width: 0%; }
+    .topbar-label { font-size: 11px; color: rgba(255,255,255,0.5); white-space: nowrap; }
+
+    /* HEADER */
+    .academy-header { padding: 64px 48px 48px; max-width: 760px; }
+    .header-eyebrow { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 12px; }
+    .header-title { font-family: var(--font-brand); font-size: 52px; font-weight: 400; font-style: italic; line-height: 1.1; margin-bottom: 16px; }
+    .header-sub { font-size: 16px; color: var(--text2); line-height: 1.7; }
+
+    /* MODULE TABS */
+    .module-tabs { padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
+    .module-tab { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px 20px; cursor: pointer; text-align: left; transition: all 0.15s; position: relative; }
+    .module-tab:hover:not(.active) { border-color: rgba(255,8,0,0.3); }
+    .module-tab.active { background: var(--text); border-color: var(--text); }
+    .tab-num { font-size: 32px; font-family: var(--font-brand); font-style: italic; color: var(--accent); display: block; line-height: 1; margin-bottom: 10px; }
+    .tab-title { font-size: 13px; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px; }
+    .tab-desc { font-size: 11px; color: var(--text2); display: block; margin-bottom: 14px; }
+    .module-tab.active .tab-title { color: #fff; }
+    .module-tab.active .tab-desc { color: rgba(255,255,255,0.45); }
+    .tab-mini-bar { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
+    .module-tab.active .tab-mini-bar { background: rgba(255,255,255,0.15); }
+    .tab-mini-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s; width: 0%; }
+
+    /* CONTENT */
+    .module-content { padding: 0 48px 80px; display: none; }
+    .module-content.active { display: block; }
+    .module-intro { font-size: 15px; color: var(--text2); line-height: 1.75; max-width: 680px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 0.5px solid var(--border); }
+
+    /* CHAPTERS */
+    .chapter { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s; }
+    .chapter.completed { border-color: var(--green); }
+    .chapter-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; }
+    .chapter-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); min-width: 64px; }
+    .chapter-title { flex: 1; font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .chapter-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 100px; background: var(--bg); color: var(--text2); flex-shrink: 0; display: none; }
+    .chapter.completed .chapter-badge { display: block; background: var(--green); color: #fff; }
+    .chapter-arrow { font-size: 18px; color: var(--text2); transition: transform 0.2s; flex-shrink: 0; line-height: 1; }
+    .chapter.open .chapter-arrow { transform: rotate(180deg); }
+
+    .chapter-body { display: none; padding: 0 24px 28px; }
+    .chapter.open .chapter-body { display: block; }
+    .chapter-intro { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 24px; padding-top: 4px; }
+
+    .insights { background: var(--bg); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+    .insights-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 14px; }
+    .insights ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .insights li { font-size: 13px; color: var(--text); line-height: 1.55; padding-left: 18px; position: relative; }
+    .insights li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 2px; }
+
+    .video-section { margin-bottom: 24px; }
+    .video-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 8px; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; background: #000; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
+
+    .action { background: var(--text); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
+    .action-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 8px; }
+    .action p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; }
+
+    .btn-complete { border: 1.5px solid var(--border); background: none; cursor: pointer; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); padding: 10px 20px; border-radius: 100px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-complete:hover { border-color: var(--green); color: var(--green); }
+    .chapter.completed .btn-complete { border-color: var(--green); color: var(--green); background: rgba(45,122,79,0.08); }
+
+    @media (max-width: 768px) {
+      .topbar { padding: 12px 24px; }
+      .academy-header { padding: 40px 24px 32px; }
+      .academy-header .header-title { font-size: 36px; }
+      .module-tabs { padding: 0 24px; grid-template-columns: 1fr 1fr; }
+      .module-content { padding: 0 24px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-brand">FTR Academy — Private</div>
+    <div class="topbar-progress">
+      <div class="topbar-bar"><div class="topbar-fill" id="topbar-fill"></div></div>
+      <div class="topbar-label" id="topbar-label">0 / 20 completed</div>
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="academy-header">
+    <div class="header-eyebrow">Your personal curriculum</div>
+    <h1 class="header-title">Build the business.<br>Own the craft.</h1>
+    <p class="header-sub">Four modules. Everything you need to launch your cohort program, run transformational 1:1 engagements, create a video course, and build a paid community that grows while you sleep.</p>
+  </div>
+
+  <!-- MODULE TABS -->
+  <div class="module-tabs">
+    <div class="module-tab active" onclick="showModule(0)" id="tab-0">
+      <span class="tab-num">01</span>
+      <span class="tab-title">Cohort Mastery</span>
+      <span class="tab-desc">Design · Run · Launch</span>
+      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-0"></div></div>
+    </div>
+    <div class="module-tab" onclick="showModule(1)" id="tab-1">
+      <span class="tab-num">02</span>
+      <span class="tab-title">1:1 Coaching Programs</span>
+      <span class="tab-desc">Structure · Rhythm · Results</span>
+      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-1"></div></div>
+    </div>
+    <div class="module-tab" onclick="showModule(2)" id="tab-2">
+      <span class="tab-num">03</span>
+      <span class="tab-title">Video On-Demand</span>
+      <span class="tab-desc">Record · Edit · Sell</span>
+      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-2"></div></div>
+    </div>
+    <div class="module-tab" onclick="showModule(3)" id="tab-3">
+      <span class="tab-num">04</span>
+      <span class="tab-title">Paid Community</span>
+      <span class="tab-desc">0 → 500 members</span>
+      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-3"></div></div>
+    </div>
+  </div>
+
+  <!-- ===================== MODULE 1: COHORT ===================== -->
+  <div class="module-content active" id="module-0">
+    <p class="module-intro">Running a cohort is fundamentally different from teaching a course. The content is not the product — the experience is. This module teaches you how to design a cohort that people talk about, run sessions that energize instead of drain, and build the community that makes completion rates hit 90%+.</p>
+
+    <!-- Chapter 1.1 -->
+    <div class="chapter" id="ch-0-0">
+      <div class="chapter-header" onclick="toggleChapter('ch-0-0')">
+        <span class="chapter-num">Chapter 1</span>
+        <span class="chapter-title">The cohort mindset — why it's not a course</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Self-paced courses have a 3–5% completion rate. Cohorts hit 90%+. The difference isn't content — it's commitment, community, and shared momentum. Before you build anything, you need to understand what makes a cohort work at a psychological level.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>People don't finish things alone. They finish things together. The cohort creates social accountability that no reminder email can replace.</li>
+            <li>Fixed start and end dates are a feature, not a limitation. They create urgency and shared identity — "we're in this together."</li>
+            <li>You are not teaching content. You are facilitating transformation. The shift in identity is the product.</li>
+            <li>Price high or don't bother. Low-priced cohorts attract low-commitment participants — and one disengaged person brings the energy down for everyone.</li>
+            <li>The peer group is often more valuable than the coach. Design for peer-to-peer learning, not just coach-to-participant.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write down in one sentence: what transformation does your participant go through from Day 1 to Day 90? That sentence is your cohort's north star — and your sales pitch.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-0-0')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 1.2 -->
+    <div class="chapter" id="ch-0-1">
+      <div class="chapter-header" onclick="toggleChapter('ch-0-1')">
+        <span class="chapter-num">Chapter 2</span>
+        <span class="chapter-title">Designing the 3-month arc</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The best cohorts have a clear emotional and learning arc. Month 1 creates disorientation and awareness. Month 2 drives insight and skill-building. Month 3 integrates and anchors. If you design 6 sessions without an arc, you have 6 workshops, not a cohort.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li><strong>Month 1 — Awareness:</strong> Open with a powerful self-assessment or diagnostic. The goal is to make the invisible visible. Participants should feel "I didn't know this about myself."</li>
+            <li><strong>Month 2 — Practice:</strong> Introduce the core frameworks and tools. Sessions should be practical and immediately applicable to real situations at work.</li>
+            <li><strong>Month 3 — Integration:</strong> Focus on habits, accountability, and what comes next. The final session should feel like a graduation — a clear before/after.</li>
+            <li>Use a "pre-work" document before Session 1 to prime participants. It increases engagement by 40% on average.</li>
+            <li>Leave the last 20 min of every session for peer breakouts. This is where the real learning happens.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Map your 6 sessions on a piece of paper. Label each one with: (1) what participants will understand that they didn't before, and (2) what they will be able to do. If you can't answer both for every session, you're not ready to run it yet.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-0-1')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 1.3 -->
+    <div class="chapter" id="ch-0-2">
+      <div class="chapter-header" onclick="toggleChapter('ch-0-2')">
+        <span class="chapter-num">Chapter 3</span>
+        <span class="chapter-title">Running live sessions — structure, energy, flow</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">A 90-minute session can feel like 20 minutes or like 4 hours — depending on how you run it. Great facilitators aren't just knowledgeable. They manage energy, create safety, and know when to shut up. Here's how to structure sessions that people look forward to.</p>
+        <div class="insights">
+          <div class="insights-label">90-min session structure</div>
+          <ul>
+            <li><strong>0–10 min — Check-in:</strong> One question to everyone. "What's one word for how you're showing up today?" Gets people present and connected.</li>
+            <li><strong>10–35 min — Teaching:</strong> One core concept. No more. Use a visual, a story, or a framework. If you're talking for 25 min straight, you're lecturing, not facilitating.</li>
+            <li><strong>35–60 min — Application:</strong> Breakout rooms (2–3 people). Give a specific prompt tied to the teaching. Debrief as a group.</li>
+            <li><strong>60–80 min — Hot seat or Q&A:</strong> One participant brings a real challenge. Coach them live. The group watches and learns from it.</li>
+            <li><strong>80–90 min — Close:</strong> Each participant states one commitment before the next session. Accountability starts here.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Build a template for your Session 1 using this structure. Write out the exact check-in question, the one concept you'll teach, the breakout prompt, and the closing commitment question. Practice running through it out loud — alone — before you go live.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-0-2')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 1.4 -->
+    <div class="chapter" id="ch-0-3">
+      <div class="chapter-header" onclick="toggleChapter('ch-0-3')">
+        <span class="chapter-num">Chapter 4</span>
+        <span class="chapter-title">Between-session momentum — community and homework</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Most of the learning happens between sessions — when participants try things, fail, reflect, and share. If your cohort only exists during the 90 minutes you're on Zoom together, you're leaving 90% of the value on the table.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Every session should end with a specific, small homework assignment. Not a reading. A doing. "Try this one conversation before we meet again."</li>
+            <li>A Slack or WhatsApp group is the cohort's nervous system. Seed it yourself — share a reflection, a question, or a resource 2x/week. Model the behavior you want.</li>
+            <li>Create a "win of the week" thread. Every Monday, participants share one thing that went well. It builds momentum and creates proof of impact.</li>
+            <li>Consider a mid-week optional 30-min "office hours" call — unstructured, low pressure. It's where the real breakthroughs happen.</li>
+            <li>Peer accountability pairs: pair participants at the start of the cohort. They check in weekly — 15 minutes each. It costs you nothing and dramatically increases retention.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Design your between-session infrastructure before Cohort 1 starts: pick your community platform (Slack, WhatsApp, or Circle), write 3 seed posts to kickstart discussion, and define the one homework format you'll use after every session.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-0-3')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 1.5 -->
+    <div class="chapter" id="ch-0-4">
+      <div class="chapter-header" onclick="toggleChapter('ch-0-4')">
+        <span class="chapter-num">Chapter 5</span>
+        <span class="chapter-title">Launching your first cohort — from waitlist to kickoff</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Your first cohort will not be perfect — and it doesn't need to be. It needs to be real. The fastest way to learn is to run it, collect feedback, and improve. Here's how to go from zero to 10 paying participants.</p>
+        <div class="insights">
+          <div class="insights-label">Launch sequence</div>
+          <ul>
+            <li><strong>6 weeks before:</strong> Announce publicly that you're building something. Share what problem it solves. No details yet. Collect interest.</li>
+            <li><strong>4 weeks before:</strong> Open applications or a waitlist. Make it feel exclusive — not everyone gets in. Discovery calls filter for commitment.</li>
+            <li><strong>2 weeks before:</strong> Close enrollment. Send the pre-work. Build anticipation with a short intro video or letter.</li>
+            <li><strong>Week before:</strong> Send a "you're in" email with logistics, Zoom link, and the check-in question for Session 1. Lower anxiety, build excitement.</li>
+            <li><strong>After Session 1:</strong> Ask for feedback immediately. One question: "What was most valuable, and what would you change?" This shapes the entire rest of the cohort.</li>
+          </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — Building in Public: Launching a Cohort-Based Course</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/RZC2ynFr0pw" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Set a launch date for FTR Cohort 1. Work backwards from that date and fill in the 6-week pre-launch calendar. Post the first public announcement on LinkedIn this week — even if everything isn't ready. Momentum starts with a public commitment.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-0-4')">✓ Mark as complete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODULE 2: 1:1 ===================== -->
+  <div class="module-content" id="module-1">
+    <p class="module-intro">A 1:1 coaching engagement is the highest-leverage product you have — and the most demanding. You're selling focused attention, trusted challenge, and a structured path to change over 6 or 12 months. This module teaches you how to design sessions that create breakthroughs, build a rhythm that sustains progress, and turn clients into advocates.</p>
+
+    <!-- Chapter 2.1 -->
+    <div class="chapter" id="ch-1-0">
+      <div class="chapter-header" onclick="toggleChapter('ch-1-0')">
+        <span class="chapter-num">Chapter 1</span>
+        <span class="chapter-title">Onboarding your client — the first call</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The first session sets the tone for the entire engagement. Done well, it builds trust, creates clarity, and makes the client feel that they made the right decision. Done poorly, it creates doubt that's hard to recover from. Here's how to run a first session that anchors the relationship.</p>
+        <div class="insights">
+          <div class="insights-label">First session structure (60 min)</div>
+          <ul>
+            <li><strong>0–10 min — Context:</strong> Why are they here? What made them say yes to this engagement? Let them tell the story. Don't interrupt.</li>
+            <li><strong>10–30 min — Point A:</strong> Where are they right now, really? What's working, what's not, and what do they not want to admit? Use open questions. Stay curious.</li>
+            <li><strong>30–50 min — Point B:</strong> What does success look like in 6 months? Be specific. Not "I want to be a better leader" — "My team's eNPS goes from 40 to 70, and I stop dreading Monday mornings."</li>
+            <li><strong>50–58 min — Contract:</strong> Agree on 2–3 focus themes for the engagement. These become the spine of every session.</li>
+            <li><strong>58–60 min — Housekeeping:</strong> Communication norms, rescheduling policy, what to prepare before each session.</li>
+          </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — First Coaching Session Structure for New Clients</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/AnRAwY4GD-4" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write out your first-session script. Not word for word — but the exact questions you'll use for each of the 5 parts above. Practice it once out loud before your first client call.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-1-0')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 2.2 -->
+    <div class="chapter" id="ch-1-1">
+      <div class="chapter-header" onclick="toggleChapter('ch-1-1')">
+        <span class="chapter-num">Chapter 2</span>
+        <span class="chapter-title">The 60-minute session framework</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Every session after the first follows a consistent rhythm. Consistency builds trust — the client knows what to expect and can prepare accordingly. The framework below is flexible enough to adapt, but structured enough to prevent sessions from wandering.</p>
+        <div class="insights">
+          <div class="insights-label">Recurring session structure (60 min)</div>
+          <ul>
+            <li><strong>0–5 min — Check-in:</strong> "What's your energy today? What's on your mind that we need to get out of the way before we start?"</li>
+            <li><strong>5–15 min — Accountability:</strong> What did they commit to last time? What happened? No judgment — pure curiosity. "What did you learn from that?"</li>
+            <li><strong>15–45 min — Core work:</strong> The main challenge, insight, or skill for today. This is where the coaching happens. Ask more than you tell.</li>
+            <li><strong>45–55 min — Synthesis:</strong> "What was the most important insight from today?" Let them say it — not you. Naming it cements it.</li>
+            <li><strong>55–60 min — Commitment:</strong> One specific action before the next session. Specific means: what, when, and how you'll know you did it.</li>
+          </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — PROVEN 7-Step Coaching Session Structure</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/GfMoyZQTvs4" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Create a one-page session prep template that your client fills out 24 hours before each call. Fields: (1) What I committed to last time, (2) What actually happened, (3) What I want to focus on today, (4) My energy level 1–10. This alone will double session quality.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-1-1')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 2.3 -->
+    <div class="chapter" id="ch-1-2">
+      <div class="chapter-header" onclick="toggleChapter('ch-1-2')">
+        <span class="chapter-num">Chapter 3</span>
+        <span class="chapter-title">Monthly rhythm — 6 vs. 12 months</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">One session per month sounds like very little — but it's enough when the client does the work between sessions. Your job is to create the conditions for that work to happen. Here's how the rhythm differs across a 6-month vs. 12-month engagement.</p>
+        <div class="insights">
+          <div class="insights-label">6-month engagement arc</div>
+          <ul>
+            <li><strong>Month 1:</strong> Discovery and diagnosis. Deep listening. Establish trust. Don't rush to solutions.</li>
+            <li><strong>Month 2–3:</strong> Identify the 1–2 patterns that are holding them back. This is the core work.</li>
+            <li><strong>Month 4–5:</strong> Behavioural experiments. They try new things. You debrief what happened.</li>
+            <li><strong>Month 6:</strong> Consolidation and forward planning. What have they learned? What do they want to keep working on? Plant the seed for renewal.</li>
+          </ul>
+        </div>
+        <div class="insights" style="margin-top:12px;">
+          <div class="insights-label">12-month engagement arc</div>
+          <ul>
+            <li><strong>Q1:</strong> Same as 6-month months 1–2. Discovery, trust, first patterns.</li>
+            <li><strong>Q2:</strong> Deeper work on identity and leadership style. More room to go slow.</li>
+            <li><strong>Q3:</strong> Integration into real high-stakes situations (promotions, difficult conversations, team crises).</li>
+            <li><strong>Q4:</strong> Legacy focus. What kind of leader do they want to be remembered as? How do they lead their team without you?</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Create a one-page "Engagement Map" for each client type (6-month and 12-month). List what you'll focus on each month. Share it with the client at the start of the engagement — it builds confidence that there's a plan, and gives you something to revisit when sessions drift.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-1-2')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 2.4 -->
+    <div class="chapter" id="ch-1-3">
+      <div class="chapter-header" onclick="toggleChapter('ch-1-3')">
+        <span class="chapter-num">Chapter 4</span>
+        <span class="chapter-title">Between-session accountability</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The session is the spark. The between-session period is where the fire either catches or dies. The best coaches don't disappear between calls — they stay present in small, low-effort ways that keep momentum alive.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>A brief voice note or message 2 weeks after a session ("How did that conversation go?") costs 60 seconds and creates disproportionate loyalty.</li>
+            <li>Share one relevant article, podcast, or idea per month. Not to teach — to signal that you're thinking about them between sessions.</li>
+            <li>If a client misses a commitment two sessions in a row, address it directly. "I've noticed we keep coming back to this. What do you think is getting in the way?" Ignoring it builds resentment on both sides.</li>
+            <li>Set boundaries early: define what emergency contact looks like and what it doesn't. Coaching is not therapy and is not 24/7 access.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write your between-session communication policy. How often will you check in? Via what channel? What's the response time expectation? Share this in your onboarding document so clients know what to expect.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-1-3')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 2.5 -->
+    <div class="chapter" id="ch-1-4">
+      <div class="chapter-header" onclick="toggleChapter('ch-1-4')">
+        <span class="chapter-num">Chapter 5</span>
+        <span class="chapter-title">Renewal, testimonials, and referrals</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The end of an engagement is the beginning of your next pipeline. If you've done your job well, the final session is a natural moment for renewal, a testimonial, and a referral. Don't wait until the last session to plant these seeds.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Bring up renewal at Session 5 (of 6), not Session 6. "We're approaching the end of our engagement — how are you thinking about continuing the work?" gives them time to decide without feeling pressured.</li>
+            <li>Ask for a testimonial at the moment of highest emotion — usually at the end of the final session when they're reflecting on the arc. Send a follow-up email with 3 guiding questions to make it easy to write.</li>
+            <li>Referrals: "Is there anyone in your network who you think could benefit from what we've done together?" Said once, at the right moment, generates more business than any marketing campaign.</li>
+            <li>Create a simple "alumni" touchpoint — a quarterly check-in or newsletter. It keeps the relationship alive without cost and positions you for future work.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write a testimonial request email you'll send after every completed engagement. Include 3 specific questions: (1) Where were you before we started? (2) What shifted during our work together? (3) What would you say to someone considering working with Joakim? Keep it under 200 words total.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-1-4')">✓ Mark as complete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODULE 3: VIDEO COURSE ===================== -->
+  <div class="module-content" id="module-2">
+    <p class="module-intro">A video course is the only product in your suite that scales infinitely without more of your time. Once it's built, it works while you sleep. But most people overcomplicate the build and underfocus on the sell. This module is about going from idea to live course as fast as possible — without sacrificing quality.</p>
+
+    <!-- Chapter 3.1 -->
+    <div class="chapter" id="ch-2-0">
+      <div class="chapter-header" onclick="toggleChapter('ch-2-0')">
+        <span class="chapter-num">Chapter 1</span>
+        <span class="chapter-title">Designing your course structure</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">A great course is not a brain dump. It's a curated path from Point A to Point B. Before you record a single video, you need to know exactly who the student is, where they start, and what they'll be able to do when they finish.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Start with the outcome, not the content. "After this course, the student will be able to..." — fill in that sentence and work backwards.</li>
+            <li>Rule of one: each module covers one idea. Each lesson delivers one insight. If you're covering three things in one video, you have three videos.</li>
+            <li>Ideal lesson length: 5–12 minutes. Shorter is almost always better. People pause and rewatch short videos. They abandon long ones.</li>
+            <li>Structure: 5–7 modules, 3–5 lessons per module. That's 15–35 lessons total — enough to feel comprehensive, short enough to feel achievable.</li>
+            <li>Add one practical exercise per module. Not optional homework — a required step that makes the learning real.</li>
+          </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — How to Create an Online Course (Beginner to Launch)</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/1PiuGCTP4PU" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Map your entire course on one page. Write the module names and 3 bullet points per module describing what the student will learn. Share it with 3 people in your target audience and ask: "Does this flow make sense? Is anything missing? What would make you not buy this?" Their answers reshape everything.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-2-0')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 3.2 -->
+    <div class="chapter" id="ch-2-1">
+      <div class="chapter-header" onclick="toggleChapter('ch-2-1')">
+        <span class="chapter-num">Chapter 2</span>
+        <span class="chapter-title">Equipment — what you actually need to start</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Most people wait too long because they think they need a studio. You don't. A $995 course doesn't need Hollywood production. It needs clear audio, decent light, and you showing up with confidence. Here's what actually matters.</p>
+        <div class="insights">
+          <div class="insights-label">The honest equipment hierarchy</div>
+          <ul>
+            <li><strong>#1 priority — Audio:</strong> Bad audio kills a course. Good video with bad audio = unwatchable. A lapel mic (DJI Mic or Røde Wireless GO) or a USB microphone (Blue Yeti) is all you need. Budget: DKK 500–2,000.</li>
+            <li><strong>#2 priority — Light:</strong> Film facing a window during daytime. That's free and often better than a ring light. If you want consistency, a key light on one side + fill on the other is enough.</li>
+            <li><strong>#3 priority — Camera:</strong> Your iPhone is fine. Seriously. iPhone 13+ in 4K, locked exposure, mounted on a tripod. Nobody will complain about the camera if your audio is good and your content is great.</li>
+            <li><strong>Background:</strong> Clean, uncluttered, slightly blurred. You are the subject. Bookshelves, plants, or a plain wall all work. Avoid virtual backgrounds.</li>
+            <li><strong>Screen recording:</strong> For slide-based lessons, use Loom or Screenflow. You don't need to be on camera for every lesson.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Record a 3-minute test video with what you have right now — phone, whatever mic you can find, available light. Watch it back critically. Identify the one thing that would most improve quality. Fix that one thing only. Don't buy anything else until you've shipped the course.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-2-1')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 3.3 -->
+    <div class="chapter" id="ch-2-2">
+      <div class="chapter-header" onclick="toggleChapter('ch-2-2')">
+        <span class="chapter-num">Chapter 3</span>
+        <span class="chapter-title">Recording and editing workflow</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The recording session is where most people lose momentum. They record one imperfect take, watch it back, hate it, and stop. Here's how to build a workflow that gets you from script to finished lesson without burning out.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Batch record. Don't record one lesson and stop. Set aside a full day and record 5–10 lessons. Momentum and performance peak after the first 20 minutes.</li>
+            <li>Talk to one person. Imagine a specific person you know who could benefit from this lesson. Talk to them. Energy and clarity come from specificity, not performance.</li>
+            <li>Don't read from a script. Use bullet points. Scripts make you sound robotic. Bullet points keep you natural while staying on track.</li>
+            <li>Edit for length, not perfection. Cut anything that doesn't move the lesson forward. A 12-minute raw recording should be 7 minutes edited. Every unnecessary minute loses a viewer.</li>
+            <li>Editing tools: iMovie (free, fine), DaVinci Resolve (free, professional), CapCut (fast, easy). Add captions — they increase completion rates by 40%.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Block one full day in your calendar for your first recording session. Before that day, write bullet-point outlines for your first 5 lessons. On the day: record all 5 without watching any of them back. Send them to an editor or use CapCut yourself. Ship before you feel ready.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-2-2')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 3.4 -->
+    <div class="chapter" id="ch-2-3">
+      <div class="chapter-header" onclick="toggleChapter('ch-2-3')">
+        <span class="chapter-num">Chapter 4</span>
+        <span class="chapter-title">Platform choice — where to host and sell</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">There are dozens of platforms. The right one is the one you'll actually use. Here's a practical comparison for your situation.</p>
+        <div class="insights">
+          <div class="insights-label">Platform comparison for FTR</div>
+          <ul>
+            <li><strong>Kajabi ($149/mnd):</strong> All-in-one — course, email, website, community, checkout. Best if you want everything under one roof. Steep learning curve but very powerful. Recommended if you're serious about scaling.</li>
+            <li><strong>Teachable ($39/mnd):</strong> Simpler, easier to start. Great for first courses. Less marketing automation than Kajabi. Good bridge while you figure out what you need.</li>
+            <li><strong>Podia ($39/mnd):</strong> Clean, simple, includes email marketing and digital downloads. Good middle ground.</li>
+            <li><strong>Gumroad (free + 10%):</strong> Fastest to start. No monthly fee. Great for validating demand before investing in a full platform.</li>
+            <li>For FTR at $995 price point: start with Gumroad or Teachable. Move to Kajabi when you have 20+ students and want to integrate cohorts and community.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Pick one platform and set it up this week. Don't spend more than 2 hours deciding — the platform is not the product. Upload your first module as a test. Run a checkout flow from a different device. Make sure someone can actually buy it before you launch.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-2-3')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 3.5 -->
+    <div class="chapter" id="ch-2-4">
+      <div class="chapter-header" onclick="toggleChapter('ch-2-4')">
+        <span class="chapter-num">Chapter 5</span>
+        <span class="chapter-title">Launching and selling — your first 20 students</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Build it and they will come — is a lie. The launch is a skill. Most course creators get 80% of the way through building and run out of energy before they sell. Here's how to launch without a big audience.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Sell before it's finished. Pre-sell with a "founding member" price (20–30% off) to your existing network. It validates demand and funds production.</li>
+            <li>LinkedIn is your launch channel. 5 posts over 2 weeks: (1) the problem, (2) your story, (3) what's inside, (4) who it's for, (5) the offer. That's a launch.</li>
+            <li>Email your list personally. Not a newsletter blast — individual emails to 20–30 people you think would benefit. Conversion is 10x higher than mass email.</li>
+            <li>The first 10 students are friends, followers, and warm contacts. The next 10 come from referrals and content. Don't expect strangers until you have social proof.</li>
+            <li>After launch: collect testimonials aggressively. Three great testimonials are worth more than any sales page copy.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write the LinkedIn post for Day 1 of your launch sequence — the one that talks about the problem your course solves. Don't mention the course yet. Just the problem. Post it this week and watch who engages. Those people are your first customers.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-2-4')">✓ Mark as complete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== MODULE 4: COMMUNITY ===================== -->
+  <div class="module-content" id="module-3">
+    <p class="module-intro">A paid community at 179 kr/month doesn't sound like much. At 200 members it's 430,000 kr/year of recurring revenue you didn't have to resell. But communities don't build themselves — they need design, a content engine, and a growth strategy. This module is your roadmap from 0 to 500.</p>
+
+    <!-- Chapter 4.1 -->
+    <div class="chapter" id="ch-3-0">
+      <div class="chapter-header" onclick="toggleChapter('ch-3-0')">
+        <span class="chapter-num">Chapter 1</span>
+        <span class="chapter-title">Designing your free vs. paid tiers</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">The free tier is your funnel. The paid tier is your product. The distinction needs to be clear — free members should constantly feel that there's something valuable they're not getting. Here's how to design both.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li><strong>Free tier:</strong> Community access, public discussions, selected content. Enough to demonstrate the value — not enough to be the value.</li>
+            <li><strong>Paid tier (179 kr/mnd):</strong> Exclusive content drops (1–2x/month), live Q&A sessions, behind-the-scenes access, direct line to Joakim, exclusive frameworks and tools.</li>
+            <li>The most powerful paid perk: access to you. Not unlimited access — structured access. Monthly group call, weekly async voice note, first dibs on cohort spots.</li>
+            <li>Don't make free too good. A common mistake is being so generous in free that paid membership doesn't feel necessary. Free = community. Paid = curation and access.</li>
+            <li>Create an upgrade moment: one piece of content per month that's clearly premium and behind the paid wall. The free member sees the title and knows what they're missing.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>List exactly 5 things free members get and exactly 5 things only paid members get. If the paid list isn't clearly more valuable, redesign it. The test: would you pay 179 kr/month for the paid perks yourself?</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-3-0')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 4.2 -->
+    <div class="chapter" id="ch-3-1">
+      <div class="chapter-header" onclick="toggleChapter('ch-3-1')">
+        <span class="chapter-num">Chapter 2</span>
+        <span class="chapter-title">Choosing your platform — Skool vs Circle vs Mighty</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Platform choice matters less than most people think — and more than they realize. The right platform is the one your audience will actually use. Here's an honest breakdown.</p>
+        <div class="insights">
+          <div class="insights-label">Platform comparison</div>
+          <ul>
+            <li><strong>Skool ($99/mnd):</strong> Gamified, discovery marketplace, combines community + course. Best for English-speaking audience and if you want organic discovery from the Skool marketplace. Clean, simple UX. Charges on top of Stripe fees.</li>
+            <li><strong>Circle ($49–89/mnd):</strong> Most flexible. Best events and live session tools. Great for larger communities. Higher learning curve. Best for European audiences.</li>
+            <li><strong>Mighty Networks ($33–99/mnd):</strong> Strong for courses + community. Native app available. Good for non-tech-savvy members.</li>
+            <li>For FTR at this stage: <strong>Skool or Circle</strong>. Skool if you want to grow through the platform's own marketplace. Circle if you want more control and a European-first feel.</li>
+            <li>Don't overthink it. Pick one and launch within 7 days. You can migrate later. Every day you wait is a day you could have had 5 paying members.</li>
+          </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — Best Community & Membership Platforms Compared</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/2JvsL4S8K5Q" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Sign up for a free trial of both Skool and Circle today. Spend 30 minutes in each. Pick the one that feels right for you to operate — not the one with the most features. Set up the basic structure (free channel, paid channel) and share the link with 5 people for feedback.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-3-1')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 4.3 -->
+    <div class="chapter" id="ch-3-2">
+      <div class="chapter-header" onclick="toggleChapter('ch-3-2')">
+        <span class="chapter-num">Chapter 3</span>
+        <span class="chapter-title">Content cadence — what to post and when</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">A community without content is a ghost town. A community with too much content is overwhelming. The sweet spot is a consistent, predictable rhythm that members can rely on — and that you can sustain without burning out.</p>
+        <div class="insights">
+          <div class="insights-label">Recommended weekly cadence</div>
+          <ul>
+            <li><strong>Monday:</strong> A question or prompt to start the week. "What's the one leadership challenge you're taking on this week?" Takes 2 minutes to post. Drives discussion all week.</li>
+            <li><strong>Wednesday:</strong> A short insight, framework, or reflection. 100–200 words or a voice note. Something you learned or observed this week.</li>
+            <li><strong>Friday:</strong> A win or reflection. Either share your own or highlight a member's. "This week [member name] did X — worth reading." Community recognition is the most powerful retention tool you have.</li>
+            <li><strong>Monthly (paid members):</strong> One piece of exclusive content — a framework, a deep-dive, or a tool they can use immediately. This is what they're paying 179 kr for.</li>
+            <li><strong>Monthly (all members):</strong> One live session — Q&A, hot seat, or guest conversation. Non-negotiable. Live sessions are the heart of any healthy community.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write your first 4 weeks of content in one sitting — 12 posts total (3/week). Schedule them. You're not a media company, but you need to show up consistently in the first 90 days to establish the community's culture. Front-load the effort so the community can eventually feed itself.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-3-2')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 4.4 -->
+    <div class="chapter" id="ch-3-3">
+      <div class="chapter-header" onclick="toggleChapter('ch-3-3')">
+        <span class="chapter-num">Chapter 4</span>
+        <span class="chapter-title">Growing from 0 to 100 to 500</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Growth to 500 happens in phases, and each phase requires a different strategy. What gets you to 50 members won't get you to 500. Understanding which phase you're in prevents you from using the wrong tools at the wrong time.</p>
+        <div class="insights">
+          <div class="insights-label">Growth phases</div>
+          <ul>
+            <li><strong>0–50 members (manual):</strong> Invite people personally. DM the 50 people in your network who fit the profile. Offer a founding member price. Do things that don't scale. Every early member is a future advocate.</li>
+            <li><strong>50–150 members (content-led):</strong> LinkedIn is your primary growth channel. Every post drives awareness. Every post ends with a soft mention of the community. Cohort alumni become your strongest recruiters.</li>
+            <li><strong>150–500 members (compounding):</strong> Member referrals + platform discovery (if on Skool). At this stage, add a referral incentive — one free month for every paid member they bring in.</li>
+            <li>The most important number is not members — it's active members. 200 engaged members is worth more than 500 inactive ones. Prune inactive free members quarterly. It keeps the energy high for everyone.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Write a list of the first 50 people you'll personally invite to the community. Include their name and one sentence about why they'd benefit. This list becomes your launch DM campaign. Set a goal: 20 founding paid members in the first 30 days.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-3-3')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Chapter 4.5 -->
+    <div class="chapter" id="ch-3-4">
+      <div class="chapter-header" onclick="toggleChapter('ch-3-4')">
+        <span class="chapter-num">Chapter 5</span>
+        <span class="chapter-title">Retention — keeping members for 12+ months</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Acquisition gets members in. Retention keeps the business alive. The average paid community has 30–40% annual churn. Great communities bring it below 15%. Here's what makes the difference.</p>
+        <div class="insights">
+          <div class="insights-label">Key insights</div>
+          <ul>
+            <li>Members cancel when they feel they're not getting value — not when the price feels high. Churn is a content and engagement problem, not a pricing problem.</li>
+            <li>The "at-risk" window is months 2–3. If a member hasn't engaged by month 3, they'll probably cancel. Identify them early and reach out personally: "Hey, haven't seen you around — how can I make this more useful for you?"</li>
+            <li>Annual membership option: offer 2 months free for annual payment (179 kr × 10 = 1,790 kr/year). It reduces churn dramatically and improves cashflow.</li>
+            <li>The best retention tool is progress. Members who achieve something tangible inside your community don't leave. Design for wins, not just content.</li>
+            <li>Track your Net Promoter Score quarterly. Ask: "How likely are you to recommend this community to a colleague?" The answer tells you everything about where you stand.</li>
+          </ul>
+        </div>
+        <div class="action">
+          <div class="action-label">Action step</div>
+          <p>Design a 90-day onboarding sequence for new paid members: what happens on Day 1, Day 7, Day 30, Day 60, and Day 90. Each touchpoint should either introduce them to a person, a piece of content, or an experience. A member who feels welcomed in the first 90 days stays for years.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-3-4')">✓ Mark as complete</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const TOTAL = 20;
+    let completed = new Set(JSON.parse(localStorage.getItem('ftr-academy-done') || '[]'));
+
+    function save() { localStorage.setItem('ftr-academy-done', JSON.stringify([...completed])); }
+
+    function updateProgress() {
+      const pct = (completed.size / TOTAL) * 100;
+      document.getElementById('topbar-fill').style.width = pct + '%';
+      document.getElementById('topbar-label').textContent = completed.size + ' / ' + TOTAL + ' completed';
+
+      // Per-module mini bars
+      [0,1,2,3].forEach(m => {
+        const ids = Array.from({length:5}, (_,i) => 'ch-'+m+'-'+i);
+        const done = ids.filter(id => completed.has(id)).length;
+        document.getElementById('mini-'+m).style.width = (done/5*100) + '%';
+      });
+    }
+
+    function markComplete(id) {
+      if (completed.has(id)) {
+        completed.delete(id);
+        document.getElementById(id).classList.remove('completed');
+      } else {
+        completed.add(id);
+        document.getElementById(id).classList.add('completed');
+      }
+      save(); updateProgress();
+    }
+
+    function toggleChapter(id) {
+      const el = document.getElementById(id);
+      el.classList.toggle('open');
+    }
+
+    function showModule(n) {
+      document.querySelectorAll('.module-tab').forEach((t,i) => t.classList.toggle('active', i===n));
+      document.querySelectorAll('.module-content').forEach((c,i) => c.classList.toggle('active', i===n));
+    }
+
+    // Init
+    completed.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.classList.add('completed');
+    });
+    updateProgress();
+  </script>
+
+</body>
+</html>
