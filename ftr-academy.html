@@ -28,64 +28,68 @@
     .header-sub { font-size: 16px; color: var(--text2); line-height: 1.7; }
 
     /* MODULE TABS */
-    .module-tabs { padding: 0 48px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 40px; }
-    .module-tab { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 14px; padding: 22px 20px; cursor: pointer; text-align: left; transition: all 0.15s; position: relative; }
-    .module-tab:hover:not(.active) { border-color: rgba(255,8,0,0.3); }
-    .module-tab.active { background: var(--text); border-color: var(--text); }
-    .tab-num { font-size: 32px; font-family: var(--font-brand); font-style: italic; color: var(--accent); display: block; line-height: 1; margin-bottom: 10px; }
-    .tab-title { font-size: 13px; font-weight: 700; color: var(--text); display: block; margin-bottom: 4px; }
-    .tab-desc { font-size: 11px; color: var(--text2); display: block; margin-bottom: 14px; }
-    .module-tab.active .tab-title { color: #fff; }
-    .module-tab.active .tab-desc { color: rgba(255,255,255,0.45); }
-    .tab-mini-bar { height: 2px; background: var(--border); border-radius: 2px; overflow: hidden; }
-    .module-tab.active .tab-mini-bar { background: rgba(255,255,255,0.15); }
-    .tab-mini-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s; width: 0%; }
+    .module-nav { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 0 48px 40px; }
+    .mod-tab { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 16px; cursor: pointer; transition: all 0.2s; }
+    .mod-tab.active { background: var(--text); border-color: var(--text); }
+    .mod-tab-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 6px; }
+    .mod-tab-title { font-size: 14px; font-weight: 600; color: var(--text); line-height: 1.3; }
+    .mod-tab.active .mod-tab-title { color: #fff; }
+    .mod-tab-bar { margin-top: 12px; height: 2px; background: rgba(0,0,0,0.1); border-radius: 2px; }
+    .mod-tab.active .mod-tab-bar { background: rgba(255,255,255,0.2); }
+    .mod-tab-fill { height: 100%; background: var(--accent); border-radius: 2px; transition: width 0.4s ease; }
 
-    /* CONTENT */
-    .module-content { padding: 0 48px 80px; display: none; }
-    .module-content.active { display: block; }
-    .module-intro { font-size: 15px; color: var(--text2); line-height: 1.75; max-width: 680px; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 0.5px solid var(--border); }
+    /* MODULE CONTENT */
+    .module-content { display: none; padding: 0 48px 80px; max-width: 820px; }
+    .module-content.visible { display: block; }
+    .module-intro { font-size: 16px; color: var(--text2); line-height: 1.75; margin-bottom: 32px; padding-bottom: 32px; border-bottom: 1.5px solid var(--border); }
 
     /* CHAPTERS */
-    .chapter { background: var(--bg2); border: 0.5px solid var(--border); border-radius: 14px; margin-bottom: 10px; overflow: hidden; transition: border-color 0.2s; }
-    .chapter.completed { border-color: var(--green); }
-    .chapter-header { display: flex; align-items: center; gap: 16px; padding: 20px 24px; cursor: pointer; user-select: none; }
-    .chapter-num { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); min-width: 64px; }
-    .chapter-title { flex: 1; font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
-    .chapter-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 3px 10px; border-radius: 100px; background: var(--bg); color: var(--text2); flex-shrink: 0; display: none; }
-    .chapter.completed .chapter-badge { display: block; background: var(--green); color: #fff; }
-    .chapter-arrow { font-size: 18px; color: var(--text2); transition: transform 0.2s; flex-shrink: 0; line-height: 1; }
+    .chapter { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; transition: border-color 0.2s; }
+    .chapter.done { border-color: var(--green); }
+    .chapter-header { padding: 20px 24px; cursor: pointer; display: flex; align-items: center; gap: 12px; }
+    .chapter-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); min-width: 64px; }
+    .chapter-title { font-size: 15px; font-weight: 600; flex: 1; }
+    .chapter-badge { font-size: 11px; font-weight: 700; color: var(--green); display: none; }
+    .chapter.done .chapter-badge { display: block; }
+    .chapter-arrow { font-size: 14px; color: var(--text2); transition: transform 0.2s; }
     .chapter.open .chapter-arrow { transform: rotate(180deg); }
 
-    .chapter-body { display: none; padding: 0 24px 28px; }
+    .chapter-body { display: none; padding: 0 24px 24px; border-top: 1.5px solid var(--border); }
     .chapter.open .chapter-body { display: block; }
-    .chapter-intro { font-size: 14px; color: var(--text2); line-height: 1.75; margin-bottom: 24px; padding-top: 4px; }
 
-    .insights { background: var(--bg); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
-    .insights-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 14px; }
+    .chapter-intro { font-size: 15px; color: var(--text2); line-height: 1.75; margin: 20px 0 20px; }
+
+    .insights { background: var(--bg); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .insights-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 14px; }
     .insights ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .insights li { font-size: 13px; color: var(--text); line-height: 1.55; padding-left: 18px; position: relative; }
-    .insights li::before { content: '→'; position: absolute; left: 0; color: var(--accent); font-size: 11px; top: 2px; }
+    .insights li { font-size: 14px; line-height: 1.65; color: var(--text); padding-left: 16px; position: relative; }
+    .insights li::before { content: "–"; position: absolute; left: 0; color: var(--accent); }
+    .insights li strong { color: var(--text); }
 
-    .video-section { margin-bottom: 24px; }
-    .video-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 8px; }
-    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; border-radius: 10px; overflow: hidden; background: #000; }
+    .action { background: var(--text); border-radius: 8px; padding: 20px; margin-bottom: 20px; }
+    .action-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 10px; }
+    .action p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.85); }
+
+    .video-section { margin-bottom: 16px; }
+    .video-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 10px; }
+    .video-wrap { position: relative; padding-bottom: 56.25%; border-radius: 8px; overflow: hidden; background: #000; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 
-    .action { background: var(--text); border-radius: 10px; padding: 20px 24px; margin-bottom: 24px; }
-    .action-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-bottom: 8px; }
-    .action p { font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.65; }
+    .btn-complete { background: transparent; border: 1.5px solid var(--green); color: var(--green); font-size: 13px; font-weight: 600; padding: 10px 20px; border-radius: 8px; cursor: pointer; transition: all 0.2s; }
+    .btn-complete:hover { background: var(--green); color: #fff; }
+    .chapter.done .btn-complete { background: var(--green); color: #fff; }
 
-    .btn-complete { border: 1.5px solid var(--border); background: none; cursor: pointer; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text2); padding: 10px 20px; border-radius: 100px; transition: all 0.15s; display: inline-flex; align-items: center; gap: 8px; }
-    .btn-complete:hover { border-color: var(--green); color: var(--green); }
-    .chapter.completed .btn-complete { border-color: var(--green); color: var(--green); background: rgba(45,122,79,0.08); }
+    /* CALLOUT BOXES */
+    .callout { border-left: 3px solid var(--accent); background: var(--bg); border-radius: 0 8px 8px 0; padding: 16px 20px; margin-bottom: 16px; }
+    .callout p { font-size: 14px; line-height: 1.65; color: var(--text2); }
+    .callout strong { color: var(--text); }
 
     @media (max-width: 768px) {
-      .topbar { padding: 12px 24px; }
-      .academy-header { padding: 40px 24px 32px; }
+      .topbar { padding: 12px 20px; }
+      .academy-header { padding: 40px 20px 32px; }
       .academy-header .header-title { font-size: 36px; }
-      .module-tabs { padding: 0 24px; grid-template-columns: 1fr 1fr; }
-      .module-content { padding: 0 24px 60px; }
+      .module-nav { grid-template-columns: repeat(2,1fr); padding: 0 20px 32px; }
+      .module-content { padding: 0 20px 60px; }
     }
   </style>
 </head>
@@ -95,73 +99,72 @@
   <div class="topbar">
     <div class="topbar-brand">FTR Academy — Private</div>
     <div class="topbar-progress">
-      <div class="topbar-bar"><div class="topbar-fill" id="topbar-fill"></div></div>
-      <div class="topbar-label" id="topbar-label">0 / 20 completed</div>
+      <div class="topbar-bar"><div class="topbar-fill" id="global-fill"></div></div>
+      <div class="topbar-label" id="global-label">0 / 20 complete</div>
     </div>
   </div>
 
   <!-- HEADER -->
   <div class="academy-header">
-    <div class="header-eyebrow">Your personal curriculum</div>
-    <h1 class="header-title">Build the business.<br>Own the craft.</h1>
-    <p class="header-sub">Four modules. Everything you need to launch your cohort program, run transformational 1:1 engagements, create a video course, and build a paid community that grows while you sleep.</p>
+    <div class="header-eyebrow">Your personal learning system</div>
+    <div class="header-title">Feel The Room —<br>The Business</div>
+    <div class="header-sub">Everything you need to build FTR into a real, scalable business. Built on what you already know: the F.E.E.L. framework, Marcus, your methodology, your pricing. Four modules. Twenty chapters. Your path from coaching conversations to a business that runs.</div>
   </div>
 
   <!-- MODULE TABS -->
-  <div class="module-tabs">
-    <div class="module-tab active" onclick="showModule(0)" id="tab-0">
-      <span class="tab-num">01</span>
-      <span class="tab-title">Cohort Mastery</span>
-      <span class="tab-desc">Design · Run · Launch</span>
-      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-0"></div></div>
+  <div class="module-nav">
+    <div class="mod-tab active" onclick="showModule(0)" id="tab-0">
+      <div class="mod-tab-num">Module 1</div>
+      <div class="mod-tab-title">FTR Cohort</div>
+      <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-0" style="width:0%"></div></div>
     </div>
-    <div class="module-tab" onclick="showModule(1)" id="tab-1">
-      <span class="tab-num">02</span>
-      <span class="tab-title">1:1 Coaching Programs</span>
-      <span class="tab-desc">Structure · Rhythm · Results</span>
-      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-1"></div></div>
+    <div class="mod-tab" onclick="showModule(1)" id="tab-1">
+      <div class="mod-tab-num">Module 2</div>
+      <div class="mod-tab-title">1:1 Advisory</div>
+      <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-1" style="width:0%"></div></div>
     </div>
-    <div class="module-tab" onclick="showModule(2)" id="tab-2">
-      <span class="tab-num">03</span>
-      <span class="tab-title">Video On-Demand</span>
-      <span class="tab-desc">Record · Edit · Sell</span>
-      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-2"></div></div>
+    <div class="mod-tab" onclick="showModule(2)" id="tab-2">
+      <div class="mod-tab-num">Module 3</div>
+      <div class="mod-tab-title">F.E.E.L. Video Course</div>
+      <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-2" style="width:0%"></div></div>
     </div>
-    <div class="module-tab" onclick="showModule(3)" id="tab-3">
-      <span class="tab-num">04</span>
-      <span class="tab-title">Paid Community</span>
-      <span class="tab-desc">0 → 500 members</span>
-      <div class="tab-mini-bar"><div class="tab-mini-fill" id="mini-3"></div></div>
+    <div class="mod-tab" onclick="showModule(3)" id="tab-3">
+      <div class="mod-tab-num">Module 4</div>
+      <div class="mod-tab-title">FTR Community</div>
+      <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-3" style="width:0%"></div></div>
     </div>
   </div>
 
   <!-- ===================== MODULE 1: COHORT ===================== -->
-  <div class="module-content active" id="module-0">
-    <p class="module-intro">Running a cohort is fundamentally different from teaching a course. The content is not the product — the experience is. This module teaches you how to design a cohort that people talk about, run sessions that energize instead of drain, and build the community that makes completion rates hit 90%+.</p>
+  <div class="module-content visible" id="module-0">
+    <p class="module-intro">The FTR Cohort is your highest-leverage live product. 10 Marcuses in a room together for 3 months — each one learning the F.E.E.L. framework, each one holding the others accountable. $3,500 per person. Two rounds in Year 1. This module teaches you how to design the curriculum, run the sessions, and fill the room with the right people.</p>
 
     <!-- Chapter 1.1 -->
     <div class="chapter" id="ch-0-0">
       <div class="chapter-header" onclick="toggleChapter('ch-0-0')">
         <span class="chapter-num">Chapter 1</span>
-        <span class="chapter-title">The cohort mindset — why it's not a course</span>
+        <span class="chapter-title">Why Marcus needs a group — not just a course</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Self-paced courses have a 3–5% completion rate. Cohorts hit 90%+. The difference isn't content — it's commitment, community, and shared momentum. Before you build anything, you need to understand what makes a cohort work at a psychological level.</p>
+        <p class="chapter-intro">Marcus was promoted because he was the best individual performer. He got to his level alone. That's the exact pattern that will break him as a leader — and the same pattern that makes a self-paced video course the wrong first product for him. He needs to be in a room where other people like him show up with the same blind spots. That's the cohort's unfair advantage.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">Why group beats solo for Marcus</div>
           <ul>
-            <li>People don't finish things alone. They finish things together. The cohort creates social accountability that no reminder email can replace.</li>
-            <li>Fixed start and end dates are a feature, not a limitation. They create urgency and shared identity — "we're in this together."</li>
-            <li>You are not teaching content. You are facilitating transformation. The shift in identity is the product.</li>
-            <li>Price high or don't bother. Low-priced cohorts attract low-commitment participants — and one disengaged person brings the energy down for everyone.</li>
-            <li>The peer group is often more valuable than the coach. Design for peer-to-peer learning, not just coach-to-participant.</li>
+            <li><strong>He identifies with peers, not teachers.</strong> Marcus doesn't take advice easily — he's a Captain. But when someone with the same title and the same pain says "I had that exact problem," it lands. Put 10 Marcuses in a room and they coach each other.</li>
+            <li><strong>He needs evidence, not ideas.</strong> Marcus runs on data. Seeing other sales managers implement a coaching session structure and report back with real numbers next week is more convincing than any framework slide you can build.</li>
+            <li><strong>Accountability is built-in.</strong> A video course gives Marcus an escape — he can pause it when a deal comes in. In the cohort he committed to 10 other people. The social cost of not showing up is real.</li>
+            <li><strong>The cohort is F.E.E.L. in practice.</strong> Every session models the exact behavior you're teaching. You run a check-in (Feel). You ask questions instead of giving answers (Explore). You create hot seat moments (Elevate). You close with commitments (Lead). They learn by experiencing it, not reading it.</li>
+            <li><strong>90%+ completion vs. 3–5%.</strong> Self-paced courses have a 3–5% completion rate. Cohort-based programs hit 90%+. Marcus finishes what he starts when there's a social contract around it.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>The core insight:</strong> "Det der gjorde dig til den bedste sælger er præcis det der gør dig til en dårlig leder." That sentence is the cohort's reason for existing. Marcus built his career by going it alone. The cohort is the first time he does something hard in a group — and sees that it's faster.</p>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write down in one sentence: what transformation does your participant go through from Day 1 to Day 90? That sentence is your cohort's north star — and your sales pitch.</p>
+          <p>Write down the 5 pains from Module 0 that Marcus nods to most. These become the "promises" on your cohort landing page — one per session. Each session should solve one pain he recognised in himself during the intro video.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-0-0')">✓ Mark as complete</button>
       </div>
@@ -171,25 +174,26 @@
     <div class="chapter" id="ch-0-1">
       <div class="chapter-header" onclick="toggleChapter('ch-0-1')">
         <span class="chapter-num">Chapter 2</span>
-        <span class="chapter-title">Designing the 3-month arc</span>
+        <span class="chapter-title">Designing the 6-session F.E.E.L. curriculum</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The best cohorts have a clear emotional and learning arc. Month 1 creates disorientation and awareness. Month 2 drives insight and skill-building. Month 3 integrates and anchors. If you design 6 sessions without an arc, you have 6 workshops, not a cohort.</p>
+        <p class="chapter-intro">3 months. 6 sessions. 90 minutes each. One letter of F.E.E.L. per session — with Session 1 as orientation and Session 6 as integration. Each session teaches one concept, creates one breakthrough, and sends Marcus home with one experiment to run on his team before the next session.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">6-session arc</div>
           <ul>
-            <li><strong>Month 1 — Awareness:</strong> Open with a powerful self-assessment or diagnostic. The goal is to make the invisible visible. Participants should feel "I didn't know this about myself."</li>
-            <li><strong>Month 2 — Practice:</strong> Introduce the core frameworks and tools. Sessions should be practical and immediately applicable to real situations at work.</li>
-            <li><strong>Month 3 — Integration:</strong> Focus on habits, accountability, and what comes next. The final session should feel like a graduation — a clear before/after.</li>
-            <li>Use a "pre-work" document before Session 1 to prime participants. It increases engagement by 40% on average.</li>
-            <li>Leave the last 20 min of every session for peer breakouts. This is where the real learning happens.</li>
+            <li><strong>Session 1 — Orientation:</strong> Who's in the room. The 10 pains. Naming Point A honestly. Establish peer pairs. Contract: this only works if you show up as you actually are — not as you think a manager should be.</li>
+            <li><strong>Session 2 — F (Foundation/Feel):</strong> Energy as a leadership tool. The Energy Compass. Your nervous system is contagious — for good and bad. Participants bring their Energy Log from the week. Hot seat: one person unpacks a moment where their energy derailed something.</li>
+            <li><strong>Session 3 — E (Explore):</strong> The question is more powerful than the answer. Dream→Current→Problem→Probe. Practice the 7 coaching questions on each other in pairs. Debrief: what did it feel like to be asked instead of told?</li>
+            <li><strong>Session 4 — E (Elevate):</strong> Coaching moments in the field. Pre-close technique. Roleplay: teach your salespeople to use F.E.E.L. when talking to customers. Marcus becomes the facilitator of his own team's learning.</li>
+            <li><strong>Session 5 — L (Lead/Liberation):</strong> Culture is not a poster. Psychological safety (Edmondson). Radical Candor. Recruitment through the F.E.E.L. lens. Who do you hire — and how do you see the whole person, not just the CV?</li>
+            <li><strong>Session 6 — Integration:</strong> Each participant presents one thing that changed in their team over 3 months. Real metrics. Real stories. You facilitate, you don't teach. They've become each other's evidence. Close: the path forward — course, 1:1, or next cohort round.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Map your 6 sessions on a piece of paper. Label each one with: (1) what participants will understand that they didn't before, and (2) what they will be able to do. If you can't answer both for every session, you're not ready to run it yet.</p>
+          <p>Build a one-page curriculum doc (PDF or Notion) that you share with applicants before they enroll. One line per session: the concept, the exercise, and the one experiment they'll run before the next session. This document sells the cohort as much as any landing page does.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-0-1')">✓ Mark as complete</button>
       </div>
@@ -199,25 +203,28 @@
     <div class="chapter" id="ch-0-2">
       <div class="chapter-header" onclick="toggleChapter('ch-0-2')">
         <span class="chapter-num">Chapter 3</span>
-        <span class="chapter-title">Running live sessions — structure, energy, flow</span>
+        <span class="chapter-title">Running a live session — facilitation the F.E.E.L. way</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">A 90-minute session can feel like 20 minutes or like 4 hours — depending on how you run it. Great facilitators aren't just knowledgeable. They manage energy, create safety, and know when to shut up. Here's how to structure sessions that people look forward to.</p>
+        <p class="chapter-intro">Every session you facilitate is a live demonstration of F.E.E.L. You're not just teaching it — you're embodying it. If you walk in with your own agenda and talk for 90 minutes, Marcus will clock it. He's been in those meetings. He's been the one running them. Your job is to be the opposite of that.</p>
         <div class="insights">
-          <div class="insights-label">90-min session structure</div>
+          <div class="insights-label">90-minute session structure</div>
           <ul>
-            <li><strong>0–10 min — Check-in:</strong> One question to everyone. "What's one word for how you're showing up today?" Gets people present and connected.</li>
-            <li><strong>10–35 min — Teaching:</strong> One core concept. No more. Use a visual, a story, or a framework. If you're talking for 25 min straight, you're lecturing, not facilitating.</li>
-            <li><strong>35–60 min — Application:</strong> Breakout rooms (2–3 people). Give a specific prompt tied to the teaching. Debrief as a group.</li>
-            <li><strong>60–80 min — Hot seat or Q&A:</strong> One participant brings a real challenge. Coach them live. The group watches and learns from it.</li>
-            <li><strong>80–90 min — Close:</strong> Each participant states one commitment before the next session. Accountability starts here.</li>
+            <li><strong>0–10 min — Check-in (Feel):</strong> One question, everyone answers. "What's one word for the energy you're bringing in today?" Gets people present. If someone says "distracted" — that's data. Acknowledge it. Don't rush past it.</li>
+            <li><strong>10–35 min — Teaching (Explore):</strong> One concept only. No more. Use a story from your own experience first — a moment where you had this problem. Then the framework. If you're talking for 25 minutes straight, you've stopped facilitating and started lecturing.</li>
+            <li><strong>35–60 min — Application (Elevate):</strong> Breakout rooms, 2–3 people. Give them a specific prompt tied to the teaching. "Tell each other about a conversation last week where you gave an answer when you should have asked a question." Debrief as a group.</li>
+            <li><strong>60–80 min — Hot seat (Lead):</strong> One participant volunteers a real challenge. You coach them live. The group watches. This is where F.E.E.L. becomes tangible — everyone sees the methodology in real time. Use the 7 coaching questions. Don't solve it for them.</li>
+            <li><strong>80–90 min — Close:</strong> Each person states one commitment before the next session. Specific: what, when, and how they'll know they did it. These commitments get shared in the group chat — accountability starts before they log off.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>Energy reset before every session:</strong> Don't walk straight from a difficult call into the cohort. Give yourself 5 minutes. Reset. The room will read whatever energy you bring in — and they're paying $3,500 to be in the best version of that room.</p>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Build a template for your Session 1 using this structure. Write out the exact check-in question, the one concept you'll teach, the breakout prompt, and the closing commitment question. Practice running through it out loud — alone — before you go live.</p>
+          <p>Write your Session 2 (Foundation/Feel) run-of-show before Cohort 1 starts. Exact check-in question. The one story you'll open with. The teaching concept in 3 bullet points max. The breakout prompt. The hot seat setup. Practice it out loud — alone — the day before. Not to be perfect. To find where you'll lose the thread.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-0-2')">✓ Mark as complete</button>
       </div>
@@ -227,25 +234,25 @@
     <div class="chapter" id="ch-0-3">
       <div class="chapter-header" onclick="toggleChapter('ch-0-3')">
         <span class="chapter-num">Chapter 4</span>
-        <span class="chapter-title">Between-session momentum — community and homework</span>
+        <span class="chapter-title">Between sessions — the community layer</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Most of the learning happens between sessions — when participants try things, fail, reflect, and share. If your cohort only exists during the 90 minutes you're on Zoom together, you're leaving 90% of the value on the table.</p>
+        <p class="chapter-intro">90% of the learning happens between sessions — when Marcus tries something on his team, it doesn't go the way he expected, and he has to figure out why. If the cohort only exists in the 90 minutes on Zoom, you're leaving most of the value on the table. The group chat is where the real work happens.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">Between-session infrastructure</div>
           <ul>
-            <li>Every session should end with a specific, small homework assignment. Not a reading. A doing. "Try this one conversation before we meet again."</li>
-            <li>A Slack or WhatsApp group is the cohort's nervous system. Seed it yourself — share a reflection, a question, or a resource 2x/week. Model the behavior you want.</li>
-            <li>Create a "win of the week" thread. Every Monday, participants share one thing that went well. It builds momentum and creates proof of impact.</li>
-            <li>Consider a mid-week optional 30-min "office hours" call — unstructured, low pressure. It's where the real breakthroughs happen.</li>
-            <li>Peer accountability pairs: pair participants at the start of the cohort. They check in weekly — 15 minutes each. It costs you nothing and dramatically increases retention.</li>
+            <li><strong>Peer pairs from Day 1:</strong> Pair participants at the orientation session. They check in once a week — 15 minutes each. Their job: "What did you try? What happened?" It costs you nothing and dramatically increases retention and completion.</li>
+            <li><strong>Experiment sharing in the group:</strong> Every session ends with one experiment to run before the next session. The group chat is where they report back mid-week. Seed it yourself — share a reflection from your own week first.</li>
+            <li><strong>"Win of the week" thread:</strong> Every Monday, everyone shares one thing that went well with their team. It builds momentum, creates social proof within the cohort, and keeps Marcus engaged when his week gets busy.</li>
+            <li><strong>One "office hours" slot per month:</strong> Optional. 30 minutes. Unstructured. Come with a question or don't come at all. The people who show up have the most specific, high-quality questions — and they become your most engaged alumni.</li>
+            <li><strong>Experiments, not homework:</strong> Don't send readings. Send doing. "Before we meet again: use the Dream→Current→Problem flow in one conversation with a rep. Notice what happens. Come ready to talk about it." A doing assignment has a 3x higher completion rate than a reading.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Design your between-session infrastructure before Cohort 1 starts: pick your community platform (Slack, WhatsApp, or Circle), write 3 seed posts to kickstart discussion, and define the one homework format you'll use after every session.</p>
+          <p>Decide on your platform before Cohort 1 starts: Slack or WhatsApp (simple, high engagement) vs. Circle or Mighty Networks (richer features, lower daily use). For Cohort 1: WhatsApp. Fast to set up, everyone's already on it, and 10 people is still a manageable group size. Move to a platform as you scale to a paid community.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-0-3')">✓ Mark as complete</button>
       </div>
@@ -255,21 +262,24 @@
     <div class="chapter" id="ch-0-4">
       <div class="chapter-header" onclick="toggleChapter('ch-0-4')">
         <span class="chapter-num">Chapter 5</span>
-        <span class="chapter-title">Launching your first cohort — from waitlist to kickoff</span>
+        <span class="chapter-title">Filling Cohort 1 — from LinkedIn to 10 paying Marcuses</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Your first cohort will not be perfect — and it doesn't need to be. It needs to be real. The fastest way to learn is to run it, collect feedback, and improve. Here's how to go from zero to 10 paying participants.</p>
+        <p class="chapter-intro">You have ~4,900 LinkedIn followers and you post 3x/week. That's the distribution channel. You don't need to build an audience — you need to convert the one you already have. 10 paying participants at $3,500 each is $35,000. You need to find 10 Marcuses in 4,900 people. That's a 0.2% conversion rate. Here's how.</p>
         <div class="insights">
-          <div class="insights-label">Launch sequence</div>
+          <div class="insights-label">The 6-week launch sequence</div>
           <ul>
-            <li><strong>6 weeks before:</strong> Announce publicly that you're building something. Share what problem it solves. No details yet. Collect interest.</li>
-            <li><strong>4 weeks before:</strong> Open applications or a waitlist. Make it feel exclusive — not everyone gets in. Discovery calls filter for commitment.</li>
-            <li><strong>2 weeks before:</strong> Close enrollment. Send the pre-work. Build anticipation with a short intro video or letter.</li>
-            <li><strong>Week before:</strong> Send a "you're in" email with logistics, Zoom link, and the check-in question for Session 1. Lower anxiety, build excitement.</li>
-            <li><strong>After Session 1:</strong> Ask for feedback immediately. One question: "What was most valuable, and what would you change?" This shapes the entire rest of the cohort.</li>
+            <li><strong>6 weeks before:</strong> Announce publicly that you're building something. Not a course — "a 3-month program for sales managers who want to stop managing and start leading." No details. No price. Collect DMs and comments from people who engage.</li>
+            <li><strong>4 weeks before:</strong> Open a waitlist. Link in bio. One post: "I'm running this for 10 people. If you want in, apply here." Frame it as selective — not everyone gets in. A discovery call filters for fit and commitment.</li>
+            <li><strong>2 weeks before:</strong> Close enrollment. Send the curriculum doc to confirmed participants. Build anticipation: a short voice note or video from you, telling them what to expect in Session 1.</li>
+            <li><strong>Discovery call = the F.E.E.L. sales call:</strong> Use your own 7-step flow on every applicant. Dream: "Where do you want to be as a leader in 12 months?" Current: "What's the gap between that and today?" Problem: "What does it cost you if that gap stays?" Close: "Fuck yes or fuck no — are you in?" Don't chase maybes.</li>
+            <li><strong>After Session 1:</strong> Ask for feedback immediately. One question: "What was most valuable, and what would you change?" Let this shape Session 2. Show them their feedback made a difference. That's community.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>The pricing frame:</strong> $3,500 for 3 months is $1,166/month. Marcus's monthly salary is probably 60–80,000 DKK. He's asking his company to pay 8,500 kr for a program that will make him better at managing a team generating millions in revenue. That's not expensive — that's the easiest ROI conversation in business.</p>
         </div>
         <div class="video-section">
           <div class="video-label">Watch — Building in Public: Launching a Cohort-Based Course</div>
@@ -279,46 +289,46 @@
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Set a launch date for FTR Cohort 1. Work backwards from that date and fill in the 6-week pre-launch calendar. Post the first public announcement on LinkedIn this week — even if everything isn't ready. Momentum starts with a public commitment.</p>
+          <p>Set a launch date for FTR Cohort 1. Work backwards. Write the announcement post today — even if everything isn't ready. Public commitment creates real momentum. Post it this week. The cohort fills from that post, not from a perfect landing page.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-0-4')">✓ Mark as complete</button>
       </div>
     </div>
   </div>
 
-  <!-- ===================== MODULE 2: 1:1 ===================== -->
+  <!-- ===================== MODULE 2: 1:1 ADVISORY ===================== -->
   <div class="module-content" id="module-1">
-    <p class="module-intro">A 1:1 coaching engagement is the highest-leverage product you have — and the most demanding. You're selling focused attention, trusted challenge, and a structured path to change over 6 or 12 months. This module teaches you how to design sessions that create breakthroughs, build a rhythm that sustains progress, and turn clients into advocates.</p>
+    <p class="module-intro">The 1:1 Advisory is your deepest product and your most demanding one. You're not a therapist and you're not a consultant — you're a thinking partner who creates a structured arc of change over 6 or 12 months. $4,500 for 6 sessions. $7,500 for 12 sessions. One session per month, 60 minutes each. This module teaches you how to run engagements that create real change — and clients who send other clients.</p>
 
     <!-- Chapter 2.1 -->
     <div class="chapter" id="ch-1-0">
       <div class="chapter-header" onclick="toggleChapter('ch-1-0')">
         <span class="chapter-num">Chapter 1</span>
-        <span class="chapter-title">Onboarding your client — the first call</span>
+        <span class="chapter-title">First call — mapping Point A with the F.E.E.L. flow</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The first session sets the tone for the entire engagement. Done well, it builds trust, creates clarity, and makes the client feel that they made the right decision. Done poorly, it creates doubt that's hard to recover from. Here's how to run a first session that anchors the relationship.</p>
+        <p class="chapter-intro">The first session is the most important one. It sets the emotional contract, surfaces the real problem (which is rarely the one they say out loud on the discovery call), and establishes you as someone who listens before they speak. Done well, the client leaves the first session already thinking differently. Done poorly, they wonder if this was worth $4,500.</p>
         <div class="insights">
-          <div class="insights-label">First session structure (60 min)</div>
+          <div class="insights-label">Session 1 structure (60 min)</div>
           <ul>
-            <li><strong>0–10 min — Context:</strong> Why are they here? What made them say yes to this engagement? Let them tell the story. Don't interrupt.</li>
-            <li><strong>10–30 min — Point A:</strong> Where are they right now, really? What's working, what's not, and what do they not want to admit? Use open questions. Stay curious.</li>
-            <li><strong>30–50 min — Point B:</strong> What does success look like in 6 months? Be specific. Not "I want to be a better leader" — "My team's eNPS goes from 40 to 70, and I stop dreading Monday mornings."</li>
-            <li><strong>50–58 min — Contract:</strong> Agree on 2–3 focus themes for the engagement. These become the spine of every session.</li>
-            <li><strong>58–60 min — Housekeeping:</strong> Communication norms, rescheduling policy, what to prepare before each session.</li>
+            <li><strong>0–10 min — Why are they here?</strong> "Tell me what made you say yes to this." Let them talk. Don't interrupt. You're listening for the real Point A — the one underneath the one they're saying. A Captain will say "I want to be a better leader." What he means is "my team doesn't trust me and I don't know why."</li>
+            <li><strong>10–30 min — Point A (Current State):</strong> What's working. What isn't. What they're not willing to say yet. Use the Explore questions: "Tell me more." Never "why." "What's the impact of that on your team?" "What does it cost you when this happens?" Let them feel the gap — don't create it for them.</li>
+            <li><strong>30–50 min — Point B (Dream):</strong> "What does success look like 6 months from now — specifically?" Not feelings. Evidence. "My team's eNPS goes from 40 to 70." "I stop having the same performance conversation with the same person every month." "I walk into Monday without dread." Specific Point B = the spine of the whole engagement.</li>
+            <li><strong>50–58 min — Contract:</strong> Agree on 2–3 focus themes. Not 10 — 2 or 3. These become the recurring lens for every session. Write them down together. "We're going to spend the next 6 months on: coaching instead of directing, energy management under pressure, and the one team member you're avoiding."</li>
+            <li><strong>58–60 min — Logistics:</strong> Communication between sessions (voice note? Email? WhatsApp?), what to prepare before each call, rescheduling policy. Keep it simple. Make it feel effortless to be your client.</li>
           </ul>
         </div>
         <div class="video-section">
-          <div class="video-label">Watch — First Coaching Session Structure for New Clients</div>
+          <div class="video-label">Watch — First Coaching Session Structure</div>
           <div class="video-wrap">
             <iframe src="https://www.youtube.com/embed/AnRAwY4GD-4" allowfullscreen loading="lazy"></iframe>
           </div>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write out your first-session script. Not word for word — but the exact questions you'll use for each of the 5 parts above. Practice it once out loud before your first client call.</p>
+          <p>Write out the exact questions you'll use in each of the 5 parts above. Not a script — a bank of 3 questions per section. Practice the Point A section out loud: it's the hardest part, because the silence after "tell me more" feels uncomfortable. Let the silence work. It's doing the coaching for you.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-1-0')">✓ Mark as complete</button>
       </div>
@@ -328,21 +338,24 @@
     <div class="chapter" id="ch-1-1">
       <div class="chapter-header" onclick="toggleChapter('ch-1-1')">
         <span class="chapter-num">Chapter 2</span>
-        <span class="chapter-title">The 60-minute session framework</span>
+        <span class="chapter-title">The recurring session — 60 minutes with the F.E.E.L. arc</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Every session after the first follows a consistent rhythm. Consistency builds trust — the client knows what to expect and can prepare accordingly. The framework below is flexible enough to adapt, but structured enough to prevent sessions from wandering.</p>
+        <p class="chapter-intro">Sessions 2 through 6 (or 12) follow the same rhythm. Consistency is trust. Your client knows what to expect — and can prepare accordingly. The structure is simple: show up, check in, close the loop from last time, do the work, synthesise, commit. Repeat until Point B is real.</p>
         <div class="insights">
           <div class="insights-label">Recurring session structure (60 min)</div>
           <ul>
-            <li><strong>0–5 min — Check-in:</strong> "What's your energy today? What's on your mind that we need to get out of the way before we start?"</li>
-            <li><strong>5–15 min — Accountability:</strong> What did they commit to last time? What happened? No judgment — pure curiosity. "What did you learn from that?"</li>
-            <li><strong>15–45 min — Core work:</strong> The main challenge, insight, or skill for today. This is where the coaching happens. Ask more than you tell.</li>
-            <li><strong>45–55 min — Synthesis:</strong> "What was the most important insight from today?" Let them say it — not you. Naming it cements it.</li>
-            <li><strong>55–60 min — Commitment:</strong> One specific action before the next session. Specific means: what, when, and how you'll know you did it.</li>
+            <li><strong>0–5 min — Check-in:</strong> "What's your energy today? What's on your mind that needs to get out of the way before we start?" A Captain will say "fine" and want to get to business. Push gently: "And what's the one thing you haven't told anyone yet this week?" That's where the real session starts.</li>
+            <li><strong>5–15 min — Accountability:</strong> "What did you commit to last time?" "What actually happened?" No judgment. Pure curiosity. "What did you learn from that?" If they didn't do it — explore why. That gap is usually the coaching.</li>
+            <li><strong>15–45 min — Core work:</strong> One challenge, one pattern, one insight. Ask more than you tell. Use the 7 coaching questions. When you feel the urge to give advice — ask instead. "What do you think is stopping you?" is always more powerful than your answer.</li>
+            <li><strong>45–55 min — Synthesis:</strong> "What was the most important insight from today?" Let them say it — not you. They name it, they own it. If they can't name it, you haven't done enough Explore work.</li>
+            <li><strong>55–60 min — Commitment:</strong> One specific action before the next session. What. When. How they'll know they did it. This is the "Lead" step — they close their own session.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>The ask vs. tell ratio:</strong> Track how often you speak vs. how often you ask. If you're speaking more than 30% of the time, you're consulting, not coaching. The goal: ask a question, let them answer fully, then ask the next question. Your value is in the questions — not the answers.</p>
         </div>
         <div class="video-section">
           <div class="video-label">Watch — PROVEN 7-Step Coaching Session Structure</div>
@@ -352,7 +365,7 @@
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Create a one-page session prep template that your client fills out 24 hours before each call. Fields: (1) What I committed to last time, (2) What actually happened, (3) What I want to focus on today, (4) My energy level 1–10. This alone will double session quality.</p>
+          <p>Create a one-page prep template your client fills out 24 hours before each call: (1) What I committed to last time, (2) What actually happened, (3) What I want to work on today, (4) My energy level 1–10. This doubles session quality and gives you a map of their current state before you even say hello.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-1-1')">✓ Mark as complete</button>
       </div>
@@ -362,33 +375,33 @@
     <div class="chapter" id="ch-1-2">
       <div class="chapter-header" onclick="toggleChapter('ch-1-2')">
         <span class="chapter-num">Chapter 3</span>
-        <span class="chapter-title">Monthly rhythm — 6 vs. 12 months</span>
+        <span class="chapter-title">The 6-month vs. 12-month arc — what changes each quarter</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">One session per month sounds like very little — but it's enough when the client does the work between sessions. Your job is to create the conditions for that work to happen. Here's how the rhythm differs across a 6-month vs. 12-month engagement.</p>
+        <p class="chapter-intro">One session per month is enough. Marcus will push back — "isn't that too infrequent?" The answer: no. Because between sessions he's doing the work. He's leading his team. He's running the experiments. He's failing and learning. Your 60 minutes is the container that makes sense of all of that. Here's what the arc looks like across 6 and 12 months.</p>
         <div class="insights">
-          <div class="insights-label">6-month engagement arc</div>
+          <div class="insights-label">6-month arc ($4,500)</div>
           <ul>
-            <li><strong>Month 1:</strong> Discovery and diagnosis. Deep listening. Establish trust. Don't rush to solutions.</li>
-            <li><strong>Month 2–3:</strong> Identify the 1–2 patterns that are holding them back. This is the core work.</li>
-            <li><strong>Month 4–5:</strong> Behavioural experiments. They try new things. You debrief what happened.</li>
-            <li><strong>Month 6:</strong> Consolidation and forward planning. What have they learned? What do they want to keep working on? Plant the seed for renewal.</li>
+            <li><strong>Month 1 — Discovery:</strong> Deep listening. Establish trust. Map Point A fully. Don't rush to solutions. The patterns that need changing rarely show up in the first session — they show up in month 2.</li>
+            <li><strong>Months 2–3 — Pattern identification:</strong> Spot the 1–2 behaviours that are holding him back. Name them together. "I notice that every time your team pushes back, you give them the answer instead of letting them find it. What do you think is behind that?"</li>
+            <li><strong>Months 4–5 — Behavioural experiments:</strong> He tries new things. You debrief what happened. This is where the F.E.E.L. methodology moves from theory to muscle memory.</li>
+            <li><strong>Month 6 — Consolidation:</strong> What changed? What's the evidence? What does Marcus want to keep working on? Plant the seed for a 12-month extension or cohort participation. Don't make it a hard close — make it a natural conversation.</li>
           </ul>
         </div>
         <div class="insights" style="margin-top:12px;">
-          <div class="insights-label">12-month engagement arc</div>
+          <div class="insights-label">12-month arc ($7,500)</div>
           <ul>
-            <li><strong>Q1:</strong> Same as 6-month months 1–2. Discovery, trust, first patterns.</li>
-            <li><strong>Q2:</strong> Deeper work on identity and leadership style. More room to go slow.</li>
-            <li><strong>Q3:</strong> Integration into real high-stakes situations (promotions, difficult conversations, team crises).</li>
-            <li><strong>Q4:</strong> Legacy focus. What kind of leader do they want to be remembered as? How do they lead their team without you?</li>
+            <li><strong>Q1 — Same as 6-month months 1–2.</strong> Discovery, trust, first patterns emerging.</li>
+            <li><strong>Q2 — Identity work.</strong> Marcus has been running on his sælger-identity for years. In Q2, you go deeper: "Who are you as a leader — separate from your results?" This is where the PI profile and Social Needs lens become tools. A Captain needs Power — how does he meet that need through his team instead of over them?</li>
+            <li><strong>Q3 — High-stakes integration.</strong> You're with him through a promotion decision, a difficult firing, a pipeline collapse, a reorg. Real leadership moments, real-time coaching. This is the $7,500 justification.</li>
+            <li><strong>Q4 — Legacy.</strong> "What kind of leader do you want to be remembered as?" "How does your team lead when you're not in the room?" He's not working toward eNPS anymore — he's working toward independence. The best outcome: he doesn't need you. And he'll refer everyone who does.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Create a one-page "Engagement Map" for each client type (6-month and 12-month). List what you'll focus on each month. Share it with the client at the start of the engagement — it builds confidence that there's a plan, and gives you something to revisit when sessions drift.</p>
+          <p>Build a one-page "Engagement Map" for each package. List what you'll focus on each month. Share it at the start of the engagement. It makes the client feel like they're buying a plan — not just access to you. And it gives you something to come back to when sessions drift from the focus themes you agreed on in Session 1.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-1-2')">✓ Mark as complete</button>
       </div>
@@ -398,24 +411,28 @@
     <div class="chapter" id="ch-1-3">
       <div class="chapter-header" onclick="toggleChapter('ch-1-3')">
         <span class="chapter-num">Chapter 4</span>
-        <span class="chapter-title">Between-session accountability</span>
+        <span class="chapter-title">Holding the frame at $4,500 — how to price yourself without apologising</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The session is the spark. The between-session period is where the fire either catches or dies. The best coaches don't disappear between calls — they stay present in small, low-effort ways that keep momentum alive.</p>
+        <p class="chapter-intro">You've had 100,000+ sales conversations and generated €45M in career sales. You built a team with 80+ eNPS. That track record is not a credential — it's the product. Marcus is not paying for your time. He's paying for the transformation that only happens because you've been where he's trying to go. Here's how you talk about price without flinching.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">The pricing conversation</div>
           <ul>
-            <li>A brief voice note or message 2 weeks after a session ("How did that conversation go?") costs 60 seconds and creates disproportionate loyalty.</li>
-            <li>Share one relevant article, podcast, or idea per month. Not to teach — to signal that you're thinking about them between sessions.</li>
-            <li>If a client misses a commitment two sessions in a row, address it directly. "I've noticed we keep coming back to this. What do you think is getting in the way?" Ignoring it builds resentment on both sides.</li>
-            <li>Set boundaries early: define what emergency contact looks like and what it doesn't. Coaching is not therapy and is not 24/7 access.</li>
+            <li><strong>Lead with ROI, not value:</strong> "The 6-month program is $4,500. Your team is probably generating $2–5M in revenue. If our work together improves your team's performance by 10%, that's $200–500K in additional revenue. The program pays for itself in the first month."</li>
+            <li><strong>Use Power of No on price:</strong> "If budget is the issue, we shouldn't do this." Not a threat — a genuine disqualifier. When Marcus hears "you don't have to" his Captain instinct kicks in: "I decide what I spend money on." The resistance drops.</li>
+            <li><strong>Frame the 6-month package correctly:</strong> "6 sessions over 6 months — one per month. It's slow by design. You need time between sessions to actually lead differently. We're not going to fix anything in a weekend."</li>
+            <li><strong>The 12-month frame:</strong> "The 12-month engagement is for leaders who are serious about fundamentally changing how they lead — not just getting better at a few things. It's $7,500 because it includes the hard work: the identity shifts, the high-stakes moments, the stuff that doesn't happen in 6 months."</li>
+            <li><strong>Never offer a discount — offer a different package:</strong> If they push back on price, don't lower the 6-month. Instead: "We could also start with a 3-session intensive at $2,250 — one session per month over 3 months. You'll know by session 2 if you want to continue." This keeps your rate intact and still closes the deal.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>Market context:</strong> Executive coaching market rate is $300–800 per session. Your $4,500 for 6 sessions is $750/session — top of market, but justified by your specific track record in sales leadership (not generic coaching). Position it as "sales leadership coaching" not "coaching" — the specificity commands premium.</p>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write your between-session communication policy. How often will you check in? Via what channel? What's the response time expectation? Share this in your onboarding document so clients know what to expect.</p>
+          <p>Practice the pricing conversation out loud three times. Say the number — "$4,500" — without trailing off, without adding "but" after it, without apologising. Then say the ROI framing. Then stop talking. Silence after the price is where most coaches lose the frame. Practice holding it.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-1-3')">✓ Mark as complete</button>
       </div>
@@ -425,24 +442,25 @@
     <div class="chapter" id="ch-1-4">
       <div class="chapter-header" onclick="toggleChapter('ch-1-4')">
         <span class="chapter-num">Chapter 5</span>
-        <span class="chapter-title">Renewal, testimonials, and referrals</span>
+        <span class="chapter-title">Turning a 1:1 client into an advocate — the referral flywheel</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The end of an engagement is the beginning of your next pipeline. If you've done your job well, the final session is a natural moment for renewal, a testimonial, and a referral. Don't wait until the last session to plant these seeds.</p>
+        <p class="chapter-intro">The best marketing for FTR is a Marcus who walks back into his company changed. His VP of Sales notices. His team notices. His peers notice. That Marcus doesn't just refer clients — he refers them with conviction. Here's how to turn the engagement itself into a referral engine.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">The advocate conversion</div>
           <ul>
-            <li>Bring up renewal at Session 5 (of 6), not Session 6. "We're approaching the end of our engagement — how are you thinking about continuing the work?" gives them time to decide without feeling pressured.</li>
-            <li>Ask for a testimonial at the moment of highest emotion — usually at the end of the final session when they're reflecting on the arc. Send a follow-up email with 3 guiding questions to make it easy to write.</li>
-            <li>Referrals: "Is there anyone in your network who you think could benefit from what we've done together?" Said once, at the right moment, generates more business than any marketing campaign.</li>
-            <li>Create a simple "alumni" touchpoint — a quarterly check-in or newsletter. It keeps the relationship alive without cost and positions you for future work.</li>
+            <li><strong>Month 3 check-in:</strong> Ask Marcus: "Who else in your company has this problem?" Not a referral ask — a coaching question. He's spent 3 months thinking about leadership. He now sees these patterns everywhere. He'll name 3 people without you having to sell anything.</li>
+            <li><strong>Make results visible:</strong> Help Marcus articulate what changed. Not feelings — evidence. "My team's pipeline velocity increased 23%. My Monday 1:1s take 20 minutes instead of 45. I had a difficult conversation I'd been avoiding for 8 months." These become your testimonials — with his permission.</li>
+            <li><strong>The cohort invite:</strong> In Session 5 or 6: "I'm running a cohort in [month] with 10 sales managers working on exactly what we've been working on. Would you want to be in the room as a participant who's already done the foundational work?" A 1:1 client in the cohort is your best session anchor — they model what's possible.</li>
+            <li><strong>The case study offer:</strong> At the end of the engagement: "Would you be willing to share what changed? It doesn't need to be a testimonial — just a short conversation I can record and share with future clients." A Captain will say yes if you frame it as sharing expertise, not giving a review.</li>
+            <li><strong>Stay in the room:</strong> Keep past clients in a low-key alumni group. Share one piece of content per month. Something they'll use with their teams. This costs you nothing and means they think of you every time a peer says "my team is struggling."</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write a testimonial request email you'll send after every completed engagement. Include 3 specific questions: (1) Where were you before we started? (2) What shifted during our work together? (3) What would you say to someone considering working with Joakim? Keep it under 200 words total.</p>
+          <p>Write the "Month 3 referral question" — the exact words you'll say to open the referral conversation. Make it a coaching question, not a sales question. "Who in your network is dealing with the same thing you were dealing with when we started?" Then stop talking and let them think.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-1-4')">✓ Mark as complete</button>
       </div>
@@ -451,37 +469,38 @@
 
   <!-- ===================== MODULE 3: VIDEO COURSE ===================== -->
   <div class="module-content" id="module-2">
-    <p class="module-intro">A video course is the only product in your suite that scales infinitely without more of your time. Once it's built, it works while you sleep. But most people overcomplicate the build and underfocus on the sell. This module is about going from idea to live course as fast as possible — without sacrificing quality.</p>
+    <p class="module-intro">The F.E.E.L. Video Course is the product that scales without you. Marcus watches it on his own time, at his own pace. $995. He buys it because he's not ready for the cohort, or because he wants to go deeper after it. This module is about building the course you already know — you've been teaching this material for years. The question isn't what to teach. It's how to package it so Marcus can buy it alone at 11pm on a Tuesday.</p>
 
     <!-- Chapter 3.1 -->
     <div class="chapter" id="ch-2-0">
       <div class="chapter-header" onclick="toggleChapter('ch-2-0')">
         <span class="chapter-num">Chapter 1</span>
-        <span class="chapter-title">Designing your course structure</span>
+        <span class="chapter-title">What Marcus wants to learn async — and what he needs live</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">A great course is not a brain dump. It's a curated path from Point A to Point B. Before you record a single video, you need to know exactly who the student is, where they start, and what they'll be able to do when they finish.</p>
+        <p class="chapter-intro">Not everything belongs in the video course. Some things — like live coaching, hot seat moments, peer accountability — only work with other humans in the room. The course should teach the framework and the models. The cohort and 1:1 should apply them. Understanding this distinction makes the course better and protects the premium products from being commoditised.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">What works async (course)</div>
           <ul>
-            <li>Start with the outcome, not the content. "After this course, the student will be able to..." — fill in that sentence and work backwards.</li>
-            <li>Rule of one: each module covers one idea. Each lesson delivers one insight. If you're covering three things in one video, you have three videos.</li>
-            <li>Ideal lesson length: 5–12 minutes. Shorter is almost always better. People pause and rewatch short videos. They abandon long ones.</li>
-            <li>Structure: 5–7 modules, 3–5 lessons per module. That's 15–35 lessons total — enough to feel comprehensive, short enough to feel achievable.</li>
-            <li>Add one practical exercise per module. Not optional homework — a required step that makes the learning real.</li>
+            <li><strong>The F.E.E.L. framework and all its components:</strong> Why each letter, what it means, how they connect. Marcus can watch this alone and already see himself in it.</li>
+            <li><strong>Frameworks and models:</strong> Energy Compass, 7 Coaching Questions, Dream→Current→Problem→Probe, PI profiles, 6 Social Needs, Target Setting (Expected·Good·GOAT), Performative Balance. These are learnable through video + worksheet.</li>
+            <li><strong>Self-assessments:</strong> Foundation self-assessment, Energy Log, your leadership style — things Marcus can do solo and get real data from.</li>
+            <li><strong>Marcus recognising himself:</strong> Module 0 is pure psychology. The 10 pains. "Det der gjorde dig til den bedste sælger..." He watches this alone and feels seen. That's the hook that makes him want more.</li>
           </ul>
         </div>
-        <div class="video-section">
-          <div class="video-label">Watch — How to Create an Online Course (Beginner to Launch)</div>
-          <div class="video-wrap">
-            <iframe src="https://www.youtube.com/embed/1PiuGCTP4PU" allowfullscreen loading="lazy"></iframe>
-          </div>
+        <div class="insights" style="margin-top:12px;">
+          <div class="insights-label">What needs to be live (cohort / 1:1)</div>
+          <ul>
+            <li><strong>Coaching in real time:</strong> You can't teach coaching through video. It has to be felt. The hot seat. The pause. The question that lands differently than any question he's asked before.</li>
+            <li><strong>Peer dynamics:</strong> Marcus won't trust the framework until someone exactly like him validates it from personal experience. That only happens in a group.</li>
+            <li><strong>Accountability structures:</strong> Peer pairs, commitments made publicly, "win of the week" threads. These are social, not cognitive.</li>
+          </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Map your entire course on one page. Write the module names and 3 bullet points per module describing what the student will learn. Share it with 3 people in your target audience and ask: "Does this flow make sense? Is anything missing? What would make you not buy this?" Their answers reshape everything.</p>
+          <p>Look at the full course module map (22 lessons across 5 modules) and tag each lesson: ASYNC (can be video) or LIVE (needs cohort or 1:1). If more than 70% is async — the course structure is right. If less: you're trying to teach too much process and not enough framework. Move the process into the cohort.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-2-0')">✓ Mark as complete</button>
       </div>
@@ -491,25 +510,28 @@
     <div class="chapter" id="ch-2-1">
       <div class="chapter-header" onclick="toggleChapter('ch-2-1')">
         <span class="chapter-num">Chapter 2</span>
-        <span class="chapter-title">Equipment — what you actually need to start</span>
+        <span class="chapter-title">The F.E.E.L. for Leaders course map — 5 modules, 22 lessons</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Most people wait too long because they think they need a studio. You don't. A $995 course doesn't need Hollywood production. It needs clear audio, decent light, and you showing up with confidence. Here's what actually matters.</p>
+        <p class="chapter-intro">You already have the curriculum mapped. This chapter is about making it concrete — what goes in each module, what order, and what the learner experiences between lessons. The architecture is already strong. You're building it, not designing it from scratch.</p>
         <div class="insights">
-          <div class="insights-label">The honest equipment hierarchy</div>
+          <div class="insights-label">F.E.E.L. for Leaders — full module map</div>
           <ul>
-            <li><strong>#1 priority — Audio:</strong> Bad audio kills a course. Good video with bad audio = unwatchable. A lapel mic (DJI Mic or Røde Wireless GO) or a USB microphone (Blue Yeti) is all you need. Budget: DKK 500–2,000.</li>
-            <li><strong>#2 priority — Light:</strong> Film facing a window during daytime. That's free and often better than a ring light. If you want consistency, a key light on one side + fill on the other is enough.</li>
-            <li><strong>#3 priority — Camera:</strong> Your iPhone is fine. Seriously. iPhone 13+ in 4K, locked exposure, mounted on a tripod. Nobody will complain about the camera if your audio is good and your content is great.</li>
-            <li><strong>Background:</strong> Clean, uncluttered, slightly blurred. You are the subject. Bookshelves, plants, or a plain wall all work. Avoid virtual backgrounds.</li>
-            <li><strong>Screen recording:</strong> For slide-based lessons, use Loom or Screenflow. You don't need to be on camera for every lesson.</li>
+            <li><strong>Module 0 — Intro (2 lessons):</strong> Welcome. The 10 pains Marcus nods to. Your story. "Det der gjorde dig til den bedste sælger..." The F.E.E.L. arc. The promise. This module sells the rest of the course — make it the best 20 minutes of video you've ever made.</li>
+            <li><strong>Module 1 — F (Feel / Foundation) — 6 lessons:</strong> Reaction vs. intention. Energy in the room. Your energy is contagious. Emotional regulation under pressure. The whole person (sleep, nutrition, movement). Energy as compass. Extras: Energy Log, Foundation self-assessment.</li>
+            <li><strong>Module 2 — E (Explore) — 7 lessons:</strong> The leader who pitches solutions. Dream→Problem→Solution in leadership. The one who asks holds the power. Listening for the unsaid. When to present the solution. Target Setting (Expected·Good·GOAT). Target Breakdowns. Extras: Question bank, Target template.</li>
+            <li><strong>Module 3 — E (Elevate) — 5 lessons:</strong> Coaching vs. instruction. "What's stopping you?" Reframe and momentum. The pre-close technique. Roleplay — teach your salespeople F.E.E.L. Extras: 1:1 checklist based on F.E.E.L.</li>
+            <li><strong>Module 4 — L (Lead / Liberation) — 6 lessons:</strong> Define values as a team. Performative balance. Recruitment: see the whole person. Onboarding for success. Team orchestration. Shared goals and celebrating along the way. Extras: Core values workshop, Recruitment script, 30-60-90 plan, weekly meeting template, monthly 1:1 template.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>The PPA connection:</strong> You're currently learning how to build this course through the Passive Profit Accelerator. Every module you complete in PPA maps directly to a decision you need to make about F.E.E.L. for Leaders. Use the two in parallel — don't wait to finish PPA before starting to build.</p>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Record a 3-minute test video with what you have right now — phone, whatever mic you can find, available light. Watch it back critically. Identify the one thing that would most improve quality. Fix that one thing only. Don't buy anything else until you've shipped the course.</p>
+          <p>Record Module 0, Lesson 1 this week. Not as a final product — as a rough draft. The goal is to get comfortable being on camera teaching this material. The script: open with the one sentence that makes Marcus feel seen. Then name 3 of the 10 pains. Then your story in 90 seconds. Then the promise. Under 8 minutes. Record it. Watch it back. Record it again.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-2-1')">✓ Mark as complete</button>
       </div>
@@ -519,25 +541,25 @@
     <div class="chapter" id="ch-2-2">
       <div class="chapter-header" onclick="toggleChapter('ch-2-2')">
         <span class="chapter-num">Chapter 3</span>
-        <span class="chapter-title">Recording and editing workflow</span>
+        <span class="chapter-title">Recording that doesn't sound like a recording</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The recording session is where most people lose momentum. They record one imperfect take, watch it back, hate it, and stop. Here's how to build a workflow that gets you from script to finished lesson without burning out.</p>
+        <p class="chapter-intro">Marcus has watched a lot of bad online courses. Monotone delivery. Slides with bullet points. Someone reading a script. If your video looks like that, the F.E.E.L. content doesn't matter — he'll tune out by lesson 3. You have two things that most course creators don't: a real story and the ability to read a room. Use both.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">What makes course video land</div>
           <ul>
-            <li>Batch record. Don't record one lesson and stop. Set aside a full day and record 5–10 lessons. Momentum and performance peak after the first 20 minutes.</li>
-            <li>Talk to one person. Imagine a specific person you know who could benefit from this lesson. Talk to them. Energy and clarity come from specificity, not performance.</li>
-            <li>Don't read from a script. Use bullet points. Scripts make you sound robotic. Bullet points keep you natural while staying on track.</li>
-            <li>Edit for length, not perfection. Cut anything that doesn't move the lesson forward. A 12-minute raw recording should be 7 minutes edited. Every unnecessary minute loses a viewer.</li>
-            <li>Editing tools: iMovie (free, fine), DaVinci Resolve (free, professional), CapCut (fast, easy). Add captions — they increase completion rates by 40%.</li>
+            <li><strong>One camera, one concept:</strong> Don't try to make it cinematic. Face-to-camera, good light, clean background. The quality bar is: "this looks like a person who knows what they're talking about" — not "this looks like a Netflix production."</li>
+            <li><strong>Talk to one person:</strong> Before you record, picture Marcus specifically — 32 years old, sales manager, sits in a Miele or Tempur office, has 6 reps. Record as if you're talking to him. Not "you, the viewer" — him. It will sound completely different.</li>
+            <li><strong>Your Røde Wireless Micro is the differentiator:</strong> Most course audio is terrible. Yours doesn't have to be. Clip it on, test levels, and your audio will be better than 90% of what's out there.</li>
+            <li><strong>The 3-2-1 rule:</strong> Every lesson has: 1 concept (3 sentences to introduce it), 1 story (from your own experience — 60-90 seconds), 1 tool (something Marcus can use today). Three parts. Every time. It creates a rhythm Marcus can anticipate — which means he stays in his seat.</li>
+            <li><strong>Energy resets between takes:</strong> If you're recording a full module in one day, use the Energy Reset between lessons. A bad energy carry-over from lesson 3 into lesson 4 will be visible on camera — and Marcus will feel it even if he can't name it.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Block one full day in your calendar for your first recording session. Before that day, write bullet-point outlines for your first 5 lessons. On the day: record all 5 without watching any of them back. Send them to an editor or use CapCut yourself. Ship before you feel ready.</p>
+          <p>Set up your recording space this week. Identify the best window-facing direction for light. Test your Røde mic with iPhone 17 Pro. Record one 3-minute test clip. Watch it back specifically looking at three things: audio quality, eye contact with the lens (not the screen), and whether you'd watch it if you were Marcus. Adjust one thing at a time.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-2-2')">✓ Mark as complete</button>
       </div>
@@ -547,25 +569,25 @@
     <div class="chapter" id="ch-2-3">
       <div class="chapter-header" onclick="toggleChapter('ch-2-3')">
         <span class="chapter-num">Chapter 4</span>
-        <span class="chapter-title">Platform choice — where to host and sell</span>
+        <span class="chapter-title">Kartra — the tech stack for F.E.E.L. for Leaders</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">There are dozens of platforms. The right one is the one you'll actually use. Here's a practical comparison for your situation.</p>
+        <p class="chapter-intro">You're learning Kartra through PPA. Good — because Kartra is also the right platform for F.E.E.L. for Leaders. Course hosting, checkout, email sequences, and membership access all in one place. This chapter maps what you need from Kartra specifically for the video course — so you're building it in the right direction as you learn.</p>
         <div class="insights">
-          <div class="insights-label">Platform comparison for FTR</div>
+          <div class="insights-label">What you need in Kartra for the course</div>
           <ul>
-            <li><strong>Kajabi ($149/mnd):</strong> All-in-one — course, email, website, community, checkout. Best if you want everything under one roof. Steep learning curve but very powerful. Recommended if you're serious about scaling.</li>
-            <li><strong>Teachable ($39/mnd):</strong> Simpler, easier to start. Great for first courses. Less marketing automation than Kajabi. Good bridge while you figure out what you need.</li>
-            <li><strong>Podia ($39/mnd):</strong> Clean, simple, includes email marketing and digital downloads. Good middle ground.</li>
-            <li><strong>Gumroad (free + 10%):</strong> Fastest to start. No monthly fee. Great for validating demand before investing in a full platform.</li>
-            <li>For FTR at $995 price point: start with Gumroad or Teachable. Move to Kajabi when you have 20+ students and want to integrate cohorts and community.</li>
+            <li><strong>Product:</strong> Create F.E.E.L. for Leaders as a product. Price: $995. One-time payment. Optional payment plan: 2 × $525.</li>
+            <li><strong>Membership portal:</strong> This is where lessons live. Set up 5 modules. Lock modules 1–4 until Module 0 is completed — it forces Marcus through the intro before he skips ahead to the frameworks.</li>
+            <li><strong>Checkout page:</strong> Keep it minimal. Headline: "F.E.E.L. for Leaders." Subhead: "The framework for sales managers who want to stop managing and start leading." Price. Social proof (one quote from a cohort participant). Buy button. Nothing else.</li>
+            <li><strong>Post-purchase email sequence:</strong> 3 emails. Email 1 (immediate): access link + "Start with Module 0 — it's 18 minutes and will completely change how you see your week." Email 2 (Day 3): check-in — "What landed from Module 0?" Email 3 (Day 7): Module 1 nudge + invite to the FTR community.</li>
+            <li><strong>Upsell path:</strong> After purchase confirmation: show the cohort as a natural next step. "If you want to apply this with a group of peers — the next FTR Cohort opens in [month]. Apply for a discovery call." This converts 10–20% of course buyers into cohort applicants.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Pick one platform and set it up this week. Don't spend more than 2 hours deciding — the platform is not the product. Upload your first module as a test. Run a checkout flow from a different device. Make sure someone can actually buy it before you launch.</p>
+          <p>In Kartra: create the F.E.E.L. for Leaders product (even if content isn't ready). Set up the 5 module shells. Write the 3-email post-purchase sequence. Having the container ready means you can drop lessons in as you record them — and potentially do a beta launch with the first 2 modules before the full course is done.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-2-3')">✓ Mark as complete</button>
       </div>
@@ -575,25 +597,31 @@
     <div class="chapter" id="ch-2-4">
       <div class="chapter-header" onclick="toggleChapter('ch-2-4')">
         <span class="chapter-num">Chapter 5</span>
-        <span class="chapter-title">Launching and selling — your first 20 students</span>
+        <span class="chapter-title">Selling the first 100 at $995 — the launch strategy</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Build it and they will come — is a lie. The launch is a skill. Most course creators get 80% of the way through building and run out of energy before they sell. Here's how to launch without a big audience.</p>
+        <p class="chapter-intro">100 sales × $995 = $99,500. That's your Year 1 course revenue target. You don't need a massive launch or a paid ads budget. You need 100 Marcuses to find the right content at the right moment and feel confident enough to buy without talking to you first. Here's how to get there from your current LinkedIn audience.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">Launch sequence</div>
           <ul>
-            <li>Sell before it's finished. Pre-sell with a "founding member" price (20–30% off) to your existing network. It validates demand and funds production.</li>
-            <li>LinkedIn is your launch channel. 5 posts over 2 weeks: (1) the problem, (2) your story, (3) what's inside, (4) who it's for, (5) the offer. That's a launch.</li>
-            <li>Email your list personally. Not a newsletter blast — individual emails to 20–30 people you think would benefit. Conversion is 10x higher than mass email.</li>
-            <li>The first 10 students are friends, followers, and warm contacts. The next 10 come from referrals and content. Don't expect strangers until you have social proof.</li>
-            <li>After launch: collect testimonials aggressively. Three great testimonials are worth more than any sales page copy.</li>
+            <li><strong>Pre-launch (4 weeks before):</strong> Post 4 pieces of "proof of concept" content. One insight from Module 1. One real story from your leadership experience. One framework preview. One "behind the scenes" of building the course. Each post drives to a waitlist.</li>
+            <li><strong>Beta launch (before full course is done):</strong> Sell access to Module 0 + 1 at $297 to 20 people. Collect feedback. Use their language in the full launch copy. Beta buyers get the full course at no extra charge when it launches. This is Hormozi's "sell before you build" principle — applied to F.E.E.L.</li>
+            <li><strong>Full launch week:</strong> 5 posts in 5 days. Day 1: the problem (the 10 pains). Day 2: the solution (F.E.E.L. overview). Day 3: social proof (beta cohort result or 1:1 client transformation). Day 4: objection handling ("I don't have time" / "I've tried courses before"). Day 5: last chance. Close the cart.</li>
+            <li><strong>Price anchoring:</strong> Launch at $995. Mention in the post that 1:1 coaching is $4,500–$7,500. "If you want the same methodology without the 1:1 price tag — the course is $995." The comparison makes $995 feel like a deal.</li>
+            <li><strong>The evergreen engine:</strong> After the launch, the course goes evergreen. LinkedIn posts with strong hook lines drive to the waitlist. Email sequence nurtures for 14 days. Cohort graduates get a 30% alumni discount to give to a colleague. This creates a slow, steady stream of $995 sales with zero additional work.</li>
           </ul>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — How To Create An Online Course (and actually sell it)</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/1PiuGCTP4PU" allowfullscreen loading="lazy"></iframe>
+          </div>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write the LinkedIn post for Day 1 of your launch sequence — the one that talks about the problem your course solves. Don't mention the course yet. Just the problem. Post it this week and watch who engages. Those people are your first customers.</p>
+          <p>Write the LinkedIn post for Day 1 of the launch week right now. The hook: one of the 10 pains, written in Marcus's exact words. Not "many sales managers struggle with..." — "You were the top rep. Then they made you a manager. And nobody told you that everything that made you great at sales is exactly what makes you a bad leader." Write it. Save it. You'll post it on launch day.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-2-4')">✓ Mark as complete</button>
       </div>
@@ -602,31 +630,31 @@
 
   <!-- ===================== MODULE 4: COMMUNITY ===================== -->
   <div class="module-content" id="module-3">
-    <p class="module-intro">A paid community at 179 kr/month doesn't sound like much. At 200 members it's 430,000 kr/year of recurring revenue you didn't have to resell. But communities don't build themselves — they need design, a content engine, and a growth strategy. This module is your roadmap from 0 to 500.</p>
+    <p class="module-intro">The FTR Community is your compounding asset. 179 kr/month. Below the psychological threshold of 200 kr. Small enough to keep. Big enough to matter at scale — 200 members is 35,800 kr/month, 429,600 kr/year. This module teaches you what goes in the paid tier, how to seed the community with the content you're already making, and how to turn LinkedIn followers into monthly recurring revenue.</p>
 
     <!-- Chapter 4.1 -->
     <div class="chapter" id="ch-3-0">
       <div class="chapter-header" onclick="toggleChapter('ch-3-0')">
         <span class="chapter-num">Chapter 1</span>
-        <span class="chapter-title">Designing your free vs. paid tiers</span>
+        <span class="chapter-title">Why 179 kr is the exact right price — the psychology of recurring</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">The free tier is your funnel. The paid tier is your product. The distinction needs to be clear — free members should constantly feel that there's something valuable they're not getting. Here's how to design both.</p>
+        <p class="chapter-intro">Pricing a community is completely different from pricing a course or a coaching package. You're not selling a transformation — you're selling access and belonging. The price needs to be high enough to signal value and low enough that people don't cancel when they have a busy month. 179 kr lands perfectly on that edge.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">The 179 kr logic</div>
           <ul>
-            <li><strong>Free tier:</strong> Community access, public discussions, selected content. Enough to demonstrate the value — not enough to be the value.</li>
-            <li><strong>Paid tier (179 kr/mnd):</strong> Exclusive content drops (1–2x/month), live Q&A sessions, behind-the-scenes access, direct line to Joakim, exclusive frameworks and tools.</li>
-            <li>The most powerful paid perk: access to you. Not unlimited access — structured access. Monthly group call, weekly async voice note, first dibs on cohort spots.</li>
-            <li>Don't make free too good. A common mistake is being so generous in free that paid membership doesn't feel necessary. Free = community. Paid = curation and access.</li>
-            <li>Create an upgrade moment: one piece of content per month that's clearly premium and behind the paid wall. The free member sees the title and knows what they're missing.</li>
+            <li><strong>Under the 200 kr threshold:</strong> There's a real psychological barrier at round numbers. 179 kr feels qualitatively different from 200 kr — it's in a lower "tier" of the brain's purchasing system. It doesn't require justification the way 200+ does.</li>
+            <li><strong>Marcus's frame of reference:</strong> He spends 150–200 kr on lunch without thinking. He pays 179 kr/month for Spotify. If the FTR community content is better than his Spotify discovery playlist, it's worth it. And it is — because it's directly applicable to his job.</li>
+            <li><strong>The cancellation threshold:</strong> People cancel memberships when the value-to-price ratio tips below a mental threshold. At 179 kr, the bar is low. He won't cancel during a busy month because "it's only 179 kr." At 500 kr, he would. This is by design — you want him to stay, not sprint.</li>
+            <li><strong>Compounding math is the point:</strong> 50 members = 8,950 kr/month. 100 members = 17,900 kr/month. 200 members = 35,800 kr/month. This is not your main revenue stream — it's the floor that pays the bills while you run cohorts and 1:1s. At 500 members it's 1,074,000 kr/year. That's a business by itself.</li>
+            <li><strong>Never raise the founding price:</strong> Lock in your first 200 members at 179 kr forever — as a founding member benefit. This creates urgency, loyalty, and a group of people who feel they got a deal. They'll be your most vocal advocates.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>List exactly 5 things free members get and exactly 5 things only paid members get. If the paid list isn't clearly more valuable, redesign it. The test: would you pay 179 kr/month for the paid perks yourself?</p>
+          <p>Open a spreadsheet and build the compounding table: start at 10 members (month 1), grow by 10–20% each month to a target of 200. Map out what month you hit 50, 100, 200. This makes the membership feel like a real business milestone — not a nice-to-have. Put it next to the revenue-vision.html page and let it motivate you.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-3-0')">✓ Mark as complete</button>
       </div>
@@ -636,31 +664,33 @@
     <div class="chapter" id="ch-3-1">
       <div class="chapter-header" onclick="toggleChapter('ch-3-1')">
         <span class="chapter-num">Chapter 2</span>
-        <span class="chapter-title">Choosing your platform — Skool vs Circle vs Mighty</span>
+        <span class="chapter-title">What belongs in the paid tier — and what's free</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Platform choice matters less than most people think — and more than they realize. The right platform is the one your audience will actually use. Here's an honest breakdown.</p>
+        <p class="chapter-intro">A community without a clear reason to pay is just a group chat. The paid tier needs to have something that Marcus genuinely can't get for free elsewhere — and that he would miss if he cancelled. That "something" doesn't need to be expensive to create. It needs to be specifically useful to him.</p>
         <div class="insights">
-          <div class="insights-label">Platform comparison</div>
+          <div class="insights-label">Free tier (everyone)</div>
           <ul>
-            <li><strong>Skool ($99/mnd):</strong> Gamified, discovery marketplace, combines community + course. Best for English-speaking audience and if you want organic discovery from the Skool marketplace. Clean, simple UX. Charges on top of Stripe fees.</li>
-            <li><strong>Circle ($49–89/mnd):</strong> Most flexible. Best events and live session tools. Great for larger communities. Higher learning curve. Best for European audiences.</li>
-            <li><strong>Mighty Networks ($33–99/mnd):</strong> Strong for courses + community. Native app available. Good for non-tech-savvy members.</li>
-            <li>For FTR at this stage: <strong>Skool or Circle</strong>. Skool if you want to grow through the platform's own marketplace. Circle if you want more control and a European-first feel.</li>
-            <li>Don't overthink it. Pick one and launch within 7 days. You can migrate later. Every day you wait is a day you could have had 5 paying members.</li>
+            <li>Access to the basic community channel — introductions, wins, questions</li>
+            <li>Your weekly LinkedIn content (they already have this — just reframed as a community benefit)</li>
+            <li>Access to the free FTR resources: Aura Profile, public whitepapers, freebies</li>
           </ul>
         </div>
-        <div class="video-section">
-          <div class="video-label">Watch — Best Community & Membership Platforms Compared</div>
-          <div class="video-wrap">
-            <iframe src="https://www.youtube.com/embed/2JvsL4S8K5Q" allowfullscreen loading="lazy"></iframe>
-          </div>
+        <div class="insights" style="margin-top:12px;">
+          <div class="insights-label">Paid tier — 179 kr/month (must haves)</div>
+          <ul>
+            <li><strong>Monthly live Q&A call:</strong> 45 minutes. Open format. Marcus brings a leadership challenge from the past month. You answer it live. 10–20 people on the call — high-quality, low-effort content. Record it for those who can't make it.</li>
+            <li><strong>Templates and tools:</strong> Every template you build for the cohort and 1:1 — Energy Log, Session Prep template, Target Setting framework, 1:1 checklist, Core Values workshop, 30-60-90 plan — goes into the paid tier. Real tools Marcus uses in his actual job.</li>
+            <li><strong>Member-only content drops:</strong> 1–2x/month. A deeper cut of a LinkedIn post. A framework breakdown. A reading recommendation with your specific take. Things that didn't make the LinkedIn algorithm but that your most engaged followers actually want.</li>
+            <li><strong>Early access and discounts:</strong> Course launches, cohort applications, and new products — members get access first and at a discount. 30% off the video course. Priority application to the cohort. This makes membership feel like insider status.</li>
+            <li><strong>The "ask Joa" thread:</strong> A dedicated channel where members can ask questions between calls. You respond to 2–3 per week. This is the async version of the monthly Q&A — and it keeps the community active between call dates.</li>
+          </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Sign up for a free trial of both Skool and Circle today. Spend 30 minutes in each. Pick the one that feels right for you to operate — not the one with the most features. Set up the basic structure (free channel, paid channel) and share the link with 5 people for feedback.</p>
+          <p>Identify the 5 templates you already have (or that exist in the course map) that would make the most immediate difference to Marcus's working week. List them. These become the first 5 "resources" in the paid tier — available from Day 1. You don't need to build new content to launch the community. You need to package what you already have.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-3-1')">✓ Mark as complete</button>
       </div>
@@ -670,25 +700,31 @@
     <div class="chapter" id="ch-3-2">
       <div class="chapter-header" onclick="toggleChapter('ch-3-2')">
         <span class="chapter-num">Chapter 3</span>
-        <span class="chapter-title">Content cadence — what to post and when</span>
+        <span class="chapter-title">Seeding the community with FTR's 3 content wheels</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">A community without content is a ghost town. A community with too much content is overwhelming. The sweet spot is a consistent, predictable rhythm that members can rely on — and that you can sustain without burning out.</p>
+        <p class="chapter-intro">You already produce 3 posts per week on LinkedIn. Every one of those posts is also community content. The 3 content wheels — Coaching Moments, Leadership in Practice, and The Personal Foundation — map directly to what the community needs to stay engaged. You're not creating more content. You're routing it to two places instead of one.</p>
         <div class="insights">
-          <div class="insights-label">Recommended weekly cadence</div>
+          <div class="insights-label">The 3 wheels inside the community</div>
           <ul>
-            <li><strong>Monday:</strong> A question or prompt to start the week. "What's the one leadership challenge you're taking on this week?" Takes 2 minutes to post. Drives discussion all week.</li>
-            <li><strong>Wednesday:</strong> A short insight, framework, or reflection. 100–200 words or a voice note. Something you learned or observed this week.</li>
-            <li><strong>Friday:</strong> A win or reflection. Either share your own or highlight a member's. "This week [member name] did X — worth reading." Community recognition is the most powerful retention tool you have.</li>
-            <li><strong>Monthly (paid members):</strong> One piece of exclusive content — a framework, a deep-dive, or a tool they can use immediately. This is what they're paying 179 kr for.</li>
-            <li><strong>Monthly (all members):</strong> One live session — Q&A, hot seat, or guest conversation. Non-negotiable. Live sessions are the heart of any healthy community.</li>
+            <li><strong>Coaching Moments (Wheel 1):</strong> Real conversations, reframes, Seedster-style observations. On LinkedIn: short, universal. In the community: the full context — what the person was dealing with, the exact question you asked, what shifted. Members get the version that's too specific for the algorithm.</li>
+            <li><strong>Leadership in Practice (Wheel 2):</strong> Observations from your work at Lunar, hiring decisions, team dynamics. On LinkedIn: framed as universal principles. In the community: your actual take — including the parts where you're still figuring it out. The unfiltered version builds more trust than the polished one.</li>
+            <li><strong>The Personal Foundation (Wheel 3):</strong> Energy, awareness, the whole person, sleep and performance. On LinkedIn: awareness-level content. In the community: the practices — what you actually do, what works, what the Energy Log looks like for you this week. Members want the how, not just the what.</li>
+          </ul>
+        </div>
+        <div class="insights" style="margin-top:12px;">
+          <div class="insights-label">Community seeding rhythm</div>
+          <ul>
+            <li><strong>Monday:</strong> Weekly intention post — "This week I'm focused on [X]. What's yours?" Starts the week with community energy.</li>
+            <li><strong>Wednesday:</strong> A resource or tool drop — template, framework, or a 3-minute voice note with a specific leadership insight. Something they can use that day.</li>
+            <li><strong>Friday:</strong> "Win of the week" thread — you share first, then members follow. Builds momentum and creates a record of what's working for people in real time.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write your first 4 weeks of content in one sitting — 12 posts total (3/week). Schedule them. You're not a media company, but you need to show up consistently in the first 90 days to establish the community's culture. Front-load the effort so the community can eventually feed itself.</p>
+          <p>Write this week's Monday community intention post and Wednesday resource drop right now — even before the community exists. Build the habit of creating for the community as a parallel channel, not an afterthought. When you launch, you'll already have 4 weeks of content in draft.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-3-2')">✓ Mark as complete</button>
       </div>
@@ -698,24 +734,25 @@
     <div class="chapter" id="ch-3-3">
       <div class="chapter-header" onclick="toggleChapter('ch-3-3')">
         <span class="chapter-num">Chapter 4</span>
-        <span class="chapter-title">Growing from 0 to 100 to 500</span>
+        <span class="chapter-title">LinkedIn to 179 kr — the conversion path</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Growth to 500 happens in phases, and each phase requires a different strategy. What gets you to 50 members won't get you to 500. Understanding which phase you're in prevents you from using the wrong tools at the wrong time.</p>
+        <p class="chapter-intro">You have ~4,900 LinkedIn followers. Not all of them are Marcus. But enough of them are. A 1% conversion to paid membership = 49 members from your existing audience alone. Add organic growth from content, cohort alumni, and course buyers — and you're at 100–200 members without paid ads. Here's the path from follow to 179 kr/month.</p>
         <div class="insights">
-          <div class="insights-label">Growth phases</div>
+          <div class="insights-label">The conversion funnel</div>
           <ul>
-            <li><strong>0–50 members (manual):</strong> Invite people personally. DM the 50 people in your network who fit the profile. Offer a founding member price. Do things that don't scale. Every early member is a future advocate.</li>
-            <li><strong>50–150 members (content-led):</strong> LinkedIn is your primary growth channel. Every post drives awareness. Every post ends with a soft mention of the community. Cohort alumni become your strongest recruiters.</li>
-            <li><strong>150–500 members (compounding):</strong> Member referrals + platform discovery (if on Skool). At this stage, add a referral incentive — one free month for every paid member they bring in.</li>
-            <li>The most important number is not members — it's active members. 200 engaged members is worth more than 500 inactive ones. Prune inactive free members quarterly. It keeps the energy high for everyone.</li>
+            <li><strong>LinkedIn → Free resource:</strong> Every strong post ends with a free resource offer. "I built a template for this — DM me 'ENERGY' and I'll send it." 50–100 DMs per post. Each DM is a warm lead.</li>
+            <li><strong>Free resource → Email list:</strong> The resource goes to a landing page (Kartra). They enter their email to get it. You now have their address. This is the FTR waitlist / email list growing with every post.</li>
+            <li><strong>Email → Community trial:</strong> After the resource download: a 3-email sequence. Email 3: "We also have a private community where I share deeper content every week — tools, frameworks, and a monthly live call. 179 kr/month. Your first month is on me." Free first month converts at 40–60% to paid.</li>
+            <li><strong>Course buyers → Community:</strong> After buying the video course: "Join the community to ask questions about what you're learning and connect with other leaders going through the same material." High intent — they just spent $995 and they're engaged.</li>
+            <li><strong>Cohort alumni → Community anchor members:</strong> Cohort graduates know you, trust you, and have already experienced the value. They're the easiest community members to convert — and the most valuable ones, because they model the culture for newcomers.</li>
           </ul>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Write a list of the first 50 people you'll personally invite to the community. Include their name and one sentence about why they'd benefit. This list becomes your launch DM campaign. Set a goal: 20 founding paid members in the first 30 days.</p>
+          <p>Write the 3-email community nurture sequence today. Email 1: deliver the resource they requested. Email 2 (Day 3): "Here's what's been happening in the FTR community this week..." (make it specific — as if it already exists). Email 3 (Day 7): the community offer with free first month. This sequence runs automatically for every new email subscriber from this day forward.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-3-3')">✓ Mark as complete</button>
       </div>
@@ -725,25 +762,33 @@
     <div class="chapter" id="ch-3-4">
       <div class="chapter-header" onclick="toggleChapter('ch-3-4')">
         <span class="chapter-num">Chapter 5</span>
-        <span class="chapter-title">Retention — keeping members for 12+ months</span>
+        <span class="chapter-title">The compounding math — from 50 to 500 members</span>
         <span class="chapter-badge">Done ✓</span>
         <span class="chapter-arrow">↓</span>
       </div>
       <div class="chapter-body">
-        <p class="chapter-intro">Acquisition gets members in. Retention keeps the business alive. The average paid community has 30–40% annual churn. Great communities bring it below 15%. Here's what makes the difference.</p>
+        <p class="chapter-intro">Membership revenue is slow to start and fast to compound. The first 50 members are the hardest — you're seeding a community culture by yourself. From 50 to 200, the community starts to do the work. From 200 to 500, it runs. This chapter makes the math concrete so you know exactly what you're building toward — and why it's worth the slow start.</p>
         <div class="insights">
-          <div class="insights-label">Key insights</div>
+          <div class="insights-label">The compounding table (179 kr/month)</div>
           <ul>
-            <li>Members cancel when they feel they're not getting value — not when the price feels high. Churn is a content and engagement problem, not a pricing problem.</li>
-            <li>The "at-risk" window is months 2–3. If a member hasn't engaged by month 3, they'll probably cancel. Identify them early and reach out personally: "Hey, haven't seen you around — how can I make this more useful for you?"</li>
-            <li>Annual membership option: offer 2 months free for annual payment (179 kr × 10 = 1,790 kr/year). It reduces churn dramatically and improves cashflow.</li>
-            <li>The best retention tool is progress. Members who achieve something tangible inside your community don't leave. Design for wins, not just content.</li>
-            <li>Track your Net Promoter Score quarterly. Ask: "How likely are you to recommend this community to a colleague?" The answer tells you everything about where you stand.</li>
+            <li><strong>50 members:</strong> 8,950 kr/month · 107,400 kr/year. This covers your fixed costs and gives you a real base to build from. Realistic in 6–9 months from launch.</li>
+            <li><strong>100 members:</strong> 17,900 kr/month · 214,800 kr/year. This is the point where the community stops feeling like a side project and starts feeling like a business line. Realistic in 12–18 months.</li>
+            <li><strong>200 members:</strong> 35,800 kr/month · 429,600 kr/year. Combined with 2 cohort rounds and 4–6 active 1:1 clients, this is a ~1M kr/year business. This is Year 2–3.</li>
+            <li><strong>500 members:</strong> 89,500 kr/month · 1,074,000 kr/year. At this point the community is a standalone business. Not a realistic target for Year 1 — but a real target for Year 4+, and worth keeping in sight.</li>
           </ul>
+        </div>
+        <div class="callout">
+          <p><strong>The key insight about churn:</strong> At 179 kr, monthly churn is typically 3–7%. At 100 members, you lose 3–7 people and need to replace them. This means you need a slow, continuous acquisition stream — not occasional launch spikes. The 3 content wheels + LinkedIn posting cadence is that stream. Don't let it stop.</p>
+        </div>
+        <div class="video-section">
+          <div class="video-label">Watch — Best Platforms for Paid Community and Membership</div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/2JvsL4S8K5Q" allowfullscreen loading="lazy"></iframe>
+          </div>
         </div>
         <div class="action">
           <div class="action-label">Action step</div>
-          <p>Design a 90-day onboarding sequence for new paid members: what happens on Day 1, Day 7, Day 30, Day 60, and Day 90. Each touchpoint should either introduce them to a person, a piece of content, or an experience. A member who feels welcomed in the first 90 days stays for years.</p>
+          <p>Choose your community platform before the end of this month. Options: Circle (best product, higher cost), Mighty Networks (all-in-one, good mobile), Skool (momentum right now, growing fast). Start with the platform you'll actually use — not the one with the most features. For FTR's audience of Danish/Nordic business leaders, Circle is probably the cleanest choice. Set up the free and paid tiers. You can migrate later. You can't grow what doesn't exist yet.</p>
         </div>
         <button class="btn-complete" onclick="markComplete('ch-3-4')">✓ Mark as complete</button>
       </div>
@@ -752,51 +797,58 @@
 
   <script>
     const TOTAL = 20;
-    let completed = new Set(JSON.parse(localStorage.getItem('ftr-academy-done') || '[]'));
-
-    function save() { localStorage.setItem('ftr-academy-done', JSON.stringify([...completed])); }
-
-    function updateProgress() {
-      const pct = (completed.size / TOTAL) * 100;
-      document.getElementById('topbar-fill').style.width = pct + '%';
-      document.getElementById('topbar-label').textContent = completed.size + ' / ' + TOTAL + ' completed';
-
-      // Per-module mini bars
-      [0,1,2,3].forEach(m => {
-        const ids = Array.from({length:5}, (_,i) => 'ch-'+m+'-'+i);
-        const done = ids.filter(id => completed.has(id)).length;
-        document.getElementById('mini-'+m).style.width = (done/5*100) + '%';
-      });
-    }
+    const done = new Set(JSON.parse(localStorage.getItem('ftr-academy-done') || '[]'));
 
     function markComplete(id) {
-      if (completed.has(id)) {
-        completed.delete(id);
-        document.getElementById(id).classList.remove('completed');
-      } else {
-        completed.add(id);
-        document.getElementById(id).classList.add('completed');
-      }
-      save(); updateProgress();
+      done.add(id);
+      localStorage.setItem('ftr-academy-done', JSON.stringify([...done]));
+      const el = document.getElementById(id);
+      if (el) el.classList.add('done');
+      updateProgress();
     }
 
     function toggleChapter(id) {
       const el = document.getElementById(id);
+      if (!el) return;
       el.classList.toggle('open');
     }
 
     function showModule(n) {
-      document.querySelectorAll('.module-tab').forEach((t,i) => t.classList.toggle('active', i===n));
-      document.querySelectorAll('.module-content').forEach((c,i) => c.classList.toggle('active', i===n));
+      document.querySelectorAll('.module-content').forEach((m, i) => {
+        m.classList.toggle('visible', i === n);
+      });
+      document.querySelectorAll('.mod-tab').forEach((t, i) => {
+        t.classList.toggle('active', i === n);
+      });
     }
 
-    // Init
-    completed.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.classList.add('completed');
-    });
+    function updateProgress() {
+      const count = done.size;
+      const pct = Math.round((count / TOTAL) * 100);
+      document.getElementById('global-fill').style.width = pct + '%';
+      document.getElementById('global-label').textContent = count + ' / ' + TOTAL + ' complete';
+
+      // per-module fills
+      const modules = [
+        ['ch-0-0','ch-0-1','ch-0-2','ch-0-3','ch-0-4'],
+        ['ch-1-0','ch-1-1','ch-1-2','ch-1-3','ch-1-4'],
+        ['ch-2-0','ch-2-1','ch-2-2','ch-2-3','ch-2-4'],
+        ['ch-3-0','ch-3-1','ch-3-2','ch-3-3','ch-3-4'],
+      ];
+      modules.forEach((ids, i) => {
+        const completed = ids.filter(id => done.has(id)).length;
+        document.getElementById('fill-' + i).style.width = Math.round((completed / ids.length) * 100) + '%';
+      });
+
+      // mark done chapters
+      done.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add('done');
+      });
+    }
+
+    // init
     updateProgress();
   </script>
-
 </body>
 </html>
