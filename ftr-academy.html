@@ -28,7 +28,7 @@
     .header-sub { font-size: 16px; color: var(--text2); line-height: 1.7; }
 
     /* MODULE TABS */
-    .module-nav { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; padding: 0 48px 40px; }
+    .module-nav { display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; padding: 0 48px 40px; }
     .mod-tab { background: var(--bg2); border: 1.5px solid var(--border); border-radius: 12px; padding: 20px 16px; cursor: pointer; transition: all 0.2s; }
     .mod-tab.active { background: var(--text); border-color: var(--text); }
     .mod-tab-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 6px; }
@@ -84,6 +84,21 @@
     .callout p { font-size: 14px; line-height: 1.65; color: var(--text2); }
     .callout strong { color: var(--text); }
 
+    /* REFLECTION BOXES — for "You're in the room" module */
+    .reflect { border-left: 3px solid var(--text2); background: var(--bg); border-radius: 0 8px 8px 0; padding: 20px; margin-bottom: 16px; }
+    .reflect-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text2); margin-bottom: 14px; }
+    .reflect ul { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .reflect li { font-size: 15px; line-height: 1.7; color: var(--text); font-style: italic; padding-left: 20px; position: relative; }
+    .reflect li::before { content: "→"; position: absolute; left: 0; color: var(--text2); font-style: normal; }
+
+    /* HOT SEAT BOXES */
+    .hotseat { border: 1.5px solid var(--accent); border-radius: 8px; padding: 20px; margin-bottom: 16px; }
+    .hotseat-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 12px; }
+    .hotseat ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .hotseat li { font-size: 15px; line-height: 1.65; color: var(--text); padding-left: 20px; position: relative; font-style: italic; }
+    .hotseat li::before { content: "◈"; position: absolute; left: 0; color: var(--accent); font-style: normal; font-size: 10px; top: 5px; }
+
+    @media (max-width: 1100px) { .module-nav { grid-template-columns: repeat(3,1fr); } }
     @media (max-width: 768px) {
       .topbar { padding: 12px 20px; }
       .academy-header { padding: 40px 20px 32px; }
@@ -108,7 +123,7 @@
   <div class="academy-header">
     <div class="header-eyebrow">Your personal learning system</div>
     <div class="header-title">Feel The Room —<br>The Business</div>
-    <div class="header-sub">Everything you need to build FTR into a real, scalable business. Built on what you already know: the F.E.E.L. framework, Marcus, your methodology, your pricing. Four modules. Twenty chapters. Your path from coaching conversations to a business that runs.</div>
+    <div class="header-sub">Everything you need to build FTR into a real, scalable business — and experience the cohort from the inside. Five modules. Twenty-eight chapters. Modules 1–4 build the business. Module 5 puts you in the participant's chair for all 8 cohort sessions.</div>
   </div>
 
   <!-- MODULE TABS -->
@@ -132,6 +147,11 @@
       <div class="mod-tab-num">Module 4</div>
       <div class="mod-tab-title">FTR Community</div>
       <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-3" style="width:0%"></div></div>
+    </div>
+    <div class="mod-tab" onclick="showModule(4)" id="tab-4">
+      <div class="mod-tab-num">Module 5</div>
+      <div class="mod-tab-title">You're in the Room</div>
+      <div class="mod-tab-bar"><div class="mod-tab-fill" id="fill-4" style="width:0%"></div></div>
     </div>
   </div>
 
@@ -910,8 +930,368 @@
     </div>
   </div>
 
+  <!-- ===================== MODULE 5: YOU'RE IN THE ROOM ===================== -->
+  <div class="module-content" id="module-4">
+    <p class="module-intro">This is different from the other modules. You're not learning how to run the cohort — you're sitting in it. I'm your facilitator. You're a participant. We're going through all 8 sessions together. Read slowly. Answer the questions honestly — not as a coach, but as a leader who's here because something needs to change. The more honest you are with yourself here, the better you'll understand what your participants experience when they sit in this chair.</p>
+
+    <!-- Session 1 — Orientation -->
+    <div class="chapter" id="ch-4-0">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-0')">
+        <span class="chapter-num">Session 1</span>
+        <span class="chapter-title">Orientation — why are you really here?</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Welcome. You made it to the room.<br><br>Before we go anywhere else, I want to start with one question — and I want the real answer, not the LinkedIn version:<br><br><em>Why are you really here?</em><br><br>Most people say "I want to be a better leader." That's true. But it's not specific enough to work with. The real reason is usually something more uncomfortable. Let's find it.</p>
+
+        <div class="insights">
+          <div class="insights-label">The 10 pains — read these slowly</div>
+          <ul>
+            <li>You give answers when your team needs questions.</li>
+            <li>You avoid difficult conversations until they become expensive.</li>
+            <li>Your team performs when you're watching — and coasts when you're not.</li>
+            <li>You were promoted because of your results, not your people skills — and nobody trained you for what came next.</li>
+            <li>You still think like a top performer, not like a leader.</li>
+            <li>You lose patience with low performers instead of trying to understand what's actually driving the behaviour.</li>
+            <li>Your 1:1s feel like status updates — not real conversations.</li>
+            <li>You don't really know what motivates each person on your team individually.</li>
+            <li>Your energy runs out before the week does.</li>
+            <li>You know something needs to change — but you're not sure what.</li>
+          </ul>
+        </div>
+
+        <div class="reflect">
+          <div class="reflect-label">Reflect — your honest Point A</div>
+          <ul>
+            <li>Which 3 of these feel most personal right now? Not the "acceptable" ones — the ones that actually land.</li>
+            <li>Of those 3: pick the one that costs you the most. What does it cost you — in team performance, in how you feel on Sunday evening, in the leader you want to be?</li>
+            <li>Complete this sentence out loud: "The reason I'm really here is..."</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <p><strong>The contract:</strong> This only works if you show up as you actually are — not as you think a leader should be. You're not being evaluated here. There's no right answer. The work starts when you stop performing the correct version of yourself.</p>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your first experiment — before Session 2</div>
+          <p>Start an Energy Log. Three times a day — morning, midday, end of day — note your energy level from 1–10 and one thing that drove it up or down. Do this for 14 days. Don't analyse it yet. Just observe. Bring it to Session 3.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-0')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 2 — Foundation intro -->
+    <div class="chapter" id="ch-4-1">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-1')">
+        <span class="chapter-num">Session 2</span>
+        <span class="chapter-title">F — Foundation: lead yourself first</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Check-in: one word for the energy you're bringing in today.<br><br>Now tell me about last week — not the results. The energy. When were you at your best? When were you running on empty? What drove the difference?</p>
+
+        <div class="insights">
+          <div class="insights-label">The question at the centre of Foundation</div>
+          <ul>
+            <li><strong>Who do you need to be before you can lead anyone else?</strong> Most leaders skip this question entirely. They go straight to the team — what's the team doing wrong, how do I fix it. The answer to that question almost always starts with: <em>yourself.</em></li>
+            <li><strong>You are a biological system before you are a leadership framework.</strong> Sleep, movement, nutrition, emotional regulation. Foundation isn't on the curriculum because it's soft. It's there because a leader running on 5 hours of sleep and back-to-back meetings has no regulation capacity left by 4pm. They react. They snap. They avoid the conversations that need to happen. And they wonder why the team feels it.</li>
+            <li><strong>The Energy Compass:</strong> Your body knows before your brain does. When you walk into a meeting and your chest tightens — that's data. When you finish a 1:1 and feel genuinely energised — that's data too. Most leaders ignore both signals. F.E.E.L. is about learning to use them.</li>
+            <li><strong>Your nervous system is contagious.</strong> Before Elevation — before you can read anyone else's room — you have to be in your own. A regulated leader creates regulation in the people around them. A dysregulated leader creates dysregulation — and usually has no idea they're doing it.</li>
+          </ul>
+        </div>
+
+        <div class="hotseat">
+          <div class="hotseat-label">Hot seat — your turn</div>
+          <ul>
+            <li>Think of a recent moment where your energy worked against you as a leader. A meeting, a conversation, a decision. What was the situation?</li>
+            <li>What was happening in your body before you responded? Did you notice it at the time?</li>
+            <li>What did you do? What would you have done differently if you'd been more regulated?</li>
+            <li>What does that moment tell you about the one Foundation habit you most need to protect?</li>
+          </ul>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 3</div>
+          <p>Identify the one Foundation habit that moves your energy needle most. Not the perfect routine — the single thing. It could be sleep before 11pm, a 20-minute walk at lunch, no phone for the first 30 minutes of the day. One thing. Protect it for 14 days. Note what changes in how you show up.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-1')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 3 — Foundation debrief + Elevation intro -->
+    <div class="chapter" id="ch-4-2">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-2')">
+        <span class="chapter-num">Session 3</span>
+        <span class="chapter-title">F debrief + E — Elevation: feel the room before you speak</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">We open with the Foundation debrief. You've been running the Energy Log for two weeks. Not analysing — just watching. Now let's look at what it's telling you.</p>
+
+        <div class="reflect">
+          <div class="reflect-label">Foundation debrief — answer these before reading further</div>
+          <ul>
+            <li>What patterns showed up in your Energy Log that you didn't expect?</li>
+            <li>What was your single biggest energy drain? Is it structural (a meeting, a person, a habit) or situational?</li>
+            <li>Did anything shift in how you showed up as a leader over the 14 days — even slightly?</li>
+            <li>What's the one thing you're going to protect going forward?</li>
+          </ul>
+        </div>
+
+        <div class="insights">
+          <div class="insights-label">Elevation — Feel The Room</div>
+          <ul>
+            <li><strong>You can read a prospect in under 6 minutes.</strong> You've done it thousands of times in sales conversations — you walk in and within minutes you know if they're engaged, defensive, distracted, or ready. Elevation is the same skill applied to the people you lead every day.</li>
+            <li><strong>Polyvagal Theory in practice:</strong> Your nervous system is not just yours — it's social. When you walk into a meeting regulated, calm, and present, the people around you co-regulate. When you walk in rushed, tight, and distracted — they feel that before you say a word. Your state is the weather in the room.</li>
+            <li><strong>The question Elevation forces:</strong> What state do you want to bring into the room — and how intentionally are you creating it? Most leaders arrive at meetings. The F.E.E.L. leader <em>enters</em> them — with intention about who they're going to be in the next 90 minutes.</li>
+            <li><strong>A regulated nervous system is the prerequisite for reading anyone else.</strong> You can't feel the room if you're not in your own body first. That's why Foundation comes before Elevation in the framework — and in the sessions.</li>
+          </ul>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 4</div>
+          <p>Before every meeting this week: a 60-second reset. Three slow breaths. Notice where your energy is. Then walk in and observe for 2 full minutes before you say anything. Who's present? Who's elsewhere? What's the energy before anyone opens their mouth? Write one observation per day. Bring them to the next session.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-2')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 4 — Elevation deep -->
+    <div class="chapter" id="ch-4-3">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-3')">
+        <span class="chapter-num">Session 4</span>
+        <span class="chapter-title">E deep — Elevation: what you see when you stop rushing</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Let's debrief the experiment. You paused before entering meetings. You observed before you spoke. What did you notice?</p>
+
+        <div class="reflect">
+          <div class="reflect-label">Elevation debrief</div>
+          <ul>
+            <li>What did you see in the first 2 minutes of a meeting that you'd been missing before?</li>
+            <li>Was there a moment where what you observed changed how you opened the meeting or conversation?</li>
+            <li>Is there someone on your team whose energy signals you've been misreading — or ignoring entirely?</li>
+          </ul>
+        </div>
+
+        <div class="insights">
+          <div class="insights-label">Going deeper on Elevation</div>
+          <ul>
+            <li><strong>Most leaders read outcomes, not signals.</strong> They see a rep underperforming and respond to the number. Elevation teaches you to see what's behind the number — the energy, the body language, the pattern of silence or deflection that's been there for weeks before the pipeline started dropping.</li>
+            <li><strong>Body language is not performance.</strong> You're not learning to fake openness or project confidence. You're learning to notice what's real — in yourself and in others. The tightness in someone's jaw. The way a person doesn't answer a question but answers a different one instead. These are signals. They're available to you every day.</li>
+            <li><strong>State management under pressure:</strong> The moment your team most needs you regulated is the moment you're most likely to be dysregulated — a pipeline miss, a difficult performance conversation, a reorg announcement. The 60-second reset before high-stakes moments isn't a trick. It's the single most high-leverage leadership habit you can build.</li>
+          </ul>
+        </div>
+
+        <div class="hotseat">
+          <div class="hotseat-label">Hot seat — your turn</div>
+          <ul>
+            <li>Think of a situation in the last two weeks where you walked in and immediately sensed something was off. A meeting, a 1:1, a team standup. What were the signals?</li>
+            <li>What did you do with them? Did you name it, ignore it, or react to it?</li>
+            <li>Looking back — what would a regulated, intentional version of you have done differently in that moment?</li>
+          </ul>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 5</div>
+          <p>Choose one recurring meeting where you consistently feel the energy drop. This week: arrive 2 minutes early, do your reset, and enter with a specific intention — not for the outcome, but for the state you want to create. Observe what's different. Come ready to talk about it.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-3')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 5 — Exploration intro -->
+    <div class="chapter" id="ch-4-4">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-4')">
+        <span class="chapter-num">Session 5</span>
+        <span class="chapter-title">E — Exploration: the question is more powerful than the answer</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Check-in: tell me about one conversation this week where you gave an answer when you could have asked a question. What was the situation, and what did you say?</p>
+
+        <div class="insights">
+          <div class="insights-label">Exploration — Lead with Curiosity</div>
+          <ul>
+            <li><strong>"The one who asks holds the power."</strong> You've been rewarded for answers your whole career. In sales, the right answer at the right moment closes a deal. In leadership, the right question at the right moment unlocks a person — and that unlocking lasts far longer than any answer you could give.</li>
+            <li><strong>An answer closes the conversation. A question opens it.</strong> When you tell a rep what to do, you've solved their problem for this week. When you ask them a question that makes them find the answer themselves, you've built something that runs without you.</li>
+            <li><strong>The Dream→Current→Problem→Probe flow:</strong> Dream first — "if this resolved perfectly, what would that look like?" Then Current — "where are you now, honestly?" Then Problem — "what's the gap? Name it out loud." Then Probe — "what does it cost you if this stays the same? Who do you become when it's solved?"</li>
+            <li><strong>The 7 questions you'll use most:</strong> "Tell me more." "What's the impact of that?" "What have you already tried?" "What's stopping you?" "What do you think the real problem is?" "What would you do if you weren't afraid of being wrong?" "What do you actually want — not what you think you should want?"</li>
+          </ul>
+        </div>
+
+        <div class="hotseat">
+          <div class="hotseat-label">Your turn — I'm going to ask you these questions now</div>
+          <ul>
+            <li>Tell me about the one person on your team you find hardest to lead right now.</li>
+            <li>What have you already tried with them?</li>
+            <li>What do you think is actually going on for them — underneath the behaviour you see?</li>
+            <li>What would it look like if this relationship was working well?</li>
+            <li>What's stopping you from moving toward that?</li>
+            <li>What would you do if you knew you couldn't get it wrong?</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <p><strong>Notice what just happened:</strong> I didn't give you any advice about the person on your team. I asked questions. And somewhere in answering them, you probably got clearer than you were before you started. That's Exploration. That's what you're building the capacity to do with your team.</p>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 6</div>
+          <p>In every 1:1 with a rep this week: replace one answer with a question. Just one per conversation. Not a rhetorical question — a real one you don't know the answer to. Notice what happens in them. Notice what happens in you. Come ready to debrief both.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-4')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 6 — Exploration deep -->
+    <div class="chapter" id="ch-4-5">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-5')">
+        <span class="chapter-num">Session 6</span>
+        <span class="chapter-title">E deep — Exploration: listening for what isn't said</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Let's debrief. You replaced one answer with a question in every 1:1 this week. What happened?</p>
+
+        <div class="reflect">
+          <div class="reflect-label">Exploration debrief</div>
+          <ul>
+            <li>Did the rep find their own answer — or did they deflect back to you?</li>
+            <li>Was there a moment of silence after you asked? What was in that silence?</li>
+            <li>Did anything come out in the conversation that hadn't come out before?</li>
+            <li>What was hardest — asking the question, or staying quiet long enough to let them answer it?</li>
+          </ul>
+        </div>
+
+        <div class="insights">
+          <div class="insights-label">Listening for the unsaid</div>
+          <ul>
+            <li><strong>The most important information is usually what isn't said.</strong> The topic someone circles around but never lands on. The sentence they start and don't finish. The question they answer with a different question. These are the signals. They're available in every conversation — but only if you're quiet enough to notice them.</li>
+            <li><strong>When to present the solution:</strong> Not until the person has reached the edge of what they already know. Not until the problem is fully named — by them, in their own words. If they can name their own problem clearly, they're usually halfway to solving it. Your solution is confirmation, not revelation.</li>
+            <li><strong>"You don't close, you confirm."</strong> This is true in sales. It's equally true in coaching. The insight was already there — you just created the conditions for it to surface. That's the job.</li>
+          </ul>
+        </div>
+
+        <div class="hotseat">
+          <div class="hotseat-label">Live practice — coaching in the room</div>
+          <ul>
+            <li>Think about the person from Session 5 — the one you find hardest to lead. Where are you now with that relationship? What's shifted since you started asking instead of telling?</li>
+            <li>What's the unsaid thing between you and them? The thing neither of you has named yet?</li>
+            <li>What would it take for you to name it — with curiosity, not confrontation?</li>
+            <li>What question would you ask them if you knew they were ready to hear it?</li>
+          </ul>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 7</div>
+          <p>Have the conversation you've been avoiding. Not the confrontation — the curious one. Use the Dream→Current→Problem→Probe flow. Open with: "I want to understand something better — can I ask you a few questions?" See what happens when you lead with curiosity instead of a prepared position.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-5')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 7 — Liberation -->
+    <div class="chapter" id="ch-4-6">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-6')">
+        <span class="chapter-num">Session 7</span>
+        <span class="chapter-title">L — Liberation: culture is what happens when you're not in the room</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">That sentence should sit uncomfortably. Because for most sales managers, culture is what happens <em>because</em> they're in the room. Their presence drives it. Their energy enforces it. Which means the moment they step out — it softens, drifts, or stops. That's not culture. That's management dependency. Liberation is about building a team that performs because they want to.</p>
+
+        <div class="insights">
+          <div class="insights-label">Three things that build Liberation</div>
+          <ul>
+            <li><strong>Psychological safety (Edmondson):</strong> Team members will not take risks, share bad news, or try new approaches if they believe there's a cost to being wrong. Your job isn't to be liked — it's to make it safe to be honest. A team that only brings you good news is a team that's already in trouble.</li>
+            <li><strong>Radical Candor (Scott):</strong> Care personally and challenge directly — at the same time. Most leaders do one or the other. They're either too nice to tell the truth, or too direct to make it land without damage. The high-performance zone is both at once: I'm saying this hard thing because I think you're capable of more.</li>
+            <li><strong>Belonging Cues (Coyle):</strong> Small, consistent signals that say — "you are safe here, you matter here, we have a future together." Using someone's name. Referencing what they said in a meeting two weeks ago. Asking about the thing they mentioned in passing. These are not soft skills. They are neurological. They change how the brain performs under pressure.</li>
+          </ul>
+        </div>
+
+        <div class="reflect">
+          <div class="reflect-label">Reflect — your team's culture right now</div>
+          <ul>
+            <li>What happens in your team when you're not in the room? How do you know?</li>
+            <li>Is there someone on your team who never brings you problems — only solutions? What does that tell you about psychological safety?</li>
+            <li>When did you last say something hard to someone on your team — with care? When did you last avoid saying it?</li>
+            <li>What would your team say is your leadership at its best? What would they say is the pattern they wish you'd change?</li>
+          </ul>
+        </div>
+
+        <div class="hotseat">
+          <div class="hotseat-label">Hot seat — bring a real culture challenge</div>
+          <ul>
+            <li>What's the culture problem on your team right now — the real one, not the one you'd describe to your VP?</li>
+            <li>How long has it been there?</li>
+            <li>What have you done about it so far? Why hasn't it worked?</li>
+            <li>What would Radical Candor look like applied to this specific situation?</li>
+            <li>What's the one conversation — or one consistent behaviour — that would move this the most?</li>
+          </ul>
+        </div>
+
+        <div class="action">
+          <div class="action-label">Your experiment — before Session 8</div>
+          <p>Run the Core Values conversation with your team. One question, asked in a team meeting: "What does it look like when we're at our absolute best as a team?" Don't direct it. Don't correct it. Write down exactly what they say. Bring it to Session 8.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-6')">✓ Mark as complete</button>
+      </div>
+    </div>
+
+    <!-- Session 8 — Integration -->
+    <div class="chapter" id="ch-4-7">
+      <div class="chapter-header" onclick="toggleChapter('ch-4-7')">
+        <span class="chapter-num">Session 8</span>
+        <span class="chapter-title">Integration — what actually changed?</span>
+        <span class="chapter-badge">Done ✓</span>
+        <span class="chapter-arrow">↓</span>
+      </div>
+      <div class="chapter-body">
+        <p class="chapter-intro">Four months ago you told me your honest Point A. Today I want to hear what changed.<br><br>Not "I learned a lot." Not feelings. Evidence. What did you do differently? What did your team do differently? What's different about Monday morning — specifically?</p>
+
+        <div class="reflect">
+          <div class="reflect-label">Your integration — three questions</div>
+          <ul>
+            <li>What's the most important thing that changed in how you lead? What's the evidence for it?</li>
+            <li>What's the one thing you're still working on — the pattern that shifted but hasn't resolved?</li>
+            <li>What does Point B look like from here? Not the one you named in Session 1 — the next version of it, now that you know more about yourself as a leader.</li>
+          </ul>
+        </div>
+
+        <div class="insights">
+          <div class="insights-label">What you just experienced — as a facilitator</div>
+          <ul>
+            <li><strong>You felt what it's like to be asked instead of told.</strong> The hot seat questions landed differently than reading about them in Module 1. That's the gap between knowing the methodology and experiencing it. Your participants will feel the same gap — and you've now been on both sides of it.</li>
+            <li><strong>The uncomfortable moments were the most valuable ones.</strong> The reflection that made you sit with something. The hot seat question you didn't have a clean answer to. The experiment you half-did and then noticed what the half meant. Those moments are where the real learning happened.</li>
+            <li><strong>You now know what Session 1 feels like for Marcus.</strong> He comes in with his guard up — a Captain who built his career on having answers. The moment he names his honest Point A in front of 9 people like him is the moment the room becomes real. You've been in that chair. Don't forget what it felt like.</li>
+          </ul>
+        </div>
+
+        <div class="callout">
+          <p><strong>The path forward:</strong> The F.E.E.L. framework doesn't end here. The video course goes deeper on every pillar. 1:1 Advisory is for the shifts that need more time and a dedicated thinking partner. The community is how you stay in the room after the cohort ends. But first — what are you taking from this one?</p>
+        </div>
+
+        <div class="action">
+          <div class="action-label">One final thing</div>
+          <p>Write a single sentence that captures what shifted for you across these 8 sessions. Not a summary — a sentence that's true. Something you'll still remember in 6 months. This is your Point B marker. It's also the kind of sentence your participants will write at the end of their Session 8 — and it's the most powerful testimonial you'll ever have for the cohort.</p>
+        </div>
+        <button class="btn-complete" onclick="markComplete('ch-4-7')">✓ Mark as complete</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const TOTAL = 20;
+    const TOTAL = 28;
     const done = new Set(JSON.parse(localStorage.getItem('ftr-academy-done') || '[]'));
 
     function markComplete(id) {
@@ -949,6 +1329,7 @@
         ['ch-1-0','ch-1-1','ch-1-2','ch-1-3','ch-1-4'],
         ['ch-2-0','ch-2-1','ch-2-2','ch-2-3','ch-2-4'],
         ['ch-3-0','ch-3-1','ch-3-2','ch-3-3','ch-3-4'],
+        ['ch-4-0','ch-4-1','ch-4-2','ch-4-3','ch-4-4','ch-4-5','ch-4-6','ch-4-7'],
       ];
       modules.forEach((ids, i) => {
         const completed = ids.filter(id => done.has(id)).length;
