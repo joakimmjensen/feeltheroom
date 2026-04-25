@@ -3,11 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="icon" type="image/svg+xml" href="ftr-favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <meta name="color-scheme" content="light">
-  <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css" />
   <title>The Room — Feel the Room</title>
-  <meta name="description" content="Something is being built. For sales leaders and founders who feel there's another level. Request access." />
+  <meta name="description" content="A free community for sales leaders and founders who are done with surface-level advice. Join The Room." />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
@@ -24,127 +23,94 @@
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text); font-size: 16px; line-height: 1.7; }
 
     /* NAV */
-    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); }
+    nav { padding: 0 48px; height: 64px; display: flex; align-items: center; justify-content: space-between; border-bottom: 0.5px solid var(--border); position: sticky; top: 0; background: var(--bg); z-index: 100; }
     .nav-logo img { height: 22px; display: block; }
+    .nav-cta { padding: 9px 20px; background: var(--accent); color: #f6ede0; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; font-family: inherit; text-decoration: none; transition: opacity 0.15s; }
+    .nav-cta:hover { opacity: 0.85; }
 
     /* HERO */
-    .hero { max-width: 760px; margin: 0 auto; padding: 88px 24px 52px; text-align: center; }
-    .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 24px; }
-    .hero h1 { font-family: Georgia, serif; font-size: clamp(38px, 6vw, 60px); font-weight: 600; line-height: 1.07; letter-spacing: -0.02em; color: var(--text); margin-bottom: 24px; }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero-sub { font-size: 19px; color: var(--text2); line-height: 1.7; max-width: 540px; margin: 0 auto; }
+    .hero { max-width: 760px; margin: 0 auto; padding: 96px 24px 64px; text-align: center; }
+    .eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); margin-bottom: 20px; font-weight: 600; }
+    .hero h1 { font-family: Georgia, serif; font-size: clamp(40px, 6.5vw, 68px); font-weight: 600; line-height: 1.05; letter-spacing: -0.025em; color: var(--text); margin-bottom: 28px; }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero-sub { font-size: 19px; color: var(--text2); line-height: 1.75; max-width: 520px; margin: 0 auto 48px; }
 
-    /* VIDEO */
-    .video-wrap { max-width: 800px; margin: 52px auto 0; padding: 0 24px; }
-    .video-outer { position: relative; width: 100%; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); background: #1C1A17; }
-    .video-outer .plyr { --plyr-color-main: #ff0800; --plyr-video-background: #1C1A17; border-radius: var(--radius); }
-    .plyr__control--overlaid { background: #f0e8d1 !important; box-shadow: 0 4px 24px rgba(0,0,0,0.3) !important; }
-    .plyr__control--overlaid:hover { background: #e8dcc4 !important; transform: scale(1.06); }
-    .plyr__control--overlaid svg { fill: #ff0800 !important; }
-    .video-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); }
-
-    /* FORM SOCIAL PROOF */
-    .form-sp { margin-top: 20px; padding-top: 16px; border-top: 0.5px solid var(--border); }
-    .form-sp-quote { display: block; font-family: Georgia, serif; font-size: 14px; font-style: italic; color: var(--text); line-height: 1.6; margin-bottom: 6px; }
-    .form-sp-name { font-size: 11px; letter-spacing: 0.08em; color: var(--text2); text-transform: uppercase; }
-
-    /* PULL QUOTE */
-    .pull-quote { max-width: 640px; margin: 56px auto 0; padding: 0 24px; text-align: center; }
-    .pull-quote p { font-family: Georgia, serif; font-size: 21px; line-height: 1.65; color: var(--text2); font-style: italic; }
-    .pull-quote strong { color: var(--text); font-style: normal; font-weight: 600; }
-
-    /* FORM — FIRST */
-    .form-wrap { max-width: 500px; margin: 48px auto 0; padding: 0 24px; text-align: center; }
-    .form-label { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; display: block; }
+    /* FORM */
+    .form-block { max-width: 480px; margin: 0 auto; }
     .form-row { display: flex; gap: 10px; margin-bottom: 12px; }
-    .form-row input { flex: 1; padding: 14px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--bg2); font-size: 15px; color: var(--text); outline: none; font-family: inherit; transition: border-color 0.15s; }
+    .form-row input { flex: 1; padding: 15px 18px; border: 0.5px solid var(--border); border-radius: 8px; background: var(--bg2); font-size: 15px; color: var(--text); outline: none; font-family: inherit; transition: border-color 0.15s; }
     .form-row input::placeholder { color: var(--text2); }
     .form-row input:focus { border-color: rgba(28,26,23,0.4); }
-    .btn-access { padding: 14px 28px; background: var(--accent); color: #f6ede0; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: inherit; transition: opacity 0.15s; }
-    .btn-access:hover { opacity: 0.87; }
+    .btn-join { padding: 15px 26px; background: var(--accent); color: #f6ede0; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; white-space: nowrap; font-family: inherit; transition: opacity 0.15s; }
+    .btn-join:hover { opacity: 0.87; }
     .form-note { font-size: 12px; color: var(--text2); line-height: 1.6; }
+    .form-social-proof { margin-top: 20px; padding-top: 18px; border-top: 0.5px solid var(--border); font-family: Georgia, serif; font-size: 14px; font-style: italic; color: var(--text2); }
+    .form-social-proof strong { color: var(--text); font-style: normal; font-weight: 600; }
 
-    /* SECTION DIVIDER */
-    .divider { height: 0.5px; background: var(--border); max-width: 800px; margin: 72px auto; }
+    /* DIVIDER */
+    .divider { height: 0.5px; background: var(--border); max-width: 800px; margin: 80px auto; }
 
-    /* THREE FOUNDATIONS */
-    .foundations { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .section-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; }
-    .section-headline { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 36px); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; margin-bottom: 16px; max-width: 560px; }
-    .section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.75; margin-bottom: 40px; }
-    .foundations-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 0; }
-    .foundation-item { background: var(--bg2); padding: 32px 28px; }
-    .foundation-num { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; font-weight: 600; }
-    .foundation-title { font-family: Georgia, serif; font-size: 20px; font-weight: 600; margin-bottom: 12px; line-height: 1.2; }
-    .foundation-body { font-size: 14px; color: var(--text2); line-height: 1.7; }
+    /* WHAT IS THE ROOM */
+    .section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+    .section-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text2); margin-bottom: 16px; font-weight: 600; }
+    .section-headline { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 38px); font-weight: 600; line-height: 1.18; letter-spacing: -0.015em; margin-bottom: 18px; max-width: 600px; }
+    .section-sub { font-size: 16px; color: var(--text2); max-width: 560px; line-height: 1.8; margin-bottom: 40px; }
 
-    /* STATS */
-    .stats-bar { background: var(--bg2); border-top: 0.5px solid var(--border); border-bottom: 0.5px solid var(--border); margin: 72px 0; padding: 0 24px; }
-    .stats-section { max-width: 800px; margin: 0 auto; padding: 28px 0 0; }
-    .stats-section:last-child { padding-bottom: 28px; }
-    .stats-section + .stats-section { border-top: 0.5px solid var(--border); }
-    .stats-group-label { font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 16px; }
-    .stats-inner { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: visible; margin-bottom: 0; }
-    .stat-item { background: var(--bg2); padding: 24px 20px; text-align: center; position: relative; cursor: pointer; transition: background 0.15s; }
-    .stat-item:first-child { border-radius: var(--radius) 0 0 var(--radius); }
-    .stat-item:last-child { border-radius: 0 var(--radius) var(--radius) 0; }
-    .stat-item:hover { background: var(--bg3); }
-    .stat-item .stat-hint { font-size: 10px; color: var(--accent); opacity: 0.6; margin-top: 6px; letter-spacing: 0.06em; }
-    .stat-number { font-family: Georgia, serif; font-size: 32px; font-weight: 600; color: var(--text); line-height: 1; margin-bottom: 8px; }
-    .stat-number em { font-style: normal; color: var(--accent); }
-    .stat-label { font-size: 11px; color: var(--text2); letter-spacing: 0.04em; line-height: 1.5; }
-    /* STAT POPOVER */
-    .stat-popover { display: none; position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); background: var(--text); color: var(--bg); font-size: 13px; line-height: 1.6; padding: 14px 16px; border-radius: 8px; width: 220px; text-align: left; z-index: 100; pointer-events: none; }
-    .stat-popover::before { content: ''; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); border: 6px solid transparent; border-bottom-color: var(--text); }
-    .stat-item.open .stat-popover { display: block; }
+    /* PILLARS */
+    .pillars { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; }
+    .pillar { background: var(--bg2); padding: 32px 28px; }
+    .pillar-icon { font-size: 22px; margin-bottom: 14px; line-height: 1; }
+    .pillar-title { font-size: 16px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+    .pillar-body { font-size: 14px; color: var(--text2); line-height: 1.75; }
+    @media (max-width: 600px) { .pillars { grid-template-columns: 1fr; } }
+
+    /* WHAT YOU GET */
+    .get-list { list-style: none; display: flex; flex-direction: column; gap: 0; border-radius: var(--radius); overflow: hidden; border: 0.5px solid var(--border); }
+    .get-item { display: flex; align-items: flex-start; gap: 18px; padding: 22px 28px; background: var(--bg2); border-bottom: 0.5px solid var(--border); }
+    .get-item:last-child { border-bottom: none; }
+    .get-num { font-family: Georgia, serif; font-size: 18px; font-weight: 600; color: var(--accent); opacity: 0.5; flex-shrink: 0; width: 28px; padding-top: 2px; }
+    .get-text strong { font-size: 15px; font-weight: 600; display: block; margin-bottom: 4px; }
+    .get-text span { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+    /* PULL QUOTE */
+    .pull { max-width: 640px; margin: 80px auto; padding: 0 24px; text-align: center; }
+    .pull p { font-family: Georgia, serif; font-size: clamp(19px, 3vw, 24px); line-height: 1.65; color: var(--text2); font-style: italic; }
+    .pull strong { color: var(--text); font-style: normal; }
+
+    /* WHO */
+    .who-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
+    .who-item { background: var(--bg2); padding: 28px 24px; }
+    .who-label { font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+    .who-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+    .who-item p { font-size: 13px; color: var(--text2); line-height: 1.7; }
+    @media (max-width: 680px) { .who-grid { grid-template-columns: 1fr; } }
+
+    /* PLATFORM */
+    .platform-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 40px 44px; display: grid; grid-template-columns: 1fr 220px; gap: 48px; align-items: center; }
+    .platform-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 12px; }
+    .platform-card h3 { font-family: Georgia, serif; font-size: 24px; font-weight: 600; margin-bottom: 16px; line-height: 1.2; }
+    .platform-card p { font-size: 14px; color: var(--text2); line-height: 1.8; }
+    .platform-badge { background: var(--bg3); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 28px 24px; text-align: center; }
+    .platform-badge-name { font-family: Georgia, serif; font-size: 28px; font-weight: 600; margin-bottom: 6px; }
+    .platform-badge-sub { font-size: 12px; color: var(--text2); letter-spacing: 0.04em; margin-bottom: 16px; }
+    .platform-badge-tag { display: inline-block; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); background: rgba(255,8,0,0.08); padding: 5px 12px; border-radius: 20px; }
+    @media (max-width: 680px) { .platform-card { grid-template-columns: 1fr; padding: 28px 24px; gap: 28px; } }
 
     /* TESTIMONIALS */
-    .testimonials { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .testimonial-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
-    .testimonial-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 32px; }
-    .testimonial-quote { font-family: Georgia, serif; font-size: 16px; line-height: 1.7; color: var(--text); margin-bottom: 24px; font-style: italic; }
-    .testimonial-quote::before { content: '"'; font-size: 32px; color: var(--accent); line-height: 0; vertical-align: -12px; margin-right: 4px; font-style: normal; }
-    .testimonial-author { display: flex; align-items: center; gap: 12px; }
-    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--bg3); border: 0.5px solid var(--border); flex-shrink: 0; object-fit: cover; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 600; color: var(--text2); }
-    .testimonial-name { font-size: 14px; font-weight: 600; color: var(--text); }
-    .testimonial-role { font-size: 12px; color: var(--text2); }
-
-    /* WHO IT'S FOR */
-    .who-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .who-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
-    .who-item { background: var(--bg2); padding: 28px 24px; }
-    .who-check { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
-    .who-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 8px; }
-    .who-item p { font-size: 13px; color: var(--text2); line-height: 1.65; }
-
-    /* ABOUT */
-    .about-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .about-inner { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 44px; display: grid; grid-template-columns: 140px 1fr; gap: 40px; align-items: start; margin-top: 40px; }
-    .about-photo { width: 140px; height: 140px; border-radius: 50%; object-fit: cover; border: 0.5px solid var(--border); display: block; }
-    .about-tag { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); font-weight: 600; margin-bottom: 10px; display: block; }
-    .about-name { font-family: Georgia, serif; font-size: 24px; font-weight: 600; margin-bottom: 6px; }
-    .about-title { font-size: 14px; color: var(--text2); margin-bottom: 20px; }
-    .about-body { font-size: 15px; color: var(--text2); line-height: 1.8; }
-    .about-body p { margin-bottom: 14px; }
-    .about-body p:last-child { margin-bottom: 0; }
-    .about-badges { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 20px; }
-    .badge { font-size: 12px; color: var(--text2); background: var(--bg3); border: 0.5px solid var(--border); padding: 5px 12px; border-radius: 20px; }
-
-    /* FREEBIES */
-    .freebies-section { max-width: 800px; margin: 0 auto; padding: 0 24px; }
-    .freebies-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2px; background: var(--border); border-radius: var(--radius); overflow: hidden; margin-top: 40px; }
-    .freebie-item { background: var(--bg2); padding: 24px 28px; display: flex; gap: 16px; align-items: flex-start; }
-    .freebie-num { font-family: Georgia, serif; font-size: 22px; font-weight: 600; color: var(--accent); opacity: 0.4; line-height: 1; flex-shrink: 0; width: 28px; }
-    .freebie-title { font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
-    .freebie-desc { font-size: 13px; color: var(--text2); line-height: 1.6; }
-    .freebies-note { text-align: center; font-size: 13px; color: var(--text2); margin-top: 20px; }
-    .freebies-note strong { color: var(--text); }
-    @media (max-width: 680px) { .freebies-grid { grid-template-columns: 1fr; } }
+    .testi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-top: 40px; }
+    .testi-card { background: var(--bg2); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 28px; }
+    .testi-quote { font-family: Georgia, serif; font-size: 15px; line-height: 1.75; color: var(--text); margin-bottom: 20px; font-style: italic; }
+    .testi-quote::before { content: '"'; font-size: 28px; color: var(--accent); line-height: 0; vertical-align: -10px; margin-right: 3px; font-style: normal; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .testi-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--bg3); border: 0.5px solid var(--border); flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; color: var(--text2); }
+    .testi-name { font-size: 13px; font-weight: 600; color: var(--text); }
+    .testi-role { font-size: 11px; color: var(--text2); }
+    @media (max-width: 680px) { .testi-grid { grid-template-columns: 1fr; } }
 
     /* BOTTOM CTA */
-    .bottom-cta { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 80px 24px; text-align: center; margin-top: 72px; }
-    .bottom-cta h2 { font-family: Georgia, serif; font-size: clamp(26px, 4vw, 40px); font-weight: 600; letter-spacing: -0.015em; line-height: 1.15; margin-bottom: 16px; max-width: 540px; margin-left: auto; margin-right: auto; }
-    .bottom-cta .sub { font-size: 17px; color: var(--text2); margin-bottom: 40px; }
+    .bottom-cta { background: var(--bg2); border-top: 0.5px solid var(--border); padding: 96px 24px; text-align: center; margin-top: 80px; }
+    .bottom-cta h2 { font-family: Georgia, serif; font-size: clamp(28px, 4.5vw, 44px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin-bottom: 16px; max-width: 560px; margin-left: auto; margin-right: auto; }
+    .bottom-cta .cta-sub { font-size: 17px; color: var(--text2); margin-bottom: 40px; }
 
     /* FOOTER */
     footer { padding: 24px 48px; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
@@ -152,15 +118,11 @@
     footer a { font-size: 12px; color: var(--text2); text-decoration: none; }
     footer a:hover { color: var(--text); }
 
-    /* MOBILE */
+    /* MOBILE NAV */
     @media (max-width: 680px) {
       nav { padding: 0 20px; }
-      .hero { padding: 56px 20px 36px; }
-      .form-row { flex-direction: column; }
-      .testimonial-grid { grid-template-columns: 1fr; }
-      .about-inner { grid-template-columns: 1fr; gap: 24px; padding: 28px 24px; }
-      .about-photo { width: 100px; height: 100px; }
       footer { flex-direction: column; text-align: center; padding: 20px; }
+      .form-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -171,356 +133,188 @@
     <a href="/" class="nav-logo">
       <img src="long red.svg" alt="Feel the Room" />
     </a>
+    <a href="#join" class="nav-cta">Join free</a>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <p class="eyebrow">Feel the Room</p>
-    <h1>Most sales training<br>treats <em>the symptom.</em></h1>
-    <p class="hero-sub">There's a layer underneath the technique. And it changes everything.</p>
+    <p class="eyebrow">The Room — Free Community</p>
+    <h1>Where leaders stop<br>performing and <em>start leading.</em></h1>
+    <p class="hero-sub">A free community for sales leaders and founders who are done with surface-level advice. Real conversations. Real frameworks. No pitch.</p>
+    <div class="form-block" id="join">
+      <form class="form-row" onsubmit="handleSubmit(event)">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="btn-join">Join free</button>
+      </form>
+      <p class="form-note">Free. Always. You'll get an invite to the community and one useful thing every two weeks.</p>
+      <div class="form-social-proof">
+        "You're in for a treat. He's something else."<br>
+        <strong>— Said about Joakim, Marbella Seedster 2024</strong>
+      </div>
+    </div>
   </section>
 
-  <!-- VIDEO -->
-  <div class="video-wrap">
-    <div class="video-outer">
-      <video id="player" playsinline preload="metadata">
-        <source src="vsl_edited.mp4" type="video/mp4" />
-      </video>
-    </div>
-  </div>
+  <div class="divider"></div>
 
-  <!-- FIRST FORM -->
-  <div class="form-wrap">
-    <span class="form-label">Get early access</span>
-    <form class="form-row" onsubmit="handleSubmit(event)">
-      <input type="email" placeholder="Your email address" required />
-      <button type="submit" class="btn-access">Request access</button>
-    </form>
-    <p class="form-note">No pitch. No spam. You'll hear from me when the time is right.<br>And I'll send you something useful in the meantime.</p>
-    <div class="form-sp">
-      <span class="form-sp-quote">"You're in for a treat. He's something else."</span>
-      <span class="form-sp-name">— Said about Joakim, Marbella Seedster 2024</span>
+  <!-- WHAT IS THE ROOM -->
+  <div class="section">
+    <p class="section-eyebrow">What The Room is</p>
+    <h2 class="section-headline">Not a group chat. A space built for a specific kind of thinking.</h2>
+    <p class="section-sub">Most communities are noisy and shallow. The Room is built around one idea: the best leaders are learners first. What you'll find here is slower, deeper, and more useful than anything showing up in your LinkedIn feed.</p>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <div class="pillar-title">Weekly frameworks and tools</div>
+        <div class="pillar-body">Practical extracts from the F.E.E.L. method — on leadership, energy, communication, and team culture. Built for the room you're actually in.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <div class="pillar-title">Real conversations</div>
+        <div class="pillar-body">Ask anything. Share what's not working. Get perspectives from leaders who've been in the same rooms you're navigating now — without the performance.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <div class="pillar-title">Live sessions</div>
+        <div class="pillar-body">Periodic deep-dives where we work through a concept together. Not webinars. More like what happens when people who care about the same thing sit down to think.</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon">◎</div>
+        <div class="pillar-title">Joakim's unfiltered thinking</div>
+        <div class="pillar-body">What I'm reading. What I'm working on. What's shifting in my own practice. The thinking that doesn't fit in a LinkedIn post.</div>
+      </div>
     </div>
-  </div>
-
-  <!-- PULL QUOTE -->
-  <div class="pull-quote">
-    <p>Techniques are hard to hold onto over time. Not because they don't work. But because <strong>they sit on top of something</strong> — and if that something isn't solid, they slide off.</p>
   </div>
 
   <div class="divider"></div>
 
-  <!-- THE FOUNDATION -->
-  <div class="foundations">
-    <p class="section-eyebrow">The Method</p>
-    <h2 class="section-headline">The framework behind a sustainable performance culture.</h2>
-    <p class="section-sub">F.E.E.L. is a four-pillar framework built around a simple truth: a leader who shows up fully — physically, mentally, and emotionally — outperforms every tactic, script, or playbook.</p>
-    <div class="foundations-grid">
-      <div class="foundation-item">
-        <div class="foundation-num">F — Foundation</div>
-        <h3 class="foundation-title">Lead yourself first</h3>
-        <p class="foundation-body">You feel like you're running on low battery. Foundation teaches you to lead yourself first — so you show up fully for your team.</p>
-      </div>
-      <div class="foundation-item">
-        <div class="foundation-num">E — Elevation</div>
-        <h3 class="foundation-title">Feel the room</h3>
-        <p class="foundation-body">You're trained to read prospects. Elevation gives you the same skill for the people you lead.</p>
-      </div>
-      <div class="foundation-item">
-        <div class="foundation-num">E — Exploration</div>
-        <h3 class="foundation-title">Unlock, don't direct</h3>
-        <p class="foundation-body">You give answers when people need questions. Exploration turns you into the leader who unlocks — not directs.</p>
-      </div>
-      <div class="foundation-item">
-        <div class="foundation-num">L — Liberation</div>
-        <h3 class="foundation-title">Build culture they believe in</h3>
-        <p class="foundation-body">Your team performs when you're watching. Liberation builds a culture they actually want to be part of.</p>
-      </div>
-    </div>
+  <!-- WHAT YOU GET -->
+  <div class="section">
+    <p class="section-eyebrow">What you get when you join</p>
+    <h2 class="section-headline">Eight tools sent to you. One every two weeks.</h2>
+    <p class="section-sub">The moment you join, you start receiving practical F.E.E.L. tools — one every two weeks, over 16 weeks. These aren't lead magnets. They're the frameworks I actually use.</p>
+    <ul class="get-list">
+      <li class="get-item"><div class="get-num">01</div><div class="get-text"><strong>Team Values Workshop</strong><span>A step-by-step facilitation guide for building team values that actually drive behaviour — not just hang on a wall.</span></div></li>
+      <li class="get-item"><div class="get-num">02</div><div class="get-text"><strong>Pre-Meeting State Checklist</strong><span>Prepare your state — not just your pitch. Before any room that matters.</span></div></li>
+      <li class="get-item"><div class="get-num">03</div><div class="get-text"><strong>Objection Mapping Framework</strong><span>Turn resistance into clarity. A structured way to understand what objections are really saying.</span></div></li>
+      <li class="get-item"><div class="get-num">04</div><div class="get-text"><strong>1:1 Coaching Guide</strong><span>How to run one-on-ones that actually develop people — not just check status.</span></div></li>
+      <li class="get-item"><div class="get-num">05</div><div class="get-text"><strong>Team Orchestration Rhythm</strong><span>The cadence that keeps high-performing teams aligned without micromanagement.</span></div></li>
+      <li class="get-item"><div class="get-num">06</div><div class="get-text"><strong>Hire Interview Guide</strong><span>How to interview for the whole person — not just the CV. Spot culture fit before day one.</span></div></li>
+      <li class="get-item"><div class="get-num">07</div><div class="get-text"><strong>FTR Aura Profile</strong><span>Understand your natural energy in a room — and how to work with it, not against it.</span></div></li>
+      <li class="get-item"><div class="get-num">08</div><div class="get-text"><strong>F.E.E.L. Sales Flow</strong><span>The 7-step sales structure with key questions and time guides for each phase.</span></div></li>
+    </ul>
   </div>
 
-  <!-- STATS BAR -->
-  <div class="stats-bar">
-
-    <div class="stats-section">
-      <div class="stats-group-label">Personally led sales</div>
-      <div class="stats-inner">
-        <div class="stat-item">
-          <div class="stat-popover">Estimated from average daily call volume across 13 years of active front-line sales work. Not theory — reps on the phone.</div>
-          <div class="stat-number">80<em>K+</em></div>
-          <div class="stat-label">Sales calls across career</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-popover">Face-to-face and virtual client meetings — from cold introductions to final close — across all industries and seniority levels.</div>
-          <div class="stat-number">5<em>K+</em></div>
-          <div class="stat-label">Client meetings — cold to close</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-popover">Personal sales across 5 roles: telemarketing (2yr), wholesale (2yr), digital marketing (2yr), insurance (4.5yr), SaaS (2yr). Converted from DKK at market rate.</div>
-          <div class="stat-number">€11<em>M+</em></div>
-          <div class="stat-label">In personal sales revenue</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stats-section">
-      <div class="stats-group-label">Team led sales &amp; leadership</div>
-      <div class="stats-inner">
-        <div class="stat-item">
-          <div class="stat-popover">Combined annual revenue of teams led across telemarketing, retail, insurance, SaaS, and fintech. Converted from DKK at market rate.</div>
-          <div class="stat-number">€42<em>M+</em></div>
-          <div class="stat-label">In revenue through teams led</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-popover">Telemarketing (1→8), retail (1→10), insurance agency (3→11), second insurance agency (1→15), SaaS AEs (8), fintech (2→15 across countries).</div>
-          <div class="stat-number">5</div>
-          <div class="stat-label">Teams built and scaled from the ground up</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-popover">Across telemarketing, retail, insurance, SaaS, and fintech — spanning multiple countries and seniority levels.</div>
-          <div class="stat-number">70<em>+</em></div>
-          <div class="stat-label">People led across industries and countries</div>
-          <div class="stat-hint">tap to learn more</div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- TESTIMONIALS -->
-  <div class="testimonials">
-    <p class="section-eyebrow">What people say</p>
-    <h2 class="section-headline">From the room.</h2>
-    <div class="testimonial-grid">
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">You're in for a treat. He's something else.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">M</div>
-          <div>
-            <div class="testimonial-name">Marbella Seedster participant</div>
-            <div class="testimonial-role">Said to the next group walking in</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people. My only advice has always been: keep doing exactly what you're doing. Because it works. And because it inspires.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">I</div>
-          <div>
-            <div class="testimonial-name">Indira Comakci</div>
-            <div class="testimonial-role">Chief of Staff</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Joakim is exceptionally skilled at reading the people he talks to and competently sells solutions that match the customers' needs. His feedback always elevates things to the next level.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">S</div>
-          <div>
-            <div class="testimonial-name">Sidsel Forchammer</div>
-            <div class="testimonial-role">Head of Marketing</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Joakim possesses very unique people skills that are a game changer to any conversation. He is one of the quickest people I have ever seen to build a professional relationship — with prospects, clients, co-workers and partners alike.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">C</div>
-          <div>
-            <div class="testimonial-name">Christian Thorsø Pedersen</div>
-            <div class="testimonial-role">Senior Account Executive, Salesforce</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Joakim is a highly social extrovert, spreading positive energy wherever he goes. He's the type of person that is great for any team culture — always making sure that everyone is feeling good, or understanding why they don't.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">A</div>
-          <div>
-            <div class="testimonial-name">Aaron Marchmann</div>
-            <div class="testimonial-role">Head of Business Development</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">Joakim not only demonstrated exceptional skills in client and sales process management, but was instrumental in raising the bar for the entire team — leading by example and showing a new performance reality.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">D</div>
-          <div>
-            <div class="testimonial-name">Dimitri Devillers</div>
-            <div class="testimonial-role">Head of Sales</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">A strong mindset and character which bleeds into his determination, drive, grit and hard work on a daily basis. An innate ability to understand customers' needs, pains and problems across industries and personas. One of the best sales people I have ever worked alongside.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">J</div>
-          <div>
-            <div class="testimonial-name">Johan Christopher Mortensen</div>
-            <div class="testimonial-role">Sales Manager</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-card">
-        <p class="testimonial-quote">What truly sets Joakim apart is humility paired with relentless confidence — a scarce combination. With his mindset and dedication, I have no doubt he's on a trajectory to become a star. Keep an eye on him.</p>
-        <div class="testimonial-author">
-          <div class="testimonial-avatar">B</div>
-          <div>
-            <div class="testimonial-name">Brian Strøh Strange</div>
-            <div class="testimonial-role">CCO</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
+  <!-- PULL QUOTE -->
+  <div class="pull">
+    <p>The best leaders I've met don't have more answers. They've just <strong>learned to sit with better questions</strong> — and they found other people willing to do the same.</p>
   </div>
 
   <div class="divider"></div>
 
   <!-- WHO IT'S FOR -->
-  <div class="who-section">
+  <div class="section">
     <p class="section-eyebrow">Who this is for</p>
     <h2 class="section-headline">Not for everyone. Built for a specific kind of person.</h2>
     <div class="who-grid">
       <div class="who-item">
-        <div class="who-check">For you if →</div>
+        <div class="who-label">For you if →</div>
         <h4>Sales leaders</h4>
         <p>You feel like you're constantly pushing uphill. You know there's another level — and you're tired of symptom-treating with more courses.</p>
       </div>
       <div class="who-item">
-        <div class="who-check">For you if →</div>
+        <div class="who-label">For you if →</div>
         <h4>Founders</h4>
         <p>You're building a team and want them to perform and actually enjoy doing it. Culture isn't a buzzword for you — it's the foundation.</p>
       </div>
       <div class="who-item">
-        <div class="who-check">For you if →</div>
+        <div class="who-label">For you if →</div>
         <h4>Commercial profiles</h4>
-        <p>You operate in rooms that matter. You've sat in a meeting and known — before a word was said — that something was off. Or on.</p>
+        <p>You operate in rooms that matter. You've felt something shift the moment you walked in — and you want to understand that feeling.</p>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- ABOUT -->
-  <div class="about-section">
-    <p class="section-eyebrow">Who's behind this</p>
-    <h2 class="section-headline">I couldn't find this person. So I'm becoming him.</h2>
-    <div class="about-inner">
-      <img src="joakim.jpg" alt="Joakim Jensen" class="about-photo" />
+  <!-- THE PLATFORM -->
+  <div class="section">
+    <p class="section-eyebrow">Where we gather</p>
+    <h2 class="section-headline">The community lives on Skool.</h2>
+    <p class="section-sub">After you sign up, you'll get an invite directly to The Room on Skool — where the conversations, resources, and live sessions happen.</p>
+    <div class="platform-card">
       <div>
-        <h3 class="about-name">Joakim Møller Jensen</h3>
-        <p class="about-title">Head of Sales, Nordics &nbsp;·&nbsp; Seedster Mentor</p>
-        <div class="about-body">
-          <p>I've spent 13 years in high-performance sales and commercial leadership. I've closed enterprise deals with some of the biggest companies in Europe. I've scaled teams from just me to full departments running across countries.</p>
-          <p>Through all of it, I kept looking for someone who taught it the way I experienced it — not just the technique, but the whole thing. The culture. The energy. What it actually takes to perform at your highest level, and to stay human while doing it.</p>
-          <p>I'm particularly focused on the psychological side of sales and leadership — and on how what you do outside the office directly shapes what you deliver inside it. Performance is shaped by the whole person. Not just the work hours.</p>
-          <p>I couldn't find that person. So I'm becoming him.</p>
-        </div>
-        <div class="about-badges">
-          <span class="badge">Head of Sales, Nordics</span>
-          <span class="badge">Seedster Mentor 10.0</span>
-          <span class="badge">13+ years in sales</span>
-          <span class="badge">Cross-country teams</span>
-        </div>
+        <div class="platform-label">Why Skool</div>
+        <h3>Built for communities that actually work.</h3>
+        <p>No algorithm. No ads. No noise from people you didn't choose to follow. Skool gives us a clean, focused space — organised into topics, searchable, and built for conversation rather than performance.<br><br>You join with one click. Everything is in one place. And the people who show up actually want to be there.</p>
+      </div>
+      <div class="platform-badge">
+        <div class="platform-badge-name">Skool</div>
+        <div class="platform-badge-sub">The community platform</div>
+        <div class="platform-badge-tag">Free to join</div>
       </div>
     </div>
   </div>
 
   <div class="divider"></div>
 
-  <!-- FREEBIES TEASER -->
-  <div class="freebies-section">
-    <p class="section-eyebrow">What's waiting for you</p>
-    <h2 class="section-headline">Eight tools. Sent over 16 weeks. Yours the moment you sign up.</h2>
-    <p class="section-sub">Each one is a practical extract from the F.E.E.L. framework — built for leaders and commercial profiles who want to go deeper than technique.</p>
-    <div class="freebies-grid">
-      <div class="freebie-item">
-        <div class="freebie-num">01</div>
-        <div>
-          <div class="freebie-title">Team Values Workshop</div>
-          <div class="freebie-desc">A step-by-step facilitation guide for building team values that actually drive behaviour.</div>
+  <!-- TESTIMONIALS -->
+  <div class="section">
+    <p class="section-eyebrow">What people say</p>
+    <h2 class="section-headline">From the room.</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">You're in for a treat. He's something else.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">M</div>
+          <div>
+            <div class="testi-name">Marbella Seedster participant</div>
+            <div class="testi-role">Said to the next group walking in</div>
+          </div>
         </div>
       </div>
-      <div class="freebie-item">
-        <div class="freebie-num">02</div>
-        <div>
-          <div class="freebie-title">Pre-Meeting State Checklist</div>
-          <div class="freebie-desc">Prepare your state — not just your pitch. Before any room that matters.</div>
+      <div class="testi-card">
+        <p class="testi-quote">What truly sets Joakim apart is his ambition and authenticity. He understands that leadership isn't about titles, but about people.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">I</div>
+          <div>
+            <div class="testi-name">Indira Comakci</div>
+            <div class="testi-role">Chief of Staff</div>
+          </div>
         </div>
       </div>
-      <div class="freebie-item">
-        <div class="freebie-num">03</div>
-        <div>
-          <div class="freebie-title">Objection Mapping Framework</div>
-          <div class="freebie-desc">Turn resistance into clarity. A structured way to understand what objections are really saying.</div>
+      <div class="testi-card">
+        <p class="testi-quote">Joakim is exceptionally skilled at reading the people he talks to. His feedback always elevates things to the next level.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">S</div>
+          <div>
+            <div class="testi-name">Sidsel Forchammer</div>
+            <div class="testi-role">Head of Marketing</div>
+          </div>
         </div>
       </div>
-      <div class="freebie-item">
-        <div class="freebie-num">04</div>
-        <div>
-          <div class="freebie-title">1:1 Coaching Guide</div>
-          <div class="freebie-desc">How to run one-on-ones that actually develop people — not just check status.</div>
-        </div>
-      </div>
-      <div class="freebie-item">
-        <div class="freebie-num">05</div>
-        <div>
-          <div class="freebie-title">Team Orchestration Rhythm</div>
-          <div class="freebie-desc">The cadence and structure that keeps high-performing teams aligned without micromanagement.</div>
-        </div>
-      </div>
-      <div class="freebie-item">
-        <div class="freebie-num">06</div>
-        <div>
-          <div class="freebie-title">Hire Interview Guide</div>
-          <div class="freebie-desc">How to interview for the whole person — not just the CV. Spot culture fit before day one.</div>
-        </div>
-      </div>
-      <div class="freebie-item">
-        <div class="freebie-num">07</div>
-        <div>
-          <div class="freebie-title">FTR Aura Profile</div>
-          <div class="freebie-desc">Understand your natural energy in a room — and how to work with it, not against it.</div>
-        </div>
-      </div>
-      <div class="freebie-item">
-        <div class="freebie-num">08</div>
-        <div>
-          <div class="freebie-title">How to Structure a Sales Call</div>
-          <div class="freebie-desc">The 7-step F.E.E.L. sales flow with key questions and time guides for each phase.</div>
+      <div class="testi-card">
+        <p class="testi-quote">Joakim possesses very unique people skills that are a game changer to any conversation. One of the quickest people I've ever seen to build a professional relationship.</p>
+        <div class="testi-author">
+          <div class="testi-avatar">C</div>
+          <div>
+            <div class="testi-name">Christian Thorsø Pedersen</div>
+            <div class="testi-role">Senior Account Executive, Salesforce</div>
+          </div>
         </div>
       </div>
     </div>
-    <p class="freebies-note">One sent every two weeks. <strong>No pitch. No upsell.</strong> Just the tools.</p>
   </div>
-
-  <div class="divider"></div>
 
   <!-- BOTTOM CTA -->
   <div class="bottom-cta">
-    <h2>If this landed — you already know if you're the right person.</h2>
-    <p class="sub">Request access. You'll hear from me when the time is right.</p>
-    <div class="form-wrap" style="margin-top:0;">
-      <form class="form-row" style="max-width:460px;margin:0 auto 12px;" onsubmit="handleSubmit(event)">
+    <h2>The room is open. Pull up a chair.</h2>
+    <p class="cta-sub">Free. No pitch. Just the work.</p>
+    <div class="form-block" style="max-width:460px; margin:0 auto;">
+      <form class="form-row" onsubmit="handleSubmit(event)">
         <input type="email" placeholder="Your email address" required />
-        <button type="submit" class="btn-access">Request access</button>
+        <button type="submit" class="btn-join">Join free</button>
       </form>
-      <p class="form-note">No pitch. No spam. Something useful in the meantime.</p>
+      <p class="form-note">You'll get an invite to the Skool community and your first tool within 24 hours.</p>
     </div>
   </div>
 
@@ -530,33 +324,13 @@
     <a href="/">feeltheroom.dk</a>
   </footer>
 
-  <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
   <script>
-    const player = new Plyr('#player', {
-      controls: ['play-large', 'play', 'progress', 'current-time', 'duration', 'mute', 'volume', 'fullscreen'],
-      tooltips: { controls: false, seek: true },
-      resetOnEnd: false,
-    });
-
     function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
-      // TODO: Replace with Systeme.io embed when ready
-      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;text-align:center;">You\'re on the list. Talk soon. 🤝</p>';
+      // TODO: Replace with actual email provider (Systeme.io / Mailchimp)
+      form.innerHTML = '<p style="color:var(--text);font-size:15px;padding:14px 0;text-align:center;font-family:Georgia,serif;font-style:italic;">You\'re in. Check your inbox — the invite is on its way.</p>';
     }
-
-    // Stat popovers
-    document.querySelectorAll('.stat-item').forEach(item => {
-      item.addEventListener('click', e => {
-        const isOpen = item.classList.contains('open');
-        document.querySelectorAll('.stat-item.open').forEach(el => el.classList.remove('open'));
-        if (!isOpen) item.classList.add('open');
-        e.stopPropagation();
-      });
-    });
-    document.addEventListener('click', () => {
-      document.querySelectorAll('.stat-item.open').forEach(el => el.classList.remove('open'));
-    });
   </script>
 
 </body>
